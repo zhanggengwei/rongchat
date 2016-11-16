@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "PPTabBarController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +17,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"ViewController",@"ViewController",@"ViewController"] selectImageArr:@[@"",@"",@"",@""] titleArr:@[@"1",@"2",@"3",@"4"] normalImageArr:@[@"",@"",@"",@""]];
+    
+    
+    
+    self.window.rootViewController = controller;
+    
     return YES;
 }
 

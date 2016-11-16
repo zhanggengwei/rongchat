@@ -15,6 +15,7 @@
 		75CEF8741DDC878500541660 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75CEF8721DDC878500541660 /* LaunchScreen.storyboard */; };
 		75CEF87F1DDC878500541660 /* rongchatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF87E1DDC878500541660 /* rongchatTests.m */; };
 		75CEF88A1DDC878500541660 /* rongchatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8891DDC878500541660 /* rongchatUITests.m */; };
+		75CEF8991DDC87B200541660 /* PPTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8981DDC87B200541660 /* PPTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,10 @@
 		75CEF8851DDC878500541660 /* rongchatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rongchatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8891DDC878500541660 /* rongchatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rongchatUITests.m; sourceTree = "<group>"; };
 		75CEF88B1DDC878500541660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75CEF8971DDC87B200541660 /* PPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTabBarController.h; sourceTree = "<group>"; };
+		75CEF8981DDC87B200541660 /* PPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTabBarController.m; sourceTree = "<group>"; };
+		75CEF89A1DDC880300541660 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = rongchat/PrefixHeader.pch; sourceTree = "<group>"; };
+		75CEF89B1DDC889F00541660 /* PPMarchos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPMarchos.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,7 @@
 		75CEF8581DDC878500541660 = {
 			isa = PBXGroup;
 			children = (
+				75CEF89A1DDC880300541660 /* PrefixHeader.pch */,
 				75CEF8631DDC878500541660 /* rongchat */,
 				75CEF87D1DDC878500541660 /* rongchatTests */,
 				75CEF8881DDC878500541660 /* rongchatUITests */,
@@ -105,11 +111,14 @@
 				75CEF8681DDC878500541660 /* AppDelegate.m */,
 				75CEF86A1DDC878500541660 /* ViewController.h */,
 				75CEF86B1DDC878500541660 /* ViewController.m */,
+				75CEF8971DDC87B200541660 /* PPTabBarController.h */,
+				75CEF8981DDC87B200541660 /* PPTabBarController.m */,
 				75CEF86D1DDC878500541660 /* Main.storyboard */,
 				75CEF8701DDC878500541660 /* Assets.xcassets */,
 				75CEF8721DDC878500541660 /* LaunchScreen.storyboard */,
 				75CEF8751DDC878500541660 /* Info.plist */,
 				75CEF8641DDC878500541660 /* Supporting Files */,
+				75CEF89B1DDC889F00541660 /* PPMarchos.h */,
 			);
 			path = rongchat;
 			sourceTree = "<group>";
@@ -279,6 +288,7 @@
 				75CEF86C1DDC878500541660 /* ViewController.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
+				75CEF8991DDC87B200541660 /* PPTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,9 +436,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/rongchat/PrefixHeader.pch";
 				INFOPLIST_FILE = rongchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.soft.demo1.rongchat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popoteam.iosPoClientweixin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -438,9 +450,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/rongchat/PrefixHeader.pch";
 				INFOPLIST_FILE = rongchat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.soft.demo1.rongchat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.popoteam.iosPoClientweixin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
