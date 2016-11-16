@@ -17,12 +17,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSArray *  titleArray = @[@"微信",@"通讯录",@"发现",@"我的"];
     
-    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"ViewController",@"ViewController",@"ViewController"] selectImageArr:@[@"",@"",@"",@""] titleArr:@[@"1",@"2",@"3",@"4"] normalImageArr:@[@"",@"",@"",@""]];
+    /*
+     默认图片数组
+     */
     
     
+    NSArray *  imageArray = @[@"tabbar_mainframe",@"tabbar_contacts",@"tabbar_discover",@"tabbar_me"];
     
+    /*
+     选中图片数组
+     */
+    NSArray *  selImageArray = @[@"tabbar_mainframeHL",@"tabbar_contactsHL",@"tabbar_discoverHL",@"tabbar_meHL"];
+    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"ViewController",@"ViewController",@"ViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
+    
+    
+    self.window = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIHGHT)];
+    
+    self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = controller;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
