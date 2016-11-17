@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PPTabBarController.h"
+#import "PPLoginViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,28 +18,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSArray *  titleArray = @[@"微信",@"通讯录",@"发现",@"我的"];
-    
-    /*
-     默认图片数组
-     */
-    
-    
-    NSArray *  imageArray = @[@"tabbar_mainframe",@"tabbar_contacts",@"tabbar_discover",@"tabbar_me"];
-    
-    /*
-     选中图片数组
-     */
-    NSArray *  selImageArray = @[@"tabbar_mainframeHL",@"tabbar_contactsHL",@"tabbar_discoverHL",@"tabbar_meHL"];
-    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"PPContactListViewController",@"ViewController",@"PPMyViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
-    [controller showPointMarkIndex:0];
-    
-    [controller showBadgeMark:100 index:1];
+  
     self.window = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIHGHT)];
     
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = controller;
+    //self.window.rootViewController = controller;
     [self.window makeKeyAndVisible];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(loginStateChaned:) name:kPPObserverLoginSucess object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(loginStateChaned:) name:kPPObserverLogoutSucess object:nil];
+    
+    if([[NSUserDefaults standardUserDefaults]objectForKey:OBJC_APPIsLogin])
+    {
+        [self createTabbarController];
+    }else
+    {
+        [self createLoginController];
+    }
+    
     return YES;
 }
 
@@ -69,5 +68,33 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark
+
+- (void)createTabbarController
+{
+    NSArray *  titleArray = @[@"微信",@"通讯录",@"发现",@"我的"];
+    NSArray *  imageArray = @[@"tabbar_mainframe",@"tabbar_contacts",@"tabbar_discover",@"tabbar_me"];
+    NSArray *  selImageArray = @[@"tabbar_mainframeHL",@"tabbar_contactsHL",@"tabbar_discoverHL",@"tabbar_meHL"];
+    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"PPContactListViewController",@"ViewController",@"PPMyViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
+    [controller showPointMarkIndex:0];
+    [controller showBadgeMark:100 index:1];
+    self.window.rootViewController = controller;
+    
+}
+- (void)createLoginController
+{
+    self.window.rootViewController = [PPLoginViewController new];
+}
+
+- (void)loginStateChaned:(NSNotification *)noti
+{
+    if([noti.name isEqualToString:kPPObserverLoginSucess])
+    {
+        [self createTabbarController];
+    }else
+    {
+        [self createLoginController];
+    }
+}
 
 @end
