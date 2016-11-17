@@ -30,7 +30,7 @@
      选中图片数组
      */
     NSArray *  selImageArray = @[@"tabbar_mainframeHL",@"tabbar_contactsHL",@"tabbar_discoverHL",@"tabbar_meHL"];
-    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"PPContactListViewController",@"ViewController",@"ViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
+    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"PPContactListViewController",@"ViewController",@"PPMyViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
     [controller showPointMarkIndex:0];
     
     [controller showBadgeMark:100 index:1];
