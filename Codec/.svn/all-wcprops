@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/PoPoTeamRepository/!svn/ver/494/trunk/popoteam_ios/Tools/Codec
+END
+Base64.m
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/Base64.m
+END
+Md5.m
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/PoPoTeamRepository/!svn/ver/494/trunk/popoteam_ios/Tools/Codec/Md5.m
+END
+UrlDecode.m
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/UrlDecode.m
+END
+des.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/des.h
+END
+Codec.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/Codec.h
+END
+rc4.m
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/rc4.m
+END
+UrlEncode.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/UrlEncode.h
+END
+des.m
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/des.m
+END
+Base64.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/Base64.h
+END
+UrlEncode.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/PoPoTeamRepository/!svn/ver/494/trunk/popoteam_ios/Tools/Codec/UrlEncode.m
+END
+Md5.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/Md5.h
+END
+UrlDecode.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/UrlDecode.h
+END
+rc4.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/PoPoTeamRepository/!svn/ver/2/trunk/popoteam_ios/Tools/Codec/rc4.h
+END

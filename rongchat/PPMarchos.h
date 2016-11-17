@@ -8,15 +8,25 @@
 
 #ifndef PPMarchos_h
 #define PPMarchos_h
+#import "PPChatTools.h"
+#import <RongIMLib/RongIMLib.h>
+#import "SFHFKeychainUtils.h"
+#import "kPPObserverDef.h"
+#import "PPTDBEngine.h"
+#import "PPDataDef.h"
+#import "NSString+MD5.h"
+#import "PPDateEngine.h"
+#import "PPHTTPResponse.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIHGHT  [UIScreen mainScreen].bounds.size.height
 
-
+#define kPPResponseSucessCode 200
 #define IMAGE(name) [UIImage imageNamed:name]
 
 
-
+#define  OBJC_APPIsLogin @"APPIsLogin"
 // PPTabBarController
 
 #define TabBarTitleFontSize 12.0f

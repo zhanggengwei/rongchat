@@ -8,6 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		008506534756DB82E16B34FA /* libPods-rongchat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */; };
+		409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */; };
+		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
+		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
+		409F50651DDD6E3100015DB7 /* PPDataDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50551DDD6E3100015DB7 /* PPDataDef.m */; };
+		409F50661DDD6E3100015DB7 /* PPDateEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50571DDD6E3100015DB7 /* PPDateEngine.m */; };
+		409F50671DDD6E3100015DB7 /* PPHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50591DDD6E3100015DB7 /* PPHTTPManager.m */; };
+		409F50681DDD6E3100015DB7 /* PPHTTPRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F505B1DDD6E3100015DB7 /* PPHTTPRequestSerializer.m */; };
+		409F50691DDD6E3100015DB7 /* PPHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F505D1DDD6E3100015DB7 /* PPHTTPResponse.m */; };
+		409F506A1DDD6E3100015DB7 /* PPTDBEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F505F1DDD6E3100015DB7 /* PPTDBEngine.m */; };
+		409F506B1DDD6E3100015DB7 /* PPTUserInfoEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50611DDD6E3100015DB7 /* PPTUserInfoEngine.m */; };
+		409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F506F1DDD6E5100015DB7 /* NSString+MD5.m */; };
+		409F50751DDD6E5100015DB7 /* PPChatTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50711DDD6E5100015DB7 /* PPChatTools.m */; };
+		409F50761DDD6E5100015DB7 /* PPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50731DDD6E5100015DB7 /* PPTool.m */; };
+		409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50791DDD6E6F00015DB7 /* PPLoginTableViewCell.m */; };
+		409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F507B1DDD6E6F00015DB7 /* PPLoginViewController.m */; };
+		409F50821DDD6E6F00015DB7 /* PPRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F507D1DDD6E6F00015DB7 /* PPRegisterViewController.m */; };
+		409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F507F1DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m */; };
+		409F50921DDD704100015DB7 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50861DDD704100015DB7 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		409F50931DDD704100015DB7 /* des.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50891DDD704100015DB7 /* des.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		409F50941DDD704100015DB7 /* Md5.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F508B1DDD704100015DB7 /* Md5.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		409F50951DDD704100015DB7 /* rc4.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F508D1DDD704100015DB7 /* rc4.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		409F50961DDD704100015DB7 /* UrlDecode.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F508F1DDD704100015DB7 /* UrlDecode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		409F50971DDD704100015DB7 /* UrlEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50911DDD704100015DB7 /* UrlEncode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		409F50A91DDD721500015DB7 /* PPAccountSecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F509A1DDD721500015DB7 /* PPAccountSecurityViewController.m */; };
+		409F50AA1DDD721500015DB7 /* PPInfoMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F509C1DDD721500015DB7 /* PPInfoMessageViewController.m */; };
+		409F50AC1DDD721500015DB7 /* PPSetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F509F1DDD721500015DB7 /* PPSetingViewController.m */; };
+		409F50AD1DDD721500015DB7 /* PPShowSelectIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50A11DDD721500015DB7 /* PPShowSelectIconViewController.m */; };
+		409F50AE1DDD721500015DB7 /* PPInfoMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50A41DDD721500015DB7 /* PPInfoMessageCell.m */; };
+		409F50AF1DDD721500015DB7 /* PPPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50A61DDD721500015DB7 /* PPPersonTableViewCell.m */; };
+		409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50A81DDD721500015DB7 /* PPSettingCell.m */; };
+		409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50B21DDD72F600015DB7 /* PPColorUtil.m */; };
+		409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50B41DDD72F600015DB7 /* PPImageUtil.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* ViewController.m */; };
@@ -118,6 +150,71 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		409F504D1DDD6E3100015DB7 /* kPPObserverDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kPPObserverDef.h; sourceTree = "<group>"; };
+		409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kPPObserverDef.m; sourceTree = "<group>"; };
+		409F50501DDD6E3100015DB7 /* OTFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTFileManager.h; sourceTree = "<group>"; };
+		409F50511DDD6E3100015DB7 /* OTFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTFileManager.m; sourceTree = "<group>"; };
+		409F50521DDD6E3100015DB7 /* PPFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPFileManager.h; sourceTree = "<group>"; };
+		409F50531DDD6E3100015DB7 /* PPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPFileManager.m; sourceTree = "<group>"; };
+		409F50541DDD6E3100015DB7 /* PPDataDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPDataDef.h; sourceTree = "<group>"; };
+		409F50551DDD6E3100015DB7 /* PPDataDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPDataDef.m; sourceTree = "<group>"; };
+		409F50561DDD6E3100015DB7 /* PPDateEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPDateEngine.h; sourceTree = "<group>"; };
+		409F50571DDD6E3100015DB7 /* PPDateEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPDateEngine.m; sourceTree = "<group>"; };
+		409F50581DDD6E3100015DB7 /* PPHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPHTTPManager.h; sourceTree = "<group>"; };
+		409F50591DDD6E3100015DB7 /* PPHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPHTTPManager.m; sourceTree = "<group>"; };
+		409F505A1DDD6E3100015DB7 /* PPHTTPRequestSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPHTTPRequestSerializer.h; sourceTree = "<group>"; };
+		409F505B1DDD6E3100015DB7 /* PPHTTPRequestSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPHTTPRequestSerializer.m; sourceTree = "<group>"; };
+		409F505C1DDD6E3100015DB7 /* PPHTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPHTTPResponse.h; sourceTree = "<group>"; };
+		409F505D1DDD6E3100015DB7 /* PPHTTPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPHTTPResponse.m; sourceTree = "<group>"; };
+		409F505E1DDD6E3100015DB7 /* PPTDBEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTDBEngine.h; sourceTree = "<group>"; };
+		409F505F1DDD6E3100015DB7 /* PPTDBEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTDBEngine.m; sourceTree = "<group>"; };
+		409F50601DDD6E3100015DB7 /* PPTUserInfoEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTUserInfoEngine.h; sourceTree = "<group>"; };
+		409F50611DDD6E3100015DB7 /* PPTUserInfoEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTUserInfoEngine.m; sourceTree = "<group>"; };
+		409F506E1DDD6E5100015DB7 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		409F506F1DDD6E5100015DB7 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		409F50701DDD6E5100015DB7 /* PPChatTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPChatTools.h; sourceTree = "<group>"; };
+		409F50711DDD6E5100015DB7 /* PPChatTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPChatTools.m; sourceTree = "<group>"; };
+		409F50721DDD6E5100015DB7 /* PPTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTool.h; sourceTree = "<group>"; };
+		409F50731DDD6E5100015DB7 /* PPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTool.m; sourceTree = "<group>"; };
+		409F50781DDD6E6F00015DB7 /* PPLoginTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLoginTableViewCell.h; sourceTree = "<group>"; };
+		409F50791DDD6E6F00015DB7 /* PPLoginTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLoginTableViewCell.m; sourceTree = "<group>"; };
+		409F507A1DDD6E6F00015DB7 /* PPLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLoginViewController.h; sourceTree = "<group>"; };
+		409F507B1DDD6E6F00015DB7 /* PPLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLoginViewController.m; sourceTree = "<group>"; };
+		409F507C1DDD6E6F00015DB7 /* PPRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRegisterViewController.h; sourceTree = "<group>"; };
+		409F507D1DDD6E6F00015DB7 /* PPRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRegisterViewController.m; sourceTree = "<group>"; };
+		409F507E1DDD6E6F00015DB7 /* UITextField+UITextField_WJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+UITextField_WJ.h"; sourceTree = "<group>"; };
+		409F507F1DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+UITextField_WJ.m"; sourceTree = "<group>"; };
+		409F50851DDD704100015DB7 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		409F50861DDD704100015DB7 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		409F50871DDD704100015DB7 /* Codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Codec.h; sourceTree = "<group>"; };
+		409F50881DDD704100015DB7 /* des.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = des.h; sourceTree = "<group>"; };
+		409F50891DDD704100015DB7 /* des.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = des.m; sourceTree = "<group>"; };
+		409F508A1DDD704100015DB7 /* Md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Md5.h; sourceTree = "<group>"; };
+		409F508B1DDD704100015DB7 /* Md5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Md5.m; sourceTree = "<group>"; };
+		409F508C1DDD704100015DB7 /* rc4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rc4.h; sourceTree = "<group>"; };
+		409F508D1DDD704100015DB7 /* rc4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rc4.m; sourceTree = "<group>"; };
+		409F508E1DDD704100015DB7 /* UrlDecode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlDecode.h; sourceTree = "<group>"; };
+		409F508F1DDD704100015DB7 /* UrlDecode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlDecode.m; sourceTree = "<group>"; };
+		409F50901DDD704100015DB7 /* UrlEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlEncode.h; sourceTree = "<group>"; };
+		409F50911DDD704100015DB7 /* UrlEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlEncode.m; sourceTree = "<group>"; };
+		409F50991DDD721500015DB7 /* PPAccountSecurityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPAccountSecurityViewController.h; sourceTree = "<group>"; };
+		409F509A1DDD721500015DB7 /* PPAccountSecurityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPAccountSecurityViewController.m; sourceTree = "<group>"; };
+		409F509B1DDD721500015DB7 /* PPInfoMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPInfoMessageViewController.h; sourceTree = "<group>"; };
+		409F509C1DDD721500015DB7 /* PPInfoMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPInfoMessageViewController.m; sourceTree = "<group>"; };
+		409F509E1DDD721500015DB7 /* PPSetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSetingViewController.h; sourceTree = "<group>"; };
+		409F509F1DDD721500015DB7 /* PPSetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSetingViewController.m; sourceTree = "<group>"; };
+		409F50A01DDD721500015DB7 /* PPShowSelectIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPShowSelectIconViewController.h; sourceTree = "<group>"; };
+		409F50A11DDD721500015DB7 /* PPShowSelectIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPShowSelectIconViewController.m; sourceTree = "<group>"; };
+		409F50A31DDD721500015DB7 /* PPInfoMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPInfoMessageCell.h; sourceTree = "<group>"; };
+		409F50A41DDD721500015DB7 /* PPInfoMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPInfoMessageCell.m; sourceTree = "<group>"; };
+		409F50A51DDD721500015DB7 /* PPPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPersonTableViewCell.h; sourceTree = "<group>"; };
+		409F50A61DDD721500015DB7 /* PPPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPersonTableViewCell.m; sourceTree = "<group>"; };
+		409F50A71DDD721500015DB7 /* PPSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSettingCell.h; sourceTree = "<group>"; };
+		409F50A81DDD721500015DB7 /* PPSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSettingCell.m; sourceTree = "<group>"; };
+		409F50B11DDD72F600015DB7 /* PPColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPColorUtil.h; sourceTree = "<group>"; };
+		409F50B21DDD72F600015DB7 /* PPColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPColorUtil.m; sourceTree = "<group>"; };
+		409F50B31DDD72F600015DB7 /* PPImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPImageUtil.h; sourceTree = "<group>"; };
+		409F50B41DDD72F600015DB7 /* PPImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPImageUtil.m; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -253,6 +350,122 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		409F504C1DDD6E3100015DB7 /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				409F504D1DDD6E3100015DB7 /* kPPObserverDef.h */,
+				409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */,
+				409F504F1DDD6E3100015DB7 /* OT */,
+				409F50541DDD6E3100015DB7 /* PPDataDef.h */,
+				409F50551DDD6E3100015DB7 /* PPDataDef.m */,
+				409F50561DDD6E3100015DB7 /* PPDateEngine.h */,
+				409F50571DDD6E3100015DB7 /* PPDateEngine.m */,
+				409F50581DDD6E3100015DB7 /* PPHTTPManager.h */,
+				409F50591DDD6E3100015DB7 /* PPHTTPManager.m */,
+				409F505A1DDD6E3100015DB7 /* PPHTTPRequestSerializer.h */,
+				409F505B1DDD6E3100015DB7 /* PPHTTPRequestSerializer.m */,
+				409F505C1DDD6E3100015DB7 /* PPHTTPResponse.h */,
+				409F505D1DDD6E3100015DB7 /* PPHTTPResponse.m */,
+				409F505E1DDD6E3100015DB7 /* PPTDBEngine.h */,
+				409F505F1DDD6E3100015DB7 /* PPTDBEngine.m */,
+				409F50601DDD6E3100015DB7 /* PPTUserInfoEngine.h */,
+				409F50611DDD6E3100015DB7 /* PPTUserInfoEngine.m */,
+			);
+			path = manager;
+			sourceTree = "<group>";
+		};
+		409F504F1DDD6E3100015DB7 /* OT */ = {
+			isa = PBXGroup;
+			children = (
+				409F50501DDD6E3100015DB7 /* OTFileManager.h */,
+				409F50511DDD6E3100015DB7 /* OTFileManager.m */,
+				409F50521DDD6E3100015DB7 /* PPFileManager.h */,
+				409F50531DDD6E3100015DB7 /* PPFileManager.m */,
+			);
+			path = OT;
+			sourceTree = "<group>";
+		};
+		409F506C1DDD6E5100015DB7 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				409F50B11DDD72F600015DB7 /* PPColorUtil.h */,
+				409F50B21DDD72F600015DB7 /* PPColorUtil.m */,
+				409F50B31DDD72F600015DB7 /* PPImageUtil.h */,
+				409F50B41DDD72F600015DB7 /* PPImageUtil.m */,
+				409F506E1DDD6E5100015DB7 /* NSString+MD5.h */,
+				409F506F1DDD6E5100015DB7 /* NSString+MD5.m */,
+				409F50701DDD6E5100015DB7 /* PPChatTools.h */,
+				409F50711DDD6E5100015DB7 /* PPChatTools.m */,
+				409F50721DDD6E5100015DB7 /* PPTool.h */,
+				409F50731DDD6E5100015DB7 /* PPTool.m */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		409F50771DDD6E6F00015DB7 /* 登陆 */ = {
+			isa = PBXGroup;
+			children = (
+				409F50781DDD6E6F00015DB7 /* PPLoginTableViewCell.h */,
+				409F50791DDD6E6F00015DB7 /* PPLoginTableViewCell.m */,
+				409F507A1DDD6E6F00015DB7 /* PPLoginViewController.h */,
+				409F507B1DDD6E6F00015DB7 /* PPLoginViewController.m */,
+				409F507C1DDD6E6F00015DB7 /* PPRegisterViewController.h */,
+				409F507D1DDD6E6F00015DB7 /* PPRegisterViewController.m */,
+				409F507E1DDD6E6F00015DB7 /* UITextField+UITextField_WJ.h */,
+				409F507F1DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m */,
+			);
+			path = "登陆";
+			sourceTree = "<group>";
+		};
+		409F50841DDD704100015DB7 /* Codec */ = {
+			isa = PBXGroup;
+			children = (
+				409F50851DDD704100015DB7 /* Base64.h */,
+				409F50861DDD704100015DB7 /* Base64.m */,
+				409F50871DDD704100015DB7 /* Codec.h */,
+				409F50881DDD704100015DB7 /* des.h */,
+				409F50891DDD704100015DB7 /* des.m */,
+				409F508A1DDD704100015DB7 /* Md5.h */,
+				409F508B1DDD704100015DB7 /* Md5.m */,
+				409F508C1DDD704100015DB7 /* rc4.h */,
+				409F508D1DDD704100015DB7 /* rc4.m */,
+				409F508E1DDD704100015DB7 /* UrlDecode.h */,
+				409F508F1DDD704100015DB7 /* UrlDecode.m */,
+				409F50901DDD704100015DB7 /* UrlEncode.h */,
+				409F50911DDD704100015DB7 /* UrlEncode.m */,
+			);
+			path = Codec;
+			sourceTree = "<group>";
+		};
+		409F50981DDD721500015DB7 /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				409F50991DDD721500015DB7 /* PPAccountSecurityViewController.h */,
+				409F509A1DDD721500015DB7 /* PPAccountSecurityViewController.m */,
+				409F509B1DDD721500015DB7 /* PPInfoMessageViewController.h */,
+				409F509C1DDD721500015DB7 /* PPInfoMessageViewController.m */,
+				409F509E1DDD721500015DB7 /* PPSetingViewController.h */,
+				409F509F1DDD721500015DB7 /* PPSetingViewController.m */,
+				409F50A01DDD721500015DB7 /* PPShowSelectIconViewController.h */,
+				409F50A11DDD721500015DB7 /* PPShowSelectIconViewController.m */,
+				409F50A21DDD721500015DB7 /* view */,
+			);
+			path = "我的";
+			sourceTree = "<group>";
+		};
+		409F50A21DDD721500015DB7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				409F50A31DDD721500015DB7 /* PPInfoMessageCell.h */,
+				409F50A41DDD721500015DB7 /* PPInfoMessageCell.m */,
+				409F50A51DDD721500015DB7 /* PPPersonTableViewCell.h */,
+				409F50A61DDD721500015DB7 /* PPPersonTableViewCell.m */,
+				409F50A71DDD721500015DB7 /* PPSettingCell.h */,
+				409F50A81DDD721500015DB7 /* PPSettingCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		4D16107C2216A3912DCDEC68 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +478,11 @@
 		75CEF8581DDC878500541660 = {
 			isa = PBXGroup;
 			children = (
+				409F50981DDD721500015DB7 /* 我的 */,
+				409F50841DDD704100015DB7 /* Codec */,
+				409F50771DDD6E6F00015DB7 /* 登陆 */,
+				409F506C1DDD6E5100015DB7 /* tools */,
+				409F504C1DDD6E3100015DB7 /* manager */,
 				75CEF89A1DDC880300541660 /* PrefixHeader.pch */,
 				75CEF8631DDC878500541660 /* rongchat */,
 				75CEF87D1DDC878500541660 /* rongchatTests */,
@@ -759,12 +977,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				409F50941DDD704100015DB7 /* Md5.m in Sources */,
+				409F50A91DDD721500015DB7 /* PPAccountSecurityViewController.m in Sources */,
+				409F50951DDD704100015DB7 /* rc4.m in Sources */,
+				409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */,
 				75CEF86C1DDC878500541660 /* ViewController.m in Sources */,
+				409F50821DDD6E6F00015DB7 /* PPRegisterViewController.m in Sources */,
+				409F50761DDD6E5100015DB7 /* PPTool.m in Sources */,
+				409F50931DDD704100015DB7 /* des.m in Sources */,
+				409F50AA1DDD721500015DB7 /* PPInfoMessageViewController.m in Sources */,
+				409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */,
+				409F50681DDD6E3100015DB7 /* PPHTTPRequestSerializer.m in Sources */,
+				409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */,
 				75CEF9411DDD288300541660 /* PPBaseViewController.m in Sources */,
+				409F50961DDD704100015DB7 /* UrlDecode.m in Sources */,
+				409F50AC1DDD721500015DB7 /* PPSetingViewController.m in Sources */,
+				409F50691DDD6E3100015DB7 /* PPHTTPResponse.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
+				409F506B1DDD6E3100015DB7 /* PPTUserInfoEngine.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
 				75CEF8991DDC87B200541660 /* PPTabBarController.m in Sources */,
+				409F50971DDD704100015DB7 /* UrlEncode.m in Sources */,
+				409F50921DDD704100015DB7 /* Base64.m in Sources */,
+				409F50751DDD6E5100015DB7 /* PPChatTools.m in Sources */,
+				409F50661DDD6E3100015DB7 /* PPDateEngine.m in Sources */,
+				409F50AF1DDD721500015DB7 /* PPPersonTableViewCell.m in Sources */,
+				409F506A1DDD6E3100015DB7 /* PPTDBEngine.m in Sources */,
+				409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */,
+				409F50AE1DDD721500015DB7 /* PPInfoMessageCell.m in Sources */,
+				409F50651DDD6E3100015DB7 /* PPDataDef.m in Sources */,
+				409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */,
+				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
+				409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */,
+				409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */,
+				409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */,
+				409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */,
 				75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */,
+				409F50671DDD6E3100015DB7 /* PPHTTPManager.m in Sources */,
+				409F50AD1DDD721500015DB7 /* PPShowSelectIconViewController.m in Sources */,
 				75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -917,6 +1167,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/rongchat/PrefixHeader.pch";
 				INFOPLIST_FILE = rongchat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.popoteam.iosPoClientweixin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -932,6 +1183,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/rongchat/PrefixHeader.pch";
 				INFOPLIST_FILE = rongchat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.popoteam.iosPoClientweixin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
