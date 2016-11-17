@@ -98,9 +98,54 @@
     [self.db executeQuery:dropSql];
 }
 
-- (void)saveUserInfo:(PPUserBase *)baseInfo
+- (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
 {
     
+    if(baseInfo == nil)
+    {
+        return NO;
+    }
+    if ([_db open])
+    {
+        NSString *sql;
+        
+        BOOL ret = NO;
+        @try
+        {
+            if ([self ifHaveRecordWithTable:USER_INFO_TABLENAME])
+            {
+                sql =  [NSString stringWithFormat:@"truncate FROM %@",USER_INFO_TABLENAME];
+                ret = [_db executeUpdate:sql];
+                if (NO == ret)
+                {
+                    [_db close];
+                    return NO;
+                }
+            }
+            sql = @"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            
+            ret = [_db executeUpdate:sql,baseInfo.user.indexId, baseInfo.user.nickname,baseInfo.displayName, baseInfo.user.portraitUri,baseInfo.updatedAt, baseInfo.user.phone, baseInfo.user.region, [NSNumber numberWithBool:baseInfo.status]];
+            
+            if (NO == ret)
+            {
+                [_db close];
+                return NO;
+            }
+        }
+        @catch (NSException *exception)
+        {
+           
+        }
+        @finally
+        {
+            [_db close];
+            
+            return YES;
+        }
+        
+        
+    }
+    return NO;
 }
 
 - (void)createUser_Info_TableName
@@ -115,6 +160,18 @@
 - (void)saveFriendList:(NSArray <PPUserBaseInfo *> *)arr
 {
     
+}
+
+#pragma mark - util method
+- (BOOL)ifHaveRecordWithTable:(NSString *)table
+{
+    FMResultSet *resultSet = [_db executeQuery:[NSString stringWithFormat:@"select * from \'%@\';", table]];
+    
+    if ([resultSet next])
+    {
+        return YES;
+    }
+    return NO;
 }
 
 

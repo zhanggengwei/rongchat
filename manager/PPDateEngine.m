@@ -124,7 +124,8 @@
             [[PPDateEngine manager]requestGetUserInfoResponse:^(PPUserBaseInfoResponse * aTaskResponse) {
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {
-                    [PPTDBEngine shareManager];
+                    [[PPTDBEngine shareManager]saveUserInfo:aTaskResponse.result];
+                    
                     [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
                     
                 }
@@ -133,12 +134,12 @@
         
             
         } failBlock:^(RCConnectErrorCode code) {
-          
+            NSLog(@"code == %ld",code);
             
             
         } tokenIncorrectBlock:^{
             
-          
+            NSLog(@"token error");
         }];
         }
         

@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@class PPUserBaseInfo;
 
 @interface PPTDBEngine : NSObject
 
 + (instancetype)shareManager;
+- (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
+
 
 @end

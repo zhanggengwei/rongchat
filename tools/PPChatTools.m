@@ -30,6 +30,7 @@
         shareInstance.client = [RCIMClient sharedRCIMClient];
         [shareInstance.client setRCConnectionStatusChangeDelegate:shareInstance];
         [shareInstance.client setReceiveMessageDelegate:shareInstance object:nil];
+        [shareInstance initRCIM];
         
         
         

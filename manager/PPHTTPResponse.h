@@ -30,6 +30,7 @@
 @end
 
 @interface PPUserBaseInfoResponse :PPHTTPResponse
+
 @end
 
 
