@@ -131,6 +131,8 @@
 		75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9441DDD28C100541660 /* PPContactListViewController.m */; };
 		75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9481DDD2A0600541660 /* PPContactListCell.m */; };
 		75CEF94C1DDDD43300541660 /* PPMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF94B1DDDD43300541660 /* PPMyViewController.m */; };
+		75CEF9521DDDDDD000541660 /* PPIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9511DDDDDD000541660 /* PPIndicatorView.m */; };
+		75CEF9551DDDDE1300541660 /* PPViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9541DDDDE1300541660 /* PPViewUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,6 +324,10 @@
 		75CEF9481DDD2A0600541660 /* PPContactListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPContactListCell.m; sourceTree = "<group>"; };
 		75CEF94A1DDDD43300541660 /* PPMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMyViewController.h; sourceTree = "<group>"; };
 		75CEF94B1DDDD43300541660 /* PPMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMyViewController.m; sourceTree = "<group>"; };
+		75CEF9501DDDDDD000541660 /* PPIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPIndicatorView.h; sourceTree = "<group>"; };
+		75CEF9511DDDDDD000541660 /* PPIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPIndicatorView.m; sourceTree = "<group>"; };
+		75CEF9531DDDDE1300541660 /* PPViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPViewUtil.h; sourceTree = "<group>"; };
+		75CEF9541DDDDE1300541660 /* PPViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPViewUtil.m; sourceTree = "<group>"; };
 		78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.release.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.release.xcconfig"; sourceTree = "<group>"; };
 		DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.debug.xcconfig"; sourceTree = "<group>"; };
 		EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rongchat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -391,6 +397,10 @@
 		409F506C1DDD6E5100015DB7 /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				75CEF9531DDDDE1300541660 /* PPViewUtil.h */,
+				75CEF9541DDDDE1300541660 /* PPViewUtil.m */,
+				75CEF9501DDDDDD000541660 /* PPIndicatorView.h */,
+				75CEF9511DDDDDD000541660 /* PPIndicatorView.m */,
 				409F50B11DDD72F600015DB7 /* PPColorUtil.h */,
 				409F50B21DDD72F600015DB7 /* PPColorUtil.m */,
 				409F50B31DDD72F600015DB7 /* PPImageUtil.h */,
@@ -1012,6 +1022,8 @@
 				409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */,
 				409F50AE1DDD721500015DB7 /* PPInfoMessageCell.m in Sources */,
 				409F50651DDD6E3100015DB7 /* PPDataDef.m in Sources */,
+				75CEF9551DDDDE1300541660 /* PPViewUtil.m in Sources */,
+				75CEF9521DDDDDD000541660 /* PPIndicatorView.m in Sources */,
 				409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */,
