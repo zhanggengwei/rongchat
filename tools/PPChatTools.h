@@ -20,7 +20,7 @@
 
 - (void)autoLogin;
 
-- (void)connectWithToken:(NSString *)token sucessBlock:(void (^)(NSString * content))block failBloc:(void(^)(RCConnectErrorCode code))failBlock tokenIncorrectBlock:(void(^)(void))tokenIncorrectBlock;
+- (void)connectWithToken:(NSString *)token sucessBlock:(void (^)(NSString * content))block failBlock:(void(^)(RCConnectErrorCode code))failBlock tokenIncorrectBlock:(void(^)(void))tokenIncorrectBlock;
 
 - (void)disconnect;
 

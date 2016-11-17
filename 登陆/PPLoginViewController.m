@@ -208,11 +208,19 @@
 
 - (void)loginAction:(id)sender
 {
+    [PPIndicatorView  showLoadingInView:self.view];
+    
     [[PPDateEngine manager]loginWithWithResponse:^(PPHTTPResponse * aTaskResponse) {
+        [PPIndicatorView hideLoading];
         if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
         {
+            [PPIndicatorView showString:@"登陆成功"];
             [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
             
+            
+        }else
+        {
+            [PPIndicatorView showString:aTaskResponse.message];
         }
         
     } Phone:self.acount passWord:self.passWord region:@"86"];

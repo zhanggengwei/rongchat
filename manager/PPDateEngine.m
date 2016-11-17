@@ -109,11 +109,11 @@
         PPUserInfoTokenResponse * response = [MTLJSONAdapter modelOfClass:[PPUserInfoTokenResponse class] fromJSONDictionary:responseObject error:&error];
         NSString * token = ((PPTokenDef *)(response.result)).token;
         NSString * userID = ((PPTokenDef *)(response.result)).indexId;
-        
-        [self _completeWithResponse:response block:aResponseBlock];
-        if(response.code.integerValue == kPPResponseSucessCode){
+
+        if(response.code.integerValue == kPPResponseSucessCode)
+        {
+             [self _completeWithResponse:response block:aResponseBlock];
             
-        }
         [[PPChatTools shareManager]connectWithToken:token sucessBlock:^(NSString *content) {
             NSError * error;
             [SFHFKeychainUtils storeUsername:kPPLoginName andPassword:phone forServiceName:kPPServiceName updateExisting:YES error:&error];
@@ -121,7 +121,6 @@
             [SFHFKeychainUtils storeUsername:kPPLoginToekn andPassword:token forServiceName:kPPServiceName updateExisting:YES error:&error];
             
             [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:userID forServiceName:kPPServiceName updateExisting:YES error:&error];
-            
             [[PPDateEngine manager]requestGetUserInfoResponse:^(PPUserBaseInfoResponse * aTaskResponse) {
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {
@@ -131,12 +130,17 @@
                 }
                 
             } userID:userID];
+        
             
-        } failBloc:^(RCConnectErrorCode code) {
+        } failBlock:^(RCConnectErrorCode code) {
+          
+            
             
         } tokenIncorrectBlock:^{
             
+          
         }];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PPHTTPResponse *response = [PPHTTPResponse responseWithError:error];
