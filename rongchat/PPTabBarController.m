@@ -169,7 +169,7 @@
         numLabel.frame = nFrame;
         numLabel.layer.cornerRadius = TabBarNumberMarkD/2.0;
         
-        numLabel.text = @"\(badge)";
+        numLabel.text = [NSString stringWithFormat:@"%ld",badge];
         if (badge > 99)
         {
             numLabel.text = @"99+";
@@ -272,7 +272,6 @@
         CGFloat  h = self.tabBarHeight;
         
         PPButton *  button = [[PPButton alloc]initWithFrame:CGRectMake(x,y,w,h)];
-        button.layer.borderWidth = 1;
         button.tag = 1000+i;
         [button setTitleColor:TabBarTitleColor forState:UIControlStateNormal];
         [button setTitleColor:ColorTitleSel forState:UIControlStateSelected];

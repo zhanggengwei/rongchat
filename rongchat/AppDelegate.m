@@ -30,15 +30,15 @@
      选中图片数组
      */
     NSArray *  selImageArray = @[@"tabbar_mainframeHL",@"tabbar_contactsHL",@"tabbar_discoverHL",@"tabbar_meHL"];
-    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"ViewController",@"ViewController",@"ViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
+    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"PPContactListViewController",@"ViewController",@"ViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
+    [controller showPointMarkIndex:0];
     
-    
+    [controller showBadgeMark:100 index:1];
     self.window = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIHGHT)];
     
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = controller;
     [self.window makeKeyAndVisible];
-    
     return YES;
 }
 

@@ -13,6 +13,10 @@
 #define SCREEN_HEIHGHT  [UIScreen mainScreen].bounds.size.height
 
 
+#define IMAGE(name) [UIImage imageNamed:name]
+
+
+
 // PPTabBarController
 
 #define TabBarTitleFontSize 12.0f

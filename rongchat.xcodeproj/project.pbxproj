@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		008506534756DB82E16B34FA /* libPods-rongchat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* ViewController.m */; };
@@ -94,6 +95,9 @@
 		75CEF93B1DDC9BEB00541660 /* tabbar_me@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CEF8ED1DDC9BEB00541660 /* tabbar_me@3x.png */; };
 		75CEF93C1DDC9BEB00541660 /* tabbar_meHL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CEF8EE1DDC9BEB00541660 /* tabbar_meHL@2x.png */; };
 		75CEF93D1DDC9BEB00541660 /* tabbar_meHL@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CEF8EF1DDC9BEB00541660 /* tabbar_meHL@3x.png */; };
+		75CEF9411DDD288300541660 /* PPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9401DDD288300541660 /* PPBaseViewController.m */; };
+		75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9441DDD28C100541660 /* PPContactListViewController.m */; };
+		75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9481DDD2A0600541660 /* PPContactListCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +216,15 @@
 		75CEF8ED1DDC9BEB00541660 /* tabbar_me@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_me@3x.png"; sourceTree = "<group>"; };
 		75CEF8EE1DDC9BEB00541660 /* tabbar_meHL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_meHL@2x.png"; sourceTree = "<group>"; };
 		75CEF8EF1DDC9BEB00541660 /* tabbar_meHL@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_meHL@3x.png"; sourceTree = "<group>"; };
+		75CEF93F1DDD288300541660 /* PPBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBaseViewController.h; path = "../通讯录/PPBaseViewController.h"; sourceTree = "<group>"; };
+		75CEF9401DDD288300541660 /* PPBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPBaseViewController.m; path = "../通讯录/PPBaseViewController.m"; sourceTree = "<group>"; };
+		75CEF9431DDD28C100541660 /* PPContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPContactListViewController.h; sourceTree = "<group>"; };
+		75CEF9441DDD28C100541660 /* PPContactListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPContactListViewController.m; sourceTree = "<group>"; };
+		75CEF9471DDD2A0600541660 /* PPContactListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPContactListCell.h; sourceTree = "<group>"; };
+		75CEF9481DDD2A0600541660 /* PPContactListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPContactListCell.m; sourceTree = "<group>"; };
+		78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.release.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.release.xcconfig"; sourceTree = "<group>"; };
+		DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.debug.xcconfig"; sourceTree = "<group>"; };
+		EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rongchat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				008506534756DB82E16B34FA /* libPods-rongchat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +253,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D16107C2216A3912DCDEC68 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */,
+				78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		75CEF8581DDC878500541660 = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +270,8 @@
 				75CEF87D1DDC878500541660 /* rongchatTests */,
 				75CEF8881DDC878500541660 /* rongchatUITests */,
 				75CEF8621DDC878500541660 /* Products */,
+				4D16107C2216A3912DCDEC68 /* Pods */,
+				9BD43905C29E4E7A38E318AB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -263,6 +288,8 @@
 		75CEF8631DDC878500541660 /* rongchat */ = {
 			isa = PBXGroup;
 			children = (
+				75CEF9421DDD289600541660 /* public */,
+				75CEF93E1DDD286300541660 /* 通讯录 */,
 				75CEF89C1DDC9BEB00541660 /* resource */,
 				75CEF8671DDC878500541660 /* AppDelegate.h */,
 				75CEF8681DDC878500541660 /* AppDelegate.m */,
@@ -431,6 +458,42 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
+		75CEF93E1DDD286300541660 /* 通讯录 */ = {
+			isa = PBXGroup;
+			children = (
+				75CEF9461DDD29DF00541660 /* view */,
+				75CEF9431DDD28C100541660 /* PPContactListViewController.h */,
+				75CEF9441DDD28C100541660 /* PPContactListViewController.m */,
+			);
+			path = "通讯录";
+			sourceTree = "<group>";
+		};
+		75CEF9421DDD289600541660 /* public */ = {
+			isa = PBXGroup;
+			children = (
+				75CEF93F1DDD288300541660 /* PPBaseViewController.h */,
+				75CEF9401DDD288300541660 /* PPBaseViewController.m */,
+			);
+			path = public;
+			sourceTree = "<group>";
+		};
+		75CEF9461DDD29DF00541660 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				75CEF9471DDD2A0600541660 /* PPContactListCell.h */,
+				75CEF9481DDD2A0600541660 /* PPContactListCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		9BD43905C29E4E7A38E318AB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -438,9 +501,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75CEF88E1DDC878500541660 /* Build configuration list for PBXNativeTarget "rongchat" */;
 			buildPhases = (
+				F471CBE14BF99436801F9BF2 /* [CP] Check Pods Manifest.lock */,
 				75CEF85D1DDC878500541660 /* Sources */,
 				75CEF85E1DDC878500541660 /* Frameworks */,
 				75CEF85F1DDC878500541660 /* Resources */,
+				A1A414A04EA80849AA78DD20 /* [CP] Embed Pods Frameworks */,
+				A2F9FB815E6E9000FC938A94 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -640,15 +706,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A1A414A04EA80849AA78DD20 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-rongchat/Pods-rongchat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2F9FB815E6E9000FC938A94 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-rongchat/Pods-rongchat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F471CBE14BF99436801F9BF2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		75CEF85D1DDC878500541660 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				75CEF86C1DDC878500541660 /* ViewController.m in Sources */,
+				75CEF9411DDD288300541660 /* PPBaseViewController.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
 				75CEF8991DDC87B200541660 /* PPTabBarController.m in Sources */,
+				75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */,
+				75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +910,7 @@
 		};
 		75CEF88F1DDC878500541660 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
@@ -807,6 +925,7 @@
 		};
 		75CEF8901DDC878500541660 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
@@ -888,6 +1007,7 @@
 				75CEF8901DDC878500541660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75CEF8911DDC878500541660 /* Build configuration list for PBXNativeTarget "rongchatTests" */ = {
 			isa = XCConfigurationList;
@@ -896,6 +1016,7 @@
 				75CEF8931DDC878500541660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75CEF8941DDC878500541660 /* Build configuration list for PBXNativeTarget "rongchatUITests" */ = {
 			isa = XCConfigurationList;
@@ -904,6 +1025,7 @@
 				75CEF8961DDC878500541660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

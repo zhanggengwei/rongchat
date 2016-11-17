@@ -10,5 +10,7 @@
 
 @interface PPTabBarController : UITabBarController
 - (instancetype)init:(NSArray *)controllerArray selectImageArr:(NSArray *)imageSelect titleArr:(NSArray *)titleArr normalImageArr:(NSArray *)imageArr;
-
+-(void)showPointMarkIndex:(NSInteger)index;
+- (void) hideMarkIndex:(NSInteger)index;
+-(void)showBadgeMark:(NSInteger)badge index:(NSInteger)index;
 @end
