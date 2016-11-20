@@ -31,8 +31,8 @@ pod 'IQKeyboardManager'
 
 pod 'Bugly', '~> 2.4.2'
 #MAP
-#pod 'AMapSearch', '~> 4.3.0'
-#pod 'AMapLocation', '~> 2.1.1'
+pod 'AMapSearch', '~> 4.2.0'
+pod 'AMapLocation', '~> 2.1.1'
 
 #Versions
 pod 'ICEVersionUpdate', '~> 1.0.0'
