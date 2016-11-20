@@ -124,9 +124,9 @@
             [[PPDateEngine manager]requestGetUserInfoResponse:^(PPUserBaseInfoResponse * aTaskResponse) {
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {
-                    [[PPTDBEngine shareManager]saveUserInfo:aTaskResponse.result];
-                    
+                    [PPTDBEngine shareManager];
                     [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
+                    [[PPTDBEngine shareManager]saveUserInfo:aTaskResponse.result];
                     
                 }
                 

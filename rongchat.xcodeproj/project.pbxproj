@@ -328,6 +328,7 @@
 		75CEF9511DDDDDD000541660 /* PPIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPIndicatorView.m; sourceTree = "<group>"; };
 		75CEF9531DDDDE1300541660 /* PPViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPViewUtil.h; sourceTree = "<group>"; };
 		75CEF9541DDDDE1300541660 /* PPViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPViewUtil.m; sourceTree = "<group>"; };
+		75CEF9561DE1434500541660 /* rongchat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = rongchat.entitlements; sourceTree = "<group>"; };
 		78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.release.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.release.xcconfig"; sourceTree = "<group>"; };
 		DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.debug.xcconfig"; sourceTree = "<group>"; };
 		EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rongchat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -521,6 +522,7 @@
 		75CEF8631DDC878500541660 /* rongchat */ = {
 			isa = PBXGroup;
 			children = (
+				75CEF9561DE1434500541660 /* rongchat.entitlements */,
 				75CEF9421DDD289600541660 /* public */,
 				75CEF93E1DDD286300541660 /* 通讯录 */,
 				75CEF89C1DDC9BEB00541660 /* resource */,
@@ -799,6 +801,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = R6B5BG54J2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					75CEF8791DDC878500541660 = {
 						CreatedOnToolsVersion = 8.1;
@@ -1181,6 +1188,7 @@
 			baseConfigurationReference = DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/rongchat/PrefixHeader.pch";
@@ -1197,6 +1205,7 @@
 			baseConfigurationReference = 78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/rongchat/PrefixHeader.pch";

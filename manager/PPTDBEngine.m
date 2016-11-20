@@ -47,12 +47,14 @@
     if (!isDir) {
         OTF_CreateDir(dbPath);
     }
-    [self loadDataBase:userID];
+   
     
 }
 
 - (void)loadDataBase:(NSString *)userID
 {
+    
+    
     
     NSString * dbPath = [[PPFileManager sharedManager]pathForDomain:PPFileDirDomain_User appendPathName:userID];
     dbPath = [dbPath stringByAppendingPathComponent:@"user.db"];
@@ -76,11 +78,8 @@
 }
 - (void)createTables
 {
-    if([self queryTable:USER_INFO_TABLENAME]==NO)
-    {
-        [self createUser_Info_TableName];
+     [self createUser_Info_TableName];
         
-    }
 }
 - (BOOL)queryTable:(NSString *)tableName
 {
@@ -100,6 +99,12 @@
 
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
 {
+    
+    
+    [self loadDataBase:baseInfo.user.indexId];
+    
+    
+    NSLog(@"%@",NSHomeDirectory());
     
     if(baseInfo == nil)
     {
