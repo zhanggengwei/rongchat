@@ -52,3 +52,14 @@
 
 @end
 
+@interface PPCountryDef : PPDataDef
+
+@property (nonatomic,assign) NSInteger country_id;
+@property (nonatomic,strong) NSString * country_code;
+@property (nonatomic,strong) NSString * country_name_en;
+@property (nonatomic,strong) NSString * country_name_cn;
+@property (nonatomic,strong) NSString * ab;
+
+
+@end
+

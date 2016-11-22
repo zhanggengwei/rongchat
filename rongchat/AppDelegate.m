@@ -32,12 +32,12 @@
     
     if([[NSUserDefaults standardUserDefaults]objectForKey:OBJC_APPIsLogin])
     {
-        [self createTabbarController];
+       // [self createTabbarController];
     }else
     {
-        [self createLoginController];
+        //[self createLoginController];
     }
-    
+    [self createTabbarController];
     [[AMapServices sharedServices]setApiKey:KAppMapKey];
     [[PPLocationManager shareManager]requestLocation];
     

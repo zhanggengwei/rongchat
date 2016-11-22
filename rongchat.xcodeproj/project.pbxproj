@@ -134,6 +134,11 @@
 		75CEF9521DDDDDD000541660 /* PPIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9511DDDDDD000541660 /* PPIndicatorView.m */; };
 		75CEF9551DDDDE1300541660 /* PPViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9541DDDDE1300541660 /* PPViewUtil.m */; };
 		75CEF9591DE33D1900541660 /* PPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9581DE33D1900541660 /* PPLocationManager.m */; };
+		75DE61831DE48CA400DF1CA4 /* Country_Code.json in Resources */ = {isa = PBXBuildFile; fileRef = 75DE61821DE48CA400DF1CA4 /* Country_Code.json */; };
+		75DE61861DE48E6C00DF1CA4 /* PPSelectAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DE61851DE48E6C00DF1CA4 /* PPSelectAreaViewController.m */; };
+		75DE61881DE48E9800DF1CA4 /* PPSelectArea.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DE61871DE48E9800DF1CA4 /* PPSelectArea.storyboard */; };
+		75DE618B1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DE618A1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m */; };
+		75DE618E1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DE618D1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -332,6 +337,14 @@
 		75CEF9561DE1434500541660 /* rongchat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = rongchat.entitlements; sourceTree = "<group>"; };
 		75CEF9571DE33D1900541660 /* PPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLocationManager.h; sourceTree = "<group>"; };
 		75CEF9581DE33D1900541660 /* PPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLocationManager.m; sourceTree = "<group>"; };
+		75DE61821DE48CA400DF1CA4 /* Country_Code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Country_Code.json; sourceTree = "<group>"; };
+		75DE61841DE48E6C00DF1CA4 /* PPSelectAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSelectAreaViewController.h; sourceTree = "<group>"; };
+		75DE61851DE48E6C00DF1CA4 /* PPSelectAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSelectAreaViewController.m; sourceTree = "<group>"; };
+		75DE61871DE48E9800DF1CA4 /* PPSelectArea.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PPSelectArea.storyboard; sourceTree = "<group>"; };
+		75DE61891DE490A300DF1CA4 /* PPSelectAreaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSelectAreaTableViewCell.h; sourceTree = "<group>"; };
+		75DE618A1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSelectAreaTableViewCell.m; sourceTree = "<group>"; };
+		75DE618C1DE490BD00DF1CA4 /* PPSelectAreaViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSelectAreaViewCell.h; sourceTree = "<group>"; };
+		75DE618D1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSelectAreaViewCell.m; sourceTree = "<group>"; };
 		78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.release.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.release.xcconfig"; sourceTree = "<group>"; };
 		DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.debug.xcconfig"; sourceTree = "<group>"; };
 		EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rongchat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -470,6 +483,9 @@
 				409F50A21DDD721500015DB7 /* view */,
 				75CEF94A1DDDD43300541660 /* PPMyViewController.h */,
 				75CEF94B1DDDD43300541660 /* PPMyViewController.m */,
+				75DE61841DE48E6C00DF1CA4 /* PPSelectAreaViewController.h */,
+				75DE61851DE48E6C00DF1CA4 /* PPSelectAreaViewController.m */,
+				75DE61871DE48E9800DF1CA4 /* PPSelectArea.storyboard */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -483,6 +499,10 @@
 				409F50A61DDD721500015DB7 /* PPPersonTableViewCell.m */,
 				409F50A71DDD721500015DB7 /* PPSettingCell.h */,
 				409F50A81DDD721500015DB7 /* PPSettingCell.m */,
+				75DE61891DE490A300DF1CA4 /* PPSelectAreaTableViewCell.h */,
+				75DE618A1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m */,
+				75DE618C1DE490BD00DF1CA4 /* PPSelectAreaViewCell.h */,
+				75DE618D1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -576,6 +596,7 @@
 		75CEF89C1DDC9BEB00541660 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				75DE61821DE48CA400DF1CA4 /* Country_Code.json */,
 				75CEF89D1DDC9BEB00541660 /* AddressBook */,
 				75CEF8A61DDC9BEB00541660 /* contacts_add_friend@2x.png */,
 				75CEF8A71DDC9BEB00541660 /* discover */,
@@ -858,6 +879,7 @@
 				75CEF91D1DDC9BEB00541660 /* Shake_icon_people@2x.png in Resources */,
 				75CEF9101DDC9BEB00541660 /* ff_IconQRCode@3x.png in Resources */,
 				75CEF9001DDC9BEB00541660 /* bottleButtonFish@2x.png in Resources */,
+				75DE61881DE48E9800DF1CA4 /* PPSelectArea.storyboard in Resources */,
 				75CEF9121DDC9BEB00541660 /* ff_IconShake@2x.png in Resources */,
 				75CEF9231DDC9BEB00541660 /* icon.png in Resources */,
 				75CEF9371DDC9BEB00541660 /* tabbar_mainframe@3x.png in Resources */,
@@ -874,6 +896,7 @@
 				75CEF9151DDC9BEB00541660 /* ff_IconShowAlbum@2x.png in Resources */,
 				75CEF9291DDC9BEB00541660 /* me_money@2x.png in Resources */,
 				75CEF8FC1DDC9BEB00541660 /* bottleBkgSpotLight@2x.png in Resources */,
+				75DE61831DE48CA400DF1CA4 /* Country_Code.json in Resources */,
 				75CEF93B1DDC9BEB00541660 /* tabbar_me@3x.png in Resources */,
 				75CEF8F11DDC9BEB00541660 /* add_friend_icon_addgroup@3x.png in Resources */,
 				75CEF9271DDC9BEB00541660 /* LaunchImage@2x.png in Resources */,
@@ -1005,6 +1028,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				409F50941DDD704100015DB7 /* Md5.m in Sources */,
+				75DE618E1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m in Sources */,
 				409F50A91DDD721500015DB7 /* PPAccountSecurityViewController.m in Sources */,
 				409F50951DDD704100015DB7 /* rc4.m in Sources */,
 				409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */,
@@ -1021,6 +1045,7 @@
 				409F50AC1DDD721500015DB7 /* PPSetingViewController.m in Sources */,
 				409F50691DDD6E3100015DB7 /* PPHTTPResponse.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
+				75DE618B1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m in Sources */,
 				75CEF9591DE33D1900541660 /* PPLocationManager.m in Sources */,
 				409F506B1DDD6E3100015DB7 /* PPTUserInfoEngine.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
@@ -1047,6 +1072,7 @@
 				409F50671DDD6E3100015DB7 /* PPHTTPManager.m in Sources */,
 				409F50AD1DDD721500015DB7 /* PPShowSelectIconViewController.m in Sources */,
 				75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */,
+				75DE61861DE48E6C00DF1CA4 /* PPSelectAreaViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

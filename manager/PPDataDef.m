@@ -40,3 +40,8 @@
 @implementation PPUploadImageToken
 
 @end
+
+
+@implementation PPCountryDef
+
+@end

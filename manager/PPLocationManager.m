@@ -60,6 +60,8 @@
 - (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error
 {
     NSLog(@"error == %@",error);
+    self.regeoCode = [AMapLocationReGeocode new];
+    
 }
 
 - (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response

@@ -16,6 +16,7 @@ NSArray * titleArr ()
 #import "PPInfoMessageCell.h"
 #import "PPSettingCell.h"
 #import "PPShowSelectIconViewController.h"
+#import "PPSelectAreaViewController.h"
 
 @interface PPInfoMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -54,6 +55,11 @@ NSArray * titleArr ()
     if(indexPath.section == 0 && indexPath.row == 0)
     {
         PPShowSelectIconViewController * controller = [PPShowSelectIconViewController new];
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    }else if (indexPath.section == 1&& indexPath.row == 1)
+    {
+        PPSelectAreaViewController * controller = [PPSelectAreaViewController createPPSelectAreaViewController];
         [self.navigationController pushViewController:controller animated:YES];
         
     }
