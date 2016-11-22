@@ -38,6 +38,10 @@
         [self createLoginController];
     }
     
+    [[AMapServices sharedServices]setApiKey:KAppMapKey];
+    [[PPLocationManager shareManager]requestLocation];
+    
+    
     return YES;
 }
 

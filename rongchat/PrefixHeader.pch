@@ -11,6 +11,16 @@
 #import "PPIndicatorView.h"
 #import "PPMarchos.h"
 #import <Masonry/Masonry.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
+
+#import "PPLocationManager.h"
+
+
+
+#define KAppMapKey @"de0e9782d38e8092d974308f7b588b73"
+
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

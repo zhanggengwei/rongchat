@@ -133,6 +133,7 @@
 		75CEF94C1DDDD43300541660 /* PPMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF94B1DDDD43300541660 /* PPMyViewController.m */; };
 		75CEF9521DDDDDD000541660 /* PPIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9511DDDDDD000541660 /* PPIndicatorView.m */; };
 		75CEF9551DDDDE1300541660 /* PPViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9541DDDDE1300541660 /* PPViewUtil.m */; };
+		75CEF9591DE33D1900541660 /* PPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9581DE33D1900541660 /* PPLocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -329,6 +330,8 @@
 		75CEF9531DDDDE1300541660 /* PPViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPViewUtil.h; sourceTree = "<group>"; };
 		75CEF9541DDDDE1300541660 /* PPViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPViewUtil.m; sourceTree = "<group>"; };
 		75CEF9561DE1434500541660 /* rongchat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = rongchat.entitlements; sourceTree = "<group>"; };
+		75CEF9571DE33D1900541660 /* PPLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLocationManager.h; sourceTree = "<group>"; };
+		75CEF9581DE33D1900541660 /* PPLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLocationManager.m; sourceTree = "<group>"; };
 		78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.release.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.release.xcconfig"; sourceTree = "<group>"; };
 		DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.debug.xcconfig"; sourceTree = "<group>"; };
 		EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rongchat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -380,6 +383,8 @@
 				409F505F1DDD6E3100015DB7 /* PPTDBEngine.m */,
 				409F50601DDD6E3100015DB7 /* PPTUserInfoEngine.h */,
 				409F50611DDD6E3100015DB7 /* PPTUserInfoEngine.m */,
+				75CEF9571DE33D1900541660 /* PPLocationManager.h */,
+				75CEF9581DE33D1900541660 /* PPLocationManager.m */,
 			);
 			path = manager;
 			sourceTree = "<group>";
@@ -1016,6 +1021,7 @@
 				409F50AC1DDD721500015DB7 /* PPSetingViewController.m in Sources */,
 				409F50691DDD6E3100015DB7 /* PPHTTPResponse.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
+				75CEF9591DE33D1900541660 /* PPLocationManager.m in Sources */,
 				409F506B1DDD6E3100015DB7 /* PPTUserInfoEngine.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
 				75CEF8991DDC87B200541660 /* PPTabBarController.m in Sources */,

@@ -43,5 +43,7 @@
 	<string>相册</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>是否允许定位</string>
 </dict>
 </plist>
