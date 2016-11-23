@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSArray * array;
 @property (strong,nonatomic) PPLocationManager * locationManager;
-@property (assign,nonatomic) NSInteger sections;
+
 
 
 @end
@@ -31,7 +31,6 @@
 {
     [super viewDidLoad];
     self.locationManager = [PPLocationManager shareManager];
-    self.sections = (self.locationManager.regeoCode?1:0) + 1;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -55,15 +54,15 @@
 - (void)loadData
 {
     NSString * path = [[NSBundle mainBundle]pathForResource:@"Country_Code" ofType:@"json"];
-
+    
     NSError * error;
     NSData * data = [NSData dataWithContentsOfFile:path];
     NSArray * arr = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-
+    
     self.array = [MTLJSONAdapter modelsOfClass:[PPCountryDef class] fromJSONArray:arr error:&error];
     [self.tableView reloadData];
     
- 
+    
 }
 
 - (UIView *)createHeaderView:(NSString *)content
@@ -90,62 +89,48 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if(self.sections == 2)
+    if(indexPath.section == 0)
     {
-        if(indexPath.section == 0)
-        {
-            PPSelectAreaViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPSelectAreaViewCell" forIndexPath:indexPath];
-            [cell setContent:[NSString stringWithFormat:@"%@ %@",self.locationManager.regeoCode.province,self.locationManager.regeoCode.city]];
-            
-            return cell;
-        }
-        PPSelectAreaTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPSelectAreaTableViewCell" forIndexPath:indexPath];
-        PPCountryDef * country = self.array[indexPath.row];
-        [cell setContent:country.country_name_cn];
+        PPSelectAreaViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPSelectAreaViewCell" forIndexPath:indexPath];
+        [cell setContent:[NSString stringWithFormat:@"%@ %@",self.locationManager.regeoCode.province,self.locationManager.regeoCode.city]];
         
         return cell;
     }
-    
     PPSelectAreaTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPSelectAreaTableViewCell" forIndexPath:indexPath];
     PPCountryDef * country = self.array[indexPath.row];
     [cell setContent:country.country_name_cn];
+    
     return cell;
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.sections;
+    return 2;
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  
-    if(self.sections == 2)
+    
+    if(section == 0)
     {
-        if(section == 0)
-        {
-            return 1;
-        }
-        return self.array.count;
-    }else
-    {
-        return self.array.count;
+        return 1;
     }
+    return self.array.count;
+    
     
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if(self.sections == 2)
+    
+    if(section == 0)
     {
-        if(section == 0)
-        {
-            return [self createHeaderView:@"定位到的位置"];
-        }
-        return [self createHeaderView:@"全部"];
+        return [self createHeaderView:@"定位到的位置"];
     }
     return [self createHeaderView:@"全部"];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

@@ -42,6 +42,24 @@
     [[PPLocationManager shareManager]requestLocation];
     
     
+    
+    [[AFNetworkReachabilityManager sharedManager]startMonitoring];
+    [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if(status == AFNetworkReachabilityStatusNotReachable)
+        {
+            [ICECustomAlertView alertViewWithTitle:@"提示" withMessage:@"网络似乎断开了连接" withButtonTitles:@[@"确定",@"取消"] completion:^(NSInteger index) {
+                
+            }];
+        }else if (status == AFNetworkReachabilityStatusUnknown)
+        {
+            
+        }
+       
+      
+        
+    }];
+    
+    
     return YES;
 }
 
