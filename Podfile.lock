@@ -30,6 +30,7 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - GDSheetController (0.2.1)
   - iAppInfos (0.2.1)
   - ICECustomAlertView (1.0.2)
   - ICEVersionUpdate (1.0.0)
@@ -66,6 +67,7 @@ DEPENDENCIES:
   - Bugly (~> 2.4.2)
   - EZQRCodeScanner (~> 1.0.0)
   - FMDB
+  - GDSheetController (~> 0.2.1)
   - iAppInfos (~> 0.2.1)
   - ICECustomAlertView (~> 1.0.2)
   - ICEVersionUpdate (~> 1.0.0)
@@ -91,6 +93,7 @@ SPEC CHECKSUMS:
   Bugly: b09cd3c7e54048a0e079be88a7a99610f14eab8f
   EZQRCodeScanner: c0bfa24c478c81e0af729460b66c8cf502371d48
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  GDSheetController: a259c6c0b5fca70baa9023b499f5c4e565b8ced8
   iAppInfos: 090ecd9a694be25968bbdbdbff97841b301a9107
   ICECustomAlertView: 98446c150da4632189209b4173169799d2b84d72
   ICEVersionUpdate: 28cbd6aecca9f9eb79afb853a066bd5abccb5e39
@@ -110,6 +113,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 162bc518af9e070ab4f9a582f519a0f8cd610999
+PODFILE CHECKSUM: 81fcbd9b3b38ed740f216ca3fc788d24729b2c8f
 
 COCOAPODS: 1.0.1

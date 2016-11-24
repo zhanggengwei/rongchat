@@ -10,6 +10,7 @@
 #import <WActionSheet/NLActionSheet.h>
 #import <SFHFKeychainUtils/SFHFKeychainUtils.h>
 #import "PPImageUtil.h"
+#import <GDSheetController/GDSheetController.h>
 
 @interface PPShowSelectIconViewController ()<UIImagePickerControllerDelegate>
 @property (nonatomic,strong) UIImageView * imageView;
@@ -58,6 +59,7 @@
             [self showCarema];
         }
     }];
+    GDSheetController 
     
 }
 - (void)showCarema

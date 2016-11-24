@@ -48,6 +48,14 @@
         if(status == AFNetworkReachabilityStatusNotReachable)
         {
             [ICECustomAlertView alertViewWithTitle:@"提示" withMessage:@"网络似乎断开了连接" withButtonTitles:@[@"确定",@"取消"] completion:^(NSInteger index) {
+                if(index == 0)
+                {
+                    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
+                    {
+                        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                        
+                    }
+                }
                 
             }];
         }else if (status == AFNetworkReachabilityStatusUnknown)
