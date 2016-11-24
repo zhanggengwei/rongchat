@@ -60,11 +60,7 @@
             }];
         }else if (status == AFNetworkReachabilityStatusUnknown)
         {
-            
         }
-       
-      
-        
     }];
     
     

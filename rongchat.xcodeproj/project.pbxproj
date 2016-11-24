@@ -40,6 +40,7 @@
 		409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50A81DDD721500015DB7 /* PPSettingCell.m */; };
 		409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50B21DDD72F600015DB7 /* PPColorUtil.m */; };
 		409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50B41DDD72F600015DB7 /* PPImageUtil.m */; };
+		7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* ViewController.m */; };
@@ -224,6 +225,9 @@
 		409F50B21DDD72F600015DB7 /* PPColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPColorUtil.m; sourceTree = "<group>"; };
 		409F50B31DDD72F600015DB7 /* PPImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPImageUtil.h; sourceTree = "<group>"; };
 		409F50B41DDD72F600015DB7 /* PPImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPImageUtil.m; sourceTree = "<group>"; };
+		7513A2F01DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPhotoSeleceOrTakePhotoManager.h; sourceTree = "<group>"; };
+		7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPhotoSeleceOrTakePhotoManager.m; sourceTree = "<group>"; };
+		7513A2F61DE737D600CCAB61 /* singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = singleton.h; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -430,6 +434,9 @@
 				409F50711DDD6E5100015DB7 /* PPChatTools.m */,
 				409F50721DDD6E5100015DB7 /* PPTool.h */,
 				409F50731DDD6E5100015DB7 /* PPTool.m */,
+				7513A2F01DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.h */,
+				7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */,
+				7513A2F61DE737D600CCAB61 /* singleton.h */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -1071,6 +1078,7 @@
 				75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */,
 				409F50671DDD6E3100015DB7 /* PPHTTPManager.m in Sources */,
 				409F50AD1DDD721500015DB7 /* PPShowSelectIconViewController.m in Sources */,
+				7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */,
 				75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */,
 				75DE61861DE48E6C00DF1CA4 /* PPSelectAreaViewController.m in Sources */,
 			);

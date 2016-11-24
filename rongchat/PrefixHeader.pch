@@ -18,6 +18,8 @@
 #import <ICECustomAlertView/ICECustomAlertView.h>
 #import "PPLocationManager.h"
 
+#import "singleton.h"
+
 
 
 #define KAppMapKey @"de0e9782d38e8092d974308f7b588b73"
