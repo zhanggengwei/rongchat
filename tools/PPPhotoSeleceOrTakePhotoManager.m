@@ -41,13 +41,15 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
              
          }else
          {
+            
+             LCAlertView * alertView  = [[LCAlertView alloc]initWithTitle:@"提示" message:@"前往iphone隐私设置中允许相机访问您的app" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+             alertView.alertAnimationStyle=LCAlertAnimationFlipHorizontal;
              
-        
-             [ICECustomAlertView alertViewWithTitle:@"jjjj" withMessage:@"前往iphone隐私设置中允许相机访问您的app"  withButtonTitles:@[@"取消",@"确定"] completion:^(NSInteger index) {
-                 if(index == 0)
-                 {
-                     
-                 }else if (index == 1)
+             
+             [alertView show];
+             alertView.alertAction = ^(NSInteger index)
+             {
+                 if(index==1)
                  {
                      if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
                      {
@@ -55,7 +57,8 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
                          
                      }
                  }
-             }];
+             };
+             
          }
     }];
     

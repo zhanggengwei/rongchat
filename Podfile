@@ -41,7 +41,7 @@ pod 'ICEVersionUpdate', '~> 1.0.0'
 
 pod 'ICECustomAlertView', '~> 1.0.2'
 pod 'GDSheetController', '~> 0.2.1'
-
+pod 'LCAlertView', '~> 2.1.0'
 end
 
 target ‘rongchat’ do

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '545A7F566056EE80176DC033CFCFE87F'
-               BlueprintName = 'WActionSheet'
+               BlueprintIdentifier = 'E1634883B6C7BE5F5C44D743B0B49A2E'
+               BlueprintName = 'LCAlertView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libWActionSheet.a'>
+               BuildableName = 'libLCAlertView.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

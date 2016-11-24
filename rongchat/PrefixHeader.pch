@@ -16,6 +16,8 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import <ICECustomAlertView/ICECustomAlertView.h>
+#import <LCAlertView/LCAlertView.h>
+
 #import "PPLocationManager.h"
 
 #import "singleton.h"
