@@ -11,8 +11,10 @@
 #import <SFHFKeychainUtils/SFHFKeychainUtils.h>
 #import "PPImageUtil.h"
 #import <GDSheetController/GDSheetController.h>
+#import "PPPhotoSeleceOrTakePhotoManager.h"
+#import "singleton.h"
 
-@interface PPShowSelectIconViewController ()<UIImagePickerControllerDelegate>
+@interface PPShowSelectIconViewController ()<UIImagePickerControllerDelegate,PPPhotoSeleceOrTakePhotoManagerDelegate>
 @property (nonatomic,strong) UIImageView * imageView;
 @property (nonatomic,strong) UIImage * uploadImage;
 
@@ -64,11 +66,38 @@
 }
 - (void)showCarema
 {
-    UIImagePickerController * controller = [UIImagePickerController new];
-    controller.delegate = self;
-    controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [self presentViewController:controller animated:YES completion:nil];
+ //   singleton_implementation(PPPhotoSeleceOrTakePhotoManager)
     
+    
+    
+    PPPhotoSeleceOrTakePhotoManager * manager =[PPPhotoSeleceOrTakePhotoManager sharedPPPhotoSeleceOrTakePhotoManager];
+    
+    manager.delegate = self;
+    
+    [manager takeCaremaController:self];
+    
+}
+
+- (void)uploadImage:(UIImage *)uploadImage
+{
+    self.uploadImage =  [PPImageUtil imageCompressLargeImageToAspectFillScreen:uploadImage];
+    
+    self.imageView.image = self.uploadImage;
+    [[PPDateEngine manager]requestUploadImageToken:^(PPUploadImageTokenResponse *  aTaskResponse) {
+        NSLog(@"aTaskResponse  == %@",aTaskResponse);
+        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+        {
+            
+            PPUploadImageToken * resulst = aTaskResponse.result;
+            
+            NSString * image_token = resulst.token;
+            
+            
+            [[PPDateEngine manager]requsetUploadImageResponse:^(id aTaskResponse) {
+                
+            } UploadFile:UIImagePNGRepresentation(self.uploadImage) UserId:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil] uploadToken:image_token];
+        }
+    }];
 }
 
 /*
@@ -90,31 +119,8 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    self.uploadImage = [PPImageUtil imageCompressLargeImageToAspectFillScreen:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
-    self.imageView.image = self.uploadImage;
     [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    [[PPDateEngine manager]requestUploadImageToken:^(PPUploadImageTokenResponse *  aTaskResponse) {
-        NSLog(@"aTaskResponse  == %@",aTaskResponse);
-        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-        {
-            
-            PPUploadImageToken * resulst = aTaskResponse.result;
-            
-            NSString * image_token = resulst.token;
-            
-            
-            [[PPDateEngine manager]requsetUploadImageResponse:^(id aTaskResponse) {
-                
-            } UploadFile:UIImagePNGRepresentation(self.uploadImage) UserId:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil] uploadToken:image_token];
-            
-            
-            
-            
-        }
-    }];
-    
-    
+    [self uploadImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
     
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -122,6 +128,14 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
+
+#pragma mark PPPhotoSeleceOrTakePhotoManagerDelegate
+
+- (void)PPPhotoSeleceOrTakePhotoManagerSelectImage:(UIImage *)image
+{
+     [self uploadImage:image];
+}
+
 
 
 @end

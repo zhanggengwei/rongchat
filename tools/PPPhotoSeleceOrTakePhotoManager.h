@@ -20,12 +20,10 @@ typedef NS_ENUM(NSUInteger,PPPhotoSeleceOrTakePhotoManagerStyle) {
 @end
 
 @interface PPPhotoSeleceOrTakePhotoManager : NSObject
+singleton_interface(PPPhotoSeleceOrTakePhotoManager);
 
 @property (nonatomic,weak) id<PPPhotoSeleceOrTakePhotoManagerDelegate> delegate;
 - (void)takeCaremaController:(UIViewController *)currentController;
-
-- (void)selectPhotoController:(UIViewController *)currentController;
-
 
 
 @end
