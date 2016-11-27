@@ -10,7 +10,6 @@
 #import <WActionSheet/NLActionSheet.h>
 #import <SFHFKeychainUtils/SFHFKeychainUtils.h>
 #import "PPImageUtil.h"
-#import <GDSheetController/GDSheetController.h>
 #import "PPPhotoSeleceOrTakePhotoManager.h"
 #import "singleton.h"
 

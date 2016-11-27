@@ -47,17 +47,18 @@
     [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if(status == AFNetworkReachabilityStatusNotReachable)
         {
-            [ICECustomAlertView alertViewWithTitle:@"提示" withMessage:@"网络似乎断开了连接" withButtonTitles:@[@"确定",@"取消"] completion:^(NSInteger index) {
-                if(index == 0)
+            
+            XIAlertView * alertView = [[XIAlertView alloc]initWithTitle:@"提示" message:@"网络似乎断开了连接" cancelButtonTitle:@"取消"];
+            [alertView addButtonWithTitle:@"确定" style:XIAlertActionStyleDefault handler:^(XIAlertView *alertView, XIAlertButtonItem *buttonItem) {
+                [alertView dismiss];
+                if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
                 {
-                    if([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]])
-                    {
-                        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                        
-                    }
+                    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                    
                 }
                 
             }];
+            [alertView show];
         }else if (status == AFNetworkReachabilityStatusUnknown)
         {
         }
