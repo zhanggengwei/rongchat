@@ -17,7 +17,7 @@ NSArray * titleArr ()
 #import "PPSettingCell.h"
 #import "PPShowSelectIconViewController.h"
 #import "PPSelectAreaViewController.h"
-
+#import "PPPhotoSeleceOrTakePhotoManager.h"
 @interface PPInfoMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 
@@ -61,6 +61,15 @@ NSArray * titleArr ()
     {
         PPSelectAreaViewController * controller = [PPSelectAreaViewController createPPSelectAreaViewController];
         [self.navigationController pushViewController:controller animated:YES];
+        
+    }
+    NSArray * arr = titleArr()[indexPath.section];
+    if([arr[indexPath.row] isEqualToString:@"我的二维码"])
+    {
+        PPPhotoSeleceOrTakePhotoManager * manager = [PPPhotoSeleceOrTakePhotoManager sharedPPPhotoSeleceOrTakePhotoManager];
+        [manager pushQRCodeController:self];
+        
+        
         
     }
 }

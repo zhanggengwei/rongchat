@@ -8,10 +8,12 @@
 
 #import "PPPhotoSeleceOrTakePhotoManager.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import <LBXScan/LBXScanWrapper.h>
+#import <LBXScan/LBXScanViewController.h>
 
 @interface PPPhotoSeleceOrTakePhotoManager ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,strong) UIImagePickerController * imagePicker;
+
 
 @end
 
@@ -32,6 +34,8 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
     }
     return self;
 }
+
+
 
 - (void)takeCaremaController:(UIViewController *)currentController
 {
@@ -77,9 +81,34 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-+ (void)createQRCode:(NSString *)content imageSize:(CGFloat)size response:(PPResponseBlock())aResponseBlock;
++ (UIImage *)createQRCode:(NSString *)content imageWidth:(CGFloat)width
 {
-
+    
+  return   [LBXScanWrapper createQRWithString:content size:CGSizeMake(width, width)];
+}
++ (UIImage*)createQRWithString:(NSString*)text imageWidth:(CGFloat)width QRColor:(UIColor*)qrColor backGroundColor:(UIColor*)bkColor
+{
+    return [LBXScanWrapper createQRWithString:text QRSize:CGSizeMake(width, width) QRColor:qrColor bkColor:bkColor];
+    
+}
++ (UIImage*)imageBlackToTransparent:(UIImage*)image withRed:(CGFloat)red andGreen:(CGFloat)green andBlue:(CGFloat)blue
+{
+    return [LBXScanWrapper imageBlackToTransparent:image withRed:red andGreen:green andBlue:blue];
+    
+}
++ (UIImage*)addImageLogo:(UIImage*)srcImg centerLogoImage:(UIImage*)LogoImage logoSizeWidth:(CGFloat)width;
+{
+    return [LBXScanWrapper addImageLogo:srcImg centerLogoImage:LogoImage logoSize:CGSizeMake(width, width)];
+    
 }
 
+
+
+//推入二维码的扫描控制器
+- (void)pushQRCodeController:(UIViewController *)currentController
+{
+    LBXScanViewController * controller = [LBXScanViewController new];
+    [currentController.navigationController pushViewController:controller animated:YES];
+    
+}
 @end
