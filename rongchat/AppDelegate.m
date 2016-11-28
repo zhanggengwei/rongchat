@@ -117,9 +117,15 @@
 {
     if([noti.name isEqualToString:kPPObserverLoginSucess])
     {
+        [[NSUserDefaults standardUserDefaults]setObject:OBJC_APPIsLogin forKey:OBJC_APPIsLogin];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
         [self createTabbarController];
     }else
     {
+        [[NSUserDefaults standardUserDefaults]removeObjectForKey:OBJC_APPIsLogin];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        
         [self createLoginController];
     }
 }

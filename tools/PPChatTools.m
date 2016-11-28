@@ -62,8 +62,9 @@
     [SFHFKeychainUtils deleteItemForUsername:kPPLoginToekn andServiceName:kPPServiceName error:nil];
     [SFHFKeychainUtils deleteItemForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:OBJC_APPIsLogin];
-    
     [self.client logout];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLogoutSucess object:nil];
+    
     
 }
 

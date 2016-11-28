@@ -10,7 +10,7 @@
 #import "PPSetingViewController.h"
 #import "PPSettingCell.h"
 #import "PPAccountSecurityViewController.h"
-
+#import <WActionSheet/NLActionSheet.h>
 
 @interface PPSetingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -110,6 +110,21 @@
     if (indexPath.section ==0 && indexPath.row ==0) {
         PPAccountSecurityViewController * controller = [PPAccountSecurityViewController new];
         [self.navigationController pushViewController:controller animated:YES];
+    }else if (indexPath.section == 3&&indexPath.row == 0)
+    {
+        NLActionSheet * sheet = [[NLActionSheet alloc]initWithTitle:@"退出后不会删除任何历史数据,下次登陆依然可以使用本账号" cancelTitle:@"取消" otherTitles:@[@"退出登陆"]];
+        sheet.otherTitlesColor = [UIColor redColor];
+        sheet.titleFont = [UIFont systemFontOfSize:12];
+        [sheet showView];
+        [sheet dismissForCompletionHandle:^(NSInteger clickedIndex, BOOL isCancel) {
+            if(!isCancel&&clickedIndex == 0)
+            {
+                [[PPChatTools shareManager]logout];
+                
+            }
+            
+        }];
+        
     }
 }
 

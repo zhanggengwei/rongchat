@@ -124,12 +124,10 @@
             [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {
-                    [PPTDBEngine shareManager];
-                    [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
                     PPUserBaseInfo * info = [PPUserBaseInfo new];
                     info.user = aTaskResponse.result;
-                    
                     [[PPTDBEngine shareManager]saveUserInfo:info];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
                     
                 }
                 
