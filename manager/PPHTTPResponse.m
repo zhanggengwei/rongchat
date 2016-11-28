@@ -11,6 +11,9 @@
 @implementation PPHTTPResponse
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     NSMutableDictionary *mapping = [[NSDictionary mtl_identityPropertyMapWithModel:self] mutableCopy];
+    if ([mapping objectForKey:@"indexId"]) {
+        [mapping setObject:@"id"forKey:@"indexId"];
+    }
     return mapping;
 }
 + (id)responseWithError:(NSError *)aError
@@ -19,6 +22,7 @@
     response.message = [aError localizedDescription];
     return response;
 }
+
 @end
 
 @implementation PPUserInfoTokenResponse
@@ -56,4 +60,13 @@
     
 }
 
+@end
+
+@implementation PPLoginOrRegisterHTTPResponse
+
++ (NSValueTransformer *)resultJSONTransformer
+{
+    return  [MTLJSONAdapter dictionaryTransformerWithModelClass:[PPUserBase class]];
+    
+}
 @end

@@ -38,3 +38,8 @@
 
 
 @end
+
+@interface PPLoginOrRegisterHTTPResponse : PPHTTPResponse
+
+@end
+

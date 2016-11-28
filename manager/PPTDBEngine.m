@@ -127,8 +127,7 @@
                     return NO;
                 }
             }
-            sql = @"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-            
+            sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
             ret = [_db executeUpdate:sql,baseInfo.user.indexId, baseInfo.user.nickname,baseInfo.displayName, baseInfo.user.portraitUri,baseInfo.updatedAt, baseInfo.user.phone, baseInfo.user.region, [NSNumber numberWithBool:baseInfo.status]];
             
             if (NO == ret)

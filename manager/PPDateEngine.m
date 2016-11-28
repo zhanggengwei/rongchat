@@ -121,12 +121,15 @@
             [SFHFKeychainUtils storeUsername:kPPLoginToekn andPassword:token forServiceName:kPPServiceName updateExisting:YES error:&error];
             
             [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:userID forServiceName:kPPServiceName updateExisting:YES error:&error];
-            [[PPDateEngine manager]requestGetUserInfoResponse:^(PPUserBaseInfoResponse * aTaskResponse) {
+            [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {
                     [PPTDBEngine shareManager];
                     [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
-                    [[PPTDBEngine shareManager]saveUserInfo:aTaskResponse.result];
+                    PPUserBaseInfo * info = [PPUserBaseInfo new];
+                    info.user = aTaskResponse.result;
+                    
+                    [[PPTDBEngine shareManager]saveUserInfo:info];
                     
                 }
                 
@@ -170,7 +173,7 @@
     [manager GET:kPPUrlUserInfo(userId) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"responseObject =%@",responseObject);
         NSError * error;
-        PPUserBaseInfoResponse * response = [MTLJSONAdapter modelOfClass:[PPUserBaseInfoResponse class] fromJSONDictionary:responseObject error:&error];
+        PPLoginOrRegisterHTTPResponse * response = [MTLJSONAdapter modelOfClass:[PPLoginOrRegisterHTTPResponse class] fromJSONDictionary:responseObject error:&error];
         [self _completeWithResponse:response block:aResponseBlock];
         
         
