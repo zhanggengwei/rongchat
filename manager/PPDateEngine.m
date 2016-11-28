@@ -169,8 +169,8 @@
     PPHTTPManager * manager = [PPHTTPManager manager];
     [manager GET:kPPUrlUserInfo(userId) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"responseObject =%@",responseObject);
-        
-        PPUserBaseInfoResponse * response = [MTLJSONAdapter modelOfClass:[PPUserBaseInfoResponse class] fromJSONDictionary:responseObject error:nil];
+        NSError * error;
+        PPUserBaseInfoResponse * response = [MTLJSONAdapter modelOfClass:[PPUserBaseInfoResponse class] fromJSONDictionary:responseObject error:&error];
         [self _completeWithResponse:response block:aResponseBlock];
         
         

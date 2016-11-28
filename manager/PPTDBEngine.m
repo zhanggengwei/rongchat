@@ -159,6 +159,17 @@
     NSString * createUser_Info = [NSString stringWithFormat:@"create table  if not exists %@(indexId text  primary key not null,nickname text,displayName text,portraitUri text,updatedAt text,phone text,region text,isSelf bool)",USER_INFO_TABLENAME];
     
     [self.db executeQuery:createUser_Info];
+
+    BOOL createSucesss = [self.db executeUpdate:createUser_Info];
+    if (createSucesss)
+    {
+        NSLog(@"创建成功");
+    }else
+    {
+        NSLog(@"创建失败");
+    }
+    
+    
     
 }
 
