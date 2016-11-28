@@ -92,13 +92,7 @@
 
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
 {
-    
-    
     [self loadDataBase:baseInfo.user.indexId];
-    
-    
-    NSLog(@"%@",NSHomeDirectory());
-    
     if(baseInfo == nil)
     {
         return NO;
@@ -139,8 +133,6 @@
             
             return YES;
         }
-        
-        
     }
     return NO;
 }
