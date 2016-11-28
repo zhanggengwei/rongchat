@@ -60,10 +60,34 @@
         if(clickedIndex==0&&isCancel==NO)
         {
             [self showCarema];
+        }else if (clickedIndex == 1&&isCancel == NO)
+        {
+            [self photoSelect];
+        }else if(clickedIndex == 2 && isCancel == NO)
+        {
+            if(self.imageView.image)
+            {
+               UIImageWriteToSavedPhotosAlbum(self.imageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+            }else
+            {
+                
+            }
+            
+            
         }
     }];
      
     
+}
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if(error)
+    {
+        NSLog(@"save imag faild");
+    }else
+    {
+        NSLog(@"sucess");
+    }
 }
 - (void)showCarema
 {
@@ -76,6 +100,11 @@
     manager.delegate = self;
     
     [manager takeCaremaController:self];
+    
+}
+
+- (void)photoSelect
+{
     
 }
 
