@@ -8,7 +8,7 @@
 
 #import "PPPhotoSeleceOrTakePhotoManager.h"
 #import <AVFoundation/AVFoundation.h>
-#import <WQQrCode/WQQRCode.h>
+
 
 @interface PPPhotoSeleceOrTakePhotoManager ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,strong) UIImagePickerController * imagePicker;
@@ -79,11 +79,7 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
 
 + (void)createQRCode:(NSString *)content imageSize:(CGFloat)size response:(PPResponseBlock())aResponseBlock;
 {
-//    pod 'WQQrCode', '~> 0.0.2'
-    [WQQRCode qr_CodeWithString:content imageSize:size qrCodeImageCompletionHandle:^(UIImage *qrCodeImage) {
-        aResponseBlock(qrCodeImage);
-        
-    }];
+
 }
 
 @end

@@ -29,8 +29,6 @@ def pods
     #log
     #QRCode
     pod 'LBXScan'
-    #pod 'ZXingObjC', '~> 3.1.0'
-    pod 'GDQrCode', '~> 1.0.0'
     
     pod 'Bugly', '~> 2.4.2'
     #MAP
