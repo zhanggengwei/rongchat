@@ -8,7 +8,7 @@
 
 #import "PPChatTools.h"
 #import <RongIMLib/RongIMLib.h>
-
+#import "PPDateEngine.h"
 
 @interface PPChatTools ()<RCConnectionStatusChangeDelegate,RCIMClientReceiveMessageDelegate>
 
@@ -70,7 +70,20 @@
 
 - (void)autoLogin
 {
+
     
+    NSString * token = [SFHFKeychainUtils getPasswordForUsername:kPPLoginToekn andServiceName:kPPServiceName error:nil];
+    if(token==nil||token.length<=0)
+    {
+        return;
+    }
+    [self connectWithToken:token sucessBlock:^(NSString *content) {
+        
+    } failBlock:^(RCConnectErrorCode code) {
+        
+    } tokenIncorrectBlock:^{
+        [PPIndicatorView showString:@"token 错误" duration:1];
+    }];
 }
 
 - (void)connectWithToken:(NSString *)token sucessBlock:(void (^)(NSString * content))block failBlock:(void(^)(RCConnectErrorCode code))failBlock tokenIncorrectBlock:(void(^)(void))tokenIncorrectBlock
