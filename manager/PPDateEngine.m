@@ -124,6 +124,8 @@
             [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {
+                    
+                    
                     PPUserBaseInfo * info = [PPUserBaseInfo new];
                     info.user = aTaskResponse.result;
                     [[PPTDBEngine shareManager]saveUserInfo:info];

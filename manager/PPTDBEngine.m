@@ -30,8 +30,6 @@
     dispatch_once(&token, ^{
         shareInstance = [self new];
         [[NSNotificationCenter defaultCenter]addObserver:shareInstance selector:@selector(loginSucess:) name:kPPObserverLoginSucess object:nil];
-        
-    
     });
     return shareInstance;
 }
@@ -47,15 +45,10 @@
     if (!isDir) {
         OTF_CreateDir(dbPath);
     }
-   
-    
 }
 
 - (void)loadDataBase:(NSString *)userID
 {
-    
-    
-    
     NSString * dbPath = [[PPFileManager sharedManager]pathForDomain:PPFileDirDomain_User appendPathName:userID];
     dbPath = [dbPath stringByAppendingPathComponent:@"user.db"];
     
@@ -157,7 +150,6 @@
     
     NSString * createUser_Info = [NSString stringWithFormat:@"create table  if not exists %@(indexId text  primary key not null,nickname text,displayName text,portraitUri text,updatedAt text,phone text,region text,isSelf bool)",USER_INFO_TABLENAME];
     
-    [self.db executeQuery:createUser_Info];
 
     BOOL createSucesss = [self.db executeUpdate:createUser_Info];
     if (createSucesss)
@@ -187,6 +179,44 @@
         return YES;
     }
     return NO;
+}
+
+- (PPUserBaseInfo *)queryUser_Info
+{
+    NSString * userID = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
+    [self loadDataBase:userID];
+    
+    
+    PPUserBaseInfo * user_Info = [PPUserBaseInfo new];
+    if([self.db open])
+    {
+        NSString * searchSql = [NSString stringWithFormat: @"select * from %@ where indexId= \'%@\'",USER_INFO_TABLENAME,userID];
+        
+        FMResultSet * result = [self.db executeQuery:searchSql];
+        if(result == nil||(!result.next))
+        {
+            return nil;
+        }
+        NSString * indexID = [result stringForColumn:@"indexId"];
+        NSString * nickName = [result stringForColumn:@"nickname"];
+        NSString * displayName = [result stringForColumn:@"displayName"];
+        NSString * portraitUrl = [result stringForColumn:@"portraitUri"];
+        NSString * updatedAt = [result stringForColumn:@"updatedAt"];
+        NSString * phone = [result stringForColumn:@"phone"];
+        NSString * region = [result stringForColumn:@"region"];
+        
+        user_Info.displayName = displayName;
+        user_Info.updatedAt = updatedAt;
+        user_Info.user = [PPUserBase new];
+        user_Info.user.nickname = nickName;
+        user_Info.user.indexId = indexID;
+        user_Info.user.phone = phone;
+        user_Info.user.region = region;
+        user_Info.user.portraitUri = portraitUrl;
+    }
+    
+    return user_Info;
+    
 }
 
 

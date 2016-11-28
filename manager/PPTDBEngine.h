@@ -13,6 +13,9 @@
 
 + (instancetype)shareManager;
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
+- (PPUserBaseInfo *)queryUser_Info;
+- (void)loadDataBase:(NSString *)userID;
+
 
 
 @end

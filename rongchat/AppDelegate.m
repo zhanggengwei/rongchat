@@ -32,6 +32,8 @@
     
     if([[NSUserDefaults standardUserDefaults]objectForKey:OBJC_APPIsLogin])
     {
+       [PPTUserInfoEngine shareEngine];
+        
        [self createTabbarController];
     }else
     {
@@ -99,6 +101,7 @@
 
 - (void)createTabbarController
 {
+    
     NSArray *  titleArray = @[@"微信",@"通讯录",@"发现",@"我的"];
     NSArray *  imageArray = @[@"tabbar_mainframe",@"tabbar_contacts",@"tabbar_discover",@"tabbar_me"];
     NSArray *  selImageArray = @[@"tabbar_mainframeHL",@"tabbar_contactsHL",@"tabbar_discoverHL",@"tabbar_meHL"];

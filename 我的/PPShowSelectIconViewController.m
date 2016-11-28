@@ -25,6 +25,8 @@
     [super viewDidLoad];
     self.title = @"个人头像";
     self.imageView = [UIImageView new];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
     [self.view addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.view.mas_centerY);
@@ -33,7 +35,7 @@
         make.left.mas_equalTo(self.view.mas_left);
         
     }];
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:@"http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg"]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[PPTUserInfoEngine shareEngine].user_Info.user.portraitUri] placeholderImage:nil];
     
     self.view.backgroundColor = [UIColor blackColor];
     

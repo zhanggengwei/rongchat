@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface PPTUserInfoEngine : NSObject
+@property (nonatomic,strong,readonly) PPUserBaseInfo * user_Info;
+
++ (instancetype)shareEngine;
 
 @end
