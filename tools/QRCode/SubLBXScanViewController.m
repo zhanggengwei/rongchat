@@ -11,12 +11,10 @@
 #import <LBXScan/LBXScanViewController.h>
 #import <LBXScan/LBXScanResult.h>
 #import <LBXScan/LBXScanWrapper.h>
-#import "LBXScanVideoZoomView.h"
 
 
 
 @interface SubLBXScanViewController ()
-@property (nonatomic, strong) LBXScanVideoZoomView *zoomView;
 @end
 
 @implementation SubLBXScanViewController
@@ -110,68 +108,6 @@
         _topTitle.textColor = [UIColor whiteColor];
         [self.view addSubview:_topTitle];
     }    
-}
-
-- (void)cameraInitOver
-{
-    if (self.isVideoZoom) {
-        [self zoomView];
-    }
-}
-
-- (LBXScanVideoZoomView*)zoomView
-{
-    if (!_zoomView)
-    {
-      
-        CGRect frame = self.view.frame;
-        
-        int XRetangleLeft = self.style.xScanRetangleOffset;
-        
-        CGSize sizeRetangle = CGSizeMake(frame.size.width - XRetangleLeft*2, frame.size.width - XRetangleLeft*2);
-        
-        if (self.style.whRatio != 1)
-        {
-            CGFloat w = sizeRetangle.width;
-            CGFloat h = w / self.style.whRatio;
-            
-            NSInteger hInt = (NSInteger)h;
-            h  = hInt;
-            
-            sizeRetangle = CGSizeMake(w, h);
-        }
-        CGFloat videoMaxScale = 1.0;
-        //[self.scanObj getVideoMaxScale];
-        
-        //扫码区域Y轴最小坐标
-        CGFloat YMinRetangle = frame.size.height / 2.0 - sizeRetangle.height/2.0 - self.style.centerUpOffset;
-        CGFloat YMaxRetangle = YMinRetangle + sizeRetangle.height;
-        
-        CGFloat zoomw = sizeRetangle.width + 40;
-        _zoomView = [[LBXScanVideoZoomView alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame)-zoomw)/2, YMaxRetangle + 40, zoomw, 18)];
-        
-        [_zoomView setMaximunValue:videoMaxScale/4];
-        
-        
-        __weak __typeof(self) weakSelf = self;
-        _zoomView.block= ^(float value)
-        {            
-        //    [weakSelf.scanObj setVideoScale:value];
-        
-        };
-        [self.view addSubview:_zoomView];
-                
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
-        [self.view addGestureRecognizer:tap];
-    }
-    
-    return _zoomView;
-   
-}
-
-- (void)tap
-{
-    _zoomView.hidden = !_zoomView.hidden;
 }
 
 - (void)drawBottomItems
