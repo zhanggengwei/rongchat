@@ -39,6 +39,8 @@
     {
         [self createLoginController];
     }
+    [[PPChatTools shareManager]autoLogin];
+    
 //    [self createTabbarController];
     [[AMapServices sharedServices]setApiKey:KAppMapKey];
     [[PPLocationManager shareManager]requestLocation];
