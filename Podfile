@@ -29,6 +29,9 @@ def pods
     #log
     #QRCode
     pod 'LBXScan'
+    pod 'LBXAlertAction'
+    
+    pod 'ZYCornerRadius'
     
     pod 'Bugly', '~> 2.4.2'
     #MAP

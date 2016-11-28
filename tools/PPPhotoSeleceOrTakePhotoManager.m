@@ -9,7 +9,8 @@
 #import "PPPhotoSeleceOrTakePhotoManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import <LBXScan/LBXScanWrapper.h>
-#import <LBXScan/LBXScanViewController.h>
+//#import <LBXScan/LBXScanViewController.h>
+#import "SubLBXScanViewController.h"
 
 @interface PPPhotoSeleceOrTakePhotoManager ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,strong) UIImagePickerController * imagePicker;
@@ -107,7 +108,7 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
 //推入二维码的扫描控制器
 - (void)pushQRCodeController:(UIViewController *)currentController
 {
-    LBXScanViewController * controller = [LBXScanViewController new];
+    SubLBXScanViewController * controller = [SubLBXScanViewController new];
     [currentController.navigationController pushViewController:controller animated:YES];
     
 }

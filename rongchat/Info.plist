@@ -39,8 +39,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>允许相册的访问</string>
 	<key>NSCameraUsageDescription</key>
-	<string>相册</string>
+	<string>允许相机访问</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSLocationAlwaysUsageDescription</key>

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		008506534756DB82E16B34FA /* libPods-rongchat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */; };
+		407261071DEBD12400554D00 /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 407261021DEBD12400554D00 /* CodeScan.bundle */; };
+		407261081DEBD12400554D00 /* MyQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 407261041DEBD12400554D00 /* MyQRViewController.m */; };
+		407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 407261061DEBD12400554D00 /* SubLBXScanViewController.m */; };
+		4072610C1DEBD34800554D00 /* LBXScanVideoZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4072610B1DEBD34800554D00 /* LBXScanVideoZoomView.m */; };
 		409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */; };
 		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
 		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
@@ -163,6 +167,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		407261021DEBD12400554D00 /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
+		407261031DEBD12400554D00 /* MyQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQRViewController.h; sourceTree = "<group>"; };
+		407261041DEBD12400554D00 /* MyQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQRViewController.m; sourceTree = "<group>"; };
+		407261051DEBD12400554D00 /* SubLBXScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubLBXScanViewController.h; sourceTree = "<group>"; };
+		407261061DEBD12400554D00 /* SubLBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubLBXScanViewController.m; sourceTree = "<group>"; };
+		4072610A1DEBD34800554D00 /* LBXScanVideoZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXScanVideoZoomView.h; sourceTree = "<group>"; };
+		4072610B1DEBD34800554D00 /* LBXScanVideoZoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXScanVideoZoomView.m; sourceTree = "<group>"; };
 		409F504D1DDD6E3100015DB7 /* kPPObserverDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kPPObserverDef.h; sourceTree = "<group>"; };
 		409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kPPObserverDef.m; sourceTree = "<group>"; };
 		409F50501DDD6E3100015DB7 /* OTFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTFileManager.h; sourceTree = "<group>"; };
@@ -389,6 +400,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		407261011DEBD12400554D00 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				4072610A1DEBD34800554D00 /* LBXScanVideoZoomView.h */,
+				4072610B1DEBD34800554D00 /* LBXScanVideoZoomView.m */,
+				407261021DEBD12400554D00 /* CodeScan.bundle */,
+				407261031DEBD12400554D00 /* MyQRViewController.h */,
+				407261041DEBD12400554D00 /* MyQRViewController.m */,
+				407261051DEBD12400554D00 /* SubLBXScanViewController.h */,
+				407261061DEBD12400554D00 /* SubLBXScanViewController.m */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
 		409F504C1DDD6E3100015DB7 /* manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +454,7 @@
 		409F506C1DDD6E5100015DB7 /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				407261011DEBD12400554D00 /* QRCode */,
 				7513A2FB1DE92CF900CCAB61 /* XIAlertView.h */,
 				7513A2FC1DE92CF900CCAB61 /* XIAlertView.m */,
 				75CEF9531DDDDE1300541660 /* PPViewUtil.h */,
@@ -911,6 +937,7 @@
 				75CEF8F71DDC9BEB00541660 /* plugins_FriendNotify@3x.png in Resources */,
 				75CEF9171DDC9BEB00541660 /* FootStep@2x.png in Resources */,
 				75CEF90A1DDC9BEB00541660 /* ff_IconBottle@3x.png in Resources */,
+				407261071DEBD12400554D00 /* CodeScan.bundle in Resources */,
 				75CEF91A1DDC9BEB00541660 /* MoreGame@3x.png in Resources */,
 				75CEF9311DDC9BEB00541660 /* tabbar_contactsHL@3x.png in Resources */,
 				75CEF9151DDC9BEB00541660 /* ff_IconShowAlbum@2x.png in Resources */,
@@ -1051,6 +1078,7 @@
 				75DE618E1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m in Sources */,
 				409F50A91DDD721500015DB7 /* PPAccountSecurityViewController.m in Sources */,
 				409F50951DDD704100015DB7 /* rc4.m in Sources */,
+				4072610C1DEBD34800554D00 /* LBXScanVideoZoomView.m in Sources */,
 				409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */,
 				75CEF86C1DDC878500541660 /* ViewController.m in Sources */,
 				409F50821DDD6E6F00015DB7 /* PPRegisterViewController.m in Sources */,
@@ -1067,6 +1095,7 @@
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
 				75DE618B1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m in Sources */,
 				75CEF9591DE33D1900541660 /* PPLocationManager.m in Sources */,
+				407261081DEBD12400554D00 /* MyQRViewController.m in Sources */,
 				409F506B1DDD6E3100015DB7 /* PPTUserInfoEngine.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
 				75CEF8991DDC87B200541660 /* PPTabBarController.m in Sources */,
@@ -1085,6 +1114,7 @@
 				409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */,
+				407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */,
 				409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */,
 				409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */,
 				409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */,

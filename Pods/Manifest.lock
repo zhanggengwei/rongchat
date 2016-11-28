@@ -32,6 +32,7 @@ PODS:
   - iAppInfos (0.2.1)
   - ICEVersionUpdate (1.0.0)
   - IQKeyboardManager (3.3.7)
+  - LBXAlertAction (1.0.3)
   - LBXScan (1.1.1):
     - ZXingObjC (~> 3.0)
   - MagicalRecord (2.3.2):
@@ -61,6 +62,7 @@ PODS:
   - ZXingObjC (3.1.0):
     - ZXingObjC/All (= 3.1.0)
   - ZXingObjC/All (3.1.0)
+  - ZYCornerRadius (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.1)
@@ -71,6 +73,7 @@ DEPENDENCIES:
   - iAppInfos (~> 0.2.1)
   - ICEVersionUpdate (~> 1.0.0)
   - IQKeyboardManager
+  - LBXAlertAction
   - LBXScan
   - MagicalRecord (~> 2.3.0)
   - Mantle (~> 2.0.6)
@@ -84,6 +87,7 @@ DEPENDENCIES:
   - UIView+FrameEx (~> 0.0.1)
   - WActionSheet (~> 0.0.3)
   - YYWebImage (~> 1.0.5)
+  - ZYCornerRadius
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
@@ -95,6 +99,7 @@ SPEC CHECKSUMS:
   iAppInfos: 090ecd9a694be25968bbdbdbff97841b301a9107
   ICEVersionUpdate: 28cbd6aecca9f9eb79afb853a066bd5abccb5e39
   IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
+  LBXAlertAction: e904f511f0e44fde323e056691d7a8a99d71faba
   LBXScan: dfb4d8ae8e4cff2aa0c9e1771e43954dce1469a9
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
@@ -111,7 +116,8 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
+  ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: d10fa675e358ea9e29f50b30055ae77afa6b59ff
+PODFILE CHECKSUM: 73de29ab87069ecfea69ecc7128a1d44f914e4da
 
 COCOAPODS: 1.1.0.beta.2
