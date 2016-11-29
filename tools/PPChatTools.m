@@ -95,11 +95,7 @@
             PPUserBaseInfo * info = [PPUserBaseInfo new];
             info.user = aTaskResponse.result;
             [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
-            
-            
         } userID:content];
-        
-        
     } failBlock:^(RCConnectErrorCode code) {
         
     } tokenIncorrectBlock:^{

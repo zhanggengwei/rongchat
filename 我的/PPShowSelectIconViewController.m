@@ -35,7 +35,11 @@
         make.left.mas_equalTo(self.view.mas_left);
         
     }];
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[PPTUserInfoEngine shareEngine].user_Info.user.portraitUri] placeholderImage:nil];
+  
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[PPTUserInfoEngine shareEngine].user_Info.user.portraitUri] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        self.imageView.image = image;
+    }];
     
     self.view.backgroundColor = [UIColor blackColor];
     

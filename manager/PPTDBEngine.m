@@ -107,8 +107,9 @@
         {
             if ([self ifHaveRecordWithTable:USER_INFO_TABLENAME])
             {
-                sql =  [NSString stringWithFormat:@"DELETE FROM %@ where indexId = \'%@\'",USER_INFO_TABLENAME,baseInfo.user.indexId];
+                sql =  [NSString stringWithFormat:@"DELETE  FROM %@ where indexId = \'%@\'",USER_INFO_TABLENAME,baseInfo.user.indexId];
                 ret = [_db executeUpdate:sql];
+            
                 if (NO == ret)
                 {
                     [_db close];

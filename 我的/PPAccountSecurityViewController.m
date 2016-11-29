@@ -14,6 +14,7 @@ NSArray * array()
 
 #import "PPAccountSecurityViewController.h"
 #import "PPSettingCell.h"
+#import "PPUpdatePassWordController.h"
 @interface PPAccountSecurityViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) UITableView * tableView;
@@ -49,6 +50,15 @@ NSArray * array()
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSArray * arr = array()[indexPath.section];
+    
+    if([[arr objectAtIndex:indexPath.row] isEqualToString:@"微信密码"])
+    {
+        PPUpdatePassWordController * controller = [PPUpdatePassWordController new];
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    }
+    
     
 }
 
@@ -109,5 +119,7 @@ NSArray * array()
     return 48;
     
 }
+
+
 
 @end

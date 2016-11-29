@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "PPTabBarController.h"
 #import "PPLoginViewController.h"
+#import "PPImageUtil.h"
 @interface AppDelegate ()
 
 @end
@@ -46,7 +47,13 @@
     [[PPLocationManager shareManager]requestLocation];
     NSLog(@"path = %@",NSHomeDirectory());
     
+    [[UINavigationBar appearance]setBackgroundImage:[PPImageUtil imageFromColor:[UIColor blackColor]] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance]setTitleTextAttributes:@{NSBackgroundColorAttributeName:[UIColor whiteColor]}];
     
+    [[UINavigationBar appearance]setBarTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];//导航栏字体颜色
+
+        
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
     [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if(status == AFNetworkReachabilityStatusNotReachable)

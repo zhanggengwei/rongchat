@@ -321,8 +321,14 @@
     NSDictionary * params = @{@"oldPassword" : oldPassWord, @"newPassword" : newPassWord};
     
     [manager POST:kPPUpdatePassWord parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError * error;
+        PPHTTPResponse * reponse = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:&error];
+        [self _completeWithResponse:reponse block:aResponseBlock];
+        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+        [self _completeWithResponse:response block:aResponseBlock];
         
     }];
 }

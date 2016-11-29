@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
-
 
 @interface PPDateEngine : NSObject
+#define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 
 +(instancetype)manager;
 // 登陆
