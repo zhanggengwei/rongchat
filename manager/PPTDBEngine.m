@@ -86,8 +86,9 @@
 - (void)dropTableName:(NSString *)tableName
 {
     NSString * dropSql = [NSString stringWithFormat: @"truncate table \'%@\'",tableName];
+    [self.db executeUpdate:dropSql];
+//    [self.db  executeUpdate:dropSql];
     
-    [self.db executeQuery:dropSql];
 }
 
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
@@ -106,7 +107,7 @@
         {
             if ([self ifHaveRecordWithTable:USER_INFO_TABLENAME])
             {
-                sql =  [NSString stringWithFormat:@"truncate FROM %@",USER_INFO_TABLENAME];
+                sql =  [NSString stringWithFormat:@"DELETE FROM %@ where indexId = \'%@\'",USER_INFO_TABLENAME,baseInfo.user.indexId];
                 ret = [_db executeUpdate:sql];
                 if (NO == ret)
                 {
