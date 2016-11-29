@@ -33,5 +33,11 @@
     self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
 }
 
+- (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
+{
+    self.user_Info = baseInfo;
+    BOOL ret = [[PPTDBEngine shareManager]saveUserInfo:baseInfo];
+    return ret;
+}
 
 @end

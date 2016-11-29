@@ -117,14 +117,13 @@
         NSLog(@"aTaskResponse  == %@",aTaskResponse);
         if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
         {
-            
             PPUploadImageToken * resulst = aTaskResponse.result;
-            
             NSString * image_token = resulst.token;
-            
-            
-            [[PPDateEngine manager]requsetUploadImageResponse:^(id aTaskResponse) {
-                
+            [[PPDateEngine manager]requsetUploadImageResponse:^(PPHTTPResponse * aTaskResponse) {
+                if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+                {
+                    NSLog(@"图片上传成功");
+                }
             } UploadFile:UIImagePNGRepresentation(self.uploadImage) UserId:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil] uploadToken:image_token];
         }
     }];
@@ -158,7 +157,6 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     
 }
-
 #pragma mark PPPhotoSeleceOrTakePhotoManagerDelegate
 
 - (void)PPPhotoSeleceOrTakePhotoManagerSelectImage:(UIImage *)image

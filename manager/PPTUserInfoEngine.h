@@ -13,4 +13,6 @@
 
 + (instancetype)shareEngine;
 
+- (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
+
 @end

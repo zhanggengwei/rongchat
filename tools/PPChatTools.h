@@ -15,7 +15,7 @@
 
 + (instancetype)shareManager;
 - (void)initRCIM;
-
+- (void)deleteStoreItems;
 - (void)logout;
 
 - (void)autoLogin;

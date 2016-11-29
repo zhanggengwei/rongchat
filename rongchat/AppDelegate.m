@@ -37,11 +37,11 @@
        [self createTabbarController];
     }else
     {
+        [[PPChatTools shareManager]deleteStoreItems];
+        
         [self createLoginController];
     }
     [[PPChatTools shareManager]autoLogin];
-    
-//    [self createTabbarController];
     [[AMapServices sharedServices]setApiKey:KAppMapKey];
     [[PPLocationManager shareManager]requestLocation];
     NSLog(@"path = %@",NSHomeDirectory());

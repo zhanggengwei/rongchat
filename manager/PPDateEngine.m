@@ -124,13 +124,11 @@
             [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {
-                    
-                    
                     PPUserBaseInfo * info = [PPUserBaseInfo new];
                     info.user = aTaskResponse.result;
-                    [[PPTDBEngine shareManager]saveUserInfo:info];
-                    [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
+                    [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
                     
+                    [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
                 }
                 
             } userID:userID];
@@ -418,19 +416,17 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
               
               NSString * url = [NSString stringWithFormat:@"http://7xogjk.com1.z0.glb.clouddn.com/%@",responseObject[@"key"]];
                [self requestSetHeadUrlResponse:^(PPHTTPResponse * aTaskResponse) {
-                   if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-                   {
-                       
-                   }else
-                   {
-                       
-                   }
+                 [self _completeWithResponse:aTaskResponse block:aResponseBlock];
+                   
                } headUrl:url];
               
-              NSLog(@"Url == %@",url);
+             
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               NSLog(@"请求失败");
+              PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+              [self _completeWithResponse:response block:aResponseBlock];
+              
           }];
 }
 - (void)requestGetBlackFriendListResponse:(PPResponseBlock())aResponseBlock
@@ -598,6 +594,13 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [manager POST:KppUrlsetAvatuaUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@",responseObject);
         PPHTTPResponse * response = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
+        if(response.code.integerValue == kPPResponseSucessCode)
+        {
+            PPUserBaseInfo * baseInfo = [PPTUserInfoEngine shareEngine].user_Info;
+            baseInfo.user.portraitUri = headUrl;
+            [[PPTUserInfoEngine shareEngine]saveUserInfo:baseInfo];
+            
+        }
         [self _completeWithResponse:response block:aResponseBlock];
         
         

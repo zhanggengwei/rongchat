@@ -16,7 +16,7 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import "PPLocationManager.h"
-
+#import "PPTUserInfoEngine.h"
 #import "singleton.h"
 #import "XIAlertView.h"
 

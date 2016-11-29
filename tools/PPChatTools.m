@@ -7,12 +7,13 @@
 //
 
 #import "PPChatTools.h"
-#import <RongIMLib/RongIMLib.h>
+#import <RongIMKit/RongIMKit.h>
+
 #import "PPDateEngine.h"
 
-@interface PPChatTools ()<RCConnectionStatusChangeDelegate,RCIMClientReceiveMessageDelegate>
+@interface PPChatTools ()<RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate>
 
-@property (nonatomic,strong)RCIMClient * client;
+@property (nonatomic,strong)RCIM * client;
 
 @end
 
@@ -27,9 +28,11 @@
     dispatch_once(&token, ^{
         shareInstance = [PPChatTools new];
        
-        shareInstance.client = [RCIMClient sharedRCIMClient];
-        [shareInstance.client setRCConnectionStatusChangeDelegate:shareInstance];
-        [shareInstance.client setReceiveMessageDelegate:shareInstance object:nil];
+        shareInstance.client = [RCIM sharedRCIM];
+        [shareInstance.client setConnectionStatusDelegate:shareInstance];
+   
+        shareInstance.client.receiveMessageDelegate = shareInstance;
+        
         [shareInstance initRCIM];
         
         
@@ -57,16 +60,25 @@
 
 - (void)logout
 {
+ 
+    [self deleteStoreItems];
+    [self.client logout];
+    
+    RCConnectionStatus status = [self.client getConnectionStatus];
+    
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLogoutSucess object:nil];
+}
+
+- (void)deleteStoreItems
+{
     [SFHFKeychainUtils deleteItemForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
     [SFHFKeychainUtils deleteItemForUsername:kPPLoginPassWord andServiceName:kPPServiceName error:nil];
     [SFHFKeychainUtils deleteItemForUsername:kPPLoginToekn andServiceName:kPPServiceName error:nil];
     [SFHFKeychainUtils deleteItemForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:OBJC_APPIsLogin];
-    [self.client logout];
-    [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLogoutSucess object:nil];
-    
-    
 }
+
 
 - (void)autoLogin
 {
@@ -82,7 +94,8 @@
           
             PPUserBaseInfo * info = [PPUserBaseInfo new];
             info.user = aTaskResponse.result;
-            [[PPTDBEngine shareManager]saveUserInfo:info];
+            [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
+            
             
         } userID:content];
         
@@ -110,11 +123,11 @@
     
 }
 
-#pragma mark RCConnectionStatusChangeDelegate
+#pragma mark onRCIMConnectionStatusChangedDelegate
 
-- (void)onConnectionStatusChanged:(RCConnectionStatus)status
+- (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status
 {
-    
+    NSLog(@"status == %d",status);
 }
 #pragma mark RCIMClientReceiveMessageDelegate
 
@@ -130,10 +143,57 @@
  您可以根据left数量来优化您的App体验和性能，比如收到大量消息时等待left为0再刷新UI。
  object为您在设置消息接收监听时的key值。
  */
-- (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object
+- (void)onRCIMReceiveMessage:(RCMessage *)message
+                        left:(int)left
 {
     
 }
+/*!
+ 当App处于后台时，接收到消息并弹出本地通知的回调方法
+ 
+ @param message     接收到的消息
+ @param senderName  消息发送者的用户名称
+ @return            当返回值为NO时，SDK会弹出默认的本地通知提示；当返回值为YES时，SDK针对此消息不再弹本地通知提示
+ 
+ @discussion 如果您设置了IMKit消息监听之后，当App处于后台，收到消息时弹出本地通知之前，会执行此方法。
+ 如果App没有实现此方法，SDK会弹出默认的本地通知提示。
+ 流程：
+ SDK接收到消息 -> App处于后台状态 -> 通过用户/群组/群名片信息提供者获取消息的用户/群组/群名片信息
+ -> 用户/群组信息为空 -> 不弹出本地通知
+ -> 用户/群组信息存在 -> 回调此方法准备弹出本地通知 -> App实现并返回YES        -> SDK不再弹出此消息的本地通知
+ -> App未实现此方法或者返回NO -> SDK弹出默认的本地通知提示
+ 
+ 
+ 您可以通过RCIM的disableMessageNotificaiton属性，关闭所有的本地通知(此时不再回调此接口)。
+ 
+ @warning 如果App在后台想使用SDK默认的本地通知提醒，需要实现用户/群组/群名片信息提供者，并返回正确的用户信息或群组信息。
+ 参考RCIMUserInfoDataSource、RCIMGroupInfoDataSource与RCIMGroupUserInfoDataSource
+ */
+-(BOOL)onRCIMCustomLocalNotification:(RCMessage*)message
+                      withSenderName:(NSString *)senderName
+{
+    return NO;
+}
+
+/*!
+ 当App处于前台时，接收到消息并播放提示音的回调方法
+ 
+ @param message 接收到的消息
+ @return        当返回值为NO时，SDK会播放默认的提示音；当返回值为YES时，SDK针对此消息不再播放提示音
+ 
+ @discussion 到消息时播放提示音之前，会执行此方法。
+ 如果App没有实现此方法，SDK会播放默认的提示音。
+ 流程：
+ SDK接收到消息 -> App处于前台状态 -> 回调此方法准备播放提示音 -> App实现并返回YES        -> SDK针对此消息不再播放提示音
+ -> App未实现此方法或者返回NO -> SDK会播放默认的提示音
+ 
+ 您可以通过RCIM的disableMessageAlertSound属性，关闭所有前台消息的提示音(此时不再回调此接口)。
+ */
+-(BOOL)onRCIMCustomAlertSound:(RCMessage*)message
+{
+    return NO;
+}
+
 /*!
  消息被撤回的回调方法
  
@@ -141,28 +201,7 @@
  
  @discussion 被撤回的消息会变更为RCRecallNotificationMessage，App需要在UI上刷新这条消息。
  */
-- (void)onMessageRecalled:(long)messageId
-{
-    
-}
-
-/*!
- 请求消息已读回执（收到需要阅读时发送回执的请求，收到此请求后在会话页面已经展示该 messageUId 对应的消息或者调用 getHistoryMessages 获取消息的时候，包含此 messageUId 的消息，需要调用
- sendMessageReadReceiptResponse 接口发送消息阅读回执）
- 
- @param messageUId 请求已读回执的消息ID
- */
-- (void)onMessageReceiptRequest:(RCConversationType)conversationType targetId:(NSString *)targetId messageUId:(NSString *)messageUId
-{
-    
-}
-
-/*!
- 消息已读回执响应（收到阅读回执响应，可以按照 messageUId 更新消息的阅读数）
- 
- @param messageUId 已读回执的消息ID
- */
-- (void)onMessageReceiptResponse:(RCConversationType)conversationType targetId:(NSString *)targetId messageUId:(NSString *)messageUId readerList:(NSMutableDictionary *)userIdList
+- (void)onRCIMMessageRecalled:(long)messageId
 {
     
 }
