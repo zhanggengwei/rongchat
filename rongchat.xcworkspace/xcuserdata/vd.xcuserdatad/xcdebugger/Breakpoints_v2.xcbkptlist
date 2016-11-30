@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "manager/PPTDBEngine.m"
-            timestampString = "502115448.672921"
+            filePath = "manager/PPDateEngine.m"
+            timestampString = "502203268.694439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-createUser_Info_TableName"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "-sendVerifyWithResponse:phone:regionString:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "manager/PPDateEngine.m"
-            timestampString = "502203268.694439"
+            timestampString = "502204964.766596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "-sendVerifyWithResponse:phone:regionString:"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
+            landmarkName = "-requestUpdateNickNameResponse:nickName:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "manager/PPDateEngine.m"
+            timestampString = "502204980.396876"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "-requestUpdateNickNameResponse:nickName:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

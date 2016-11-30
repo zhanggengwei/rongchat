@@ -20,8 +20,9 @@
 #define kPPResetPassWord [NSString stringWithFormat:@"%@user/reset_password",kPPUrlHttp]
 
 #define kPPVertifyPhoneIsValid [NSString stringWithFormat:@"%@user/verify_code",kPPUrlHttp]
+///user/set_nickname?userId=%@
+#define kPPUrlUpdateNickName(userID) [NSString stringWithFormat:@"%@user/set_nickname?userId=%@",kPPUrlHttp,userID]
 
-#define kPPUrlUpdateNickName [NSString stringWithFormat:@"%@update_profile",kPPUrlHttp]
 
 #define kPPUrlProfile(friendId) [NSString stringWithFormat:@"%@friendship/%@/profile",kPPUrlHttp,friendId]
 #define kPPUrlUploadImageToken [NSString stringWithFormat:@"%@user/get_image_token",kPPUrlHttp]

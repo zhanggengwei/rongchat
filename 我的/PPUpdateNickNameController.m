@@ -24,12 +24,13 @@
     [self.nickNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(20);
+        make.top.mas_equalTo(self.view.mas_top).mas_offset(80);
         make.height.mas_equalTo(30);
         
     }];
     self.nickNameTextField.backgroundColor =  kPPTWhiteColor;
     self.nickNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction:)];
     
     // Do any additional setup after loading the view.
 }
@@ -37,6 +38,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)saveAction:(id)sender
+{
+    
+    [[PPDateEngine manager]requestUpdateNickNameResponse:^(id aTaskResponse) {
+        
+    } nickName:self.nickNameTextField.text];
+    
 }
 
 /*

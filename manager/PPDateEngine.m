@@ -320,12 +320,23 @@
 - (void)requestUpdateNickNameResponse:(PPResponseBlock())aResponseBlock nickName:(NSString *)nickName
 {
     PPHTTPManager * manager = [PPHTTPManager manager];
-    NSDictionary * dict = @{@"username" : nickName};
+    NSDictionary * dict = @{@"nickname" : nickName};
     
     
-    [manager POST:kPPUrlUpdateNickName parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.indexId) parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        PPHTTPResponse * resonse = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
+        
+        PPUserBaseInfo * user_info=[PPTUserInfoEngine shareEngine].user_Info;
+        user_info.user.nickname = nickName;
+        [[PPTUserInfoEngine shareEngine]saveUserInfo:user_info];
+        
+        [self _completeWithResponse:resonse block:aResponseBlock];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+        [self _completeWithResponse:response block:aResponseBlock];
+        
         
     }];
     
