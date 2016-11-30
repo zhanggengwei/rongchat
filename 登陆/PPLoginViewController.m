@@ -9,7 +9,8 @@
 #import "PPLoginViewController.h"
 #import "PPLoginTableViewCell.h"
 #import <UIImage+YYWebImage.h>
-
+#import <WActionSheet/NLActionSheet.h>
+#import "RegisterViewController.h"
 @interface PPLoginViewController ()<UITableViewDelegate,UITableViewDataSource,PPLoginTableViewCellDelegate>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) UILabel * headerView;
@@ -114,8 +115,27 @@
     [moreButton setTitle:@"更多" forState:UIControlStateNormal];
     moreButton.titleLabel.font = COMMON_FONT_SIZE;
     
+    [moreButton addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)moreAction:(id)sender
+{
+    NLActionSheet * sheet = [[NLActionSheet alloc]initWithTitle:@"" cancelTitle:@"取消" otherTitles:@[@"注册",@"忘记密码"]];
+    sheet.otherTitlesFont = COMMON_FONT_SIZE;
+    
+    [sheet showView];
+    [sheet dismissForCompletionHandle:^(NSInteger clickedIndex, BOOL isCancel) {
+        if(!isCancel&&clickedIndex == 0)
+        {
+            RegisterViewController * controller = [RegisterViewController createRegisterViewController];
+            [self presentViewController:controller animated:YES completion:nil];
+            
+        }
+    }];
+    
     
 }
+
 
 - (void)cancelAction:(UIBarButtonItem *)sender
 {

@@ -17,10 +17,18 @@
 @property (weak, nonatomic) IBOutlet UITextField *PassWord;
 @property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;
 @property (weak, nonatomic) IBOutlet UITextField *numberText;
-@property (weak, nonatomic) IBOutlet UIButton *backBtn;
+@property (strong, nonatomic)  UIButton *backBtn;
 @end
 
 @implementation RegisterViewController
+
++(instancetype)createRegisterViewController
+{
+    return [[UIStoryboard storyboardWithName:@"register" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"RegisterViewController"];
+    
+}
+
+
 - (IBAction)backController:(id)sender {
 
     
@@ -46,12 +54,7 @@
 //        
 //    }];
     
-    
-    
 
-
-    
-    
 }
 
 
@@ -60,14 +63,17 @@
     [super viewDidLoad];
     self.backView.layer.cornerRadius = 10;
     self.backView.layer.masksToBounds = YES;
-      self.backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 50);
-    [self.backBtn setBackgroundImage:[UIImage imageNamed:@"返回按钮"] forState:UIControlStateNormal];
     
     
-    
+    self.backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.backBtn.frame = CGRectMake(16,35,40,16);
+    self.backBtn.titleLabel.font = COMMON_FONT_SIZE;
+    [self.backBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [self.backBtn setTitleColor:kPPLoginButtonColor forState:UIControlStateNormal];
+    [self.view addSubview:self.backBtn];
     [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
     
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
