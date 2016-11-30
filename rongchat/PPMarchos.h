@@ -60,6 +60,10 @@ green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 \
 alpha:a]
 
+#define UIColorFromFloatValueRGBA(r,g,b,a)\
+\
+[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
 
 #pragma mark - font color
 #define kPPTFontColorGray UIColorFromRGB(0x9b9b9b)
@@ -99,9 +103,10 @@ alpha:a]
 #define kWAITVIEWBACKGROUNDCOLOR UIColorFromRGB(0x88ceff)
 #define kPPTWhiteColor UIColorFromRGB(0xffffff)
 
-
-
-
+//104/255.0 green:187/255.0 blue:30/255.0
+#define kPPLoginButtonColor  UIColorFromFloatValueRGBA(104,187,30,1.0)
+//142/255.0 green:148/255.0 blue:165/255.0 alpha:1
+#define kPPEamil_ButtonColor UIColorFromFloatValueRGBA(142,148,165,1.0)
 
 
 

@@ -71,13 +71,15 @@
     [self.footerView addSubview:loginBtn];
     
     [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.footerView.mas_top).mas_offset(10);
+        make.top.mas_equalTo(self.footerView.mas_top).mas_offset(20);
         make.left.mas_equalTo(self.footerView.mas_left).mas_offset(31);
         make.right.mas_equalTo(self.footerView.mas_right).mas_offset(-31);
-        make.height.mas_equalTo(35);
+        make.height.mas_equalTo(50);
     }];
-    [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:[UIColor colorWithRed:104/255.0 green:187/255.0 blue:30/255.0 alpha:0.5]] forState:UIControlStateDisabled];
-    [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:[UIColor colorWithRed:104/255.0 green:187/255.0 blue:30/255.0 alpha:1]] forState:UIControlStateNormal];
+    [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:kPPLoginButtonColor] forState:UIControlStateDisabled];
+   
+    
+    [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:kPPLoginButtonColor] forState:UIControlStateNormal];
     
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
@@ -95,10 +97,22 @@
         make.height.mas_equalTo(16);
     }];
     //142, 148, 165
-    [emailBtn setTitleColor:[UIColor colorWithRed:142/255.0 green:148/255.0 blue:165/255.0 alpha:1] forState:UIControlStateNormal];
+    [emailBtn setTitleColor:kPPEamil_ButtonColor forState:UIControlStateNormal];
     [emailBtn setTitle:@"通过短信验证码登陆" forState:UIControlStateNormal];
     emailBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     
+    
+    UIButton * moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:moreButton];
+    [moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(50);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.bottom.mas_equalTo(self.view.mas_bottom).mas_offset(-10);
+    }];
+    [moreButton setTitleColor:kPPEamil_ButtonColor forState:UIControlStateNormal];
+    [moreButton setTitle:@"更多" forState:UIControlStateNormal];
+    moreButton.titleLabel.font = COMMON_FONT_SIZE;
     
     
 }
