@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="NO">
     <dependencies>
         <deployment identifier="iOS"/>
+        <development version="7000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Reset Pass Word View Controller-->
@@ -18,13 +15,13 @@
                         <viewControllerLayoutGuide type="bottom" id="iVM-TV-lQH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RpA-G7-SED">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4t-fZ-zws" customClass="RJBackView">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4t-fZ-zws" customClass="RJBackView">
                                 <rect key="frame" x="9" y="60" width="357" height="190"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" 输入手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="END-Sd-BNy">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" 输入手机号码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="END-Sd-BNy">
                                         <rect key="frame" x="13" y="0.0" width="332" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="lBQ-sn-jN4"/>
@@ -32,7 +29,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OUr-EF-sT9">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OUr-EF-sT9">
                                         <rect key="frame" x="13" y="46" width="205" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Ksn-un-aYi"/>
@@ -40,7 +37,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u56-Qp-59a">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="u56-Qp-59a">
                                         <rect key="frame" x="13" y="92" width="298" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="cLY-Nx-W0h"/>
@@ -48,7 +45,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ND0-DD-JRC">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="再次输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ND0-DD-JRC">
                                         <rect key="frame" x="13" y="138" width="332" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="wHP-xh-hvy"/>
@@ -56,9 +53,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QH5-dc-U9E">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QH5-dc-U9E">
                                         <rect key="frame" x="240" y="46" width="105" height="45"/>
-                                        <color key="backgroundColor" red="0.091554194688796997" green="0.7048945426940918" blue="0.96753585338592529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.091554194688796997" green="0.7048945426940918" blue="0.96753585338592529" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="105" id="Ovb-DO-RdJ"/>
                                             <constraint firstAttribute="height" constant="45" id="Xy7-mU-0V7"/>
@@ -70,7 +67,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="u56-Qp-59a" firstAttribute="leading" secondItem="v4t-fZ-zws" secondAttribute="leading" constant="13" id="16u-4q-pvb"/>
                                     <constraint firstItem="ND0-DD-JRC" firstAttribute="leading" secondItem="v4t-fZ-zws" secondAttribute="leading" constant="13" id="4tE-C9-cTf"/>
@@ -89,19 +86,20 @@
                                     <constraint firstItem="OUr-EF-sT9" firstAttribute="leading" secondItem="v4t-fZ-zws" secondAttribute="leading" constant="13" id="rTE-ui-mpK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnl-2y-uss">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnl-2y-uss">
                                 <rect key="frame" x="9" y="270" width="357" height="51"/>
-                                <color key="backgroundColor" red="0.11786098033189774" green="0.91799116134643555" blue="0.9966355562210083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.11786098033189774" green="0.91799116134643555" blue="0.9966355562210083" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="Pau-OD-luR"/>
                                 </constraints>
-                                <state key="normal" title="注册"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="完成"/>
                                 <connections>
-                                    <action selector="registerBtn:" destination="ZSk-Oi-SZ2" eventType="touchUpInside" id="IfW-9V-mRv"/>
+                                    <action selector="finishAction:" destination="ZSk-Oi-SZ2" eventType="touchUpInside" id="YWW-tY-iFu"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="lnl-2y-uss" firstAttribute="leading" secondItem="RpA-G7-SED" secondAttribute="leading" constant="9" id="Dt4-lt-TgE"/>
                             <constraint firstItem="lnl-2y-uss" firstAttribute="top" secondItem="v4t-fZ-zws" secondAttribute="bottom" constant="20" id="EDA-Dt-Wiq"/>
@@ -114,9 +112,11 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="PassWord" destination="u56-Qp-59a" id="FQ2-6y-Rgh"/>
+                        <outlet property="againPassWord" destination="ND0-DD-JRC" id="ZMx-e0-H98"/>
                         <outlet property="backView" destination="v4t-fZ-zws" id="s07-Yk-7KQ"/>
                         <outlet property="getCodeBtn" destination="QH5-dc-U9E" id="6Kx-Qw-LNa"/>
                         <outlet property="numberText" destination="END-Sd-BNy" id="wY9-Ya-Z32"/>
+                        <outlet property="vertifyCode" destination="OUr-EF-sT9" id="NtT-Ls-eiU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Crx-l5-fIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -127,6 +127,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

@@ -43,3 +43,8 @@
 
 @end
 
+
+@interface PPJudgeVerificationResponse : PPHTTPResponse
+
+@end
+

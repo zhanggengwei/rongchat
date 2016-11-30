@@ -70,3 +70,13 @@
     
 }
 @end
+
+
+@implementation PPJudgeVerificationResponse
+
++ (NSValueTransformer *)resultJSONTransformer
+{
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[PPVertifyDef class]];
+}
+
+@end

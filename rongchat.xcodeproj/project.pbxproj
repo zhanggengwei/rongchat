@@ -148,6 +148,7 @@
 		75CEF9591DE33D1900541660 /* PPLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF9581DE33D1900541660 /* PPLocationManager.m */; };
 		75D472B81DEDAE260013AA3E /* PPUpdatePassWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D472B71DEDAE260013AA3E /* PPUpdatePassWordController.m */; };
 		75D472BB1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D472BA1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m */; };
+		75D472BE1DEEFE160013AA3E /* PPUrlDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D472BD1DEEFE160013AA3E /* PPUrlDef.m */; };
 		75DE61831DE48CA400DF1CA4 /* Country_Code.json in Resources */ = {isa = PBXBuildFile; fileRef = 75DE61821DE48CA400DF1CA4 /* Country_Code.json */; };
 		75DE61861DE48E6C00DF1CA4 /* PPSelectAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DE61851DE48E6C00DF1CA4 /* PPSelectAreaViewController.m */; };
 		75DE61881DE48E9800DF1CA4 /* PPSelectArea.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DE61871DE48E9800DF1CA4 /* PPSelectArea.storyboard */; };
@@ -376,6 +377,8 @@
 		75D472B71DEDAE260013AA3E /* PPUpdatePassWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPUpdatePassWordController.m; sourceTree = "<group>"; };
 		75D472B91DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPUpdatePassWordTableViewCell.h; sourceTree = "<group>"; };
 		75D472BA1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPUpdatePassWordTableViewCell.m; sourceTree = "<group>"; };
+		75D472BC1DEEFE160013AA3E /* PPUrlDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPUrlDef.h; sourceTree = "<group>"; };
+		75D472BD1DEEFE160013AA3E /* PPUrlDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPUrlDef.m; sourceTree = "<group>"; };
 		75DE61821DE48CA400DF1CA4 /* Country_Code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Country_Code.json; sourceTree = "<group>"; };
 		75DE61841DE48E6C00DF1CA4 /* PPSelectAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSelectAreaViewController.h; sourceTree = "<group>"; };
 		75DE61851DE48E6C00DF1CA4 /* PPSelectAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSelectAreaViewController.m; sourceTree = "<group>"; };
@@ -488,6 +491,8 @@
 				409F50731DDD6E5100015DB7 /* PPTool.m */,
 				7513A2F01DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.h */,
 				7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */,
+				75D472BC1DEEFE160013AA3E /* PPUrlDef.h */,
+				75D472BD1DEEFE160013AA3E /* PPUrlDef.m */,
 				7513A2F61DE737D600CCAB61 /* singleton.h */,
 			);
 			path = tools;
@@ -1147,6 +1152,7 @@
 				409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */,
+				75D472BE1DEEFE160013AA3E /* PPUrlDef.m in Sources */,
 				407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */,
 				40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */,
 				409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */,

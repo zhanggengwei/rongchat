@@ -19,6 +19,8 @@
 #import "PPTUserInfoEngine.h"
 #import "singleton.h"
 #import "XIAlertView.h"
+#import "PPUrlDef.h"
+
 
 
 

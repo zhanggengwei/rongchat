@@ -17,6 +17,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *PassWord;
 @property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;
 @property (weak, nonatomic) IBOutlet UITextField *numberText;
+@property (weak, nonatomic) IBOutlet UITextField *vertifyCode;
+
+@property (weak, nonatomic) IBOutlet UITextField *againPassWord;
+
+
 @property (strong, nonatomic)  UIButton *backBtn;
 @end
 
@@ -28,8 +33,28 @@
     
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.backView.layer.cornerRadius = 10;
+    self.backView.layer.masksToBounds = YES;
+    self.backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.backBtn.frame = CGRectMake(16,35,40,16);
+    self.backBtn.titleLabel.font = COMMON_FONT_SIZE;
+    [self.backBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [self.backBtn setTitleColor:kPPLoginButtonColor forState:UIControlStateNormal];
+    [self.backBtn addTarget:self action:@selector(backController:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.backBtn];
+    [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    
+}
 
-- (IBAction)backController:(id)sender {
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)backController:(id)sender {
 
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -41,49 +66,33 @@
 
 
 //进行验证码获取的方法
-- (IBAction)BtnCodeAction:(id)sender {
-    
-//    if([self.RJNumberTextField.text checkPhoneNumInput]){
-//        //进行 手机的注册
-    [self.getCodeBtn startTime];
-//    [RJRequestSoap postRequestUrl:@"18863014571" andParater:nil  andSucess:^(NSData *data) {
-//   
-//        
-//        
-//    } andFailed:^(NSError *error) {
-//        
-//    }];
+- (IBAction)BtnCodeAction:(id)sender
+{
+
+    [[PPDateEngine manager]sendVerifyWithResponse:^(PPHTTPResponse * aTaskResponse) {
+        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+        {
+            [self.getCodeBtn startTime];
+        }
+    } phone:self.numberText.text regionString:@"86"];
     
 
 }
-
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.backView.layer.cornerRadius = 10;
-    self.backView.layer.masksToBounds = YES;
+- (IBAction)finishAction:(id)sender
+{
+    [[PPDateEngine manager]requestJudegeVaildWithResponse:^(PPJudgeVerificationResponse * aTaskResponse) {
+        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+        {
+            PPVertifyDef * obj = aTaskResponse.result;
+            
+            [[PPDateEngine manager]requestResetPassWordResponse:^(id aTaskResponse) {
+                
+            } resetPassWord:self.PassWord.text verification_token:obj.verification_token];
+            
+        }
+        
+    } verfityCode:self.vertifyCode.text region:@"86" phone:self.numberText.text];
     
-    
-    self.backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.backBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    self.backBtn.frame = CGRectMake(16,35,40,16);
-    self.backBtn.titleLabel.font = COMMON_FONT_SIZE;
-    [self.backBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [self.backBtn setTitleColor:kPPLoginButtonColor forState:UIControlStateNormal];
-    [self.view addSubview:self.backBtn];
-    [self.getCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (IBAction)registerBtn:(id)sender {
-    
-    
-
     
 }
 

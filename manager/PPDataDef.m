@@ -45,3 +45,8 @@
 @implementation PPCountryDef
 
 @end
+
+@implementation PPVertifyDef
+
+
+@end

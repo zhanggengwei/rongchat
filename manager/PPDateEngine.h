@@ -36,6 +36,9 @@
 
 - (void)requestUploadImageToken:(PPResponseBlock())aResponseBlock;
 
+- (void)requestJudegeVaildWithResponse:(PPResponseBlock())aResponseBlock verfityCode:(NSString *)verificationCode region:(NSString *)region phone:(NSString *)phoneNumber;
+
+
 //user/blacklist
 //获取用户的黑名单
 - (void)requestGetBlackFriendListResponse:(PPResponseBlock())aResponseBlock;

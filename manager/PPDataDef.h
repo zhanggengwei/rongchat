@@ -60,8 +60,11 @@
 @property (nonatomic,strong) NSString * country_name_cn;
 @property (nonatomic,strong) NSString * ab;
 
-
 @end
 
+@interface PPVertifyDef : PPDataDef
+@property (nonatomic,strong) NSString * verification_token;
+
+@end
 
 

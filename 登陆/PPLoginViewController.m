@@ -125,10 +125,13 @@
     
     [sheet showView];
     [sheet dismissForCompletionHandle:^(NSInteger clickedIndex, BOOL isCancel) {
-        if(!isCancel&&clickedIndex == 0)
+        if(!isCancel&&clickedIndex == 1)
         {
             PPResetPassWordViewController * controller = [PPResetPassWordViewController createRegisterViewController];
             [self presentViewController:controller animated:YES completion:nil];
+            
+        }else if (!isCancel&&clickedIndex == 0)
+        {
             
         }
     }];

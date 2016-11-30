@@ -13,69 +13,7 @@
 
 
 #define ContentType @"application/json"
-#define kPPUrlHttp @"http://api.sealtalk.im/"
-#define kPPUrlLoginUrl [NSString stringWithFormat:@"%@user/login",kPPUrlHttp]
-#define kPPUrlRegisiter [NSString stringWithFormat:@"%@user/regisiter",kPPUrlHttp]
 
-//detail
-//friendship/%@/profile
-#define kPPUrlProfile(friendId) [NSString stringWithFormat:@"%@friendship/%@/profile",kPPUrlHttp,friendId]
-
-#define kPPSendVirtifyCode [NSString stringWithFormat:@"%@user/send_code",kPPUrlHttp]
-
-//friendship/all
-
-#define kPPGetAllFriendsList [NSString stringWithFormat:@"%@friendship/all",kPPUrlHttp]
-//user/change_password
-#define kPPUpdatePassWord [NSString stringWithFormat:@"%@user/change_password",kPPUrlHttp]
-//user/reset_password
-#define kPPResetPassWord [NSString stringWithFormat:@"%@user/reset_password",kPPUrlHttp]
-
-#define kPPUrlUserInfo(userId) [NSString stringWithFormat:@"%@user/%@",kPPUrlHttp,userId]
-
-//设置备注
-#define kPPUrlSetDispalyName [NSString stringWithFormat:@"%@friendship/set_display_name",kPPUrlHttp]
-
-// 获取版本的信息 ///misc/client_version
-
-#define kPPUrlGetVersions [NSString stringWithFormat:@"%@misc/client_version",kPPUrlHttp]
-//update_profile
-#define kPPUrlUpdateNickName [NSString stringWithFormat:@"%@update_profile",kPPUrlHttp]
-// 获取image token user/get_image_token
-
-#define kPPUrlUploadImageToken [NSString stringWithFormat:@"%@user/get_image_token",kPPUrlHttp]
-//user/blacklist
-#define kPPUrlBlackUserList [NSString stringWithFormat:@"%@user/blacklist",kPPUrlHttp]
-//user/add_to_blacklist
-#define kPPUrlAddFriendBlackList [NSString stringWithFormat:@"%@user/add_to_blacklist",kPPUrlHttp]
-
-//user/remove_from_blacklist
-#define kPPUrlDeleteFriendBlackList [NSString stringWithFormat:@"%@user/remove_from_blacklist",kPPUrlHttp]
-//user/groups
-#define kPPUrlGetAllGroups [NSString stringWithFormat:@"%@user/groups",kPPUrlHttp]
-
-#define kPPUrlGetGroupId(groupID) [NSString stringWithFormat:@"%@group/%@",kPPUrlHttp,groupID]
-//members
-#define kPPUrlGetGroupMember(groupID) [NSString stringWithFormat:@"%@group/%@/members",kPPUrlHttp,groupID]
-///group/join
-#define kPPUrlJoinGroup [NSString stringWithFormat:@"%@group/join",kPPUrlHttp]
-///group/add
-#define kPPUrlInviteUserGroup [NSString stringWithFormat:@"%@group/add",kPPUrlHttp]
-//group/kick
-#define kPPUrlKickGroup [NSString stringWithFormat:@"%@group/kick",kPPUrlHttp]
-//quit
-#define kPPUrlQuitGroup [NSString stringWithFormat:@"%@group/quit",kPPUrlHttp]
-///dismiss
-#define kPPUrlDismissGroup [NSString stringWithFormat:@"%@group/dismiss",kPPUrlHttp]
-//
-#define kPPUrlCreateGroup [NSString stringWithFormat:@"%@group/create",kPPUrlHttp]
-//rename
-#define kPPUrlRenameGroupName [NSString stringWithFormat:@"%@group/rename",kPPUrlHttp]
-
-#define kPPUrlInviteFriend [NSString stringWithFormat:@"%@friendship/invite",kPPUrlHttp]
-///user/set_portrait_uri
-
-#define KppUrlsetAvatuaUrl [NSString stringWithFormat:@"%@user/set_portrait_uri",kPPUrlHttp]
 
 @implementation PPDateEngine
 
@@ -189,6 +127,28 @@
     
 }
 
+
+- (void)requestJudegeVaildWithResponse:(PPResponseBlock())aResponseBlock   verfityCode:(NSString *)verificationCode region:(NSString *)region phone:(NSString *)phoneNumber
+{
+    
+    PPHTTPManager * manager = [PPHTTPManager manager];
+    NSDictionary *params = @{
+                             @"region" : region,
+                             @"phone" : phoneNumber,
+                             @"code" : verificationCode
+                             };
+    
+    [manager POST:kPPVertifyPhoneIsValid parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        PPJudgeVerificationResponse * response = [MTLJSONAdapter modelOfClass:[PPJudgeVerificationResponse class] fromJSONDictionary:responseObject error:nil];
+        [self _completeWithResponse:response block:aResponseBlock];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+        [self _completeWithResponse:response block:aResponseBlock];
+    }];
+    
+}
+
 /*
  + (void)registerWithNickname:(NSString *)nickname
  password:(NSString *)password
@@ -260,11 +220,17 @@
 - (void)sendVerifyWithResponse:(PPResponseBlock())aResponseBlock phone:(NSString *)phoneNumber regionString:(NSString *)region
 {
     PPHTTPManager * manager = [PPHTTPManager manager];
-    NSDictionary *params = @{ @"region" : region, @"phone" : phoneNumber};
+    NSDictionary *params = @{@"region": region,@"phone" : phoneNumber};
     
     [manager POST:kPPSendVirtifyCode parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError * error;
+        PPHTTPResponse * response = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:&error];
+        [self _completeWithResponse:response block:aResponseBlock];
+       
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+        [self _completeWithResponse:response block:aResponseBlock];
         
     }];
     
@@ -339,8 +305,15 @@
                              };
     
     [manager POST:kPPResetPassWord parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"response object == %@",responseObject);
+        PPHTTPResponse * response = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
+        [self _completeWithResponse:response block:aResponseBlock];
+        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+        [self _completeWithResponse:response block:aResponseBlock];
+        
         
     }];
 }
