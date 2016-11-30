@@ -334,7 +334,7 @@
 {
     PPHTTPManager * manager = [PPHTTPManager manager];
     NSDictionary *params = @{
-                             @"password" : passWord,
+                             @"password":passWord,
                              @"verification_token" : token
                              };
     
@@ -347,7 +347,7 @@
 - (void)requestUpdateNickNameResponse:(PPResponseBlock())aResponseBlock nickName:(NSString *)nickName
 {
     PPHTTPManager * manager = [PPHTTPManager manager];
-    NSDictionary * dict = @{ @"username" : nickName};
+    NSDictionary * dict = @{@"username" : nickName};
     
     
     [manager POST:kPPUrlUpdateNickName parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {

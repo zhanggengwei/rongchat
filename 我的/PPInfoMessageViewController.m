@@ -18,6 +18,9 @@ NSArray * titleArr ()
 #import "PPShowSelectIconViewController.h"
 #import "PPSelectAreaViewController.h"
 #import "PPPhotoSeleceOrTakePhotoManager.h"
+#import "PPUpdateNickNameController.h"
+
+
 @interface PPInfoMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 
@@ -68,8 +71,10 @@ NSArray * titleArr ()
     {
         PPPhotoSeleceOrTakePhotoManager * manager = [PPPhotoSeleceOrTakePhotoManager sharedPPPhotoSeleceOrTakePhotoManager];
         [manager pushQRCodeController:self];
-        
-        
+    }else if ([arr[indexPath.row] isEqualToString:@"名字"])
+    {
+        PPUpdateNickNameController * controller = [PPUpdateNickNameController new];
+        [self.navigationController pushViewController:controller animated:YES];
         
     }
 }
@@ -104,7 +109,7 @@ NSArray * titleArr ()
     {
  
         PPInfoMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPInfoMessageCell"];
-        [cell layoutLeftContent:arr[indexPath.row] rightImage:indexPath.row ==0? @"http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg":[UIImage imageNamed:@"setting_myQR"] imageWidth:indexPath.row == 0 ? 90:20];
+        [cell layoutLeftContent:arr[indexPath.row] rightImage:indexPath.row ==0? [PPTUserInfoEngine shareEngine].user_Info.user.portraitUri:[UIImage imageNamed:@"setting_myQR"] imageWidth:indexPath.row == 0 ? 70:20];
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
@@ -113,7 +118,16 @@ NSArray * titleArr ()
     else
     {
         PPSettingCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPSettingCell"];
-        [cell layoutContent:arr[indexPath.row] textAligent:NSTextAlignmentLeft];
+        if([arr[indexPath.row] isEqualToString:@"名字"])
+        {
+            [cell layoutContent:arr[indexPath.row] textAligent:NSTextAlignmentLeft andDetailText:[PPTUserInfoEngine shareEngine].user_Info.user.nickname];
+            
+        }
+        else
+        {
+           [cell layoutContent:arr[indexPath.row] textAligent:NSTextAlignmentLeft];
+        }
+   
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
         

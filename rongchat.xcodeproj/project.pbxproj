@@ -11,6 +11,7 @@
 		407261071DEBD12400554D00 /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 407261021DEBD12400554D00 /* CodeScan.bundle */; };
 		407261081DEBD12400554D00 /* MyQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 407261041DEBD12400554D00 /* MyQRViewController.m */; };
 		407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 407261061DEBD12400554D00 /* SubLBXScanViewController.m */; };
+		40785E901DEE932300875E00 /* PPUpdateNickNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E8F1DEE932300875E00 /* PPUpdateNickNameController.m */; };
 		409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */; };
 		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
 		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
@@ -173,6 +174,8 @@
 		407261041DEBD12400554D00 /* MyQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQRViewController.m; sourceTree = "<group>"; };
 		407261051DEBD12400554D00 /* SubLBXScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubLBXScanViewController.h; sourceTree = "<group>"; };
 		407261061DEBD12400554D00 /* SubLBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubLBXScanViewController.m; sourceTree = "<group>"; };
+		40785E8E1DEE932300875E00 /* PPUpdateNickNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPUpdateNickNameController.h; sourceTree = "<group>"; };
+		40785E8F1DEE932300875E00 /* PPUpdateNickNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPUpdateNickNameController.m; sourceTree = "<group>"; };
 		409F504D1DDD6E3100015DB7 /* kPPObserverDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kPPObserverDef.h; sourceTree = "<group>"; };
 		409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kPPObserverDef.m; sourceTree = "<group>"; };
 		409F50501DDD6E3100015DB7 /* OTFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTFileManager.h; sourceTree = "<group>"; };
@@ -533,6 +536,8 @@
 				75DE61871DE48E9800DF1CA4 /* PPSelectArea.storyboard */,
 				75D472B61DEDAE260013AA3E /* PPUpdatePassWordController.h */,
 				75D472B71DEDAE260013AA3E /* PPUpdatePassWordController.m */,
+				40785E8E1DEE932300875E00 /* PPUpdateNickNameController.h */,
+				40785E8F1DEE932300875E00 /* PPUpdateNickNameController.m */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -1094,6 +1099,7 @@
 				409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */,
 				75CEF9411DDD288300541660 /* PPBaseViewController.m in Sources */,
 				409F50961DDD704100015DB7 /* UrlDecode.m in Sources */,
+				40785E901DEE932300875E00 /* PPUpdateNickNameController.m in Sources */,
 				75D472BB1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m in Sources */,
 				409F50AC1DDD721500015DB7 /* PPSetingViewController.m in Sources */,
 				409F50691DDD6E3100015DB7 /* PPHTTPResponse.m in Sources */,

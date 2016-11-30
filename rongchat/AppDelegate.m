@@ -52,8 +52,8 @@
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];//导航栏字体颜色
-
-        
+    [[UINavigationBar appearance]setTintColor:kPPTWhiteColor];
+    
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
     [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         if(status == AFNetworkReachabilityStatusNotReachable)
