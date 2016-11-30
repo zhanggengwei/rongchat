@@ -211,16 +211,13 @@
     [PPIndicatorView  showLoadingInView:self.view];
     
     [[PPDateEngine manager]loginWithWithResponse:^(PPHTTPResponse * aTaskResponse) {
-        [PPIndicatorView hideLoading];
+        [PPIndicatorView hideLoadingInView:self.view];
         if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
         {
-            [PPIndicatorView showString:@"登陆成功"];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
-            
-            
+            [PPIndicatorView showString:@"登录成功"];
         }else
         {
-            [PPIndicatorView showString:aTaskResponse.message];
+            [PPIndicatorView showString:@"登录失败"];
         }
         
     } Phone:self.acount passWord:self.passWord region:@"86"];
