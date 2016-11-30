@@ -65,7 +65,11 @@ alpha:a]
 #define kPPTFontColorGray UIColorFromRGB(0x9b9b9b)
 #define kPPTFontColorBlack UIColorFromRGB(0x1c1c1c)
 #define kPPTFontColorWhite UIColorFromRGB(0xffffff)
+
 #define CONTACT_LIST_NO_FRIENDS_LABEL_COLOR UIColorFromRGB(0xa2a2a2)
+
+
+#define KPP_LINE_BACK_GROUND_COLOR UIColorFromRGB(0xdddddd)
 
 
 #pragma mark - font size

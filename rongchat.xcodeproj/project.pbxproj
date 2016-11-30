@@ -12,6 +12,9 @@
 		407261081DEBD12400554D00 /* MyQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 407261041DEBD12400554D00 /* MyQRViewController.m */; };
 		407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 407261061DEBD12400554D00 /* SubLBXScanViewController.m */; };
 		40785E901DEE932300875E00 /* PPUpdateNickNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E8F1DEE932300875E00 /* PPUpdateNickNameController.m */; };
+		40785E981DEE9E7900875E00 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E921DEE9E7900875E00 /* RegisterViewController.m */; };
+		40785E991DEE9E7900875E00 /* RJBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E941DEE9E7900875E00 /* RJBackView.m */; };
+		40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */; };
 		409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */; };
 		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
 		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
@@ -176,6 +179,12 @@
 		407261061DEBD12400554D00 /* SubLBXScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubLBXScanViewController.m; sourceTree = "<group>"; };
 		40785E8E1DEE932300875E00 /* PPUpdateNickNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPUpdateNickNameController.h; sourceTree = "<group>"; };
 		40785E8F1DEE932300875E00 /* PPUpdateNickNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPUpdateNickNameController.m; sourceTree = "<group>"; };
+		40785E911DEE9E7900875E00 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		40785E921DEE9E7900875E00 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		40785E931DEE9E7900875E00 /* RJBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJBackView.h; sourceTree = "<group>"; };
+		40785E941DEE9E7900875E00 /* RJBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJBackView.m; sourceTree = "<group>"; };
+		40785E961DEE9E7900875E00 /* UIButton+ButtonThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ButtonThread.h"; sourceTree = "<group>"; };
+		40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ButtonThread.m"; sourceTree = "<group>"; };
 		409F504D1DDD6E3100015DB7 /* kPPObserverDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kPPObserverDef.h; sourceTree = "<group>"; };
 		409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kPPObserverDef.m; sourceTree = "<group>"; };
 		409F50501DDD6E3100015DB7 /* OTFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTFileManager.h; sourceTree = "<group>"; };
@@ -485,6 +494,12 @@
 		409F50771DDD6E6F00015DB7 /* 登陆 */ = {
 			isa = PBXGroup;
 			children = (
+				40785E911DEE9E7900875E00 /* RegisterViewController.h */,
+				40785E921DEE9E7900875E00 /* RegisterViewController.m */,
+				40785E931DEE9E7900875E00 /* RJBackView.h */,
+				40785E941DEE9E7900875E00 /* RJBackView.m */,
+				40785E961DEE9E7900875E00 /* UIButton+ButtonThread.h */,
+				40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */,
 				409F50781DDD6E6F00015DB7 /* PPLoginTableViewCell.h */,
 				409F50791DDD6E6F00015DB7 /* PPLoginTableViewCell.m */,
 				409F507A1DDD6E6F00015DB7 /* PPLoginViewController.h */,
@@ -1111,10 +1126,12 @@
 				75D472B81DEDAE260013AA3E /* PPUpdatePassWordController.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
 				75CEF8991DDC87B200541660 /* PPTabBarController.m in Sources */,
+				40785E991DEE9E7900875E00 /* RJBackView.m in Sources */,
 				75CEF94C1DDDD43300541660 /* PPMyViewController.m in Sources */,
 				409F50971DDD704100015DB7 /* UrlEncode.m in Sources */,
 				409F50921DDD704100015DB7 /* Base64.m in Sources */,
 				409F50751DDD6E5100015DB7 /* PPChatTools.m in Sources */,
+				40785E981DEE9E7900875E00 /* RegisterViewController.m in Sources */,
 				409F50661DDD6E3100015DB7 /* PPDateEngine.m in Sources */,
 				409F50AF1DDD721500015DB7 /* PPPersonTableViewCell.m in Sources */,
 				409F506A1DDD6E3100015DB7 /* PPTDBEngine.m in Sources */,
@@ -1127,6 +1144,7 @@
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */,
 				407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */,
+				40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */,
 				409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */,
 				409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */,
 				409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */,
