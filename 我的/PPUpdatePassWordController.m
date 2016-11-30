@@ -98,7 +98,7 @@
             [PPIndicatorView showString:aTaskResponse.message];
         }
         
-    } changePassWord:self.oldPassWord oldPassWord:self.updatePassWord];
+    } changePassWord:self.updatePassWord oldPassWord:self.oldPassWord];
     
 }
 

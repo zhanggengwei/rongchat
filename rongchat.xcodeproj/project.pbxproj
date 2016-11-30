@@ -1377,7 +1377,7 @@
 				75CEF88D1DDC878500541660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		75CEF88E1DDC878500541660 /* Build configuration list for PBXNativeTarget "rongchat" */ = {
 			isa = XCConfigurationList;
@@ -1386,7 +1386,7 @@
 				75CEF8901DDC878500541660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		75CEF8911DDC878500541660 /* Build configuration list for PBXNativeTarget "rongchatTests" */ = {
 			isa = XCConfigurationList;
@@ -1395,7 +1395,7 @@
 				75CEF8931DDC878500541660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		75CEF8941DDC878500541660 /* Build configuration list for PBXNativeTarget "rongchatUITests" */ = {
 			isa = XCConfigurationList;
@@ -1404,7 +1404,7 @@
 				75CEF8961DDC878500541660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

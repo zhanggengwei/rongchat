@@ -31,9 +31,6 @@
     
     [self createUI];
     [self createLoginNavBarStryle];
- 
-    
-    
     // Do any additional setup after loading the view.
 }
 
@@ -45,7 +42,7 @@
 
 -(void)createLoginNavBarStryle
 {
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+ 
     [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
     self.navigationController.navigationBar.clipsToBounds = YES;
 }
@@ -57,7 +54,7 @@
     self.headerView.text = @"使用手机号码登录";
     self.headerView.textAlignment = NSTextAlignmentCenter;
     self.footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, 0)];
-    
+   
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,64,SCREEN_WIDTH,SCREEN_HEIHGHT - 64) style:UITableViewStyleGrouped];
     

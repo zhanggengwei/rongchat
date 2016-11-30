@@ -48,7 +48,7 @@
     NSLog(@"path = %@",NSHomeDirectory());
     
     [[UINavigationBar appearance]setBackgroundImage:[PPImageUtil imageFromColor:[UIColor blackColor]] forBarMetrics:UIBarMetricsDefault];
-//    [[UINavigationBar appearance]setTitleTextAttributes:@{NSBackgroundColorAttributeName:[UIColor whiteColor]}];
+    [[UINavigationBar appearance]setTranslucent:YES];
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];//导航栏字体颜色
@@ -122,6 +122,7 @@
 }
 - (void)createLoginController
 {
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     self.window.rootViewController = [PPLoginViewController new];
 }
 
@@ -129,6 +130,9 @@
 {
     if([noti.name isEqualToString:kPPObserverLoginSucess])
     {
+        
+        [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+        
         [[NSUserDefaults standardUserDefaults]setObject:OBJC_APPIsLogin forKey:OBJC_APPIsLogin];
         [[NSUserDefaults standardUserDefaults]synchronize];
         
