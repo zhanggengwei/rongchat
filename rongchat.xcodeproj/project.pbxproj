@@ -15,6 +15,7 @@
 		40785E981DEE9E7900875E00 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E921DEE9E7900875E00 /* RegisterViewController.m */; };
 		40785E991DEE9E7900875E00 /* RJBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E941DEE9E7900875E00 /* RJBackView.m */; };
 		40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */; };
+		40785E9D1DEEA1F500875E00 /* register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40785E9C1DEEA1F500875E00 /* register.storyboard */; };
 		409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */; };
 		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
 		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
@@ -185,6 +186,7 @@
 		40785E941DEE9E7900875E00 /* RJBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJBackView.m; sourceTree = "<group>"; };
 		40785E961DEE9E7900875E00 /* UIButton+ButtonThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ButtonThread.h"; sourceTree = "<group>"; };
 		40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ButtonThread.m"; sourceTree = "<group>"; };
+		40785E9C1DEEA1F500875E00 /* register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = register.storyboard; sourceTree = "<group>"; };
 		409F504D1DDD6E3100015DB7 /* kPPObserverDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kPPObserverDef.h; sourceTree = "<group>"; };
 		409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kPPObserverDef.m; sourceTree = "<group>"; };
 		409F50501DDD6E3100015DB7 /* OTFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTFileManager.h; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 		409F50771DDD6E6F00015DB7 /* 登陆 */ = {
 			isa = PBXGroup;
 			children = (
+				40785E9C1DEEA1F500875E00 /* register.storyboard */,
 				40785E911DEE9E7900875E00 /* RegisterViewController.h */,
 				40785E921DEE9E7900875E00 /* RegisterViewController.m */,
 				40785E931DEE9E7900875E00 /* RJBackView.h */,
@@ -949,6 +952,7 @@
 				75CEF9201DDC9BEB00541660 /* Shake_icon_tvHL@2x.png in Resources */,
 				75CEF91D1DDC9BEB00541660 /* Shake_icon_people@2x.png in Resources */,
 				75CEF9101DDC9BEB00541660 /* ff_IconQRCode@3x.png in Resources */,
+				40785E9D1DEEA1F500875E00 /* register.storyboard in Resources */,
 				75CEF9001DDC9BEB00541660 /* bottleButtonFish@2x.png in Resources */,
 				75DE61881DE48E9800DF1CA4 /* PPSelectArea.storyboard in Resources */,
 				75CEF9121DDC9BEB00541660 /* ff_IconShake@2x.png in Resources */,
