@@ -10,7 +10,7 @@
 #import "PPLoginTableViewCell.h"
 #import <UIImage+YYWebImage.h>
 #import <WActionSheet/NLActionSheet.h>
-#import "RegisterViewController.h"
+#import "PPResetPassWordViewController.h"
 @interface PPLoginViewController ()<UITableViewDelegate,UITableViewDataSource,PPLoginTableViewCellDelegate>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) UILabel * headerView;
@@ -127,7 +127,7 @@
     [sheet dismissForCompletionHandle:^(NSInteger clickedIndex, BOOL isCancel) {
         if(!isCancel&&clickedIndex == 0)
         {
-            RegisterViewController * controller = [RegisterViewController createRegisterViewController];
+            PPResetPassWordViewController * controller = [PPResetPassWordViewController createRegisterViewController];
             [self presentViewController:controller animated:YES completion:nil];
             
         }

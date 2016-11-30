@@ -1,5 +1,5 @@
 //
-//  RegisterViewController.h
+//  PPResetPassWordViewController.h
 //  chatDemoWDdemo
 //
 //  Created by 123 on 16/6/9.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController
+@interface PPResetPassWordViewController : UIViewController
 +(instancetype)createRegisterViewController;
 @end

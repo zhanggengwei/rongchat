@@ -1,17 +1,17 @@
 //
-//  RegisterViewController.m
+//  PPResetPassWordViewController.m
 //  chatDemoWDdemo
 //
 //  Created by 123 on 16/6/9.
 //  Copyright © 2016年 123. All rights reserved.
 //
 
-#import "RegisterViewController.h"
+#import "PPResetPassWordViewController.h"
 #import "RJBackView.h"
 #import "UIButton+ButtonThread.h"
 
 
-@interface RegisterViewController ()
+@interface PPResetPassWordViewController ()
 
 @property (weak, nonatomic) IBOutlet RJBackView *backView;
 @property (weak, nonatomic) IBOutlet UITextField *PassWord;
@@ -20,11 +20,11 @@
 @property (strong, nonatomic)  UIButton *backBtn;
 @end
 
-@implementation RegisterViewController
+@implementation PPResetPassWordViewController
 
 +(instancetype)createRegisterViewController
 {
-    return [[UIStoryboard storyboardWithName:@"register" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"RegisterViewController"];
+    return [[UIStoryboard storyboardWithName:@"register" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"PPResetPassWordViewController"];
     
 }
 
