@@ -67,9 +67,22 @@
  
     self.showConnectingStatusOnNavigatorBar = YES;
     self.conversationListTableView.tableFooterView = [UIView new];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self setConversationAvatarStyle:RC_USER_AVATAR_CYCLE];
     
     
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
+    RCUserInfo *groupNotify = [[RCUserInfo alloc] initWithUserId:@"__system__"
+                                                            name:@"群组通知"
+                                                        portrait:nil];
+    [[RCIM sharedRCIM] refreshUserInfoCache:groupNotify withUserId:@"__system__"];
 }
 
 

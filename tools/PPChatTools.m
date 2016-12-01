@@ -34,6 +34,8 @@
         shareInstance.client.receiveMessageDelegate = shareInstance;
         
         [shareInstance initRCIM];
+        shareInstance.client.enablePersistentUserInfoCache = YES;
+        
         
         
         
