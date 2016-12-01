@@ -58,7 +58,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/manager/PPDateEngine.m"
-                  timestampString = "502297003.821599"
+                  timestampString = "502297766.105027"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -73,7 +73,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/manager/PPDateEngine.m"
-                  timestampString = "502297003.823943"
+                  timestampString = "502297766.107211"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -128,38 +128,6 @@
             startingLineNumber = "171"
             endingLineNumber = "171"
             landmarkName = "-rcConversationListTableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "rongchat/PPConversationListViewController.m"
-            timestampString = "502296978.977417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "-rcConversationListTableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "rongchat/PPConversationListViewController.m"
-            timestampString = "502296978.977417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "-willReloadTableData:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -257,58 +257,63 @@
             _contactNotificationMsg.sourceUserId.length == 0) {
             return;
         }
-        /*
-        //该接口需要替换为从消息体获取好友请求的用户信息
-        [PPDateEngine manager]requestGetUserInfoResponse:^(id aTaskResponse) {
+        
+        [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
+            PPUserBase * userBase = aTaskResponse.result;
             
-        } userID:<#(NSString *)#>
-        [RCDHTTPTOOL
-         getUserInfoByUserID:_contactNotificationMsg.sourceUserId
-         completion:^(RCUserInfo *user) {
-             RCDUserInfo *rcduserinfo_ = [RCDUserInfo new];
-             rcduserinfo_.name = user.name;
-             rcduserinfo_.userId = user.userId;
-             rcduserinfo_.portraitUri = user.portraitUri;
-             
-             RCConversationModel *customModel = [RCConversationModel new];
-             customModel.conversationModelType =
-             RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
-             customModel.extend = rcduserinfo_;
-             customModel.conversationType = message.conversationType;
-             customModel.targetId = message.targetId;
-             customModel.sentTime = message.sentTime;
-             customModel.receivedTime = message.receivedTime;
-             customModel.senderUserId = message.senderUserId;
-             customModel.lastestMessage = _contactNotificationMsg;
-             //[_myDataSource insertObject:customModel atIndex:0];
-             
-             // local cache for userInfo
-             NSDictionary *userinfoDic = @{
-                                           @"username" : rcduserinfo_.name,
-                                           @"portraitUri" : rcduserinfo_.portraitUri
-                                           };
-             [[NSUserDefaults standardUserDefaults]
-              setObject:userinfoDic
-              forKey:_contactNotificationMsg.sourceUserId];
-             [[NSUserDefaults standardUserDefaults] synchronize];
-             
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 //调用父类刷新未读消息数
-                 [blockSelf_
-                  refreshConversationTableViewWithConversationModel:
-                  customModel];
+            
+            RCConversationModel *customModel = [RCConversationModel new];
+            customModel.conversationModelType =
+            RC_CONVERSATION_MODEL_TYPE_CUSTOMIZATION;
+            customModel.extend = userBase;
+            customModel.conversationType = message.conversationType;
+            customModel.targetId = message.targetId;
+            customModel.sentTime = message.sentTime;
+            customModel.receivedTime = message.receivedTime;
+            customModel.senderUserId = message.senderUserId;
+            customModel.lastestMessage = _contactNotificationMsg;
+            //[_myDataSource insertObject:customModel atIndex:0];
+            
+            // local cache for userInfo
+            NSDictionary *userinfoDic = @{
+                                          @"username" : userBase.nickname,
+                                          @"portraitUri" : userBase.portraitUri
+                                          };
+            [[NSUserDefaults standardUserDefaults]
+             setObject:userinfoDic
+             forKey:_contactNotificationMsg.sourceUserId];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [blockSelf_
+                 refreshConversationTableViewWithConversationModel:
+                 customModel];
                  [self notifyUpdateUnreadMessageCount];
-                 
-                 //当消息为RCContactNotificationMessage时，没有调用super，如果是最后一条消息，可能需要刷新一下整个列表。
-                 //原因请查看super didReceiveMessageNotification的注释。
-                 NSNumber *left =
-                 [notification.userInfo objectForKey:@"left"];
-                 if (0 == left.integerValue) {
-                     [super refreshConversationTableViewIfNeeded];
-                 }
-             });
-         }];
-        */
+                NSNumber *left =
+                [notification.userInfo objectForKey:@"left"];
+                if (0 == left.integerValue) {
+                    [super refreshConversationTableViewIfNeeded];
+                }
+                
+            });
+            
+            /*
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //调用父类刷新未读消息数
+             
+                [self notifyUpdateUnreadMessageCount];
+                
+                //当消息为RCContactNotificationMessage时，没有调用super，如果是最后一条消息，可能需要刷新一下整个列表。
+                //原因请查看super didReceiveMessageNotification的注释。
+                NSNumber *left =
+                [notification.userInfo objectForKey:@"left"];
+                if (0 == left.integerValue) {
+                    [super refreshConversationTableViewIfNeeded];
+                }
+            */
+            
+        } userID:_contactNotificationMsg.sourceUserId];
+        
+            
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             //调用父类刷新未读消息数
