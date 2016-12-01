@@ -58,7 +58,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/manager/PPDateEngine.m"
-                  timestampString = "502299929.062177"
+                  timestampString = "502328351.807037"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -73,7 +73,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/manager/PPDateEngine.m"
-                  timestampString = "502299929.065407"
+                  timestampString = "502328351.808947"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -88,7 +88,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/manager/PPDateEngine.m"
-                  timestampString = "502299929.072457"
+                  timestampString = "502328351.810301"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "330"
@@ -169,7 +169,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/rongchat/PPConversationListViewController.m"
-                  timestampString = "502299929.135659"
+                  timestampString = "502328351.825756"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "274"
@@ -184,7 +184,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/rongchat/PPConversationListViewController.m"
-                  timestampString = "502299929.13759"
+                  timestampString = "502328351.827126"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "274"
@@ -223,6 +223,22 @@
             startingLineNumber = "32"
             endingLineNumber = "32"
             landmarkName = "-initWithStyle:reuseIdentifier:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "rongchat/PPConversationListViewController.m"
+            timestampString = "502328301.39179"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "422"
+            endingLineNumber = "422"
+            landmarkName = "-receiveNeedRefreshNotification:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -158,7 +158,7 @@
 - (void)onRCIMReceiveMessage:(RCMessage *)message
                         left:(int)left
 {
-    
+    NSLog(@"message",message);
 }
 /*!
  当App处于后台时，接收到消息并弹出本地通知的回调方法
