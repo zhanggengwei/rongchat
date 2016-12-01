@@ -13,7 +13,7 @@
 
 #define kPPLoginName @"kPPLoginName"
 #define kPPLoginPassWord @"kPPLoginPassWord"
-#define kPPLoginToekn @"kPPLoginToekn"
+#define kPPLoginToken @"kPPLoginToken"
 #define kPPUserInfoUserID @"kPPUserInfoUserID"
 #define kPPServiceName  @"kPPServiceName"
 

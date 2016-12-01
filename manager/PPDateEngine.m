@@ -47,16 +47,17 @@
         PPUserInfoTokenResponse * response = [MTLJSONAdapter modelOfClass:[PPUserInfoTokenResponse class] fromJSONDictionary:responseObject error:&error];
         NSString * token = ((PPTokenDef *)(response.result)).token;
         NSString * userID = ((PPTokenDef *)(response.result)).indexId;
-        [self _completeWithResponse:response block:aResponseBlock];
+      
         if(response.code.integerValue == kPPResponseSucessCode)
         {
         [[PPChatTools shareManager]connectWithToken:token sucessBlock:^(NSString *content) {
             NSError * error;
             [SFHFKeychainUtils storeUsername:kPPLoginName andPassword:phone forServiceName:kPPServiceName updateExisting:YES error:&error];
             [SFHFKeychainUtils storeUsername:kPPLoginPassWord andPassword:passWord forServiceName:kPPServiceName updateExisting:YES error:&error];
-            [SFHFKeychainUtils storeUsername:kPPLoginToekn andPassword:token forServiceName:kPPServiceName updateExisting:YES error:&error];
+            [SFHFKeychainUtils storeUsername:kPPLoginToken andPassword:token forServiceName:kPPServiceName updateExisting:YES error:&error];
             
             [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:userID forServiceName:kPPServiceName updateExisting:YES error:&error];
+              [self _completeWithResponse:response block:aResponseBlock];
             [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {

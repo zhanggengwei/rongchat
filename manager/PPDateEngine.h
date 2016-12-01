@@ -13,30 +13,51 @@
 #define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 
 +(instancetype)manager;
-// 登陆
-- (void)loginWithWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord region:(NSString *)region;
+
+
 //注册
 - (void)registerWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord verifyCode:(NSString *)code andNickName:(NSString *)nickName;
+
+// 登陆
+- (void)loginWithWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord region:(NSString *)region;
+
+- (void)logout;
+
 //发送验证码
 - (void)sendVerifyWithResponse:(PPResponseBlock())aResponseBlock phone:(NSString *)phoneNumber regionString:(NSString *)region;
-//获取 friendList
-- (void)getFriendListResponse:(PPResponseBlock())aResponseBlock;
-//kPPUrlProfile 查询用户的信息
-- (void)searchUserInfoResponse:(PPResponseBlock())aResponseBlock friendID:(NSString *)friendid;
+//判断验证码是否有效
+- (void)requestJudegeVaildWithResponse:(PPResponseBlock())aResponseBlock verfityCode:(NSString *)verificationCode region:(NSString *)region phone:(NSString *)phoneNumber;
 
 //修改密码
 - (void)requestResponse:(PPResponseBlock())aResponseBlock
          changePassWord:(NSString *)newPassWord oldPassWord:(NSString * )oldPassWord;
 
 //重置密码
-
 - (void)requestResetPassWordResponse:(PPResponseBlock())aResponseBlock resetPassWord:(NSString *)passWord verification_token:(NSString *)token;
+
+
 //更新用户的昵称
 - (void)requestUpdateNickNameResponse:(PPResponseBlock())aResponseBlock nickName:(NSString *)nickName;
 
+
+//获得用户的个人信息
+- (void)requestGetUserInfoResponse:(PPResponseBlock())aResponseBlock userID:(NSString *)userId;
+
+
+
+
+
+
+
+//获取 friendList
+- (void)getFriendListResponse:(PPResponseBlock())aResponseBlock;
+//kPPUrlProfile 查询用户的信息
+- (void)searchUserInfoResponse:(PPResponseBlock())aResponseBlock friendID:(NSString *)friendid;
+
+
 - (void)requestUploadImageToken:(PPResponseBlock())aResponseBlock;
 
-- (void)requestJudegeVaildWithResponse:(PPResponseBlock())aResponseBlock verfityCode:(NSString *)verificationCode region:(NSString *)region phone:(NSString *)phoneNumber;
+
 
 
 //user/blacklist
@@ -81,8 +102,6 @@
 
 - (void)requestSetHeadUrlResponse:(PPResponseBlock())aResponseBlock  headUrl:(NSString *)headUrl;//user/set_portrait_uri
 
-//获得用户的个人信息
-- (void)requestGetUserInfoResponse:(PPResponseBlock())aResponseBlock userID:(NSString *)userId;
 
 
 @end
