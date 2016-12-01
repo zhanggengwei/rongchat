@@ -123,7 +123,7 @@
 
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status
 {
-    NSLog(@"status == %d",status);
+    NSLog(@"status == %ld",(long)status);
 }
 #pragma mark RCIMClientReceiveMessageDelegate
 

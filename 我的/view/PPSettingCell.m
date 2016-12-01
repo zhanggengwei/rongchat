@@ -40,7 +40,8 @@
 {
     self.contentLabel = [UILabel new];
     [self.contentView addSubview:self.contentLabel];
-    self.contentLabel.font = [UIFont systemFontOfSize:15];
+    self.contentLabel.font = TITLE_FONT_SIZE;
+    
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
         make.right.mas_equalTo(self.contentView.mas_right).mas_offset(-15);
@@ -50,17 +51,18 @@
     
     
     self.rightLabel = [UILabel new];
-    [self.contentView addSubview:self.contentLabel];
+    [self.contentView addSubview:self.rightLabel];
     
-    [self.detailTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.contentView.mas_right).mas_offset(-10);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
         make.width.mas_equalTo(60);
         make.height.mas_equalTo(@16);
     }];
-    self.detailTextLabel.textAlignment = NSTextAlignmentRight;
-    self.contentLabel.font = [UIFont systemFontOfSize:14];
-    self.detailTextLabel.textColor = [UIColor grayColor];
+    self.rightLabel.textAlignment = NSTextAlignmentRight;
+    self.contentLabel.font = COMMON_FONT_SIZE;
+    self.rightLabel.textColor = kPPTFontColorGray;
+
 }
 - (void)layoutContent:(NSString *)content textAligent:(NSTextAlignment)alignent
 {
@@ -73,7 +75,7 @@
 {
     self.contentLabel.text = content;
     self.contentLabel.textAlignment = alignent;
-    self.detailTextLabel.text = text;
+    self.rightLabel.text = text;
     
 }
 
