@@ -50,34 +50,16 @@
       
         if(response.code.integerValue == kPPResponseSucessCode)
         {
-        [[PPChatTools shareManager]connectWithToken:token sucessBlock:^(NSString *content) {
-            NSError * error;
-            [SFHFKeychainUtils storeUsername:kPPLoginName andPassword:phone forServiceName:kPPServiceName updateExisting:YES error:&error];
-            [SFHFKeychainUtils storeUsername:kPPLoginPassWord andPassword:passWord forServiceName:kPPServiceName updateExisting:YES error:&error];
-            [SFHFKeychainUtils storeUsername:kPPLoginToken andPassword:token forServiceName:kPPServiceName updateExisting:YES error:&error];
+        [self loginSucessAfterLoginRCIMResponse:^(PPHTTPResponse * aTaskResponse) {
+            [self _completeWithResponse:response block:aResponseBlock];
             
-            [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:userID forServiceName:kPPServiceName updateExisting:YES error:&error];
-              [self _completeWithResponse:response block:aResponseBlock];
-            [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
-                if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-                {
-                    PPUserBaseInfo * info = [PPUserBaseInfo new];
-                    info.user = aTaskResponse.result;
-                    [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
-                    
-                    [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
-                }
-                
-            } userID:userID];
+        } loginToken:token UserID:userID phone:phone passWord:passWord];
         
+        }else
+        {
+            PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+            [self _completeWithResponse:response block:aResponseBlock];
             
-        } failBlock:^(RCConnectErrorCode code) {
-            NSLog(@"code == %ld",code);
-            
-        } tokenIncorrectBlock:^{
-            
-            NSLog(@"token error");
-        }];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -87,17 +69,6 @@
     }];
     
 }
-/*
- 
- + (void)getUserInfo:(NSString *)userId
- success:(void (^)(id response))success
- failure:(void (^)(NSError *err))failure {
- [AFHttpTool requestWihtMethod:RequestMethodTypeGet
- url:[NSString stringWithFormat:@"user/%@", userId]
- params:nil
- success:success
- failure:failure];
- */
 
 - (void)requestGetUserInfoResponse:(PPResponseBlock())aResponseBlock userID:(NSString *)userId
 {
@@ -109,7 +80,6 @@
         NSError * error;
         PPLoginOrRegisterHTTPResponse * response = [MTLJSONAdapter modelOfClass:[PPLoginOrRegisterHTTPResponse class] fromJSONDictionary:responseObject error:&error];
         [self _completeWithResponse:response block:aResponseBlock];
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
@@ -600,11 +570,49 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     
 }
 //登录成功之后进行数据的存储
-- (void)loginSucess
+- (void)loginSucessUserID:(NSString *)userID phone:(NSString *)phone passWord:(NSString *)passWord loginToken:(NSString *)token
 {
+    NSError * error;
+    [SFHFKeychainUtils storeUsername:kPPLoginName andPassword:phone forServiceName:kPPServiceName updateExisting:YES error:&error];
+    [SFHFKeychainUtils storeUsername:kPPLoginPassWord andPassword:passWord forServiceName:kPPServiceName updateExisting:YES error:&error];
+    [SFHFKeychainUtils storeUsername:kPPLoginToken andPassword:token forServiceName:kPPServiceName updateExisting:YES error:&error];
     
+    [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:userID forServiceName:kPPServiceName updateExisting:YES error:&error];
 }
-
+//登录成功之后登录融云的即时通讯
+- (void)loginSucessAfterLoginRCIMResponse:(PPResponseBlock())aResponseBlock loginToken:(NSString *)token UserID:(NSString *)userID phone:(NSString *)phone passWord:(NSString *)passWord
+{
+    [[PPChatTools shareManager]connectWithToken:token sucessBlock:^(NSString *content) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self loginSucessUserID:userID phone:phone passWord:passWord loginToken:token];
+            PPHTTPResponse * response = [PPHTTPResponse new];
+            response.code = @200;
+            response.message = @"登录成功";
+            [self _completeWithResponse:response block:aResponseBlock];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
+        });
+     
+        [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
+            if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+            {
+                PPUserBaseInfo * info = [PPUserBaseInfo new];
+                info.user = aTaskResponse.result;
+                [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
+            }
+            
+        } userID:userID];
+        
+        
+    } failBlock:^(RCConnectErrorCode code) {
+        NSLog(@"code == %ld",code);
+        PPHTTPResponse * response = [PPHTTPResponse responseWithError:[NSError errorWithDomain:@"" code:code userInfo:nil]];
+        [self _completeWithResponse:response block:aResponseBlock];
+    } tokenIncorrectBlock:^{
+        PPHTTPResponse * response = [PPHTTPResponse responseWithError:[NSError errorWithDomain:@"" code:904 userInfo:nil]];
+        response.message = @"token错误";
+        [self _completeWithResponse:response block:aResponseBlock];
+    }];
+}
 
 
 

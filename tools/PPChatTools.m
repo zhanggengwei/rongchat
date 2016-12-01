@@ -60,13 +60,8 @@
 
 - (void)logout
 {
- 
     [self deleteStoreItems];
     [self.client logout];
-    
-    RCConnectionStatus status = [self.client getConnectionStatus];
-    
-    
     [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLogoutSucess object:nil];
 }
 
@@ -87,6 +82,7 @@
     NSString * token = [SFHFKeychainUtils getPasswordForUsername:kPPLoginToken andServiceName:kPPServiceName error:nil];
     if(token==nil||token.length<=0)
     {
+       [[PPChatTools shareManager]logout];
         return;
     }
     [self connectWithToken:token sucessBlock:^(NSString *content) {
@@ -100,7 +96,11 @@
         
     } tokenIncorrectBlock:^{
         [PPIndicatorView showString:@"token 错误" duration:1];
+        [[PPChatTools shareManager]logout];
+        
     }];
+    
+    
 }
 
 - (void)connectWithToken:(NSString *)token sucessBlock:(void (^)(NSString * content))block failBlock:(void(^)(RCConnectErrorCode code))failBlock tokenIncorrectBlock:(void(^)(void))tokenIncorrectBlock
