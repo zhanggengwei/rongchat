@@ -124,6 +124,16 @@
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status
 {
     NSLog(@"status == %ld",(long)status);
+    if(status==ConnectionStatus_TOKEN_INCORRECT)
+    {
+        [PPIndicatorView showString:@"token 失效" duration:1];
+        [self logout];
+    }else if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT)
+    {
+        [PPIndicatorView showString:@"账号在其他设备上登录" duration:1];
+        [self logout];
+    }
+    
 }
 #pragma mark RCIMClientReceiveMessageDelegate
 

@@ -76,7 +76,6 @@
     
     PPHTTPManager * manager = [PPHTTPManager manager];
     [manager GET:kPPUrlUserInfo(userId) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"responseObject =%@",responseObject);
         NSError * error;
         PPLoginOrRegisterHTTPResponse * response = [MTLJSONAdapter modelOfClass:[PPLoginOrRegisterHTTPResponse class] fromJSONDictionary:responseObject error:&error];
         [self _completeWithResponse:response block:aResponseBlock];
@@ -322,7 +321,7 @@
         PPUploadImageTokenResponse * response = [MTLJSONAdapter modelOfClass:[PPUploadImageTokenResponse class] fromJSONDictionary:responseObject error:&error];
         [self _completeWithResponse:response block:aResponseBlock];
         
-        NSLog(@"responseObject == %@",responseObject);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error == %@",error);
         PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
