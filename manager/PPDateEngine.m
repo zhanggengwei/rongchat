@@ -73,7 +73,6 @@
         } failBlock:^(RCConnectErrorCode code) {
             NSLog(@"code == %ld",code);
             
-            
         } tokenIncorrectBlock:^{
             
             NSLog(@"token error");
@@ -567,7 +566,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                              @"friendId" : friendUserID,
                              @"message" : content};
     
-    [manager POST:kPPUrlInviteFriend parameters:kPPUrlInviteFriend success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:kPPUrlInviteFriend parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -598,6 +597,14 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [self _completeWithResponse:response block:aResponseBlock];
     }];
     
-}//user/set_portrait_uri
+}
+//登录成功之后进行数据的存储
+- (void)loginSucess
+{
+    
+}
+
+
+
 
 @end

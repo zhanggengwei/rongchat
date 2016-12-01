@@ -7,15 +7,16 @@
 //
 
 #import "ViewController.h"
-
-@interface ViewController ()
+#import <RongIMKit/RCIM.h>
+@interface PPConversationListViewController ()
 
 @end
 
-@implementation ViewController
+@implementation PPConversationListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
     
     
     

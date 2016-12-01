@@ -114,7 +114,7 @@
     NSArray *  titleArray = @[@"微信",@"通讯录",@"发现",@"我的"];
     NSArray *  imageArray = @[@"tabbar_mainframe",@"tabbar_contacts",@"tabbar_discover",@"tabbar_me"];
     NSArray *  selImageArray = @[@"tabbar_mainframeHL",@"tabbar_contactsHL",@"tabbar_discoverHL",@"tabbar_meHL"];
-    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"ViewController",@"PPContactListViewController",@"ViewController",@"PPMyViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
+    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"PPConversationListViewController",@"PPContactListViewController",@"ViewController",@"PPMyViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
     [controller showPointMarkIndex:0];
     [controller showBadgeMark:100 index:1];
     self.window.rootViewController = controller;
@@ -130,12 +130,9 @@
 {
     if([noti.name isEqualToString:kPPObserverLoginSucess])
     {
-        
         [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
-        
         [[NSUserDefaults standardUserDefaults]setObject:OBJC_APPIsLogin forKey:OBJC_APPIsLogin];
         [[NSUserDefaults standardUserDefaults]synchronize];
-        
         [self createTabbarController];
     }else
     {
