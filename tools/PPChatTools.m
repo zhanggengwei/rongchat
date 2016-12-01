@@ -117,7 +117,7 @@
 - (void)disconnectConnection:(BOOL)isReceivePush
 {
     [self.client disconnect:isReceivePush];
-    
+        
 }
 
 #pragma mark onRCIMConnectionStatusChangedDelegate
