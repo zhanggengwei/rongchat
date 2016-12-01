@@ -126,12 +126,15 @@
     NSLog(@"status == %ld",(long)status);
     if(status==ConnectionStatus_TOKEN_INCORRECT)
     {
-        [PPIndicatorView showString:@"token 失效" duration:1];
         [self logout];
+        [PPIndicatorView showString:@"token 失效" duration:1];
+        
     }else if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT)
     {
+         [self logout];
         [PPIndicatorView showString:@"账号在其他设备上登录" duration:1];
-        [self logout];
+        
+       
     }
     
 }
