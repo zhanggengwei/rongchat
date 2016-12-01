@@ -95,8 +95,9 @@
     } failBlock:^(RCConnectErrorCode code) {
         
     } tokenIncorrectBlock:^{
+         [[PPChatTools shareManager]logout];
         [PPIndicatorView showString:@"token 错误" duration:1];
-        [[PPChatTools shareManager]logout];
+       
         
     }];
     
