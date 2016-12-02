@@ -23,8 +23,10 @@
 
 - (PPUserBaseInfo *)queryUser_Info;
 
+- (NSArray *)queryFriendList;
 
 - (void)loadDataBase:(NSString *)userID;
+
 
 
 

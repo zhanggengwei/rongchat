@@ -29,7 +29,10 @@
 - (void)loadData
 {
     
+    [[PPTDBEngine shareManager] loadDataBase:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil]];
     self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
+    self.contactList = [[PPTDBEngine shareManager]queryFriendList];
+    
     [self asynFriendList];
     
 }

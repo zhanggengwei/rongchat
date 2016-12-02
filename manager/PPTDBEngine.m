@@ -93,7 +93,6 @@
 
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
 {
-    [self loadDataBase:baseInfo.user.indexId];
     if(baseInfo == nil)
     {
         return NO;
@@ -158,10 +157,7 @@
     
 }
 
-- (void)saveFriendList:(NSArray <PPUserBaseInfo *> *)arr
-{
-    
-}
+
 
 #pragma mark - util method
 - (BOOL)ifHaveRecordWithTable:(NSString *)table
@@ -178,11 +174,18 @@
 - (PPUserBaseInfo *)queryUser_Info
 {
     NSString * userID = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
-    [self loadDataBase:userID];
+
+    return [self queryUser_InfoWithIndexId:userID];
+}
+
+- (PPUserBaseInfo *)queryUser_InfoWithIndexId:(NSString *)indexId
+{
+    
+    //[self loadDataBase:indexId];
     PPUserBaseInfo * user_Info = [PPUserBaseInfo new];
     if([self.db open])
     {
-        NSString * searchSql = [NSString stringWithFormat: @"select * from %@ where indexId= \'%@\'",USER_INFO_TABLENAME,userID];
+        NSString * searchSql = [NSString stringWithFormat: @"select * from %@ where indexId= \'%@\'",USER_INFO_TABLENAME,indexId];
         
         FMResultSet * result = [self.db executeQuery:searchSql];
         if(result == nil||(!result.next))
@@ -209,8 +212,10 @@
     
     [self.db close];
     return user_Info;
-    
 }
+
+
+
 
 - (NSArray *)queryFriendList
 {
@@ -218,6 +223,19 @@
     
     if([self.db open])
     {
+        NSString * searchSql = [NSString stringWithFormat:@"select * from %@ where isSelf = \'%@\'",USER_INFO_TABLENAME,@"0"];
+        
+        FMResultSet * result = [self.db executeQuery:searchSql];
+        while (result.next)
+        {
+            PPUserBaseInfo * baseInfo = [self queryUser_InfoWithIndexId:[result stringForColumn:@"indexId"]];
+            if(baseInfo)
+            {
+                contactlist = [contactlist arrayByAddingObject:baseInfo];
+            }
+        
+        }
+        
         
     }
     return contactlist;
@@ -239,16 +257,19 @@
         
         @try
         {
+            
+            BOOL del=[self.db executeUpdate:[NSString stringWithFormat:@"delete from %@ where isSelf = \'0\'",USER_INFO_TABLENAME]];
+            if(!del)
+            {
+                [PPIndicatorView showString:@"contactList 删除失败" duration:1];
+            }
             for (PPUserBaseInfo * info in contactList)
             {
             
-            BOOL del=[self.db executeUpdate:[NSString stringWithFormat:@"delete from %@ where indexId = \'%@\'",USER_INFO_TABLENAME,info.user.indexId]];
-                
-                
-            sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
+               sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
               
                 
-            ret = [_db executeUpdate:sql,info.user.indexId, info.user.nickname,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:0]];
+               ret = [_db executeUpdate:sql,info.user.indexId, info.user.nickname,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:0]];
                 [_db executeUpdate:sql];
                 
             }
