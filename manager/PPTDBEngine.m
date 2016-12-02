@@ -179,8 +179,6 @@
 {
     NSString * userID = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
     [self loadDataBase:userID];
-    
-    
     PPUserBaseInfo * user_Info = [PPUserBaseInfo new];
     if([self.db open])
     {
@@ -209,9 +207,24 @@
         user_Info.user.portraitUri = portraitUrl;
     }
     
+    [self.db close];
     return user_Info;
     
 }
+
+- (NSArray *)queryFriendList
+{
+    NSArray * contactlist = [NSArray new];
+    
+    if([self.db open])
+    {
+        
+    }
+    return contactlist;
+    
+}
+
+
 
 
 - (BOOL)saveContactList:(NSArray <PPUserBaseInfo *> *)contactList
@@ -229,7 +242,8 @@
             for (PPUserBaseInfo * info in contactList)
             {
             
-            BOOL del=[self.db executeUpdate:@"delete from ? where indexId = ?",USER_INFO_TABLENAME,info.user.indexId];
+            BOOL del=[self.db executeUpdate:[NSString stringWithFormat:@"delete from %@ where indexId = \'%@\'",USER_INFO_TABLENAME,info.user.indexId]];
+                
                 
             sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
               
@@ -255,9 +269,6 @@
             [self.db close];
             return YES;
         }
-        
-        
-        
     }
     return NO;
     
