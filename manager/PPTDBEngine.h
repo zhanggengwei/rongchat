@@ -20,6 +20,7 @@
 
 - (BOOL)saveContactList:(NSArray <PPUserBaseInfo *> *)contactList;
 
+- (PPUserBaseInfo *)queryUser_InfoWithIndexId:(NSString *)indexId;
 
 - (PPUserBaseInfo *)queryUser_Info;
 

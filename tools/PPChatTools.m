@@ -81,7 +81,6 @@
 - (void)autoLogin
 {
 
-    
     NSString * token = [SFHFKeychainUtils getPasswordForUsername:kPPLoginToken andServiceName:kPPServiceName error:nil];
     if(token==nil||token.length<=0)
     {
@@ -224,6 +223,12 @@
 - (void)getUserInfoWithUserId:(NSString *)userId
                    completion:(void (^)(RCUserInfo *userInfo))completion
 {
+    PPUserBaseInfo * baseInfo = [[PPTDBEngine shareManager]queryUser_InfoWithIndexId:userId];
+    
+    RCUserInfo * info = [[RCUserInfo alloc]initWithUserId:userId name:baseInfo.user.nickname portrait:baseInfo.user.portraitUri];
+    completion(info);
+    
+    
     
 }
 
