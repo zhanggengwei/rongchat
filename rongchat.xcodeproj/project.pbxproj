@@ -629,7 +629,7 @@
 			children = (
 				75CEF9561DE1434500541660 /* rongchat.entitlements */,
 				75CEF9421DDD289600541660 /* public */,
-				75CEF93E1DDD286300541660 /* 通讯录 */,
+				75CEF93E1DDD286300541660 /* 好友列表 */,
 				75CEF89C1DDC9BEB00541660 /* resource */,
 				75CEF8671DDC878500541660 /* AppDelegate.h */,
 				75CEF8681DDC878500541660 /* AppDelegate.m */,
@@ -801,13 +801,14 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
-		75CEF93E1DDD286300541660 /* 通讯录 */ = {
+		75CEF93E1DDD286300541660 /* 好友列表 */ = {
 			isa = PBXGroup;
 			children = (
 				75CEF9461DDD29DF00541660 /* view */,
 				75CEF9431DDD28C100541660 /* PPContactListViewController.h */,
 				75CEF9441DDD28C100541660 /* PPContactListViewController.m */,
 			);
+			name = "好友列表";
 			path = "通讯录";
 			sourceTree = "<group>";
 		};

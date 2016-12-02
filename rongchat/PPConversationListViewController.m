@@ -71,7 +71,7 @@
     [self setConversationAvatarStyle:RC_USER_AVATAR_RECTANGLE];
     [self setConversationPortraitSize:CGSizeMake(50, 50)];
     
-    
+   
     
     // Do any additional setup after loading the view, typically from a nib.
 }

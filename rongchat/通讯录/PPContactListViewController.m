@@ -52,6 +52,9 @@
     
     
     
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -59,6 +62,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark 测试的数据
+- (void)setDataTest
+{
+    
+}
+
+
+
+- (void)sortPinyin
+{
+    
+}
+
+
+
+
 
 -(void)addFriend
 {

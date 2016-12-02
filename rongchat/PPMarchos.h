@@ -109,5 +109,8 @@ alpha:a]
 #define kPPEamil_ButtonColor UIColorFromFloatValueRGBA(142,148,165,1.0)
 
 
+#pragma mark UIImageView SDWebImage
 
+#define SD_LOADIMAGE(imageView,urlString,placeImage)\
+ [imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeImage options:SDWebImageRetryFailed|SDWebImageProgressiveDownload]
 #endif /* PPMarchos_h */
