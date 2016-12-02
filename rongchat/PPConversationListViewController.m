@@ -68,7 +68,9 @@
     self.showConnectingStatusOnNavigatorBar = YES;
     self.conversationListTableView.tableFooterView = [UIView new];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self setConversationAvatarStyle:RC_USER_AVATAR_CYCLE];
+    [self setConversationAvatarStyle:RC_USER_AVATAR_RECTANGLE];
+    [self setConversationPortraitSize:CGSizeMake(50, 50)];
+    
     
     
     // Do any additional setup after loading the view, typically from a nib.

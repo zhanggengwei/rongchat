@@ -42,6 +42,10 @@ def pods
     pod 'ICEVersionUpdate', '~> 1.0.0'
     
     #AlertView
+    
+    #拼音
+    pod 'PinYin4Objc', '~> 1.1.1'
+    
 end
 
 target ‘rongchat’ do

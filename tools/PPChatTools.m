@@ -227,9 +227,6 @@
     
     RCUserInfo * info = [[RCUserInfo alloc]initWithUserId:userId name:baseInfo.user.nickname portrait:baseInfo.user.portraitUri];
     completion(info);
-    
-    
-    
 }
 
 @end
