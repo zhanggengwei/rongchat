@@ -10,7 +10,7 @@
 
 @interface PPTUserInfoEngine ()
 @property (nonatomic,strong) PPUserBaseInfo * user_Info;
-
+@property (nonatomic,strong) NSArray * contactList;
 @end
 
 @implementation PPTUserInfoEngine
@@ -22,7 +22,6 @@
         instance = [[self alloc]init];
         [instance loadData];
         
-        
     });
     return instance;
 }
@@ -31,6 +30,8 @@
 {
     
     self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
+    [self asynFriendList];
+    
 }
 
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
@@ -38,6 +39,28 @@
     self.user_Info = baseInfo;
     BOOL ret = [[PPTDBEngine shareManager]saveUserInfo:baseInfo];
     return ret;
+}
+
+- (BOOL)saveUserFriendList:(NSArray<PPUserBaseInfo *> *)baseInfoArr
+{
+    self.contactList = baseInfoArr;
+    [[PPTDBEngine shareManager]saveContactList:baseInfoArr];
+    
+    return YES;
+}
+- (void)asynFriendList
+{
+    [[PPDateEngine manager]getFriendListResponse:^(PPUserFriendListResponse * aTaskResponse) {
+        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+        {
+            [self saveUserFriendList:aTaskResponse.result];
+            
+        }
+        NSLog(@"aTaskResponse == %@",aTaskResponse);
+        
+        
+    }];
+    
 }
 
 @end

@@ -214,4 +214,53 @@
 }
 
 
+- (BOOL)saveContactList:(NSArray <PPUserBaseInfo *> *)contactList
+{
+    //进行事务处理
+    
+    if([self.db open])
+    {
+        NSString * sql;
+        BOOL ret = NO;
+        [self.db beginTransaction];
+        
+        @try
+        {
+            for (PPUserBaseInfo * info in contactList)
+            {
+            
+            BOOL del=[self.db executeUpdate:@"delete from ? where indexId = ?",USER_INFO_TABLENAME,info.user.indexId];
+                
+            sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
+              
+                
+            ret = [_db executeUpdate:sql,info.user.indexId, info.user.nickname,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:0]];
+                [_db executeUpdate:sql];
+                
+            }
+            if ([self.db inTransaction])
+            {
+                [self.db commit];
+            }
+        }
+        @catch (NSException *exception)
+        {
+            if([self.db inTransaction])
+            {
+                [self.db rollback];
+            }
+        }
+        @finally
+        {
+            [self.db close];
+            return YES;
+        }
+        
+        
+        
+    }
+    return NO;
+    
+}
+
 @end

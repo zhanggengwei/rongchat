@@ -10,9 +10,13 @@
 
 @interface PPTUserInfoEngine : NSObject
 @property (nonatomic,strong,readonly) PPUserBaseInfo * user_Info;
+@property (nonatomic,strong,readonly) NSArray * contactList;
 
 + (instancetype)shareEngine;
 
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
+
+
+- (void)asynFriendList;
 
 @end

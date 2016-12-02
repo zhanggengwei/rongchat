@@ -212,11 +212,13 @@
     [manager GET:kPPGetAllFriendsList parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError * error;
         PPUserFriendListResponse * response = [MTLJSONAdapter modelOfClass:[PPUserFriendListResponse class] fromJSONDictionary:responseObject error:&error];
-        
+        [self _completeWithResponse:response block:aResponseBlock];
         
         NSLog(@"%@",responseObject);
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+        [self _completeWithResponse:response block:aResponseBlock];
         
     }];
     

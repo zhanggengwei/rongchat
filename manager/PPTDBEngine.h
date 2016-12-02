@@ -12,8 +12,18 @@
 @interface PPTDBEngine : NSObject
 
 + (instancetype)shareManager;
+
+//保存用户的个人信息
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
+
+//保存用户的好友列表
+
+- (BOOL)saveContactList:(NSArray <PPUserBaseInfo *> *)contactList;
+
+
 - (PPUserBaseInfo *)queryUser_Info;
+
+
 - (void)loadDataBase:(NSString *)userID;
 
 

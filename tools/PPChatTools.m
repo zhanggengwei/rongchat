@@ -11,7 +11,7 @@
 
 #import "PPDateEngine.h"
 
-@interface PPChatTools ()<RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate>
+@interface PPChatTools ()<RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate,RCIMUserInfoDataSource>
 
 @property (nonatomic,strong)RCIM * client;
 
@@ -32,6 +32,7 @@
         [shareInstance.client setConnectionStatusDelegate:shareInstance];
    
         shareInstance.client.receiveMessageDelegate = shareInstance;
+        shareInstance.client.userInfoDataSource = shareInstance;
         
         [shareInstance initRCIM];
         shareInstance.client.enablePersistentUserInfoCache = YES;
@@ -218,6 +219,12 @@
     
 }
 
+#pragma mark RCIMUserInfoDataSource
 
+- (void)getUserInfoWithUserId:(NSString *)userId
+                   completion:(void (^)(RCUserInfo *userInfo))completion
+{
+    
+}
 
 @end
