@@ -223,10 +223,23 @@
 - (void)getUserInfoWithUserId:(NSString *)userId
                    completion:(void (^)(RCUserInfo *userInfo))completion
 {
-    PPUserBaseInfo * baseInfo = [[PPTDBEngine shareManager]queryUser_InfoWithIndexId:userId];
     
-    RCUserInfo * info = [[RCUserInfo alloc]initWithUserId:userId name:baseInfo.user.nickname portrait:baseInfo.user.portraitUri];
-    completion(info);
+    [[PPDateEngine manager]requestGetUserInfoResponse:^(PPUserBaseInfoResponse * aTaskResponse) {
+        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+        {
+            PPUserBase * base = aTaskResponse.result;
+            RCUserInfo * info = [[RCUserInfo alloc]initWithUserId:userId name:base.nickname portrait:base.portraitUri];
+            [[RCIM sharedRCIM]
+             refreshUserInfoCache:info
+             withUserId:info.userId];
+            completion(info);
+        }
+        
+    } userID:userId];
+    
+    
+    
+    
 }
 
 @end

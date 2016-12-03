@@ -27,42 +27,47 @@
 		<key>LBXAlertAction.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>2</integer>
 		</dict>
 		<key>LBXScan.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>3</integer>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>7</integer>
 		</dict>
 		<key>MD5Digest.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>8</integer>
 		</dict>
 		<key>MagicalRecord.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Mantle.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>5</integer>
 		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>6</integer>
 		</dict>
 		<key>ODRefreshControl.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>9</integer>
+		</dict>
+		<key>PinYin4Objc.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
 		</dict>
 		<key>Pods-rongchat.xcscheme</key>
 		<dict>
@@ -74,47 +79,47 @@
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>10</integer>
 		</dict>
 		<key>SFHFKeychainUtils.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>11</integer>
 		</dict>
 		<key>UIView+FrameEx.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>12</integer>
 		</dict>
 		<key>WActionSheet.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>13</integer>
 		</dict>
 		<key>YYCache.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>14</integer>
 		</dict>
 		<key>YYImage.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>15</integer>
 		</dict>
 		<key>YYWebImage.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>16</integer>
 		</dict>
 		<key>ZXingObjC.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>17</integer>
 		</dict>
 		<key>ZYCornerRadius.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>18</integer>
 		</dict>
 		<key>iAppInfos.xcscheme</key>
 		<dict>
@@ -124,6 +129,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>00FBA209AE2C32E11A418B3312839B4F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>07E5558248DAB80684E0BF443631D1FC</key>
 		<dict>
 			<key>primary</key>
@@ -134,12 +144,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>0CCBBF4BAA3FA48F98623D8875DC1DA7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2602F3D0DAC534568B6AD7EEA0DD1959</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>26E7895269E13D53D0933EBFE48AF6A0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>426BC4549A625B5E1E4200D5261A98BF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4AA2B42C82C03AA8AB56219B0FC62E63</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -169,6 +194,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>61675C840504D177A6A4AF8227AAA819</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>64F732792CCF41C911606F37AEC62FF5</key>
 		<dict>
 			<key>primary</key>
@@ -185,6 +215,11 @@
 			<true/>
 		</dict>
 		<key>6E4F030080DB7B2B50D5F01541F8C21F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>851888C9BA5BB0E768B2CF09C9DE6BDF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -224,12 +259,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A9933CA543A7AED13527103F91EC1EB5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ACC71B00D76CCFA780312736911240AE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D54AB3ECEB9A8FBA15D4F73CBE326692</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>DE1F7E57D44C3074C1E074F74649757A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F75EC123CF0F3232546C1E72F09116BB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F86A75E081B7C8CBFC9C380798B23EBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -49,53 +49,6 @@
             endingLineNumber = "330"
             landmarkName = "-requestUploadImageToken:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[PPDateEngine requestUploadImageToken:]_block_invoke.183"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/manager/PPDateEngine.m"
-                  timestampString = "502328351.807037"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "330"
-                  endingLineNumber = "330"
-                  offsetFromSymbolStart = "204">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.186"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/manager/PPDateEngine.m"
-                  timestampString = "502328351.808947"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "330"
-                  endingLineNumber = "330"
-                  offsetFromSymbolStart = "100">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.187"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/manager/PPDateEngine.m"
-                  timestampString = "502328351.810301"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "330"
-                  endingLineNumber = "330"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -169,12 +122,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/rongchat/PPConversationListViewController.m"
-                  timestampString = "502328351.825756"
+                  timestampString = "502455713.972549"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "274"
-                  endingLineNumber = "274"
-                  offsetFromSymbolStart = "636">
+                  startingLineNumber = "276"
+                  endingLineNumber = "276"
+                  offsetFromSymbolStart = "829">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -184,12 +137,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/rongchat/PPConversationListViewController.m"
-                  timestampString = "502328351.827126"
+                  timestampString = "502455713.977364"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "274"
-                  endingLineNumber = "274"
-                  offsetFromSymbolStart = "48">
+                  startingLineNumber = "276"
+                  endingLineNumber = "276"
+                  offsetFromSymbolStart = "33">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -240,6 +193,54 @@
             endingLineNumber = "422"
             landmarkName = "-receiveNeedRefreshNotification:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tools/PPChatTools.m"
+            timestampString = "502455728.234646"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "-getUserInfoWithUserId:completion:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PPChatTools getUserInfoWithUserId:completion:]"
+                  moduleName = "rongchat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/tools/PPChatTools.m"
+                  timestampString = "502455728.449232"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "74">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[PPChatTools getUserInfoWithUserId:completion:]_block_invoke"
+                  moduleName = "rongchat"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vd/Desktop/ios%E4%BB%A3%E7%A0%81/rongchat/rongchat/tools/PPChatTools.m"
+                  timestampString = "502455728.451114"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "228"
+                  endingLineNumber = "228"
+                  offsetFromSymbolStart = "47">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
