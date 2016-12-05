@@ -115,6 +115,8 @@
             
                 if (NO == ret)
                 {
+                    [PPIndicatorView showString:@"数据库个人信息保存失败" duration:1];
+                    
                     [_db close];
                     return NO;
                 }
@@ -274,9 +276,12 @@
             {
                 NSString * sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
                 
-                ret = [_db executeUpdate:sql,info.user.indexId, info.user.nickname,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:info.status]];
+                ret = [_db executeUpdate:sql,info.user.indexId, info.user.nickname,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:0]];
                 if(ret==NO)
                 {
+                    [PPIndicatorView showString:@"好友保存失败" duration:1];
+                    
+                    
                     [_db close];
                     return NO;
                 }
