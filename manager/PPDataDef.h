@@ -41,6 +41,7 @@
 @property (nonatomic,strong) NSString * updatedAt;
 @property (nonatomic,assign) NSInteger  status;
 @property (nonatomic,strong) PPUserBase * user;
+@property (nonatomic,strong) NSString * nickNameWord;
 
 @end
 
