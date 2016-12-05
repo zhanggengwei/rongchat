@@ -116,6 +116,7 @@ alpha:a]
 
 
 #import <RongCloudIMKit/RongIMKit/RongIMKit.h>
+#import  <PinYin4Objc/PinYin4Objc.h>
 
 
 

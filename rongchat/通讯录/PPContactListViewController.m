@@ -35,8 +35,7 @@
     
     
     self.indexArr = [NSMutableArray new];
-    
-    [self.indexArr addObject:@"发现"];
+    [self.indexArr addObject:UITableViewIndexSearch];
     
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     
@@ -49,10 +48,8 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     self.contactArray = [NSMutableDictionary new];
     
-    
-    
-    
-    
+    [[PPTUserInfoEngine shareEngine] addObserver:self forKeyPath:@"contactList" options:NSKeyValueObservingOptionNew context:nil];
+    [self loadData];
     
     
     // Do any additional setup after loading the view.
@@ -61,6 +58,45 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[PPTUserInfoEngine shareEngine] removeObserver:self forKeyPath:@"contactList"];
+}
+
+- (void)loadData
+{
+    NSArray * arr = [PPTUserInfoEngine shareEngine].contactList;
+    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        PPUserBaseInfo * baseInfo = obj;
+        HanyuPinyinOutputFormat * outputFormat = [[HanyuPinyinOutputFormat alloc]init];
+        [outputFormat setToneType:ToneTypeWithoutTone];
+        [outputFormat setVCharType:VCharTypeWithV];
+        [outputFormat setCaseType:CaseTypeUppercase];
+        [PinyinHelper toHanyuPinyinStringWithNSString:baseInfo.user.nickname withHanyuPinyinOutputFormat:outputFormat withNSString:@"" outputBlock:^(NSString *pinYin) {
+            NSLog(@"pinYin  ===%@",pinYin);
+            if([pinYin characterAtIndex:0] >='A'&&[pinYin characterAtIndex:0]<='Z')
+            {
+                [self.contactArray setValue:baseInfo forKey:[pinYin substringToIndex:1]];
+                [self.indexArr addObject:[pinYin substringToIndex:1]];
+                
+            }else
+            {
+                NSArray * arr = [self.contactArray objectForKey:@"#"];
+                if(arr.count==0||arr==nil)
+                {
+                    [self.contactArray setValue:baseInfo forKey:@"#"];
+                    [self.indexArr addObject:@"#"];
+                }else
+                {
+                    
+                }
+            }
+        }];
+        [self.tableView reloadData];
+    }];
+    
 }
 
 #pragma mark 测试的数据
@@ -103,8 +139,12 @@
         NSString * content = self.array[indexPath.row];
         
         [cell setLeftIconImageNamed:imageName andRightContentLabel:content];
-       
-        
+    }else
+    {
+        NSString * key = self.indexArr[indexPath.section - 1];
+        NSArray * arr = [self.contactArray objectForKey:key];
+        PPUserBaseInfo * info = arr[indexPath.row];
+        [cell setLeftIconImageNamed:@"" andRightContentLabel:info.user.nickname];
     }
     return cell;
 }
