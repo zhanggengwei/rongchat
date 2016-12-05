@@ -13,7 +13,7 @@
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray * array;
 @property (nonatomic,strong) NSArray * imageArray;
-@property (nonatomic,strong) NSMutableDictionary * contactArray;
+@property (nonatomic,strong) NSMutableDictionary * contactDict;
 @property (nonatomic,strong) NSMutableArray * indexArr;
 
 @end
@@ -46,7 +46,7 @@
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"contacts_add_friend") style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
  
     self.navigationItem.rightBarButtonItem = rightItem;
-    self.contactArray = [NSMutableDictionary new];
+    self.contactDict = [NSMutableDictionary new];
     
     [[PPTUserInfoEngine shareEngine] addObserver:self forKeyPath:@"contactList" options:NSKeyValueObservingOptionNew context:nil];
     [self loadData];
@@ -78,24 +78,41 @@
             NSLog(@"pinYin  ===%@",pinYin);
             if([pinYin characterAtIndex:0] >='A'&&[pinYin characterAtIndex:0]<='Z')
             {
-                [self.contactArray setValue:baseInfo forKey:[pinYin substringToIndex:1]];
-                [self.indexArr addObject:[pinYin substringToIndex:1]];
+          
+                if(![self.indexArr containsObject:[pinYin substringToIndex:1]])
+                {
+                     [self.indexArr addObject:[pinYin substringToIndex:1]];
+                }
+                NSArray * pre_Arr = [self.contactDict objectForKey:[pinYin substringToIndex:1]];
+                if(pre_Arr==nil)
+                {
+                    pre_Arr = [NSArray new];
+                }
+                pre_Arr=[pre_Arr arrayByAddingObject:baseInfo];
+                [self.contactDict setValue:pre_Arr forKey:[pinYin substringToIndex:1]];
+               
                 
             }else
             {
-                NSArray * arr = [self.contactArray objectForKey:@"#"];
-                if(arr.count==0||arr==nil)
+                if(![self.indexArr containsObject:[pinYin substringToIndex:1]])
                 {
-                    [self.contactArray setValue:baseInfo forKey:@"#"];
-                    [self.indexArr addObject:@"#"];
-                }else
-                {
-                    
+                    [self.indexArr addObject:[pinYin substringToIndex:1]];
                 }
+                NSArray * pre_Arr = [self.contactDict objectForKey:@"#"];
+                if(pre_Arr==nil)
+                {
+                    pre_Arr = [NSArray new];
+                }
+                pre_Arr = [pre_Arr arrayByAddingObject:baseInfo];
+                [self.contactDict setValue:pre_Arr forKey:@"#"];
+              
             }
+                [self.tableView reloadData];
         }];
-        [self.tableView reloadData];
+        
+     
     }];
+ 
     
 }
 
@@ -141,10 +158,10 @@
         [cell setLeftIconImageNamed:imageName andRightContentLabel:content];
     }else
     {
-        NSString * key = self.indexArr[indexPath.section - 1];
-        NSArray * arr = [self.contactArray objectForKey:key];
+        NSString * key = self.indexArr[indexPath.section];
+        NSArray * arr = [self.contactDict objectForKey:key];
         PPUserBaseInfo * info = arr[indexPath.row];
-        [cell setLeftIconImageNamed:@"" andRightContentLabel:info.user.nickname];
+        [cell setLeftIconImageNamed:info.user.portraitUri andRightContentLabel:info.user.nickname];
     }
     return cell;
 }
@@ -155,17 +172,27 @@
     {
         return 4;
     }
-    return self.contactArray.count;
+    NSString * key = self.indexArr[section];
+    NSArray * arr = [self.contactDict objectForKey:key];
+    return arr.count;
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1 + self.contactArray.count;
+    return 1 + self.contactDict.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
 
 @end

@@ -67,10 +67,15 @@
 }
 - (void)setLeftIconImageNamed:(NSString *)imageName andRightContentLabel:(NSString *)content
 {
-    
-    self.leftIconView.image = [UIImage imageNamed:imageName];
-    
-    //imageNamed(imageName);
+ 
+    NSLog(@"imageName ==%@",imageName);
+    if([imageName containsString:@"//"])
+    {
+        SD_LOADIMAGE(self.leftIconView, imageName, nil);
+    }else
+    {
+       self.leftIconView.image = [UIImage imageNamed:imageName];
+    }
     self.contentLabel.text = content;
 }
 
