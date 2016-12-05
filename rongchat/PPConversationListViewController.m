@@ -9,6 +9,7 @@
 #import "PPConversationListViewController.h"
 #import <RongIMKit/RCIM.h>
 #import "RCDChatListCell.h"
+#import "PPMessageViewController.h"
 
 @interface PPConversationListViewController ()
 @property(nonatomic, strong) RCConversationModel *tempModel;
@@ -95,7 +96,16 @@
 
 
 
-
+- (void)onSelectedTableRow:(RCConversationModelType)conversationModelType
+         conversationModel:(RCConversationModel *)model
+               atIndexPath:(NSIndexPath *)indexPath
+{
+    PPMessageViewController * controller = [[PPMessageViewController alloc]initWithConversationType:model.conversationType targetId:model.targetId];
+    controller.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
+}
 
 
 //*********************插入自定义Cell*********************//

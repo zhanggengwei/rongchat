@@ -113,4 +113,11 @@ alpha:a]
 
 #define SD_LOADIMAGE(imageView,urlString,placeImage)\
  [imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeImage options:SDWebImageRetryFailed|SDWebImageProgressiveDownload]
+
+
+#import <RongCloudIMKit/RongIMKit/RongIMKit.h>
+
+
+
+
 #endif /* PPMarchos_h */
