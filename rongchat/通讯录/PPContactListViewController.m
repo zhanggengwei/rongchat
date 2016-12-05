@@ -68,6 +68,7 @@
 - (void)loadData
 {
     NSArray * arr = [PPTUserInfoEngine shareEngine].contactList;
+    arr = [self setDataTest:arr];
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         PPUserBaseInfo * baseInfo = obj;
         HanyuPinyinOutputFormat * outputFormat = [[HanyuPinyinOutputFormat alloc]init];
@@ -117,9 +118,21 @@
 }
 
 #pragma mark 测试的数据
-- (void)setDataTest
+- (NSArray *)setDataTest:(NSArray *)arr
 {
     
+    NSString * name = @"赵 钱 孙 李 周 吴 郑 王 冯 陈 褚 卫 蒋 沈 韩 杨 戚 谢 邹 喻   柏 水 窦 章 云 苏 潘 葛 奚 范 彭 郎";
+    NSArray  * nameArr = [name componentsSeparatedByString:@" "];
+    
+    for (int i = 0; i <=100; i++)
+    {
+        PPUserBaseInfo * info = [PPUserBaseInfo  new];
+        info.user = [PPUserBase new];
+        info.user.nickname = [NSString stringWithFormat:@"%@%@%@",nameArr[arc4random()%nameArr.count],nameArr[arc4random()%nameArr.count],nameArr[arc4random()%nameArr.count]];
+        
+        arr = [arr arrayByAddingObject:info];
+    }
+    return arr;
 }
 
 
@@ -194,5 +207,33 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(section==0)
+    {
+        return nil;
+    }
+    return  self.indexArr[section];
+    
+}
+- (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return self.indexArr;
+}
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    if(0 == index)
+    {
+   
+        return -1;
+    }
+    else
+    {
+        //因为返回的值是section的值。所以减1就是与section对应的值了
+        return index-1;
+    }
+}
+
 
 @end
