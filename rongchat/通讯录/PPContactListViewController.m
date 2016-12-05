@@ -8,6 +8,8 @@
 
 #import "PPContactListViewController.h"
 #import "PPContactListCell.h"
+#import "PPMessageViewController.h"
+
 
 @interface PPContactListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -50,6 +52,9 @@
     
     [[PPTUserInfoEngine shareEngine] addObserver:self forKeyPath:@"contactList" options:NSKeyValueObservingOptionNew context:nil];
     [self loadData];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = kMainBackGroundColor;
+    
     
     
     // Do any additional setup after loading the view.
@@ -222,6 +227,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSString * key = self.indexArr[indexPath.section];
+    NSArray * arr = [self.contactDict objectForKey:key];
+    PPUserBaseInfo * info = arr[indexPath.row];
+    
+    PPMessageViewController * conversationController = [[PPMessageViewController alloc]initWithConversationType:ConversationType_PRIVATE targetId:info.user.indexId];
+    conversationController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:conversationController animated:YES];
+    
+    
     
 }
 
@@ -251,6 +265,17 @@
         return index-1;
     }
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 25;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01;
+}
+
 
 
 @end

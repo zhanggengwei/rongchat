@@ -48,6 +48,8 @@
 		409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50A81DDD721500015DB7 /* PPSettingCell.m */; };
 		409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50B21DDD72F600015DB7 /* PPColorUtil.m */; };
 		409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50B41DDD72F600015DB7 /* PPImageUtil.m */; };
+		409F792D1DF5649D0090D67F /* UITableViewCell+addLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F792C1DF5649D0090D67F /* UITableViewCell+addLineView.m */; };
+		409F792F1DF564C80090D67F /* common_line_g@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 409F792E1DF564C80090D67F /* common_line_g@2x.png */; };
 		40AE25F51DF52985000AE771 /* PPMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AE25F41DF52985000AE771 /* PPMessageViewController.m */; };
 		7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */; };
 		7513A2F81DE73B4500CCAB61 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F71DE73B4500CCAB61 /* Photos.framework */; };
@@ -255,6 +257,9 @@
 		409F50B21DDD72F600015DB7 /* PPColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPColorUtil.m; sourceTree = "<group>"; };
 		409F50B31DDD72F600015DB7 /* PPImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPImageUtil.h; sourceTree = "<group>"; };
 		409F50B41DDD72F600015DB7 /* PPImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPImageUtil.m; sourceTree = "<group>"; };
+		409F792B1DF5649D0090D67F /* UITableViewCell+addLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+addLineView.h"; sourceTree = "<group>"; };
+		409F792C1DF5649D0090D67F /* UITableViewCell+addLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+addLineView.m"; sourceTree = "<group>"; };
+		409F792E1DF564C80090D67F /* common_line_g@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_line_g@2x.png"; sourceTree = "<group>"; };
 		40AE25F31DF52985000AE771 /* PPMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMessageViewController.h; sourceTree = "<group>"; };
 		40AE25F41DF52985000AE771 /* PPMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMessageViewController.m; sourceTree = "<group>"; };
 		7513A2F01DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPhotoSeleceOrTakePhotoManager.h; sourceTree = "<group>"; };
@@ -683,6 +688,7 @@
 		75CEF89C1DDC9BEB00541660 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				409F792E1DF564C80090D67F /* common_line_g@2x.png */,
 				75DE61821DE48CA400DF1CA4 /* Country_Code.json */,
 				75CEF89D1DDC9BEB00541660 /* AddressBook */,
 				75CEF8A61DDC9BEB00541660 /* contacts_add_friend@2x.png */,
@@ -829,6 +835,8 @@
 		75CEF9461DDD29DF00541660 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				409F792B1DF5649D0090D67F /* UITableViewCell+addLineView.h */,
+				409F792C1DF5649D0090D67F /* UITableViewCell+addLineView.m */,
 				75CEF9471DDD2A0600541660 /* PPContactListCell.h */,
 				75CEF9481DDD2A0600541660 /* PPContactListCell.m */,
 			);
@@ -1023,6 +1031,7 @@
 				75CEF8F01DDC9BEB00541660 /* add_friend_icon_addgroup@2x.png in Resources */,
 				75CEF9111DDC9BEB00541660 /* ff_IconShake.png in Resources */,
 				75CEF9051DDC9BEB00541660 /* bottleNightBkg@2x.jpg in Resources */,
+				409F792F1DF564C80090D67F /* common_line_g@2x.png in Resources */,
 				75CEF9391DDC9BEB00541660 /* tabbar_mainframeHL@3x.png in Resources */,
 				75CEF9181DDC9BEB00541660 /* MoreGame.png in Resources */,
 				75CEF9131DDC9BEB00541660 /* ff_IconShake@3x.png in Resources */,
@@ -1123,6 +1132,7 @@
 				409F50941DDD704100015DB7 /* Md5.m in Sources */,
 				75DE618E1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m in Sources */,
 				409F50A91DDD721500015DB7 /* PPAccountSecurityViewController.m in Sources */,
+				409F792D1DF5649D0090D67F /* UITableViewCell+addLineView.m in Sources */,
 				7538FD141DF06939006476A2 /* RCDChatListCell.m in Sources */,
 				409F50951DDD704100015DB7 /* rc4.m in Sources */,
 				409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */,

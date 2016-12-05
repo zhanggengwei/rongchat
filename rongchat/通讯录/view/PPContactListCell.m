@@ -7,7 +7,7 @@
 //
 
 #import "PPContactListCell.h"
-
+#import "UITableViewCell+addLineView.h"
 @interface PPContactListCell ()
 @property (nonatomic,strong) UIImageView * leftIconView;
 @property (nonatomic,strong) UILabel * contentLabel;
@@ -63,6 +63,9 @@
     
     self.contentLabel.font = [UIFont systemFontOfSize:14];
     self.contentLabel.textAlignment = NSTextAlignmentLeft;
+    [self addBottomLine];
+    
+    
     
 }
 - (void)setLeftIconImageNamed:(NSString *)imageName andRightContentLabel:(NSString *)content
