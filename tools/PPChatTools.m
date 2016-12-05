@@ -88,12 +88,7 @@
         return;
     }
     [self connectWithToken:token sucessBlock:^(NSString *content) {
-        [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
-          
-            PPUserBaseInfo * info = [PPUserBaseInfo new];
-            info.user = aTaskResponse.result;
-            [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
-        } userID:content];
+     
     } failBlock:^(RCConnectErrorCode code) {
         
     } tokenIncorrectBlock:^{

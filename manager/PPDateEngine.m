@@ -9,6 +9,8 @@
 #import "PPDateEngine.h"
 #import "PPHTTPManager.h"
 #import "PPHTTPResponse.h"
+#import "PPFileManager.h"
+#import "OTFileManager.h"
 
 
 
@@ -585,6 +587,14 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     [[PPChatTools shareManager]connectWithToken:token sucessBlock:^(NSString *content) {
         dispatch_async(dispatch_get_main_queue(), ^{
+        
+            NSString * dbPath = [[PPFileManager sharedManager]pathForDomain:PPFileDirDomain_User appendPathName:userID];
+            //创建用户文件夹
+            BOOL isDir;
+            OTF_FileExistsAtPath(dbPath, &isDir);
+            if (!isDir) {
+                OTF_CreateDir(dbPath);
+            }
             [self loginSucessUserID:userID phone:phone passWord:passWord loginToken:token];
             PPHTTPResponse * response = [PPHTTPResponse new];
             response.code = @200;

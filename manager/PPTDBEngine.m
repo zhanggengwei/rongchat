@@ -29,22 +29,15 @@
     
     dispatch_once(&token, ^{
         shareInstance = [self new];
-        [[NSNotificationCenter defaultCenter]addObserver:shareInstance selector:@selector(loginSucess:) name:kPPObserverLoginSucess object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:shareInstance selector:@selector(logoutSucess:) name:kPPObserverLogoutSucess object:nil];
+        
     });
     return shareInstance;
 }
 
-- (void)loginSucess:(NSNotification *)noti
+- (void)logoutSucess:(NSNotification *)noti
 {
-    NSString * userID = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
-    
-    NSString * dbPath = [[PPFileManager sharedManager]pathForDomain:PPFileDirDomain_User appendPathName:userID];
-    //创建用户文件夹
-    BOOL isDir;
-    OTF_FileExistsAtPath(dbPath, &isDir);
-    if (!isDir) {
-        OTF_CreateDir(dbPath);
-    }
+  
 }
 
 - (void)loadDataBase:(NSString *)userID
@@ -69,6 +62,7 @@
     [self.db close];
     
 }
+
 - (void)createTables
 {
      [self createUser_Info_TableName];
@@ -78,15 +72,25 @@
 {
     
     NSString * selectSql = [NSString stringWithFormat:@"select * from \'%@\';",tableName];
-    
-    FMResultSet * result = [self.db executeQuery:selectSql];
-   return  result.next;
+    FMResultSet * result;
+    if([self.db open])
+    {
+        result = [self.db executeQuery:selectSql];
+          return  result.next;
+    }
+    return NO;
+ 
 }
 
 - (void)dropTableName:(NSString *)tableName
 {
     NSString * dropSql = [NSString stringWithFormat: @"truncate table \'%@\'",tableName];
-    [self.db executeUpdate:dropSql];
+    if([self.db open])
+    {
+        [self.db executeUpdate:dropSql];
+    }
+    
+    
 //    [self.db  executeUpdate:dropSql];
     
 }
@@ -97,7 +101,7 @@
     {
         return NO;
     }
-    if ([_db open])
+    if ([self.db open])
     {
         NSString *sql;
         
@@ -126,7 +130,8 @@
         }
         @catch (NSException *exception)
         {
-           
+            [_db close];
+            return NO;
         }
         @finally
         {
@@ -141,20 +146,17 @@
 - (void)createUser_Info_TableName
 {
     
-    NSString * createUser_Info = [NSString stringWithFormat:@"create table  if not exists %@(indexId text  primary key not null,nickname text,displayName text,portraitUri text,updatedAt text,phone text,region text,isSelf bool)",USER_INFO_TABLENAME];
-    
-
-    BOOL createSucesss = [self.db executeUpdate:createUser_Info];
-    if (createSucesss)
-    {
-        NSLog(@"创建成功");
-    }else
-    {
-        NSLog(@"创建失败");
-    }
-    
-    
-    
+        NSString * createUser_Info = [NSString stringWithFormat:@"create table  if not exists %@(indexId text  primary key not null,nickname text,displayName text,portraitUri text,updatedAt text,phone text,region text,isSelf bool)",USER_INFO_TABLENAME];
+        
+        
+        BOOL createSucesss = [self.db executeUpdate:createUser_Info];
+        if (createSucesss)
+        {
+            NSLog(@"创建成功");
+        }else
+        {
+            NSLog(@"创建失败");
+        }
 }
 
 
@@ -162,13 +164,18 @@
 #pragma mark - util method
 - (BOOL)ifHaveRecordWithTable:(NSString *)table
 {
-    FMResultSet *resultSet = [_db executeQuery:[NSString stringWithFormat:@"select * from \'%@\';", table]];
-    
-    if ([resultSet next])
+    if([self.db open])
     {
-        return YES;
+        FMResultSet *resultSet = [_db executeQuery:[NSString stringWithFormat:@"select * from \'%@\';", table]];
+        
+        if ([resultSet next])
+        {
+            return YES;
+        }
+        return NO;
     }
     return NO;
+
 }
 
 - (PPUserBaseInfo *)queryUser_Info
@@ -251,7 +258,7 @@
     
     if([self.db open])
     {
-        NSString * sql;
+    
         BOOL ret = NO;
         [self.db beginTransaction];
         
@@ -265,13 +272,14 @@
             }
             for (PPUserBaseInfo * info in contactList)
             {
-            
-               sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
-              
+                NSString * sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
                 
-               ret = [_db executeUpdate:sql,info.user.indexId, info.user.nickname,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:0]];
-                [_db executeUpdate:sql];
-                
+                ret = [_db executeUpdate:sql,info.user.indexId, info.user.nickname,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:info.status]];
+                if(ret==NO)
+                {
+                    [_db close];
+                    return NO;
+                }
             }
             if ([self.db inTransaction])
             {
@@ -294,5 +302,7 @@
     return NO;
     
 }
+
+
 
 @end

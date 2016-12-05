@@ -34,6 +34,13 @@
     self.contactList = [[PPTDBEngine shareManager]queryFriendList];
     
     [self asynFriendList];
+    [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
+        
+        PPUserBaseInfo * info = [PPUserBaseInfo new];
+        info.user = aTaskResponse.result;
+        [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
+    } userID:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil]];
+    
     
 }
 
@@ -47,9 +54,9 @@
 - (BOOL)saveUserFriendList:(NSArray<PPUserBaseInfo *> *)baseInfoArr
 {
     self.contactList = baseInfoArr;
-    [[PPTDBEngine shareManager]saveContactList:baseInfoArr];
     
-    return YES;
+    
+    return [[PPTDBEngine shareManager]saveContactList:baseInfoArr];
 }
 - (void)asynFriendList
 {
