@@ -20,7 +20,7 @@ def pods
     pod 'Masonry', '~> 0.6.1'
     pod 'ODRefreshControl', '~> 1.2'
     pod 'WActionSheet', '~> 0.0.3'
-    pod 'RongCloudIMKit', '~> 2.7.3'
+    pod 'RongCloudIMLib', '~> 2.7.3'
     pod 'UIView+FrameEx', '~> 0.0.1'
     pod 'SFHFKeychainUtils', '~> 0.0.1'
     pod 'MD5Digest', '~> 1.1.0'

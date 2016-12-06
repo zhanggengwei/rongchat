@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <RongIMKit/RCConversationListViewController.h>
+#import "RCConversationListViewController.h"
+
 
 @interface PPConversationListViewController : RCConversationListViewController
 

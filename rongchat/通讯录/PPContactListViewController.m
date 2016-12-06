@@ -231,9 +231,9 @@
     NSArray * arr = [self.contactDict objectForKey:key];
     PPUserBaseInfo * info = arr[indexPath.row];
     
-    PPMessageViewController * conversationController = [[PPMessageViewController alloc]initWithConversationType:ConversationType_PRIVATE targetId:info.user.indexId];
-    conversationController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:conversationController animated:YES];
+//    PPMessageViewController * conversationController = [[PPMessageViewController alloc]initWithConversationType:ConversationType_PRIVATE targetId:info.user.indexId];
+  //  conversationController.hidesBottomBarWhenPushed = YES;
+   // [self.navigationController pushViewController:conversationController animated:YES];
     
     
     

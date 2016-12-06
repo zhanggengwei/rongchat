@@ -46,7 +46,7 @@ PODS:
   - MD5Digest (1.1.0)
   - ODRefreshControl (1.2)
   - PinYin4Objc (1.1.1)
-  - RongCloudIMKit (2.7.3)
+  - RongCloudIMLib (2.7.3)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -83,7 +83,7 @@ DEPENDENCIES:
   - MD5Digest (~> 1.1.0)
   - ODRefreshControl (~> 1.2)
   - PinYin4Objc (~> 1.1.1)
-  - RongCloudIMKit (~> 2.7.3)
+  - RongCloudIMLib (~> 2.7.3)
   - SDWebImage (~> 3.7.1)
   - SFHFKeychainUtils (~> 0.0.1)
   - UIView+FrameEx (~> 0.0.1)
@@ -110,7 +110,7 @@ SPEC CHECKSUMS:
   MD5Digest: fea371215507cfcdc3c9633d02cffc7fd075ebc3
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
-  RongCloudIMKit: 0b93700b17d224c7c213815b8a23a9c356fe20e2
+  RongCloudIMLib: c37ff86690130df77262dcb4dd227dd443299cea
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SFHFKeychainUtils: 9576b411a79a058f4d5381ace6f3242b9a62e664
   UIView+FrameEx: ab0c53e158ef0621d7b0b0a26626e175ac17e471
@@ -121,6 +121,6 @@ SPEC CHECKSUMS:
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: c541bb3ae6e3fb02e94f6a35a427b9677ab5108a
+PODFILE CHECKSUM: 584948a16bd3482cea8ea387fe0df8495c21f0f6
 
 COCOAPODS: 1.1.0.beta.2

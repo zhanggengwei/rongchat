@@ -7,7 +7,8 @@
 //
 
 #import "PPChatTools.h"
-#import <RongIMKit/RongIMKit.h>
+#import "RCIM.h"
+
 
 #import "PPDateEngine.h"
 

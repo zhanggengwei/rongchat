@@ -509,7 +509,7 @@ third-party archives.
    limitations under the License.
 
 
-## RongCloudIMKit
+## RongCloudIMLib
 
 Copyright 2014 Rong Cloud
 
