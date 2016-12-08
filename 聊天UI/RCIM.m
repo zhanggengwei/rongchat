@@ -36,8 +36,9 @@
 }
 - (void)initWithAppKey:(NSString *)appKey
 {
-    [self.client initWithAppKey:appKey];
     self.client = [RCIMClient sharedRCIMClient];
+    [self.client initWithAppKey:appKey];
+   
     [self.client setReceiveMessageDelegate:self object:nil];
     [self.client setRCConnectionStatusChangeDelegate:self];
     

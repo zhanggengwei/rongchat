@@ -30,12 +30,13 @@
         shareInstance = [PPChatTools new];
        
         shareInstance.client = [RCIM sharedRCIM];
+         [shareInstance initRCIM];
         [shareInstance.client setConnectionStatusDelegate:shareInstance];
    
         shareInstance.client.receiveMessageDelegate = shareInstance;
         shareInstance.client.userInfoDataSource = shareInstance;
         
-        [shareInstance initRCIM];
+       
         shareInstance.client.enablePersistentUserInfoCache = YES;
         
         
@@ -76,6 +77,8 @@
     [SFHFKeychainUtils deleteItemForUsername:kPPLoginToken andServiceName:kPPServiceName error:nil];
     [SFHFKeychainUtils deleteItemForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:OBJC_APPIsLogin];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
 }
 
 
@@ -91,6 +94,7 @@
     [self connectWithToken:token sucessBlock:^(NSString *content) {
      
     } failBlock:^(RCConnectErrorCode code) {
+        NSLog(@"code ==%d",code);
         
     } tokenIncorrectBlock:^{
          [[PPChatTools shareManager]logout];

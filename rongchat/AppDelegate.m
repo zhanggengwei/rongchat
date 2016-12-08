@@ -38,7 +38,7 @@
        [self createTabbarController];
     }else
     {
-        [[PPChatTools shareManager]deleteStoreItems];
+       
         
         [self createLoginController];
     }
@@ -136,9 +136,7 @@
         [self createTabbarController];
     }else
     {
-        [[NSUserDefaults standardUserDefaults]removeObjectForKey:OBJC_APPIsLogin];
-        [[NSUserDefaults standardUserDefaults]synchronize];
-        
+        [[PPChatTools shareManager]deleteStoreItems];
         [self createLoginController];
     }
 }

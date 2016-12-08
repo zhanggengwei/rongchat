@@ -49,21 +49,16 @@
         PPUserInfoTokenResponse * response = [MTLJSONAdapter modelOfClass:[PPUserInfoTokenResponse class] fromJSONDictionary:responseObject error:&error];
         NSString * token = ((PPTokenDef *)(response.result)).token;
         NSString * userID = ((PPTokenDef *)(response.result)).indexId;
-      
+        [self _completeWithResponse:response block:aResponseBlock];
         if(response.code.integerValue == kPPResponseSucessCode)
         {
+          
         [self loginSucessAfterLoginRCIMResponse:^(PPHTTPResponse * aTaskResponse) {
-            [self _completeWithResponse:response block:aResponseBlock];
+          
             
         } loginToken:token UserID:userID phone:phone passWord:passWord];
         
-        }else
-        {
-            PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
-            [self _completeWithResponse:response block:aResponseBlock];
-            
         }
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PPHTTPResponse *response = [PPHTTPResponse responseWithError:error];
         [self _completeWithResponse:response block:aResponseBlock];
@@ -582,6 +577,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     
     [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:userID forServiceName:kPPServiceName updateExisting:YES error:&error];
 }
+
+
+
 //登录成功之后登录融云的即时通讯
 - (void)loginSucessAfterLoginRCIMResponse:(PPResponseBlock())aResponseBlock loginToken:(NSString *)token UserID:(NSString *)userID phone:(NSString *)phone passWord:(NSString *)passWord
 {
