@@ -12,7 +12,7 @@
 #import "PPFileManager.h"
 #import <FMDB/FMDB.h>
 #import "OT/OTFileManager.h"
-#import "RCUserInfo+nickNameChar.h"
+#import "RCContactUserInfo.h"
 
 @interface PPTDBEngine ()
 
@@ -247,7 +247,7 @@
                     name = baseInfo.displayName;
                 }
                 
-                RCUserInfo * info = [[RCUserInfo alloc]initWithUserId:baseInfo.user.indexId name:baseInfo.user.nickname portrait:baseInfo.user.portraitUri];
+                RCContactUserInfo * info = [[RCContactUserInfo alloc]initWithUserId:baseInfo.user.indexId name:baseInfo.user.nickname portrait:baseInfo.user.portraitUri];
                 HanyuPinyinOutputFormat * outputFormat = [[HanyuPinyinOutputFormat alloc]init];
                 [outputFormat setToneType:ToneTypeWithoutTone];
                 [outputFormat setVCharType:VCharTypeWithV];

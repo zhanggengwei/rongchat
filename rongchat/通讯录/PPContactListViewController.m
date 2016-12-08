@@ -9,7 +9,8 @@
 #import "PPContactListViewController.h"
 #import "PPContactListCell.h"
 #import "PPMessageViewController.h"
-#import "RCUserInfo+nickNameChar.h"
+#import "RCContactUserInfo.h"
+
 
 @interface PPContactListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -74,7 +75,7 @@
 {
     NSArray * arr = [PPTUserInfoEngine shareEngine].contactList;
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        RCUserInfo * baseInfo = obj;
+        RCContactUserInfo * baseInfo = obj;
         if(![self.indexArr containsObject:[baseInfo.nickNameChar substringToIndex:1]])
         {
             [self.indexArr addObject:[baseInfo.nickNameChar substringToIndex:1]];
@@ -88,7 +89,7 @@
             }
             pre_Arr=[pre_Arr arrayByAddingObject:baseInfo];
             pre_Arr = [pre_Arr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                return [((RCUserInfo *)obj1).name compare:((RCUserInfo *)obj2).name];
+                return [((RCContactUserInfo *)obj1).name compare:((RCContactUserInfo *)obj2).name];
                 
                 
             }];
@@ -107,7 +108,7 @@
             }
             pre_Arr = [pre_Arr arrayByAddingObject:baseInfo];
             pre_Arr = [pre_Arr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                return [((RCUserInfo *)obj1).name compare:((RCUserInfo *)obj2).name];
+                return [((RCContactUserInfo *)obj1).name compare:((RCContactUserInfo *)obj2).name];
             }];
             [self.contactDict setValue:pre_Arr forKey:@"#"];
         }
@@ -167,7 +168,7 @@
     {
         NSString * key = self.indexArr[indexPath.section];
         NSArray * arr = [self.contactDict objectForKey:key];
-        RCUserInfo * info = arr[indexPath.row];
+        RCContactUserInfo * info = arr[indexPath.row];
         [cell setLeftIconImageNamed:info.portraitUri andRightContentLabel:info.name];
     }
     return cell;
@@ -201,7 +202,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString * key = self.indexArr[indexPath.section];
     NSArray * arr = [self.contactDict objectForKey:key];
-    RCUserInfo * info = arr[indexPath.row];
+    RCContactUserInfo * info = arr[indexPath.row];
     
 //    PPMessageViewController * conversationController = [[PPMessageViewController alloc]initWithConversationType:ConversationType_PRIVATE targetId:info.user.indexId];
   //  conversationController.hidesBottomBarWhenPushed = YES;

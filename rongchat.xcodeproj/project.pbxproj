@@ -62,7 +62,7 @@
 		7513A2F81DE73B4500CCAB61 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F71DE73B4500CCAB61 /* Photos.framework */; };
 		7513A2FA1DE73B4C00CCAB61 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F91DE73B4C00CCAB61 /* PhotosUI.framework */; };
 		7513A2FD1DE92CF900CCAB61 /* XIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7513A2FC1DE92CF900CCAB61 /* XIAlertView.m */; };
-		751598C51DF9AD820043E2C4 /* RCUserInfo+nickNameChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 751598C41DF9AD820043E2C4 /* RCUserInfo+nickNameChar.m */; };
+		751598C81DF9B6870043E2C4 /* RCContactUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 751598C71DF9B6870043E2C4 /* RCContactUserInfo.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* PPConversationListViewController.m */; };
@@ -292,8 +292,8 @@
 		7513A2F91DE73B4C00CCAB61 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		7513A2FB1DE92CF900CCAB61 /* XIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XIAlertView.h; sourceTree = "<group>"; };
 		7513A2FC1DE92CF900CCAB61 /* XIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XIAlertView.m; sourceTree = "<group>"; };
-		751598C31DF9AD820043E2C4 /* RCUserInfo+nickNameChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCUserInfo+nickNameChar.h"; sourceTree = "<group>"; };
-		751598C41DF9AD820043E2C4 /* RCUserInfo+nickNameChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCUserInfo+nickNameChar.m"; sourceTree = "<group>"; };
+		751598C61DF9B6870043E2C4 /* RCContactUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCContactUserInfo.h; sourceTree = "<group>"; };
+		751598C71DF9B6870043E2C4 /* RCContactUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCContactUserInfo.m; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -637,8 +637,8 @@
 				409F79461DF665D60090D67F /* RCMessageBaseCell.m */,
 				409F794B1DF666EE0090D67F /* RCKitUtility.h */,
 				409F794C1DF666EE0090D67F /* RCKitUtility.m */,
-				751598C31DF9AD820043E2C4 /* RCUserInfo+nickNameChar.h */,
-				751598C41DF9AD820043E2C4 /* RCUserInfo+nickNameChar.m */,
+				751598C61DF9B6870043E2C4 /* RCContactUserInfo.h */,
+				751598C71DF9B6870043E2C4 /* RCContactUserInfo.m */,
 			);
 			path = "聊天UI";
 			sourceTree = "<group>";
@@ -1176,7 +1176,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				40AE25F51DF52985000AE771 /* PPMessageViewController.m in Sources */,
-				751598C51DF9AD820043E2C4 /* RCUserInfo+nickNameChar.m in Sources */,
 				409F50941DDD704100015DB7 /* Md5.m in Sources */,
 				75DE618E1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m in Sources */,
 				409F50A91DDD721500015DB7 /* PPAccountSecurityViewController.m in Sources */,
@@ -1233,6 +1232,7 @@
 				409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */,
 				409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */,
 				409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */,
+				751598C81DF9B6870043E2C4 /* RCContactUserInfo.m in Sources */,
 				75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */,
 				409F50671DDD6E3100015DB7 /* PPHTTPManager.m in Sources */,
 				409F79391DF65E110090D67F /* RCIM.m in Sources */,

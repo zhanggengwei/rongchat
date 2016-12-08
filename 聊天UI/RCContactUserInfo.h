@@ -1,5 +1,5 @@
 //
-//  RCUserInfo+nickNameChar.h
+//  RCContactUserInfo.h
 //  rongchat
 //
 //  Created by vd on 2016/12/8.
@@ -8,8 +8,7 @@
 
 #import <RongIMLib/RongIMLib.h>
 
-@interface RCUserInfo (nickNameChar)
-
+@interface RCContactUserInfo : RCUserInfo
 @property (nonatomic,strong) NSString * nickNameChar;
 
 @end
