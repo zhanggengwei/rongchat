@@ -12,6 +12,7 @@
 #import "PPFileManager.h"
 #import <FMDB/FMDB.h>
 #import "OT/OTFileManager.h"
+#import "RCUserInfo+nickNameChar.h"
 
 @interface PPTDBEngine ()
 
@@ -240,7 +241,24 @@
             PPUserBaseInfo * baseInfo = [self queryUser_InfoWithIndexId:[result stringForColumn:@"indexId"]];
             if(baseInfo)
             {
-                contactlist = [contactlist arrayByAddingObject:baseInfo];
+                NSString * name = baseInfo.user.nickname;
+                if([baseInfo.displayName isEqualToString:@""])
+                {
+                    name = baseInfo.displayName;
+                }
+                
+                RCUserInfo * info = [[RCUserInfo alloc]initWithUserId:baseInfo.user.indexId name:baseInfo.user.nickname portrait:baseInfo.user.portraitUri];
+                HanyuPinyinOutputFormat * outputFormat = [[HanyuPinyinOutputFormat alloc]init];
+                [outputFormat setToneType:ToneTypeWithoutTone];
+                [outputFormat setVCharType:VCharTypeWithV];
+                [outputFormat setCaseType:CaseTypeUppercase];
+                [PinyinHelper toHanyuPinyinStringWithNSString:name withHanyuPinyinOutputFormat:outputFormat withNSString:@"" outputBlock:^(NSString *pinYin) {
+                    NSLog(@"pinYin  ===%@",pinYin);
+                    info.nickNameChar = pinYin;
+                }];
+                
+                contactlist = [contactlist arrayByAddingObject:info];
+                
             }
         
         }

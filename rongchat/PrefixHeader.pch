@@ -21,7 +21,7 @@
 #import "XIAlertView.h"
 #import "PPUrlDef.h"
 
-
+#define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 
 
 #define KAppMapKey @"de0e9782d38e8092d974308f7b588b73"
