@@ -601,6 +601,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             response.message = @"登录成功";
             [self _completeWithResponse:response block:aResponseBlock];
             [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
+           
         });
      
         [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
@@ -610,10 +611,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 info.user = aTaskResponse.result;
                 [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
             }
-            
         } userID:userID];
-        
-        
     } failBlock:^(RCConnectErrorCode code) {
         NSLog(@"code == %ld",code);
         PPHTTPResponse * response = [PPHTTPResponse responseWithError:[NSError errorWithDomain:@"" code:code userInfo:nil]];

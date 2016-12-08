@@ -104,6 +104,7 @@
 
 - (void)connectWithToken:(NSString *)token sucessBlock:(void (^)(NSString * content))block failBlock:(void(^)(RCConnectErrorCode code))failBlock tokenIncorrectBlock:(void(^)(void))tokenIncorrectBlock
 {
+    
     [self.client connectWithToken:token success:block error:failBlock tokenIncorrect:tokenIncorrectBlock];
 }
 - (void)disconnect
