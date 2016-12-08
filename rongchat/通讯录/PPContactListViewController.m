@@ -10,7 +10,7 @@
 #import "PPContactListCell.h"
 #import "PPMessageViewController.h"
 #import "RCContactUserInfo.h"
-
+#import "NSString+isValid.h"
 
 @interface PPContactListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -76,6 +76,9 @@
     NSArray * arr = [PPTUserInfoEngine shareEngine].contactList;
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         RCContactUserInfo * baseInfo = obj;
+        if (![baseInfo.nickNameChar isValid]) {
+            baseInfo.nickNameChar = @"#";
+        }
         if(![self.indexArr containsObject:[baseInfo.nickNameChar substringToIndex:1]])
         {
             [self.indexArr addObject:[baseInfo.nickNameChar substringToIndex:1]];
