@@ -71,6 +71,12 @@
     [[PPTUserInfoEngine shareEngine] removeObserver:self forKeyPath:@"contactList"];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    [self loadData];
+    
+}
+
 - (void)loadData
 {
     NSArray * arr = [PPTUserInfoEngine shareEngine].contactList;

@@ -11,4 +11,9 @@
 @interface RCContactUserInfo : RCUserInfo
 @property (nonatomic,strong) NSString * nickNameChar;
 
+- (instancetype)transFromPPUserBaseInfoToRCContactUserInfo:(PPUserBaseInfo *)baseInfo;
+
+
+
+
 @end
