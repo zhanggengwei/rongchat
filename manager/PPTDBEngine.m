@@ -247,16 +247,7 @@
                     name = baseInfo.displayName;
                 }
                 
-                RCContactUserInfo * info = [[RCContactUserInfo alloc]initWithUserId:baseInfo.user.indexId name:baseInfo.user.nickname portrait:baseInfo.user.portraitUri];
-                HanyuPinyinOutputFormat * outputFormat = [[HanyuPinyinOutputFormat alloc]init];
-                [outputFormat setToneType:ToneTypeWithoutTone];
-                [outputFormat setVCharType:VCharTypeWithV];
-                [outputFormat setCaseType:CaseTypeUppercase];
-                [PinyinHelper toHanyuPinyinStringWithNSString:name withHanyuPinyinOutputFormat:outputFormat withNSString:@"" outputBlock:^(NSString *pinYin) {
-                    NSLog(@"pinYin  ===%@",pinYin);
-                    info.nickNameChar = pinYin;
-                }];
-                
+                RCContactUserInfo * info = [[RCContactUserInfo alloc]transFromPPUserBaseInfoToRCContactUserInfo:baseInfo];
                 contactlist = [contactlist arrayByAddingObject:info];
                 
             }

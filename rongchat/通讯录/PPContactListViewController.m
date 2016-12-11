@@ -82,9 +82,7 @@
     NSArray * arr = [PPTUserInfoEngine shareEngine].contactList;
     [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         RCContactUserInfo * baseInfo = obj;
-        if (![baseInfo.nickNameChar isValid]) {
-            baseInfo.nickNameChar = @"#";
-        }
+       
         if(![self.indexArr containsObject:[baseInfo.nickNameChar substringToIndex:1]])
         {
             [self.indexArr addObject:[baseInfo.nickNameChar substringToIndex:1]];
@@ -178,7 +176,7 @@
         NSString * key = self.indexArr[indexPath.section];
         NSArray * arr = [self.contactDict objectForKey:key];
         RCContactUserInfo * info = arr[indexPath.row];
-        [cell setLeftIconImageNamed:info.portraitUri andRightContentLabel:info.name];
+        [cell setLeftIconImageNamed:info.info.portraitUri andRightContentLabel:info.name];
     }
     return cell;
 }

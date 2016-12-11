@@ -8,8 +8,10 @@
 
 #import <RongIMLib/RongIMLib.h>
 
-@interface RCContactUserInfo : RCUserInfo
-@property (nonatomic,strong) NSString * nickNameChar;
+@interface RCContactUserInfo : NSObject
+@property (nonatomic,strong,readonly) NSString * nickNameChar;
+@property (nonatomic,strong,readonly) RCUserInfo * info;
+@property (nonatomic,strong,readonly) NSString * name;
 
 - (instancetype)transFromPPUserBaseInfoToRCContactUserInfo:(PPUserBaseInfo *)baseInfo;
 
