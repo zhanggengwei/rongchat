@@ -73,7 +73,11 @@
 }
 - (void)onConnectionStatusChanged:(RCConnectionStatus)status
 {
-    NSLog(@"st");
+    if(self.connectionStatusDelegate&&[self.connectionStatusDelegate respondsToSelector:@selector(onRCIMConnectionStatusChanged:)])
+    {
+        [self.connectionStatusDelegate onRCIMConnectionStatusChanged:status];
+        
+    }
 }
 
 
