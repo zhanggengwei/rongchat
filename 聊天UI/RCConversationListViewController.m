@@ -41,24 +41,41 @@
     {
         case ConnectionStatus_Connected:
         {
+          [self hideIndictorView:@"微信"];
           break;
         }
         case ConnectionStatus_Connecting:
         {
-            
+            [self setTitle:@"连接中"];
+            break;
         }
         case ConnectionStatus_SERVER_INVALID:
         {
-            
+            [self hideIndictorView:@"服务器异常"];
+            break;
         }
         case ConnectionStatus_Unconnected:
         {
-            
+            [self hideIndictorView:@"未连接"];
+            break;
         }
         default:
             break;
     }
 }
+
+- (void)hideIndictorView:(NSString *)message
+{
+    self.activityView.hidden = YES;
+    [self.activityView stopAnimating];
+    //[self setTitle:message];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.navigationItem.titleView.mas_centerX);
+    }];
+    
+    
+}
+
 
 - (void)p_createNavBarTitleView
 {
@@ -74,11 +91,8 @@
     self.titleLabel.text = @"未连接";
     self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    
-    
     self.activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [self.navigationItem.titleView addSubview:self.activityView];
-    
     [self.activityView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.navigationItem.titleView.mas_top);
         make.right.mas_equalTo(self.titleLabel.mas_left);
@@ -86,7 +100,6 @@
         make.height.mas_equalTo(44);
     }];
     [self.activityView startAnimating];
-    
     self.titleLabel.textColor = [UINavigationBar appearance].barTintColor;
     
 }
