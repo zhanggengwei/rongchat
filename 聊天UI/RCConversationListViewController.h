@@ -11,6 +11,7 @@
 @interface RCConversationListViewController : UIViewController
 
 @property (nonatomic,strong) UIFont * titleFont;//default is 15
+@property (nonatomic,strong) NSArray * conversationTypeArray;
 
 
 @end

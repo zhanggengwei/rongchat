@@ -22,8 +22,17 @@
     self.titleFont = [UIFont systemFontOfSize:17];
     [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
     
+    if(self.conversationTypeArray==nil || self.conversationTypeArray.count ==0)
+    {
+        self.conversationTypeArray = @[@(ConversationType_PRIVATE),@(ConversationType_DISCUSSION),@(ConversationType_GROUP)];
+        
+    }
+
     
+    NSArray * arr =[[RCIMClient sharedRCIMClient] getConversationList:self.conversationTypeArray];
+    RCConversation * conversation = arr.firstObject;
     
+    NSLog(@"error ==fdfds");
     
     
     
