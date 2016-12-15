@@ -31,8 +31,14 @@
     
     NSArray * arr =[[RCIMClient sharedRCIMClient] getConversationList:self.conversationTypeArray];
     RCConversation * conversation = arr.firstObject;
-    RCMessage
+    
     NSArray * messageArr =[[RCIMClient sharedRCIMClient] getLatestMessages:ConversationType_PRIVATE targetId:@"QbHpsQOXn" count:10];
+    
+    
+    
+    
+    
+    
     NSLog(@"messagArr ==%@",messageArr);
     
     //QbHpsQOXn
