@@ -9,10 +9,11 @@
 #import "RCConversationListViewController.h"
 #import "PPViewUtil.h"
 #import "RCIM.h"
-@interface RCConversationListViewController ()<RCIMConnectionStatusDelegate>
+@interface RCConversationListViewController ()<RCIMConnectionStatusDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UIActivityIndicatorView * activityView;
 @property (nonatomic,strong) UILabel * titleLabel;
-
+@property (nonatomic,strong) NSMutableArray * conversationList;
+@property (nonatomic,strong) UITableView * tableView;
 @end
 
 @implementation RCConversationListViewController
@@ -27,20 +28,11 @@
         self.conversationTypeArray = @[@(ConversationType_PRIVATE),@(ConversationType_DISCUSSION),@(ConversationType_GROUP)];
         
     }
-
-    
-    NSArray * arr =[[RCIMClient sharedRCIMClient] getConversationList:self.conversationTypeArray];
-    RCConversation * conversation = arr.firstObject;
-    
-    NSArray * messageArr =[[RCIMClient sharedRCIMClient] getLatestMessages:ConversationType_PRIVATE targetId:@"QbHpsQOXn" count:10];
-    
-    
-    
-    
-    
-    
-    NSLog(@"messagArr ==%@",messageArr);
-    
+    self.conversationList = [NSMutableArray arrayWithArray:[[RCIMClient sharedRCIMClient] getConversationList:self.conversationTypeArray]];
+    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    [self.view addSubview:self.tableView];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     //QbHpsQOXn
     
     // Do any additional setup after loading the view.
@@ -149,14 +141,28 @@
     }];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark UITableViewDelegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return  1;
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.conversationList.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
+    cell.backgroundColor = [UIColor yellowColor];
+    return cell;
+    
+}
+
+
+
 
 @end

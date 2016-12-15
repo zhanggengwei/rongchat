@@ -58,6 +58,7 @@
 		409F79471DF665D60090D67F /* RCMessageBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F79461DF665D60090D67F /* RCMessageBaseCell.m */; };
 		409F794D1DF666EE0090D67F /* RCKitUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F794C1DF666EE0090D67F /* RCKitUtility.m */; };
 		40AE25F51DF52985000AE771 /* PPMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AE25F41DF52985000AE771 /* PPMessageViewController.m */; };
+		40F3B2C31E02584500775304 /* RCConversationCacheObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F3B2C21E02584500775304 /* RCConversationCacheObj.m */; };
 		7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */; };
 		7513A2F81DE73B4500CCAB61 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F71DE73B4500CCAB61 /* Photos.framework */; };
 		7513A2FA1DE73B4C00CCAB61 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F91DE73B4C00CCAB61 /* PhotosUI.framework */; };
@@ -286,6 +287,8 @@
 		409F794C1DF666EE0090D67F /* RCKitUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCKitUtility.m; sourceTree = "<group>"; };
 		40AE25F31DF52985000AE771 /* PPMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPMessageViewController.h; sourceTree = "<group>"; };
 		40AE25F41DF52985000AE771 /* PPMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPMessageViewController.m; sourceTree = "<group>"; };
+		40F3B2C11E02584500775304 /* RCConversationCacheObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationCacheObj.h; sourceTree = "<group>"; };
+		40F3B2C21E02584500775304 /* RCConversationCacheObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationCacheObj.m; sourceTree = "<group>"; };
 		7513A2F01DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPhotoSeleceOrTakePhotoManager.h; sourceTree = "<group>"; };
 		7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPhotoSeleceOrTakePhotoManager.m; sourceTree = "<group>"; };
 		7513A2F61DE737D600CCAB61 /* singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = singleton.h; sourceTree = "<group>"; };
@@ -644,6 +647,8 @@
 				751598C71DF9B6870043E2C4 /* RCContactUserInfo.m */,
 				751598C91DF9B8B00043E2C4 /* NSString+isValid.h */,
 				751598CA1DF9B8B00043E2C4 /* NSString+isValid.m */,
+				40F3B2C11E02584500775304 /* RCConversationCacheObj.h */,
+				40F3B2C21E02584500775304 /* RCConversationCacheObj.m */,
 			);
 			path = "聊天UI";
 			sourceTree = "<group>";
@@ -1194,6 +1199,7 @@
 				409F50761DDD6E5100015DB7 /* PPTool.m in Sources */,
 				409F50931DDD704100015DB7 /* des.m in Sources */,
 				409F50AA1DDD721500015DB7 /* PPInfoMessageViewController.m in Sources */,
+				40F3B2C31E02584500775304 /* RCConversationCacheObj.m in Sources */,
 				409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */,
 				409F50681DDD6E3100015DB7 /* PPHTTPRequestSerializer.m in Sources */,
 				409F794D1DF666EE0090D67F /* RCKitUtility.m in Sources */,
