@@ -69,9 +69,7 @@
 }
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object
 {
-    NSLog(@"%@",message.content);
-    
-    NSLog(@"%@",[message description]);
+
 }
 - (void)onConnectionStatusChanged:(RCConnectionStatus)status
 {

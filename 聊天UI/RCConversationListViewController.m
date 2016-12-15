@@ -53,13 +53,18 @@
     PPListItem * item2 = [[PPListItem alloc]init];
     item2.content  = @"#@";
     
+
     PPListItemViewController * controller = [[PPListItemViewController alloc]initWithItems:@[item1,item2]];
     controller.itemWidth = 100;
     controller.itemHeight = 50;
+    controller.alphaComponent = 0;
     controller.p_showViewController = self;
     
     
     [controller show];
+
+   
+
     
     
     

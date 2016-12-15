@@ -10,6 +10,7 @@
 #import "PPTZeroSelectListCell.h"
 #import "PPListItem.h"
 #import "PPImageUtil.h"
+#import "UITableViewCell+addLineView.h"
 
 @interface PPListItemViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
@@ -28,7 +29,7 @@
     {
         self.p_listItems = items;
         self.alphaComponent = 0.25;
-        self.rightMargain = 10;
+        self.rightMargain = 1;
     }
     return self;
 }
@@ -118,7 +119,7 @@
     //root view
     CGFloat height = self.itemHeight * self.p_listItems.count;
     
-    self.p_selectListView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - self.itemWidth - self.rightMargain,75,self.itemWidth,height)];
+    self.p_selectListView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - self.itemWidth - self.rightMargain,65,self.itemWidth,height + 10)];
     
     [self.view addSubview:self.p_selectListView];
     
@@ -132,7 +133,7 @@
     self.p_selectListView.layer.masksToBounds = YES;
     
     //tableView
-    self.p_selectListTableView = [[UITableView alloc] initWithFrame:self.p_selectListView.bounds style:UITableViewStylePlain];
+    self.p_selectListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, self.itemWidth, height) style:UITableViewStylePlain];
     [self.p_selectListTableView registerClass:[PPTZeroSelectListCell class] forCellReuseIdentifier:@"PPTZeroSelectListCell"];
     
     self.p_selectListTableView.layer.masksToBounds = YES;
@@ -140,6 +141,9 @@
     self.p_selectListTableView.dataSource      = self;
     self.p_selectListTableView.scrollEnabled   = NO;
     self.p_selectListTableView.backgroundColor = [UIColor clearColor];
+    self.p_selectListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    
     [self.p_selectListView addSubview:self.p_selectListTableView];
     
     
@@ -185,6 +189,12 @@
     PPListItem * item = self.p_listItems[indexPath.row];
     cell.textLabel.text = item.content;
     cell.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+    if(indexPath.row != self.p_listItems.count - 1)
+    {
+        [cell addBottomLine];
+        
+    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
