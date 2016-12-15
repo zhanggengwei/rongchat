@@ -71,6 +71,8 @@
 		751598C81DF9B6870043E2C4 /* RCContactUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 751598C71DF9B6870043E2C4 /* RCContactUserInfo.m */; };
 		751598CB1DF9B8B00043E2C4 /* NSString+isValid.m in Sources */ = {isa = PBXBuildFile; fileRef = 751598CA1DF9B8B00043E2C4 /* NSString+isValid.m */; };
 		754A0BDF1E02E65F00A7C1ED /* UITableViewCell+addLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 754A0BDE1E02E65F00A7C1ED /* UITableViewCell+addLineView.m */; };
+		754A0BE11E030CBE00A7C1ED /* ChatBackgroundStatusDownloading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754A0BE01E030CBE00A7C1ED /* ChatBackgroundStatusDownloading@2x.png */; };
+		754A0BE31E030D3800A7C1ED /* bottleMaskBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754A0BE21E030D3800A7C1ED /* bottleMaskBkg@2x.png */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* PPConversationListViewController.m */; };
@@ -316,6 +318,8 @@
 		751598CA1DF9B8B00043E2C4 /* NSString+isValid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+isValid.m"; sourceTree = "<group>"; };
 		754A0BDD1E02E65F00A7C1ED /* UITableViewCell+addLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+addLineView.h"; sourceTree = "<group>"; };
 		754A0BDE1E02E65F00A7C1ED /* UITableViewCell+addLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+addLineView.m"; sourceTree = "<group>"; };
+		754A0BE01E030CBE00A7C1ED /* ChatBackgroundStatusDownloading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChatBackgroundStatusDownloading@2x.png"; sourceTree = "<group>"; };
+		754A0BE21E030D3800A7C1ED /* bottleMaskBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottleMaskBkg@2x.png"; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -769,6 +773,8 @@
 		75CEF89C1DDC9BEB00541660 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				754A0BE21E030D3800A7C1ED /* bottleMaskBkg@2x.png */,
+				754A0BE01E030CBE00A7C1ED /* ChatBackgroundStatusDownloading@2x.png */,
 				40F5E81E1E02A31C002568C5 /* MoreFunctionFrame@2x.png */,
 				40F5E81C1E029E60002568C5 /* bottleSignLabelBkg@2x.png */,
 				409F792E1DF564C80090D67F /* common_line_g@2x.png */,
@@ -1072,6 +1078,7 @@
 				75CEF9321DDC9BEB00541660 /* tabbar_discover@2x.png in Resources */,
 				75CEF91F1DDC9BEB00541660 /* Shake_icon_tv@2x.png in Resources */,
 				75CEF8F71DDC9BEB00541660 /* plugins_FriendNotify@3x.png in Resources */,
+				754A0BE31E030D3800A7C1ED /* bottleMaskBkg@2x.png in Resources */,
 				75CEF9171DDC9BEB00541660 /* FootStep@2x.png in Resources */,
 				75CEF90A1DDC9BEB00541660 /* ff_IconBottle@3x.png in Resources */,
 				407261071DEBD12400554D00 /* CodeScan.bundle in Resources */,
@@ -1110,6 +1117,7 @@
 				75CEF9061DDC9BEB00541660 /* bottleRecord@2x.png in Resources */,
 				75CEF9361DDC9BEB00541660 /* tabbar_mainframe@2x.png in Resources */,
 				75CEF9351DDC9BEB00541660 /* tabbar_discoverHL@3x.png in Resources */,
+				754A0BE11E030CBE00A7C1ED /* ChatBackgroundStatusDownloading@2x.png in Resources */,
 				75CEF9251DDC9BEB00541660 /* LaunchImage-800-667h@2x.png in Resources */,
 				75CEF8F61DDC9BEB00541660 /* plugins_FriendNotify@2x.png in Resources */,
 				75CEF8F01DDC9BEB00541660 /* add_friend_icon_addgroup@2x.png in Resources */,

@@ -15,7 +15,6 @@
 @interface PPListItemViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) NSArray * p_listItems;
-@property (nonatomic, strong) UIImageView * p_selectListView;
 @property (nonatomic, strong) UITableView * p_selectListTableView;
 
 @end
@@ -86,11 +85,11 @@
     if (animate) {
         //设置缩放的原点(必须配置)
         //这个point，应该是按照比例来的。0是最左边，1是最右边
-        [self setAnchorPoint:CGPointMake(0.9, 0) forView:self.p_selectListView];
+        [self setAnchorPoint:CGPointMake(0.9, 0) forView:self.p_selectListTableView];
         
         [UIView animateWithDuration:0.3 animations:^{
             
-            self.p_selectListView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+            self.p_selectListTableView.transform = CGAffineTransformMakeScale(0.01, 0.01);
             
         } completion:^(BOOL finished) {
             
@@ -118,18 +117,9 @@
 {
     //root view
     CGFloat height = self.itemHeight * self.p_listItems.count;
-    
-    self.p_selectListView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - self.itemWidth - self.rightMargain,65,self.itemWidth,height + 10)];
-    
-    [self.view addSubview:self.p_selectListView];
-    
-    //background image
-    UIImage * bgImage  = [PPImageUtil resizableImageWithName:@"MoreFunctionFrame"];
-    self.p_selectListView.image = bgImage;
-    self.p_selectListView.layer.masksToBounds = YES;
-    
+
     //tableView
-    self.p_selectListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,15, self.itemWidth, height) style:UITableViewStylePlain];
+    self.p_selectListTableView = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - self.itemWidth - self.rightMargain,65, self.itemWidth, height) style:UITableViewStylePlain];
     [self.p_selectListTableView registerClass:[PPTZeroSelectListCell class] forCellReuseIdentifier:@"PPTZeroSelectListCell"];
     
     self.p_selectListTableView.layer.masksToBounds = YES;
@@ -137,10 +127,15 @@
     self.p_selectListTableView.dataSource      = self;
     self.p_selectListTableView.scrollEnabled   = NO;
     self.p_selectListTableView.backgroundColor = [UIColor clearColor];
+    
     self.p_selectListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.p_selectListTableView.rowHeight = self.itemHeight;
+    UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottleMaskBkg"]];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [self.p_selectListTableView setBackgroundView:imageView];
     
     
-    [self.p_selectListView addSubview:self.p_selectListTableView];
+    [self.view addSubview:self.p_selectListTableView];
     
     
     if ([ self.p_selectListTableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -160,7 +155,7 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    if ([touch.view isDescendantOfView:self.p_selectListView]) {
+    if ([touch.view isDescendantOfView:self.p_selectListTableView]) {
         return NO;
     }
     return YES;
@@ -184,7 +179,7 @@
     PPTZeroSelectListCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPTZeroSelectListCell"];
     PPListItem * item = self.p_listItems[indexPath.row];
     cell.textLabel.text = item.content;
-    cell.backgroundColor = [UIColor blackColor];
+    cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     if(indexPath.row != self.p_listItems.count - 1)
     {
@@ -207,6 +202,7 @@
 {
     return self.p_listItems.count;
 }
+
 
 
 @end
