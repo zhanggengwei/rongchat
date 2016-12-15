@@ -15,7 +15,7 @@
 @interface PPListItemViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) NSArray * p_listItems;
-@property (nonatomic, strong) UIView * p_selectListView;
+@property (nonatomic, strong) UIImageView * p_selectListView;
 @property (nonatomic, strong) UITableView * p_selectListTableView;
 
 @end
@@ -29,7 +29,7 @@
     {
         self.p_listItems = items;
         self.alphaComponent = 0.25;
-        self.rightMargain = 1;
+        self.rightMargain = 8;
     }
     return self;
 }
@@ -119,21 +119,17 @@
     //root view
     CGFloat height = self.itemHeight * self.p_listItems.count;
     
-    self.p_selectListView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - self.itemWidth - self.rightMargain,65,self.itemWidth,height + 10)];
+    self.p_selectListView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - self.itemWidth - self.rightMargain,65,self.itemWidth,height + 10)];
     
     [self.view addSubview:self.p_selectListView];
     
     //background image
-  
     UIImage * bgImage  = [PPImageUtil resizableImageWithName:@"MoreFunctionFrame"];
-    UIImageView * bgImageView = [[UIImageView alloc] initWithFrame:self.p_selectListView.bounds];
-    bgImageView.layer.masksToBounds = YES;
-    bgImageView.image = bgImage;
-    [self.p_selectListView addSubview:bgImageView];
+    self.p_selectListView.image = bgImage;
     self.p_selectListView.layer.masksToBounds = YES;
     
     //tableView
-    self.p_selectListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, self.itemWidth, height) style:UITableViewStylePlain];
+    self.p_selectListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,15, self.itemWidth, height) style:UITableViewStylePlain];
     [self.p_selectListTableView registerClass:[PPTZeroSelectListCell class] forCellReuseIdentifier:@"PPTZeroSelectListCell"];
     
     self.p_selectListTableView.layer.masksToBounds = YES;
@@ -188,7 +184,7 @@
     PPTZeroSelectListCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPTZeroSelectListCell"];
     PPListItem * item = self.p_listItems[indexPath.row];
     cell.textLabel.text = item.content;
-    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor blackColor];
     cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     if(indexPath.row != self.p_listItems.count - 1)
     {
