@@ -9,6 +9,7 @@
 #import "PPListItemViewController.h"
 #import "PPTZeroSelectListCell.h"
 #import "PPListItem.h"
+#import "PPImageUtil.h"
 
 @interface PPListItemViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 
@@ -122,19 +123,19 @@
     [self.view addSubview:self.p_selectListView];
     
     //background image
-    UIImage * bgImage = [UIImage imageNamed:@"activity_add_bg"];
-    bgImage = [bgImage resizableImageWithCapInsets:UIEdgeInsetsMake(25, 10, 10, 22)];
-    
+  
+    UIImage * bgImage  = [PPImageUtil resizableImageWithName:@"MoreFunctionFrame"];
     UIImageView * bgImageView = [[UIImageView alloc] initWithFrame:self.p_selectListView.bounds];
+    bgImageView.layer.masksToBounds = YES;
     bgImageView.image = bgImage;
     [self.p_selectListView addSubview:bgImageView];
-    bgImageView.backgroundColor = [UIColor yellowColor];
+    self.p_selectListView.layer.masksToBounds = YES;
     
     //tableView
     self.p_selectListTableView = [[UITableView alloc] initWithFrame:self.p_selectListView.bounds style:UITableViewStylePlain];
     [self.p_selectListTableView registerClass:[PPTZeroSelectListCell class] forCellReuseIdentifier:@"PPTZeroSelectListCell"];
     
-    
+    self.p_selectListTableView.layer.masksToBounds = YES;
     self.p_selectListTableView.delegate        = self;
     self.p_selectListTableView.dataSource      = self;
     self.p_selectListTableView.scrollEnabled   = NO;
@@ -183,7 +184,7 @@
     PPTZeroSelectListCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPTZeroSelectListCell"];
     PPListItem * item = self.p_listItems[indexPath.row];
     cell.textLabel.text = item.content;
-    
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

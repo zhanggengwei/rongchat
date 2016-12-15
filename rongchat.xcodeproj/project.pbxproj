@@ -62,6 +62,8 @@
 		40F5E8151E0280B7002568C5 /* PPListItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5E8141E0280B7002568C5 /* PPListItemViewController.m */; };
 		40F5E8181E028150002568C5 /* PPListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5E8171E028150002568C5 /* PPListItem.m */; };
 		40F5E81B1E0287C0002568C5 /* PPTZeroSelectListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5E81A1E0287C0002568C5 /* PPTZeroSelectListCell.m */; };
+		40F5E81D1E029E60002568C5 /* bottleSignLabelBkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F5E81C1E029E60002568C5 /* bottleSignLabelBkg@2x.png */; };
+		40F5E81F1E02A31C002568C5 /* MoreFunctionFrame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40F5E81E1E02A31C002568C5 /* MoreFunctionFrame@2x.png */; };
 		7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */; };
 		7513A2F81DE73B4500CCAB61 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F71DE73B4500CCAB61 /* Photos.framework */; };
 		7513A2FA1DE73B4C00CCAB61 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F91DE73B4C00CCAB61 /* PhotosUI.framework */; };
@@ -298,6 +300,8 @@
 		40F5E8171E028150002568C5 /* PPListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPListItem.m; sourceTree = "<group>"; };
 		40F5E8191E0287C0002568C5 /* PPTZeroSelectListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTZeroSelectListCell.h; sourceTree = "<group>"; };
 		40F5E81A1E0287C0002568C5 /* PPTZeroSelectListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTZeroSelectListCell.m; sourceTree = "<group>"; };
+		40F5E81C1E029E60002568C5 /* bottleSignLabelBkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottleSignLabelBkg@2x.png"; sourceTree = "<group>"; };
+		40F5E81E1E02A31C002568C5 /* MoreFunctionFrame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MoreFunctionFrame@2x.png"; sourceTree = "<group>"; };
 		7513A2F01DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPhotoSeleceOrTakePhotoManager.h; sourceTree = "<group>"; };
 		7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPhotoSeleceOrTakePhotoManager.m; sourceTree = "<group>"; };
 		7513A2F61DE737D600CCAB61 /* singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = singleton.h; sourceTree = "<group>"; };
@@ -760,6 +764,8 @@
 		75CEF89C1DDC9BEB00541660 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				40F5E81E1E02A31C002568C5 /* MoreFunctionFrame@2x.png */,
+				40F5E81C1E029E60002568C5 /* bottleSignLabelBkg@2x.png */,
 				409F792E1DF564C80090D67F /* common_line_g@2x.png */,
 				75DE61821DE48CA400DF1CA4 /* Country_Code.json */,
 				75CEF89D1DDC9BEB00541660 /* AddressBook */,
@@ -1051,6 +1057,7 @@
 				40785E9D1DEEA1F500875E00 /* register.storyboard in Resources */,
 				75CEF9001DDC9BEB00541660 /* bottleButtonFish@2x.png in Resources */,
 				75DE61881DE48E9800DF1CA4 /* PPSelectArea.storyboard in Resources */,
+				40F5E81F1E02A31C002568C5 /* MoreFunctionFrame@2x.png in Resources */,
 				75CEF9121DDC9BEB00541660 /* ff_IconShake@2x.png in Resources */,
 				75CEF9231DDC9BEB00541660 /* icon.png in Resources */,
 				75CEF9371DDC9BEB00541660 /* tabbar_mainframe@3x.png in Resources */,
@@ -1115,6 +1122,7 @@
 				75CEF90C1DDC9BEB00541660 /* ff_IconLocationService@2x.png in Resources */,
 				75CEF9281DDC9BEB00541660 /* me_collect@2x.png in Resources */,
 				75CEF9341DDC9BEB00541660 /* tabbar_discoverHL@2x.png in Resources */,
+				40F5E81D1E029E60002568C5 /* bottleSignLabelBkg@2x.png in Resources */,
 				75CEF92A1DDC9BEB00541660 /* me_photo@2x.png in Resources */,
 				75CEF8711DDC878500541660 /* Assets.xcassets in Resources */,
 				75CEF9071DDC9BEB00541660 /* CreditCard_ShoppingBag@2x.png in Resources */,

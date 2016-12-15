@@ -37,6 +37,9 @@
     
     self.textLabel.frame = tmpFrame;
     self.textLabel.textAlignment = NSTextAlignmentCenter;
+    self.textLabel.textColor = [UIColor whiteColor];
+    
+   // self.contentView.backgroundColor = [UIColor blackColor];
     
 }
 
