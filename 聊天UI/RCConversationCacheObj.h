@@ -11,11 +11,15 @@
 @interface RCConversationCacheObj : NSObject
 
 
++ (instancetype)shareManager;
+
+
 - (RCUserInfo *)searchUserInfoByUserId:(NSString *)indexId;
 
-- (RCUserInfo *)refreshUserInfo:(RCUserInfo *)userInfo byUserId:(NSString *)indexId;
+- (void)refreshUserInfo:(PPUserBaseInfo *)userInfo byUserId:(NSString *)indexId;
 
-- (void)saveUserInfoList:(NSArray <RCUserInfo *> *)userList;
+
+- (void)saveUserInfoList:(NSArray <PPUserBaseInfo *> *)userList;
 
 
 

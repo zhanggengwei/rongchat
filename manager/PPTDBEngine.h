@@ -24,9 +24,14 @@
 
 - (PPUserBaseInfo *)queryUser_Info;
 
+- (BOOL)updateUserInfo:(PPUserBaseInfo *)info;
+
+
 - (NSArray *)queryFriendList;
 
 - (void)loadDataBase:(NSString *)userID;
+
+
 
 
 

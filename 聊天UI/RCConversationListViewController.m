@@ -9,17 +9,26 @@
 #import "RCConversationListViewController.h"
 #import "PPViewUtil.h"
 #import "RCIM.h"
+#import "PPListItemViewController.h"
+#import "PPListItem.h"
 @interface RCConversationListViewController ()<RCIMConnectionStatusDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UIActivityIndicatorView * activityView;
 @property (nonatomic,strong) UILabel * titleLabel;
 @property (nonatomic,strong) NSMutableArray * conversationList;
 @property (nonatomic,strong) UITableView * tableView;
+@property (nonatomic,strong) UIViewController * showListController;
+@property (nonatomic,strong) UIBarButtonItem * rightItem;
+
 @end
 
 @implementation RCConversationListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.rightItem = [[UIBarButtonItem alloc]initWithTitle:@"show" style:UIBarButtonItemStylePlain target:self action:@selector(show)];
+    self.navigationItem.rightBarButtonItem = self.rightItem;
+    
     self.titleFont = [UIFont systemFontOfSize:17];
     [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
     
@@ -36,6 +45,24 @@
     //QbHpsQOXn
     
     // Do any additional setup after loading the view.
+}
+- (void)show
+{
+    PPListItem * item1 = [[PPListItem alloc]init];
+    item1.content  = @"#";
+    PPListItem * item2 = [[PPListItem alloc]init];
+    item2.content  = @"#@";
+    
+    PPListItemViewController * controller = [[PPListItemViewController alloc]initWithItems:@[item1,item2]];
+    controller.itemWidth = 100;
+    controller.itemHeight = 50;
+    controller.p_showViewController = self;
+    
+    
+    [controller show];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

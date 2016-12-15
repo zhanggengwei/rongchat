@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 
 
+
+
 @interface RCConversationListViewController : UIViewController
 
 @property (nonatomic,strong) UIFont * titleFont;//default is 15
 @property (nonatomic,strong) NSArray * conversationTypeArray;
+
+@property (nonatomic,strong) UIImage * rightImage;
+
+
 
 
 @end

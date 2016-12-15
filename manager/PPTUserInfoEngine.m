@@ -8,6 +8,7 @@
 
 #import "PPTUserInfoEngine.h"
 #import "RCContactUserInfo.h"
+#import "RCConversationCacheObj.h"
 
 @interface PPTUserInfoEngine ()
 @property (nonatomic,strong) PPUserBaseInfo * user_Info;
@@ -33,17 +34,7 @@
     [[PPTDBEngine shareManager] loadDataBase:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil]];
     self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
     self.contactList = [[PPTDBEngine shareManager]queryFriendList];
-    
     self.contactList = [self setDataTest:self.contactList];
-    
-    
-
-    //[self asynFriendList];
-    
-    
-    
-    
-    
     
     [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
         

@@ -260,7 +260,22 @@
     
 }
 
+- (BOOL)updateUserInfo:(PPUserBaseInfo *)info
+{
+    if([self.db open])
+    {
+        /*
+         indexId text  primary key not null,nickname text,displayName text,portraitUri text,updatedAt text,phone text,region text,isSelf bool
+         */
+        NSString * updateSql = [NSString stringWithFormat:@"update %@ set nickname = ?,displayName = ?,portraitUri = ?, updatedAt = ?,phone = ?,region = ? where indexId = ?",USER_INFO_TABLENAME];
+        BOOL ret  = [self.db executeUpdate:updateSql,info.user.nickname,info.displayName,info.user.portraitUri,info.updatedAt,info.user.phone,info.user.region,info.user.indexId];
+        return ret;
 
+    }
+    NSLog(@"database not opened ");
+    
+    return NO;
+}
 
 
 - (BOOL)saveContactList:(NSArray <PPUserBaseInfo *> *)contactList
