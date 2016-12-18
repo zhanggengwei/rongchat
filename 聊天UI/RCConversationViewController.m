@@ -12,6 +12,7 @@
 @property (nonatomic,strong) NSString * targedId;
 @property (nonatomic,assign) RCConversationType conversationType;
 @property (nonatomic,strong) RCUserInfo * userInfo;
+@property (nonatomic,strong) NSArray * conversationArray;
 @end
 
 @implementation RCConversationViewController
@@ -24,6 +25,11 @@
     {
         self.targedId = targetId;
         self.conversationType = conversationType;
+        self.conversationArray = [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10];
+        NSLog(@"conversationArray ==%@",self.conversationArray);
+        
+        self.conversationArray = @[RCTextMessageTypeIdentifier];
+        
     }
     return self;
 }
