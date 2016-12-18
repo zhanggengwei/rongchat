@@ -797,7 +797,7 @@ __deprecated_msg("已废弃，请使用sendMediaMessage函数。");
  但是处于性能和使用场景权衡，SDK不会在当前View立即自动刷新（会在切换到其他View的时候再刷新该用户的显示信息）。
  如果您想立即刷新，您可以在会话列表或者聊天界面reload强制刷新。
  */
-- (void)refreshUserInfoCache:(RCUserInfo *)userInfo
+- (void)refreshUserInfoCache:(PPUserBaseInfo *)userInfo
                   withUserId:(NSString *)userId;
 
 /*!

@@ -71,11 +71,11 @@
 {
 
 }
-- (void)refreshUserInfoCache:(RCUserInfo *)userInfo
+- (void)refreshUserInfoCache:(PPUserBaseInfo *)userInfo
                   withUserId:(NSString *)userId
 {
     RCConversationCacheObj * cacheManager = [RCConversationCacheObj shareManager];
-    
+    [cacheManager refreshUserInfo:userInfo byUserId:userId];
 }
 
 
