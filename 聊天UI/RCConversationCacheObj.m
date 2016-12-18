@@ -45,7 +45,7 @@
 
 - (RCUserInfo *)searchUserInfoByUserId:(NSString *)indexId
 {
-    
+   // [self.cache removeObjectForKey:indexId];
     PPUserBaseInfo * info = [self.cache objectForKey:indexId];
     if(!info)
     {

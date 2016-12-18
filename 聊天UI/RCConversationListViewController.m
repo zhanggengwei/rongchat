@@ -206,9 +206,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    RCConversationViewController * conversationController = [[RCConversationViewController alloc]init];
+     RCConversation * conversation= self.conversationList[indexPath.row];
+    RCConversationViewController * conversationController = [[RCConversationViewController alloc]initWithTargetId:conversation.targetId conversationType:conversation.conversationType];
+//    [self hidesBottomBarWhenPushed];
+    [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:conversationController animated:YES];
-    
+ 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

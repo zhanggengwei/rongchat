@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RCConversationViewController : UIViewController
+- (instancetype)initWithTargetId:(NSString *)targetId conversationType:(RCConversationType)conversationType;
 
 @end

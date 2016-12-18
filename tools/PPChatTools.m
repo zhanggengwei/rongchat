@@ -229,9 +229,11 @@
         if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
         {
             PPUserBase * base = aTaskResponse.result;
+            PPUserBaseInfo * userInfo = [PPUserBaseInfo new];
+            userInfo.user = base;
             RCUserInfo * info = [[RCUserInfo alloc]initWithUserId:userId name:base.nickname portrait:base.portraitUri];
             [[RCIM sharedRCIM]
-             refreshUserInfoCache:info
+             refreshUserInfoCache:userInfo
              withUserId:info.userId];
             completion(info);
         }
