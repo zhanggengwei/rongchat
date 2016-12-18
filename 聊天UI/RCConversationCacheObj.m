@@ -27,6 +27,8 @@
     static dispatch_once_t token;
     dispatch_once(&token, ^{
         manager = [RCConversationCacheObj new];
+       
+        
     });
     return manager;
 }
@@ -48,7 +50,14 @@
     if(!info)
     {
         info = [[PPTDBEngine shareManager]queryUser_InfoWithIndexId:indexId];
-        [self.cache setObject:info forKey:indexId];
+        if(info)
+        {
+           [self.cache setObject:info forKey:indexId];
+        }else
+        {
+            return nil;
+        }
+        
         
     }
     return [[RCContactUserInfo alloc]transFromPPUserBaseInfoToRCContactUserInfo:info].info;
@@ -57,8 +66,16 @@
 
 - (void)refreshUserInfo:(PPUserBaseInfo *)userInfo byUserId:(NSString *)indexId
 {
+    //判断是否存在
+    BOOL exists = [[PPTDBEngine shareManager]queryUser_InfoWithIndexId:indexId];
+    if(exists)
+    {
+        [[PPTDBEngine shareManager]updateUserInfo:userInfo];
+    }else
+    {
+        [[PPTDBEngine shareManager]saveUserInfo:userInfo];
+    }
     
-    [[PPTDBEngine shareManager]updateUserInfo:userInfo];
     [self.cache setObject:userInfo forKey:indexId];
     
 }
@@ -69,6 +86,5 @@
     }];
     [[PPTDBEngine shareManager]saveContactList:userList];
 }
-
 
 @end

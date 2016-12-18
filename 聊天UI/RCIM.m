@@ -71,6 +71,14 @@
 {
 
 }
+- (void)refreshUserInfoCache:(RCUserInfo *)userInfo
+                  withUserId:(NSString *)userId
+{
+    RCConversationCacheObj * cacheManager = [RCConversationCacheObj shareManager];
+    
+}
+
+
 - (void)onConnectionStatusChanged:(RCConnectionStatus)status
 {
     if(self.connectionStatusDelegate&&[self.connectionStatusDelegate respondsToSelector:@selector(onRCIMConnectionStatusChanged:)])

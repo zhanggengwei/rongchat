@@ -98,6 +98,25 @@
         
         self.ContentLabel.text = message.content;
         
+        RCUserInfo * info = [[RCConversationCacheObj shareManager] searchUserInfoByUserId:conversation.targetId];
+        if(info)
+        {
+            [self.avaturImageView sd_setImageWithURL:[NSURL URLWithString:info.portraitUri]];
+            self.receiveLabel.text = info.name;
+            
+        }else
+        {
+            if([RCIM sharedRCIM].userInfoDataSource)
+            {
+               [[RCIM sharedRCIM].userInfoDataSource getUserInfoWithUserId:conversation.targetId completion:^(RCUserInfo *userInfo) {
+                   
+                   [self.avaturImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.portraitUri]];
+                   self.receiveLabel.text = userInfo.name;
+               }];
+                
+            }
+        }
+        
     }
    // self.ContentLabel.text = conversation.lastestMessage.t
 }

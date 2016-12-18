@@ -32,8 +32,9 @@
 #pragma mark ChatUI
 
 #import "RCThemeDefine.h"
+#import "RCConversationCacheObj.h"
 
-
+#import "RCIM.h"
 
 
 #endif /* PrefixHeader_pch */

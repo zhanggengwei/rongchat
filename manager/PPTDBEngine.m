@@ -192,7 +192,7 @@
 {
     
     //[self loadDataBase:indexId];
-    PPUserBaseInfo * user_Info = [PPUserBaseInfo new];
+    PPUserBaseInfo * user_Info = nil;
     if([self.db open])
     {
         NSString * searchSql = [NSString stringWithFormat: @"select * from %@ where indexId= \'%@\'",USER_INFO_TABLENAME,indexId];
@@ -202,6 +202,8 @@
         {
             return nil;
         }
+        user_Info = [PPUserBaseInfo new];
+        
         NSString * indexID = [result stringForColumn:@"indexId"];
         NSString * nickName = [result stringForColumn:@"nickname"];
         NSString * displayName = [result stringForColumn:@"displayName"];
