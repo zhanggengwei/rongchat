@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface RCConversationViewController : UIViewController
+
+@property (nonatomic,strong) NSArray * messageArrayType;//default 文字信息
+
+
 - (instancetype)initWithTargetId:(NSString *)targetId conversationType:(RCConversationType)conversationType;
 
 @end

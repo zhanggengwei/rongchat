@@ -8,11 +8,13 @@
 
 #import "RCConversationViewController.h"
 #import "RCConversationCacheObj.h"
-@interface RCConversationViewController ()
+@interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSString * targedId;
 @property (nonatomic,assign) RCConversationType conversationType;
 @property (nonatomic,strong) RCUserInfo * userInfo;
-@property (nonatomic,strong) NSArray * conversationArray;
+@property (nonatomic,strong) NSArray * messageArray;
+@property (nonatomic,strong) UIImageView * backImageView;
+@property (nonatomic,strong) UITableView * tableView;
 @end
 
 @implementation RCConversationViewController
@@ -25,10 +27,10 @@
     {
         self.targedId = targetId;
         self.conversationType = conversationType;
-        self.conversationArray = [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10];
-        NSLog(@"conversationArray ==%@",self.conversationArray);
+        self.messageArray = [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10];
+        NSLog(@"conversationArray ==%@",self.messageArray);
         
-        self.conversationArray = @[RCTextMessageTypeIdentifier];
+        self.messageArrayType = @[RCTextMessageTypeIdentifier];
         
     }
     return self;
@@ -64,14 +66,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return  [self.messageArray count];
+}
+
+
+
+
 
 @end
