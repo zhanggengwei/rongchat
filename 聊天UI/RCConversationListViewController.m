@@ -11,6 +11,8 @@
 #import "RCIM.h"
 #import "PPListItemViewController.h"
 #import "PPListItem.h"
+#import "RCConversationViewController.h"
+#import "RCConversationListCell.h"
 @interface RCConversationListViewController ()<RCIMConnectionStatusDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UIActivityIndicatorView * activityView;
 @property (nonatomic,strong) UILabel * titleLabel;
@@ -34,7 +36,7 @@
     
     if(self.conversationTypeArray==nil || self.conversationTypeArray.count ==0)
     {
-        self.conversationTypeArray = @[@(ConversationType_PRIVATE),@(ConversationType_DISCUSSION),@(ConversationType_GROUP)];
+        self.conversationTypeArray = @[@(ConversationType_PRIVATE)];
         
     }
     self.conversationList = [NSMutableArray arrayWithArray:[[RCIMClient sharedRCIMClient] getConversationList:self.conversationTypeArray]];
@@ -42,6 +44,10 @@
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
+    
+    [self.tableView registerClass:[RCConversationListCell class] forCellReuseIdentifier:@"RCConversationListCell"];
+    
     //QbHpsQOXn
     
     // Do any additional setup after loading the view.
@@ -188,13 +194,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"];
-    cell.backgroundColor = [UIColor yellowColor];
+    RCConversationListCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCConversationListCell"];
+    RCConversation * conversation= self.conversationList[indexPath.row];
+    [cell setConversation:conversation avatarStyle:0];
+    
+    
     return cell;
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    RCConversationViewController * conversationController = [[RCConversationViewController alloc]init];
+    [self.navigationController pushViewController:conversationController animated:YES];
+    
+}
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
 
 @end

@@ -150,6 +150,7 @@
 		751598C81DF9B6870043E2C4 /* RCContactUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 751598C71DF9B6870043E2C4 /* RCContactUserInfo.m */; };
 		751598CB1DF9B8B00043E2C4 /* NSString+isValid.m in Sources */ = {isa = PBXBuildFile; fileRef = 751598CA1DF9B8B00043E2C4 /* NSString+isValid.m */; };
 		754A0BDF1E02E65F00A7C1ED /* UITableViewCell+addLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 754A0BDE1E02E65F00A7C1ED /* UITableViewCell+addLineView.m */; };
+		75643AE01E067C0D00BFE027 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75643ADF1E067C0D00BFE027 /* RCConversationListCell.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* PPConversationListViewController.m */; };
@@ -396,6 +397,8 @@
 		751598CA1DF9B8B00043E2C4 /* NSString+isValid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+isValid.m"; sourceTree = "<group>"; };
 		754A0BDD1E02E65F00A7C1ED /* UITableViewCell+addLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+addLineView.h"; sourceTree = "<group>"; };
 		754A0BDE1E02E65F00A7C1ED /* UITableViewCell+addLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+addLineView.m"; sourceTree = "<group>"; };
+		75643ADE1E067C0D00BFE027 /* RCConversationListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationListCell.h; sourceTree = "<group>"; };
+		75643ADF1E067C0D00BFE027 /* RCConversationListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationListCell.m; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -675,6 +678,8 @@
 				40F5E8141E0280B7002568C5 /* PPListItemViewController.m */,
 				40F5E8161E028150002568C5 /* PPListItem.h */,
 				40F5E8171E028150002568C5 /* PPListItem.m */,
+				75643ADE1E067C0D00BFE027 /* RCConversationListCell.h */,
+				75643ADF1E067C0D00BFE027 /* RCConversationListCell.m */,
 			);
 			path = "聊天UI";
 			sourceTree = "<group>";
@@ -1237,6 +1242,7 @@
 				409F792D1DF5649D0090D67F /* UITableViewCell+addLineView.m in Sources */,
 				40F5E8151E0280B7002568C5 /* PPListItemViewController.m in Sources */,
 				409F79331DF65B310090D67F /* RCConversationViewController.m in Sources */,
+				75643AE01E067C0D00BFE027 /* RCConversationListCell.m in Sources */,
 				409F50951DDD704100015DB7 /* rc4.m in Sources */,
 				409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */,
 				409F79361DF65BC10090D67F /* RCConversationListViewController.m in Sources */,
