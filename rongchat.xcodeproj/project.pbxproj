@@ -139,6 +139,7 @@
 		40C260C21E0396FB00823111 /* tabbar_meHL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260721E0396FB00823111 /* tabbar_meHL@2x.png */; };
 		40C260C31E0396FB00823111 /* tabbar_meHL@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260731E0396FB00823111 /* tabbar_meHL@3x.png */; };
 		40C260C61E03AF7000823111 /* PPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C260C51E03AF7000823111 /* PPBaseViewController.m */; };
+		40C260CB1E07A67000823111 /* RCIMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C260CA1E07A67000823111 /* RCIMBaseViewController.m */; };
 		40F3B2C31E02584500775304 /* RCConversationCacheObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F3B2C21E02584500775304 /* RCConversationCacheObj.m */; };
 		40F5E8151E0280B7002568C5 /* PPListItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5E8141E0280B7002568C5 /* PPListItemViewController.m */; };
 		40F5E8181E028150002568C5 /* PPListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F5E8171E028150002568C5 /* PPListItem.m */; };
@@ -376,6 +377,8 @@
 		40C260731E0396FB00823111 /* tabbar_meHL@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_meHL@3x.png"; sourceTree = "<group>"; };
 		40C260C41E03AF7000823111 /* PPBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPBaseViewController.h; sourceTree = "<group>"; };
 		40C260C51E03AF7000823111 /* PPBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPBaseViewController.m; sourceTree = "<group>"; };
+		40C260C91E07A67000823111 /* RCIMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMBaseViewController.h; sourceTree = "<group>"; };
+		40C260CA1E07A67000823111 /* RCIMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMBaseViewController.m; sourceTree = "<group>"; };
 		40F3B2C11E02584500775304 /* RCConversationCacheObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationCacheObj.h; sourceTree = "<group>"; };
 		40F3B2C21E02584500775304 /* RCConversationCacheObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationCacheObj.m; sourceTree = "<group>"; };
 		40F5E8131E0280B7002568C5 /* PPListItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPListItemViewController.h; sourceTree = "<group>"; };
@@ -680,6 +683,8 @@
 				40F5E8171E028150002568C5 /* PPListItem.m */,
 				75643ADE1E067C0D00BFE027 /* RCConversationListCell.h */,
 				75643ADF1E067C0D00BFE027 /* RCConversationListCell.m */,
+				40C260C91E07A67000823111 /* RCIMBaseViewController.h */,
+				40C260CA1E07A67000823111 /* RCIMBaseViewController.m */,
 			);
 			path = "聊天UI";
 			sourceTree = "<group>";
@@ -1279,6 +1284,7 @@
 				409F50751DDD6E5100015DB7 /* PPChatTools.m in Sources */,
 				40785E981DEE9E7900875E00 /* PPResetPassWordViewController.m in Sources */,
 				409F50661DDD6E3100015DB7 /* PPDateEngine.m in Sources */,
+				40C260CB1E07A67000823111 /* RCIMBaseViewController.m in Sources */,
 				409F50AF1DDD721500015DB7 /* PPPersonTableViewCell.m in Sources */,
 				409F506A1DDD6E3100015DB7 /* PPTDBEngine.m in Sources */,
 				409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */,
