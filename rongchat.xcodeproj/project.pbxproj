@@ -16,6 +16,9 @@
 		40785E991DEE9E7900875E00 /* RJBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E941DEE9E7900875E00 /* RJBackView.m */; };
 		40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */; };
 		40785E9D1DEEA1F500875E00 /* register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40785E9C1DEEA1F500875E00 /* register.storyboard */; };
+		409B33361E08FAB4003916CC /* LCCKConversationListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B33351E08FAB3003916CC /* LCCKConversationListViewModel.m */; };
+		409B333C1E0927BC003916CC /* LCCKConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B333B1E0927BC003916CC /* LCCKConversationListCell.m */; };
+		409B333F1E0928EB003916CC /* LCCKBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B333E1E0928EB003916CC /* LCCKBadgeView.m */; };
 		409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */; };
 		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
 		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
@@ -236,6 +239,12 @@
 		40785E961DEE9E7900875E00 /* UIButton+ButtonThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ButtonThread.h"; sourceTree = "<group>"; };
 		40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ButtonThread.m"; sourceTree = "<group>"; };
 		40785E9C1DEEA1F500875E00 /* register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = register.storyboard; sourceTree = "<group>"; };
+		409B33341E08FAB3003916CC /* LCCKConversationListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKConversationListViewModel.h; sourceTree = "<group>"; };
+		409B33351E08FAB3003916CC /* LCCKConversationListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKConversationListViewModel.m; sourceTree = "<group>"; };
+		409B333A1E0927BC003916CC /* LCCKConversationListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKConversationListCell.h; sourceTree = "<group>"; };
+		409B333B1E0927BC003916CC /* LCCKConversationListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKConversationListCell.m; sourceTree = "<group>"; };
+		409B333D1E0928EB003916CC /* LCCKBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKBadgeView.h; sourceTree = "<group>"; };
+		409B333E1E0928EB003916CC /* LCCKBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKBadgeView.m; sourceTree = "<group>"; };
 		409F504D1DDD6E3100015DB7 /* kPPObserverDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kPPObserverDef.h; sourceTree = "<group>"; };
 		409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kPPObserverDef.m; sourceTree = "<group>"; };
 		409F50501DDD6E3100015DB7 /* OTFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTFileManager.h; sourceTree = "<group>"; };
@@ -566,6 +575,17 @@
 			path = QRCode;
 			sourceTree = "<group>";
 		};
+		409B33391E0927BC003916CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				409B333D1E0928EB003916CC /* LCCKBadgeView.h */,
+				409B333E1E0928EB003916CC /* LCCKBadgeView.m */,
+				409B333A1E0927BC003916CC /* LCCKConversationListCell.h */,
+				409B333B1E0927BC003916CC /* LCCKConversationListCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		409F504C1DDD6E3100015DB7 /* manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -723,6 +743,7 @@
 		409F79301DF65B210090D67F /* 聊天UI */ = {
 			isa = PBXGroup;
 			children = (
+				409B33391E0927BC003916CC /* View */,
 				758E89C51E080D2300D5DD4E /* DisableImageMemoryCache */,
 				758E89BD1E080C7F00D5DD4E /* blocl */,
 				758E89A41E080BD900D5DD4E /* Categories */,
@@ -760,13 +781,12 @@
 				40F5E8171E028150002568C5 /* PPListItem.m */,
 				75643ADE1E067C0D00BFE027 /* RCConversationListCell.h */,
 				75643ADF1E067C0D00BFE027 /* RCConversationListCell.m */,
-
 				40C260C91E07A67000823111 /* RCIMBaseViewController.h */,
 				40C260CA1E07A67000823111 /* RCIMBaseViewController.m */,
-
 				758E89891E0807CC00D5DD4E /* RCIMStatusView.h */,
 				758E898A1E0807CC00D5DD4E /* RCIMStatusView.m */,
-
+				409B33341E08FAB3003916CC /* LCCKConversationListViewModel.h */,
+				409B33351E08FAB3003916CC /* LCCKConversationListViewModel.m */,
 			);
 			path = "聊天UI";
 			sourceTree = "<group>";
@@ -1418,7 +1438,9 @@
 				75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */,
 				409F50821DDD6E6F00015DB7 /* PPRegisterViewController.m in Sources */,
 				758E898B1E0807CC00D5DD4E /* RCIMStatusView.m in Sources */,
+				409B333C1E0927BC003916CC /* LCCKConversationListCell.m in Sources */,
 				409F50761DDD6E5100015DB7 /* PPTool.m in Sources */,
+				409B333F1E0928EB003916CC /* LCCKBadgeView.m in Sources */,
 				409F50931DDD704100015DB7 /* des.m in Sources */,
 				758E89B81E080BD900D5DD4E /* NSString+LCCKMD5.m in Sources */,
 				409F50AA1DDD721500015DB7 /* PPInfoMessageViewController.m in Sources */,
@@ -1433,6 +1455,7 @@
 				409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */,
 				758E89B71E080BD900D5DD4E /* NSString+LCCKExtension.m in Sources */,
 				409F50961DDD704100015DB7 /* UrlDecode.m in Sources */,
+				409B33361E08FAB4003916CC /* LCCKConversationListViewModel.m in Sources */,
 				40785E901DEE932300875E00 /* PPUpdateNickNameController.m in Sources */,
 				75D472BB1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m in Sources */,
 				754A0BDF1E02E65F00A7C1ED /* UITableViewCell+addLineView.m in Sources */,
