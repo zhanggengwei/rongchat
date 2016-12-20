@@ -760,13 +760,13 @@
 				40F5E8171E028150002568C5 /* PPListItem.m */,
 				75643ADE1E067C0D00BFE027 /* RCConversationListCell.h */,
 				75643ADF1E067C0D00BFE027 /* RCConversationListCell.m */,
-<<<<<<< HEAD
+
 				40C260C91E07A67000823111 /* RCIMBaseViewController.h */,
 				40C260CA1E07A67000823111 /* RCIMBaseViewController.m */,
-=======
+
 				758E89891E0807CC00D5DD4E /* RCIMStatusView.h */,
 				758E898A1E0807CC00D5DD4E /* RCIMStatusView.m */,
->>>>>>> origin/master
+
 			);
 			path = "聊天UI";
 			sourceTree = "<group>";
