@@ -26,6 +26,7 @@ PODS:
   - AMapSearch (4.2.0):
     - AMapFoundation (~> 1.0)
   - Bugly (2.4.2)
+  - DACircularProgress (2.3.1)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -44,8 +45,10 @@ PODS:
   - Masonry (0.6.4)
   - MBProgressHUD (0.8)
   - MD5Digest (1.1.0)
+  - MJRefresh (3.1.12)
   - ODRefreshControl (1.2)
   - PinYin4Objc (1.1.1)
+  - pop (1.0.9)
   - RongCloudIMLib (2.7.3)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
@@ -70,6 +73,7 @@ DEPENDENCIES:
   - AMapLocation (~> 2.1.1)
   - AMapSearch (~> 4.2.0)
   - Bugly (~> 2.4.2)
+  - DACircularProgress (~> 2.3.1)
   - FMDB
   - iAppInfos (~> 0.2.1)
   - ICEVersionUpdate (~> 1.0.0)
@@ -81,8 +85,10 @@ DEPENDENCIES:
   - Masonry (~> 0.6.1)
   - MBProgressHUD (= 0.8)
   - MD5Digest (~> 1.1.0)
+  - MJRefresh (~> 3.1.12)
   - ODRefreshControl (~> 1.2)
   - PinYin4Objc (~> 1.1.1)
+  - pop (~> 1.0.9)
   - RongCloudIMLib (~> 2.7.3)
   - SDWebImage (~> 3.7.1)
   - SFHFKeychainUtils (~> 0.0.1)
@@ -97,6 +103,7 @@ SPEC CHECKSUMS:
   AMapLocation: dd203f76b034ef5cb546600f4e1ffad2a3a14072
   AMapSearch: 788020fca7ed18819e8bc2bfca716a6775a05ada
   Bugly: b09cd3c7e54048a0e079be88a7a99610f14eab8f
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   iAppInfos: 090ecd9a694be25968bbdbdbff97841b301a9107
   ICEVersionUpdate: 28cbd6aecca9f9eb79afb853a066bd5abccb5e39
@@ -108,8 +115,10 @@ SPEC CHECKSUMS:
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MBProgressHUD: 8688c331cb64702283be37ab8d7d329cdd25f251
   MD5Digest: fea371215507cfcdc3c9633d02cffc7fd075ebc3
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   RongCloudIMLib: c37ff86690130df77262dcb4dd227dd443299cea
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SFHFKeychainUtils: 9576b411a79a058f4d5381ace6f3242b9a62e664
@@ -121,6 +130,6 @@ SPEC CHECKSUMS:
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 584948a16bd3482cea8ea387fe0df8495c21f0f6
+PODFILE CHECKSUM: 2679d5d3ff8d6a595dbd8b9cd3240d72db8f16e1
 
-COCOAPODS: 1.1.0.beta.2
+COCOAPODS: 1.0.1

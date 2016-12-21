@@ -103,8 +103,8 @@
 #pragma mark - alert and async utils
 
 - (void)alert:(NSString *)message {
-//    LCCKShowNotificationBlock showNotificationBlock = [LCCKUIService sharedInstance].showNotificationBlock;
-//    !showNotificationBlock ?: showNotificationBlock(self, message, nil, LCCKMessageNotificationTypeError);
+//    RCIMShowNotificationBlock showNotificationBlock = [RCIMUIService sharedInstance].showNotificationBlock;
+//    !showNotificationBlock ?: showNotificationBlock(self, message, nil, RCIMMessageNotificationTypeError);
 }
 
 - (BOOL)alertAVIMError:(NSError *)error {

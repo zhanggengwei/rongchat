@@ -25,6 +25,9 @@ def pods
     pod 'SFHFKeychainUtils', '~> 0.0.1'
     pod 'MD5Digest', '~> 1.1.0'
     pod 'IQKeyboardManager'
+    pod 'MJRefresh', '~> 3.1.12'
+    pod 'DACircularProgress', '~> 2.3.1'
+    pod 'pop', '~> 1.0.9'
     
     #log
     #QRCode

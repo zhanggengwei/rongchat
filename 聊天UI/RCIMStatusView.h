@@ -15,7 +15,7 @@
 
 @end
 
-static const CGFloat LCCKStatusViewHight = 44.0;
+static const CGFloat RCIMStatusViewHight = 44.0;
 
 @interface RCIMStatusView : UIView
 @property (nonatomic, weak) id<RCIMStatusViewDelegate> delegate;

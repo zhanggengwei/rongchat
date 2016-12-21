@@ -6,12 +6,12 @@
 //  Created by vd on 2016/12/19.
 //  Copyright © 2016年 vd. All rights reserved.
 //
-static CGFloat LCCKStatusImageViewHeight = 20;
-static CGFloat LCCKHorizontalSpacing = 15;
-static CGFloat LCCKHorizontalLittleSpacing = 5;
+static CGFloat RCIMStatusImageViewHeight = 20;
+static CGFloat RCIMHorizontalSpacing = 15;
+static CGFloat RCIMHorizontalLittleSpacing = 5;
 #import "RCIMStatusView.h"
-#import "UIImage+LCCKExtension.h"
-#import "LCCKConstants.h"
+#import "UIImage+RCIMExtension.h"
+#import "RCIMConstants.h"
 
 @interface RCIMStatusView ()
 @property (nonatomic,strong) UILabel * statusLabel;
@@ -44,7 +44,7 @@ static CGFloat LCCKHorizontalLittleSpacing = 5;
 - (UIImageView *)statusImageView
 {
     if (_statusImageView == nil) {
-        _statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(LCCKHorizontalSpacing, (LCCKStatusViewHight - LCCKStatusImageViewHeight) / 2, LCCKStatusImageViewHeight, LCCKStatusImageViewHeight)];
+        _statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(RCIMHorizontalSpacing, (RCIMStatusViewHight - RCIMStatusImageViewHeight) / 2, RCIMStatusImageViewHeight, RCIMStatusImageViewHeight)];
         _statusImageView.image =  ({
             NSString *imageName = @"MessageSendFail";
             UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"MessageBubble" bundleForClass:[self class]];
@@ -54,10 +54,10 @@ static CGFloat LCCKHorizontalLittleSpacing = 5;
 }
 - (UILabel *)statusLabel {
     if (_statusLabel == nil) {
-        _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_statusImageView.frame) + LCCKHorizontalLittleSpacing, 0, self.frame.size.width - CGRectGetMaxX(_statusImageView.frame) - LCCKHorizontalSpacing - LCCKHorizontalLittleSpacing, LCCKStatusViewHight)];
+        _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_statusImageView.frame) + RCIMHorizontalLittleSpacing, 0, self.frame.size.width - CGRectGetMaxX(_statusImageView.frame) - RCIMHorizontalSpacing - RCIMHorizontalLittleSpacing, RCIMStatusViewHight)];
         _statusLabel.font = [UIFont systemFontOfSize:15.0];
         _statusLabel.textColor = [UIColor grayColor];
-        _statusLabel.text = LCCKLocalizedStrings(@"netDisconnected");
+        _statusLabel.text = RCIMLocalizedStrings(@"netDisconnected");
     }
     return _statusLabel;
 }

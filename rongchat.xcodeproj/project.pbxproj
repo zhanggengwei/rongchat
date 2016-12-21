@@ -16,7 +16,7 @@
 		40785E991DEE9E7900875E00 /* RJBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E941DEE9E7900875E00 /* RJBackView.m */; };
 		40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */; };
 		40785E9D1DEEA1F500875E00 /* register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40785E9C1DEEA1F500875E00 /* register.storyboard */; };
-		409B33361E08FAB4003916CC /* LCCKConversationListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B33351E08FAB3003916CC /* LCCKConversationListViewModel.m */; };
+		409B33361E08FAB4003916CC /* RCIMConversationListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B33351E08FAB3003916CC /* RCIMConversationListViewModel.m */; };
 		409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */; };
 		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
 		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
@@ -154,14 +154,36 @@
 		754A0BDF1E02E65F00A7C1ED /* UITableViewCell+addLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 754A0BDE1E02E65F00A7C1ED /* UITableViewCell+addLineView.m */; };
 		75643AE01E067C0D00BFE027 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75643ADF1E067C0D00BFE027 /* RCConversationListCell.m */; };
 		758E898B1E0807CC00D5DD4E /* RCIMStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E898A1E0807CC00D5DD4E /* RCIMStatusView.m */; };
-		758E8B5B1E0A9FBD00D5DD4E /* NSBundle+LCCKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B4C1E0A9FBD00D5DD4E /* NSBundle+LCCKExtension.m */; };
-		758E8B5C1E0A9FBD00D5DD4E /* NSFileManager+LCCKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B4E1E0A9FBD00D5DD4E /* NSFileManager+LCCKExtension.m */; };
-		758E8B5D1E0A9FBD00D5DD4E /* NSString+LCCKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B501E0A9FBD00D5DD4E /* NSString+LCCKExtension.m */; };
-		758E8B5E1E0A9FBD00D5DD4E /* NSString+LCCKMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B521E0A9FBD00D5DD4E /* NSString+LCCKMD5.m */; };
-		758E8B5F1E0A9FBD00D5DD4E /* UIColor+LCCKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B541E0A9FBD00D5DD4E /* UIColor+LCCKExtension.m */; };
-		758E8B601E0A9FBD00D5DD4E /* UIImage+LCCKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B561E0A9FBD00D5DD4E /* UIImage+LCCKExtension.m */; };
-		758E8B611E0A9FBD00D5DD4E /* UIImageView+LCCKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B581E0A9FBD00D5DD4E /* UIImageView+LCCKExtension.m */; };
-		758E8B621E0A9FBD00D5DD4E /* UIView+LCCKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B5A1E0A9FBD00D5DD4E /* UIView+LCCKExtension.m */; };
+		758E8B5B1E0A9FBD00D5DD4E /* NSBundle+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B4C1E0A9FBD00D5DD4E /* NSBundle+RCIMExtension.m */; };
+		758E8B5C1E0A9FBD00D5DD4E /* NSFileManager+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B4E1E0A9FBD00D5DD4E /* NSFileManager+RCIMExtension.m */; };
+		758E8B5D1E0A9FBD00D5DD4E /* NSString+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B501E0A9FBD00D5DD4E /* NSString+RCIMExtension.m */; };
+		758E8B5E1E0A9FBD00D5DD4E /* NSString+RCIMMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B521E0A9FBD00D5DD4E /* NSString+RCIMMD5.m */; };
+		758E8B5F1E0A9FBD00D5DD4E /* UIColor+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B541E0A9FBD00D5DD4E /* UIColor+RCIMExtension.m */; };
+		758E8B601E0A9FBD00D5DD4E /* UIImage+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B561E0A9FBD00D5DD4E /* UIImage+RCIMExtension.m */; };
+		758E8B611E0A9FBD00D5DD4E /* UIImageView+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B581E0A9FBD00D5DD4E /* UIImageView+RCIMExtension.m */; };
+		758E8B621E0A9FBD00D5DD4E /* UIView+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B5A1E0A9FBD00D5DD4E /* UIView+RCIMExtension.m */; };
+		758E8B921E0AC6EB00D5DD4E /* RCIMError.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B671E0AC6EB00D5DD4E /* RCIMError.m */; };
+		758E8B931E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B691E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m */; };
+		758E8B941E0AC6EB00D5DD4E /* RCIMAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B6C1E0AC6EB00D5DD4E /* RCIMAlertController.m */; };
+		758E8B951E0AC6EB00D5DD4E /* RCIMDeallocExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B701E0AC6EB00D5DD4E /* RCIMDeallocExecutor.m */; };
+		758E8B961E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B721E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.m */; };
+		758E8B971E0AC6EB00D5DD4E /* RCIMCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B751E0AC6EB00D5DD4E /* RCIMCaptionView.m */; };
+		758E8B981E0AC6EB00D5DD4E /* RCIMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B781E0AC6EB00D5DD4E /* RCIMPhoto.m */; };
+		758E8B991E0AC6EB00D5DD4E /* RCIMPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B7A1E0AC6EB00D5DD4E /* RCIMPhotoBrowser.m */; };
+		758E8B9A1E0AC6EB00D5DD4E /* RCIMTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B7D1E0AC6EB00D5DD4E /* RCIMTapDetectingImageView.m */; };
+		758E8B9B1E0AC6EB00D5DD4E /* RCIMTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B7F1E0AC6EB00D5DD4E /* RCIMTapDetectingView.m */; };
+		758E8B9C1E0AC6EB00D5DD4E /* RCIMZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B811E0AC6EB00D5DD4E /* RCIMZoomingScrollView.m */; };
+		758E8B9D1E0AC6EB00D5DD4E /* RCIMSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B851E0AC6EB00D5DD4E /* RCIMSafariActivity.m */; };
+		758E8B9E1E0AC6EB00D5DD4E /* RCIMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B881E0AC6EB00D5DD4E /* RCIMWebViewController.m */; };
+		758E8B9F1E0AC6EB00D5DD4E /* RCIMWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B8B1E0AC6EB00D5DD4E /* RCIMWebViewProgress.m */; };
+		758E8BA01E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B8D1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m */; };
+		758E8BA11E0AC6EB00D5DD4E /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758E8B8F1E0AC6EB00D5DD4E /* lame.framework */; };
+		758E8BA21E0AC6EB00D5DD4E /* Mp3Recorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B911E0AC6EB00D5DD4E /* Mp3Recorder.m */; };
+		758E8BA51E0AD5BF00D5DD4E /* RCIMImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8BA41E0AD5BF00D5DD4E /* RCIMImageManager.m */; };
+		758E8BAE1E0AD5F900D5DD4E /* RCIMWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8BA71E0AD5F900D5DD4E /* RCIMWeakReference.m */; };
+		758E8BAF1E0AD5F900D5DD4E /* NSBundle+RCIMCaleArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8BA81E0AD5F900D5DD4E /* NSBundle+RCIMCaleArray.m */; };
+		758E8BB01E0AD5F900D5DD4E /* NSMutableDictionary+LCCKWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8BAB1E0AD5F900D5DD4E /* NSMutableDictionary+LCCKWeakReference.m */; };
+		758E8BB11E0AD5F900D5DD4E /* NSString+RCIMAddScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8BAD1E0AD5F900D5DD4E /* NSString+RCIMAddScale.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* PPConversationListViewController.m */; };
@@ -219,8 +241,8 @@
 		40785E961DEE9E7900875E00 /* UIButton+ButtonThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ButtonThread.h"; sourceTree = "<group>"; };
 		40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ButtonThread.m"; sourceTree = "<group>"; };
 		40785E9C1DEEA1F500875E00 /* register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = register.storyboard; sourceTree = "<group>"; };
-		409B33341E08FAB3003916CC /* LCCKConversationListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKConversationListViewModel.h; sourceTree = "<group>"; };
-		409B33351E08FAB3003916CC /* LCCKConversationListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKConversationListViewModel.m; sourceTree = "<group>"; };
+		409B33341E08FAB3003916CC /* RCIMConversationListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMConversationListViewModel.h; sourceTree = "<group>"; };
+		409B33351E08FAB3003916CC /* RCIMConversationListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMConversationListViewModel.m; sourceTree = "<group>"; };
 		409F504D1DDD6E3100015DB7 /* kPPObserverDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kPPObserverDef.h; sourceTree = "<group>"; };
 		409F504E1DDD6E3100015DB7 /* kPPObserverDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kPPObserverDef.m; sourceTree = "<group>"; };
 		409F50501DDD6E3100015DB7 /* OTFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTFileManager.h; sourceTree = "<group>"; };
@@ -416,23 +438,70 @@
 		75643ADF1E067C0D00BFE027 /* RCConversationListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationListCell.m; sourceTree = "<group>"; };
 		758E89891E0807CC00D5DD4E /* RCIMStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMStatusView.h; sourceTree = "<group>"; };
 		758E898A1E0807CC00D5DD4E /* RCIMStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMStatusView.m; sourceTree = "<group>"; };
-		758E89A31E080B2300D5DD4E /* LCCKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKConstants.h; sourceTree = "<group>"; };
-		758E8B4B1E0A9FBD00D5DD4E /* NSBundle+LCCKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+LCCKExtension.h"; sourceTree = "<group>"; };
-		758E8B4C1E0A9FBD00D5DD4E /* NSBundle+LCCKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+LCCKExtension.m"; sourceTree = "<group>"; };
-		758E8B4D1E0A9FBD00D5DD4E /* NSFileManager+LCCKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+LCCKExtension.h"; sourceTree = "<group>"; };
-		758E8B4E1E0A9FBD00D5DD4E /* NSFileManager+LCCKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+LCCKExtension.m"; sourceTree = "<group>"; };
-		758E8B4F1E0A9FBD00D5DD4E /* NSString+LCCKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LCCKExtension.h"; sourceTree = "<group>"; };
-		758E8B501E0A9FBD00D5DD4E /* NSString+LCCKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LCCKExtension.m"; sourceTree = "<group>"; };
-		758E8B511E0A9FBD00D5DD4E /* NSString+LCCKMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LCCKMD5.h"; sourceTree = "<group>"; };
-		758E8B521E0A9FBD00D5DD4E /* NSString+LCCKMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LCCKMD5.m"; sourceTree = "<group>"; };
-		758E8B531E0A9FBD00D5DD4E /* UIColor+LCCKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+LCCKExtension.h"; sourceTree = "<group>"; };
-		758E8B541E0A9FBD00D5DD4E /* UIColor+LCCKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LCCKExtension.m"; sourceTree = "<group>"; };
-		758E8B551E0A9FBD00D5DD4E /* UIImage+LCCKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LCCKExtension.h"; sourceTree = "<group>"; };
-		758E8B561E0A9FBD00D5DD4E /* UIImage+LCCKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LCCKExtension.m"; sourceTree = "<group>"; };
-		758E8B571E0A9FBD00D5DD4E /* UIImageView+LCCKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LCCKExtension.h"; sourceTree = "<group>"; };
-		758E8B581E0A9FBD00D5DD4E /* UIImageView+LCCKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LCCKExtension.m"; sourceTree = "<group>"; };
-		758E8B591E0A9FBD00D5DD4E /* UIView+LCCKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LCCKExtension.h"; sourceTree = "<group>"; };
-		758E8B5A1E0A9FBD00D5DD4E /* UIView+LCCKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LCCKExtension.m"; sourceTree = "<group>"; };
+		758E89A31E080B2300D5DD4E /* RCIMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMConstants.h; sourceTree = "<group>"; };
+		758E8B4B1E0A9FBD00D5DD4E /* NSBundle+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+RCIMExtension.h"; sourceTree = "<group>"; };
+		758E8B4C1E0A9FBD00D5DD4E /* NSBundle+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+RCIMExtension.m"; sourceTree = "<group>"; };
+		758E8B4D1E0A9FBD00D5DD4E /* NSFileManager+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+RCIMExtension.h"; sourceTree = "<group>"; };
+		758E8B4E1E0A9FBD00D5DD4E /* NSFileManager+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+RCIMExtension.m"; sourceTree = "<group>"; };
+		758E8B4F1E0A9FBD00D5DD4E /* NSString+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RCIMExtension.h"; sourceTree = "<group>"; };
+		758E8B501E0A9FBD00D5DD4E /* NSString+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RCIMExtension.m"; sourceTree = "<group>"; };
+		758E8B511E0A9FBD00D5DD4E /* NSString+RCIMMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RCIMMD5.h"; sourceTree = "<group>"; };
+		758E8B521E0A9FBD00D5DD4E /* NSString+RCIMMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RCIMMD5.m"; sourceTree = "<group>"; };
+		758E8B531E0A9FBD00D5DD4E /* UIColor+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RCIMExtension.h"; sourceTree = "<group>"; };
+		758E8B541E0A9FBD00D5DD4E /* UIColor+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RCIMExtension.m"; sourceTree = "<group>"; };
+		758E8B551E0A9FBD00D5DD4E /* UIImage+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RCIMExtension.h"; sourceTree = "<group>"; };
+		758E8B561E0A9FBD00D5DD4E /* UIImage+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RCIMExtension.m"; sourceTree = "<group>"; };
+		758E8B571E0A9FBD00D5DD4E /* UIImageView+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RCIMExtension.h"; sourceTree = "<group>"; };
+		758E8B581E0A9FBD00D5DD4E /* UIImageView+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RCIMExtension.m"; sourceTree = "<group>"; };
+		758E8B591E0A9FBD00D5DD4E /* UIView+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RCIMExtension.h"; sourceTree = "<group>"; };
+		758E8B5A1E0A9FBD00D5DD4E /* UIView+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RCIMExtension.m"; sourceTree = "<group>"; };
+		758E8B651E0AC6EB00D5DD4E /* RCIMDateToolsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMDateToolsConstants.h; sourceTree = "<group>"; };
+		758E8B661E0AC6EB00D5DD4E /* RCIMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMError.h; sourceTree = "<group>"; };
+		758E8B671E0AC6EB00D5DD4E /* RCIMError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMError.m; sourceTree = "<group>"; };
+		758E8B681E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RCIMDateTools.h"; sourceTree = "<group>"; };
+		758E8B691E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+RCIMDateTools.m"; sourceTree = "<group>"; };
+		758E8B6B1E0AC6EB00D5DD4E /* RCIMAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMAlertController.h; sourceTree = "<group>"; };
+		758E8B6C1E0AC6EB00D5DD4E /* RCIMAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMAlertController.m; sourceTree = "<group>"; };
+		758E8B6E1E0AC6EB00D5DD4E /* RCIMDeallocBlockExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMDeallocBlockExecutor.h; sourceTree = "<group>"; };
+		758E8B6F1E0AC6EB00D5DD4E /* RCIMDeallocExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMDeallocExecutor.h; sourceTree = "<group>"; };
+		758E8B701E0AC6EB00D5DD4E /* RCIMDeallocExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMDeallocExecutor.m; sourceTree = "<group>"; };
+		758E8B711E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RCIMDeallocBlockExecutor.h"; sourceTree = "<group>"; };
+		758E8B721E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RCIMDeallocBlockExecutor.m"; sourceTree = "<group>"; };
+		758E8B741E0AC6EB00D5DD4E /* RCIMCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMCaptionView.h; sourceTree = "<group>"; };
+		758E8B751E0AC6EB00D5DD4E /* RCIMCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMCaptionView.m; sourceTree = "<group>"; };
+		758E8B761E0AC6EB00D5DD4E /* RCIMPBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMPBConstants.h; sourceTree = "<group>"; };
+		758E8B771E0AC6EB00D5DD4E /* RCIMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMPhoto.h; sourceTree = "<group>"; };
+		758E8B781E0AC6EB00D5DD4E /* RCIMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMPhoto.m; sourceTree = "<group>"; };
+		758E8B791E0AC6EB00D5DD4E /* RCIMPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMPhotoBrowser.h; sourceTree = "<group>"; };
+		758E8B7A1E0AC6EB00D5DD4E /* RCIMPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMPhotoBrowser.m; sourceTree = "<group>"; };
+		758E8B7B1E0AC6EB00D5DD4E /* RCIMPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMPhotoProtocol.h; sourceTree = "<group>"; };
+		758E8B7C1E0AC6EB00D5DD4E /* RCIMTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMTapDetectingImageView.h; sourceTree = "<group>"; };
+		758E8B7D1E0AC6EB00D5DD4E /* RCIMTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMTapDetectingImageView.m; sourceTree = "<group>"; };
+		758E8B7E1E0AC6EB00D5DD4E /* RCIMTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMTapDetectingView.h; sourceTree = "<group>"; };
+		758E8B7F1E0AC6EB00D5DD4E /* RCIMTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMTapDetectingView.m; sourceTree = "<group>"; };
+		758E8B801E0AC6EB00D5DD4E /* RCIMZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMZoomingScrollView.h; sourceTree = "<group>"; };
+		758E8B811E0AC6EB00D5DD4E /* RCIMZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMZoomingScrollView.m; sourceTree = "<group>"; };
+		758E8B841E0AC6EB00D5DD4E /* RCIMSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMSafariActivity.h; sourceTree = "<group>"; };
+		758E8B851E0AC6EB00D5DD4E /* RCIMSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMSafariActivity.m; sourceTree = "<group>"; };
+		758E8B871E0AC6EB00D5DD4E /* RCIMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMWebViewController.h; sourceTree = "<group>"; };
+		758E8B881E0AC6EB00D5DD4E /* RCIMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMWebViewController.m; sourceTree = "<group>"; };
+		758E8B8A1E0AC6EB00D5DD4E /* RCIMWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMWebViewProgress.h; sourceTree = "<group>"; };
+		758E8B8B1E0AC6EB00D5DD4E /* RCIMWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMWebViewProgress.m; sourceTree = "<group>"; };
+		758E8B8C1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMWebViewProgressView.h; sourceTree = "<group>"; };
+		758E8B8D1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMWebViewProgressView.m; sourceTree = "<group>"; };
+		758E8B8F1E0AC6EB00D5DD4E /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lame.framework; sourceTree = "<group>"; };
+		758E8B901E0AC6EB00D5DD4E /* Mp3Recorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mp3Recorder.h; sourceTree = "<group>"; };
+		758E8B911E0AC6EB00D5DD4E /* Mp3Recorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mp3Recorder.m; sourceTree = "<group>"; };
+		758E8BA31E0AD5BF00D5DD4E /* RCIMImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMImageManager.h; sourceTree = "<group>"; };
+		758E8BA41E0AD5BF00D5DD4E /* RCIMImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMImageManager.m; sourceTree = "<group>"; };
+		758E8BA61E0AD5F900D5DD4E /* RCIMWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMWeakReference.h; sourceTree = "<group>"; };
+		758E8BA71E0AD5F900D5DD4E /* RCIMWeakReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMWeakReference.m; sourceTree = "<group>"; };
+		758E8BA81E0AD5F900D5DD4E /* NSBundle+RCIMCaleArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+RCIMCaleArray.m"; sourceTree = "<group>"; };
+		758E8BA91E0AD5F900D5DD4E /* NSBundle+RCIMSCaleArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+RCIMSCaleArray.h"; sourceTree = "<group>"; };
+		758E8BAA1E0AD5F900D5DD4E /* NSMutableDictionary+RCIMWeakReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+RCIMWeakReference.h"; sourceTree = "<group>"; };
+		758E8BAB1E0AD5F900D5DD4E /* NSMutableDictionary+LCCKWeakReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+LCCKWeakReference.m"; sourceTree = "<group>"; };
+		758E8BAC1E0AD5F900D5DD4E /* NSString+RCIMAddScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RCIMAddScale.h"; sourceTree = "<group>"; };
+		758E8BAD1E0AD5F900D5DD4E /* NSString+RCIMAddScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RCIMAddScale.m"; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -491,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7513A2FA1DE73B4C00CCAB61 /* PhotosUI.framework in Frameworks */,
+				758E8BA11E0AC6EB00D5DD4E /* lame.framework in Frameworks */,
 				7513A2F81DE73B4500CCAB61 /* Photos.framework in Frameworks */,
 				008506534756DB82E16B34FA /* libPods-rongchat.a in Frameworks */,
 			);
@@ -682,8 +752,19 @@
 		409F79301DF65B210090D67F /* 聊天UI */ = {
 			isa = PBXGroup;
 			children = (
+				758E8BA61E0AD5F900D5DD4E /* RCIMWeakReference.h */,
+				758E8BA71E0AD5F900D5DD4E /* RCIMWeakReference.m */,
+				758E8BA81E0AD5F900D5DD4E /* NSBundle+RCIMCaleArray.m */,
+				758E8BA91E0AD5F900D5DD4E /* NSBundle+RCIMSCaleArray.h */,
+				758E8BAA1E0AD5F900D5DD4E /* NSMutableDictionary+RCIMWeakReference.h */,
+				758E8BAB1E0AD5F900D5DD4E /* NSMutableDictionary+LCCKWeakReference.m */,
+				758E8BAC1E0AD5F900D5DD4E /* NSString+RCIMAddScale.h */,
+				758E8BAD1E0AD5F900D5DD4E /* NSString+RCIMAddScale.m */,
+				758E8BA31E0AD5BF00D5DD4E /* RCIMImageManager.h */,
+				758E8BA41E0AD5BF00D5DD4E /* RCIMImageManager.m */,
+				758E8B631E0AC6EB00D5DD4E /* Vendor */,
 				758E8B4A1E0A9FBD00D5DD4E /* Categories */,
-				758E89A31E080B2300D5DD4E /* LCCKConstants.h */,
+				758E89A31E080B2300D5DD4E /* RCIMConstants.h */,
 				754A0BDD1E02E65F00A7C1ED /* UITableViewCell+addLineView.h */,
 				754A0BDE1E02E65F00A7C1ED /* UITableViewCell+addLineView.m */,
 				40F5E8191E0287C0002568C5 /* PPTZeroSelectListCell.h */,
@@ -720,8 +801,8 @@
 				40C260CA1E07A67000823111 /* RCIMBaseViewController.m */,
 				758E89891E0807CC00D5DD4E /* RCIMStatusView.h */,
 				758E898A1E0807CC00D5DD4E /* RCIMStatusView.m */,
-				409B33341E08FAB3003916CC /* LCCKConversationListViewModel.h */,
-				409B33351E08FAB3003916CC /* LCCKConversationListViewModel.m */,
+				409B33341E08FAB3003916CC /* RCIMConversationListViewModel.h */,
+				409B33351E08FAB3003916CC /* RCIMConversationListViewModel.m */,
 			);
 			path = "聊天UI";
 			sourceTree = "<group>";
@@ -865,24 +946,140 @@
 		758E8B4A1E0A9FBD00D5DD4E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				758E8B4B1E0A9FBD00D5DD4E /* NSBundle+LCCKExtension.h */,
-				758E8B4C1E0A9FBD00D5DD4E /* NSBundle+LCCKExtension.m */,
-				758E8B4D1E0A9FBD00D5DD4E /* NSFileManager+LCCKExtension.h */,
-				758E8B4E1E0A9FBD00D5DD4E /* NSFileManager+LCCKExtension.m */,
-				758E8B4F1E0A9FBD00D5DD4E /* NSString+LCCKExtension.h */,
-				758E8B501E0A9FBD00D5DD4E /* NSString+LCCKExtension.m */,
-				758E8B511E0A9FBD00D5DD4E /* NSString+LCCKMD5.h */,
-				758E8B521E0A9FBD00D5DD4E /* NSString+LCCKMD5.m */,
-				758E8B531E0A9FBD00D5DD4E /* UIColor+LCCKExtension.h */,
-				758E8B541E0A9FBD00D5DD4E /* UIColor+LCCKExtension.m */,
-				758E8B551E0A9FBD00D5DD4E /* UIImage+LCCKExtension.h */,
-				758E8B561E0A9FBD00D5DD4E /* UIImage+LCCKExtension.m */,
-				758E8B571E0A9FBD00D5DD4E /* UIImageView+LCCKExtension.h */,
-				758E8B581E0A9FBD00D5DD4E /* UIImageView+LCCKExtension.m */,
-				758E8B591E0A9FBD00D5DD4E /* UIView+LCCKExtension.h */,
-				758E8B5A1E0A9FBD00D5DD4E /* UIView+LCCKExtension.m */,
+				758E8B4B1E0A9FBD00D5DD4E /* NSBundle+RCIMExtension.h */,
+				758E8B4C1E0A9FBD00D5DD4E /* NSBundle+RCIMExtension.m */,
+				758E8B4D1E0A9FBD00D5DD4E /* NSFileManager+RCIMExtension.h */,
+				758E8B4E1E0A9FBD00D5DD4E /* NSFileManager+RCIMExtension.m */,
+				758E8B4F1E0A9FBD00D5DD4E /* NSString+RCIMExtension.h */,
+				758E8B501E0A9FBD00D5DD4E /* NSString+RCIMExtension.m */,
+				758E8B511E0A9FBD00D5DD4E /* NSString+RCIMMD5.h */,
+				758E8B521E0A9FBD00D5DD4E /* NSString+RCIMMD5.m */,
+				758E8B531E0A9FBD00D5DD4E /* UIColor+RCIMExtension.h */,
+				758E8B541E0A9FBD00D5DD4E /* UIColor+RCIMExtension.m */,
+				758E8B551E0A9FBD00D5DD4E /* UIImage+RCIMExtension.h */,
+				758E8B561E0A9FBD00D5DD4E /* UIImage+RCIMExtension.m */,
+				758E8B571E0A9FBD00D5DD4E /* UIImageView+RCIMExtension.h */,
+				758E8B581E0A9FBD00D5DD4E /* UIImageView+RCIMExtension.m */,
+				758E8B591E0A9FBD00D5DD4E /* UIView+RCIMExtension.h */,
+				758E8B5A1E0A9FBD00D5DD4E /* UIView+RCIMExtension.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		758E8B631E0AC6EB00D5DD4E /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B641E0AC6EB00D5DD4E /* DateTools */,
+				758E8B6A1E0AC6EB00D5DD4E /* LCCKAlertController */,
+				758E8B6D1E0AC6EB00D5DD4E /* LCCKDeallocBlockExecutor */,
+				758E8B731E0AC6EB00D5DD4E /* LCCKPhotoBrowser */,
+				758E8B821E0AC6EB00D5DD4E /* LCCKWebViewController */,
+				758E8B8E1E0AC6EB00D5DD4E /* VoiceLib */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		758E8B641E0AC6EB00D5DD4E /* DateTools */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B651E0AC6EB00D5DD4E /* RCIMDateToolsConstants.h */,
+				758E8B661E0AC6EB00D5DD4E /* RCIMError.h */,
+				758E8B671E0AC6EB00D5DD4E /* RCIMError.m */,
+				758E8B681E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.h */,
+				758E8B691E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m */,
+			);
+			path = DateTools;
+			sourceTree = "<group>";
+		};
+		758E8B6A1E0AC6EB00D5DD4E /* LCCKAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B6B1E0AC6EB00D5DD4E /* RCIMAlertController.h */,
+				758E8B6C1E0AC6EB00D5DD4E /* RCIMAlertController.m */,
+			);
+			path = LCCKAlertController;
+			sourceTree = "<group>";
+		};
+		758E8B6D1E0AC6EB00D5DD4E /* LCCKDeallocBlockExecutor */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B6E1E0AC6EB00D5DD4E /* RCIMDeallocBlockExecutor.h */,
+				758E8B6F1E0AC6EB00D5DD4E /* RCIMDeallocExecutor.h */,
+				758E8B701E0AC6EB00D5DD4E /* RCIMDeallocExecutor.m */,
+				758E8B711E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.h */,
+				758E8B721E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.m */,
+			);
+			path = LCCKDeallocBlockExecutor;
+			sourceTree = "<group>";
+		};
+		758E8B731E0AC6EB00D5DD4E /* LCCKPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B741E0AC6EB00D5DD4E /* RCIMCaptionView.h */,
+				758E8B751E0AC6EB00D5DD4E /* RCIMCaptionView.m */,
+				758E8B761E0AC6EB00D5DD4E /* RCIMPBConstants.h */,
+				758E8B771E0AC6EB00D5DD4E /* RCIMPhoto.h */,
+				758E8B781E0AC6EB00D5DD4E /* RCIMPhoto.m */,
+				758E8B791E0AC6EB00D5DD4E /* RCIMPhotoBrowser.h */,
+				758E8B7A1E0AC6EB00D5DD4E /* RCIMPhotoBrowser.m */,
+				758E8B7B1E0AC6EB00D5DD4E /* RCIMPhotoProtocol.h */,
+				758E8B7C1E0AC6EB00D5DD4E /* RCIMTapDetectingImageView.h */,
+				758E8B7D1E0AC6EB00D5DD4E /* RCIMTapDetectingImageView.m */,
+				758E8B7E1E0AC6EB00D5DD4E /* RCIMTapDetectingView.h */,
+				758E8B7F1E0AC6EB00D5DD4E /* RCIMTapDetectingView.m */,
+				758E8B801E0AC6EB00D5DD4E /* RCIMZoomingScrollView.h */,
+				758E8B811E0AC6EB00D5DD4E /* RCIMZoomingScrollView.m */,
+			);
+			path = LCCKPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		758E8B821E0AC6EB00D5DD4E /* LCCKWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B831E0AC6EB00D5DD4E /* LCCKSafariActivity */,
+				758E8B861E0AC6EB00D5DD4E /* LCCKWebViewController */,
+				758E8B891E0AC6EB00D5DD4E /* LCCKWebViewProgress */,
+			);
+			path = LCCKWebViewController;
+			sourceTree = "<group>";
+		};
+		758E8B831E0AC6EB00D5DD4E /* LCCKSafariActivity */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B841E0AC6EB00D5DD4E /* RCIMSafariActivity.h */,
+				758E8B851E0AC6EB00D5DD4E /* RCIMSafariActivity.m */,
+			);
+			path = LCCKSafariActivity;
+			sourceTree = "<group>";
+		};
+		758E8B861E0AC6EB00D5DD4E /* LCCKWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B871E0AC6EB00D5DD4E /* RCIMWebViewController.h */,
+				758E8B881E0AC6EB00D5DD4E /* RCIMWebViewController.m */,
+			);
+			path = LCCKWebViewController;
+			sourceTree = "<group>";
+		};
+		758E8B891E0AC6EB00D5DD4E /* LCCKWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B8A1E0AC6EB00D5DD4E /* RCIMWebViewProgress.h */,
+				758E8B8B1E0AC6EB00D5DD4E /* RCIMWebViewProgress.m */,
+				758E8B8C1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.h */,
+				758E8B8D1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m */,
+			);
+			path = LCCKWebViewProgress;
+			sourceTree = "<group>";
+		};
+		758E8B8E1E0AC6EB00D5DD4E /* VoiceLib */ = {
+			isa = PBXGroup;
+			children = (
+				758E8B8F1E0AC6EB00D5DD4E /* lame.framework */,
+				758E8B901E0AC6EB00D5DD4E /* Mp3Recorder.h */,
+				758E8B911E0AC6EB00D5DD4E /* Mp3Recorder.m */,
+			);
+			path = VoiceLib;
 			sourceTree = "<group>";
 		};
 		75CEF8581DDC878500541660 = {
@@ -1290,7 +1487,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1300,16 +1497,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				758E8B5D1E0A9FBD00D5DD4E /* NSString+LCCKExtension.m in Sources */,
+				758E8B5D1E0A9FBD00D5DD4E /* NSString+RCIMExtension.m in Sources */,
 				40AE25F51DF52985000AE771 /* PPMessageViewController.m in Sources */,
 				409F50941DDD704100015DB7 /* Md5.m in Sources */,
 				75DE618E1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m in Sources */,
 				409F50A91DDD721500015DB7 /* PPAccountSecurityViewController.m in Sources */,
 				409F792D1DF5649D0090D67F /* UITableViewCell+addLineView.m in Sources */,
 				40F5E8151E0280B7002568C5 /* PPListItemViewController.m in Sources */,
+				758E8B9A1E0AC6EB00D5DD4E /* RCIMTapDetectingImageView.m in Sources */,
+				758E8B9E1E0AC6EB00D5DD4E /* RCIMWebViewController.m in Sources */,
 				409F79331DF65B310090D67F /* RCConversationViewController.m in Sources */,
-				758E8B5C1E0A9FBD00D5DD4E /* NSFileManager+LCCKExtension.m in Sources */,
+				758E8B5C1E0A9FBD00D5DD4E /* NSFileManager+RCIMExtension.m in Sources */,
+				758E8BB11E0AD5F900D5DD4E /* NSString+RCIMAddScale.m in Sources */,
+				758E8B991E0AC6EB00D5DD4E /* RCIMPhotoBrowser.m in Sources */,
 				75643AE01E067C0D00BFE027 /* RCConversationListCell.m in Sources */,
+				758E8B9D1E0AC6EB00D5DD4E /* RCIMSafariActivity.m in Sources */,
 				409F50951DDD704100015DB7 /* rc4.m in Sources */,
 				409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */,
 				409F79361DF65BC10090D67F /* RCConversationListViewController.m in Sources */,
@@ -1317,26 +1519,30 @@
 				409F50821DDD6E6F00015DB7 /* PPRegisterViewController.m in Sources */,
 				758E898B1E0807CC00D5DD4E /* RCIMStatusView.m in Sources */,
 				409F50761DDD6E5100015DB7 /* PPTool.m in Sources */,
+				758E8B951E0AC6EB00D5DD4E /* RCIMDeallocExecutor.m in Sources */,
 				409F50931DDD704100015DB7 /* des.m in Sources */,
 				409F50AA1DDD721500015DB7 /* PPInfoMessageViewController.m in Sources */,
 				40F3B2C31E02584500775304 /* RCConversationCacheObj.m in Sources */,
+				758E8BB01E0AD5F900D5DD4E /* NSMutableDictionary+LCCKWeakReference.m in Sources */,
 				409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */,
+				758E8BA01E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m in Sources */,
 				409F50681DDD6E3100015DB7 /* PPHTTPRequestSerializer.m in Sources */,
 				409F794D1DF666EE0090D67F /* RCKitUtility.m in Sources */,
 				409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */,
 				409F50961DDD704100015DB7 /* UrlDecode.m in Sources */,
-				409B33361E08FAB4003916CC /* LCCKConversationListViewModel.m in Sources */,
+				409B33361E08FAB4003916CC /* RCIMConversationListViewModel.m in Sources */,
 				40785E901DEE932300875E00 /* PPUpdateNickNameController.m in Sources */,
 				75D472BB1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m in Sources */,
+				758E8BA21E0AC6EB00D5DD4E /* Mp3Recorder.m in Sources */,
 				754A0BDF1E02E65F00A7C1ED /* UITableViewCell+addLineView.m in Sources */,
 				409F50AC1DDD721500015DB7 /* PPSetingViewController.m in Sources */,
 				409F50691DDD6E3100015DB7 /* PPHTTPResponse.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
-				758E8B5F1E0A9FBD00D5DD4E /* UIColor+LCCKExtension.m in Sources */,
+				758E8B5F1E0A9FBD00D5DD4E /* UIColor+RCIMExtension.m in Sources */,
 				75DE618B1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m in Sources */,
 				75CEF9591DE33D1900541660 /* PPLocationManager.m in Sources */,
 				407261081DEBD12400554D00 /* MyQRViewController.m in Sources */,
-				758E8B5E1E0A9FBD00D5DD4E /* NSString+LCCKMD5.m in Sources */,
+				758E8B5E1E0A9FBD00D5DD4E /* NSString+RCIMMD5.m in Sources */,
 				409F793D1DF663ED0090D67F /* RCConversationBaseCell.m in Sources */,
 				409F506B1DDD6E3100015DB7 /* PPTUserInfoEngine.m in Sources */,
 				75D472B81DEDAE260013AA3E /* PPUpdatePassWordController.m in Sources */,
@@ -1347,44 +1553,56 @@
 				75CEF94C1DDDD43300541660 /* PPMyViewController.m in Sources */,
 				409F50971DDD704100015DB7 /* UrlEncode.m in Sources */,
 				409F50921DDD704100015DB7 /* Base64.m in Sources */,
-				758E8B611E0A9FBD00D5DD4E /* UIImageView+LCCKExtension.m in Sources */,
+				758E8B9B1E0AC6EB00D5DD4E /* RCIMTapDetectingView.m in Sources */,
+				758E8B611E0A9FBD00D5DD4E /* UIImageView+RCIMExtension.m in Sources */,
 				409F50751DDD6E5100015DB7 /* PPChatTools.m in Sources */,
 				40785E981DEE9E7900875E00 /* PPResetPassWordViewController.m in Sources */,
 				409F50661DDD6E3100015DB7 /* PPDateEngine.m in Sources */,
 				40C260CB1E07A67000823111 /* RCIMBaseViewController.m in Sources */,
-				758E8B621E0A9FBD00D5DD4E /* UIView+LCCKExtension.m in Sources */,
+				758E8B621E0A9FBD00D5DD4E /* UIView+RCIMExtension.m in Sources */,
 				409F50AF1DDD721500015DB7 /* PPPersonTableViewCell.m in Sources */,
 				409F506A1DDD6E3100015DB7 /* PPTDBEngine.m in Sources */,
 				409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */,
+				758E8B9C1E0AC6EB00D5DD4E /* RCIMZoomingScrollView.m in Sources */,
+				758E8B981E0AC6EB00D5DD4E /* RCIMPhoto.m in Sources */,
 				409F50AE1DDD721500015DB7 /* PPInfoMessageCell.m in Sources */,
 				409F50651DDD6E3100015DB7 /* PPDataDef.m in Sources */,
+				758E8BA51E0AD5BF00D5DD4E /* RCIMImageManager.m in Sources */,
 				75CEF9551DDDDE1300541660 /* PPViewUtil.m in Sources */,
+				758E8B9F1E0AC6EB00D5DD4E /* RCIMWebViewProgress.m in Sources */,
 				75CEF9521DDDDDD000541660 /* PPIndicatorView.m in Sources */,
 				409F50621DDD6E3100015DB7 /* kPPObserverDef.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */,
+				758E8B921E0AC6EB00D5DD4E /* RCIMError.m in Sources */,
 				409F79401DF6643E0090D67F /* RCConversationModel.m in Sources */,
 				75D472BE1DEEFE160013AA3E /* PPUrlDef.m in Sources */,
 				407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */,
 				40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */,
 				40F5E8181E028150002568C5 /* PPListItem.m in Sources */,
 				409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */,
-				758E8B601E0A9FBD00D5DD4E /* UIImage+LCCKExtension.m in Sources */,
+				758E8BAF1E0AD5F900D5DD4E /* NSBundle+RCIMCaleArray.m in Sources */,
+				758E8B601E0A9FBD00D5DD4E /* UIImage+RCIMExtension.m in Sources */,
 				409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */,
 				409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */,
 				751598C81DF9B6870043E2C4 /* RCContactUserInfo.m in Sources */,
 				75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */,
 				409F50671DDD6E3100015DB7 /* PPHTTPManager.m in Sources */,
+				758E8B931E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m in Sources */,
 				409F79391DF65E110090D67F /* RCIM.m in Sources */,
 				409F50AD1DDD721500015DB7 /* PPShowSelectIconViewController.m in Sources */,
 				40F5E81B1E0287C0002568C5 /* PPTZeroSelectListCell.m in Sources */,
 				409F79471DF665D60090D67F /* RCMessageBaseCell.m in Sources */,
+				758E8B961E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.m in Sources */,
+				758E8B941E0AC6EB00D5DD4E /* RCIMAlertController.m in Sources */,
 				7513A2FD1DE92CF900CCAB61 /* XIAlertView.m in Sources */,
+				758E8B971E0AC6EB00D5DD4E /* RCIMCaptionView.m in Sources */,
 				40C260C61E03AF7000823111 /* PPBaseViewController.m in Sources */,
 				7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */,
 				75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */,
+				758E8BAE1E0AD5F900D5DD4E /* RCIMWeakReference.m in Sources */,
 				75DE61861DE48E6C00DF1CA4 /* PPSelectAreaViewController.m in Sources */,
-				758E8B5B1E0A9FBD00D5DD4E /* NSBundle+LCCKExtension.m in Sources */,
+				758E8B5B1E0A9FBD00D5DD4E /* NSBundle+RCIMExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,6 +1752,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/聊天UI/Vendor/VoiceLib",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/rongchat/PrefixHeader.pch";
 				INFOPLIST_FILE = rongchat/Info.plist;
@@ -1551,6 +1773,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/聊天UI/Vendor/VoiceLib",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/rongchat/PrefixHeader.pch";
 				INFOPLIST_FILE = rongchat/Info.plist;
