@@ -15,6 +15,9 @@
 
 @interface RCConversationBaseCell : UITableViewCell
 
+@property (nonatomic,strong,readonly) UIImageView * avatarImageView;
+@property (nonatomic,strong,readonly) UILabel * nameLabel;
+
 /*!
  会话Cell的数据模型
  */
@@ -26,5 +29,7 @@
  @param model 会话Cell的数据模型
  */
 - (void)setDataModel:(RCConversationModel *)model;
+
+
 
 @end

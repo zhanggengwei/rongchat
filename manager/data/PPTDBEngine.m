@@ -11,7 +11,7 @@
 #import "PPTDBEngine.h"
 #import "PPFileManager.h"
 #import <FMDB/FMDB.h>
-#import "OT/OTFileManager.h"
+#import "OTFileManager.h"
 #import "RCContactUserInfo.h"
 
 @interface PPTDBEngine ()

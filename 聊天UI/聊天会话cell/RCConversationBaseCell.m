@@ -8,6 +8,11 @@
 
 #import "RCConversationBaseCell.h"
 
+@interface RCConversationBaseCell ()
+@property (nonatomic,strong) UIImageView * avatarImageView;
+@property (nonatomic,strong) UILabel * nameLabel;
+@end
+
 @implementation RCConversationBaseCell
 
 - (void)awakeFromNib {

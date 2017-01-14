@@ -65,6 +65,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark 加载信息的列表
+
+- (void)loadMessageByMessageID
+{
+    
+}
+
+
+
+
 
 #pragma mark UITableViewDelegate
 

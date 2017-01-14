@@ -971,4 +971,8 @@ __deprecated_msg("已废弃，请使用sendMediaMessage函数。");
 - (BOOL)openExtensionModuleUrl:(NSURL *)url;
 @end
 
+
+
+
+
 #endif

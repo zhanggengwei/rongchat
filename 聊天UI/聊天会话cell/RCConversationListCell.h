@@ -13,7 +13,6 @@
 
 @property (nonatomic,assign) CGFloat avatarSizeWidth;
 
-
 - (void)setConversation:(RCConversation *)conversation avatarStyle:(RCUserAvatarStyle)style;
 
 

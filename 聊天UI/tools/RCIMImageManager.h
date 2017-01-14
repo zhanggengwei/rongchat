@@ -13,7 +13,6 @@
 @interface RCIMImageManager : NSObject
 
 + (instancetype)defaultManager;
-
 - (UIImage *)getImageWithName:(NSString *)name;
 - (UIImage *)getImageWithName:(NSString *)name inBundle:(NSBundle *)bundle;
 

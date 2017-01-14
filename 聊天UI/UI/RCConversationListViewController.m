@@ -208,8 +208,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
      RCConversation * conversation= self.conversationList[indexPath.row];
     RCConversationViewController * conversationController = [[RCConversationViewController alloc]initWithTargetId:conversation.targetId conversationType:conversation.conversationType];
-//    [self hidesBottomBarWhenPushed];
-    [self setHidesBottomBarWhenPushed:YES];
+    [conversationController setHidesBottomBarWhenPushed:YES];
+    
     [self.navigationController pushViewController:conversationController animated:YES];
  
 }
