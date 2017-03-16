@@ -1,15 +1,15 @@
 //
-//  LCCKProgressHUD.m
-//  LCCKChatBarExample
+//  RCProgressHUD.m
+//  RCChatBarExample
 //
 //  v0.8.5 Created by ElonChan (微信向我报BUG:chenyilong1010) ( https://github.com/leancloud/ChatKit-OC ) on 15/8/17.
 //  Copyright (c) 2015年 https://LeanCloud.cn . All rights reserved.
 //
 
-#import "LCCKProgressHUD.h"
+#import "RCProgressHUD.h"
 #import "UIImage+RCIMExtension.h"
 
-@interface LCCKProgressHUD ()
+@interface RCProgressHUD ()
 
 @property (assign, nonatomic) CGFloat angle;
 @property (strong, nonatomic) NSTimer *timer;
@@ -17,14 +17,14 @@
 @property (strong, nonatomic) UILabel *centerLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subTitleLabel;
-@property (assign, nonatomic) LCCKProgressState progressState;
+@property (assign, nonatomic) RCProgressState progressState;
 @property (assign, nonatomic) NSTimeInterval seconds;
 
 @property (nonatomic, strong, readonly) UIWindow *overlayWindow;
 
 @end
 
-@implementation LCCKProgressHUD
+@implementation RCProgressHUD
 @synthesize overlayWindow = _overlayWindow;
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -90,7 +90,7 @@
         self.centerLabel.textColor = [UIColor whiteColor];
         
         CGFloat timeLonger;
-        if (self.progressState == LCCKProgressShort) {
+        if (self.progressState == RCProgressShort) {
             timeLonger = 1;
         } else {
             timeLonger = 0.6;
@@ -122,18 +122,18 @@
 
 #pragma mark - Setters
 
-- (void)setProgressState:(LCCKProgressState)progressState {
+- (void)setProgressState:(RCProgressState)progressState {
     switch (progressState) {
-        case LCCKProgressSuccess:
+        case RCProgressSuccess:
             self.centerLabel.text = @"录音成功";
             break;
-        case LCCKProgressShort:
+        case RCProgressShort:
             self.centerLabel.text = @"时间太短,请重试";
             break;
-        case LCCKProgressError:
+        case RCProgressError:
             self.centerLabel.text = @"录音失败";
             break;
-        case LCCKProgressMessage:
+        case RCProgressMessage:
             break;
     }
 }
@@ -218,38 +218,38 @@
 
 #pragma mark - Class Methods
 
-+ (LCCKProgressHUD *)sharedView {
++ (RCProgressHUD *)sharedView {
     static dispatch_once_t once;
-    static LCCKProgressHUD *sharedView;
+    static RCProgressHUD *sharedView;
     dispatch_once(&once, ^ {
-        sharedView = [[LCCKProgressHUD alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        sharedView = [[RCProgressHUD alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         sharedView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     });
     return sharedView;
 }
 
 + (void)show {
-    [[LCCKProgressHUD sharedView] show];
+    [[RCProgressHUD sharedView] show];
 }
 
-+ (void)dismissWithProgressState:(LCCKProgressState)progressState {
-    [[LCCKProgressHUD sharedView] setProgressState:progressState];
-    [[LCCKProgressHUD sharedView] dismiss];
++ (void)dismissWithProgressState:(RCProgressState)progressState {
+    [[RCProgressHUD sharedView] setProgressState:progressState];
+    [[RCProgressHUD sharedView] dismiss];
 }
 
 + (void)dismissWithMessage:(NSString *)message {
-    [[LCCKProgressHUD sharedView] setProgressState:LCCKProgressMessage];
-    [LCCKProgressHUD sharedView].centerLabel.text = message;
-    [[LCCKProgressHUD sharedView] dismiss];
+    [[RCProgressHUD sharedView] setProgressState:RCProgressMessage];
+    [RCProgressHUD sharedView].centerLabel.text = message;
+    [[RCProgressHUD sharedView] dismiss];
 }
 
 + (void)changeSubTitle:(NSString *)str
 {
-    [[LCCKProgressHUD sharedView] setSubTitle:str];
+    [[RCProgressHUD sharedView] setSubTitle:str];
 }
 
 + (NSTimeInterval)seconds{
-    return [[LCCKProgressHUD sharedView] seconds] / 10;
+    return [[RCProgressHUD sharedView] seconds] / 10;
 }
 
 @end

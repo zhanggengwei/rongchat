@@ -28,7 +28,6 @@
     [outputFormat setVCharType:VCharTypeWithV];
     [outputFormat setCaseType:CaseTypeUppercase];
     [PinyinHelper toHanyuPinyinStringWithNSString:self.name withHanyuPinyinOutputFormat:outputFormat withNSString:@"" outputBlock:^(NSString *pinYin) {
-        NSLog(@"pinYin  ===%@",pinYin);
         self.nickNameChar = [pinYin stringByReplacingOccurrencesOfString:@" " withString:@""];
     }];
     return self;

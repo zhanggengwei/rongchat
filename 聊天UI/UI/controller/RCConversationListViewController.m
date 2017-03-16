@@ -115,7 +115,7 @@
     self.activityView.hidden = YES;
     [self.activityView stopAnimating];
     //[self setTitle:message];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.navigationItem.titleView.mas_centerX);
     }];
     
@@ -216,7 +216,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 60;
 }
 
 @end

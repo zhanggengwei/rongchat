@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		008506534756DB82E16B34FA /* libPods-rongchat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */; };
+		406833761E7A657700E03427 /* PPListItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833651E7A657700E03427 /* PPListItemViewController.m */; };
+		406833771E7A657700E03427 /* RCConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833671E7A657700E03427 /* RCConversationListViewController.m */; };
+		406833781E7A657700E03427 /* RCConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833691E7A657700E03427 /* RCConversationViewController.m */; };
+		406833791E7A657700E03427 /* RCIMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068336B1E7A657700E03427 /* RCIMBaseViewController.m */; };
+		4068337A1E7A657700E03427 /* PPListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068336E1E7A657700E03427 /* PPListItem.m */; };
+		4068337B1E7A657700E03427 /* RCConversationCacheObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068336F1E7A657700E03427 /* RCConversationCacheObj.m */; };
+		4068337C1E7A657700E03427 /* RCIMConversationListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833711E7A657700E03427 /* RCIMConversationListViewModel.m */; };
+		4068337D1E7A657700E03427 /* PPTZeroSelectListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833731E7A657700E03427 /* PPTZeroSelectListCell.m */; };
+		4068337E1E7A657700E03427 /* RCIMStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833751E7A657700E03427 /* RCIMStatusView.m */; };
+		406833811E7A779F00E03427 /* RCSwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833801E7A779F00E03427 /* RCSwipeView.m */; };
 		407261071DEBD12400554D00 /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 407261021DEBD12400554D00 /* CodeScan.bundle */; };
 		407261081DEBD12400554D00 /* MyQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 407261041DEBD12400554D00 /* MyQRViewController.m */; };
 		407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 407261061DEBD12400554D00 /* SubLBXScanViewController.m */; };
@@ -125,15 +135,6 @@
 		7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */; };
 		7584DA9E1E2A5B83007249C2 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA991E2A5B83007249C2 /* RCConversationListCell.m */; };
 		7584DA9F1E2A5B83007249C2 /* RCTextMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA9C1E2A5B83007249C2 /* RCTextMessageTableViewCell.m */; };
-		7584DAB11E2A5B8A007249C2 /* PPListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAA21E2A5B8A007249C2 /* PPListItem.m */; };
-		7584DAB21E2A5B8A007249C2 /* PPListItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAA41E2A5B8A007249C2 /* PPListItemViewController.m */; };
-		7584DAB31E2A5B8A007249C2 /* PPTZeroSelectListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAA51E2A5B8A007249C2 /* PPTZeroSelectListCell.m */; };
-		7584DAB41E2A5B8A007249C2 /* RCConversationCacheObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAA61E2A5B8A007249C2 /* RCConversationCacheObj.m */; };
-		7584DAB51E2A5B8A007249C2 /* RCConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAA81E2A5B8A007249C2 /* RCConversationListViewController.m */; };
-		7584DAB61E2A5B8A007249C2 /* RCConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAAA1E2A5B8A007249C2 /* RCConversationViewController.m */; };
-		7584DAB71E2A5B8A007249C2 /* RCIMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAAC1E2A5B8A007249C2 /* RCIMBaseViewController.m */; };
-		7584DAB81E2A5B8A007249C2 /* RCIMConversationListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAAE1E2A5B8A007249C2 /* RCIMConversationListViewModel.m */; };
-		7584DAB91E2A5B8A007249C2 /* RCIMStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAB01E2A5B8A007249C2 /* RCIMStatusView.m */; };
 		7584DAD51E2A5B92007249C2 /* NSBundle+RCIMCaleArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DABB1E2A5B92007249C2 /* NSBundle+RCIMCaleArray.m */; };
 		7584DAD61E2A5B92007249C2 /* NSBundle+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DABD1E2A5B92007249C2 /* NSBundle+RCIMExtension.m */; };
 		7584DAD71E2A5B92007249C2 /* NSFileManager+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAC01E2A5B92007249C2 /* NSFileManager+RCIMExtension.m */; };
@@ -174,7 +175,7 @@
 		7584DB751E2A5BF5007249C2 /* PPDataDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB6A1E2A5BF5007249C2 /* PPDataDef.m */; };
 		7584DB761E2A5BF5007249C2 /* PPHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB6C1E2A5BF5007249C2 /* PPHTTPResponse.m */; };
 		7584DB8A1E2A623F007249C2 /* LCCKChatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB791E2A623F007249C2 /* LCCKChatBar.m */; };
-		7584DB921E2A623F007249C2 /* LCCKProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB891E2A623F007249C2 /* LCCKProgressHUD.m */; };
+		7584DB921E2A623F007249C2 /* RCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB891E2A623F007249C2 /* RCProgressHUD.m */; };
 		758E8B921E0AC6EB00D5DD4E /* RCIMError.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B671E0AC6EB00D5DD4E /* RCIMError.m */; };
 		758E8B931E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B691E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m */; };
 		758E8B941E0AC6EB00D5DD4E /* RCIMAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B6C1E0AC6EB00D5DD4E /* RCIMAlertController.m */; };
@@ -230,6 +231,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		406833641E7A657700E03427 /* PPListItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPListItemViewController.h; sourceTree = "<group>"; };
+		406833651E7A657700E03427 /* PPListItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPListItemViewController.m; sourceTree = "<group>"; };
+		406833661E7A657700E03427 /* RCConversationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationListViewController.h; sourceTree = "<group>"; };
+		406833671E7A657700E03427 /* RCConversationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationListViewController.m; sourceTree = "<group>"; };
+		406833681E7A657700E03427 /* RCConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationViewController.h; sourceTree = "<group>"; };
+		406833691E7A657700E03427 /* RCConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationViewController.m; sourceTree = "<group>"; };
+		4068336A1E7A657700E03427 /* RCIMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMBaseViewController.h; sourceTree = "<group>"; };
+		4068336B1E7A657700E03427 /* RCIMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMBaseViewController.m; sourceTree = "<group>"; };
+		4068336D1E7A657700E03427 /* PPListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPListItem.h; sourceTree = "<group>"; };
+		4068336E1E7A657700E03427 /* PPListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPListItem.m; sourceTree = "<group>"; };
+		4068336F1E7A657700E03427 /* RCConversationCacheObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationCacheObj.m; sourceTree = "<group>"; };
+		406833701E7A657700E03427 /* RCIMConversationListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMConversationListViewModel.h; sourceTree = "<group>"; };
+		406833711E7A657700E03427 /* RCIMConversationListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMConversationListViewModel.m; sourceTree = "<group>"; };
+		406833731E7A657700E03427 /* PPTZeroSelectListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTZeroSelectListCell.m; sourceTree = "<group>"; };
+		406833741E7A657700E03427 /* RCIMStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMStatusView.h; sourceTree = "<group>"; };
+		406833751E7A657700E03427 /* RCIMStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMStatusView.m; sourceTree = "<group>"; };
+		4068337F1E7A779F00E03427 /* RCSwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCSwipeView.h; sourceTree = "<group>"; };
+		406833801E7A779F00E03427 /* RCSwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCSwipeView.m; sourceTree = "<group>"; };
+		406833841E7A7B4100E03427 /* RCConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCConstants.h; sourceTree = "<group>"; };
 		407261021DEBD12400554D00 /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
 		407261031DEBD12400554D00 /* MyQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQRViewController.h; sourceTree = "<group>"; };
 		407261041DEBD12400554D00 /* MyQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQRViewController.m; sourceTree = "<group>"; };
@@ -383,22 +403,6 @@
 		7584DA9A1E2A5B83007249C2 /* RCMessageBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCMessageBaseCell.h; sourceTree = "<group>"; };
 		7584DA9B1E2A5B83007249C2 /* RCTextMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTextMessageTableViewCell.h; sourceTree = "<group>"; };
 		7584DA9C1E2A5B83007249C2 /* RCTextMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTextMessageTableViewCell.m; sourceTree = "<group>"; };
-		7584DAA11E2A5B8A007249C2 /* PPListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPListItem.h; sourceTree = "<group>"; };
-		7584DAA21E2A5B8A007249C2 /* PPListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPListItem.m; sourceTree = "<group>"; };
-		7584DAA31E2A5B8A007249C2 /* PPListItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPListItemViewController.h; sourceTree = "<group>"; };
-		7584DAA41E2A5B8A007249C2 /* PPListItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPListItemViewController.m; sourceTree = "<group>"; };
-		7584DAA51E2A5B8A007249C2 /* PPTZeroSelectListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTZeroSelectListCell.m; sourceTree = "<group>"; };
-		7584DAA61E2A5B8A007249C2 /* RCConversationCacheObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationCacheObj.m; sourceTree = "<group>"; };
-		7584DAA71E2A5B8A007249C2 /* RCConversationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationListViewController.h; sourceTree = "<group>"; };
-		7584DAA81E2A5B8A007249C2 /* RCConversationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationListViewController.m; sourceTree = "<group>"; };
-		7584DAA91E2A5B8A007249C2 /* RCConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationViewController.h; sourceTree = "<group>"; };
-		7584DAAA1E2A5B8A007249C2 /* RCConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationViewController.m; sourceTree = "<group>"; };
-		7584DAAB1E2A5B8A007249C2 /* RCIMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMBaseViewController.h; sourceTree = "<group>"; };
-		7584DAAC1E2A5B8A007249C2 /* RCIMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMBaseViewController.m; sourceTree = "<group>"; };
-		7584DAAD1E2A5B8A007249C2 /* RCIMConversationListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMConversationListViewModel.h; sourceTree = "<group>"; };
-		7584DAAE1E2A5B8A007249C2 /* RCIMConversationListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMConversationListViewModel.m; sourceTree = "<group>"; };
-		7584DAAF1E2A5B8A007249C2 /* RCIMStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMStatusView.h; sourceTree = "<group>"; };
-		7584DAB01E2A5B8A007249C2 /* RCIMStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMStatusView.m; sourceTree = "<group>"; };
 		7584DABB1E2A5B92007249C2 /* NSBundle+RCIMCaleArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+RCIMCaleArray.m"; sourceTree = "<group>"; };
 		7584DABC1E2A5B92007249C2 /* NSBundle+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+RCIMExtension.h"; sourceTree = "<group>"; };
 		7584DABD1E2A5B92007249C2 /* NSBundle+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+RCIMExtension.m"; sourceTree = "<group>"; };
@@ -481,8 +485,8 @@
 		7584DB6C1E2A5BF5007249C2 /* PPHTTPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPHTTPResponse.m; sourceTree = "<group>"; };
 		7584DB781E2A623F007249C2 /* LCCKChatBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatBar.h; sourceTree = "<group>"; };
 		7584DB791E2A623F007249C2 /* LCCKChatBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKChatBar.m; sourceTree = "<group>"; };
-		7584DB881E2A623F007249C2 /* LCCKProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKProgressHUD.h; sourceTree = "<group>"; };
-		7584DB891E2A623F007249C2 /* LCCKProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKProgressHUD.m; sourceTree = "<group>"; };
+		7584DB881E2A623F007249C2 /* RCProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCProgressHUD.h; sourceTree = "<group>"; };
+		7584DB891E2A623F007249C2 /* RCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCProgressHUD.m; sourceTree = "<group>"; };
 		758E8B651E0AC6EB00D5DD4E /* RCIMDateToolsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMDateToolsConstants.h; sourceTree = "<group>"; };
 		758E8B661E0AC6EB00D5DD4E /* RCIMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMError.h; sourceTree = "<group>"; };
 		758E8B671E0AC6EB00D5DD4E /* RCIMError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMError.m; sourceTree = "<group>"; };
@@ -592,6 +596,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		406833631E7A657700E03427 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				406833641E7A657700E03427 /* PPListItemViewController.h */,
+				406833651E7A657700E03427 /* PPListItemViewController.m */,
+				406833661E7A657700E03427 /* RCConversationListViewController.h */,
+				406833671E7A657700E03427 /* RCConversationListViewController.m */,
+				406833681E7A657700E03427 /* RCConversationViewController.h */,
+				406833691E7A657700E03427 /* RCConversationViewController.m */,
+				4068336A1E7A657700E03427 /* RCIMBaseViewController.h */,
+				4068336B1E7A657700E03427 /* RCIMBaseViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		4068336C1E7A657700E03427 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4068336D1E7A657700E03427 /* PPListItem.h */,
+				4068336E1E7A657700E03427 /* PPListItem.m */,
+				4068336F1E7A657700E03427 /* RCConversationCacheObj.m */,
+				406833701E7A657700E03427 /* RCIMConversationListViewModel.h */,
+				406833711E7A657700E03427 /* RCIMConversationListViewModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		406833721E7A657700E03427 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				406833731E7A657700E03427 /* PPTZeroSelectListCell.m */,
+				406833741E7A657700E03427 /* RCIMStatusView.h */,
+				406833751E7A657700E03427 /* RCIMStatusView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		407261011DEBD12400554D00 /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,23 +934,11 @@
 		7584DAA01E2A5B8A007249C2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				406833631E7A657700E03427 /* controller */,
+				4068336C1E7A657700E03427 /* model */,
+				406833721E7A657700E03427 /* view */,
 				7584DB771E2A623F007249C2 /* ChatBar */,
-				7584DAA11E2A5B8A007249C2 /* PPListItem.h */,
-				7584DAA21E2A5B8A007249C2 /* PPListItem.m */,
-				7584DAA31E2A5B8A007249C2 /* PPListItemViewController.h */,
-				7584DAA41E2A5B8A007249C2 /* PPListItemViewController.m */,
-				7584DAA51E2A5B8A007249C2 /* PPTZeroSelectListCell.m */,
-				7584DAA61E2A5B8A007249C2 /* RCConversationCacheObj.m */,
-				7584DAA71E2A5B8A007249C2 /* RCConversationListViewController.h */,
-				7584DAA81E2A5B8A007249C2 /* RCConversationListViewController.m */,
-				7584DAA91E2A5B8A007249C2 /* RCConversationViewController.h */,
-				7584DAAA1E2A5B8A007249C2 /* RCConversationViewController.m */,
-				7584DAAB1E2A5B8A007249C2 /* RCIMBaseViewController.h */,
-				7584DAAC1E2A5B8A007249C2 /* RCIMBaseViewController.m */,
-				7584DAAD1E2A5B8A007249C2 /* RCIMConversationListViewModel.h */,
-				7584DAAE1E2A5B8A007249C2 /* RCIMConversationListViewModel.m */,
-				7584DAAF1E2A5B8A007249C2 /* RCIMStatusView.h */,
-				7584DAB01E2A5B8A007249C2 /* RCIMStatusView.m */,
+				406833841E7A7B4100E03427 /* RCConstants.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1041,8 +1070,10 @@
 			children = (
 				7584DB781E2A623F007249C2 /* LCCKChatBar.h */,
 				7584DB791E2A623F007249C2 /* LCCKChatBar.m */,
-				7584DB881E2A623F007249C2 /* LCCKProgressHUD.h */,
-				7584DB891E2A623F007249C2 /* LCCKProgressHUD.m */,
+				7584DB881E2A623F007249C2 /* RCProgressHUD.h */,
+				7584DB891E2A623F007249C2 /* RCProgressHUD.m */,
+				4068337F1E7A779F00E03427 /* RCSwipeView.h */,
+				406833801E7A779F00E03427 /* RCSwipeView.m */,
 			);
 			path = ChatBar;
 			sourceTree = "<group>";
@@ -1592,7 +1623,6 @@
 				7584DB541E2A5BE6007249C2 /* PPUpdateNickNameController.m in Sources */,
 				75DE618E1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m in Sources */,
 				409F792D1DF5649D0090D67F /* UITableViewCell+addLineView.m in Sources */,
-				7584DAB71E2A5B8A007249C2 /* RCIMBaseViewController.m in Sources */,
 				758E8B9A1E0AC6EB00D5DD4E /* RCIMTapDetectingImageView.m in Sources */,
 				7584DB4F1E2A5BE6007249C2 /* PPMyViewController.m in Sources */,
 				7584DAD81E2A5B92007249C2 /* NSMutableDictionary+LCCKWeakReference.m in Sources */,
@@ -1600,24 +1630,25 @@
 				758E8B991E0AC6EB00D5DD4E /* RCIMPhotoBrowser.m in Sources */,
 				758E8B9D1E0AC6EB00D5DD4E /* RCIMSafariActivity.m in Sources */,
 				409F50951DDD704100015DB7 /* rc4.m in Sources */,
-				7584DAB11E2A5B8A007249C2 /* PPListItem.m in Sources */,
-				7584DAB31E2A5B8A007249C2 /* PPTZeroSelectListCell.m in Sources */,
 				7584DB751E2A5BF5007249C2 /* PPDataDef.m in Sources */,
 				409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */,
-				7584DAB81E2A5B8A007249C2 /* RCIMConversationListViewModel.m in Sources */,
 				7584DB711E2A5BF5007249C2 /* PPHTTPRequestSerializer.m in Sources */,
 				75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */,
+				406833781E7A657700E03427 /* RCConversationViewController.m in Sources */,
 				409F50821DDD6E6F00015DB7 /* PPRegisterViewController.m in Sources */,
-				7584DAB51E2A5B8A007249C2 /* RCConversationListViewController.m in Sources */,
+				4068337C1E7A657700E03427 /* RCIMConversationListViewModel.m in Sources */,
 				409F50761DDD6E5100015DB7 /* PPTool.m in Sources */,
 				758E8B951E0AC6EB00D5DD4E /* RCIMDeallocExecutor.m in Sources */,
+				4068337B1E7A657700E03427 /* RCConversationCacheObj.m in Sources */,
 				7584DADD1E2A5B92007249C2 /* UIColor+RCIMExtension.m in Sources */,
 				409F50931DDD704100015DB7 /* des.m in Sources */,
 				7584DB551E2A5BE6007249C2 /* PPUpdatePassWordController.m in Sources */,
 				409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */,
+				406833811E7A779F00E03427 /* RCSwipeView.m in Sources */,
 				758E8BA01E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m in Sources */,
-				7584DAB41E2A5B8A007249C2 /* RCConversationCacheObj.m in Sources */,
+				4068337E1E7A657700E03427 /* RCIMStatusView.m in Sources */,
 				409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */,
+				4068337D1E7A657700E03427 /* PPTZeroSelectListCell.m in Sources */,
 				409F50961DDD704100015DB7 /* UrlDecode.m in Sources */,
 				75D472BB1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m in Sources */,
 				758E8BA21E0AC6EB00D5DD4E /* Mp3Recorder.m in Sources */,
@@ -1628,7 +1659,7 @@
 				407261081DEBD12400554D00 /* MyQRViewController.m in Sources */,
 				7584DAF51E2A5B98007249C2 /* RCConversationModel.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
-				7584DB921E2A623F007249C2 /* LCCKProgressHUD.m in Sources */,
+				7584DB921E2A623F007249C2 /* RCProgressHUD.m in Sources */,
 				75CEF8991DDC87B200541660 /* PPTabBarController.m in Sources */,
 				40785E991DEE9E7900875E00 /* RJBackView.m in Sources */,
 				409F50971DDD704100015DB7 /* UrlEncode.m in Sources */,
@@ -1645,6 +1676,7 @@
 				7584DB6D1E2A5BF5007249C2 /* PPBaseViewController.m in Sources */,
 				758E8B981E0AC6EB00D5DD4E /* RCIMPhoto.m in Sources */,
 				7584DB6F1E2A5BF5007249C2 /* PPDateEngine.m in Sources */,
+				4068337A1E7A657700E03427 /* PPListItem.m in Sources */,
 				7584DB761E2A5BF5007249C2 /* PPHTTPResponse.m in Sources */,
 				409F50AE1DDD721500015DB7 /* PPInfoMessageCell.m in Sources */,
 				75CEF9551DDDDE1300541660 /* PPViewUtil.m in Sources */,
@@ -1667,13 +1699,15 @@
 				407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */,
 				7584DB4D1E2A5BE6007249C2 /* PPAccountSecurityViewController.m in Sources */,
 				7584DAD51E2A5B92007249C2 /* NSBundle+RCIMCaleArray.m in Sources */,
-				7584DAB91E2A5B8A007249C2 /* RCIMStatusView.m in Sources */,
 				40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */,
 				7584DAFA1E2A5B98007249C2 /* RCMessageBaseCell.m in Sources */,
 				7584DB731E2A5BF5007249C2 /* PPTDBEngine.m in Sources */,
+				406833791E7A657700E03427 /* RCIMBaseViewController.m in Sources */,
 				409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */,
 				409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */,
 				7584DAF91E2A5B98007249C2 /* RCKitUtility.m in Sources */,
+				406833771E7A657700E03427 /* RCConversationListViewController.m in Sources */,
+				406833761E7A657700E03427 /* PPListItemViewController.m in Sources */,
 				7584DB521E2A5BE6007249C2 /* PPSetingViewController.m in Sources */,
 				409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */,
 				75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */,
@@ -1681,11 +1715,9 @@
 				758E8B931E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m in Sources */,
 				758E8B961E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.m in Sources */,
 				7584DA9F1E2A5B83007249C2 /* RCTextMessageTableViewCell.m in Sources */,
-				7584DAB61E2A5B8A007249C2 /* RCConversationViewController.m in Sources */,
 				758E8B941E0AC6EB00D5DD4E /* RCIMAlertController.m in Sources */,
 				7513A2FD1DE92CF900CCAB61 /* XIAlertView.m in Sources */,
 				7584DADE1E2A5B92007249C2 /* UIImage+RCIMExtension.m in Sources */,
-				7584DAB21E2A5B8A007249C2 /* PPListItemViewController.m in Sources */,
 				7584DB531E2A5BE6007249C2 /* PPShowSelectIconViewController.m in Sources */,
 				7584DAF41E2A5B98007249C2 /* RCContactUserInfo.m in Sources */,
 				758E8B971E0AC6EB00D5DD4E /* RCIMCaptionView.m in Sources */,

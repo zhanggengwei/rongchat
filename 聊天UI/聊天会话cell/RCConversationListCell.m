@@ -9,6 +9,7 @@
 #import "RCConversationListCell.h"
 #import "RCThemeDefine.h"
 @interface RCConversationListCell ()
+
 @property (nonatomic,assign) RCUserAvatarStyle avatarStyle;// 头像的类型
 @property (nonatomic,strong) UIImageView * avaturImageView;//接受者的头像
 @property (nonatomic,strong) UILabel * receiveLabel;// 接受者的名字

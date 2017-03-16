@@ -1,6 +1,6 @@
 //
-//  LCCKProgressHUD.h
-//  LCCKChatBarExample
+//  RCProgressHUD.h
+//  RCChatBarExample
 //
 //  v0.8.5 Created by ElonChan (微信向我报BUG:chenyilong1010) ( https://github.com/leancloud/ChatKit-OC ) on 15/8/17.
 //  Copyright (c) 2015年 https://LeanCloud.cn . All rights reserved.
@@ -12,17 +12,17 @@
 /**
  *  状态指示器对应状态
  */
-typedef NS_ENUM(NSUInteger, LCCKProgressState){
-    LCCKProgressSuccess /**< 成功 */,
-    LCCKProgressError /**< 出错,失败 */,
-    LCCKProgressShort /**< 时间太短失败 */,
-    LCCKProgressMessage /**< 自定义失败提示 */,
+typedef NS_ENUM(NSUInteger, RCProgressState){
+    RCProgressSuccess /**< 成功 */,
+    RCProgressError /**< 出错,失败 */,
+    RCProgressShort /**< 时间太短失败 */,
+    RCProgressMessage /**< 自定义失败提示 */,
 };
 
 /**
  *  录音加载的指示器
  */
-@interface LCCKProgressHUD : UIView
+@interface RCProgressHUD : UIView
 
 
 #pragma mark - Class Methods
@@ -51,7 +51,7 @@ typedef NS_ENUM(NSUInteger, LCCKProgressState){
  *
  *  @param progressState 录音状态
  */
-+ (void)dismissWithProgressState:(LCCKProgressState)progressState;
++ (void)dismissWithProgressState:(RCProgressState)progressState;
 
 /**
  *  修改录音的subTitle显示文字

@@ -71,7 +71,6 @@
 - (void)setLeftIconImageNamed:(NSString *)imageName andRightContentLabel:(NSString *)content
 {
  
-    NSLog(@"imageName ==%@",imageName);
     if([imageName containsString:@"//"])
     {
         SD_LOADIMAGE(self.leftIconView, imageName, nil);
