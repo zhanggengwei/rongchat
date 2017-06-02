@@ -40,6 +40,7 @@
         
     }];
     
+    
     // Do any additional setup after loading the view.
 }
 
@@ -86,8 +87,6 @@
         make.height.mas_equalTo(40);
     }];
     [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:kPPLoginButtonColor] forState:UIControlStateDisabled];
-   
-    
     [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:kPPLoginButtonColor] forState:UIControlStateNormal];
     
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -124,7 +123,17 @@
      moreButton.titleLabel.font = COMMON_FONT_SIZE;
     
     [moreButton addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+  
+   
+    
+   
+ 
+    
 }
+
+
+
 
 - (void)moreAction:(id)sender
 {
@@ -179,6 +188,7 @@
     cell.delegate = self;
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    RAC(self,passWord) = cell.rightText.rac_textSignal;
     return cell;
 }
 

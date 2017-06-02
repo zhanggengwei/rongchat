@@ -76,6 +76,35 @@
     }];
     
     
+  RACCommand * command = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            NSLog(@"%@",input);
+            [subscriber sendNext:@"message"];
+            [subscriber sendError:[NSError errorWithDomain:@"error.domain" code:504 userInfo:nil]];
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+        
+    }];
+    [[command execute:@"aa"]subscribeNext:^(id x) {
+        NSLog(@"aa====%@",x);
+        
+    } error:^(NSError *error) {
+        NSLog(@"aa====%@",error);
+    } completed:^{
+        NSLog(@"aa==%@",@"completed");
+    }];
+    [[[command execute:@"aa"] map:^id(NSString * value) {
+        return @([value isEqualToString:@"aa"]);
+    
+    }]subscribeNext:^(id x) {
+        NSLog(@"x====");
+    }];
+    
+    
+    
+    
     return YES;
 }
 

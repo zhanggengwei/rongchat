@@ -24,6 +24,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+   
     // Initialization code
 }
 
@@ -39,8 +41,25 @@
     if(self)
     {
         [self createUI];
+        [[self phoneSignal]subscribeNext:^(id x) {
+            NSLog(@"x ==== %@",x);
+        }];
     }
     return self;
+}
+
+- (RACSignal *)phoneSignal
+{
+    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [subscriber sendNext:@"sucess"];
+        [subscriber sendCompleted];
+        return nil;
+    }]filter:^BOOL(id value) {
+        
+        NSLog(@"%@",value);
+        return false;
+    }];
+    [RACSignal merge:<#(id<NSFastEnumeration>)#>]
 }
 
 
