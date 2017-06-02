@@ -49,6 +49,13 @@ PODS:
   - ODRefreshControl (1.2)
   - PinYin4Objc (1.1.1)
   - pop (1.0.9)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
   - RongCloudIMLib (2.7.3)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
@@ -89,6 +96,7 @@ DEPENDENCIES:
   - ODRefreshControl (~> 1.2)
   - PinYin4Objc (~> 1.1.1)
   - pop (~> 1.0.9)
+  - ReactiveCocoa
   - RongCloudIMLib (~> 2.7.3)
   - SDWebImage (~> 3.7.1)
   - SFHFKeychainUtils (~> 0.0.1)
@@ -119,7 +127,8 @@ SPEC CHECKSUMS:
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
-  RongCloudIMLib: c37ff86690130df77262dcb4dd227dd443299cea
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  RongCloudIMLib: 6d313eb5488fbd4678e35a15579db47767371ab5
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SFHFKeychainUtils: 9576b411a79a058f4d5381ace6f3242b9a62e664
   UIView+FrameEx: ab0c53e158ef0621d7b0b0a26626e175ac17e471
@@ -130,6 +139,6 @@ SPEC CHECKSUMS:
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 2679d5d3ff8d6a595dbd8b9cd3240d72db8f16e1
+PODFILE CHECKSUM: 2b209e341ef57694ef8437704d3ed8cca7a0bf91
 
 COCOAPODS: 1.0.1

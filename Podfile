@@ -50,7 +50,7 @@ def pods
     pod 'PinYin4Objc', '~> 1.1.1'
     
     
-    pod 'ReactiveCocoa', '~> 5.0.3'
+    pod 'ReactiveCocoa'
     
 end
 
