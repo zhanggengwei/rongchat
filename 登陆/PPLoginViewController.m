@@ -127,7 +127,19 @@
   
    
     
-   
+   [[RACScheduler currentScheduler]after:[NSDate date] schedule:^{
+       
+       NSLog(@"date == ");
+   }];
+    
+    [[RACScheduler currentScheduler]afterDelay:10 schedule:^{
+        NSLog(@"启动定时器");
+    }];
+    
+    [[RACScheduler currentScheduler]after:[NSDate date] repeatingEvery:60 withLeeway:1 schedule:^{
+        NSLog(@"fdfdfsdfsd");
+    }];
+  
  
     
 }

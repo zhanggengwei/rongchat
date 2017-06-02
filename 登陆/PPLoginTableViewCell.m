@@ -59,7 +59,7 @@
         NSLog(@"%@",value);
         return false;
     }];
-    [RACSignal merge:<#(id<NSFastEnumeration>)#>]
+    
 }
 
 
