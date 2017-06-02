@@ -59,6 +59,7 @@
 - (void)loadContryName:(NSString *)name
 {
     _name_label.text = name;
+   
 }
 
 @end
@@ -83,6 +84,7 @@
         @strongify(self);
    
     }];
+
     
     
 }
