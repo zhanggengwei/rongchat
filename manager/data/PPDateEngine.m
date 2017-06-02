@@ -85,6 +85,29 @@
         
     }];
     
+    RACCommand * command = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+        
+        RACSignal * signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            [subscriber sendNext:nil];
+            [subscriber sendError:nil];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+       
+        return  signal;
+        
+    }];
+    [command.executionSignals subscribeNext:^(id x) {
+        
+    } error:^(NSError *error) {
+        
+    } completed:^{
+        
+    }];
+    
+    
+    
+    
 }
 
 - (void)regisiterWithResponse:(PPResponseBlock())aResponseBlock  userName:(NSString *)userName verficationToken:(NSString *)token passWord:(NSString *)passWord

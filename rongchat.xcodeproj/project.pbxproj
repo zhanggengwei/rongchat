@@ -25,6 +25,7 @@
 		40785E991DEE9E7900875E00 /* RJBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E941DEE9E7900875E00 /* RJBackView.m */; };
 		40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */; };
 		40785E9D1DEEA1F500875E00 /* register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40785E9C1DEEA1F500875E00 /* register.storyboard */; };
+		4084F18D1EE12EE800F4A917 /* LoginInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4084F18C1EE12EE800F4A917 /* LoginInputView.xib */; };
 		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
 		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
 		409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F506F1DDD6E5100015DB7 /* NSString+MD5.m */; };
@@ -262,6 +263,7 @@
 		40785E961DEE9E7900875E00 /* UIButton+ButtonThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ButtonThread.h"; sourceTree = "<group>"; };
 		40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ButtonThread.m"; sourceTree = "<group>"; };
 		40785E9C1DEEA1F500875E00 /* register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = register.storyboard; sourceTree = "<group>"; };
+		4084F18C1EE12EE800F4A917 /* LoginInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginInputView.xib; sourceTree = "<group>"; };
 		409F50501DDD6E3100015DB7 /* OTFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTFileManager.h; sourceTree = "<group>"; };
 		409F50511DDD6E3100015DB7 /* OTFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTFileManager.m; sourceTree = "<group>"; };
 		409F50521DDD6E3100015DB7 /* PPFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPFileManager.h; sourceTree = "<group>"; };
@@ -542,7 +544,7 @@
 		75CEF88B1DDC878500541660 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75CEF8971DDC87B200541660 /* PPTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTabBarController.h; sourceTree = "<group>"; };
 		75CEF8981DDC87B200541660 /* PPTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTabBarController.m; sourceTree = "<group>"; };
-		75CEF89A1DDC880300541660 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = rongchat/PrefixHeader.pch; sourceTree = "<group>"; };
+		75CEF89A1DDC880300541660 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		75CEF89B1DDC889F00541660 /* PPMarchos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPMarchos.h; sourceTree = "<group>"; };
 		75CEF9431DDD28C100541660 /* PPContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPContactListViewController.h; sourceTree = "<group>"; };
 		75CEF9441DDD28C100541660 /* PPContactListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPContactListViewController.m; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 				409F507D1DDD6E6F00015DB7 /* PPRegisterViewController.m */,
 				409F507E1DDD6E6F00015DB7 /* UITextField+UITextField_WJ.h */,
 				409F507F1DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m */,
+				4084F18C1EE12EE800F4A917 /* LoginInputView.xib */,
 			);
 			path = "登陆";
 			sourceTree = "<group>";
@@ -1210,7 +1213,6 @@
 				409F50771DDD6E6F00015DB7 /* 登陆 */,
 				409F506C1DDD6E5100015DB7 /* tools */,
 				409F504C1DDD6E3100015DB7 /* manager */,
-				75CEF89A1DDC880300541660 /* PrefixHeader.pch */,
 				75CEF8631DDC878500541660 /* rongchat */,
 				75CEF87D1DDC878500541660 /* rongchatTests */,
 				75CEF8881DDC878500541660 /* rongchatUITests */,
@@ -1252,7 +1254,6 @@
 				75CEF8721DDC878500541660 /* LaunchScreen.storyboard */,
 				75CEF8751DDC878500541660 /* Info.plist */,
 				75CEF8641DDC878500541660 /* Supporting Files */,
-				75CEF89B1DDC889F00541660 /* PPMarchos.h */,
 			);
 			path = rongchat;
 			sourceTree = "<group>";
@@ -1260,7 +1261,9 @@
 		75CEF8641DDC878500541660 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				75CEF89A1DDC880300541660 /* PrefixHeader.pch */,
 				75CEF8651DDC878500541660 /* main.m */,
+				75CEF89B1DDC889F00541660 /* PPMarchos.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1491,6 +1494,7 @@
 				40C260801E0396FB00823111 /* Action_JD_mainMenu@2x.png in Resources */,
 				40C260C31E0396FB00823111 /* tabbar_meHL@3x.png in Resources */,
 				40C260AD1E0396FB00823111 /* LaunchImage@2x.png in Resources */,
+				4084F18D1EE12EE800F4A917 /* LoginInputView.xib in Resources */,
 				40C260A31E0396FB00823111 /* Shake_icon_people@2x.png in Resources */,
 				40C2607C1E0396FB00823111 /* common_line_g@2x.png in Resources */,
 				40C260981E0396FB00823111 /* ff_IconShake@2x.png in Resources */,
@@ -1873,6 +1877,7 @@
 			baseConfigurationReference = DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1894,6 +1899,7 @@
 			baseConfigurationReference = 78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
 				DEVELOPMENT_TEAM = R6B5BG54J2;
 				FRAMEWORK_SEARCH_PATHS = (

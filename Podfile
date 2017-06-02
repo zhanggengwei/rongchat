@@ -28,6 +28,8 @@ def pods
     pod 'MJRefresh', '~> 3.1.12'
     pod 'DACircularProgress', '~> 2.3.1'
     pod 'pop', '~> 1.0.9'
+    pod 'ReactiveCocoa'
+    pod 'Realm'
     
     #log
     #QRCode
@@ -50,7 +52,7 @@ def pods
     pod 'PinYin4Objc', '~> 1.1.1'
     
     
-    pod 'ReactiveCocoa'
+  
     
 end
 

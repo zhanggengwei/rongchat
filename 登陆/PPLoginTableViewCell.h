@@ -26,7 +26,9 @@ typedef enum : NSUInteger {
 
 
 @interface PPLoginTableViewCell : UITableViewCell
+@property (nonatomic,strong,readonly) UITextField * rightText;
 
+@property (nonatomic,strong,readonly) RACSignal * signal;
 @property (nonatomic,assign,readonly) PPLoginTableViewCellStyle style;
 @property (nonatomic,weak) id<PPLoginTableViewCellDelegate>delegate;
 

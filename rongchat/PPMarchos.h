@@ -119,7 +119,7 @@ alpha:a]
 
 #import  <PinYin4Objc/PinYin4Objc.h>
 
-#import <ReactiveCocoa/ReactiveCocoa.h>
+
 
 
 #endif /* PPMarchos_h */

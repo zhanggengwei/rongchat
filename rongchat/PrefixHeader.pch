@@ -20,6 +20,7 @@
 #import "singleton.h"
 #import "XIAlertView.h"
 #import "PPUrlDef.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 

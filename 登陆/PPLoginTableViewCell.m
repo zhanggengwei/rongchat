@@ -47,6 +47,10 @@
 - (void)createUI
 {
     self.leftLabel = [UILabel new];
+    //- (RACSignal *)rac_valuesForKeyPath:(NSString *)keyPath observer:(__weak NSObject *)observer;
+   // _signal = [self rac_valuesForKeyPath:@"text" observer:self.rightText];
+    
+    
     
     [self.contentView addSubview:self.leftLabel];
     

@@ -19,6 +19,7 @@
 @property (nonatomic,strong) NSString * acount;
 @property (nonatomic,strong) NSString * passWord;
 @property (nonatomic,strong) UIButton * loginBtn;
+@property (nonatomic,strong) UITextField * textfiled;
 @end
 
 @implementation PPLoginViewController
@@ -26,12 +27,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.item = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction:)];
-    
     self.navigationItem.leftBarButtonItem = self.item;
     self.item.tintColor = [UIColor colorWithRed:104/255.0 green:187/255.0 blue:30/255.0 alpha:1];
     
     [self createUI];
     [self createLoginNavBarStryle];
+    
+    RACSubject * subject = [RACSubject subject];
+    [[subject rac_signalForSelector:@selector(textFieldChange:style:) fromProtocol:@protocol(PPLoginTableViewCellDelegate)]subscribeNext:^(id x) {
+        
+        NSLog(@"%@",x);
+        
+    }];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -75,7 +83,7 @@
         make.top.mas_equalTo(self.footerView.mas_top).mas_offset(20);
         make.left.mas_equalTo(self.footerView.mas_left).mas_offset(31);
         make.right.mas_equalTo(self.footerView.mas_right).mas_offset(-31);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(40);
     }];
     [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:kPPLoginButtonColor] forState:UIControlStateDisabled];
    
@@ -113,7 +121,7 @@
     }];
     [moreButton setTitleColor:kPPEamil_ButtonColor forState:UIControlStateNormal];
     [moreButton setTitle:@"更多" forState:UIControlStateNormal];
-    moreButton.titleLabel.font = COMMON_FONT_SIZE;
+     moreButton.titleLabel.font = COMMON_FONT_SIZE;
     
     [moreButton addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
 }
