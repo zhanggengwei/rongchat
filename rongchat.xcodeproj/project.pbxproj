@@ -26,6 +26,7 @@
 		40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */; };
 		40785E9D1DEEA1F500875E00 /* register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40785E9C1DEEA1F500875E00 /* register.storyboard */; };
 		4084F18D1EE12EE800F4A917 /* LoginInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4084F18C1EE12EE800F4A917 /* LoginInputView.xib */; };
+		4084F1901EE132EF00F4A917 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4084F18F1EE132EF00F4A917 /* CustomView.m */; };
 		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
 		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
 		409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F506F1DDD6E5100015DB7 /* NSString+MD5.m */; };
@@ -264,6 +265,8 @@
 		40785E971DEE9E7900875E00 /* UIButton+ButtonThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ButtonThread.m"; sourceTree = "<group>"; };
 		40785E9C1DEEA1F500875E00 /* register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = register.storyboard; sourceTree = "<group>"; };
 		4084F18C1EE12EE800F4A917 /* LoginInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginInputView.xib; sourceTree = "<group>"; };
+		4084F18E1EE132EF00F4A917 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
+		4084F18F1EE132EF00F4A917 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
 		409F50501DDD6E3100015DB7 /* OTFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTFileManager.h; sourceTree = "<group>"; };
 		409F50511DDD6E3100015DB7 /* OTFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTFileManager.m; sourceTree = "<group>"; };
 		409F50521DDD6E3100015DB7 /* PPFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPFileManager.h; sourceTree = "<group>"; };
@@ -717,6 +720,8 @@
 				409F507E1DDD6E6F00015DB7 /* UITextField+UITextField_WJ.h */,
 				409F507F1DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m */,
 				4084F18C1EE12EE800F4A917 /* LoginInputView.xib */,
+				4084F18E1EE132EF00F4A917 /* CustomView.h */,
+				4084F18F1EE132EF00F4A917 /* CustomView.m */,
 			);
 			path = "登陆";
 			sourceTree = "<group>";
@@ -1649,6 +1654,7 @@
 				7584DB551E2A5BE6007249C2 /* PPUpdatePassWordController.m in Sources */,
 				409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */,
 				406833811E7A779F00E03427 /* RCSwipeView.m in Sources */,
+				4084F1901EE132EF00F4A917 /* CustomView.m in Sources */,
 				758E8BA01E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m in Sources */,
 				4068337E1E7A657700E03427 /* RCIMStatusView.m in Sources */,
 				409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */,
