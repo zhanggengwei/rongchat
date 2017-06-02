@@ -49,6 +49,9 @@ def pods
     #拼音
     pod 'PinYin4Objc', '~> 1.1.1'
     
+    
+    pod 'ReactiveCocoa', '~> 5.0.3'
+    
 end
 
 target ‘rongchat’ do
