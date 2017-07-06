@@ -8,9 +8,7 @@
 NSArray * titleArr ()
 {
     return @[@[@"头像",@"名字",@"微信号",@"我的二维码",@"我的地址"],@[@"性别",@"地区",@"个性签名"]];
-    
 }
-
 
 #import "PPInfoMessageViewController.h"
 #import "PPInfoMessageCell.h"

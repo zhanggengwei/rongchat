@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7E30F1C9BB5AA4188754673FD1F2E963'
+               BlueprintIdentifier = 'FF2177FCC65E1A3D205D87972EBDC8D5'
                BlueprintName = 'Pods-rongchat'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-rongchat.a'>

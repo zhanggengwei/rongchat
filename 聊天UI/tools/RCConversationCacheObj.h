@@ -20,7 +20,6 @@
 
 - (void)refreshUserInfo:(PPUserBaseInfo *)userInfo byUserId:(NSString *)indexId;
 
-
 - (void)saveUserInfoList:(NSArray <PPUserBaseInfo *> *)userList;
 
 

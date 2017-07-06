@@ -46,6 +46,7 @@ PODS:
   - MBProgressHUD (0.8)
   - MD5Digest (1.1.0)
   - MJRefresh (3.1.12)
+  - MLLabel (1.10.3)
   - ODRefreshControl (1.2)
   - PinYin4Objc (1.1.1)
   - pop (1.0.9)
@@ -93,6 +94,7 @@ DEPENDENCIES:
   - MBProgressHUD (= 0.8)
   - MD5Digest (~> 1.1.0)
   - MJRefresh (~> 3.1.12)
+  - MLLabel (~> 1.10.3)
   - ODRefreshControl (~> 1.2)
   - PinYin4Objc (~> 1.1.1)
   - pop (~> 1.0.9)
@@ -124,6 +126,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: 8688c331cb64702283be37ab8d7d329cdd25f251
   MD5Digest: fea371215507cfcdc3c9633d02cffc7fd075ebc3
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MLLabel: 3760fb38aeac53b212409b634bc4aa4bf39ab628
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
@@ -139,6 +142,6 @@ SPEC CHECKSUMS:
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 9389297eacd6948c23fc44a2a10f8f19e7247cc3
+PODFILE CHECKSUM: b874e0e7606c9e2ffa68ecc3dc0d55d30dff2818
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.1

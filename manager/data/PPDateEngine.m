@@ -38,7 +38,7 @@
 }
 - (void)loginWithWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord region:(NSString *)region
 {
-
+    
     PPHTTPManager *manager = [PPHTTPManager manager];
     NSDictionary * dict = @{
                             @"region" : region,
@@ -52,12 +52,35 @@
         [self _completeWithResponse:response block:aResponseBlock];
         if(response.code.integerValue == kPPResponseSucessCode)
         {
-          
-        [self loginSucessAfterLoginRCIMResponse:^(PPHTTPResponse * aTaskResponse) {
-          
-            
-        } loginToken:token UserID:userID phone:phone passWord:passWord];
-        
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSString * dbPath = [[PPFileManager sharedManager]pathForDomain:PPFileDirDomain_User appendPathName:userID];
+                //创建用户文件夹
+                BOOL isDir;
+                OTF_FileExistsAtPath(dbPath, &isDir);
+                if (!isDir) {
+                    OTF_CreateDir(dbPath);
+                }
+                [self loginSucessUserID:userID phone:phone passWord:passWord loginToken:token];
+                PPHTTPResponse * response = [PPHTTPResponse new];
+                response.code = @200;
+                response.message = @"登录成功";
+                [self _completeWithResponse:response block:aResponseBlock];
+                [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
+                
+            });
+            [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
+                if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+                {
+                    PPUserBaseInfo * info = [PPUserBaseInfo new];
+                    info.user = aTaskResponse.result;
+                    [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
+                }
+            } userID:userID];
+            [self loginSucessAfterLoginRCIMResponse:^(PPHTTPResponse * aTaskResponse) {
+                
+                
+            } loginToken:token UserID:userID phone:phone passWord:passWord];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PPHTTPResponse *response = [PPHTTPResponse responseWithError:error];
@@ -93,7 +116,7 @@
             [subscriber sendCompleted];
             return nil;
         }];
-       
+        
         return  signal;
         
     }];
@@ -171,7 +194,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
-
+    
 }
 
 //设置好友备注
@@ -189,7 +212,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
-
+    
 }
 
 //获取版本信息
@@ -203,7 +226,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
-
+    
 }
 
 - (void)sendVerifyWithResponse:(PPResponseBlock())aResponseBlock phone:(NSString *)phoneNumber regionString:(NSString *)region
@@ -215,7 +238,7 @@
         NSError * error;
         PPHTTPResponse * response = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:&error];
         [self _completeWithResponse:response block:aResponseBlock];
-       
+        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
@@ -235,7 +258,7 @@
         [self _completeWithResponse:response block:aResponseBlock];
         
         NSLog(@"%@",responseObject);
-
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
         [self _completeWithResponse:response block:aResponseBlock];
@@ -338,23 +361,23 @@
     PPHTTPManager * manager = [PPHTTPManager manager];
     
     [manager GET:kPPUrlUploadImageToken parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        NSError * error;
-        PPUploadImageTokenResponse * response = [MTLJSONAdapter modelOfClass:[PPUploadImageTokenResponse class] fromJSONDictionary:responseObject error:&error];
-        [self _completeWithResponse:response block:aResponseBlock];
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error == %@",error);
-        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+     {
+         NSError * error;
+         PPUploadImageTokenResponse * response = [MTLJSONAdapter modelOfClass:[PPUploadImageTokenResponse class] fromJSONDictionary:responseObject error:&error];
          [self _completeWithResponse:response block:aResponseBlock];
-        
-    }];
+         
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         NSLog(@"error == %@",error);
+         PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+         [self _completeWithResponse:response block:aResponseBlock];
+         
+     }];
 }
 
 - (void)requsetUploadImageResponse:(PPResponseBlock())aResponseBlock UploadFile:(NSData *)imageData UserId:(NSString *)auserId uploadToken:(NSString *)token
 {
-    //进行 图片的上传  
+    //进行 图片的上传
     
     
     //获取系统当前的时间戳
@@ -394,12 +417,12 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
               NSLog(@"resoonse == %@",responseObject);
               
               NSString * url = [NSString stringWithFormat:@"http://7xogjk.com1.z0.glb.clouddn.com/%@",responseObject[@"key"]];
-               [self requestSetHeadUrlResponse:^(PPHTTPResponse * aTaskResponse) {
-                 [self _completeWithResponse:aTaskResponse block:aResponseBlock];
-                   
-               } headUrl:url];
+              [self requestSetHeadUrlResponse:^(PPHTTPResponse * aTaskResponse) {
+                  [self _completeWithResponse:aTaskResponse block:aResponseBlock];
+                  
+              } headUrl:url];
               
-             
+              
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               NSLog(@"请求失败");
@@ -484,7 +507,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     
     PPHTTPManager * manager = [PPHTTPManager manager];
-      NSDictionary *params = @{ @"groupId" : agroupId, @"memberIds" : usersIdArr };
+    NSDictionary *params = @{ @"groupId" : agroupId, @"memberIds" : usersIdArr };
     [manager POST:kPPUrlInviteUserGroup parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -607,32 +630,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 - (void)loginSucessAfterLoginRCIMResponse:(PPResponseBlock())aResponseBlock loginToken:(NSString *)token UserID:(NSString *)userID phone:(NSString *)phone passWord:(NSString *)passWord
 {
     [[PPChatTools shareManager]connectWithToken:token sucessBlock:^(NSString *content) {
-        dispatch_async(dispatch_get_main_queue(), ^{
         
-            NSString * dbPath = [[PPFileManager sharedManager]pathForDomain:PPFileDirDomain_User appendPathName:userID];
-            //创建用户文件夹
-            BOOL isDir;
-            OTF_FileExistsAtPath(dbPath, &isDir);
-            if (!isDir) {
-                OTF_CreateDir(dbPath);
-            }
-            [self loginSucessUserID:userID phone:phone passWord:passWord loginToken:token];
-            PPHTTPResponse * response = [PPHTTPResponse new];
-            response.code = @200;
-            response.message = @"登录成功";
-            [self _completeWithResponse:response block:aResponseBlock];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
-           
-        });
-     
-        [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
-            if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-            {
-                PPUserBaseInfo * info = [PPUserBaseInfo new];
-                info.user = aTaskResponse.result;
-                [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
-            }
-        } userID:userID];
     } failBlock:^(RCConnectErrorCode code) {
         NSLog(@"code == %ld",code);
         PPHTTPResponse * response = [PPHTTPResponse responseWithError:[NSError errorWithDomain:@"" code:code userInfo:nil]];
@@ -643,7 +641,4 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [self _completeWithResponse:response block:aResponseBlock];
     }];
 }
-
-
-
 @end

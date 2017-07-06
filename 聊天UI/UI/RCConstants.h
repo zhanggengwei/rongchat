@@ -7,7 +7,8 @@
 //  Common typdef and constants, and so on.
 
 #import "RCUserDelegate.h"
-#import <AVOSCloudIM/AVOSCloudIM.h>
+//#import <AVOSCloudIM/AVOSCloudIM.h>
+#import "RCIMMessageMediaType.h"
 
 #pragma mark - Base ViewController Life Time Block
 ///=============================================================================
@@ -129,13 +130,6 @@ static NSString *const RCNotificationContactListDataSourceUpdatedUserInfoDataSou
 /// @name Conversation Enum : Message Type and operation
 ///=============================================================================
 
-/**
- *  消息聊天类型
- */
-typedef NS_ENUM(NSUInteger, RCConversationType){
-    RCConversationTypeSingle = 0 /**< 单人聊天,不显示nickname */,
-    RCConversationTypeGroup /**< 群组聊天,显示nickname */,
-};
 
 /**
  *  消息拥有者类型
@@ -147,7 +141,7 @@ typedef NS_ENUM(NSUInteger, RCMessageOwnerType){
     RCMessageOwnerTypeOther /**< 接收到的他人消息 */,
 };
 
-static AVIMMessageMediaType const kAVIMMessageMediaTypeSystem = -7;
+static RCIMMessageMediaType const kRCIMMessageMediaTypeSystem = -7;
 
 /**
  *  消息发送状态,自己发送的消息时有

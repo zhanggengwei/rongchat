@@ -29,6 +29,7 @@ def pods
     pod 'DACircularProgress', '~> 2.3.1'
     pod 'pop', '~> 1.0.9'
     pod 'ReactiveCocoa'
+    pod 'MLLabel', '~> 1.10.3'
 #    pod 'Realm'
     
     #log

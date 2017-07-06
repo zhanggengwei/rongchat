@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '907A4CF71E60537A3441A439A853C0EB'
+               BlueprintIdentifier = 'E3C6E97528CCC1C8E1959FDB07A840A2'
                BlueprintName = 'ICEVersionUpdate'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libICEVersionUpdate.a'>

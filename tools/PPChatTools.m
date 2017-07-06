@@ -13,7 +13,6 @@
 #import "PPDateEngine.h"
 
 @interface PPChatTools ()<RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate,RCIMUserInfoDataSource>
-
 @property (nonatomic,strong)RCIM * client;
 
 @end
@@ -28,27 +27,21 @@
     
     dispatch_once(&token, ^{
         shareInstance = [PPChatTools new];
-       
         shareInstance.client = [RCIM sharedRCIM];
-         [shareInstance initRCIM];
+        [shareInstance initRCIM];
         [shareInstance.client setConnectionStatusDelegate:shareInstance];
-   
+        
         shareInstance.client.receiveMessageDelegate = shareInstance;
         shareInstance.client.userInfoDataSource = shareInstance;
-        
-       
         shareInstance.client.enablePersistentUserInfoCache = YES;
-        
-        
-        
-        
     });
     return shareInstance;
 }
 - (void)initRCIM
 {
+    //n19jmcy59f1q9  pwe86ga5ph4q6
     [self setAppKey:@"n19jmcy59f1q9"];
-   
+    
 }
 - (void)setAppKey:(NSString *)key
 {
@@ -84,22 +77,22 @@
 
 - (void)autoLogin
 {
-
+    
     NSString * token = [SFHFKeychainUtils getPasswordForUsername:kPPLoginToken andServiceName:kPPServiceName error:nil];
     if(token==nil||token.length<=0)
     {
-       [[PPChatTools shareManager]logout];
+        [[PPChatTools shareManager]logout];
         return;
     }
     [self connectWithToken:token sucessBlock:^(NSString *content) {
-     
+        
     } failBlock:^(RCConnectErrorCode code) {
         NSLog(@"code ==%d",code);
         
     } tokenIncorrectBlock:^{
-         [[PPChatTools shareManager]logout];
+        [[PPChatTools shareManager]logout];
         [PPIndicatorView showString:@"token 错误" duration:1];
-       
+        
         
     }];
     
@@ -120,7 +113,7 @@
 - (void)disconnectConnection:(BOOL)isReceivePush
 {
     [self.client disconnect:isReceivePush];
-        
+    
 }
 
 #pragma mark onRCIMConnectionStatusChangedDelegate
@@ -135,10 +128,10 @@
         
     }else if (status == ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT)
     {
-         [self logout];
+        [self logout];
         [PPIndicatorView showString:@"账号在其他设备上登录" duration:1];
         
-       
+        
     }
     
 }
@@ -239,7 +232,7 @@
         }
         
     } userID:userId];
-
+    
 }
 
 @end

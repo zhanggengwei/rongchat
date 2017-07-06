@@ -17,22 +17,17 @@
 
 @implementation PPMyViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIHGHT) style:UITableViewStyleGrouped];
-  
     [self.view addSubview:self.tableView];
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.sectionFooterHeight = 0.1;
     [self.tableView registerClass:[PPPersonTableViewCell class] forCellReuseIdentifier:@"PPPersonTableViewCell"];
-
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-
     [self createData];
-    
     // Do any additional setup after loading the view.
 }
 
@@ -44,28 +39,21 @@
 - (void)createData
 {
     self.dataArray = [NSMutableArray new];
-    
     PPPersonal * model1 = [PPPersonal new];
     model1.leftIconName = @"";
     model1.rightIconName = @"setting_myQR";
     model1.content = @"123";
     [self.dataArray addObject:model1];
-    
-    
     PPPersonal * model2 = [PPPersonal new];
     model2.leftIconName = @"me_photo";
     model2.content = @"相册";
     [self.dataArray addObject:model2];
-    
-    
     
     PPPersonal * model3 = [PPPersonal new];
     model3.leftIconName = @"me_collect";
     model3.content = @"收藏";
     
     [self.dataArray addObject:model3];
-    
-    
     PPPersonal * model4 = [PPPersonal new];
     model4.leftIconName = @"me_collect";
     model4.content = @"钱包";
@@ -123,33 +111,26 @@
         default:
             break;
     }
-    
     PPPersonal * model = [self.dataArray objectAtIndex:index];
-    
-    
     [cell layoutData:style cellModel:model];
-    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
-    
+
 }
-
-
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-        if(indexPath.section==0)
-        {
-            return 100;
-        }
     
-        return 48;
+    if(indexPath.section==0)
+    {
+        return 100;
+    }
+    
+    return 48;
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if(indexPath.section == 3 && indexPath.row == 0)
     {
         PPSetingViewController * controller = [PPSetingViewController new];
@@ -173,19 +154,19 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
- 
+    
     switch (section)
     {
-    case 0:
-        return 1;
-    case 1:
-        return 3;
-    case 2:
-        return 1;
-    case 3:
-        return 1;
-    default: break;
-        
+        case 0:
+            return 1;
+        case 1:
+            return 3;
+        case 2:
+            return 1;
+        case 3:
+            return 1;
+        default: break;
+            
     }
     return 0;
 }
