@@ -13,7 +13,7 @@
 
 @class RCChatBaseMessageCell;
 
-@protocol LCCKChatMessageCellSubclassing <NSObject>
+@protocol RCChatMessageCellSubclassing <NSObject>
 @required
 /*!
  子类实现此方法用于返回该类对应的消息类型
@@ -22,7 +22,7 @@
 + (RCIMMessageMediaType)classMediaType;
 @end
 
-@protocol LCCKChatMessageCellDelegate <NSObject>
+@protocol RCIMChatMessageCellDelegate <NSObject>
 
 - (void)messageCellTappedBlank:(RCChatBaseMessageCell *)messageCell;
 - (void)messageCellTappedHead:(RCChatBaseMessageCell *)messageCell;
@@ -41,6 +41,8 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, weak) id<RCIMChatMessageCellDelegate>delegate;
+
 
 @property (nonatomic,strong) UIImageView * avatarImageView;
 //头像

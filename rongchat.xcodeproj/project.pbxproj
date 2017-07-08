@@ -139,6 +139,25 @@
 		75278A111F0E9167000C70AF /* RCContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A101F0E9167000C70AF /* RCContentView.m */; };
 		75278A141F0E9294000C70AF /* RCMessageSendStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A131F0E9294000C70AF /* RCMessageSendStateView.m */; };
 		75278A191F0E9955000C70AF /* RCIMMessageMediaType.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A181F0E9955000C70AF /* RCIMMessageMediaType.m */; };
+		75278A1C1F0FC10F000C70AF /* RCChatTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A1B1F0FC10F000C70AF /* RCChatTextMessageCell.m */; };
+		75278A1F1F0FC2E9000C70AF /* RCChatImageMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A1E1F0FC2E9000C70AF /* RCChatImageMessageCell.m */; };
+		75278A221F0FC2F7000C70AF /* RCChatVoiceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A211F0FC2F7000C70AF /* RCChatVoiceMessageCell.m */; };
+		75278A251F0FC30A000C70AF /* RCChatFileMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A241F0FC30A000C70AF /* RCChatFileMessageCell.m */; };
+		75278A281F105FBD000C70AF /* RCIMSettingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A271F105FBD000C70AF /* RCIMSettingService.m */; };
+		75278A351F106798000C70AF /* BarButtonIcon.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A2A1F106798000C70AF /* BarButtonIcon.bundle */; };
+		75278A361F106798000C70AF /* ChatKeyboard.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A2B1F106798000C70AF /* ChatKeyboard.bundle */; };
+		75278A371F106798000C70AF /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A2C1F106798000C70AF /* DateTools.bundle */; };
+		75278A381F106798000C70AF /* Emoji.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A2D1F106798000C70AF /* Emoji.bundle */; };
+		75278A391F106798000C70AF /* LCCKPBLocalizations.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A2E1F106798000C70AF /* LCCKPBLocalizations.bundle */; };
+		75278A3A1F106798000C70AF /* LCCKPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A2F1F106798000C70AF /* LCCKPhotoBrowser.bundle */; };
+		75278A3B1F106798000C70AF /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A301F106798000C70AF /* MBProgressHUD.bundle */; };
+		75278A3C1F106798000C70AF /* MessageBubble.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A311F106798000C70AF /* MessageBubble.bundle */; };
+		75278A3D1F106798000C70AF /* Other.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A321F106798000C70AF /* Other.bundle */; };
+		75278A3E1F106798000C70AF /* Placeholder.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A331F106798000C70AF /* Placeholder.bundle */; };
+		75278A3F1F106798000C70AF /* VoiceMessageSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 75278A341F106798000C70AF /* VoiceMessageSource.bundle */; };
+		75278A421F107086000C70AF /* RCChatSystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A411F107086000C70AF /* RCChatSystemMessageCell.m */; };
+		75278A451F10709E000C70AF /* RCChatLocationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A441F10709E000C70AF /* RCChatLocationMessageCell.m */; };
+		75278A481F107279000C70AF /* NSObject+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A471F107279000C70AF /* NSObject+RCIMExtension.m */; };
 		7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */; };
 		7584DA9E1E2A5B83007249C2 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA991E2A5B83007249C2 /* RCConversationListCell.m */; };
 		7584DA9F1E2A5B83007249C2 /* RCTextMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA9C1E2A5B83007249C2 /* RCTextMessageTableViewCell.m */; };
@@ -417,6 +436,33 @@
 		75278A161F0E98F6000C70AF /* RCUserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCUserDelegate.h; sourceTree = "<group>"; };
 		75278A171F0E9955000C70AF /* RCIMMessageMediaType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMMessageMediaType.h; sourceTree = "<group>"; };
 		75278A181F0E9955000C70AF /* RCIMMessageMediaType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMMessageMediaType.m; sourceTree = "<group>"; };
+		75278A1A1F0FC10F000C70AF /* RCChatTextMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatTextMessageCell.h; sourceTree = "<group>"; };
+		75278A1B1F0FC10F000C70AF /* RCChatTextMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatTextMessageCell.m; sourceTree = "<group>"; };
+		75278A1D1F0FC2E9000C70AF /* RCChatImageMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatImageMessageCell.h; sourceTree = "<group>"; };
+		75278A1E1F0FC2E9000C70AF /* RCChatImageMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatImageMessageCell.m; sourceTree = "<group>"; };
+		75278A201F0FC2F7000C70AF /* RCChatVoiceMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatVoiceMessageCell.h; sourceTree = "<group>"; };
+		75278A211F0FC2F7000C70AF /* RCChatVoiceMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatVoiceMessageCell.m; sourceTree = "<group>"; };
+		75278A231F0FC30A000C70AF /* RCChatFileMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatFileMessageCell.h; sourceTree = "<group>"; };
+		75278A241F0FC30A000C70AF /* RCChatFileMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatFileMessageCell.m; sourceTree = "<group>"; };
+		75278A261F105FBD000C70AF /* RCIMSettingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMSettingService.h; sourceTree = "<group>"; };
+		75278A271F105FBD000C70AF /* RCIMSettingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMSettingService.m; sourceTree = "<group>"; };
+		75278A2A1F106798000C70AF /* BarButtonIcon.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BarButtonIcon.bundle; sourceTree = "<group>"; };
+		75278A2B1F106798000C70AF /* ChatKeyboard.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChatKeyboard.bundle; sourceTree = "<group>"; };
+		75278A2C1F106798000C70AF /* DateTools.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DateTools.bundle; sourceTree = "<group>"; };
+		75278A2D1F106798000C70AF /* Emoji.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emoji.bundle; sourceTree = "<group>"; };
+		75278A2E1F106798000C70AF /* LCCKPBLocalizations.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCCKPBLocalizations.bundle; sourceTree = "<group>"; };
+		75278A2F1F106798000C70AF /* LCCKPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LCCKPhotoBrowser.bundle; sourceTree = "<group>"; };
+		75278A301F106798000C70AF /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		75278A311F106798000C70AF /* MessageBubble.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MessageBubble.bundle; sourceTree = "<group>"; };
+		75278A321F106798000C70AF /* Other.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Other.bundle; sourceTree = "<group>"; };
+		75278A331F106798000C70AF /* Placeholder.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Placeholder.bundle; sourceTree = "<group>"; };
+		75278A341F106798000C70AF /* VoiceMessageSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = VoiceMessageSource.bundle; sourceTree = "<group>"; };
+		75278A401F107086000C70AF /* RCChatSystemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatSystemMessageCell.h; sourceTree = "<group>"; };
+		75278A411F107086000C70AF /* RCChatSystemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatSystemMessageCell.m; sourceTree = "<group>"; };
+		75278A431F10709E000C70AF /* RCChatLocationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatLocationMessageCell.h; sourceTree = "<group>"; };
+		75278A441F10709E000C70AF /* RCChatLocationMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatLocationMessageCell.m; sourceTree = "<group>"; };
+		75278A461F107279000C70AF /* NSObject+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RCIMExtension.h"; sourceTree = "<group>"; };
+		75278A471F107279000C70AF /* NSObject+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RCIMExtension.m"; sourceTree = "<group>"; };
 		7584DA951E2A5B83007249C2 /* PPTZeroSelectListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTZeroSelectListCell.h; sourceTree = "<group>"; };
 		7584DA961E2A5B83007249C2 /* RCConversationBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationBaseCell.h; sourceTree = "<group>"; };
 		7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationBaseCell.m; sourceTree = "<group>"; };
@@ -631,6 +677,8 @@
 				4068336B1E7A657700E03427 /* RCIMBaseViewController.m */,
 				750837001EF94BC8001AAE52 /* RCMessageViewController.h */,
 				750837011EF94BC8001AAE52 /* RCMessageViewController.m */,
+				75278A261F105FBD000C70AF /* RCIMSettingService.h */,
+				75278A271F105FBD000C70AF /* RCIMSettingService.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -796,6 +844,7 @@
 		409F79301DF65B210090D67F /* 聊天UI */ = {
 			isa = PBXGroup;
 			children = (
+				75278A291F106798000C70AF /* Resources */,
 				7584DAE21E2A5B98007249C2 /* tools */,
 				7584DABA1E2A5B92007249C2 /* category */,
 				7584DAA01E2A5B8A007249C2 /* UI */,
@@ -946,13 +995,43 @@
 			isa = PBXGroup;
 			children = (
 				75278A0C1F0E8F2D000C70AF /* RCChatBaseMessageCell.h */,
+				75278A431F10709E000C70AF /* RCChatLocationMessageCell.h */,
+				75278A441F10709E000C70AF /* RCChatLocationMessageCell.m */,
 				75278A0D1F0E8F2D000C70AF /* RCChatBaseMessageCell.m */,
+				75278A401F107086000C70AF /* RCChatSystemMessageCell.h */,
+				75278A411F107086000C70AF /* RCChatSystemMessageCell.m */,
+				75278A1A1F0FC10F000C70AF /* RCChatTextMessageCell.h */,
+				75278A1D1F0FC2E9000C70AF /* RCChatImageMessageCell.h */,
+				75278A1E1F0FC2E9000C70AF /* RCChatImageMessageCell.m */,
+				75278A201F0FC2F7000C70AF /* RCChatVoiceMessageCell.h */,
+				75278A211F0FC2F7000C70AF /* RCChatVoiceMessageCell.m */,
+				75278A231F0FC30A000C70AF /* RCChatFileMessageCell.h */,
+				75278A241F0FC30A000C70AF /* RCChatFileMessageCell.m */,
+				75278A1B1F0FC10F000C70AF /* RCChatTextMessageCell.m */,
 				75278A0F1F0E9167000C70AF /* RCContentView.h */,
 				75278A101F0E9167000C70AF /* RCContentView.m */,
 				75278A121F0E9294000C70AF /* RCMessageSendStateView.h */,
 				75278A131F0E9294000C70AF /* RCMessageSendStateView.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		75278A291F106798000C70AF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				75278A2A1F106798000C70AF /* BarButtonIcon.bundle */,
+				75278A2B1F106798000C70AF /* ChatKeyboard.bundle */,
+				75278A2C1F106798000C70AF /* DateTools.bundle */,
+				75278A2D1F106798000C70AF /* Emoji.bundle */,
+				75278A2E1F106798000C70AF /* LCCKPBLocalizations.bundle */,
+				75278A2F1F106798000C70AF /* LCCKPhotoBrowser.bundle */,
+				75278A301F106798000C70AF /* MBProgressHUD.bundle */,
+				75278A311F106798000C70AF /* MessageBubble.bundle */,
+				75278A321F106798000C70AF /* Other.bundle */,
+				75278A331F106798000C70AF /* Placeholder.bundle */,
+				75278A341F106798000C70AF /* VoiceMessageSource.bundle */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		7584DA941E2A5B83007249C2 /* cell */ = {
@@ -979,6 +1058,8 @@
 				406833721E7A657700E03427 /* view */,
 				7584DB771E2A623F007249C2 /* ChatBar */,
 				406833841E7A7B4100E03427 /* RCConstants.h */,
+				75278A461F107279000C70AF /* NSObject+RCIMExtension.h */,
+				75278A471F107279000C70AF /* NSObject+RCIMExtension.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1520,6 +1601,7 @@
 				40C260A71E0396FB00823111 /* Shake_Logo_Up@2x.png in Resources */,
 				40785E9D1DEEA1F500875E00 /* register.storyboard in Resources */,
 				40C260AF1E0396FB00823111 /* me_money@2x.png in Resources */,
+				75278A3E1F106798000C70AF /* Placeholder.bundle in Resources */,
 				40C260871E0396FB00823111 /* bottleButtonMine.png in Resources */,
 				40C260BB1E0396FB00823111 /* tabbar_discoverHL@3x.png in Resources */,
 				40C260741E0396FB00823111 /* add_friend_icon_addgroup@2x.png in Resources */,
@@ -1527,6 +1609,7 @@
 				40C260B51E0396FB00823111 /* tabbar_contacts@3x.png in Resources */,
 				40C260A11E0396FB00823111 /* Shake_icon_music@2x.png in Resources */,
 				40C260811E0396FB00823111 /* bottleBkg@2x.jpg in Resources */,
+				75278A3F1F106798000C70AF /* VoiceMessageSource.bundle in Resources */,
 				40C260B61E0396FB00823111 /* tabbar_contactsHL@2x.png in Resources */,
 				40C260A51E0396FB00823111 /* Shake_icon_tv@2x.png in Resources */,
 				40C260941E0396FB00823111 /* ff_IconQRCode.png in Resources */,
@@ -1538,16 +1621,20 @@
 				40C260A31E0396FB00823111 /* Shake_icon_people@2x.png in Resources */,
 				40C2607C1E0396FB00823111 /* common_line_g@2x.png in Resources */,
 				40C260981E0396FB00823111 /* ff_IconShake@2x.png in Resources */,
+				75278A371F106798000C70AF /* DateTools.bundle in Resources */,
 				40C2607F1E0396FB00823111 /* 1.png in Resources */,
 				40C260841E0396FB00823111 /* bottleBoard@2x.png in Resources */,
 				40C2608E1E0396FB00823111 /* ff_IconBottle.png in Resources */,
+				75278A391F106798000C70AF /* LCCKPBLocalizations.bundle in Resources */,
 				40C260A81E0396FB00823111 /* friendList.txt in Resources */,
 				40C260A21E0396FB00823111 /* Shake_icon_musicHL@2x.png in Resources */,
 				40C260851E0396FB00823111 /* bottleButtonFish.png in Resources */,
 				407261071DEBD12400554D00 /* CodeScan.bundle in Resources */,
+				75278A351F106798000C70AF /* BarButtonIcon.bundle in Resources */,
 				40C260C01E0396FB00823111 /* tabbar_me@2x.png in Resources */,
 				40C2609B1E0396FB00823111 /* ff_IconShowAlbum@2x.png in Resources */,
 				40C260AA1E0396FB00823111 /* LaunchImage-700-568h@2x.png in Resources */,
+				75278A3C1F106798000C70AF /* MessageBubble.bundle in Resources */,
 				40C260901E0396FB00823111 /* ff_IconBottle@3x.png in Resources */,
 				40C260BF1E0396FB00823111 /* tabbar_mainframeHL@3x.png in Resources */,
 				75DE61831DE48CA400DF1CA4 /* Country_Code.json in Resources */,
@@ -1557,9 +1644,11 @@
 				40C260B71E0396FB00823111 /* tabbar_contactsHL@3x.png in Resources */,
 				40C260B31E0396FB00823111 /* setting_myQR@2x.png in Resources */,
 				40C2607A1E0396FB00823111 /* plugins_FriendNotify@2x.png in Resources */,
+				75278A361F106798000C70AF /* ChatKeyboard.bundle in Resources */,
 				40C260C11E0396FB00823111 /* tabbar_me@3x.png in Resources */,
 				40C2609C1E0396FB00823111 /* ff_IconShowAlbum@3x.png in Resources */,
 				40C260821E0396FB00823111 /* bottleBkgSpotLight@2x.png in Resources */,
+				75278A3B1F106798000C70AF /* MBProgressHUD.bundle in Resources */,
 				40C260B81E0396FB00823111 /* tabbar_discover@2x.png in Resources */,
 				40C260771E0396FB00823111 /* add_friend_icon_offical@3x.png in Resources */,
 				40C260991E0396FB00823111 /* ff_IconShake@3x.png in Resources */,
@@ -1567,6 +1656,7 @@
 				40C2607B1E0396FB00823111 /* plugins_FriendNotify@3x.png in Resources */,
 				40C260B01E0396FB00823111 /* me_photo@2x.png in Resources */,
 				40C260B21E0396FB00823111 /* MoreExpressionShops@3x.png in Resources */,
+				75278A3D1F106798000C70AF /* Other.bundle in Resources */,
 				40C2609D1E0396FB00823111 /* FootStep@2x.png in Resources */,
 				75CEF8741DDC878500541660 /* LaunchScreen.storyboard in Resources */,
 				40C260921E0396FB00823111 /* ff_IconLocationService@2x.png in Resources */,
@@ -1579,6 +1669,7 @@
 				40C2608A1E0396FB00823111 /* bottleButtonThrow@2x.png in Resources */,
 				40C260B41E0396FB00823111 /* tabbar_contacts@2x.png in Resources */,
 				40C260931E0396FB00823111 /* ff_IconLocationService@3x.png in Resources */,
+				75278A381F106798000C70AF /* Emoji.bundle in Resources */,
 				40C260881E0396FB00823111 /* bottleButtonMine@2x.png in Resources */,
 				75CEF8711DDC878500541660 /* Assets.xcassets in Resources */,
 				40C260971E0396FB00823111 /* ff_IconShake.png in Resources */,
@@ -1588,6 +1679,7 @@
 				40C260A41E0396FB00823111 /* Shake_icon_peopleHL@2x.png in Resources */,
 				40C2608C1E0396FB00823111 /* bottleRecord@2x.png in Resources */,
 				40C260861E0396FB00823111 /* bottleButtonFish@2x.png in Resources */,
+				75278A3A1F106798000C70AF /* LCCKPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1677,6 +1769,7 @@
 				409F50951DDD704100015DB7 /* rc4.m in Sources */,
 				7584DB751E2A5BF5007249C2 /* PPDataDef.m in Sources */,
 				409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */,
+				75278A451F10709E000C70AF /* RCChatLocationMessageCell.m in Sources */,
 				7584DB711E2A5BF5007249C2 /* PPHTTPRequestSerializer.m in Sources */,
 				75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */,
 				406833781E7A657700E03427 /* RCConversationViewController.m in Sources */,
@@ -1689,6 +1782,7 @@
 				409F50931DDD704100015DB7 /* des.m in Sources */,
 				7584DB551E2A5BE6007249C2 /* PPUpdatePassWordController.m in Sources */,
 				409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */,
+				75278A1C1F0FC10F000C70AF /* RCChatTextMessageCell.m in Sources */,
 				406833811E7A779F00E03427 /* RCSwipeView.m in Sources */,
 				750837021EF94BC8001AAE52 /* RCMessageViewController.m in Sources */,
 				4084F1901EE132EF00F4A917 /* CustomView.m in Sources */,
@@ -1696,6 +1790,7 @@
 				4068337E1E7A657700E03427 /* RCIMStatusView.m in Sources */,
 				409F50B01DDD721500015DB7 /* PPSettingCell.m in Sources */,
 				4068337D1E7A657700E03427 /* PPTZeroSelectListCell.m in Sources */,
+				75278A481F107279000C70AF /* NSObject+RCIMExtension.m in Sources */,
 				409F50961DDD704100015DB7 /* UrlDecode.m in Sources */,
 				75D472BB1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m in Sources */,
 				758E8BA21E0AC6EB00D5DD4E /* Mp3Recorder.m in Sources */,
@@ -1711,6 +1806,7 @@
 				40785E991DEE9E7900875E00 /* RJBackView.m in Sources */,
 				409F50971DDD704100015DB7 /* UrlEncode.m in Sources */,
 				409F50921DDD704100015DB7 /* Base64.m in Sources */,
+				75278A1F1F0FC2E9000C70AF /* RCChatImageMessageCell.m in Sources */,
 				758E8B9B1E0AC6EB00D5DD4E /* RCIMTapDetectingView.m in Sources */,
 				7584DB741E2A5BF5007249C2 /* PPTUserInfoEngine.m in Sources */,
 				75278A111F0E9167000C70AF /* RCContentView.m in Sources */,
@@ -1719,6 +1815,7 @@
 				7584DAE01E2A5B92007249C2 /* UITableViewCell+addLineView.m in Sources */,
 				409F50AF1DDD721500015DB7 /* PPPersonTableViewCell.m in Sources */,
 				7584DB701E2A5BF5007249C2 /* PPHTTPManager.m in Sources */,
+				75278A421F107086000C70AF /* RCChatSystemMessageCell.m in Sources */,
 				75278A191F0E9955000C70AF /* RCIMMessageMediaType.m in Sources */,
 				409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */,
 				758E8B9C1E0AC6EB00D5DD4E /* RCIMZoomingScrollView.m in Sources */,
@@ -1734,6 +1831,7 @@
 				7584DAF71E2A5B98007249C2 /* RCIMImageManager.m in Sources */,
 				7584DAF61E2A5B98007249C2 /* RCIM.m in Sources */,
 				7584DAF81E2A5B98007249C2 /* RCIMWeakReference.m in Sources */,
+				75278A251F0FC30A000C70AF /* RCChatFileMessageCell.m in Sources */,
 				7584DB6E1E2A5BF5007249C2 /* kPPObserverDef.m in Sources */,
 				7584DAE11E2A5B92007249C2 /* UIView+RCIMExtension.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
@@ -1753,6 +1851,7 @@
 				7584DB731E2A5BF5007249C2 /* PPTDBEngine.m in Sources */,
 				406833791E7A657700E03427 /* RCIMBaseViewController.m in Sources */,
 				409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */,
+				75278A221F0FC2F7000C70AF /* RCChatVoiceMessageCell.m in Sources */,
 				409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */,
 				7584DAF91E2A5B98007249C2 /* RCKitUtility.m in Sources */,
 				406833771E7A657700E03427 /* RCConversationListViewController.m in Sources */,
@@ -1761,6 +1860,7 @@
 				409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */,
 				75278A141F0E9294000C70AF /* RCMessageSendStateView.m in Sources */,
 				75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */,
+				75278A281F105FBD000C70AF /* RCIMSettingService.m in Sources */,
 				7584DB511E2A5BE6007249C2 /* PPSelectAreaViewController.m in Sources */,
 				758E8B931E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m in Sources */,
 				758E8B961E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.m in Sources */,
