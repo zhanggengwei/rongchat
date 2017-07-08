@@ -76,7 +76,7 @@
 
 - (void)loadMessageByMessageID
 {
-    self.messageArray =  [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10];
+    self.messageArray =  [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:1];
     NSLog(@"%@",_messageArray);
     [self.tableView reloadData];
    

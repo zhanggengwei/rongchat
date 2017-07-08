@@ -168,6 +168,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
             }];
         }
     } else if (self.messageOwner == RCMessageOwnerTypeOther){
+        
         if (self.avatarImageView.superview) {
             [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.contentView.mas_left).with.offset(RCIM_MSG_CELL_EDGES_OFFSET);
@@ -211,6 +212,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
                 make.height.equalTo(@10);
             }];
         }
+        
     }
     
     if (self.messageContentBackgroundImageView.superview) {
@@ -304,6 +306,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 
 - (void)configureCellWithData:(id)message {
     //只考虑几种常用的信息
+    _message = message;
     RCMessage * model = message;
     RCUserInfo * info = model.content.senderUserInfo;
     if(info==nil)
@@ -439,6 +442,9 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (RCMessageOwnerType)messageOwner {
+    
+    NSLog(@"%@",[RCIMClient sharedRCIMClient].currentUserInfo.userId);
+    NSLog(@"message == %@",self.message);
     if([self.message.senderUserId isEqualToString:[RCIMClient sharedRCIMClient].currentUserInfo.userId])
     {
         return RCMessageOwnerTypeSelf;
