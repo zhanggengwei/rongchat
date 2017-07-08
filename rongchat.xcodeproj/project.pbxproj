@@ -160,6 +160,7 @@
 		75278A481F107279000C70AF /* NSObject+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A471F107279000C70AF /* NSObject+RCIMExtension.m */; };
 		75278A4B1F1076B2000C70AF /* RCIMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A4A1F1076B2000C70AF /* RCIMMenuItem.m */; };
 		75278A4E1F10D7D3000C70AF /* RCCellIdentifierFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A4D1F10D7D3000C70AF /* RCCellIdentifierFactory.m */; };
+		75278A511F10E512000C70AF /* RCBubbleImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A501F10E512000C70AF /* RCBubbleImageFactory.m */; };
 		7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */; };
 		7584DA9E1E2A5B83007249C2 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA991E2A5B83007249C2 /* RCConversationListCell.m */; };
 		7584DA9F1E2A5B83007249C2 /* RCTextMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA9C1E2A5B83007249C2 /* RCTextMessageTableViewCell.m */; };
@@ -468,6 +469,8 @@
 		75278A4A1F1076B2000C70AF /* RCIMMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMMenuItem.m; sourceTree = "<group>"; };
 		75278A4C1F10D7D3000C70AF /* RCCellIdentifierFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCCellIdentifierFactory.h; sourceTree = "<group>"; };
 		75278A4D1F10D7D3000C70AF /* RCCellIdentifierFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCCellIdentifierFactory.m; sourceTree = "<group>"; };
+		75278A4F1F10E512000C70AF /* RCBubbleImageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCBubbleImageFactory.h; sourceTree = "<group>"; };
+		75278A501F10E512000C70AF /* RCBubbleImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCBubbleImageFactory.m; sourceTree = "<group>"; };
 		7584DA951E2A5B83007249C2 /* PPTZeroSelectListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTZeroSelectListCell.h; sourceTree = "<group>"; };
 		7584DA961E2A5B83007249C2 /* RCConversationBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationBaseCell.h; sourceTree = "<group>"; };
 		7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationBaseCell.m; sourceTree = "<group>"; };
@@ -1008,13 +1011,13 @@
 				75278A401F107086000C70AF /* RCChatSystemMessageCell.h */,
 				75278A411F107086000C70AF /* RCChatSystemMessageCell.m */,
 				75278A1A1F0FC10F000C70AF /* RCChatTextMessageCell.h */,
+				75278A1B1F0FC10F000C70AF /* RCChatTextMessageCell.m */,
 				75278A1D1F0FC2E9000C70AF /* RCChatImageMessageCell.h */,
 				75278A1E1F0FC2E9000C70AF /* RCChatImageMessageCell.m */,
 				75278A201F0FC2F7000C70AF /* RCChatVoiceMessageCell.h */,
 				75278A211F0FC2F7000C70AF /* RCChatVoiceMessageCell.m */,
 				75278A231F0FC30A000C70AF /* RCChatFileMessageCell.h */,
 				75278A241F0FC30A000C70AF /* RCChatFileMessageCell.m */,
-				75278A1B1F0FC10F000C70AF /* RCChatTextMessageCell.m */,
 				75278A0F1F0E9167000C70AF /* RCContentView.h */,
 				75278A101F0E9167000C70AF /* RCContentView.m */,
 				75278A121F0E9294000C70AF /* RCMessageSendStateView.h */,
@@ -1128,6 +1131,8 @@
 				75278A181F0E9955000C70AF /* RCIMMessageMediaType.m */,
 				75278A4C1F10D7D3000C70AF /* RCCellIdentifierFactory.h */,
 				75278A4D1F10D7D3000C70AF /* RCCellIdentifierFactory.m */,
+				75278A4F1F10E512000C70AF /* RCBubbleImageFactory.h */,
+				75278A501F10E512000C70AF /* RCBubbleImageFactory.m */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -1853,6 +1858,7 @@
 				7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */,
 				75D472BE1DEEFE160013AA3E /* PPUrlDef.m in Sources */,
 				407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */,
+				75278A511F10E512000C70AF /* RCBubbleImageFactory.m in Sources */,
 				7584DB4D1E2A5BE6007249C2 /* PPAccountSecurityViewController.m in Sources */,
 				7584DAD51E2A5B92007249C2 /* NSBundle+RCIMCaleArray.m in Sources */,
 				40785E9B1DEE9E7900875E00 /* UIButton+ButtonThread.m in Sources */,

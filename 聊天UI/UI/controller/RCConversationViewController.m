@@ -9,6 +9,7 @@
 #import "RCConversationViewController.h"
 #import "RCChatTextMessageCell.h"
 #import "RCConversationCacheObj.h"
+#import "RCCellIdentifierFactory.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 
 @interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -78,6 +79,7 @@
     self.messageArray =  [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10];
     NSLog(@"%@",_messageArray);
     [self.tableView reloadData];
+   
 }
 
 
@@ -112,9 +114,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     id message = self.messageArray[indexPath.row];
-    NSString *identifier = [LCCKCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:[self.parentConversationViewController getConversationIfExists].lcck_type];
-    NSString *cacheKey = [LCCKCellIdentifierFactory cacheKeyForMessage:message];
-    return [tableView fd_heightForCellWithIdentifier:identifier cacheByKey:cacheKey configuration:^(RCChatBaseMessageCell *cell) {
+//    NSString *identifier = [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:[self.parentConversationViewController getConversationIfExists].lcck_type];
+    NSString *cacheKey = [RCCellIdentifierFactory cacheKeyForMessage:message];
+    
+    return [tableView fd_heightForCellWithIdentifier:@"RCChatTextMessageCell" cacheByKey:cacheKey configuration:^(RCChatBaseMessageCell *cell) {
         [cell configureCellWithData:message];
     }];
 }

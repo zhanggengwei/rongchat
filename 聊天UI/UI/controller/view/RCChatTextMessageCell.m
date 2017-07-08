@@ -45,6 +45,7 @@
     [self.messageTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.messageContentView).with.insets(edgeMessageBubbleCustomize);
     }];
+    self.messageTextLabel.backgroundColor = [UIColor yellowColor];
 }
 
 #pragma mark - Public Methods
@@ -77,6 +78,8 @@
     [self.messageContentView addGestureRecognizer:tapGestureRecognizer];
     [super setup];
     [self addGeneralView];
+    [self.messageTextLabel bringSubviewToFront:self.messageContentView];
+    
     
 }
 
@@ -93,7 +96,9 @@
     NSMutableAttributedString *attrS = [[NSMutableAttributedString alloc]initWithString:model.content];
     
     [attrS addAttributes:self.textStyle range:NSMakeRange(0, attrS.length)];
-    self.messageTextLabel.attributedText = attrS;
+     self.messageTextLabel.attributedText = attrS;
+    //self.messageTextLabel.text = model.content;
+   
 }
 
 #pragma mark - Getters

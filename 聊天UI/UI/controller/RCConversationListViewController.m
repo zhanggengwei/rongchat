@@ -204,7 +204,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 60;
 }
 - (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left
 {

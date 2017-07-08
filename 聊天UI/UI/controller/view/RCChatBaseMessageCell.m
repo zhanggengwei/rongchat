@@ -14,6 +14,7 @@
 #import "RCChatLocationMessageCell.h"
 #import "RCIMMenuItem.h"
 #import "RCIMSettingService.h"
+#import "RCBubbleImageFactory.h"
 
 
 #import "UIImageView+RCIMExtension.h"
@@ -263,8 +264,11 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     [self.contentView addSubview:self.messageReadStateImageView];
     [self.contentView addSubview:self.messageSendStateView];
     
-//    [self.messageContentBackgroundImageView setImage:[RCIMBubbleImageFactory bubbleImageViewForType:self.messageOwner messageType:self.mediaType isHighlighted:NO]];
-//    [self.messageContentBackgroundImageView setHighlightedImage:[RCIMBubbleImageFactory bubbleImageViewForType:self.messageOwner messageType:self.mediaType isHighlighted:YES]];
+    [self.messageContentBackgroundImageView setImage:[RCBubbleImageFactory bubbleImageViewForType:self.messageOwner messageType:self.mediaType isHighlighted:NO]];
+    [self.messageContentBackgroundImageView setHighlightedImage:[RCBubbleImageFactory bubbleImageViewForType:self.messageOwner messageType:self.mediaType isHighlighted:YES]];
+    
+
+    
     
     self.messageContentView.layer.mask.contents = (__bridge id _Nullable)(self.messageContentBackgroundImageView.image.CGImage);
     [self.contentView insertSubview:self.messageContentBackgroundImageView belowSubview:self.messageContentView];
@@ -375,12 +379,14 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     if (!_avatarImageView) {
         _avatarImageView = [[UIImageView alloc] init];
         _avatarImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _avatarImageView.backgroundColor = [UIColor yellowColor];
 //        RCIMAvatarImageViewCornerRadiusBlock avatarImageViewCornerRadiusBlock = [LCChatKit sharedInstance].avatarImageViewCornerRadiusBlock;
 //        if (avatarImageViewCornerRadiusBlock) {
 //            CGSize avatarImageViewSize = CGSizeMake(kAvatarImageViewWidth, kAvatarImageViewHeight);
 //            CGFloat avatarImageViewCornerRadius = avatarImageViewCornerRadiusBlock(avatarImageViewSize);
 //            self.avatarImageView.RCIM_cornerRadius = avatarImageViewCornerRadius;
 //        }
+        
         [self bringSubviewToFront:_avatarImageView];
     }
     return _avatarImageView;
@@ -433,7 +439,11 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (RCMessageOwnerType)messageOwner {
-    return RCMessageOwnerTypeUnknown;
+    if([self.message.senderUserId isEqualToString:[RCIMClient sharedRCIMClient].currentUserInfo.userId])
+    {
+        return RCMessageOwnerTypeSelf;
+    }
+    return RCMessageOwnerTypeOther;
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longPressGes {
