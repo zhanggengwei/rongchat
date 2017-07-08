@@ -12,6 +12,8 @@
 #import "RCChatVoiceMessageCell.h"
 #import "RCChatSystemMessageCell.h"
 #import "RCChatLocationMessageCell.h"
+#import "RCIMMenuItem.h"
+#import "RCIMSettingService.h"
 
 
 #import "UIImageView+RCIMExtension.h"
@@ -432,6 +434,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longPressGes {
+    /*
     if (longPressGes.state == UIGestureRecognizerStateBegan) {
         CGPoint longPressPoint = [longPressGes locationInView:self.contentView];
         if (!CGRectContainsPoint(self.messageContentView.frame, longPressPoint)) {
@@ -456,13 +459,13 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
             if (longPressMessageBlock) {
                 menuItems = longPressMessageBlock(self.message, userInfo);
             } else {
-                RCIMMenuItem *copyItem = [[RCIMMenuItem alloc] initWithTitle:RCIMLocalizedStrings(@"copy")
+                RCIMMenuItem *copyItem = [[RCIMMenuItem alloc] initWithTitle:RCLocalizedStrings(@"copy")
                                                                        block:^{
                                                                            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                                                                            [pasteboard setString:[self.message text]];
                                                                        }];
                 //TODO:添加“转发”
-                if (self.mediaType == kAVIMMessageMediaTypeText) {
+                if (self.mediaType == kRCIMMessageMediaTypeText) {
                     menuItems = @[ copyItem ];
                 }
             }
@@ -479,6 +482,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
             [menuController setMenuVisible:YES animated:YES];
         });
     }
+     */
 }
 
 #pragma mark - Notifications
@@ -513,7 +517,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     if (_conversationViewSenderNameTextColor) {
         return _conversationViewSenderNameTextColor;
     }
-    _conversationViewSenderNameTextColor = [[RCIMSettingService sharedInstance] defaultThemeColorForKey:@"ConversationView-SenderName-TextColor"];
+    _conversationViewSenderNameTextColor = [[RCIMSettingService shareManager] defaultThemeColorForKey:@"ConversationView-SenderName-TextColor"];
     return _conversationViewSenderNameTextColor;
 }
 @end

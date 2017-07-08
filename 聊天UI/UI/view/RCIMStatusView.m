@@ -11,7 +11,7 @@ static CGFloat RCIMHorizontalSpacing = 15;
 static CGFloat RCIMHorizontalLittleSpacing = 5;
 #import "RCIMStatusView.h"
 #import "UIImage+RCIMExtension.h"
-#import "RCIMConstants.h"
+#import "RCConstants.h"
 
 @interface RCIMStatusView ()
 @property (nonatomic,strong) UILabel * statusLabel;
@@ -57,7 +57,7 @@ static CGFloat RCIMHorizontalLittleSpacing = 5;
         _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_statusImageView.frame) + RCIMHorizontalLittleSpacing, 0, self.frame.size.width - CGRectGetMaxX(_statusImageView.frame) - RCIMHorizontalSpacing - RCIMHorizontalLittleSpacing, RCIMStatusViewHight)];
         _statusLabel.font = [UIFont systemFontOfSize:15.0];
         _statusLabel.textColor = [UIColor grayColor];
-        _statusLabel.text = RCIMLocalizedStrings(@"netDisconnected");
+//        _statusLabel.text = RCLocalizedStrings(@"netDisconnected");
     }
     return _statusLabel;
 }

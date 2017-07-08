@@ -8,7 +8,7 @@
 
 #import "UIImage+RCIMExtension.h"
 #import "RCIMImageManager.h"
-#import "RCIMConstants.h"
+#import "RCConstants.h"
 
 @implementation NSBundle (MyCategory)
 
@@ -145,7 +145,7 @@
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     if(newImage == nil) {
-        RCIMLog(@"绘制指定大小的图片失败");
+        RCLog(@"绘制指定大小的图片失败");
         return self;
     }
     return newImage ;

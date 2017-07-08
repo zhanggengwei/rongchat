@@ -8,7 +8,6 @@
 
 
 #import "RCIMConversationListViewModel.h"
-#import "RCIMConstants.h"
 /*
 #import "RCIMConversationListCell.h"
 #import <AVOSCloudIM/AVOSCloudIM.h>
@@ -60,9 +59,9 @@
         return nil;
     }
     // 当在其它 Tab 的时候，收到消息, badge 增加，所以需要一直监听
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:RCIMNotificationMessageReceived object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:RCIMNotificationUnreadsUpdated object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:RCIMNotificationConversationListDataSourceUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:RCNotificationMessageReceived object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:RCNotificationUnreadsUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:RCNotificationConversationListDataSourceUpdated object:nil];
     __unsafe_unretained __typeof(self) weakSelf = self;
     [self lcck_executeAtDealloc:^{
         [[NSNotificationCenter defaultCenter] removeObserver:weakSelf];
