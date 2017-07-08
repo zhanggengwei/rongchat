@@ -13,7 +13,7 @@
 #import "PPListItem.h"
 #import "RCConversationViewController.h"
 #import "RCConversationListCell.h"
-@interface RCConversationListViewController ()<RCIMConnectionStatusDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface RCConversationListViewController ()<RCIMConnectionStatusDelegate,UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate>
 @property (nonatomic,strong) UIActivityIndicatorView * activityView;
 @property (nonatomic,strong) UILabel * titleLabel;
 @property (nonatomic,strong) NSMutableArray * conversationList;
@@ -27,13 +27,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.rightItem = [[UIBarButtonItem alloc]initWithTitle:@"show" style:UIBarButtonItemStylePlain target:self action:@selector(show)];
     self.navigationItem.rightBarButtonItem = self.rightItem;
     
     self.titleFont = [UIFont systemFontOfSize:17];
     [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
-    
+    [[RCIM sharedRCIM] setReceiveMessageDelegate:self];
     if(self.conversationTypeArray==nil || self.conversationTypeArray.count ==0)
     {
         self.conversationTypeArray = @[@(ConversationType_PRIVATE)];
@@ -59,7 +58,6 @@
     PPListItem * item2 = [[PPListItem alloc]init];
     item2.content  = @"#@";
     
-
     PPListItemViewController * controller = [[PPListItemViewController alloc]initWithItems:@[item1,item2]];
     controller.itemWidth = 100;
     controller.itemHeight = 40;
@@ -68,12 +66,6 @@
     
     
     [controller show];
-
-   
-
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,8 +79,8 @@
     {
         case ConnectionStatus_Connected:
         {
-          [self hideIndictorView:@"微信"];
-          break;
+            [self hideIndictorView:@"微信"];
+            break;
         }
         case ConnectionStatus_Connecting:
         {
@@ -153,7 +145,7 @@
 {
     if(self.title==nil)
     {
-       [self p_createNavBarTitleView];
+        [self p_createNavBarTitleView];
     }
     else if (title==nil)
     {
@@ -167,7 +159,7 @@
     UIColor * tintColor =[self.navigationController.navigationBar barTintColor];
     if(tintColor==nil)
     {
-       // tintColor = [UIColor blackColor];
+        // tintColor = [UIColor blackColor];
     }
     self.titleLabel.textColor = kPPTFontColorWhite;
     self.titleLabel.text = title;
@@ -197,26 +189,31 @@
     RCConversationListCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCConversationListCell"];
     RCConversation * conversation= self.conversationList[indexPath.row];
     [cell setConversation:conversation avatarStyle:0];
-    
-    
     return cell;
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-     RCConversation * conversation= self.conversationList[indexPath.row];
+    RCConversation * conversation= self.conversationList[indexPath.row];
     RCConversationViewController * conversationController = [[RCConversationViewController alloc]initWithTargetId:conversation.targetId conversationType:conversation.conversationType];
     [conversationController setHidesBottomBarWhenPushed:YES];
-    
     [self.navigationController pushViewController:conversationController animated:YES];
- 
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 50;
 }
-
+- (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left
+{
+    if (left<=0) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.conversationList = [NSMutableArray arrayWithArray:[[RCIMClient sharedRCIMClient] getConversationList:self.conversationTypeArray]];
+            [self.tableView reloadData];
+        });
+    }
+}
 @end

@@ -16,7 +16,9 @@
 
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
 
-
 - (void)asynFriendList;
+
+- (RCUserInfo *)quertyUserInfoByUserId:(NSString *)userId;
+
 
 @end

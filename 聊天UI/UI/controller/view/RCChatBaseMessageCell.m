@@ -299,10 +299,13 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 #pragma mark - Public Methods
 
 - (void)configureCellWithData:(id)message {
+    //只考虑几种常用的信息
     RCMessage * model = message;
-    
-    NSString *nickName = nil;
-    NSURL *avatarURL = nil;
+    RCUserInfo * info = model.content.senderUserInfo;
+    if(info==nil)
+    {
+        info = [[PPTUserInfoEngine shareEngine]quertyUserInfoByUserId:model.senderUserId];
+    }
     RCMessageSendState sendStatus = -1;
     if ([message rcim_isCustomMessage]) {
         
@@ -311,14 +314,14 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     {
         
     }
-    self.nickNameLabel.text = nickName;
-    [self.avatarImageView sd_setImageWithURL:avatarURL
+    self.nickNameLabel.text = info.name;
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:info.portraitUri]
                             placeholderImage:({
         NSString *imageName = @"Placeholder_Avatar";
         UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
         image;})
      ];
-    self.messageSendState = sendStatus;
+    self.messageSendState = sendStatus;    
 }
 
 #pragma mark - Private Methods

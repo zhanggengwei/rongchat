@@ -433,7 +433,6 @@
 		75278A101F0E9167000C70AF /* RCContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCContentView.m; sourceTree = "<group>"; };
 		75278A121F0E9294000C70AF /* RCMessageSendStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCMessageSendStateView.h; sourceTree = "<group>"; };
 		75278A131F0E9294000C70AF /* RCMessageSendStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCMessageSendStateView.m; sourceTree = "<group>"; };
-		75278A151F0E97AA000C70AF /* RCIMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMConstants.h; sourceTree = "<group>"; };
 		75278A161F0E98F6000C70AF /* RCUserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCUserDelegate.h; sourceTree = "<group>"; };
 		75278A171F0E9955000C70AF /* RCIMMessageMediaType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMMessageMediaType.h; sourceTree = "<group>"; };
 		75278A181F0E9955000C70AF /* RCIMMessageMediaType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMMessageMediaType.m; sourceTree = "<group>"; };
@@ -1000,9 +999,9 @@
 				75278A491F1076B2000C70AF /* RCIMMenuItem.h */,
 				75278A4A1F1076B2000C70AF /* RCIMMenuItem.m */,
 				75278A0C1F0E8F2D000C70AF /* RCChatBaseMessageCell.h */,
+				75278A0D1F0E8F2D000C70AF /* RCChatBaseMessageCell.m */,
 				75278A431F10709E000C70AF /* RCChatLocationMessageCell.h */,
 				75278A441F10709E000C70AF /* RCChatLocationMessageCell.m */,
-				75278A0D1F0E8F2D000C70AF /* RCChatBaseMessageCell.m */,
 				75278A401F107086000C70AF /* RCChatSystemMessageCell.h */,
 				75278A411F107086000C70AF /* RCChatSystemMessageCell.m */,
 				75278A1A1F0FC10F000C70AF /* RCChatTextMessageCell.h */,
@@ -1105,10 +1104,9 @@
 		7584DAE21E2A5B98007249C2 /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				75278A151F0E97AA000C70AF /* RCIMConstants.h */,
+				7584DAE51E2A5B98007249C2 /* RCConversationCacheObj.h */,
 				7584DAE31E2A5B98007249C2 /* RCContactUserInfo.h */,
 				7584DAE41E2A5B98007249C2 /* RCContactUserInfo.m */,
-				7584DAE51E2A5B98007249C2 /* RCConversationCacheObj.h */,
 				7584DAE61E2A5B98007249C2 /* RCConversationModel.h */,
 				7584DAE71E2A5B98007249C2 /* RCConversationModel.m */,
 				7584DAE81E2A5B98007249C2 /* RCIM.h */,

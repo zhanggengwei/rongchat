@@ -54,6 +54,14 @@
     
 }
 
+- (void)setReceiveMessageDelegate:(id<RCIMReceiveMessageDelegate>)receiveMessageDelegate
+{
+     _receiveMessageDelegate = receiveMessageDelegate;
+    [self.client setReceiveMessageDelegate:self object:nil];
+   
+    
+}
+
 - (void)disconnect:(BOOL)isReceivePush
 {
     [self.client disconnect:isReceivePush];
@@ -69,7 +77,11 @@
 }
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object
 {
-
+    if([self.receiveMessageDelegate respondsToSelector:@selector(onRCIMReceiveMessage:left:)])
+    {
+        [self.receiveMessageDelegate onRCIMReceiveMessage:message left:nLeft];
+        
+    }
 }
 - (void)refreshUserInfoCache:(PPUserBaseInfo *)userInfo
                   withUserId:(NSString *)userId

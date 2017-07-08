@@ -107,5 +107,8 @@
     }];
     
 }
-
+- (RCUserInfo *)quertyUserInfoByUserId:(NSString *)userId
+{
+    return nil;
+}
 @end

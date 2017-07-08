@@ -39,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadMessageByMessageID];
     self.view.backgroundColor = [UIColor whiteColor];
  
     [[PPDateEngine manager]requestGetUserInfoResponse:^(PPUserBaseInfoResponse * aTaskResponse) {
@@ -57,10 +58,6 @@
     // Do any additional setup after loading the view.
 }
 
-
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -69,7 +66,10 @@
 
 - (void)loadMessageByMessageID
 {
+    NSArray * messageArray =  [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10];
     
+   
+    NSLog(@"%@",messageArray);
 }
 
 
