@@ -307,13 +307,13 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
         info = [[PPTUserInfoEngine shareEngine]quertyUserInfoByUserId:model.senderUserId];
     }
     RCMessageSendState sendStatus = -1;
-    if ([message rcim_isCustomMessage]) {
-        
-    }
-    else
-    {
-        
-    }
+//    if ([message rcim_isCustomMessage]) {
+//        
+//    }
+//    else
+//    {
+//        
+//    }
     self.nickNameLabel.text = info.name;
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:info.portraitUri]
                             placeholderImage:({

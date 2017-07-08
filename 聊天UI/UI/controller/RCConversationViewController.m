@@ -7,6 +7,7 @@
 //
 
 #import "RCConversationViewController.h"
+#import "RCChatTextMessageCell.h"
 #import "RCConversationCacheObj.h"
 @interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSString * targedId;
@@ -18,7 +19,6 @@
 @end
 
 @implementation RCConversationViewController
-
 
 - (instancetype)initWithTargetId:(NSString *)targetId conversationType:(RCConversationType)conversationType
 {
@@ -39,6 +39,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    [self.tableView registerClass:[RCChatTextMessageCell class] forCellReuseIdentifier:@"RCChatTextMessageCell"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+ 
     [self loadMessageByMessageID];
     self.view.backgroundColor = [UIColor whiteColor];
  
@@ -66,10 +73,9 @@
 
 - (void)loadMessageByMessageID
 {
-    NSArray * messageArray =  [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10];
-    
-   
-    NSLog(@"%@",messageArray);
+    self.messageArray =  [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10];
+    NSLog(@"%@",_messageArray);
+    [self.tableView reloadData];
 }
 
 
@@ -85,7 +91,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    RCChatTextMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCChatTextMessageCell"];
+    [cell configureCellWithData:self.messageArray[indexPath.row]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -98,7 +107,10 @@
     return  [self.messageArray count];
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
 
 
 
