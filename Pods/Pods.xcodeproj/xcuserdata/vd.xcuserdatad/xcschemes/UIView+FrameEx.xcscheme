@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '35CAD65BD42CF60542954EB010AD2E8C'
+               BlueprintIdentifier = '6B7D9A0FDA1CD54FEB8188F1B1B3FA30'
                BlueprintName = 'UIView+FrameEx'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libUIView+FrameEx.a'>

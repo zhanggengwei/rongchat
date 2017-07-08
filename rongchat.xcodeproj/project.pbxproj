@@ -159,6 +159,7 @@
 		75278A451F10709E000C70AF /* RCChatLocationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A441F10709E000C70AF /* RCChatLocationMessageCell.m */; };
 		75278A481F107279000C70AF /* NSObject+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A471F107279000C70AF /* NSObject+RCIMExtension.m */; };
 		75278A4B1F1076B2000C70AF /* RCIMMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A4A1F1076B2000C70AF /* RCIMMenuItem.m */; };
+		75278A4E1F10D7D3000C70AF /* RCCellIdentifierFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A4D1F10D7D3000C70AF /* RCCellIdentifierFactory.m */; };
 		7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */; };
 		7584DA9E1E2A5B83007249C2 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA991E2A5B83007249C2 /* RCConversationListCell.m */; };
 		7584DA9F1E2A5B83007249C2 /* RCTextMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA9C1E2A5B83007249C2 /* RCTextMessageTableViewCell.m */; };
@@ -465,6 +466,8 @@
 		75278A471F107279000C70AF /* NSObject+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RCIMExtension.m"; sourceTree = "<group>"; };
 		75278A491F1076B2000C70AF /* RCIMMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMMenuItem.h; sourceTree = "<group>"; };
 		75278A4A1F1076B2000C70AF /* RCIMMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMMenuItem.m; sourceTree = "<group>"; };
+		75278A4C1F10D7D3000C70AF /* RCCellIdentifierFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCCellIdentifierFactory.h; sourceTree = "<group>"; };
+		75278A4D1F10D7D3000C70AF /* RCCellIdentifierFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCCellIdentifierFactory.m; sourceTree = "<group>"; };
 		7584DA951E2A5B83007249C2 /* PPTZeroSelectListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTZeroSelectListCell.h; sourceTree = "<group>"; };
 		7584DA961E2A5B83007249C2 /* RCConversationBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationBaseCell.h; sourceTree = "<group>"; };
 		7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationBaseCell.m; sourceTree = "<group>"; };
@@ -1123,6 +1126,8 @@
 				75278A161F0E98F6000C70AF /* RCUserDelegate.h */,
 				75278A171F0E9955000C70AF /* RCIMMessageMediaType.h */,
 				75278A181F0E9955000C70AF /* RCIMMessageMediaType.m */,
+				75278A4C1F10D7D3000C70AF /* RCCellIdentifierFactory.h */,
+				75278A4D1F10D7D3000C70AF /* RCCellIdentifierFactory.m */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -1859,6 +1864,7 @@
 				409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */,
 				7584DAF91E2A5B98007249C2 /* RCKitUtility.m in Sources */,
 				406833771E7A657700E03427 /* RCConversationListViewController.m in Sources */,
+				75278A4E1F10D7D3000C70AF /* RCCellIdentifierFactory.m in Sources */,
 				406833761E7A657700E03427 /* PPListItemViewController.m in Sources */,
 				7584DB521E2A5BE6007249C2 /* PPSetingViewController.m in Sources */,
 				409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */,

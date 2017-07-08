@@ -62,6 +62,7 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - SFHFKeychainUtils (0.0.1)
+  - UITableView+FDTemplateLayoutCell (1.6)
   - UIView+FrameEx (0.0.1)
   - WActionSheet (0.0.3)
   - YYCache (1.0.4)
@@ -102,6 +103,7 @@ DEPENDENCIES:
   - RongCloudIMLib (~> 2.7.3)
   - SDWebImage (~> 3.7.1)
   - SFHFKeychainUtils (~> 0.0.1)
+  - UITableView+FDTemplateLayoutCell (~> 1.6)
   - UIView+FrameEx (~> 0.0.1)
   - WActionSheet (~> 0.0.3)
   - YYWebImage (~> 1.0.5)
@@ -134,6 +136,7 @@ SPEC CHECKSUMS:
   RongCloudIMLib: 6d313eb5488fbd4678e35a15579db47767371ab5
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SFHFKeychainUtils: 9576b411a79a058f4d5381ace6f3242b9a62e664
+  UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UIView+FrameEx: ab0c53e158ef0621d7b0b0a26626e175ac17e471
   WActionSheet: d940181cdbc9bfcea8edfe6f7dc707070166fc46
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
@@ -142,6 +145,6 @@ SPEC CHECKSUMS:
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: b874e0e7606c9e2ffa68ecc3dc0d55d30dff2818
+PODFILE CHECKSUM: 50ed856a542fd1946c096ed95c16e3f908d0c141
 
 COCOAPODS: 1.2.1

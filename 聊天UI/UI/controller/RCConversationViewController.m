@@ -9,6 +9,8 @@
 #import "RCConversationViewController.h"
 #import "RCChatTextMessageCell.h"
 #import "RCConversationCacheObj.h"
+#import <UITableView+FDTemplateLayoutCell.h>
+
 @interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSString * targedId;
 @property (nonatomic,assign) RCConversationType conversationType;
@@ -107,9 +109,14 @@
     return  [self.messageArray count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 100;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    id message = self.messageArray[indexPath.row];
+    NSString *identifier = [LCCKCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:[self.parentConversationViewController getConversationIfExists].lcck_type];
+    NSString *cacheKey = [LCCKCellIdentifierFactory cacheKeyForMessage:message];
+    return [tableView fd_heightForCellWithIdentifier:identifier cacheByKey:cacheKey configuration:^(RCChatBaseMessageCell *cell) {
+        [cell configureCellWithData:message];
+    }];
 }
 
 

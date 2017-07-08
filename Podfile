@@ -30,6 +30,7 @@ def pods
     pod 'pop', '~> 1.0.9'
     pod 'ReactiveCocoa'
     pod 'MLLabel', '~> 1.10.3'
+    pod 'UITableView+FDTemplateLayoutCell', '~> 1.6'
 #    pod 'Realm'
     
     #log
