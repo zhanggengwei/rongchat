@@ -81,7 +81,10 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    
+    NSString * identify = [self RCIM_registerCell:reuseIdentifier];
+    if (self = [super initWithStyle:style reuseIdentifier:identify]) {
+        
         [self setup];
     }
     return self;
@@ -264,7 +267,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (void)addGeneralView {
-    [self.contentView addSubview:self.timeLabel];
+    
     [self.contentView addSubview:self.avatarImageView];
     [self.contentView addSubview:self.nickNameLabel];
     [self.contentView addSubview:self.messageContentView];
@@ -446,11 +449,8 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (RCMessageOwnerType)messageOwner {
-    if([self.message.senderUserId isEqualToString:[RCIMClient sharedRCIMClient].currentUserInfo.userId])
-    {
-        return RCMessageOwnerTypeSelf;
-    }
-    return RCMessageOwnerTypeOther;
+
+    return [self getMessageOwerTypeWithReuseIdentifier:self.custom_reuseIdentifier];
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longPressGes {

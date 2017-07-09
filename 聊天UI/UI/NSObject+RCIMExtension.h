@@ -9,6 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (RCIMExtension)
+
 - (BOOL)rcim_isCustomMessage;
 - (BOOL)rcim_isCustomRCIMMessage;
+
+// cell注册
+
+- (NSString *)RCIM_registerCell:(NSString *)reuseIdentifier;
+
+- (NSString *)RCIM_registerCellReuseIdentifier:(RCMessage *)message;
+
+- (RCMessageOwnerType)getMessageOwerTypeWithReuseIdentifier:(NSString *)reuseIdentifier;
+
+
+
 @end

@@ -31,6 +31,7 @@
     } else {
         UIEdgeInsets leftEdgeMessageBubbleCustomize = [RCIMSettingService shareManager].leftHollowEdgeMessageBubbleCustomize;
         edgeMessageBubbleCustomize = leftEdgeMessageBubbleCustomize;
+        
     }
     [self.messageImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.messageContentView).with.insets(edgeMessageBubbleCustomize);
@@ -53,7 +54,50 @@
 {
     [super configureCellWithData:message];
     RCImageMessage * model = (RCImageMessage *)message.content;
-    [self.messageImageView sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholderImage:nil];
+    UIImage *thumbnailPhoto = model.thumbnailImage;
+    NSLog(@"model.exra ==%@",NSStringFromCGSize(model.thumbnailImage.size));
+    
+    do {
+        if (self.messageImageView.image && (self.messageImageView.image == model.thumbnailImage)) {
+            break;
+        }
+        if (thumbnailPhoto) {
+            self.messageImageView.image = thumbnailPhoto;
+            break;
+        }
+        NSString *imageLocalPath = model.imageUrl;
+        BOOL isLocalPath = ![imageLocalPath hasPrefix:@"http"];
+        //note: this will ignore contentMode.
+        if (imageLocalPath && isLocalPath) {
+            NSData *imageData = [NSData dataWithContentsOfFile:imageLocalPath];
+            UIImage *image = [UIImage imageWithData:imageData];
+            UIImage *resizedImage = [image lcck_imageByScalingAspectFill];
+            self.messageImageView.image = resizedImage;
+            model.originalImage = image;
+            model.thumbnailImage = resizedImage;
+            break;
+        }
+        
+        // requied!
+        if (model.imageUrl) {
+            [self.messageImageView  sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholderImage:[self imageInBundleForImageName:@"Placeholder_Image"]
+                                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                                 dispatch_async(dispatch_get_main_queue(),^{
+                                                     if (image){
+                                                         model.originalImage = image;
+                                                         model.thumbnailImage = [image lcck_imageByScalingAspectFill];
+                                                         if ([self.delegate respondsToSelector:@selector(fileMessageDidDownload:)]) {
+                                                             [self.delegate fileMessageDidDownload:self];
+                                                         }
+                                                     }
+                                                 });
+                                                 
+                                             }
+             ];
+            break;
+        }
+        
+    } while (NO);
 }
 - (UIImage *)imageInBundleForImageName:(NSString *)imageName {
     return ({

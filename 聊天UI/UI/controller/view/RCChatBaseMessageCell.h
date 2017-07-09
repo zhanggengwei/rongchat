@@ -11,10 +11,15 @@
 #import "RCMessageSendStateView.h"
 #import <MLLabel/MLLinkLabel.h>
 
-
-
-
 @class RCChatBaseMessageCell;
+
+@interface UITableView (cell)
+
+- (RCChatBaseMessageCell *)dequeueReusableCellWithIdentifier:(NSString *)Identifier;
+
+@end
+
+
 
 @protocol RCChatMessageCellSubclassing <NSObject>
 @required
@@ -87,6 +92,7 @@
  *  消息阅读状态,当状态为LCCKMessageUnRead时,LCCKmessageReadStateImageView显示
  */
 @property (nonatomic, assign) RCMessageReadState messageReadState;
+@property (nonatomic, strong) NSString * custom_reuseIdentifier;
 
 /**
  *  消息群组类型,只读类型,根据reuseIdentifier判断
