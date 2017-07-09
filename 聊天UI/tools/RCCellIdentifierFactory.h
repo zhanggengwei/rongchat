@@ -10,7 +10,7 @@
 
 @interface RCCellIdentifierFactory : NSObject
 
-+ (NSString *)cellIdentifierForMessageConfiguration:(id)message conversationType:(RCConversationType)conversationType;
++ (NSString *)cellIdentifierForMessageConfiguration:(RCMessage *)message conversationType:(RCConversationType)conversationType;
 
 + (NSString *)cacheKeyForMessage:(id)message;
 @end

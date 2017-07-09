@@ -8,6 +8,6 @@
 
 #import "RCChatBaseMessageCell.h"
 
-@interface RCChatSystemMessageCell : RCChatBaseMessageCell
+@interface RCChatSystemMessageCell : RCChatBaseMessageCell<RCChatMessageCellSubclassing>
 
 @end

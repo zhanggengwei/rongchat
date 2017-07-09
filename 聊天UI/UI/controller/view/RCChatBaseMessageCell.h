@@ -11,6 +11,9 @@
 #import "RCMessageSendStateView.h"
 #import <MLLabel/MLLinkLabel.h>
 
+
+
+
 @class RCChatBaseMessageCell;
 
 @protocol RCChatMessageCellSubclassing <NSObject>
@@ -99,6 +102,6 @@
 #pragma mark - Public Methods
 
 - (void)setup;
-- (void)configureCellWithData:(id)message;
+- (void)configureCellWithData:(RCMessage *)message;
 
 @end

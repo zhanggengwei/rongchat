@@ -7,7 +7,7 @@
 //
 
 #import "RCChatImageMessageCell.h"
-
+#import "UIImage+RCIMExtension.h"
 
 @interface RCChatImageMessageCell ()
 
@@ -22,30 +22,44 @@
 
 - (void)setup
 {
-    [self.contentView addSubview:self.messageImageView];
-    [self.contentView addSubview:self.messageProgressView];
-    [self.contentView addSubview:self.messageProgressLabel];
+    [self.messageContentView addSubview:self.messageImageView];
+    [self.messageContentView addSubview:self.messageProgressView];
     UIEdgeInsets edgeMessageBubbleCustomize;
-    if(self.messageOwner==RCMessageOwnerTypeSelf)
-    {
-        
+    if (self.messageOwner == RCMessageOwnerTypeSelf) {
+        UIEdgeInsets rightEdgeMessageBubbleCustomize = [RCIMSettingService shareManager].rightHollowEdgeMessageBubbleCustomize;
+        edgeMessageBubbleCustomize = rightEdgeMessageBubbleCustomize;
+    } else {
+        UIEdgeInsets leftEdgeMessageBubbleCustomize = [RCIMSettingService shareManager].leftHollowEdgeMessageBubbleCustomize;
+        edgeMessageBubbleCustomize = leftEdgeMessageBubbleCustomize;
     }
-    else
-    {
-        
+    [self.messageImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.messageContentView).with.insets(edgeMessageBubbleCustomize);
+        make.height.lessThanOrEqualTo(@200).priorityHigh();
+    }];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapMessageImageViewGestureRecognizerHandler:)];
+    [self.messageContentView addGestureRecognizer:recognizer];
+    [super setup];
+    [self addGeneralView];
+}
+- (void)singleTapMessageImageViewGestureRecognizerHandler:(UITapGestureRecognizer *)tapGestureRecognizer {
+    if (tapGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        if ([self.delegate respondsToSelector:@selector(messageCellTappedMessage:)]) {
+            [self.delegate messageCellTappedMessage:self];
+        }
     }
 }
 
-
-- (void)configureCellWithData:(id)message
+- (void)configureCellWithData:(RCMessage *)message
 {
     [super configureCellWithData:message];
-    RCImageMessage * model = message;
-    
-   
-    
+    RCImageMessage * model = (RCImageMessage *)message.content;
+    [self.messageImageView sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholderImage:nil];
 }
-
+- (UIImage *)imageInBundleForImageName:(NSString *)imageName {
+    return ({
+        UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
+        image;});
+}
 
 - (void)setUploadProgress:(CGFloat)uploadProgress
 {
@@ -99,5 +113,15 @@
     return _messageProgressView;
 }
 
+#pragma mark -
+#pragma mark - LCCKChatMessageCellSubclassing Method
+
++ (void)load {
+    [self registerSubclass];
+}
+
++ (RCIMMessageMediaType)classMediaType {
+    return kRCIMMessageMediaTypeImage;
+}
 
 @end

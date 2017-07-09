@@ -11,14 +11,17 @@
 #import "RCConversationCacheObj.h"
 #import "RCCellIdentifierFactory.h"
 #import <UITableView+FDTemplateLayoutCell.h>
+#import <ODRefreshControl.h>
 
-@interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate>
 @property (nonatomic,strong) NSString * targedId;
 @property (nonatomic,assign) RCConversationType conversationType;
 @property (nonatomic,strong) RCUserInfo * userInfo;
-@property (nonatomic,strong) NSArray * messageArray;
+@property (nonatomic,strong) NSMutableArray * messageArray;
 @property (nonatomic,strong) UIImageView * backImageView;
 @property (nonatomic,strong) UITableView * tableView;
+@property (nonatomic,assign) BOOL allowScrollToBottom;
+@property (nonatomic,strong) ODRefreshControl * refreshControl;
 @end
 
 @implementation RCConversationViewController
@@ -28,30 +31,24 @@
     self = [super init];
     if(self)
     {
+        self.allowScrollToBottom = YES;
         self.targedId = targetId;
         self.conversationType = conversationType;
-        self.messageArray = [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10];
-        NSLog(@"conversationArray ==%@",self.messageArray);
-        
         self.messageArrayType = @[RCTextMessageTypeIdentifier];
-        
     }
     return self;
 }
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[RCIM sharedRCIM]setReceiveMessageDelegate:self];
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+
     [self.tableView registerClass:[RCChatTextMessageCell class] forCellReuseIdentifier:@"RCChatTextMessageCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
- 
     [self loadMessageByMessageID];
-    self.view.backgroundColor = [UIColor whiteColor];
- 
     [[PPDateEngine manager]requestGetUserInfoResponse:^(PPUserBaseInfoResponse * aTaskResponse) {
         if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
         {
@@ -63,8 +60,6 @@
         }
     } userID:self.targedId];
     
-    
-    
     // Do any additional setup after loading the view.
 }
 
@@ -72,20 +67,40 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)scrollToBottomAnimated:(BOOL)animated {
+    if (!self.allowScrollToBottom) {
+        return;
+    }
+    NSInteger rows = [self.tableView numberOfRowsInSection:0];
+    if (rows > 0) {
+        dispatch_block_t scrollBottomBlock = ^ {
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rows - 1 inSection:0]
+                                  atScrollPosition:UITableViewScrollPositionBottom
+                                          animated:animated];
+        };
+        if (animated) {
+            //when use `estimatedRowHeight` and `scrollToRowAtIndexPath` at the same time, there are some issue.
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                scrollBottomBlock();
+            });
+        } else {
+            scrollBottomBlock();
+        }
+        
+    }
+}
 #pragma mark 加载信息的列表
 
 - (void)loadMessageByMessageID
 {
-    self.messageArray =  [[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:1];
+   
+    self.messageArray = [NSMutableArray arrayWithArray: [[[[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10] reverseObjectEnumerator] allObjects]];
     NSLog(@"%@",_messageArray);
     [self.tableView reloadData];
-   
+    [self scrollToBottomAnimated:YES];
+    
 }
-
-
-
-
-
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,6 +111,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RCChatTextMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCChatTextMessageCell"];
+    RCMessage * message = self.messageArray[indexPath.row];
+    NSLog(@"object%@",message.objectName);
     [cell configureCellWithData:self.messageArray[indexPath.row]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -122,6 +139,19 @@
     }];
 }
 
-
+- (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left
+{
+    if([message.targetId isEqualToString:self.targedId])
+    {
+        [self.messageArray addObject:message];
+    }
+    if(left<=0)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self scrollToBottomAnimated:YES];
+        });
+    }
+}
 
 @end

@@ -43,6 +43,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 @property (nonatomic, assign, readwrite) RCIMMessageMediaType mediaType;
 @property (nonatomic, strong) UIColor *conversationViewSenderNameTextColor;
 
+
 @end
 
 @implementation RCChatBaseMessageCell
@@ -85,6 +86,9 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     }
     return self;
 }
+
+
+
 
 // add support for RCIMMenuItem. Needs to be called once per class.
 + (void)load {
@@ -260,6 +264,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (void)addGeneralView {
+    [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.avatarImageView];
     [self.contentView addSubview:self.nickNameLabel];
     [self.contentView addSubview:self.messageContentView];
@@ -304,14 +309,13 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 
 #pragma mark - Public Methods
 
-- (void)configureCellWithData:(id)message {
+- (void)configureCellWithData:(RCMessage *)message {
     //只考虑几种常用的信息
     _message = message;
-    RCMessage * model = message;
-    RCUserInfo * info = model.content.senderUserInfo;
+    RCUserInfo * info = _message.content.senderUserInfo;
     if(info==nil)
     {
-        info = [[PPTUserInfoEngine shareEngine]quertyUserInfoByUserId:model.senderUserId];
+        info = [[PPTUserInfoEngine shareEngine]quertyUserInfoByUserId:_message.senderUserId];
     }
     RCMessageSendState sendStatus = -1;
 //    if ([message rcim_isCustomMessage]) {
@@ -442,9 +446,6 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (RCMessageOwnerType)messageOwner {
-    
-    NSLog(@"%@",[RCIMClient sharedRCIMClient].currentUserInfo.userId);
-    NSLog(@"message == %@",self.message);
     if([self.message.senderUserId isEqualToString:[RCIMClient sharedRCIMClient].currentUserInfo.userId])
     {
         return RCMessageOwnerTypeSelf;

@@ -9,6 +9,61 @@
 #import "RCCellIdentifierFactory.h"
 
 @implementation RCCellIdentifierFactory
+
++ (NSString *)cellIdentifierForMessageConfiguration:(RCMessage *)message conversationType:(RCConversationType)conversationType
+{
+    NSString * identifier = nil;
+    switch (conversationType) {
+        case ConversationType_PRIVATE:
+            break;
+        case ConversationType_DISCUSSION:
+            break;
+        case ConversationType_GROUP:
+            break;
+        case ConversationType_CHATROOM:
+            break;
+        case ConversationType_CUSTOMERSERVICE:
+            break;
+        case ConversationType_SYSTEM:
+            break;
+        case ConversationType_APPSERVICE:
+            break;
+        case ConversationType_PUBLICSERVICE:
+            break;
+        case ConversationType_PUSHSERVICE:
+        default:
+            break;
+    }
+    if([message.objectName isEqualToString:RCTextMessageTypeIdentifier])
+    {
+        
+    }else if ([message.objectName isEqualToString:RCImageMessageTypeIdentifier])
+    {
+        
+    }else if ([message.objectName isEqualToString:RCFileMessageTypeIdentifier])
+    {
+        
+    }else if ([message.objectName isEqualToString:RCVoiceMessageTypeIdentifier])
+    {
+        
+    }else if ([message.objectName isEqualToString:RCUnknownMessageTypeIdentifier])
+    {
+        
+    }else if ([message.objectName isEqualToString:RCRichContentMessageTypeIdentifier])
+    {
+        
+    }else if ([message.objectName isEqualToString:RCSingleNewsMessageTypeIdentifier])
+    {
+        
+    }else if ([message.objectName isEqualToString:RCCommandMessageIdentifier])
+    {
+        
+    }else if ([message.objectName isEqualToString:RCCommandNotificationMessageIdentifier])
+    {
+        
+    }
+    return identifier;
+}
 //+ (NSString *)cellIdentifierForMessageConfiguration:(id)message conversationType:(RCConversationType)conversationType {
 //    NSString *groupKey;
 //    switch (conversationType) {
@@ -85,9 +140,8 @@
 //}
 
 + (NSString *)cacheKeyForMessage:(RCMessage *)message {
-    return [NSString stringWithFormat:@"%d",arc4random()%10000];
     
-    
+    return [NSString stringWithFormat:@"%ld",message.messageId];
 }
 
 @end
