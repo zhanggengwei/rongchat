@@ -186,12 +186,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/RCChatBaseMessageCell.m"
-                  timestampString = "521269506.294642"
+                  timestampString = "521305643.224537"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "162"
                   endingLineNumber = "162"
-                  offsetFromSymbolStart = "1120">
+                  offsetFromSymbolStart = "1181">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -201,12 +201,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/RCChatBaseMessageCell.m"
-                  timestampString = "521269506.297474"
+                  timestampString = "521305643.23033"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "162"
                   endingLineNumber = "162"
-                  offsetFromSymbolStart = "28">
+                  offsetFromSymbolStart = "19">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -234,12 +234,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/RCChatBaseMessageCell.m"
-                  timestampString = "521269506.302994"
+                  timestampString = "521305643.237663"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "170"
                   endingLineNumber = "170"
-                  offsetFromSymbolStart = "1400">
+                  offsetFromSymbolStart = "1505">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -249,12 +249,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/RCChatBaseMessageCell.m"
-                  timestampString = "521269506.304532"
+                  timestampString = "521305643.243937"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "170"
                   endingLineNumber = "170"
-                  offsetFromSymbolStart = "28">
+                  offsetFromSymbolStart = "19">
                </Location>
             </Locations>
          </BreakpointContent>

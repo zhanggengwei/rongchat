@@ -7,7 +7,7 @@
 //
 
 #import "NSObject+RCIMExtension.h"
-
+#import "RCChatSystemMessageCell.h"
 @implementation NSObject (RCIMExtension)
 
 
@@ -30,8 +30,11 @@
     else if([message.objectName isEqualToString:RCImageMessageTypeIdentifier])
     {
          [reuseIdentifier appendString:@"RCChatImageMessageCell"];
+    }else if ([message.objectName isEqualToString:RCTimeMessageTypeIdentifier])
+    {
+        [reuseIdentifier appendString:@"RCChatSystemMessageCell"];
+        
     }
-    
     switch (message.messageDirection) {
         case MessageDirection_SEND:
             [reuseIdentifier appendString:@"MessageDirection_SEND"];

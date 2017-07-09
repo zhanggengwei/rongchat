@@ -544,6 +544,12 @@ static NSCalendar *implicitCalendar = nil;
     return [dateOne isEqualToDate:dateTwo];
 }
 
++ (BOOL)lcck_isShowTime:(NSInteger)timeInterval otherTimeInterval:(NSInteger)otherTimeInterval
+{
+    return labs((otherTimeInterval-timeInterval))>=60*5*1000;
+    
+}
+
 #pragma mark - Date Components With Calendar
 /**
  *  Returns the era of the receiver from a given calendar

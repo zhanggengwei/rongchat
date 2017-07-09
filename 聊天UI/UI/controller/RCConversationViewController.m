@@ -10,11 +10,13 @@
 #import "RCChatTextMessageCell.h"
 #import "RCChatImageMessageCell.h"
 #import "RCConversationCacheObj.h"
+#import "RCChatSystemMessageCell.h"
 #import "RCCellIdentifierFactory.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <ODRefreshControl.h>
 #import "NSObject+RCIMExtension.h"
 #import "RCIMTableView.h"
+#import "NSDate+RCIMDateTools.h"
 
 @interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate>
 @property (nonatomic,strong) NSString * targedId;
@@ -25,7 +27,9 @@
 @property (nonatomic,strong) RCIMTableView * tableView;
 @property (nonatomic,assign) BOOL allowScrollToBottom;
 @property (nonatomic,strong) ODRefreshControl * refreshControl;
+@property (nonatomic,assign) NSUInteger timeInterval;
 @end
+
 
 @implementation RCConversationViewController
 
@@ -48,6 +52,8 @@
 
     [self.tableView registerClass:[RCChatTextMessageCell class] forCellReuseIdentifier:@"RCChatTextMessageCell"];
     [self.tableView registerClass:[RCChatImageMessageCell class] forCellReuseIdentifier:@"RCChatImageMessageCell"];
+    [self.tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell"];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
@@ -70,6 +76,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSMutableArray *)messageArray
+{
+    if(_messageArray==nil)
+    {
+        _messageArray = [NSMutableArray new];
+    }
+    return _messageArray;
 }
 
 - (void)scrollToBottomAnimated:(BOOL)animated {
@@ -99,12 +114,32 @@
 - (void)loadMessageByMessageID
 {
    
-    self.messageArray = [NSMutableArray arrayWithArray: [[[[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10] reverseObjectEnumerator] allObjects]];
+    NSArray * messages = [[[[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10] reverseObjectEnumerator] allObjects];
+    [self loadTimeMessage:messages];
     NSLog(@"%@",_messageArray);
     [self.tableView reloadData];
     [self scrollToBottomAnimated:YES];
     
 }
+
+- (void)loadTimeMessage:(NSArray<RCMessage *> *)messageArray
+{
+    [self.messageArray removeAllObjects];
+    for (RCMessage * message in messageArray) {
+        NSLog(@"%d %d",message.receivedTime,self.timeInterval);
+        if([NSDate lcck_isShowTime:self.timeInterval otherTimeInterval:message.sentTime])
+        {
+            RCMessage * timeMessage = [RCMessage new];
+            timeMessage.objectName = RCTimeMessageTypeIdentifier;
+            [self.messageArray addObject:timeMessage];
+            self.timeInterval = message.sentTime;
+        }
+        [self.messageArray addObject:message];
+    }
+    
+}
+
+
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(RCIMTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,6 +177,7 @@
     return [tableView fd_heightForCellWithIdentifier:idenfifier cacheByKey:cacheKey configuration:^(RCChatBaseMessageCell *cell) {
         [cell configureCellWithData:message];
     }];
+    
 }
 
 - (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left

@@ -67,6 +67,8 @@ NSLocalizedStringFromTableInBundle(key, @"DateTools", [NSBundle bundleWithPath:[
 - (BOOL)lcck_isWeekend;
 - (BOOL)lcck_isSameDay:(NSDate *)date;
 + (BOOL)lcck_isSameDay:(NSDate *)date asDate:(NSDate *)compareDate;
++ (BOOL)lcck_isShowTime:(NSInteger)timeInterval otherTimeInterval:(NSInteger)otherTimeInterval;
+
 
 #pragma mark - Date Components With Calendar
 

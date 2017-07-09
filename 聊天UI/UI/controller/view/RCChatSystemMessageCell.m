@@ -48,7 +48,11 @@
 
 - (void)configureCellWithData:(RCMessage *)message {
     [super configureCellWithData:message];
-   
+    
+    if([message.objectName isEqualToString:RCTimeMessageTypeIdentifier])
+    {
+        self.systemMessageLabel.text = @(message.receivedTime).stringValue;
+    }
    
 }
 

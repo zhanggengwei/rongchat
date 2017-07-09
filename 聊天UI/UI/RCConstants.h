@@ -344,7 +344,7 @@ typedef NS_ENUM(NSInteger, RCBubbleMessageMenuSelectedType) {
     RCBubbleMessageMenuSelectedTypeVoiceTurnToText = 13,
     RCBubbleMessageMenuSelectedTypeVoiceMore = 14,
 };
-
+#define RCTimeMessageTypeIdentifier @"RC:TimeMsg"
 
 #pragma mark - Succeed Message Store
 ///=============================================================================

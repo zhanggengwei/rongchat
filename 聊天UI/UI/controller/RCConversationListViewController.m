@@ -169,6 +169,7 @@
     [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(size.width);
     }];
+　  
 }
 
 
