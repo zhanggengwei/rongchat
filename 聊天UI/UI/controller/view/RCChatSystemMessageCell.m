@@ -7,7 +7,7 @@
 //
 
 #import "RCChatSystemMessageCell.h"
-
+#import "NSDate+RCIMDateTools.h"
 @interface RCChatSystemMessageCell ()
 
 @property (nonatomic, weak) UILabel *systemMessageLabel;
@@ -51,7 +51,7 @@
     
     if([message.objectName isEqualToString:RCTimeMessageTypeIdentifier])
     {
-        self.systemMessageLabel.text = @(message.receivedTime).stringValue;
+        self.systemMessageLabel.text = [NSDate systemMessageWithTimestamp:message.sentTime];
     }
    
 }

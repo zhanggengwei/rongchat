@@ -181,4 +181,6 @@ NSLocalizedStringFromTableInBundle(key, @"DateTools", [NSBundle bundleWithPath:[
 #pragma mark - Helpers
 +(NSString *)lcck_defaultCalendarIdentifier;
 + (void)lcck_setDefaultCalendarIdentifier:(NSString *)identifier;
++ (NSString *)systemMessageWithTimestamp:(NSTimeInterval)time;
+
 @end

@@ -1724,5 +1724,11 @@ static NSCalendar *implicitCalendar = nil;
 + (NSCalendar *)lcck_implicitCalendar {
     return implicitCalendar;
 }
-
++ (NSString *)systemMessageWithTimestamp:(NSTimeInterval)time {
+    NSDate *timestamp = [NSDate dateWithTimeIntervalSince1970:time / 1000];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd HH:mm"];
+    NSString *text = [dateFormatter stringFromDate:timestamp];
+    return text;
+}
 @end
