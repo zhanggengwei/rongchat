@@ -23,7 +23,13 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "RCConstants.h"
 #import "RCIMSettingService.h"
-
+#import "UITableViewCell+category.h"
+#import "RCChatSystemMessageCell.h"
+#import "RCChatFileMessageCell.h"
+#import "RCChatImageMessageCell.h"
+#import "RCChatVoiceMessageCell.h"
+#import "RCChatLocationMessageCell.h"
+#import "RCChatTextMessageCell.h"
 #define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 
 

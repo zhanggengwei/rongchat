@@ -7,7 +7,6 @@
 //
 
 #import "NSObject+RCIMExtension.h"
-#import "RCChatSystemMessageCell.h"
 @implementation NSObject (RCIMExtension)
 
 

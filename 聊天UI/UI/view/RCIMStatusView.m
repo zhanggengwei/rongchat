@@ -11,7 +11,7 @@ static CGFloat RCIMHorizontalSpacing = 15;
 static CGFloat RCIMHorizontalLittleSpacing = 5;
 #import "RCIMStatusView.h"
 #import "UIImage+RCIMExtension.h"
-#import "RCConstants.h"
+
 
 @interface RCIMStatusView ()
 @property (nonatomic,strong) UILabel * statusLabel;

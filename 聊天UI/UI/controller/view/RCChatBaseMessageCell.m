@@ -7,22 +7,15 @@
 //
 
 #import "RCChatBaseMessageCell.h"
-#import "RCChatTextMessageCell.h"
-#import "RCChatImageMessageCell.h"
-#import "RCChatVoiceMessageCell.h"
-#import "RCChatSystemMessageCell.h"
-#import "RCChatLocationMessageCell.h"
 #import "RCIMMenuItem.h"
 #import "RCIMSettingService.h"
 #import "RCBubbleImageFactory.h"
-
-
 #import "UIImageView+RCIMExtension.h"
 #import "UIImage+RCIMExtension.h"
 #import "NSObject+RCIMExtension.h"
-#import "RCConstants.h"
 
-NSMutableDictionary const *RCIMChatMessageCellMediaTypeDict = nil;
+
+NSMutableDictionary const * RCChatMessageCellMediaTypeDict = nil;
 
 static CGFloat const kAvatarImageViewWidth = 50.f;
 static CGFloat const kAvatarImageViewHeight = kAvatarImageViewWidth;
@@ -62,7 +55,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 
 + (Class)classForMediaType:(RCIMMessageMediaType)mediaType {
     NSNumber *key = [NSNumber numberWithInteger:mediaType];
-    Class class = [RCIMChatMessageCellMediaTypeDict objectForKey:key];
+    Class class = [RCChatMessageCellMediaTypeDict objectForKey:key];
     if (!class) {
         class = self;
     }
@@ -70,21 +63,21 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 + (void)registerClass:(Class)class forMediaType:(RCIMMessageMediaType)mediaType {
-    if (!RCIMChatMessageCellMediaTypeDict) {
-        RCIMChatMessageCellMediaTypeDict = [[NSMutableDictionary alloc] init];
+    if (!RCChatMessageCellMediaTypeDict) {
+        RCChatMessageCellMediaTypeDict = [[NSMutableDictionary alloc] init];
     }
     NSNumber *key = [NSNumber numberWithInteger:mediaType];
-    Class c = [RCIMChatMessageCellMediaTypeDict objectForKey:key];
+    Class c = [RCChatMessageCellMediaTypeDict objectForKey:key];
     if (!c || [class isSubclassOfClass:c]) {
-        [RCIMChatMessageCellMediaTypeDict setObject:class forKey:key];
+        [RCChatMessageCellMediaTypeDict setObject:class forKey:key];
     }
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
+  
     NSString * identify = [self RCIM_registerCell:reuseIdentifier];
     if (self = [super initWithStyle:style reuseIdentifier:identify]) {
-        
         [self setup];
     }
     return self;
@@ -450,7 +443,8 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 
 - (RCMessageOwnerType)messageOwner {
 
-    return [self getMessageOwerTypeWithReuseIdentifier:self.custom_reuseIdentifier];
+    NSLog(@"custom == %@",self.customIdenfier);
+    return [self getMessageOwerTypeWithReuseIdentifier:self.customIdenfier];
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longPressGes {

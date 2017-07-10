@@ -7,16 +7,15 @@
 //
 
 #import "RCConversationViewController.h"
-#import "RCChatTextMessageCell.h"
-#import "RCChatImageMessageCell.h"
 #import "RCConversationCacheObj.h"
-#import "RCChatSystemMessageCell.h"
 #import "RCCellIdentifierFactory.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <ODRefreshControl.h>
 #import "NSObject+RCIMExtension.h"
 #import "RCIMTableView.h"
 #import "NSDate+RCIMDateTools.h"
+#import <MJRefresh.h>
+
 
 @interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate>
 @property (nonatomic,strong) NSString * targedId;
@@ -69,6 +68,17 @@
              withUserId:info.user.indexId];
         }
     } userID:self.targedId];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        RCMessage * message = self.messageArray.firstObject;
+        if([message.objectName isEqualToString:RCTimeMessageTypeIdentifier])
+        {
+            message = self.messageArray[1];
+        }
+        [self.tableView.mj_header beginRefreshing];
+        [self loadMoreMessageWithMessageId:@(message.messageId).stringValue];
+        [self.tableView.mj_header endRefreshing];
+    }];
+    
     
     // Do any additional setup after loading the view.
 }
@@ -126,17 +136,54 @@
 {
     [self.messageArray removeAllObjects];
     for (RCMessage * message in messageArray) {
-        NSLog(@"%d %d",message.receivedTime,self.timeInterval);
+       
         if([NSDate lcck_isShowTime:self.timeInterval otherTimeInterval:message.sentTime])
         {
             RCMessage * timeMessage = [RCMessage new];
             timeMessage.objectName = RCTimeMessageTypeIdentifier;
+            timeMessage.receivedTime = message.receivedTime;
+            timeMessage.sentTime = message.sentTime;
             [self.messageArray addObject:timeMessage];
             self.timeInterval = message.sentTime;
         }
         [self.messageArray addObject:message];
     }
-    
+}
+- (void)loadMoreMessageWithMessageId:(NSString *)messageId
+{
+     NSArray * array= [[[[RCIMClient sharedRCIMClient]getHistoryMessages:self.conversationType targetId:self.targedId oldestMessageId:messageId.integerValue count:10]reverseObjectEnumerator]allObjects];
+    NSMutableArray * data = [NSMutableArray new];
+    for (RCMessage * message in array) {
+        
+        if([NSDate lcck_isShowTime:self.timeInterval otherTimeInterval:message.sentTime])
+        {
+            RCMessage * timeMessage = [RCMessage new];
+            timeMessage.objectName = RCTimeMessageTypeIdentifier;
+            timeMessage.receivedTime = message.receivedTime;
+            timeMessage.sentTime = message.sentTime;
+            [data addObject:timeMessage];
+            self.timeInterval = message.sentTime;
+        }
+        [data addObject:message];
+    }
+    RCMessage * firstMessage = self.messageArray.firstObject;
+    if(firstMessage==nil)
+    {
+        [self.messageArray addObject:data];
+    }else if (![NSDate lcck_isShowTime:firstMessage.sentTime otherTimeInterval:self.timeInterval])
+    {
+        [self.messageArray removeObject:firstMessage];
+      
+    }
+    NSRange range = NSMakeRange(0, [data count]);
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+    [self.messageArray insertObjects:data atIndexes:indexSet];
+    RCMessage * lastMessage = self.messageArray.lastObject;
+    if(lastMessage)
+    {
+        self.timeInterval = lastMessage.sentTime;
+    }
+    [self.tableView reloadData];
 }
 
 
@@ -172,7 +219,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     id message = self.messageArray[indexPath.row];
-    NSString * idenfifier = [self RCIM_registerCell:[self RCIM_registerCellReuseIdentifier:message]];
+    NSString * idenfifier = [self RCIM_registerCellReuseIdentifier:message];
     NSString *cacheKey = [RCCellIdentifierFactory cacheKeyForMessage:message];
     return [tableView fd_heightForCellWithIdentifier:idenfifier cacheByKey:cacheKey configuration:^(RCChatBaseMessageCell *cell) {
         [cell configureCellWithData:message];
@@ -184,6 +231,15 @@
 {
     if([message.targetId isEqualToString:self.targedId])
     {
+        if([NSDate lcck_isShowTime:self.timeInterval otherTimeInterval:message.sentTime])
+        {
+            RCMessage * timeMessage = [RCMessage new];
+            timeMessage.objectName = RCTimeMessageTypeIdentifier;
+            timeMessage.receivedTime = message.receivedTime;
+            timeMessage.sentTime = message.sentTime;
+            [self.messageArray addObject:timeMessage];
+            self.timeInterval = message.sentTime;
+        }
         [self.messageArray addObject:message];
     }
     if(left<=0)

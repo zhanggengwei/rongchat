@@ -8,16 +8,13 @@
 
 #import "RCIMTableView.h"
 #import "NSObject+RCIMExtension.h"
-#import "RCChatBaseMessageCell.h"
 
 @implementation RCIMTableView
-
-
 - (nullable __kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier
 {
-    NSString * idenfity = [self RCIM_registerCell:identifier];
-    UITableViewCell * cell = [super dequeueReusableCellWithIdentifier:idenfity];
-//    cell.custom_reuseIdentifier = identifier;
+    NSString * idenfity = identifier;
+    UITableViewCell * cell = [super dequeueReusableCellWithIdentifier:[self RCIM_registerCell:idenfity]];
+    cell.customIdenfier = idenfity;
     return cell;
 }
 /*

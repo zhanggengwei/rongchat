@@ -8,7 +8,7 @@
 
 #import "UIImage+RCIMExtension.h"
 #import "RCIMImageManager.h"
-#import "RCConstants.h"
+
 
 @implementation NSBundle (MyCategory)
 
