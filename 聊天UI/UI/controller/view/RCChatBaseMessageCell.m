@@ -66,6 +66,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     if (!RCChatMessageCellMediaTypeDict) {
         RCChatMessageCellMediaTypeDict = [[NSMutableDictionary alloc] init];
     }
+    
     NSNumber *key = [NSNumber numberWithInteger:mediaType];
     Class c = [RCChatMessageCellMediaTypeDict objectForKey:key];
     if (!c || [class isSubclassOfClass:c]) {
