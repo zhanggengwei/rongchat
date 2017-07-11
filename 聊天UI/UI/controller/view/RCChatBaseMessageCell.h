@@ -102,7 +102,7 @@
  *  消息群组类型,只读类型,根据reuseIdentifier判断
  */
 @property (nonatomic, assign) RCConversationType messageChatType;
-@property (nonatomic, assign, readonly) RCMessageOwnerType messageOwner;
+@property (nonatomic, assign, readonly) RCMessageDirection messageOwner;
 
 + (void)registerCustomMessageCell;
 + (void)registerSubclass;

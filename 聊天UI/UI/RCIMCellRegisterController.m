@@ -36,8 +36,8 @@
 }
 
 + (void)registerSystemMessageCellClassForTableView:(UITableView *)tableView {
-    [tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell_LCCKCellIdentifierOwnerSystem_LCCKCellIdentifierSingle"];
-    [tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell_LCCKCellIdentifierOwnerSystem_LCCKCellIdentifierGroup"];
+    [tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell_RCCellIdentifierOwnerSystem_RCCellIdentifierSingle"];
+    [tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell_RCCellIdentifierOwnerSystem_RCCellIdentifierGroup"];
 }
 
 @end

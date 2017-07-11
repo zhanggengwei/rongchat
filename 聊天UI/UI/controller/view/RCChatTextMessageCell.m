@@ -35,7 +35,7 @@
 - (void)updateConstraints {
     [super updateConstraints];
     UIEdgeInsets edgeMessageBubbleCustomize;
-    if (self.messageOwner == RCMessageOwnerTypeSelf) {
+    if (self.messageOwner == MessageDirection_SEND) {
         UIEdgeInsets rightEdgeMessageBubbleCustomize = [RCIMSettingService shareManager].rightEdgeMessageBubbleCustomize;
         edgeMessageBubbleCustomize = rightEdgeMessageBubbleCustomize;
     } else {
@@ -53,7 +53,7 @@
 - (void)setup {
     [self.messageContentView addSubview:self.messageTextLabel];
     UIColor *linkColor = [UIColor blueColor];
-    if (self.messageOwner == RCMessageOwnerTypeSelf) {
+    if (self.messageOwner == MessageDirection_SEND) {
         self.messageTextLabel.textColor = self.conversationViewMessageRightTextColor;
         if (self.conversationViewMessageLinkColorRight) {
             linkColor = self.conversationViewMessageLinkColorRight;

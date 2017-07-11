@@ -128,19 +128,6 @@ static NSString *const RCNotificationContactListDataSourceUpdatedUserInfoDataSou
 ///=============================================================================
 /// @name Conversation Enum : Message Type and operation
 ///=============================================================================
-
-
-/**
- *  消息拥有者类型
- */
-typedef NS_ENUM(NSUInteger, RCMessageOwnerType){
-    RCMessageOwnerTypeUnknown = 0 /**< 未知的消息拥有者 */,
-    RCMessageOwnerTypeSystem /**< 系统消息 */,
-    RCMessageOwnerTypeSelf /**< 自己发送的消息 */,
-    RCMessageOwnerTypeOther /**< 接收到的他人消息 */,
-};
-
-
 /**
  *  消息发送状态,自己发送的消息时有
  */
@@ -192,6 +179,8 @@ static NSString *const RCDidReceiveCustomMessageUserInfoMessageKey = @"receivedC
 //整数或小数
 #define RC_TIMESTAMP_REGEX @"^[0-9]*(.)?[0-9]*$"
 
+static RCMessageDirection const RCMessageSystemMesage = 0;
+
 #pragma mark - Custom Message
 ///=============================================================================
 /// @name Custom Message
@@ -235,6 +224,22 @@ static NSString *const RCCellIdentifierDefault = @"RCCellIdentifierDefault";
 static NSString *const RCCellIdentifierCustom = @"RCCellIdentifierCustom";
 static NSString *const RCCellIdentifierGroup = @"RCCellIdentifierGroup";
 static NSString *const RCCellIdentifierSingle = @"RCCellIdentifierSingle";
+//讨论组 ConversationType_DISCUSSION
+static NSString *const RCCellIdentifierDISCUSSION = @"RCCellIdentifierDISCUSSION";
+//ConversationType_CHATROOM 聊天室
+static NSString *const RCCellIdentifierCHATROOM = @"RCCellIdentifierCHATROOM";
+//ConversationType_CUSTOMERSERVICE 客服
+static NSString *const RCCellIdentifierCUSTOMERSERVICEM = @"RCCellIdentifierCHATCUSTOMERSERVICE";
+//ConversationType_SYSTEM 系统会话
+static NSString *const RCCellIdentifierSystem = @"RCCellIdentifierSystem";
+//应用内公共服务会话 ConversationType_APPSERVICE
+static NSString *const RCCellIdentifierAPPSERVICE = @"RCCellIdentifierAPPSERVICE";
+//跨应用公共服务会话 ConversationType_PUBLICSERVICE
+static NSString *const RCCellIdentifierPUBLICSERVICE = @"RCCellIdentifierPUBLICSERVICE";
+//ConversationType_PUSHSERVICE 推送服务会话
+static NSString *const RCCellIdentifierPUSHSERVICE = @"RCCellIdentifierPUSHSERVICE";
+
+
 static NSString *const RCCellIdentifierOwnerSelf = @"RCCellIdentifierOwnerSelf";
 static NSString *const RCCellIdentifierOwnerOther = @"RCCellIdentifierOwnerOther";
 static NSString *const RCCellIdentifierOwnerSystem = @"RCCellIdentifierOwnerSystem";
@@ -342,8 +347,9 @@ typedef NS_ENUM(NSInteger, RCBubbleMessageMenuSelectedType) {
     RCBubbleMessageMenuSelectedTypeVoiceTurnToText = 13,
     RCBubbleMessageMenuSelectedTypeVoiceMore = 14,
 };
-#define RCTimeMessageTypeIdentifier @"RC:TimeMsg"
+#define RCTimeMessageTypeIdentifier RCInformationNotificationMessageIdentifier
 #define RCVideoMessageTypeIdentifier @"RC:VideoMsg"
+
 
 #pragma mark - Succeed Message Store
 ///=============================================================================

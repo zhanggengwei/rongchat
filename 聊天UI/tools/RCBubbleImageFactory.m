@@ -20,7 +20,7 @@ enum : RCIMMessageMediaType {
 #import "RCBubbleImageFactory.h"
 #import "UIImage+RCIMExtension.h"
 @implementation RCBubbleImageFactory
-+ (UIImage *)bubbleImageViewForType:(RCMessageOwnerType)owner
++ (UIImage *)bubbleImageViewForType:(RCMessageDirection)owner
                         messageType:(NSString *)messageIdentifier
                       isHighlighted:(BOOL)isHighlighted
 {
@@ -38,7 +38,7 @@ enum : RCIMMessageMediaType {
     }
     UIEdgeInsets bubbleImageCapInsets = UIEdgeInsetsZero;
     switch (owner) {
-        case RCMessageOwnerTypeSelf: {
+        case MessageDirection_SEND: {
             // 发送
             switch (messageMediaType) {
                 case kRCIMMessageMediaTypeImage:
@@ -52,7 +52,7 @@ enum : RCIMMessageMediaType {
             messageTypeString = [messageTypeString stringByAppendingString:@"sender_"];
             break;
         }
-        case RCMessageOwnerTypeOther: {
+        case MessageDirection_RECEIVE: {
             // 接收
             switch (messageMediaType) {
                 case kRCIMMessageMediaTypeImage:
@@ -66,10 +66,7 @@ enum : RCIMMessageMediaType {
             messageTypeString = [messageTypeString stringByAppendingString:@"receiver_"];
             break;
         }
-        case RCMessageOwnerTypeSystem:
-            break;
-        case RCMessageOwnerTypeUnknown:
-            isCustomMessage = YES;
+        case RCMessageSystemMesage:
             break;
     }
     if (isCustomMessage) {

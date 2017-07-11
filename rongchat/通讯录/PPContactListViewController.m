@@ -68,7 +68,7 @@
 
 - (void)dealloc
 {
-    [[PPTUserInfoEngine shareEngine] removeObserver:self forKeyPath:@"contactList"];
+//    [[PPTUserInfoEngine shareEngine] removeObserver:self forKeyPath:@"contactList"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

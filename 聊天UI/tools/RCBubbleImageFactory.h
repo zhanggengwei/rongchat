@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface RCBubbleImageFactory : NSObject
-+ (UIImage *)bubbleImageViewForType:(RCMessageOwnerType)owner
++ (UIImage *)bubbleImageViewForType:(RCMessageDirection)owner
                         messageType:(NSString *)messageIdentifier
                       isHighlighted:(BOOL)isHighlighted;
 @end

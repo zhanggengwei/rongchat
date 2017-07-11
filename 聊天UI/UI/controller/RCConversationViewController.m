@@ -12,18 +12,17 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <ODRefreshControl.h>
 #import "NSObject+RCIMExtension.h"
-#import "RCIMTableView.h"
 #import "NSDate+RCIMDateTools.h"
 #import <MJRefresh.h>
-
-
+#import "RCIMCellRegisterController.h"
+#import "RCCellIdentifierFactory.h"
 @interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate>
 @property (nonatomic,strong) NSString * targedId;
 @property (nonatomic,assign) RCConversationType conversationType;
 @property (nonatomic,strong) RCUserInfo * userInfo;
 @property (nonatomic,strong) NSMutableArray * messageArray;
 @property (nonatomic,strong) UIImageView * backImageView;
-@property (nonatomic,strong) RCIMTableView * tableView;
+@property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,assign) BOOL allowScrollToBottom;
 @property (nonatomic,strong) ODRefreshControl * refreshControl;
 @property (nonatomic,assign) NSUInteger timeInterval;
@@ -47,11 +46,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[RCIM sharedRCIM]setReceiveMessageDelegate:self];
-    self.tableView = [[RCIMTableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-
-    [self.tableView registerClass:[RCChatTextMessageCell class] forCellReuseIdentifier:@"RCChatTextMessageCell"];
-    [self.tableView registerClass:[RCChatImageMessageCell class] forCellReuseIdentifier:@"RCChatImageMessageCell"];
-    [self.tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell"];
+    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+  [RCIMCellRegisterController registerChatMessageCellClassForTableView:self.tableView];
+//    [self.tableView registerClass:[RCChatTextMessageCell class] forCellReuseIdentifier:@"RCChatTextMessageCell"];
+//    [self.tableView registerClass:[RCChatImageMessageCell class] forCellReuseIdentifier:@"RCChatImageMessageCell"];
+//    [self.tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell"];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
@@ -78,6 +77,7 @@
         [self loadMoreMessageWithMessageId:@(message.messageId).stringValue];
         [self.tableView.mj_header endRefreshing];
     }];
+  
     
     
     // Do any additional setup after loading the view.
@@ -189,39 +189,39 @@
 
 #pragma mark UITableViewDelegate
 
-- (void)tableView:(RCIMTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 }
 
-- (UITableViewCell *)tableView:(RCIMTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RCMessage * message = self.messageArray[indexPath.row];
     //
-    RCChatBaseMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:[self RCIM_registerCellReuseIdentifier:message]];
-    //
-    NSLog(@"object%@",message.objectName);
+    NSString * identifier= [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:message.conversationType];
+    RCChatBaseMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     [cell configureCellWithData:message];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(RCIMTableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
-- (NSInteger)tableView:(RCIMTableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return  [self.messageArray count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    id message = self.messageArray[indexPath.row];
-    NSString * idenfifier = [self RCIM_registerCellReuseIdentifier:message];
+    RCMessage * message = self.messageArray[indexPath.row];
+    
+    NSString * identifier= [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:message.conversationType];
     NSString *cacheKey = [RCCellIdentifierFactory cacheKeyForMessage:message];
-    return [tableView fd_heightForCellWithIdentifier:idenfifier cacheByKey:cacheKey configuration:^(RCChatBaseMessageCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:identifier cacheByKey:cacheKey configuration:^(RCChatBaseMessageCell *cell) {
         [cell configureCellWithData:message];
     }];
     

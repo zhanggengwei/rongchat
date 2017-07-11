@@ -48,12 +48,15 @@
     return reuseIdentifier;
 }
 
-- (RCMessageOwnerType)getMessageOwerTypeWithReuseIdentifier:(NSString *)reuseIdentifier
+- (RCMessageDirection)getMessageOwerTypeWithReuseIdentifier:(NSString *)reuseIdentifier
 {
-    if([reuseIdentifier containsString:@"MessageDirection_SEND"])
+    if([reuseIdentifier containsString:RCCellIdentifierOwnerOther])
     {
-        return RCMessageOwnerTypeSelf;
+        return MessageDirection_RECEIVE;
+    }else if ([reuseIdentifier containsString:RCCellIdentifierOwnerSelf])
+    {
+        return MessageDirection_SEND;
     }
-    return RCMessageOwnerTypeOther;
+    return RCMessageSystemMesage;
 }
 @end

@@ -19,7 +19,7 @@
 
 - (NSString *)RCIM_registerCellReuseIdentifier:(RCMessage *)message;
 
-- (RCMessageOwnerType)getMessageOwerTypeWithReuseIdentifier:(NSString *)reuseIdentifier;
+- (RCMessageDirection)getMessageOwerTypeWithReuseIdentifier:(NSString *)reuseIdentifier;
 
 
 

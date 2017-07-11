@@ -25,5 +25,11 @@
     // Drawing code
 }
 */
++ (void)load {
+    [self registerSubclass];
+}
 
++ (NSString *)classMediaType {
+    return RCVoiceMessageTypeIdentifier;
+}
 @end

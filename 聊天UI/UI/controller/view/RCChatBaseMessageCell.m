@@ -108,7 +108,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 #pragma mark - Override Methods
 
 - (BOOL)showName {
-    BOOL isMessageOwner = self.messageOwner == RCMessageOwnerTypeOther;
+    BOOL isMessageOwner = self.messageOwner == MessageDirection_RECEIVE;
     BOOL isMessageChatTypeGroup = self.messageChatType == ConversationType_GROUP;
     if (isMessageOwner && isMessageChatTypeGroup) {
         self.nickNameLabel.hidden = NO;
@@ -120,10 +120,10 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 
 - (void)updateConstraints {
     [super updateConstraints];
-    if (self.messageOwner == RCMessageOwnerTypeSystem || self.messageOwner == RCMessageOwnerTypeUnknown) {
+    if (self.messageOwner == RCMessageSystemMesage) {
         return;
     }
-    if (self.messageOwner == RCMessageOwnerTypeSelf) {
+    if (self.messageOwner == MessageDirection_SEND) {
         if (self.avatarImageView.superview) {
             [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(self.contentView.mas_right).with.offset(-RCIM_MSG_CELL_EDGES_OFFSET);
@@ -168,7 +168,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
                 make.height.equalTo(@10);
             }];
         }
-    } else if (self.messageOwner == RCMessageOwnerTypeOther){
+    } else if (self.messageOwner == MessageDirection_RECEIVE){
         
         if (self.avatarImageView.superview) {
             [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -356,7 +356,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 
 - (void)setMessageSendState:(RCMessageSendState)messageSendState {
     _messageSendState = messageSendState;
-    if (self.messageOwner == RCMessageOwnerTypeOther) {
+    if (self.messageOwner == MessageDirection_RECEIVE) {
         self.messageSendStateView.hidden = YES;
     }
     self.messageSendStateView.messageSendState = messageSendState;
@@ -364,7 +364,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 
 - (void)setMessageReadState:(RCMessageReadState)messageReadState {
     _messageReadState = messageReadState;
-    if (self.messageOwner == RCMessageOwnerTypeSelf) {
+    if (self.messageOwner == MessageDirection_SEND) {
         self.messageSendStateView.hidden = YES;
     }
     switch (_messageReadState) {
@@ -442,10 +442,10 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     
 }
 
-- (RCMessageOwnerType)messageOwner {
+- (RCMessageDirection)messageOwner {
 
-    NSLog(@"custom == %@",self.customIdenfier);
-    return [self getMessageOwerTypeWithReuseIdentifier:self.customIdenfier];
+   
+    return [self getMessageOwerTypeWithReuseIdentifier:self.reuseIdentifier];
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longPressGes {

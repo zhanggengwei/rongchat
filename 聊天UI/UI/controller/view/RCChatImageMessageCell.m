@@ -25,7 +25,7 @@
     [self.messageContentView addSubview:self.messageImageView];
     [self.messageContentView addSubview:self.messageProgressView];
     UIEdgeInsets edgeMessageBubbleCustomize;
-    if (self.messageOwner == RCMessageOwnerTypeSelf) {
+    if (self.messageOwner == MessageDirection_SEND) {
         UIEdgeInsets rightEdgeMessageBubbleCustomize = [RCIMSettingService shareManager].rightHollowEdgeMessageBubbleCustomize;
         edgeMessageBubbleCustomize = rightEdgeMessageBubbleCustomize;
     } else {
