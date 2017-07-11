@@ -164,8 +164,8 @@
     [self registerSubclass];
 }
 
-+ (RCIMMessageMediaType)classMediaType {
-    return kRCIMMessageMediaTypeImage;
++ (NSString *)classMediaType {
+    return RCImageMessageTypeIdentifier;
 }
 
 @end

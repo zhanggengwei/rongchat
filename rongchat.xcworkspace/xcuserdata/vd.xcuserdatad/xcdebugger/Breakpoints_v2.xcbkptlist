@@ -177,38 +177,6 @@
             endingLineNumber = "155"
             landmarkName = "-updateConstraints"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[RCChatBaseMessageCell updateConstraints]"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Documents/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/RCChatBaseMessageCell.m"
-                  timestampString = "521395057.337934"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155"
-                  offsetFromSymbolStart = "1120">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__42-[RCChatBaseMessageCell updateConstraints]_block_invoke.221"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Documents/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/RCChatBaseMessageCell.m"
-                  timestampString = "521395057.339611"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -225,38 +193,6 @@
             endingLineNumber = "163"
             landmarkName = "-updateConstraints"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[RCChatBaseMessageCell updateConstraints]"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Documents/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/RCChatBaseMessageCell.m"
-                  timestampString = "521395057.344252"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163"
-                  offsetFromSymbolStart = "1400">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__42-[RCChatBaseMessageCell updateConstraints]_block_invoke.231"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Documents/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/RCChatBaseMessageCell.m"
-                  timestampString = "521395057.346459"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -147,8 +147,8 @@
     [self registerSubclass];
 }
 
-+ (RCIMMessageMediaType)classMediaType {
-    return kRCIMMessageMediaTypeText;
++ (NSString *)classMediaType {
+    return RCTextMessageTypeIdentifier;
 }
 
 - (UIColor *)conversationViewMessageLeftTextColor {

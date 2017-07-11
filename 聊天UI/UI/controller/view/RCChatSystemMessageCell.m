@@ -104,8 +104,8 @@
     [self registerSubclass];
 }
 
-+ (RCIMMessageMediaType)classMediaType {
-    return kRCIMMessageMediaTypeSystem;
++ (NSString *)classMediaType {
+    return RCInformationNotificationMessageIdentifier;
 }
 
 - (UIColor *)conversationViewTimeLineTextColor {

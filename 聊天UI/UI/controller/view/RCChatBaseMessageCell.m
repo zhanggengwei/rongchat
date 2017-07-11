@@ -33,7 +33,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 @interface RCChatBaseMessageCell ()<RCSendImageViewDelegate>
 
 @property (nonatomic, strong, readwrite) RCMessage *message;
-@property (nonatomic, assign, readwrite) RCIMMessageMediaType mediaType;
+@property (nonatomic, assign, readwrite) NSString * mediaType;
 @property (nonatomic, strong) UIColor *conversationViewSenderNameTextColor;
 
 
@@ -48,13 +48,13 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 + (void)registerSubclass {
     if ([self conformsToProtocol:@protocol(RCChatMessageCellSubclassing)]) {
         Class<RCChatMessageCellSubclassing> class = self;
-        RCIMMessageMediaType mediaType = [class classMediaType];
+        NSString * mediaType = [class classMediaType];
         [self registerClass:class forMediaType:mediaType];
     }
 }
 
-+ (Class)classForMediaType:(RCIMMessageMediaType)mediaType {
-    NSNumber *key = [NSNumber numberWithInteger:mediaType];
++ (Class)classForMediaType:(NSString *)mediaType {
+    NSString *key = mediaType;
     Class class = [RCChatMessageCellMediaTypeDict objectForKey:key];
     if (!class) {
         class = self;
@@ -62,12 +62,12 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     return class;
 }
 
-+ (void)registerClass:(Class)class forMediaType:(RCIMMessageMediaType)mediaType {
++ (void)registerClass:(Class)class forMediaType:(NSString *)mediaType {
     if (!RCChatMessageCellMediaTypeDict) {
         RCChatMessageCellMediaTypeDict = [[NSMutableDictionary alloc] init];
     }
     
-    NSNumber *key = [NSNumber numberWithInteger:mediaType];
+    NSString *key = mediaType;
     Class c = [RCChatMessageCellMediaTypeDict objectForKey:key];
     if (!c || [class isSubclassOfClass:c]) {
         [RCChatMessageCellMediaTypeDict setObject:class forKey:key];

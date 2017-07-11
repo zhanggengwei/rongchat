@@ -10,6 +10,6 @@
 
 @interface RCBubbleImageFactory : NSObject
 + (UIImage *)bubbleImageViewForType:(RCMessageOwnerType)owner
-                        messageType:(RCIMMessageMediaType)messageMediaType
+                        messageType:(NSString *)messageIdentifier
                       isHighlighted:(BOOL)isHighlighted;
 @end

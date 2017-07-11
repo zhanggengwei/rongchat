@@ -8,7 +8,6 @@
 
 #import "RCUserDelegate.h"
 //#import <AVOSCloudIM/AVOSCloudIM.h>
-#import "RCIMMessageMediaType.h"
 
 #pragma mark - Base ViewController Life Time Block
 ///=============================================================================
@@ -141,7 +140,6 @@ typedef NS_ENUM(NSUInteger, RCMessageOwnerType){
     RCMessageOwnerTypeOther /**< 接收到的他人消息 */,
 };
 
-static RCIMMessageMediaType const kRCIMMessageMediaTypeSystem = -7;
 
 /**
  *  消息发送状态,自己发送的消息时有
@@ -345,6 +343,7 @@ typedef NS_ENUM(NSInteger, RCBubbleMessageMenuSelectedType) {
     RCBubbleMessageMenuSelectedTypeVoiceMore = 14,
 };
 #define RCTimeMessageTypeIdentifier @"RC:TimeMsg"
+#define RCVideoMessageTypeIdentifier @"RC:VideoMsg"
 
 #pragma mark - Succeed Message Store
 ///=============================================================================

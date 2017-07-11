@@ -29,7 +29,7 @@
  子类实现此方法用于返回该类对应的消息类型
  @return 消息类型
  */
-+ (RCIMMessageMediaType)classMediaType;
++ (NSString *)classMediaType;
 @end
 
 @protocol RCIMChatMessageCellDelegate <NSObject>
@@ -87,7 +87,7 @@
 /**
  *  消息的类型,只读类型,会根据自己的具体实例类型进行判断
  */
-@property (nonatomic, assign, readonly) RCIMMessageMediaType mediaType;
+@property (nonatomic, assign, readonly) NSString * mediaType;
 /**
  *  消息发送状态,当状态为LCCKMessageSendFail或LCCKMessageSendStateSending时,LCCKmessageSendStateImageView显示
  */
