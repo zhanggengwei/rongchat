@@ -282,9 +282,9 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(-self.keyboardSize.height);
     }];
-//    [UIView animateWithDuration:LCCKAnimateDuration animations:^{
-//        [self layoutIfNeeded];
-//    } completion:nil];
+    [UIView animateWithDuration:RCAnimateDuration animations:^{
+        [self layoutIfNeeded];
+    } completion:nil];
 }
 
 #pragma mark - 核心方法
