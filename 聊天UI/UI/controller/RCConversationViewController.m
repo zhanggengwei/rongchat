@@ -16,7 +16,11 @@
 #import <MJRefresh.h>
 #import "RCIMCellRegisterController.h"
 #import "RCCellIdentifierFactory.h"
-@interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate>
+#import "RCChatBar.h"
+static CGFloat const LCCKScrollViewInsetTop = 20.f;
+
+
+@interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate,LCCKChatBarDelegate>
 @property (nonatomic,strong) NSString * targedId;
 @property (nonatomic,assign) RCConversationType conversationType;
 @property (nonatomic,strong) RCUserInfo * userInfo;
@@ -26,6 +30,8 @@
 @property (nonatomic,assign) BOOL allowScrollToBottom;
 @property (nonatomic,strong) ODRefreshControl * refreshControl;
 @property (nonatomic,assign) NSUInteger timeInterval;
+@property (strong,nonatomic) RCChatBar * chatBar;
+
 @end
 
 
@@ -39,21 +45,39 @@
         self.allowScrollToBottom = YES;
         self.targedId = targetId;
         self.conversationType = conversationType;
+        self.title = self.targedId;
         self.messageArrayType = @[RCTextMessageTypeIdentifier];
     }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [[RCIM sharedRCIM]setReceiveMessageDelegate:self];
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-  [RCIMCellRegisterController registerChatMessageCellClassForTableView:self.tableView];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+    self.chatBar = [RCChatBar new];
+    self.chatBar.delegate = self;
+    
+    [self.view addSubview:self.chatBar];
+    [self.view bringSubviewToFront:_chatBar];
+    [self.chatBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.and.right.and.bottom.equalTo(self.view);
+        make.height.mas_greaterThanOrEqualTo(@(kLCCKChatBarMinHeight));
+    }];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self.view);
+        make.top.mas_equalTo(self.view.mas_top).mas_offset(64);
+        make.bottom.mas_equalTo(self.chatBar.mas_top);
+    }];
+    [RCIMCellRegisterController registerChatMessageCellClassForTableView:self.tableView];
 //    [self.tableView registerClass:[RCChatTextMessageCell class] forCellReuseIdentifier:@"RCChatTextMessageCell"];
 //    [self.tableView registerClass:[RCChatImageMessageCell class] forCellReuseIdentifier:@"RCChatImageMessageCell"];
 //    [self.tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell"];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self loadMessageByMessageID];
@@ -95,6 +119,12 @@
         _messageArray = [NSMutableArray new];
     }
     return _messageArray;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.chatBar open];
 }
 
 - (void)scrollToBottomAnimated:(BOOL)animated {
@@ -249,6 +279,30 @@
             [self scrollToBottomAnimated:YES];
         });
     }
+}
+
+- (void)setTableViewInsetsWithBottomValue:(CGFloat)bottom {
+    UIEdgeInsets insets = [self tableViewInsetsWithBottomValue:bottom];
+    self.tableView.contentInset = insets;
+    self.tableView.scrollIndicatorInsets = insets;
+}
+
+- (UIEdgeInsets)tableViewInsetsWithBottomValue:(CGFloat)bottom {
+    UIEdgeInsets insets = UIEdgeInsetsZero;
+    insets.top = LCCKScrollViewInsetTop;
+    insets.bottom = bottom;
+    return insets;
+}
+
+- (void)setShouldLoadMoreMessagesScrollToTop:(BOOL)shouldLoadMoreMessagesScrollToTop {
+}
+
+- (void)chatBarFrameDidChange:(RCChatBar *)chatBar shouldScrollToBottom:(BOOL)shouldScrollToBottom {
+    [UIView animateWithDuration:RCAnimateDuration animations:^{
+        [self.tableView.superview layoutIfNeeded];
+        self.allowScrollToBottom = shouldScrollToBottom;
+        [self scrollToBottomAnimated:NO];
+    } completion:nil];
 }
 
 @end

@@ -203,7 +203,7 @@
 		7584DB741E2A5BF5007249C2 /* PPTUserInfoEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB671E2A5BF5007249C2 /* PPTUserInfoEngine.m */; };
 		7584DB751E2A5BF5007249C2 /* PPDataDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB6A1E2A5BF5007249C2 /* PPDataDef.m */; };
 		7584DB761E2A5BF5007249C2 /* PPHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB6C1E2A5BF5007249C2 /* PPHTTPResponse.m */; };
-		7584DB8A1E2A623F007249C2 /* LCCKChatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB791E2A623F007249C2 /* LCCKChatBar.m */; };
+		7584DB8A1E2A623F007249C2 /* RCChatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB791E2A623F007249C2 /* RCChatBar.m */; };
 		7584DB921E2A623F007249C2 /* RCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB891E2A623F007249C2 /* RCProgressHUD.m */; };
 		758E8B921E0AC6EB00D5DD4E /* RCIMError.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B671E0AC6EB00D5DD4E /* RCIMError.m */; };
 		758E8B931E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B691E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m */; };
@@ -558,8 +558,8 @@
 		7584DB6A1E2A5BF5007249C2 /* PPDataDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPDataDef.m; sourceTree = "<group>"; };
 		7584DB6B1E2A5BF5007249C2 /* PPHTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPHTTPResponse.h; sourceTree = "<group>"; };
 		7584DB6C1E2A5BF5007249C2 /* PPHTTPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPHTTPResponse.m; sourceTree = "<group>"; };
-		7584DB781E2A623F007249C2 /* LCCKChatBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatBar.h; sourceTree = "<group>"; };
-		7584DB791E2A623F007249C2 /* LCCKChatBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKChatBar.m; sourceTree = "<group>"; };
+		7584DB781E2A623F007249C2 /* RCChatBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatBar.h; sourceTree = "<group>"; };
+		7584DB791E2A623F007249C2 /* RCChatBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatBar.m; sourceTree = "<group>"; };
 		7584DB881E2A623F007249C2 /* RCProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCProgressHUD.h; sourceTree = "<group>"; };
 		7584DB891E2A623F007249C2 /* RCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCProgressHUD.m; sourceTree = "<group>"; };
 		758E8B651E0AC6EB00D5DD4E /* RCIMDateToolsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMDateToolsConstants.h; sourceTree = "<group>"; };
@@ -1205,8 +1205,8 @@
 		7584DB771E2A623F007249C2 /* ChatBar */ = {
 			isa = PBXGroup;
 			children = (
-				7584DB781E2A623F007249C2 /* LCCKChatBar.h */,
-				7584DB791E2A623F007249C2 /* LCCKChatBar.m */,
+				7584DB781E2A623F007249C2 /* RCChatBar.h */,
+				7584DB791E2A623F007249C2 /* RCChatBar.m */,
 				7584DB881E2A623F007249C2 /* RCProgressHUD.h */,
 				7584DB891E2A623F007249C2 /* RCProgressHUD.m */,
 				4068337F1E7A779F00E03427 /* RCSwipeView.h */,
@@ -1529,10 +1529,16 @@
 				TargetAttributes = {
 					75CEF8601DDC878500541660 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = X3Q9DS4CWY;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = TJ7XWRA893;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -1809,7 +1815,7 @@
 				758E8BA21E0AC6EB00D5DD4E /* Mp3Recorder.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
 				7584DAD61E2A5B92007249C2 /* NSBundle+RCIMExtension.m in Sources */,
-				7584DB8A1E2A623F007249C2 /* LCCKChatBar.m in Sources */,
+				7584DB8A1E2A623F007249C2 /* RCChatBar.m in Sources */,
 				75DE618B1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m in Sources */,
 				407261081DEBD12400554D00 /* MyQRViewController.m in Sources */,
 				7584DAF51E2A5B98007249C2 /* RCConversationModel.m in Sources */,
@@ -2042,7 +2048,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X3Q9DS4CWY;
+				DEVELOPMENT_TEAM = TJ7XWRA893;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/聊天UI/Vendor/VoiceLib",
@@ -2052,10 +2058,10 @@
 				INFOPLIST_FILE = rongchat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vd.zhanggeng;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kdyz.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3cb964fc-663f-4a8d-9ac9-6145d246e7ca";
+				PROVISIONING_PROFILE_SPECIFIER = kdyz_new_dev;
 			};
 			name = Debug;
 		};
@@ -2067,7 +2073,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X3Q9DS4CWY;
+				DEVELOPMENT_TEAM = TJ7XWRA893;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/聊天UI/Vendor/VoiceLib",
@@ -2077,9 +2083,10 @@
 				INFOPLIST_FILE = rongchat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vd.zhanggeng;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kdyz.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3cb964fc-663f-4a8d-9ac9-6145d246e7ca";
+				PROVISIONING_PROFILE_SPECIFIER = kdyz_new_dev;
 			};
 			name = Release;
 		};

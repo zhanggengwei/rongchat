@@ -1,0 +1,33 @@
+{
+"message": "访问成功",
+"code": 200,
+"list": [
+{
+"userId":484,
+"identify":"600290",
+"avatarId":623,
+"avatarUrl":"http://bucket-puputuan.img-cn-shenzhen.aliyuncs.com/puputuan/user/483/user-1467192981543-1467192980220img.jpg",
+"nickName":"李四",
+"nickNameChar":"lisi",
+"sex":"M",
+"imUser":{
+"userName":"600290"
+},
+},
+{
+"userId":485,
+"identify":"600291",
+"avatarId":654,
+"avatarUrl":"http://bucket-puputuan.img-cn-shenzhen.aliyuncs.com/puputuan/user/483/user-1467192981543-1467192980220img.jpg",
+"nickName":"王五",
+"nickNameChar":"wangwu",
+"sex":"M",
+"imUser":{
+"userName":"600291"
+},
+}
+],
+"currentPage": 1,
+"totalPage": 1,
+"totalSize": 1
+}
