@@ -57,6 +57,7 @@ static void * const LCCKSendImageViewShouldShowIndicatorViewContext = (void*)&LC
 - (void)setMessageSendState:(RCSentStatus)messageSendState {
     _messageSendState = messageSendState;
     if (_messageSendState == SentStatus_SENDING) {
+        
         dispatch_async(dispatch_get_main_queue(),^{
             [self.indicatorView startAnimating];
         });
@@ -82,34 +83,7 @@ static void * const LCCKSendImageViewShouldShowIndicatorViewContext = (void*)&LC
     }
 }
 
-//- (void)setMessageSendState:(LCCKMessageSendState)messageSendState {
-//    _messageSendState = messageSendState;
-//    if (_messageSendState == LCCKMessageSendStateSending) {
-//        dispatch_async(dispatch_get_main_queue(),^{
-//            if (!self.indicatorView.isAnimating) {
-//                [self.indicatorView startAnimating];
-//            }
-//        });
-//        self.indicatorView.hidden = NO;
-//    } else {
-//        dispatch_async(dispatch_get_main_queue(),^{
-//            if (self.indicatorView.isAnimating) {
-//                [self.indicatorView stopAnimating];
-//            }
-//        });
-//        self.indicatorView.hidden = YES;
-//    }
-//
-//    switch (_messageSendState) {
-//        case LCCKMessageSendStateSending:
-//        case LCCKMessageSendStateFailed:
-//            self.hidden = NO;
-//            break;
-//        default:
-//            self.hidden = YES;
-//            break;
-//    }
-//}
+
 
 // KVO监听执行
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -124,6 +98,7 @@ static void * const LCCKSendImageViewShouldShowIndicatorViewContext = (void*)&LC
             if (showIndicatorView) {
                 self.hidden = NO;
                 self.indicatorView.hidden = NO;
+                self.indicatorView.backgroundColor = [UIColor redColor];
                 [self showErrorIcon:NO];
             } else {
                 self.hidden = NO;

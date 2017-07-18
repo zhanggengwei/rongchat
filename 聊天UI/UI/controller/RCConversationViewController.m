@@ -321,19 +321,19 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
     senderMessage.senderUserId = [RCIMClient sharedRCIMClient].currentUserInfo.userId;
     senderMessage.content = textMessage;
     senderMessage.objectName = RCTextMessageTypeIdentifier;
+    senderMessage.sentStatus = SentStatus_SENDING;
     [self.messageArray addObject:senderMessage];
     NSIndexPath * indexpath = [NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationTop];
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
     [self scrollToBottomAnimated:YES];
     
     [[RCIMClient sharedRCIMClient]sendMessage:self.conversationType targetId:self.targedId content:textMessage pushContent:nil pushData:nil success:^(long messageId) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"cell == %@",[self.tableView cellForRowAtIndexPath:indexpath]);
             RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
             sucessSendMessage.messageId = messageId;
-            sucessSendMessage.sentStatus = SentStatus_SENT;
-            [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
+            sucessSendMessage.sentStatus = SentStatus_SENDING;
+            //[self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
             
         });
     } error:^(RCErrorCode nErrorCode, long messageId) {
@@ -341,7 +341,7 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
             RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
             sucessSendMessage.messageId = messageId;
             sucessSendMessage.sentStatus = SentStatus_FAILED;
-            [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
+            //[self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
             
         });
      

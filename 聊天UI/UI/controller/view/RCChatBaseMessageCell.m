@@ -359,7 +359,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     if (self.messageOwner == MessageDirection_RECEIVE) {
         self.messageSendStateView.hidden = YES;
     }
-    self.messageSendStateView.messageSendState = SentStatus_FAILED;
+    self.messageSendStateView.messageSendState = messageSendState;
 }
 
 - (void)setMessageReadState:(RCMessageReadState)messageReadState {

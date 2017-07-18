@@ -187,7 +187,10 @@
 {
     [super setMessageSendState:messageSendState];
     self.messageSendStateView.hidden = !(messageSendState==SentStatus_FAILED);
-    NSLog(@"message state %d",messageSendState);
+    if(messageSendState==SentStatus_SENDING)
+    {
+        [self.indicatorView startAnimating];
+    }
     
 }
 
