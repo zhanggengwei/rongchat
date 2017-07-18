@@ -231,6 +231,8 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
     NSString * identifier= [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:message.conversationType];
     RCChatBaseMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     [cell configureCellWithData:message];
+    cell.tableView = self.tableView;
+    cell.indexPath = indexPath;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -304,5 +306,49 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
         [self scrollToBottomAnimated:NO];
     } completion:nil];
 }
+
+#pragma mark 
+- (void)chatBar:(RCChatBar *)chatBar sendMessage:(NSString *)message
+{
+    RCTextMessage * textMessage = [RCTextMessage new];
+    textMessage.content = message;
+    RCMessage * senderMessage= [RCMessage new];
+    senderMessage.sentTime = [[NSDate date]timeIntervalSince1970]*1000;
+    senderMessage.receivedTime = senderMessage.sentTime;
+    senderMessage.messageDirection = MessageDirection_SEND;
+    senderMessage.conversationType = self.conversationType;
+    senderMessage.targetId = self.targedId;
+    senderMessage.senderUserId = [RCIMClient sharedRCIMClient].currentUserInfo.userId;
+    senderMessage.content = textMessage;
+    senderMessage.objectName = RCTextMessageTypeIdentifier;
+    [self.messageArray addObject:senderMessage];
+    NSIndexPath * indexpath = [NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationTop];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    [self scrollToBottomAnimated:YES];
+    
+    [[RCIMClient sharedRCIMClient]sendMessage:self.conversationType targetId:self.targedId content:textMessage pushContent:nil pushData:nil success:^(long messageId) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
+            sucessSendMessage.messageId = messageId;
+            sucessSendMessage.sentStatus = SentStatus_SENT;
+            [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
+            
+        });
+    } error:^(RCErrorCode nErrorCode, long messageId) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
+            sucessSendMessage.messageId = messageId;
+            sucessSendMessage.sentStatus = SentStatus_FAILED;
+            [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
+            
+        });
+     
+        
+    }];
+    
+}
+
 
 @end

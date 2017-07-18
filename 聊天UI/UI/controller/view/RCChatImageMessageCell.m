@@ -107,14 +107,14 @@
 
 - (void)setUploadProgress:(CGFloat)uploadProgress
 {
-    [self setMessageSendState:RCMessageSendStateSending];
+    [self setMessageSendState:SentStatus_SENDING];
     self.messageProgressView.frame = CGRectMake(0, 0, self.messageProgressView.frame.size.width,self.messageProgressView.frame.size.height*(1-uploadProgress));
     [self.messageProgressLabel setText:[NSString stringWithFormat:@"%.0f%%",uploadProgress * 100]];
     
 }
-- (void)setMessageSendState:(RCMessageSendState)messageSendState {
+- (void)setMessageSendState:(RCSentStatus)messageSendState {
     [super setMessageSendState:messageSendState];
-    if (messageSendState == RCMessageSendStateSending) {
+    if (messageSendState == SentStatus_SENDING) {
         if (!self.messageProgressView.superview) {
             [self.messageContentView addSubview:self.messageProgressView];
         }

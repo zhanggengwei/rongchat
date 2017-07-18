@@ -54,9 +54,9 @@ static void * const LCCKSendImageViewShouldShowIndicatorViewContext = (void*)&LC
 }
 
 #pragma mark - Setters
-- (void)setMessageSendState:(RCMessageSendState)messageSendState {
+- (void)setMessageSendState:(RCSentStatus)messageSendState {
     _messageSendState = messageSendState;
-    if (_messageSendState == RCMessageSendStateSending) {
+    if (_messageSendState == SentStatus_SENDING) {
         dispatch_async(dispatch_get_main_queue(),^{
             [self.indicatorView startAnimating];
         });
@@ -69,11 +69,11 @@ static void * const LCCKSendImageViewShouldShowIndicatorViewContext = (void*)&LC
     }
     
     switch (_messageSendState) {
-        case RCMessageSendStateSending:
+        case SentStatus_SENDING:
             self.showIndicatorView = YES;
             break;
             
-        case RCMessageSendStateFailed:
+        case SentStatus_FAILED:
             self.showIndicatorView = NO;
             break;
         default:

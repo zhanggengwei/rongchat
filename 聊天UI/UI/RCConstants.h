@@ -128,16 +128,7 @@ static NSString *const RCNotificationContactListDataSourceUpdatedUserInfoDataSou
 ///=============================================================================
 /// @name Conversation Enum : Message Type and operation
 ///=============================================================================
-/**
- *  消息发送状态,自己发送的消息时有
- */
-typedef NS_ENUM(NSUInteger, RCMessageSendState){
-    RCMessageSendStateNone = 0,
-    RCMessageSendStateSending = 1, /**< 消息发送中 */
-    RCMessageSendStateSent, /**< 消息发送成功 */
-    RCMessageSendStateDelivered, /**< 消息对方已接收*/
-    RCMessageSendStateFailed, /**< 消息发送失败 */
-};
+
 
 /**
  *  消息读取状态,接收的消息时有

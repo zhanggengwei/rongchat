@@ -314,7 +314,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     {
         info = [[PPTUserInfoEngine shareEngine]quertyUserInfoByUserId:_message.senderUserId];
     }
-    RCMessageSendState sendStatus = -1;
+    
 //    if ([message rcim_isCustomMessage]) {
 //        
 //    }
@@ -329,7 +329,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
         UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
         image;})
      ];
-    self.messageSendState = sendStatus;    
+    self.messageSendState = message.sentStatus;
 }
 
 #pragma mark - Private Methods
@@ -354,12 +354,12 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 
 #pragma mark - Setters
 
-- (void)setMessageSendState:(RCMessageSendState)messageSendState {
+- (void)setMessageSendState:(RCSentStatus)messageSendState {
     _messageSendState = messageSendState;
     if (self.messageOwner == MessageDirection_RECEIVE) {
         self.messageSendStateView.hidden = YES;
     }
-    self.messageSendStateView.messageSendState = messageSendState;
+    self.messageSendStateView.messageSendState = SentStatus_FAILED;
 }
 
 - (void)setMessageReadState:(RCMessageReadState)messageReadState {

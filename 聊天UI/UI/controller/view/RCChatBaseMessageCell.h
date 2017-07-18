@@ -91,7 +91,7 @@
 /**
  *  消息发送状态,当状态为LCCKMessageSendFail或LCCKMessageSendStateSending时,LCCKmessageSendStateImageView显示
  */
-@property (nonatomic, assign) RCMessageSendState messageSendState;
+@property (nonatomic, assign) RCSentStatus messageSendState;
 /**
  *  消息阅读状态,当状态为LCCKMessageUnRead时,LCCKmessageReadStateImageView显示
  */

@@ -16,6 +16,6 @@
 
 @interface RCMessageSendStateView : UIButton
 
-@property (nonatomic, assign) RCMessageSendState messageSendState;
+@property (nonatomic, assign) RCSentStatus messageSendState;
 @property (nonatomic, weak) id<RCSendImageViewDelegate> delegate;
 @end

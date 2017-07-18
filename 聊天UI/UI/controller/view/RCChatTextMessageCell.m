@@ -183,6 +183,14 @@
     return _conversationViewMessageLinkColorRight;
 }
 
+- (void)setMessageSendState:(RCSentStatus)messageSendState
+{
+    [super setMessageSendState:messageSendState];
+    self.messageSendStateView.hidden = !(messageSendState==SentStatus_FAILED);
+    NSLog(@"message state %d",messageSendState);
+    
+}
+
 - (UIColor *)conversationViewMessageLinkColor {
     if (_conversationViewMessageLinkColor) {
         return _conversationViewMessageLinkColor;
