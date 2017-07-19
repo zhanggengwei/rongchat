@@ -329,12 +329,14 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
     
     [[RCIMClient sharedRCIMClient]sendMessage:self.conversationType targetId:self.targedId content:textMessage pushContent:nil pushData:nil success:^(long messageId) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"cell == %@",[self.tableView cellForRowAtIndexPath:indexpath]);
+           
             RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
             sucessSendMessage.messageId = messageId;
             sucessSendMessage.sentStatus = SentStatus_SENT;
             RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:indexpath];
-            [cell setMessageSendState:SentStatus_SENT];
+            [cell setMessageSendState:SentStatus_SENDING];
+
+             NSLog(@"cell == %@",[self.tableView cellForRowAtIndexPath:indexpath]);
         });
     } error:^(RCErrorCode nErrorCode, long messageId) {
         dispatch_async(dispatch_get_main_queue(), ^{

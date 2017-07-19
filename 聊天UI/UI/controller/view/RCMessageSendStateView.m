@@ -98,7 +98,6 @@ static void * const LCCKSendImageViewShouldShowIndicatorViewContext = (void*)&LC
             if (showIndicatorView) {
                 self.hidden = NO;
                 self.indicatorView.hidden = NO;
-                self.indicatorView.backgroundColor = [UIColor redColor];
                 [self showErrorIcon:NO];
             } else {
                 self.hidden = NO;
