@@ -324,8 +324,12 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
     senderMessage.sentStatus = SentStatus_SENDING;
     [self.messageArray addObject:senderMessage];
     NSIndexPath * indexpath = [NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0];
+    [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationTop];
+    [self.tableView endUpdates];
     [self scrollToBottomAnimated:YES];
+    
+    NSLog(@"1.indexpath ==%@",indexpath);
     
     [[RCIMClient sharedRCIMClient]sendMessage:self.conversationType targetId:self.targedId content:textMessage pushContent:nil pushData:nil success:^(long messageId) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -337,6 +341,8 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
             [cell setMessageSendState:SentStatus_SENDING];
 
              NSLog(@"cell == %@",[self.tableView cellForRowAtIndexPath:indexpath]);
+            NSLog(@"2.indexpath ==%@",indexpath);
+            
         });
     } error:^(RCErrorCode nErrorCode, long messageId) {
         dispatch_async(dispatch_get_main_queue(), ^{
