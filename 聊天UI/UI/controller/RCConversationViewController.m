@@ -332,20 +332,18 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
             NSLog(@"cell == %@",[self.tableView cellForRowAtIndexPath:indexpath]);
             RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
             sucessSendMessage.messageId = messageId;
-            sucessSendMessage.sentStatus = SentStatus_SENDING;
-            //[self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
-            
+            sucessSendMessage.sentStatus = SentStatus_SENT;
+            RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:indexpath];
+            [cell setMessageSendState:SentStatus_SENT];
         });
     } error:^(RCErrorCode nErrorCode, long messageId) {
         dispatch_async(dispatch_get_main_queue(), ^{
             RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
             sucessSendMessage.messageId = messageId;
             sucessSendMessage.sentStatus = SentStatus_FAILED;
-            //[self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
-            
+            RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:indexpath];
+            [cell setMessageSendState:SentStatus_FAILED];
         });
-     
-        
     }];
     
 }
