@@ -23,7 +23,7 @@ static void * const LCCKSendImageViewShouldShowIndicatorViewContext = (void*)&LC
 
 - (instancetype)init {
     if (self = [super init]) {
-        UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         indicatorView.hidden = YES;
         [self addSubview:self.indicatorView = indicatorView];
         // KVO注册监听
@@ -33,7 +33,7 @@ static void * const LCCKSendImageViewShouldShowIndicatorViewContext = (void*)&LC
             [weakSelf removeObserver:weakSelf forKeyPath:@"showIndicatorView"];
         }];
         [self addTarget:self action:@selector(failImageViewTap:) forControlEvents:UIControlEventTouchUpInside];
-        
+        //self.backgroundColor = [UIColor redColor];
     }
     return self;
 }

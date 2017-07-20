@@ -186,11 +186,11 @@
 - (void)setMessageSendState:(RCSentStatus)messageSendState
 {
     [super setMessageSendState:messageSendState];
-    self.messageSendStateView.hidden = !(messageSendState==SentStatus_FAILED);
-    if(messageSendState==SentStatus_SENDING)
-    {
-        [self.indicatorView startAnimating];
-    }
+//    self.messageSendStateView.hidden = !(messageSendState==SentStatus_FAILED);
+//    if(messageSendState==SentStatus_SENDING)
+//    {
+//        [self.indicatorView startAnimating];
+//    }
     
 }
 

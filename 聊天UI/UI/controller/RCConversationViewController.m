@@ -19,7 +19,6 @@
 #import "RCChatBar.h"
 static CGFloat const LCCKScrollViewInsetTop = 20.f;
 
-
 @interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate,LCCKChatBarDelegate>
 @property (nonatomic,strong) NSString * targedId;
 @property (nonatomic,assign) RCConversationType conversationType;
@@ -72,9 +71,9 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
         make.bottom.mas_equalTo(self.chatBar.mas_top);
     }];
     [RCIMCellRegisterController registerChatMessageCellClassForTableView:self.tableView];
-//    [self.tableView registerClass:[RCChatTextMessageCell class] forCellReuseIdentifier:@"RCChatTextMessageCell"];
-//    [self.tableView registerClass:[RCChatImageMessageCell class] forCellReuseIdentifier:@"RCChatImageMessageCell"];
-//    [self.tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell"];
+    //    [self.tableView registerClass:[RCChatTextMessageCell class] forCellReuseIdentifier:@"RCChatTextMessageCell"];
+    //    [self.tableView registerClass:[RCChatImageMessageCell class] forCellReuseIdentifier:@"RCChatImageMessageCell"];
+    //    [self.tableView registerClass:[RCChatSystemMessageCell class] forCellReuseIdentifier:@"RCChatSystemMessageCell"];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -101,7 +100,7 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
         [self loadMoreMessageWithMessageId:@(message.messageId).stringValue];
         [self.tableView.mj_header endRefreshing];
     }];
-  
+    
     
     
     // Do any additional setup after loading the view.
@@ -153,7 +152,7 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
 
 - (void)loadMessageByMessageID
 {
-   
+    
     NSArray * messages = [[[[RCIMClient sharedRCIMClient]getLatestMessages:self.conversationType targetId:self.targedId count:10] reverseObjectEnumerator] allObjects];
     [self loadTimeMessage:messages];
     NSLog(@"%@",_messageArray);
@@ -166,7 +165,7 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
 {
     [self.messageArray removeAllObjects];
     for (RCMessage * message in messageArray) {
-       
+        
         if([NSDate lcck_isShowTime:self.timeInterval otherTimeInterval:message.sentTime])
         {
             RCMessage * timeMessage = [RCMessage new];
@@ -181,7 +180,7 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
 }
 - (void)loadMoreMessageWithMessageId:(NSString *)messageId
 {
-     NSArray * array= [[[[RCIMClient sharedRCIMClient]getHistoryMessages:self.conversationType targetId:self.targedId oldestMessageId:messageId.integerValue count:10]reverseObjectEnumerator]allObjects];
+    NSArray * array= [[[[RCIMClient sharedRCIMClient]getHistoryMessages:self.conversationType targetId:self.targedId oldestMessageId:messageId.integerValue count:10]reverseObjectEnumerator]allObjects];
     NSMutableArray * data = [NSMutableArray new];
     for (RCMessage * message in array) {
         
@@ -203,7 +202,7 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
     }else if (![NSDate lcck_isShowTime:firstMessage.sentTime otherTimeInterval:self.timeInterval])
     {
         [self.messageArray removeObject:firstMessage];
-      
+        
     }
     NSRange range = NSMakeRange(0, [data count]);
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -227,7 +226,6 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RCMessage * message = self.messageArray[indexPath.row];
-    //
     NSString * identifier= [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:message.conversationType];
     RCChatBaseMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     [cell configureCellWithData:message];
@@ -263,16 +261,7 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
 {
     if([message.targetId isEqualToString:self.targedId])
     {
-        if([NSDate lcck_isShowTime:self.timeInterval otherTimeInterval:message.sentTime])
-        {
-            RCMessage * timeMessage = [RCMessage new];
-            timeMessage.objectName = RCTimeMessageTypeIdentifier;
-            timeMessage.receivedTime = message.receivedTime;
-            timeMessage.sentTime = message.sentTime;
-            [self.messageArray addObject:timeMessage];
-            self.timeInterval = message.sentTime;
-        }
-        [self.messageArray addObject:message];
+        [self appendTrailingMessage:message];
     }
     if(left<=0)
     {
@@ -281,6 +270,21 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
             [self scrollToBottomAnimated:YES];
         });
     }
+}
+
+- (void)appendTrailingMessage:(RCMessage *)message
+{
+    if([NSDate lcck_isShowTime:self.timeInterval otherTimeInterval:message.sentTime])
+    {
+        RCMessage * timeMessage = [RCMessage new];
+        timeMessage.objectName = RCTimeMessageTypeIdentifier;
+        timeMessage.receivedTime = message.receivedTime;
+        timeMessage.sentTime = message.sentTime;
+        [self.messageArray addObject:timeMessage];
+        self.timeInterval = message.sentTime;
+    }
+    [self.messageArray addObject:message];
+    
 }
 
 - (void)setTableViewInsetsWithBottomValue:(CGFloat)bottom {
@@ -307,52 +311,73 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
     } completion:nil];
 }
 
-#pragma mark 
+
+- (void)fillSenderMessage:(RCMessage *)message
+{
+    message.sentTime = [[NSDate date]timeIntervalSince1970]*1000;
+    message.receivedTime = message.sentTime;
+    message.messageDirection = MessageDirection_SEND;
+    message.conversationType = self.conversationType;
+    message.targetId = self.targedId;
+    message.senderUserId = [RCIMClient sharedRCIMClient].currentUserInfo.userId;
+    message.sentStatus = SentStatus_SENDING;
+}
+
+
+#pragma mark
 - (void)chatBar:(RCChatBar *)chatBar sendMessage:(NSString *)message
 {
+    
     RCTextMessage * textMessage = [RCTextMessage new];
     textMessage.content = message;
     RCMessage * senderMessage= [RCMessage new];
-    senderMessage.sentTime = [[NSDate date]timeIntervalSince1970]*1000;
-    senderMessage.receivedTime = senderMessage.sentTime;
-    senderMessage.messageDirection = MessageDirection_SEND;
-    senderMessage.conversationType = self.conversationType;
-    senderMessage.targetId = self.targedId;
-    senderMessage.senderUserId = [RCIMClient sharedRCIMClient].currentUserInfo.userId;
     senderMessage.content = textMessage;
     senderMessage.objectName = RCTextMessageTypeIdentifier;
-    senderMessage.sentStatus = SentStatus_SENDING;
-    [self.messageArray addObject:senderMessage];
-    NSIndexPath * indexpath = [NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0];
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationTop];
-    [self.tableView endUpdates];
-    [self scrollToBottomAnimated:YES];
+    [self fillSenderMessage:senderMessage];
+    NSInteger messageCount = self.messageArray.count;
+    [self appendTrailingMessage:senderMessage];
+    NSInteger currentMessageCount = self.messageArray.count;
+    NSArray * indexPaths = @[];
+    if(currentMessageCount-messageCount>=2)
+    {
+        NSIndexPath * indexpath1 = [NSIndexPath indexPathForRow:self.messageArray.count-2 inSection:0];
+        NSIndexPath * indexpath = [NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0];
+        
+        indexPaths = [indexPaths arrayByAddingObjectsFromArray:@[indexpath1,indexpath]];
+    }else
+    {
+        NSIndexPath * indexpath = [NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0];
+        indexPaths = [indexPaths arrayByAddingObject:indexpath];
+        
+    }
+   
+    self.allowScrollToBottom = YES;
+    dispatch_async(dispatch_get_main_queue(),^{
+        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+        [self scrollToBottomAnimated:YES];
+        [[RCIMClient sharedRCIMClient]sendMessage:self.conversationType targetId:self.targedId content:textMessage pushContent:nil pushData:nil success:^(long messageId) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
+                sucessSendMessage.messageId = messageId;
+                sucessSendMessage.sentStatus = SentStatus_SENT;
+                RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:indexpath];
+                [cell setMessageSendState:SentStatus_SENT];
+                
+                
+            });
+        } error:^(RCErrorCode nErrorCode, long messageId) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
+                sucessSendMessage.messageId = messageId;
+                sucessSendMessage.sentStatus = SentStatus_FAILED;
+                RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:indexpath];
+                [cell setMessageSendState:SentStatus_FAILED];
+            });
+        }];
+    });
     
-    NSLog(@"1.indexpath ==%@",indexpath);
     
-    [[RCIMClient sharedRCIMClient]sendMessage:self.conversationType targetId:self.targedId content:textMessage pushContent:nil pushData:nil success:^(long messageId) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-           
-            RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
-            sucessSendMessage.messageId = messageId;
-            sucessSendMessage.sentStatus = SentStatus_SENT;
-            RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:indexpath];
-            [cell setMessageSendState:SentStatus_SENDING];
-
-             NSLog(@"cell == %@",[self.tableView cellForRowAtIndexPath:indexpath]);
-            NSLog(@"2.indexpath ==%@",indexpath);
-            
-        });
-    } error:^(RCErrorCode nErrorCode, long messageId) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
-            sucessSendMessage.messageId = messageId;
-            sucessSendMessage.sentStatus = SentStatus_FAILED;
-            RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:indexpath];
-            [cell setMessageSendState:SentStatus_FAILED];
-        });
-    }];
     
 }
 

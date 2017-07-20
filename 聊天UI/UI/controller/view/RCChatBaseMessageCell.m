@@ -13,7 +13,7 @@
 #import "UIImageView+RCIMExtension.h"
 #import "UIImage+RCIMExtension.h"
 #import "NSObject+RCIMExtension.h"
-
+#import "NSObject+RCIMDeallocBlockExecutor.h"
 
 NSMutableDictionary const * RCChatMessageCellMediaTypeDict = nil;
 
@@ -80,10 +80,22 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     NSString * identify = [self RCIM_registerCell:reuseIdentifier];
     if (self = [super initWithStyle:style reuseIdentifier:identify]) {
         [self setup];
+        [self addObserver:self forKeyPath:@"self.message.sentStatus" options:NSKeyValueObservingOptionNew context:nil];
+        [self lcck_executeAtDealloc:^{
+            [self removeObserver:self forKeyPath:@"self.message.sentStatus"];
+            
+        }];
     }
     return self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"self.message.sentStatus"])
+    {
+        NSLog(@"fff");
+    }
+}
 
 
 
@@ -358,6 +370,10 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     _messageSendState = messageSendState;
     if (self.messageOwner == MessageDirection_RECEIVE) {
         self.messageSendStateView.hidden = YES;
+    }else
+    {
+        self.messageSendStateView.hidden = NO;
+        
     }
     self.messageSendStateView.messageSendState = messageSendState;
 }

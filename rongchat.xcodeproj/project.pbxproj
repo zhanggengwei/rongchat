@@ -205,6 +205,7 @@
 		7584DB761E2A5BF5007249C2 /* PPHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB6C1E2A5BF5007249C2 /* PPHTTPResponse.m */; };
 		7584DB8A1E2A623F007249C2 /* RCChatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB791E2A623F007249C2 /* RCChatBar.m */; };
 		7584DB921E2A623F007249C2 /* RCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DB891E2A623F007249C2 /* RCProgressHUD.m */; };
+		758842401F2074ED00AE6BC9 /* RCMessageConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7588423F1F2074ED00AE6BC9 /* RCMessageConversationModel.m */; };
 		758E8B921E0AC6EB00D5DD4E /* RCIMError.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B671E0AC6EB00D5DD4E /* RCIMError.m */; };
 		758E8B931E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B691E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m */; };
 		758E8B941E0AC6EB00D5DD4E /* RCIMAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B6C1E0AC6EB00D5DD4E /* RCIMAlertController.m */; };
@@ -562,6 +563,8 @@
 		7584DB791E2A623F007249C2 /* RCChatBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatBar.m; sourceTree = "<group>"; };
 		7584DB881E2A623F007249C2 /* RCProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCProgressHUD.h; sourceTree = "<group>"; };
 		7584DB891E2A623F007249C2 /* RCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCProgressHUD.m; sourceTree = "<group>"; };
+		7588423E1F2074ED00AE6BC9 /* RCMessageConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCMessageConversationModel.h; sourceTree = "<group>"; };
+		7588423F1F2074ED00AE6BC9 /* RCMessageConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCMessageConversationModel.m; sourceTree = "<group>"; };
 		758E8B651E0AC6EB00D5DD4E /* RCIMDateToolsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMDateToolsConstants.h; sourceTree = "<group>"; };
 		758E8B661E0AC6EB00D5DD4E /* RCIMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMError.h; sourceTree = "<group>"; };
 		758E8B671E0AC6EB00D5DD4E /* RCIMError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMError.m; sourceTree = "<group>"; };
@@ -677,6 +680,8 @@
 				75278A0B1F0E8F0E000C70AF /* view */,
 				406833641E7A657700E03427 /* PPListItemViewController.h */,
 				406833651E7A657700E03427 /* PPListItemViewController.m */,
+				7588423E1F2074ED00AE6BC9 /* RCMessageConversationModel.h */,
+				7588423F1F2074ED00AE6BC9 /* RCMessageConversationModel.m */,
 				406833661E7A657700E03427 /* RCConversationListViewController.h */,
 				406833671E7A657700E03427 /* RCConversationListViewController.m */,
 				406833681E7A657700E03427 /* RCConversationViewController.h */,
@@ -1896,6 +1901,7 @@
 				7584DB721E2A5BF5007249C2 /* PPLocationManager.m in Sources */,
 				7584DADB1E2A5B92007249C2 /* NSString+RCIMExtension.m in Sources */,
 				7584DAD71E2A5B92007249C2 /* NSFileManager+RCIMExtension.m in Sources */,
+				758842401F2074ED00AE6BC9 /* RCMessageConversationModel.m in Sources */,
 				7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */,
 				75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */,
 			);
