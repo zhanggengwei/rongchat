@@ -43,6 +43,6 @@
 #import "RCConversationCacheObj.h"
 
 #import "RCIM.h"
-
+#import <RongCloudIM/RongIMLib/RongIMLib.h>
 
 #endif /* PrefixHeader_pch */

@@ -7,17 +7,8 @@
 //
 
 #import "RCChatBar.h"
-static CGFloat const kFunctionViewHeight = 210.0f;
-//#import "LCCKChatMoreView.h"
-//#import "LCCKChatFaceView.h"
-//#import "LCCKProgressHUD.h"
-//#import "Mp3Recorder.h"
-//#if __has_include(<Masonry/Masonry.h>)
-//#import <Masonry/Masonry.h>
-//#else
-//#import "Masonry.h"
-//#endif
-//#import "LCCKUIService.h"
+#import "RCCKChatMoreView.h"
+
 #import "UIImage+RCIMExtension.h"
 #import "NSString+RCIMExtension.h"
 
@@ -36,7 +27,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 @property (strong, nonatomic) UIButton *faceButton; /**< 表情按钮 */
 @property (strong, nonatomic) UIButton *moreButton; /**< 更多按钮 */
 //@property (weak, nonatomic) LCCKChatFaceView *faceView; /**< 当前活跃的底部view,用来指向faceView */
-//@property (weak, nonatomic) LCCKChatMoreView *moreView; /**< 当前活跃的底部view,用来指向moreView */
+@property (weak, nonatomic) RCCKChatMoreView *moreView; /**< 当前活跃的底部view,用来指向moreView */
 
 @property (assign, nonatomic, readonly) CGFloat bottomHeight;
 @property (strong, nonatomic, readonly) UIViewController *rootViewController;
@@ -115,11 +106,11 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 //        make.top.mas_equalTo(self.mas_bottom);
 //    }];
 //    
-//    [self.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.and.left.mas_equalTo(self);
-//        make.height.mas_equalTo(kFunctionViewHeight);
-//        make.top.mas_equalTo(self.mas_bottom);
-//    }];
+    [self.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.and.left.mas_equalTo(self);
+        make.height.mas_equalTo(kFunctionViewHeight);
+        make.top.mas_equalTo(self.mas_bottom);
+    }];
 }
 
 - (void)dealloc {
@@ -480,7 +471,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     self.allowTextViewContentOffset = YES;
     //self.MP3 = [[Mp3Recorder alloc] initWithDelegate:self];
 //    [self faceView];
-//    [self moreView];
+    [self moreView];
     [self addSubview:self.inputBarBackgroundView];
     
     [self.inputBarBackgroundView addSubview:self.voiceButton];
@@ -502,6 +493,15 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     [self setupConstraints];
 }
 
+- (RCCKChatMoreView *)moreView {
+    if (!_moreView) {
+        RCCKChatMoreView *moreView = [[RCCKChatMoreView alloc] init];
+        moreView.inputViewRef = self;
+        moreView.hidden = YES;
+        [self addSubview:(_moreView = moreView)];
+    }
+    return _moreView;
+}
 /**
  *  开始录音
  */
@@ -629,27 +629,27 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
  *  @param show 要显示的moreView
  */
 - (void)showMoreView:(BOOL)show {
-//    if (show) {
-//        self.moreView.hidden = NO;
-//        [UIView animateWithDuration:LCCKAnimateDuration animations:^{
-//            [self.moreView mas_updateConstraints:^(MASConstraintMaker *make) {
-//                make.top.mas_equalTo(self.superview.mas_bottom).offset(-kFunctionViewHeight);
-//            }];
-//            [self.moreView layoutIfNeeded];
-//        } completion:nil];
-//        
-//        [self.moreView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(self.inputBarBackgroundView.mas_bottom);
-//        }];
-//    } else if (self.moreView.superview) {
-//        self.moreView.hidden = YES;
-//        [self.moreView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.width.and.left.mas_equalTo(self);
-//            make.height.mas_equalTo(kFunctionViewHeight);
-//            make.top.mas_equalTo(self.mas_bottom);
-//        }];
-//        [self.moreView layoutIfNeeded];
-//    }
+    if (show) {
+        self.moreView.hidden = NO;
+        [UIView animateWithDuration:RCAnimateDuration animations:^{
+            [self.moreView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.superview.mas_bottom).offset(-kFunctionViewHeight);
+            }];
+            [self.moreView layoutIfNeeded];
+        } completion:nil];
+        
+        [self.moreView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.inputBarBackgroundView.mas_bottom);
+        }];
+    } else if (self.moreView.superview) {
+        self.moreView.hidden = YES;
+        [self.moreView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.width.and.left.mas_equalTo(self);
+            make.height.mas_equalTo(kFunctionViewHeight);
+            make.top.mas_equalTo(self.mas_bottom);
+        }];
+        [self.moreView layoutIfNeeded];
+    }
 }
 
 - (void)showVoiceView:(BOOL)show {

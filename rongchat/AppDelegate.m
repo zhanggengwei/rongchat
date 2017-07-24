@@ -10,6 +10,10 @@
 #import "PPTabBarController.h"
 #import "PPLoginViewController.h"
 #import "PPImageUtil.h"
+#import "LCCKInputViewPluginTakePhoto.h"
+#import "LCCKInputViewPluginLocation.h"
+#import "LCCKInputViewPluginPickImage.h"
+
 @interface AppDelegate ()
 
 @end
@@ -25,7 +29,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     //self.window.rootViewController = controller;
     [self.window makeKeyAndVisible];
-    
+
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(loginStateChaned:) name:kPPObserverLoginSucess object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self
@@ -101,10 +105,29 @@
     }]subscribeNext:^(id x) {
         NSLog(@"x====");
     }];
-    
-    
-    
-    
+    /**
+     * 推送处理1
+     */
+    if ([application
+         respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        //注册推送, 用于iOS8以及iOS8之后的系统
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings
+                                                settingsForTypes:(UIUserNotificationTypeBadge |
+                                                                  UIUserNotificationTypeSound |
+                                                                  UIUserNotificationTypeAlert)
+                                                categories:nil];
+        [application registerUserNotificationSettings:settings];
+    } else {
+        //注册推送，用于iOS8之前的系统
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeAlert |
+        UIRemoteNotificationTypeSound;
+        [application registerForRemoteNotificationTypes:myTypes];
+    }
+   // [self registerRemoteNotification];
+    [LCCKInputViewPluginTakePhoto registerSubclass];
+    [LCCKInputViewPluginPickImage registerSubclass];
+    [LCCKInputViewPluginLocation registerSubclass];
     return YES;
 }
 
@@ -168,6 +191,69 @@
         [[PPChatTools shareManager]deleteStoreItems];
         [self createLoginController];
     }
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    
+    NSString *token = [deviceToken description];
+    token = [token stringByReplacingOccurrencesOfString:@"<"
+                                             withString:@""];
+    token = [token stringByReplacingOccurrencesOfString:@">"
+                                             withString:@""];
+    token = [token stringByReplacingOccurrencesOfString:@" "
+                                             withString:@""];
+    [[RCIMClient sharedRCIMClient]setDeviceToken:token];
+    
+    
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error NS_AVAILABLE_IOS(3_0)
+{
+    NSLog(@"error == %@",error);
+}
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    [application registerForRemoteNotifications];
+}
+- (void)registerRemoteNotification {
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge |UIUserNotificationTypeAlert | UIUserNotificationTypeSound categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+}
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    /**
+     * 统计推送打开率2
+     */
+    [[RCIMClient sharedRCIMClient] recordRemoteNotificationEvent:userInfo];
+    /**
+     * 获取融云推送服务扩展字段2
+     */
+    NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient]
+                                     getPushExtraFromRemoteNotification:userInfo];
+    if (pushServiceData) {
+        NSLog(@"该远程推送包含来自融云的推送服务");
+        for (id key in [pushServiceData allKeys]) {
+            NSLog(@"key = %@, value = %@", key, pushServiceData[key]);
+        }
+    } else {
+        NSLog(@"该远程推送不包含来自融云的推送服务");
+    }
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:
+(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    //    // 取得 APNs 标准信息内容
+    //    //    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+    //    //    NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
+    //
+    //    // IOS 7 Support Required
+    //    [JPUSHService handleRemoteNotification:userInfo];
+    //    completionHandler(UIBackgroundFetchResultNewData);
+    
+    //NewData就是使用新的数据 更新界面，响应点击通知这个动作
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 @end

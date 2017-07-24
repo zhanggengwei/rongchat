@@ -115,8 +115,7 @@ alpha:a]
  [imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeImage options:SDWebImageRetryFailed|SDWebImageProgressiveDownload]
 
 
-#import <RongCloudIMLib/RongIMLib/RongIMLib.h>
-
+#import <RongIMLib/RongIMLib.h>
 #import  <PinYin4Objc/PinYin4Objc.h>
 
 

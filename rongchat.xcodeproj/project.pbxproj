@@ -161,6 +161,12 @@
 		75278A4E1F10D7D3000C70AF /* RCCellIdentifierFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A4D1F10D7D3000C70AF /* RCCellIdentifierFactory.m */; };
 		75278A511F10E512000C70AF /* RCBubbleImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A501F10E512000C70AF /* RCBubbleImageFactory.m */; };
 		75278A5A1F13D29A000C70AF /* RCIMCellRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A591F13D29A000C70AF /* RCIMCellRegisterController.m */; };
+		753CA0601F26177B00F313EE /* RCCKChatMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA05F1F26177B00F313EE /* RCCKChatMoreView.m */; };
+		753CA0691F26180000F313EE /* LCCKInputViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0621F26180000F313EE /* LCCKInputViewPlugin.m */; };
+		753CA06A1F26180000F313EE /* LCCKInputViewPluginLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0641F26180000F313EE /* LCCKInputViewPluginLocation.m */; };
+		753CA06B1F26180000F313EE /* LCCKInputViewPluginPickImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0661F26180000F313EE /* LCCKInputViewPluginPickImage.m */; };
+		753CA06C1F26180000F313EE /* LCCKInputViewPluginTakePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0681F26180000F313EE /* LCCKInputViewPluginTakePhoto.m */; };
+		753CA06F1F2618D000F313EE /* RCLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA06E1F2618D000F313EE /* RCLocationController.m */; };
 		7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */; };
 		7584DA9E1E2A5B83007249C2 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA991E2A5B83007249C2 /* RCConversationListCell.m */; };
 		7584DA9F1E2A5B83007249C2 /* RCTextMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA9C1E2A5B83007249C2 /* RCTextMessageTableViewCell.m */; };
@@ -472,6 +478,18 @@
 		75278A501F10E512000C70AF /* RCBubbleImageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCBubbleImageFactory.m; sourceTree = "<group>"; };
 		75278A581F13D29A000C70AF /* RCIMCellRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMCellRegisterController.h; sourceTree = "<group>"; };
 		75278A591F13D29A000C70AF /* RCIMCellRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMCellRegisterController.m; sourceTree = "<group>"; };
+		753CA05E1F26177B00F313EE /* RCCKChatMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCCKChatMoreView.h; sourceTree = "<group>"; };
+		753CA05F1F26177B00F313EE /* RCCKChatMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCCKChatMoreView.m; sourceTree = "<group>"; };
+		753CA0611F26180000F313EE /* LCCKInputViewPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKInputViewPlugin.h; sourceTree = "<group>"; };
+		753CA0621F26180000F313EE /* LCCKInputViewPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKInputViewPlugin.m; sourceTree = "<group>"; };
+		753CA0631F26180000F313EE /* LCCKInputViewPluginLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKInputViewPluginLocation.h; sourceTree = "<group>"; };
+		753CA0641F26180000F313EE /* LCCKInputViewPluginLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKInputViewPluginLocation.m; sourceTree = "<group>"; };
+		753CA0651F26180000F313EE /* LCCKInputViewPluginPickImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKInputViewPluginPickImage.h; sourceTree = "<group>"; };
+		753CA0661F26180000F313EE /* LCCKInputViewPluginPickImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKInputViewPluginPickImage.m; sourceTree = "<group>"; };
+		753CA0671F26180000F313EE /* LCCKInputViewPluginTakePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKInputViewPluginTakePhoto.h; sourceTree = "<group>"; };
+		753CA0681F26180000F313EE /* LCCKInputViewPluginTakePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKInputViewPluginTakePhoto.m; sourceTree = "<group>"; };
+		753CA06D1F2618D000F313EE /* RCLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationController.h; sourceTree = "<group>"; };
+		753CA06E1F2618D000F313EE /* RCLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationController.m; sourceTree = "<group>"; };
 		7584DA951E2A5B83007249C2 /* PPTZeroSelectListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTZeroSelectListCell.h; sourceTree = "<group>"; };
 		7584DA961E2A5B83007249C2 /* RCConversationBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationBaseCell.h; sourceTree = "<group>"; };
 		7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationBaseCell.m; sourceTree = "<group>"; };
@@ -690,6 +708,8 @@
 				4068336B1E7A657700E03427 /* RCIMBaseViewController.m */,
 				75278A261F105FBD000C70AF /* RCIMSettingService.h */,
 				75278A271F105FBD000C70AF /* RCIMSettingService.m */,
+				753CA06D1F2618D000F313EE /* RCLocationController.h */,
+				753CA06E1F2618D000F313EE /* RCLocationController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1025,6 +1045,16 @@
 				75278A101F0E9167000C70AF /* RCContentView.m */,
 				75278A121F0E9294000C70AF /* RCMessageSendStateView.h */,
 				75278A131F0E9294000C70AF /* RCMessageSendStateView.m */,
+				753CA05E1F26177B00F313EE /* RCCKChatMoreView.h */,
+				753CA05F1F26177B00F313EE /* RCCKChatMoreView.m */,
+				753CA0611F26180000F313EE /* LCCKInputViewPlugin.h */,
+				753CA0621F26180000F313EE /* LCCKInputViewPlugin.m */,
+				753CA0631F26180000F313EE /* LCCKInputViewPluginLocation.h */,
+				753CA0641F26180000F313EE /* LCCKInputViewPluginLocation.m */,
+				753CA0651F26180000F313EE /* LCCKInputViewPluginPickImage.h */,
+				753CA0661F26180000F313EE /* LCCKInputViewPluginPickImage.m */,
+				753CA0671F26180000F313EE /* LCCKInputViewPluginTakePhoto.h */,
+				753CA0681F26180000F313EE /* LCCKInputViewPluginTakePhoto.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1819,6 +1849,7 @@
 				75D472BB1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m in Sources */,
 				758E8BA21E0AC6EB00D5DD4E /* Mp3Recorder.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
+				753CA06C1F26180000F313EE /* LCCKInputViewPluginTakePhoto.m in Sources */,
 				7584DAD61E2A5B92007249C2 /* NSBundle+RCIMExtension.m in Sources */,
 				7584DB8A1E2A623F007249C2 /* RCChatBar.m in Sources */,
 				75DE618B1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m in Sources */,
@@ -1837,10 +1868,12 @@
 				409F50751DDD6E5100015DB7 /* PPChatTools.m in Sources */,
 				40785E981DEE9E7900875E00 /* PPResetPassWordViewController.m in Sources */,
 				7584DAE01E2A5B92007249C2 /* UITableViewCell+addLineView.m in Sources */,
+				753CA06A1F26180000F313EE /* LCCKInputViewPluginLocation.m in Sources */,
 				409F50AF1DDD721500015DB7 /* PPPersonTableViewCell.m in Sources */,
 				7584DB701E2A5BF5007249C2 /* PPHTTPManager.m in Sources */,
 				75278A4B1F1076B2000C70AF /* RCIMMenuItem.m in Sources */,
 				75278A421F107086000C70AF /* RCChatSystemMessageCell.m in Sources */,
+				753CA0691F26180000F313EE /* LCCKInputViewPlugin.m in Sources */,
 				75278A191F0E9955000C70AF /* RCIMMessageMediaType.m in Sources */,
 				409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */,
 				758E8B9C1E0AC6EB00D5DD4E /* RCIMZoomingScrollView.m in Sources */,
@@ -1861,6 +1894,7 @@
 				7584DAE11E2A5B92007249C2 /* UIView+RCIMExtension.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				7584DADC1E2A5B92007249C2 /* NSString+RCIMMD5.m in Sources */,
+				753CA0601F26177B00F313EE /* RCCKChatMoreView.m in Sources */,
 				7584DAD91E2A5B92007249C2 /* NSString+isValid.m in Sources */,
 				409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */,
 				7584DB4E1E2A5BE6007249C2 /* PPInfoMessageViewController.m in Sources */,
@@ -1903,7 +1937,9 @@
 				7584DAD71E2A5B92007249C2 /* NSFileManager+RCIMExtension.m in Sources */,
 				758842401F2074ED00AE6BC9 /* RCMessageConversationModel.m in Sources */,
 				7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */,
+				753CA06B1F26180000F313EE /* LCCKInputViewPluginPickImage.m in Sources */,
 				75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */,
+				753CA06F1F2618D000F313EE /* RCLocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2053,7 +2089,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WeiWei Zhou (ZV3CPEVH75)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WeiWei Zhou (ZV3CPEVH75)";
 				DEVELOPMENT_TEAM = TJ7XWRA893;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2066,8 +2103,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kdyz.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3cb964fc-663f-4a8d-9ac9-6145d246e7ca";
-				PROVISIONING_PROFILE_SPECIFIER = kdyz_new_dev;
+				PROVISIONING_PROFILE = "5709080e-4168-49b3-b54a-177f93f2c8a5";
+				PROVISIONING_PROFILE_SPECIFIER = kdyz_doctor_dev;
 			};
 			name = Debug;
 		};
@@ -2078,7 +2115,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = rongchat/rongchat.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WeiWei Zhou (ZV3CPEVH75)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: WeiWei Zhou (ZV3CPEVH75)";
 				DEVELOPMENT_TEAM = TJ7XWRA893;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2091,8 +2129,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kdyz.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3cb964fc-663f-4a8d-9ac9-6145d246e7ca";
-				PROVISIONING_PROFILE_SPECIFIER = kdyz_new_dev;
+				PROVISIONING_PROFILE = "5709080e-4168-49b3-b54a-177f93f2c8a5";
+				PROVISIONING_PROFILE_SPECIFIER = kdyz_doctor_dev;
 			};
 			name = Release;
 		};

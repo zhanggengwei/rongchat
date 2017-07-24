@@ -46,7 +46,6 @@
 - (void)setAppKey:(NSString *)key
 {
     [self.client initWithAppKey:key];
-    
 }
 
 - (void)setDeviceToken:(NSString *)deviceToken

@@ -17,6 +17,7 @@
 #import "RCIMCellRegisterController.h"
 #import "RCCellIdentifierFactory.h"
 #import "RCChatBar.h"
+#import <RongIMLib/RCIMClient.h>
 static CGFloat const LCCKScrollViewInsetTop = 20.f;
 
 @interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate,LCCKChatBarDelegate>
@@ -342,43 +343,46 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
     {
         NSIndexPath * indexpath1 = [NSIndexPath indexPathForRow:self.messageArray.count-2 inSection:0];
         NSIndexPath * indexpath = [NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0];
-        
         indexPaths = [indexPaths arrayByAddingObjectsFromArray:@[indexpath1,indexpath]];
     }else
     {
         NSIndexPath * indexpath = [NSIndexPath indexPathForRow:self.messageArray.count-1 inSection:0];
         indexPaths = [indexPaths arrayByAddingObject:indexpath];
-        
     }
-   
     self.allowScrollToBottom = YES;
+    NSIndexPath * targetIndexPath = indexPaths.lastObject;
     dispatch_async(dispatch_get_main_queue(),^{
         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
         [self scrollToBottomAnimated:YES];
         [[RCIMClient sharedRCIMClient]sendMessage:self.conversationType targetId:self.targedId content:textMessage pushContent:nil pushData:nil success:^(long messageId) {
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
+                RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:targetIndexPath.row];
                 sucessSendMessage.messageId = messageId;
                 sucessSendMessage.sentStatus = SentStatus_SENT;
-                RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:indexpath];
+                RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:targetIndexPath];
                 [cell setMessageSendState:SentStatus_SENT];
                 
                 
             });
         } error:^(RCErrorCode nErrorCode, long messageId) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:indexpath.row];
+                RCMessage * sucessSendMessage = [self.messageArray objectAtIndex:targetIndexPath.row];
                 sucessSendMessage.messageId = messageId;
                 sucessSendMessage.sentStatus = SentStatus_FAILED;
-                RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:indexpath];
+                RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:targetIndexPath];
                 [cell setMessageSendState:SentStatus_FAILED];
+            
             });
         }];
     });
-    
-    
-    
+}
+
+- (void)sendImages:(NSArray<UIImage *> *)images
+{
+    RCImageMessage * message = [RCImageMessage new];
+ 
 }
 
 
