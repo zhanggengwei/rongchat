@@ -232,6 +232,7 @@
 		758E8BA01E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B8D1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m */; };
 		758E8BA11E0AC6EB00D5DD4E /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758E8B8F1E0AC6EB00D5DD4E /* lame.framework */; };
 		758E8BA21E0AC6EB00D5DD4E /* Mp3Recorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B911E0AC6EB00D5DD4E /* Mp3Recorder.m */; };
+		75B2E56F1F279A9A003240B9 /* LCCKAVAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* PPConversationListViewController.m */; };
@@ -629,6 +630,9 @@
 		758E8B8F1E0AC6EB00D5DD4E /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lame.framework; sourceTree = "<group>"; };
 		758E8B901E0AC6EB00D5DD4E /* Mp3Recorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mp3Recorder.h; sourceTree = "<group>"; };
 		758E8B911E0AC6EB00D5DD4E /* Mp3Recorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mp3Recorder.m; sourceTree = "<group>"; };
+		75B2E56D1F279A9A003240B9 /* LCCKAVAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKAVAudioPlayer.h; sourceTree = "<group>"; };
+		75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKAVAudioPlayer.m; sourceTree = "<group>"; };
+		75B2E5701F279AEF003240B9 /* LCCKChatUntiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatUntiles.h; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1160,6 +1164,9 @@
 		7584DAE21E2A5B98007249C2 /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				75B2E5701F279AEF003240B9 /* LCCKChatUntiles.h */,
+				75B2E56D1F279A9A003240B9 /* LCCKAVAudioPlayer.h */,
+				75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */,
 				7584DAE51E2A5B98007249C2 /* RCConversationCacheObj.h */,
 				7584DAE31E2A5B98007249C2 /* RCContactUserInfo.h */,
 				7584DAE41E2A5B98007249C2 /* RCContactUserInfo.m */,
@@ -1894,6 +1901,7 @@
 				753CA0691F26180000F313EE /* LCCKInputViewPlugin.m in Sources */,
 				75278A191F0E9955000C70AF /* RCIMMessageMediaType.m in Sources */,
 				409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */,
+				75B2E56F1F279A9A003240B9 /* LCCKAVAudioPlayer.m in Sources */,
 				758E8B9C1E0AC6EB00D5DD4E /* RCIMZoomingScrollView.m in Sources */,
 				7584DB6D1E2A5BF5007249C2 /* PPBaseViewController.m in Sources */,
 				758E8B981E0AC6EB00D5DD4E /* RCIMPhoto.m in Sources */,
