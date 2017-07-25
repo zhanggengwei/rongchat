@@ -8,6 +8,8 @@
 
 #import "LCCKInputViewPluginTakePhoto.h"
 #import "UIImage+RCIMExtension.h"
+#import "RCConversationViewController.h"
+
 
 @interface LCCKInputViewPluginTakePhoto()<UIImagePickerControllerDelegate>
 
@@ -65,7 +67,7 @@
         //!showNotificationBlock ?: showNotificationBlock(window.rootViewController, @"您的设备不支持拍照", @"请尝试在设置中开启拍照权限", RCMessageNotificationTypeError);
         return;
     }
-    //[self.conversationViewController presentViewController:self.pickerController animated:YES completion:nil];
+    [self.conversationViewController presentViewController:self.pickerController animated:YES completion:nil];
 }
 
 - (RCIdResultBlock)sendCustomMessageHandler {

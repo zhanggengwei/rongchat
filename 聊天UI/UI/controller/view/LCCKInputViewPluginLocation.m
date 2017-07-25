@@ -71,7 +71,7 @@
     [super pluginDidClicked];
     //显示地理位置
     UINavigationController *locationNav = [[UINavigationController alloc] initWithRootViewController:self.locationController];
-    //[self.conversationViewController presentViewController:locationNav animated:YES completion:nil];
+    [self.inputViewRef.controllerRef presentViewController:locationNav animated:YES completion:nil];
 }
 
 - (RCIdResultBlock)sendCustomMessageHandler {
@@ -79,7 +79,8 @@
         return _sendCustomMessageHandler;
     }
     RCIdResultBlock sendCustomMessageHandler = ^(id object, NSError *error) {
-       // [self.conversationViewController dismissViewControllerAnimated:YES completion:nil];
+        [self.inputViewRef.controllerRef dismissViewControllerAnimated:YES completion:nil];
+  
         if (object) {
             CLPlacemark *placemark = (CLPlacemark *)object;
            // [self.conversationViewController sendLocationMessageWithLocationCoordinate:placemark.location.coordinate locatioTitle:placemark.name];

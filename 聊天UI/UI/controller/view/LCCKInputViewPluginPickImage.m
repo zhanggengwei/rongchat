@@ -8,6 +8,7 @@
 
 #import "LCCKInputViewPluginPickImage.h"
 #import "UIImage+RCIMExtension.h"
+#import "RCConversationViewController.h"
 
 @interface LCCKInputViewPluginPickImage()<UIImagePickerControllerDelegate>
 
@@ -54,7 +55,7 @@
 - (void)pluginDidClicked {
     [super pluginDidClicked];
     //显示相册
-    //[self.conversationViewController presentViewController:self.pickerController animated:YES completion:nil];
+    [self.conversationViewController presentViewController:self.pickerController animated:YES completion:nil];
 }
 
 - (RCIdResultBlock)sendCustomMessageHandler {
