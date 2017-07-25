@@ -632,8 +632,9 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     if (show) {
         self.moreView.hidden = NO;
         [UIView animateWithDuration:RCAnimateDuration animations:^{
+//            make.top.mas_equalTo(self.mas_bottom);
             [self.moreView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(self.superview.mas_bottom).offset(-kFunctionViewHeight);
+                make.top.mas_equalTo(self.mas_bottom).offset(-kFunctionViewHeight);
             }];
             [self.moreView layoutIfNeeded];
         } completion:nil];
