@@ -323,12 +323,23 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
     message.senderUserId = [RCIMClient sharedRCIMClient].currentUserInfo.userId;
     message.sentStatus = SentStatus_SENDING;
 }
-
+//图片连续
+- (void)appendCustomMessages:(NSArray<UIImage *> *)images
+{
+    for (UIImage * image in images) {
+        RCImageMessage * messageContent = [RCImageMessage messageWithImage:image];
+        RCMessage * message = [[RCMessage alloc]initWithType:self.conversationType targetId:self.targedId direction:MessageDirection_SEND messageId:0 content:messageContent];
+        [self fillSenderMessage:message];
+        [self.messageArray addObject:message];
+        [self sendImage:messageContent index:self.messageArray.count-1];
+    }
+     [self.tableView reloadData];
+    [self scrollToBottomAnimated:YES];
+}
 
 #pragma mark
 - (void)chatBar:(RCChatBar *)chatBar sendMessage:(NSString *)message
 {
-    
     RCTextMessage * textMessage = [RCTextMessage new];
     textMessage.content = message;
     RCMessage * senderMessage= [RCMessage new];
@@ -381,9 +392,43 @@ static CGFloat const LCCKScrollViewInsetTop = 20.f;
 
 - (void)sendImages:(NSArray<UIImage *> *)images
 {
-    RCImageMessage * message = [RCImageMessage new];
- 
+    [self appendCustomMessages:images];
 }
+
+- (void)sendImage:(RCImageMessage *)messageImage index:(NSInteger)index
+{
+    if(messageImage==nil)
+    {
+        return;
+    }
+    void (^cellMessageSendStatesChanged)(RCSentStatus status,NSInteger messageId) = ^(RCSentStatus status,NSInteger messageId)
+    {
+        RCMessage * message = [self.messageArray objectAtIndex:index];
+        message.messageId = messageId;
+        message.sentStatus = SentStatus_SENT;
+        RCChatBaseMessageCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell setMessageSendState:status];
+        });
+    };
+    [[RCIMClient sharedRCIMClient]sendMediaMessage:self.conversationType targetId:self.targedId content:messageImage pushContent:nil pushData:nil progress:^(int progress, long messageId) {
+        RCChatImageMessageCell * cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell setUploadProgress:progress/100.0];
+        });
+   
+    } success:^(long messageId) {
+       
+        cellMessageSendStatesChanged(SentStatus_SENT,messageId);
+        
+    } error:^(RCErrorCode errorCode, long messageId) {
+         cellMessageSendStatesChanged(SentStatus_FAILED,messageId);
+        
+    } cancel:^(long messageId) {
+        cellMessageSendStatesChanged(SentStatus_CANCELED,messageId);
+    }];
+}
+
 
 
 @end

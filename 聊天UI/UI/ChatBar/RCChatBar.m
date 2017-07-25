@@ -604,7 +604,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
         self.faceView.hidden = NO;
         [UIView animateWithDuration:RCAnimateDuration animations:^{
             [self.faceView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(self.superview.mas_bottom).offset(-kFunctionViewHeight);
+                make.top.mas_equalTo(self.mas_bottom).offset(-kFunctionViewHeight);
             }];
             [self.faceView layoutIfNeeded];
         } completion:nil];
@@ -725,16 +725,6 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     }
     return _faceView;
 }
-//
-//- (LCCKChatMoreView *)moreView {
-//    if (!_moreView) {
-//        LCCKChatMoreView *moreView = [[LCCKChatMoreView alloc] init];
-//        moreView.inputViewRef = self;
-//        moreView.hidden = YES;
-//        [self addSubview:(_moreView = moreView)];
-//    }
-//    return _moreView;
-//}
 
 - (UITextView *)textView {
     if (!_textView) {

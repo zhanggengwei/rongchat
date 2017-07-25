@@ -159,7 +159,8 @@
 
 + (NSMutableAttributedString *)emotionStrWithString:(NSString *)text {
     if (!text.length) {
-        NSString *degradeContent =nil; //RCLocalizedStrings(@"unknownMessage");
+        NSString *degradeContent = @"unknownMessage";//RCLocalizedStrings(@"unknownMessage");
+        
         return [[NSMutableAttributedString alloc] initWithString:degradeContent];
     }
     //1、创建一个可变的属性字符串

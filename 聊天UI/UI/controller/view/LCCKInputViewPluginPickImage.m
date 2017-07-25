@@ -10,10 +10,10 @@
 #import "UIImage+RCIMExtension.h"
 #import "RCConversationViewController.h"
 
-@interface LCCKInputViewPluginPickImage()<UIImagePickerControllerDelegate>
+@interface LCCKInputViewPluginPickImage()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, copy) RCIdResultBlock sendCustomMessageHandler;
-@property (nonatomic, copy) UIImagePickerController *pickerController;
+@property (nonatomic, strong) UIImagePickerController *pickerController;
 
 @end
 
@@ -62,18 +62,18 @@
     if (_sendCustomMessageHandler) {
         return _sendCustomMessageHandler;
     }
-//    RCIdResultBlock sendCustomMessageHandler = ^(id object, NSError *error) {
-//        [self.conversationViewController dismissViewControllerAnimated:YES completion:nil];
-//        if (object) {
-//            UIImage *image = (UIImage *)object;
-//            [self.conversationViewController sendImageMessage:image];
-//        } else {
-//            LCCKLog(@"%@", error.description);
-//        }
-//        _sendCustomMessageHandler = nil;
-//    };
-    //_sendCustomMessageHandler = sendCustomMessageHandler;
-    return NULL;//sendCustomMessageHandler;
+    RCIdResultBlock sendCustomMessageHandler = ^(id object, NSError *error) {
+        [self.conversationViewController dismissViewControllerAnimated:YES completion:nil];
+        if (object) {
+            UIImage *image = (UIImage *)object;
+            [self.conversationViewController sendImages:@[image]];
+        } else {
+            NSLog(@"%@", error.description);
+        }
+        _sendCustomMessageHandler = nil;
+    };
+    _sendCustomMessageHandler = sendCustomMessageHandler;
+    return sendCustomMessageHandler;
 }
 
 #pragma mark -

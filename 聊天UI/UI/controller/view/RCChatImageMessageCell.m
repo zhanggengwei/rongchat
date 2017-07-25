@@ -145,7 +145,7 @@
     if(_messageProgressView==nil)
     {
         _messageProgressView = [[UIView alloc] init];
-        _messageProgressView.backgroundColor = [UIColor colorWithRed:.0f green:.0f blue:.0f alpha:.3f];
+        _messageProgressView.backgroundColor = [UIColor colorWithRed:.0f green:.0f blue:.0f alpha:0.8f];
         _messageProgressView.translatesAutoresizingMaskIntoConstraints = NO;
         _messageProgressView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         UILabel *progressLabel = [[UILabel alloc] init];

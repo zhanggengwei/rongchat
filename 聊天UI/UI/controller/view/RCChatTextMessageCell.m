@@ -7,6 +7,7 @@
 //
 
 #import "RCChatTextMessageCell.h"
+#import "LCCKFaceManager.h"
 
 @interface RCChatTextMessageCell ()<RCChatMessageCellSubclassing>
 
@@ -45,7 +46,7 @@
     [self.messageTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.messageContentView).with.insets(edgeMessageBubbleCustomize);
     }];
-    self.messageTextLabel.backgroundColor = [UIColor yellowColor];
+   
 }
 
 #pragma mark - Public Methods
@@ -92,13 +93,9 @@
     }
     RCTextMessage * model = (RCTextMessage *)message.content;
     
-//    NSMutableAttributedString *attrS = [LCCKFaceManager emotionStrWithString:message.text];
-    NSMutableAttributedString *attrS = [[NSMutableAttributedString alloc]initWithString:model.content];
-    
+    NSMutableAttributedString *attrS = [LCCKFaceManager emotionStrWithString:model.content];
     [attrS addAttributes:self.textStyle range:NSMakeRange(0, attrS.length)];
      self.messageTextLabel.attributedText = attrS;
-    //self.messageTextLabel.text = model.content;
-   
 }
 
 #pragma mark - Getters
