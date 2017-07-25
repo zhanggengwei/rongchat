@@ -8,7 +8,7 @@
 
 #import "RCChatBar.h"
 #import "RCCKChatMoreView.h"
-
+#import "LCCKChatFaceView.h"
 #import "UIImage+RCIMExtension.h"
 #import "NSString+RCIMExtension.h"
 
@@ -17,7 +17,7 @@
 NSString *const kLCCKBatchDeleteTextPrefix = @"kLCCKBatchDeleteTextPrefix";
 NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 
-@interface RCChatBar () <UITextViewDelegate, UINavigationControllerDelegate/*, Mp3RecorderDelegate, LCCKChatFaceViewDelegate*/>
+@interface RCChatBar () <UITextViewDelegate, UINavigationControllerDelegate/*, Mp3RecorderDelegate,*/, LCCKChatFaceViewDelegate>
 
 //@property (strong, nonatomic) Mp3Recorder *MP3;
 @property (nonatomic, strong) UIView *inputBarBackgroundView; /**< 输入栏目背景视图 */
@@ -26,7 +26,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 
 @property (strong, nonatomic) UIButton *faceButton; /**< 表情按钮 */
 @property (strong, nonatomic) UIButton *moreButton; /**< 更多按钮 */
-//@property (weak, nonatomic) LCCKChatFaceView *faceView; /**< 当前活跃的底部view,用来指向faceView */
+@property (weak, nonatomic) LCCKChatFaceView *faceView; /**< 当前活跃的底部view,用来指向faceView */
 @property (weak, nonatomic) RCCKChatMoreView *moreView; /**< 当前活跃的底部view,用来指向moreView */
 
 @property (assign, nonatomic, readonly) CGFloat bottomHeight;
@@ -100,12 +100,12 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
         make.edges.mas_equalTo(self.textView).insets(UIEdgeInsetsMake(voiceRecordButtoInsets, voiceRecordButtoInsets, voiceRecordButtoInsets, voiceRecordButtoInsets));
     }];
     
-//    [self.faceView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.and.left.mas_equalTo(self);
-//        make.height.mas_equalTo(kFunctionViewHeight);
-//        make.top.mas_equalTo(self.mas_bottom);
-//    }];
-//    
+    [self.faceView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.and.left.mas_equalTo(self);
+        make.height.mas_equalTo(kFunctionViewHeight);
+        make.top.mas_equalTo(self.mas_bottom);
+    }];
+//
     [self.moreView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.and.left.mas_equalTo(self);
         make.height.mas_equalTo(kFunctionViewHeight);
@@ -115,7 +115,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 
 - (void)dealloc {
     self.delegate = nil;
-    //_faceView.delegate = nil;
+    _faceView.delegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
@@ -599,10 +599,10 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 }
 
 - (void)showFaceView:(BOOL)show {
-    /*
+    
     if (show) {
         self.faceView.hidden = NO;
-        [UIView animateWithDuration:LCCKAnimateDuration animations:^{
+        [UIView animateWithDuration:RCAnimateDuration animations:^{
             [self.faceView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.top.mas_equalTo(self.superview.mas_bottom).offset(-kFunctionViewHeight);
             }];
@@ -621,7 +621,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
         }];
         [self.faceView layoutIfNeeded];
     }
-     */
+     
 }
 
 /**
@@ -714,16 +714,16 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 
 #pragma mark - Getters
 
-//- (LCCKChatFaceView *)faceView {
-//    if (!_faceView) {
-//        LCCKChatFaceView *faceView = [[LCCKChatFaceView alloc] init];
-//        faceView.delegate = self;
-//        faceView.hidden = YES;
-//        faceView.backgroundColor = self.backgroundColor;
-//        [self addSubview:(_faceView = faceView)];
-//    }
-//    return _faceView;
-//}
+- (LCCKChatFaceView *)faceView {
+    if (!_faceView) {
+        LCCKChatFaceView *faceView = [[LCCKChatFaceView alloc] init];
+        faceView.delegate = self;
+        faceView.hidden = YES;
+        faceView.backgroundColor = self.backgroundColor;
+        [self addSubview:(_faceView = faceView)];
+    }
+    return _faceView;
+}
 //
 //- (LCCKChatMoreView *)moreView {
 //    if (!_moreView) {
@@ -815,11 +815,11 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 }
 
 - (CGFloat)bottomHeight {
-//    if (self.faceView.superview || self.moreView.superview) {
-//        return MAX(self.keyboardSize.height, MAX(self.faceView.frame.size.height, self.moreView.frame.size.height));
-//    } else {
+    if (self.faceView.superview || self.moreView.superview) {
+        return MAX(self.keyboardSize.height, MAX(self.faceView.frame.size.height, self.moreView.frame.size.height));
+    } else {
         return MAX(self.keyboardSize.height, CGFLOAT_MIN);
-    //}
+    }
 }
 
 - (UIViewController *)rootViewController {
@@ -841,7 +841,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     if (_messageInputViewTextFieldTextColor) {
         return _messageInputViewTextFieldTextColor;
     }
-//    _messageInputViewTextFieldTextColor = [[LCCKSettingService sharedInstance] defaultThemeColorForKey:@"MessageInputView-TextField-TextColor"];
+    _messageInputViewTextFieldTextColor = [[RCIMSettingService shareManager] defaultThemeColorForKey:@"MessageInputView-TextField-TextColor"];
     return _messageInputViewTextFieldTextColor;
 }
 
@@ -849,7 +849,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     if (_messageInputViewTextFieldBackgroundColor) {
         return _messageInputViewTextFieldBackgroundColor;
     }
-//    _messageInputViewTextFieldBackgroundColor = [[LCCKSettingService sharedInstance] defaultThemeColorForKey:@"MessageInputView-TextField-BackgroundColor"];
+    _messageInputViewTextFieldBackgroundColor = [[RCIMSettingService shareManager] defaultThemeColorForKey:@"MessageInputView-TextField-BackgroundColor"];
     return _messageInputViewTextFieldBackgroundColor;
 }
 
@@ -857,7 +857,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     if (_messageInputViewRecordTextColor) {
         return _messageInputViewRecordTextColor;
     }
-//    _messageInputViewRecordTextColor = [[LCCKSettingService sharedInstance] defaultThemeColorForKey:@"MessageInputView-Record-TextColor"];
+    _messageInputViewRecordTextColor = [[RCIMSettingService shareManager] defaultThemeColorForKey:@"MessageInputView-Record-TextColor"];
     return _messageInputViewRecordTextColor;
 }
 
