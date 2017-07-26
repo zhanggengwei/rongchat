@@ -52,6 +52,10 @@
     RCMessageDirection messageOwner = message.messageDirection;
     NSString *key = message.objectName;
     Class aClass = [RCChatMessageCellMediaTypeDict objectForKey:key];
+    if(aClass==nil)
+    {
+        aClass = RCChatSystemMessageCell.class;
+    }
     NSString *typeKey = NSStringFromClass(aClass);
     NSString *ownerKey;
     switch (messageOwner) {
