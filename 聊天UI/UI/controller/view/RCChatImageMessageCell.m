@@ -22,6 +22,7 @@
 
 - (void)setup
 {
+    
     [self.messageContentView addSubview:self.messageImageView];
     [self.messageContentView addSubview:self.messageProgressView];
     UIEdgeInsets edgeMessageBubbleCustomize;
