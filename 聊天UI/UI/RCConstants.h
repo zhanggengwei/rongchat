@@ -37,6 +37,14 @@ typedef void (^RCErrorBlock)(NSError *error);
 typedef void (^RCImageResultBlock)(UIImage * image, NSError *error);
 typedef void (^RCProgressBlock)(NSInteger percentDone);
 
+
+//search Messags
+typedef void (^RCQueryMessagesBlock)(NSArray<RCMessage *> *messages,NSError * error);
+typedef void (^RCQueryConversationListBlock)(NSArray<RCConversation *> *conversationList,NSError * error);
+
+//消息时间的显示
+typedef void (^RCIMShouldDisplayTimestampCallBack)(BOOL shouldDisplayTimestamp, NSTimeInterval messageTimestamp);
+
 #pragma mark - Common Define
 ///=============================================================================
 /// @name Common Define
