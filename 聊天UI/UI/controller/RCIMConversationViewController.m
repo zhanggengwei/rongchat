@@ -9,7 +9,7 @@
 #import "RCIMConversationViewController.h"
 #import "RCIMConversationViewModel.h"
 
-@interface RCIMConversationViewController ()
+@interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate>
 @property (nonatomic,strong) id currentUser;
 @property (nonatomic,strong) RCIMConversationViewModel * viewModel;
 @end
@@ -64,7 +64,39 @@
 {
     
 }
-
+#pragma mark RCIMChatMessageCellDelegate
+- (void)messageCellTappedBlank:(RCChatBaseMessageCell *)messageCell
+{
+    
+}
+- (void)messageCellTappedHead:(RCChatBaseMessageCell *)messageCell
+{
+    
+}
+- (void)messageCellTappedMessage:(RCChatBaseMessageCell *)messageCell
+{
+    
+}
+- (void)textMessageCellDoubleTapped:(RCChatBaseMessageCell *)messageCell
+{
+    
+}
+- (void)resendMessage:(RCChatBaseMessageCell *)messageCell
+{
+    
+}
+- (void)avatarImageViewLongPressed:(RCChatBaseMessageCell *)messageCell
+{
+    NSLog(@"click avatar imageView");
+}
+- (void)messageCell:(RCChatBaseMessageCell *)messageCell didTapLinkText:(NSString *)linkText linkType:(MLLinkType)linkType
+{
+    
+}
+- (void)fileMessageDidDownload:(RCChatBaseMessageCell *)messageCell
+{
+    
+}
 /*
 #pragma mark - Navigation
 

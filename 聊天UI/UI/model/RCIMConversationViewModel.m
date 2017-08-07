@@ -17,6 +17,7 @@
 
 
 @interface RCIMConversationViewModel ()<RCIMMessageManagerDelegate,RCIMMessageManagerConnectionStatusChangeDelegate>
+
 @property (nonatomic,strong) RCIMMessageManager * messageManager;
 @property (nonatomic,assign) NSInteger timeInterval;
 @property (nonatomic,strong) NSMutableArray * leftMessages;
@@ -191,6 +192,7 @@
     cell.tableView = self.parentController.tableView;
     cell.indexPath = indexPath;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.delegate = (id)self.parentController;
     return cell;
 }
 
@@ -285,4 +287,6 @@
     }
     self.parentController.allowScrollToBottom = allowScrollToBottom;
 }
+
+
 @end

@@ -465,7 +465,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)longPressGes {
-    /*
+    
     if (longPressGes.state == UIGestureRecognizerStateBegan) {
         CGPoint longPressPoint = [longPressGes locationInView:self.contentView];
         if (!CGRectContainsPoint(self.messageContentView.frame, longPressPoint)) {
@@ -481,7 +481,8 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
         dispatch_time_t when = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delaySeconds * NSEC_PER_SEC));
         dispatch_after(when, dispatch_get_main_queue(), ^{
             [self becomeFirstResponder];
-            RCIMLongPressMessageBlock longPressMessageBlock = [LCChatKit sharedInstance].longPressMessageBlock;
+            RCIMLongPressMessageBlock longPressMessageBlock;
+            
             NSArray *menuItems = [NSArray array];
             NSDictionary *userInfo = @{
                                        RCIMLongPressMessageUserInfoKeyFromController : self.delegate,
@@ -490,13 +491,15 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
             if (longPressMessageBlock) {
                 menuItems = longPressMessageBlock(self.message, userInfo);
             } else {
-                RCIMMenuItem *copyItem = [[RCIMMenuItem alloc] initWithTitle:RCLocalizedStrings(@"copy")
-                                                                       block:^{
-                                                                           UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-                                                                           [pasteboard setString:[self.message text]];
-                                                                       }];
+                UIMenuItem * copyItem = [[UIMenuItem alloc]initWithTitle:@"copy" action:nil];
+                
+//                RCIMMenuItem *copyItem = [[RCIMMenuItem alloc] initWithTitle:@"copy"
+//                                                                       block:^{
+//                                                                           UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+//                                                                           [pasteboard setString:@""];
+//                                                                       }];
                 //TODO:添加“转发”
-                if (self.mediaType == kRCIMMessageMediaTypeText) {
+                if ([self.message.objectName isEqualToString:RCTextMessageTypeIdentifier]) {
                     menuItems = @[ copyItem ];
                 }
             }
@@ -513,7 +516,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
             [menuController setMenuVisible:YES animated:YES];
         });
     }
-     */
+    
 }
 
 #pragma mark - Notifications

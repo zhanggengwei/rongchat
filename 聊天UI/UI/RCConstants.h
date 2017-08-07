@@ -7,13 +7,19 @@
 //  Common typdef and constants, and so on.
 
 #import "RCUserDelegate.h"
+#import "RCIMMenuItem.h"
+
 //#import <AVOSCloudIM/AVOSCloudIM.h>
+/// 传递触发的UIViewController对象
+#define RCIMLongPressMessageUserInfoKeyFromController    @"RCIMLongPressMessageUserInfoKeyFromController"
+/// 传递触发的UIView对象
+#define RCIMLongPressMessageUserInfoKeyFromView          @"RCIMLongPressMessageUserInfoKeyFromView"
 
 #pragma mark - Base ViewController Life Time Block
 ///=============================================================================
 /// @name Base ViewController Life Time Block
 ///=============================================================================
-
+typedef NSArray<RCIMMenuItem *> *(^RCIMLongPressMessageBlock)(RCMessage *message, NSDictionary *userInfo);
 //Callback with Custom type
 typedef void (^RCUserResultsCallBack)(NSArray<id<RCUserDelegate>> *users, NSError *error);
 typedef void (^RCUserResultCallBack)(id<RCUserDelegate> user, NSError *error);
