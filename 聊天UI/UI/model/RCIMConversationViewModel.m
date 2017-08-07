@@ -13,25 +13,29 @@
 #import "RCIMMessageManager.h"
 #import "RCMessage+RCTimeShow.h"
 #import "RCChatBar.h"
+#import "NSDate+RCIMDateTools.h"
+
 
 @interface RCIMConversationViewModel ()<RCIMMessageManagerDelegate,RCIMMessageManagerConnectionStatusChangeDelegate>
 @property (nonatomic,strong) RCIMMessageManager * messageManager;
-@property (nonatomic,strong) NSString * conversationId;
-@property (nonatomic,assign) RCConversationType conversationType;
+@property (nonatomic,assign) NSInteger timeInterval;
+@property (nonatomic,strong) NSMutableArray * leftMessages;
+//收到消息数组
+
 @end
 
 
 @implementation RCIMConversationViewModel
 
-- (instancetype)initWithParentViewController:(RCIMConversationViewController *)parentViewController withConversationId:(NSString *)converstaionId withConversationType:(RCConversationType)conversationType
+- (instancetype)initWithParentViewController:(RCIMConversationViewController *)parentViewController
 {
     if(self = [super init])
     {
-        self.conversationType = conversationType;
+       
         _dataArray = [NSMutableArray new];
         _imageArray = [NSMutableArray new];
         _voiceArray = [NSMutableArray new];
-        _conversationId = converstaionId;
+        _leftMessages = [NSMutableArray new];
         _messageManager = [RCIMMessageManager shareManager];
         _messageManager.delegate = self;
         _parentController = parentViewController;
@@ -107,21 +111,38 @@
     return [self messagesWithSystemMessages:messages lastMessage:nil];
 }
 - (void)loadOldMessages {
-    RCMessage *msg = [self.dataArray firstObject];
+    
+    RCMessage *msg = nil;
+    if(self.dataArray.count)
+    {
+        msg = self.dataArray[1];
+    }else
+    {
+        msg = self.dataArray[0];
+    }
     int64_t timestamp = msg.sentTime;
     int messageCount = 10;
     [[RCIMMessageManager shareManager]queryHistoryMessageWithConversationType:self.conversationType withConversationId:self.conversationId withCount:messageCount oldesetMessageId:msg.messageId withHandle:^(NSArray<RCMessage *> *messages, NSError *error) {
         [self insertOldMessages:[self messagesWithLocalMessages:messages freshTimestamp:timestamp] completion: ^{
-            self.parentController.loadingMoreMessage = messages.count>=messageCount;
+            self.parentController.loadingMoreMessage = NO;
         }];
     }];
 }
 - (NSArray *)messagesWithLocalMessages:(NSArray *)messages freshTimestamp:(int64_t)timestamp
 {
     NSMutableArray * data = [NSMutableArray new];
-    [messages enumerateObjectsUsingBlock:^(RCMessage * message, NSUInteger idx, BOOL * _Nonnull stop) {
-     
-    }];
+    for (RCMessage * message in messages) {
+        if([NSDate lcck_isShowTime:timestamp otherTimeInterval:message.sentTime])
+        {
+            RCMessage * timeMessage = [RCMessage new];
+            timeMessage.objectName = RCTimeMessageTypeIdentifier;
+            timeMessage.receivedTime = message.receivedTime;
+            timeMessage.sentTime = message.sentTime;
+            [data addObject:timeMessage];
+            timestamp = message.sentTime;
+        }
+        [data addObject:message];
+    }
     return data;
 }
 - (void)insertOldMessages:(NSArray *)oldMessages completion:(void (^)())completion {
@@ -183,13 +204,62 @@
     }];
 }
 
+- (void)loadMessagesFirstTimeWithCallback:(RCIdBoolResultBlock)callback
+{
+    [[RCIMMessageManager shareManager]queryLastedMessageWithConversationType:self.conversationType withConversationId:self.conversationId withCount:10 withHandle:^(NSArray<RCMessage *> *messages, NSError *error) {
+        [self addMessagesFirstTime:messages];
+        dispatch_async(dispatch_get_main_queue(),^{
+            [self.parentController.tableView reloadData];
+            [self.parentController scrollToBottomAnimated:NO];
+            self.parentController.loadingMoreMessage = NO;
+            !callback ?: callback(YES, nil, nil);
+        });
+    }];
+    
+}
+- (void)addMessagesFirstTime:(NSArray *)messages {
+    [self appendMessagesToDataArrayTrailing:[self messagesWithLocalMessages:messages freshTimestamp:0]];
+}
+- (void)loadTimeMessage:(NSArray<RCMessage *> *)messageArray
+{
+    for (RCMessage * message in messageArray) {
+        if([NSDate lcck_isShowTime:self.timeInterval otherTimeInterval:message.sentTime])
+        {
+            RCMessage * timeMessage = [RCMessage new];
+            timeMessage.objectName = RCTimeMessageTypeIdentifier;
+            timeMessage.receivedTime = message.receivedTime;
+            timeMessage.sentTime = message.sentTime;
+            [self.dataArray addObject:timeMessage];
+            self.timeInterval = message.sentTime;
+        }
+        [self.dataArray addObject:message];
+    }
+}
+
 #pragma mark RCIMMessageManagerDelegate
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object
 {
+    
     if([message.targetId isEqualToString:self.conversationId])
     {
-        [self.dataArray addObject:message];
-        
+        [_leftMessages addObject:message];
+        if (nLeft<=0) {
+            RCMessage * message = self.dataArray.firstObject;
+            NSInteger timeInterval = 0;
+            if(message!=nil)
+            {
+                timeInterval = message.sentTime;
+            }
+            NSArray * arr = [self messagesWithLocalMessages:_leftMessages freshTimestamp:timeInterval];
+            [self.dataArray addObjectsFromArray:arr];
+            [_leftMessages removeAllObjects];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.parentController.tableView reloadData];
+                [self.parentController scrollToBottomAnimated:YES];
+            });
+            
+        }
+      
     }
 }
 #pragma mark - UIScrollView Delegate

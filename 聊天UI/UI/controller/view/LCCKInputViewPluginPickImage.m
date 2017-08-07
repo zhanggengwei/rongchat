@@ -8,7 +8,7 @@
 
 #import "LCCKInputViewPluginPickImage.h"
 #import "UIImage+RCIMExtension.h"
-#import "RCConversationViewController.h"
+#import "RCIMConversationViewController.h"
 
 @interface LCCKInputViewPluginPickImage()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -66,7 +66,7 @@
         [self.conversationViewController dismissViewControllerAnimated:YES completion:nil];
         if (object) {
             UIImage *image = (UIImage *)object;
-            [self.conversationViewController sendImages:@[image]];
+            [self.conversationViewController sendImagesMessage:@[image]];
         } else {
             NSLog(@"%@", error.description);
         }

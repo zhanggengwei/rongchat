@@ -10,12 +10,12 @@
 
 @interface RCIMConversationViewController : RCIMBaseConversationViewController
 
-@property (nonnull,strong) NSString * conversationId;
+@property (nonnull,strong) RCConversation * conversation;
+
 /*!
  *  是否禁用文字的双击放大功能，默认为 NO
  */
 @property (nonatomic, assign) BOOL disableTextShowInFullScreen;//
-- (instancetype _Nullable )initWithConversationId:(NSString *_Nullable)conversationId;
 
 - (void)sendTextMessage:(NSString *_Nullable)text;
 - (void)sendImagesMessage:(NSArray<UIImage *> *_Nullable)images;

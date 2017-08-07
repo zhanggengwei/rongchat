@@ -70,7 +70,7 @@
     dispatch_async(_queryMessageQueue, ^{
         NSArray<RCMessage *> *messageArray = [_client getLatestMessages:converstionType targetId:conversationId count:(int)count];
         dispatch_async(dispatch_get_main_queue(), ^{
-            !block ?:block(messageArray,nil);
+            !block ?:block([[messageArray reverseObjectEnumerator]allObjects],nil);
         });
     });
 }
@@ -80,7 +80,7 @@
     dispatch_async(_queryMessageQueue, ^{
         NSArray<RCMessage *> *messageArray = [_client getHistoryMessages:converstionType targetId:conversationId oldestMessageId:messageId count:(int)count];
         dispatch_async(dispatch_get_main_queue(), ^{
-            !block ?:block(messageArray,nil);
+            !block ?:block([[messageArray reverseObjectEnumerator] allObjects],nil);
         });
     });
 }

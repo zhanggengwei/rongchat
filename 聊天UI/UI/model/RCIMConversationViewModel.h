@@ -23,10 +23,13 @@
 
 @property (nonatomic, weak) id<RCIMConversationViewModelDelegate> delegate;
 
-- (instancetype)initWithParentViewController:(RCIMConversationViewController *)parentViewController withConversationId:(NSString *)converstaionId withConversationType:(RCConversationType)conversationType;
+- (instancetype)initWithParentViewController:(RCIMConversationViewController *)parentViewController;
 
+@property (nonatomic,strong) NSString * conversationId;
+@property (nonatomic,assign) RCConversationType conversationType;
 @property (nonatomic, strong, readonly) NSMutableArray<RCMessage *> *dataArray;
 @property (nonatomic, strong, readonly) NSMutableArray<RCMessage *> *imageArray;
 @property (nonatomic, strong, readonly) NSMutableArray<RCMessage *> *voiceArray;
-
+- (void)loadMessagesFirstTimeWithCallback:(RCIdBoolResultBlock)callback;
+- (void)loadOldMessages;
 @end

@@ -8,7 +8,7 @@
 
 #import "LCCKInputViewPlugin.h"
 #import "RCChatBar.h"
-#import "RCConversationViewController.h"
+#import "RCIMConversationViewController.h"
 
 
 NSMutableDictionary const *RCInputViewPluginDict = nil;
@@ -160,10 +160,10 @@ NSMutableArray const *RCInputViewPluginArray = nil;
     [self sendCustomMessageHandler];
 }
 
-- (RCConversationViewController *)conversationViewController {
+- (RCIMConversationViewController *)conversationViewController {
    
-    if ([self.inputViewRef.controllerRef isKindOfClass:[RCConversationViewController class]]) {
-        return (RCConversationViewController *)self.inputViewRef.controllerRef;
+    if ([self.inputViewRef.controllerRef isKindOfClass:[RCIMConversationViewController class]]) {
+        return (RCIMConversationViewController *)self.inputViewRef.controllerRef;
     } else {
         return nil;
     }

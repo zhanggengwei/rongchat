@@ -9,7 +9,7 @@
 @import Foundation;
 @import UIKit;
 @class RCChatBar;
-@class RCConversationViewController;
+@class RCIMConversationViewController;
 
 
 @protocol LCCKInputViewPluginSubclassing <NSObject>
@@ -66,7 +66,7 @@
  * 插件类型，用来向对方发送当前用户正在做的操作，例如正在拍照或者正在选择地理位置，详见 LCCKInputViewPluginType 的定义
  */
 @property (nonatomic, readonly) RCInputViewPluginType pluginType;
-@property (nonatomic, readonly) RCConversationViewController *conversationViewController;
+@property (nonatomic, readonly) RCIMConversationViewController *conversationViewController;
 
 - (void)fillWithPluginTitle:(NSString *)pluginTitle
                     pluginIconImage:(UIImage *)pluginIconImage;

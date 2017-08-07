@@ -8,7 +8,7 @@
 
 #import "LCCKInputViewPluginTakePhoto.h"
 #import "UIImage+RCIMExtension.h"
-#import "RCConversationViewController.h"
+#import "RCIMConversationViewController.h"
 
 
 @interface LCCKInputViewPluginTakePhoto()<UIImagePickerControllerDelegate>

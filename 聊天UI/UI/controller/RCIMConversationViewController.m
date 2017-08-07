@@ -7,33 +7,39 @@
 //
 
 #import "RCIMConversationViewController.h"
+#import "RCIMConversationViewModel.h"
 
 @interface RCIMConversationViewController ()
 @property (nonatomic,strong) id currentUser;
+@property (nonatomic,strong) RCIMConversationViewModel * viewModel;
 @end
 
 @implementation RCIMConversationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSAssert(self.conversationId==nil,@"self.conversationId is nil");
+    self.allowScrollToBottom = YES;
+    _viewModel = [[RCIMConversationViewModel alloc]initWithParentViewController:self];
+    _viewModel.conversationId = self.conversation.targetId;
+    _viewModel.conversationType = self.conversation.conversationType;
+    self.tableView.delegate = _viewModel;
+    self.tableView.dataSource = _viewModel;
+    [_viewModel loadMessagesFirstTimeWithCallback:^(BOOL succeeded, id object, NSError *error) {
+        
+    }];
+    
     
     // Do any additional setup after loading the view.
 }
-
+- (void)loadMoreMessagesScrollTotop
+{
+    [self.viewModel loadOldMessages];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma makr public Methods
-- (instancetype _Nullable )initWithConversationId:(NSString *_Nullable)conversationId
-{
-    if(self=[super init])
-    {
-        self.conversationId = conversationId;
-    }
-    return self;
-}
+
 - (void)sendTextMessage:(NSString *_Nullable)text
 {
     
