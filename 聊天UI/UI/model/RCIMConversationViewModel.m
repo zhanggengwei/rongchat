@@ -129,6 +129,54 @@
         }];
     }];
 }
+- (void)deleteMessageWithCell:(RCChatBaseMessageCell *)cell withMessage:(RCMessage *)message
+{
+    NSInteger index = [self.dataArray indexOfObject:message];
+    void (^deleteMessage)(RCMessage * message) = ^(RCMessage * message)
+    {
+        [[RCIMMessageManager shareManager]deleteMessage:@[@(message.messageId)]];
+    };
+    deleteMessage(message);
+    if(index)
+    {
+        NSInteger preIndex = index - 1;
+        RCMessage * preMessage = [self.dataArray objectAtIndex:preIndex];
+        if([preMessage.objectName isEqualToString:RCTimeMessageTypeIdentifier])
+        {
+            NSInteger nextIndex = index + 1;
+            if(nextIndex>=self.dataArray.count)
+            {
+                //最后一条消息
+                [self.dataArray removeObject:preMessage];
+                [self.dataArray removeObject:message];
+                [self.parentController.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0],[NSIndexPath indexPathForRow:preIndex inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+            }
+            else
+            {
+                RCMessage * nextMessage = self.dataArray[nextIndex];
+                if([nextMessage.objectName isEqualToString:RCTimeMessageTypeIdentifier])
+                {
+                  
+                    [self.dataArray removeObject:preMessage];
+                    [self.dataArray removeObject:message];
+                    [self.parentController.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0],[NSIndexPath indexPathForRow:preIndex inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+                }else
+                {
+                   
+                    [self.dataArray removeObject:message];
+                    [self.parentController.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+                }
+                
+            }
+        }
+        else
+        {
+            [self.dataArray removeObject:message];
+            [self.parentController.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+
+}
 - (NSArray *)messagesWithLocalMessages:(NSArray *)messages freshTimestamp:(int64_t)timestamp
 {
     NSMutableArray * data = [NSMutableArray new];

@@ -60,5 +60,5 @@
 - (void)getTotalUnreadCountWithHandle:(RCIntegerResultBlock)block;
 #pragma mark 会话中的所有消息设置成已读
 - (void)setMessageReadStatusWithConversationId:(NSString *)conversationId withConversationType:(RCConversationType)type withHandle:(RCBooleanResultBlock)block;
-
+- (void)deleteMessage:(NSArray<NSNumber *> *)messageIds;
 @end

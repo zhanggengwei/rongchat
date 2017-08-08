@@ -502,7 +502,10 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
                                                                        }];
                 //TODO:添加“转发”
                 if ([self.message.objectName isEqualToString:RCTextMessageTypeIdentifier]) {
-                    menuItems = @[ copyItem ];
+                     menuItems = @[[self deleteItem],copyItem];
+                }else
+                {
+                    menuItems = @[[self deleteItem],copyItem];
                 }
             //}
             UIMenuController *menuController = [UIMenuController sharedMenuController];
@@ -558,6 +561,19 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     _conversationViewSenderNameTextColor = [[RCIMSettingService shareManager] defaultThemeColorForKey:@"ConversationView-SenderName-TextColor"];
     return _conversationViewSenderNameTextColor;
 }
+
+- (RCIMMenuItem *)deleteItem
+{
+    RCIMMenuItem * deleteItem = [[RCIMMenuItem alloc]initWithTitle:@"删除" block:^{
+        if([self.delegate respondsToSelector:@selector(messageCellDidDeleteMessageCell:message:)])
+        {
+            [self.delegate messageCellDidDeleteMessageCell:self message:self.message];
+        }
+    }];
+    return deleteItem;
+}
+
+
 
 @end
 

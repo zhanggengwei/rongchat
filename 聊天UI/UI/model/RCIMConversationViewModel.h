@@ -32,4 +32,6 @@
 @property (nonatomic, strong, readonly) NSMutableArray<RCMessage *> *voiceArray;
 - (void)loadMessagesFirstTimeWithCallback:(RCIdBoolResultBlock)callback;
 - (void)loadOldMessages;
+
+- (void)deleteMessageWithCell:(RCChatBaseMessageCell *)cell withMessage:(RCMessage *)message;
 @end

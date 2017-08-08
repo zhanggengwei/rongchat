@@ -42,6 +42,8 @@
 - (void)avatarImageViewLongPressed:(RCChatBaseMessageCell *)messageCell;
 - (void)messageCell:(RCChatBaseMessageCell *)messageCell didTapLinkText:(NSString *)linkText linkType:(MLLinkType)linkType;
 - (void)fileMessageDidDownload:(RCChatBaseMessageCell *)messageCell;
+@optional
+- (void)messageCellDidDeleteMessageCell:(RCChatBaseMessageCell *)messageCell message:(RCMessage *)message;
 
 @end
 

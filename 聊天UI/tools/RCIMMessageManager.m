@@ -127,4 +127,16 @@
     });
 }
 
+- (void)deleteMessage:(NSArray<NSNumber *> *)messageIds
+{
+    BOOL flag =[_client deleteMessages:messageIds];
+    if(flag)
+    {
+        NSLog(@"delete sucessed");
+    }else
+    {
+        NSLog(@"delete failed");
+    }
+}
+
 @end

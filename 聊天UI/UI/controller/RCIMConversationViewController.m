@@ -124,6 +124,12 @@
     
 }
 
+- (void)messageCellDidDeleteMessageCell:(RCChatBaseMessageCell *)messageCell message:(RCMessage *)message
+{
+    [self.viewModel deleteMessageWithCell:messageCell withMessage:message];
+    
+}
+
 - (NSInteger)numberOfPagesInViewController:(nonnull PBViewController *)viewController
 {
     return _viewModel.imageArray.count;
