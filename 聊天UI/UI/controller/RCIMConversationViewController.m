@@ -28,8 +28,6 @@
     [_viewModel loadMessagesFirstTimeWithCallback:^(BOOL succeeded, id object, NSError *error) {
         
     }];
-    
-    
     // Do any additional setup after loading the view.
 }
 - (void)loadMoreMessagesScrollTotop
@@ -79,6 +77,10 @@
 {
     NSLog(@"%s",__PRETTY_FUNCTION__);
     PBViewController * controller = [[PBViewController alloc]init];
+    NSInteger index = [self.viewModel.imageArray indexOfObject:messageCell.message];
+    
+    controller.startPage = index;
+    controller.blurBackground = NO;
     controller.pb_delegate = self;
     controller.pb_dataSource = self;
     
@@ -129,8 +131,19 @@
 - (void)viewController:(nonnull PBViewController *)viewController presentImageView:(nonnull UIImageView *)imageView forPageAtIndex:(NSInteger)index progressHandler:(nullable void (^)(NSInteger receivedSize, NSInteger expectedSize))progressHandler
 {
      RCImageMessage * imageMessage = (RCImageMessage *)self.viewModel.imageArray[index].content;
-    NSLog(@"imageclass == %@",imageMessage.class);
+     NSLog(@"imageclass == %@",imageMessage.class);
      [imageView sd_setImageWithURL:[NSURL URLWithString:imageMessage.imageUrl]];
+    
+}
+
+- (void)viewController:(nonnull PBViewController *)viewController didSingleTapedPageAtIndex:(NSInteger)index presentedImage:(nullable UIImage *)presentedImage
+{
+    [viewController.navigationController popViewControllerAnimated:NO];
+}
+
+/// Action call back for long press, presentedImage will be nil untill loaded image
+- (void)viewController:(nonnull PBViewController *)viewController didLongPressedPageAtIndex:(NSInteger)index presentedImage:(nullable UIImage *)presentedImage
+{
     
 }
 
