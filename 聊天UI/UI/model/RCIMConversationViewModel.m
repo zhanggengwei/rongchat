@@ -142,6 +142,10 @@
             [data addObject:timeMessage];
             timestamp = message.sentTime;
         }
+        if([message.objectName isEqualToString:RCImageMessageTypeIdentifier])
+        {
+            [self.imageArray addObject:message];
+        }
         [data addObject:message];
     }
     return data;

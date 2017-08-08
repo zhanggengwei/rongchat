@@ -8,8 +8,9 @@
 
 #import "RCIMConversationViewController.h"
 #import "RCIMConversationViewModel.h"
-
-@interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate>
+#import "RCIMTextFullScreenViewController.h"
+#import <PhotoBrowser.h>
+@interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource>
 @property (nonatomic,strong) id currentUser;
 @property (nonatomic,strong) RCIMConversationViewModel * viewModel;
 @end
@@ -67,19 +68,33 @@
 #pragma mark RCIMChatMessageCellDelegate
 - (void)messageCellTappedBlank:(RCChatBaseMessageCell *)messageCell
 {
-    
+   NSLog(@"%s",__PRETTY_FUNCTION__);
 }
 - (void)messageCellTappedHead:(RCChatBaseMessageCell *)messageCell
 {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
     
 }
 - (void)messageCellTappedMessage:(RCChatBaseMessageCell *)messageCell
 {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    PBViewController * controller = [[PBViewController alloc]init];
+    controller.pb_delegate = self;
+    controller.pb_dataSource = self;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
     
 }
 - (void)textMessageCellDoubleTapped:(RCChatBaseMessageCell *)messageCell
 {
-    
+    if([messageCell.message.objectName isEqualToString:RCTextMessageTypeIdentifier])
+    {
+        RCTextMessage * textMessage = (RCTextMessage *)messageCell.message.content;
+        RCIMTextFullScreenViewController * textFullScreenViewController = [[RCIMTextFullScreenViewController alloc]initWithText:textMessage.content];
+        [self.navigationController pushViewController:textFullScreenViewController animated:NO];
+        
+    }
 }
 - (void)resendMessage:(RCChatBaseMessageCell *)messageCell
 {
@@ -91,12 +106,34 @@
 }
 - (void)messageCell:(RCChatBaseMessageCell *)messageCell didTapLinkText:(NSString *)linkText linkType:(MLLinkType)linkType
 {
-    
+    if(linkType==MLLinkTypePhoneNumber)
+    {
+        
+    }else if (linkType ==MLLinkTypeURL)
+    {
+        
+    }else if (linkType == MLLinkTypeEmail)
+    {
+        
+    }
 }
 - (void)fileMessageDidDownload:(RCChatBaseMessageCell *)messageCell
 {
     
 }
+
+- (NSInteger)numberOfPagesInViewController:(nonnull PBViewController *)viewController
+{
+    return _viewModel.imageArray.count;
+}
+- (void)viewController:(nonnull PBViewController *)viewController presentImageView:(nonnull UIImageView *)imageView forPageAtIndex:(NSInteger)index progressHandler:(nullable void (^)(NSInteger receivedSize, NSInteger expectedSize))progressHandler
+{
+     RCImageMessage * imageMessage = (RCImageMessage *)self.viewModel.imageArray[index].content;
+    NSLog(@"imageclass == %@",imageMessage.class);
+     [imageView sd_setImageWithURL:[NSURL URLWithString:imageMessage.imageUrl]];
+    
+}
+
 /*
 #pragma mark - Navigation
 

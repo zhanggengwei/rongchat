@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '7.0'
+platform :ios, '8.0'
 
 inhibit_all_warnings!
 
@@ -49,10 +49,9 @@ def pods
     pod 'ICEVersionUpdate', '~> 1.0.0'
     
     #AlertView
-    
     #拼音
     pod 'PinYin4Objc', '~> 1.1.1'
-    
+    pod 'PhotoBrowser', '~> 0.6.4'
     
   
     

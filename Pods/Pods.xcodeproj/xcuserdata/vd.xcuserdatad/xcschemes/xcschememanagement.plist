@@ -74,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PhotoBrowser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PinYin4Objc.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -157,17 +162,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>072F2C8184F2837740D7199B5250D8D2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>09E49198441CF3E8BCBF6D3A34F4B6FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0E1C12AF1E0542ED35DCD27580287009</key>
+		<key>0512B675C1850DC1CEA0091CD7F397A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -182,12 +177,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>246363243DE6F951A09AAAEF1F0A93EF</key>
+		<key>281B6CD18E986F047DA1D0AA7F4E2EBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>281B6CD18E986F047DA1D0AA7F4E2EBD</key>
+		<key>3E8E51EC7F1EDEB66E0F3AFB8C2A430D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -202,16 +197,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E4F313959826657ADF656C51978FCD2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4F65A7645FE4C05B76C9FE5061F4281A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>5700D8DB63D0F2A972BD7F787C684D8F</key>
 		<dict>
 			<key>primary</key>
@@ -222,22 +207,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>625C2C32B8E442A812FB259678D81DE9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>659D70F38EF6F5C5D157D519286A4E60</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>695CC512BB920DB2DF2D1ABDF434F3BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A9779EF2B6BF502D417616C2C9D6C27</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7891585BC2FD7AE86F992262CF369099</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7F018A57E82DA158A1E065A9EF9758E5</key>
+		<key>702C040BF228B1A07FF923D2E7CF2753</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -252,17 +237,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>864EB020656967BA10C152BDF5880734</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>86A8E4273A9A935454DD7EBF402BC9BD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8E2F85A9EA167EFA71B3DCB5DF170059</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>99521AAA5EEC12C883AE20C8F7988233</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9BAEB24AD5C8E9DEDDCB94F1DEFC5A64</key>
+		<key>8FCB6E77C0B31B6FB0AFA28B0C9641C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -272,7 +262,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A301F4537632F98BC18C6F5501F44D28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B517CA4BA6D6D7692990FC50C75BD440</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B8888BEFF8B1BE9533A57EA3244B9226</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C71C2CD5815DB2FDF94332DF5C49CD76</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -287,7 +292,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CD50010E33181A3596B0B55295C9E86A</key>
+		<key>DBFF66601BF957A35E2ED096AE42FE5F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1D0B98FA84AD7C2AC7B8CFE2CE787E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

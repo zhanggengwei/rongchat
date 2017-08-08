@@ -47,6 +47,7 @@ PODS:
   - MJRefresh (3.1.12)
   - MLLabel (1.10.3)
   - ODRefreshControl (1.2)
+  - PhotoBrowser (0.6.5)
   - PinYin4Objc (1.1.1)
   - pop (1.0.9)
   - ReactiveCocoa (2.5):
@@ -95,6 +96,7 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.12)
   - MLLabel (~> 1.10.3)
   - ODRefreshControl (~> 1.2)
+  - PhotoBrowser (~> 0.6.4)
   - PinYin4Objc (~> 1.1.1)
   - pop (~> 1.0.9)
   - ReactiveCocoa
@@ -127,6 +129,7 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MLLabel: 3760fb38aeac53b212409b634bc4aa4bf39ab628
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
+  PhotoBrowser: 27100779bb60084fc2b99d0d3849f04f3c4c3404
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
@@ -142,6 +145,6 @@ SPEC CHECKSUMS:
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 86453807510515de11c093892921913c837631b4
+PODFILE CHECKSUM: 57408b92fa51eb409d1e8e30a76951499f51befb
 
 COCOAPODS: 1.2.1
