@@ -1,5 +1,5 @@
 //
-//  RCLocationController.h
+//  RCIMLocationController.h
 //  rongchat
 //
 //  Created by VD on 2017/7/24.
@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol RCLocationControllerDelegate <NSObject>
+@protocol RCIMLocationControllerDelegate <NSObject>
 
 - (void)cancelLocation;
 - (void)sendLocation:(CLPlacemark *)placemark;
 
 @end
 
-@interface RCLocationController : UIViewController
+@interface RCIMLocationController : UIViewController
 
-@property (nonatomic,weak) id<RCLocationControllerDelegate> delegate;
+@property (nonatomic,weak) id<RCIMLocationControllerDelegate> delegate;
 
 
 @end

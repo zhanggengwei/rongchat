@@ -143,4 +143,60 @@
     }
 }
 
+- (void)sendCustomMessages:(RCMessageContent*)messageContent withConversationId:(NSString *)conversationId conversationType:(RCConversationType)type failed:(RCErrorSendMessageBlock)failBlock sucessBlock:(RCSucessedSendMessageBlock)sucessBlock
+{
+
+    void (^sendCustomMessage)(void) = ^(void)
+    {
+        [_client sendMessage:type targetId:conversationId content:messageContent pushContent:nil pushData:nil success:^(long messageId) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(sucessBlock)
+                {
+                    sucessBlock(messageId);
+                }
+            });
+        } error:^(RCErrorCode nErrorCode, long messageId) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(sucessBlock)
+                {
+                    failBlock(nErrorCode,messageId);
+                }
+            });
+        }];
+    };
+    sendCustomMessage();
+}
+- (void)sendMediaMessages:(RCMessageContent*)messageContent withConversationId:(NSString *)conversationId conversationType:(RCConversationType)type withProgress:(RCProgressBlock)progressBlock failed:(RCErrorSendMessageBlock)failBlock sucessBlock:(RCSucessedSendMessageBlock)sucessBlock cancelBlock:(RCCancelSendMessageBlock)cancelBlock
+{
+    void (^sendMeidaMessage)(void) = ^(void)
+    {
+        [_client sendMediaMessage:type targetId:conversationId content:messageContent pushContent:nil pushData:nil progress:^(int progress, long messageId) {
+            if(progressBlock)
+            {
+                progressBlock(progress,messageId);
+            }
+            
+        } success:^(long messageId) {
+            if(sucessBlock)
+            {
+                sucessBlock(messageId);
+            }
+            
+        } error:^(RCErrorCode errorCode, long messageId) {
+            if(failBlock)
+            {
+                failBlock(errorCode,messageId);
+            }
+            
+        } cancel:^(long messageId) {
+            if(cancelBlock)
+            {
+                cancelBlock(messageId);
+            }
+        }];
+    };
+    sendMeidaMessage();
+    
+}
+
 @end

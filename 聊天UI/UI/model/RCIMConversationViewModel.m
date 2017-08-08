@@ -258,6 +258,84 @@
         [cell configureCellWithData:message];
     }];
 }
+- (void)sendMessage:(RCMessageContent *)content
+{
+    RCMessage * lastMessage = self.dataArray.lastObject;
+    RCMessage * message = [[RCMessage alloc]initWithType:self.conversationType targetId:self.conversationId direction:MessageDirection_SEND messageId:0 content:content];
+    NSArray<RCMessage *>* messages = [self messagesWithLocalMessages:@[message] freshTimestamp:lastMessage.sentTime];
+    __block NSArray<NSIndexPath *> * indexPaths = @[];
+    __block RCChatBaseMessageCell * targetCell = nil;
+    [messages enumerateObjectsUsingBlock:^(RCMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSString * identifier= [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:message.conversationType];
+        RCChatBaseMessageCell * cell = [self.parentController.tableView dequeueReusableCellWithIdentifier:identifier];
+        if(![message.objectName isEqualToString:RCTimeMessageTypeIdentifier])
+        {
+            targetCell = cell;
+             message.sentStatus = SentStatus_SENDING;
+            NSLog(@"pre message %@",message);
+        }else
+        {
+            message.sentStatus = SentStatus_SENT;
+        }
+        cell.tableView = self.parentController.tableView;
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:self.dataArray.count + idx inSection:0];
+        indexPaths = [indexPaths arrayByAddingObject:indexPath];
+        cell.indexPath = indexPath;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell configureCellWithData:message];
+        cell.delegate = (id)self.parentController;
+        
+    }];
+    [self.dataArray addObjectsFromArray:messages];
+    [self.parentController.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    [self.parentController.tableView scrollToRowAtIndexPath:indexPaths.lastObject atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//    void (^setMessageSendStatus)(RCSentStatus status,NSInteger messageId) = ^(RCSentStatus status,NSInteger messageId)
+//    {
+//        RCMessage * sucessSendMessage = [self.dataArray objectAtIndex:indexPaths.lastObject.row];
+//        sucessSendMessage.messageId = messageId;
+//        sucessSendMessage.sentStatus = status;
+//        RCChatBaseMessageCell * cell = [self.parentController.tableView cellForRowAtIndexPath:indexPaths.lastObject];
+//        [cell setMessageSendState:status];
+//    };
+//    [[RCIMMessageManager shareManager]sendCustomMessages:content withConversationId:self.conversationId conversationType:self.conversationType failed:^(RCErrorCode error, NSInteger messageId) {
+//        setMessageSendStatus(SentStatus_FAILED,messageId);
+//    } sucessBlock:^(NSInteger messageId) {
+//         setMessageSendStatus(SentStatus_SENT,messageId);
+//    }];
+    [self sendCustomMessage:message];
+    
+}
+
+- (void)sendCustomMessage:(RCMessage *)message
+{
+    
+    void (^setMessageSendStatus)(RCSentStatus status,NSInteger messageId) = ^(RCSentStatus status,NSInteger messageId)
+    {
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[self.dataArray indexOfObject:message] inSection:0];
+        message.messageId = messageId;
+        message.sentStatus = status;
+        RCChatBaseMessageCell * cell = [self.parentController.tableView cellForRowAtIndexPath:indexPath];
+        [cell setMessageSendState:status];
+    };
+    [[RCIMMessageManager shareManager]sendCustomMessages:message.content withConversationId:self.conversationId conversationType:self.conversationType failed:^(RCErrorCode error, NSInteger messageId) {
+        setMessageSendStatus(SentStatus_FAILED,messageId);
+    } sucessBlock:^(NSInteger messageId) {
+        setMessageSendStatus(SentStatus_SENT,messageId);
+    }];
+}
+
+- (void)resendMessage:(RCMessage *)message
+{
+    [self sendCustomMessage:message];
+}
+
+- (void)sendMediaMessages:(NSArray<RCMessageContent *> *)contents
+{
+    
+}
+
+
 
 - (void)loadMessagesFirstTimeWithCallback:(RCIdBoolResultBlock)callback
 {
@@ -274,21 +352,6 @@
 }
 - (void)addMessagesFirstTime:(NSArray *)messages {
     [self appendMessagesToDataArrayTrailing:[self messagesWithLocalMessages:messages freshTimestamp:0]];
-}
-- (void)loadTimeMessage:(NSArray<RCMessage *> *)messageArray
-{
-    for (RCMessage * message in messageArray) {
-        if([NSDate lcck_isShowTime:self.timeInterval otherTimeInterval:message.sentTime])
-        {
-            RCMessage * timeMessage = [RCMessage new];
-            timeMessage.objectName = RCTimeMessageTypeIdentifier;
-            timeMessage.receivedTime = message.receivedTime;
-            timeMessage.sentTime = message.sentTime;
-            [self.dataArray addObject:timeMessage];
-            self.timeInterval = message.sentTime;
-        }
-        [self.dataArray addObject:message];
-    }
 }
 
 #pragma mark RCIMMessageManagerDelegate
@@ -312,9 +375,7 @@
                 [self.parentController.tableView reloadData];
                 [self.parentController scrollToBottomAnimated:YES];
             });
-            
         }
-      
     }
 }
 #pragma mark - UIScrollView Delegate

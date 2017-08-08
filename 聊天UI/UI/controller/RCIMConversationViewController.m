@@ -103,7 +103,8 @@
 }
 - (void)resendMessage:(RCChatBaseMessageCell *)messageCell
 {
-    
+    [self.viewModel deleteMessageWithCell:messageCell withMessage:messageCell.message];
+    [self.viewModel sendMessage:messageCell.message.content];
 }
 - (void)avatarImageViewLongPressed:(RCChatBaseMessageCell *)messageCell
 {
@@ -195,7 +196,8 @@
  */
 - (void)chatBar:(RCChatBar *)chatBar sendMessage:(NSString *)message
 {
-    
+    RCTextMessage * content = [RCTextMessage messageWithContent:message];
+    [self.viewModel sendMessage:content];
 }
 
 /*!

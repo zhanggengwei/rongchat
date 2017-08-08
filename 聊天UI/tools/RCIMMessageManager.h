@@ -61,4 +61,10 @@
 #pragma mark 会话中的所有消息设置成已读
 - (void)setMessageReadStatusWithConversationId:(NSString *)conversationId withConversationType:(RCConversationType)type withHandle:(RCBooleanResultBlock)block;
 - (void)deleteMessage:(NSArray<NSNumber *> *)messageIds;
+
+- (void)sendCustomMessages:(RCMessageContent*)messageContent withConversationId:(NSString *)conversationId conversationType:(RCConversationType)type failed:(RCErrorSendMessageBlock)failBlock sucessBlock:(RCSucessedSendMessageBlock)sucessBlock;
+
+- (void)sendMediaMessages:(RCMessageContent*)messageContent withConversationId:(NSString *)conversationId conversationType:(RCConversationType)type withProgress:(RCProgressBlock)progressBlock failed:(RCErrorSendMessageBlock)failBlock sucessBlock:(RCSucessedSendMessageBlock)sucessBlock cancelBlock:(RCCancelSendMessageBlock)cancelBlock;
+
+
 @end

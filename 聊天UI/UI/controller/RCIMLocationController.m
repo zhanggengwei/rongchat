@@ -1,27 +1,34 @@
 //
-//  RCLocationController.m
+//  RCIMLocationController.m
 //  rongchat
 //
 //  Created by VD on 2017/7/24.
 //  Copyright © 2017年 vd. All rights reserved.
 //
 
-#import "RCLocationController.h"
+#import "RCIMLocationController.h"
 
-@interface RCLocationController ()
+@interface RCIMLocationController ()
 
 @end
 
-@implementation RCLocationController
+@implementation RCIMLocationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"位置";
+    
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setNavUI
+{
+    
 }
 
 /*

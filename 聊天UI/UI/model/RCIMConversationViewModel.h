@@ -34,4 +34,12 @@
 - (void)loadOldMessages;
 
 - (void)deleteMessageWithCell:(RCChatBaseMessageCell *)cell withMessage:(RCMessage *)message;
+
+- (void)sendMessage:(RCMessageContent *)content;
+- (void)resendMessage:(RCMessage *)message;
+
+- (void)sendMediaMessages:(NSArray<RCMessageContent *> *)contents;
+
+
+
 @end

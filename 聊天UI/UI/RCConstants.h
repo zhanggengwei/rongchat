@@ -40,8 +40,11 @@ typedef void (^RCRequestAuthorizationBoolResultBlock)(BOOL granted, NSError *err
 //Callback with Function object
 typedef void (^RCVoidBlock)(void);
 typedef void (^RCErrorBlock)(NSError *error);
+typedef void (^RCErrorSendMessageBlock)(RCErrorCode error,NSInteger messageId);
+typedef void (^RCSucessedSendMessageBlock)(NSInteger messageId);
+typedef void(^RCCancelSendMessageBlock)(NSInteger messageId);
 typedef void (^RCImageResultBlock)(UIImage * image, NSError *error);
-typedef void (^RCProgressBlock)(NSInteger percentDone);
+typedef void (^RCProgressBlock)(NSInteger percentDone,NSInteger messageId);
 
 
 //search Messags

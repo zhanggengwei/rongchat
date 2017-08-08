@@ -7,14 +7,14 @@
 //
 
 #import "LCCKInputViewPluginLocation.h"
-#import "RCLocationController.h"
-#import "RCLocationController.h"
+#import "RCIMLocationController.h"
+#import "RCIMLocationController.h"
 #import "UIImage+RCIMExtension.h"
 
 
-@interface LCCKInputViewPluginLocation()<RCLocationControllerDelegate>
+@interface LCCKInputViewPluginLocation()<RCIMLocationControllerDelegate>
 
-@property (nonatomic, strong) RCLocationController *locationController;
+@property (nonatomic, strong) RCIMLocationController *locationController;
 
 @end
 
@@ -58,9 +58,9 @@
  *
  *  @return LCCKLocationController
  */
-- (RCLocationController *)locationController {
+- (RCIMLocationController *)locationController {
     if (_locationController == nil) {
-        RCLocationController *locationController = [[RCLocationController alloc] init];
+        RCIMLocationController *locationController = [[RCIMLocationController alloc] init];
         locationController.delegate = self;
         _locationController = locationController;
     }
@@ -72,6 +72,7 @@
     //显示地理位置
     UINavigationController *locationNav = [[UINavigationController alloc] initWithRootViewController:self.locationController];
     [self.inputViewRef.controllerRef presentViewController:locationNav animated:YES completion:nil];
+    
 }
 
 - (RCIdResultBlock)sendCustomMessageHandler {

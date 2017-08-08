@@ -174,7 +174,7 @@
 		753CA06A1F26180000F313EE /* LCCKInputViewPluginLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0641F26180000F313EE /* LCCKInputViewPluginLocation.m */; };
 		753CA06B1F26180000F313EE /* LCCKInputViewPluginPickImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0661F26180000F313EE /* LCCKInputViewPluginPickImage.m */; };
 		753CA06C1F26180000F313EE /* LCCKInputViewPluginTakePhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0681F26180000F313EE /* LCCKInputViewPluginTakePhoto.m */; };
-		753CA06F1F2618D000F313EE /* RCLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA06E1F2618D000F313EE /* RCLocationController.m */; };
+		753CA06F1F2618D000F313EE /* RCIMLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA06E1F2618D000F313EE /* RCIMLocationController.m */; };
 		753CA0C11F27109F00F313EE /* LCCKChatFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0BE1F27109F00F313EE /* LCCKChatFaceView.m */; };
 		753CA0C21F27109F00F313EE /* LCCKFacePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0C01F27109F00F313EE /* LCCKFacePageView.m */; };
 		753CA0C71F27110600F313EE /* LCCKFaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0C41F27110600F313EE /* LCCKFaceManager.m */; };
@@ -517,8 +517,8 @@
 		753CA0661F26180000F313EE /* LCCKInputViewPluginPickImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKInputViewPluginPickImage.m; sourceTree = "<group>"; };
 		753CA0671F26180000F313EE /* LCCKInputViewPluginTakePhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKInputViewPluginTakePhoto.h; sourceTree = "<group>"; };
 		753CA0681F26180000F313EE /* LCCKInputViewPluginTakePhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKInputViewPluginTakePhoto.m; sourceTree = "<group>"; };
-		753CA06D1F2618D000F313EE /* RCLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationController.h; sourceTree = "<group>"; };
-		753CA06E1F2618D000F313EE /* RCLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationController.m; sourceTree = "<group>"; };
+		753CA06D1F2618D000F313EE /* RCIMLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMLocationController.h; sourceTree = "<group>"; };
+		753CA06E1F2618D000F313EE /* RCIMLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMLocationController.m; sourceTree = "<group>"; };
 		753CA0BD1F27109F00F313EE /* LCCKChatFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatFaceView.h; sourceTree = "<group>"; };
 		753CA0BE1F27109F00F313EE /* LCCKChatFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKChatFaceView.m; sourceTree = "<group>"; };
 		753CA0BF1F27109F00F313EE /* LCCKFacePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKFacePageView.h; sourceTree = "<group>"; };
@@ -756,8 +756,8 @@
 				751D2A431F34662700426D12 /* RCIMConversationViewController.m */,
 				75278A261F105FBD000C70AF /* RCIMSettingService.h */,
 				75278A271F105FBD000C70AF /* RCIMSettingService.m */,
-				753CA06D1F2618D000F313EE /* RCLocationController.h */,
-				753CA06E1F2618D000F313EE /* RCLocationController.m */,
+				753CA06D1F2618D000F313EE /* RCIMLocationController.h */,
+				753CA06E1F2618D000F313EE /* RCIMLocationController.m */,
 				7531E97D1F384CF2001C1326 /* RCMessage+RCTimeShow.h */,
 				7531E97E1F384CF2001C1326 /* RCMessage+RCTimeShow.m */,
 				7531E9811F3958B3001C1326 /* RCIMTextFullScreenViewController.h */,
@@ -2019,7 +2019,7 @@
 				7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */,
 				753CA06B1F26180000F313EE /* LCCKInputViewPluginPickImage.m in Sources */,
 				75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */,
-				753CA06F1F2618D000F313EE /* RCLocationController.m in Sources */,
+				753CA06F1F2618D000F313EE /* RCIMLocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
