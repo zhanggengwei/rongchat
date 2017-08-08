@@ -47,6 +47,10 @@
     {
         [self.delegate onReceived:message left:nLeft object:object];
     }
+    if(nLeft<=0)
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:RCDidReceiveMessagesDidChanged object:nil];
+    }
 }
 
 - (void)onMessageRecalled:(long)messageId

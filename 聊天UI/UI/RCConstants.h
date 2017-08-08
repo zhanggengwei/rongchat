@@ -179,6 +179,8 @@ static NSString *const RCDidReceiveMessagesUserInfoConversationKey = @"conversat
 static NSString *const RCDidReceiveMessagesUserInfoMessagesKey = @"receivedMessages";
 static NSString *const RCDidReceiveCustomMessageUserInfoMessageKey = @"receivedCustomMessage";
 
+static NSString *const RCDidReceiveMessagesDidChanged = @"RCDidReceiveMessagesDidChanged";//消息发生改变
+
 #define RC_CURRENT_TIMESTAMP ([[NSDate date] timeIntervalSince1970] * 1000)
 #define RC_FUTURE_TIMESTAMP ([[NSDate distantFuture] timeIntervalSince1970] * 1000)
 //整数或小数
