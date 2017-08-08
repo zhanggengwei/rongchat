@@ -101,11 +101,11 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 
 // add support for RCIMMenuItem. Needs to be called once per class.
 + (void)load {
-//    [RCIMMenuItem installMenuHandlerForObject:self];
+    [RCIMMenuItem installMenuHandlerForObject:self];
 }
 
 + (void)initialize {
-//    [RCIMMenuItem installMenuHandlerForObject:self];
+    [RCIMMenuItem installMenuHandlerForObject:self];
 }
 
 #pragma mark - Life Cycle
@@ -478,42 +478,46 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
         }
         [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
         NSUInteger delaySeconds = RCAnimateDuration;
+       
         dispatch_time_t when = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delaySeconds * NSEC_PER_SEC));
         dispatch_after(when, dispatch_get_main_queue(), ^{
             [self becomeFirstResponder];
-            RCIMLongPressMessageBlock longPressMessageBlock;
-            
+//            RCIMLongPressMessageBlock longPressMessageBlock = [LCChatKit sharedInstance].longPressMessageBlock;
             NSArray *menuItems = [NSArray array];
-            NSDictionary *userInfo = @{
-                                       RCIMLongPressMessageUserInfoKeyFromController : self.delegate,
-                                       RCIMLongPressMessageUserInfoKeyFromView : self.tableView,
-                                       };
-            if (longPressMessageBlock) {
-                menuItems = longPressMessageBlock(self.message, userInfo);
-            } else {
-                UIMenuItem * copyItem = [[UIMenuItem alloc]initWithTitle:@"copy" action:nil];
-                
-//                RCIMMenuItem *copyItem = [[RCIMMenuItem alloc] initWithTitle:@"copy"
-//                                                                       block:^{
-//                                                                           UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-//                                                                           [pasteboard setString:@""];
-//                                                                       }];
+//            NSDictionary *userInfo = @{
+//                                       LCCKLongPressMessageUserInfoKeyFromController : self.delegate,
+//                                       LCCKLongPressMessageUserInfoKeyFromView : self.tableView,
+//                                       };
+//            if (longPressMessageBlock) {
+////                menuItems = longPressMessageBlock(self.message, userInfo);
+//            } else {
+          
+            
+                RCIMMenuItem *copyItem = [[RCIMMenuItem alloc] initWithTitle:@"copy"
+                                                                       block:^{
+                                                                           RCTextMessage * textMessage = (RCTextMessage *)self.message.content;
+                                                                           
+                                                                        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                                                                        [pasteboard setString:textMessage.content];
+                                                                       }];
                 //TODO:添加“转发”
                 if ([self.message.objectName isEqualToString:RCTextMessageTypeIdentifier]) {
                     menuItems = @[ copyItem ];
                 }
-            }
+            //}
             UIMenuController *menuController = [UIMenuController sharedMenuController];
             [menuController setMenuItems:menuItems];
             [menuController setArrowDirection:UIMenuControllerArrowDown];
             UITableView *tableView = self.tableView;
             CGRect targetRect = [self convertRect:self.messageContentView.frame toView:tableView];
             [menuController setTargetRect:targetRect inView:tableView];
+          
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(handleMenuWillShowNotification:)
                                                          name:UIMenuControllerWillShowMenuNotification
                                                        object:nil];
-            [menuController setMenuVisible:YES animated:YES];
+               [menuController setMenuVisible:YES animated:YES];
+           
         });
     }
     
@@ -554,6 +558,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     _conversationViewSenderNameTextColor = [[RCIMSettingService shareManager] defaultThemeColorForKey:@"ConversationView-SenderName-TextColor"];
     return _conversationViewSenderNameTextColor;
 }
+
 @end
 
 

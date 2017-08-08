@@ -188,10 +188,11 @@
     RCMessage * message = self.dataArray[indexPath.row];
     NSString * identifier= [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:message.conversationType];
     RCChatBaseMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    [cell configureCellWithData:message];
+    
     cell.tableView = self.parentController.tableView;
     cell.indexPath = indexPath;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell configureCellWithData:message];
     cell.delegate = (id)self.parentController;
     return cell;
 }
