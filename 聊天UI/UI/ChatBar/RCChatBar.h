@@ -32,14 +32,14 @@ typedef NS_ENUM(NSUInteger, LCCKFunctionViewShowType){
     LCCKFunctionViewShowKeyboard /**< 显示键盘 */,
 };
 
-@protocol LCCKChatBarDelegate;
+@protocol RCIMChatBarDelegate;
 
 /**
  *  信息输入框,支持语音,文字,表情,选择照片,拍照
  */
 @interface RCChatBar : UIView
 
-@property (weak, nonatomic) id<LCCKChatBarDelegate> delegate;
+@property (weak, nonatomic) id<RCIMChatBarDelegate> delegate;
 @property (nonatomic, readonly) UIViewController *controllerRef;
 
 /*!
@@ -81,7 +81,7 @@ typedef NS_ENUM(NSUInteger, LCCKFunctionViewShowType){
 /**
  *  RCChatBar代理事件,发送图片,地理位置,文字,语音信息等
  */
-@protocol LCCKChatBarDelegate <NSObject>
+@protocol RCIMChatBarDelegate <NSObject>
 
 
 @optional

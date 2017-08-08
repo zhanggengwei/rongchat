@@ -20,7 +20,7 @@
 #import <RongIMLib/RCIMClient.h>
 static CGFloat const LCCKScrollViewInsetTop = 20.f;
 
-@interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate,LCCKChatBarDelegate>
+@interface RCConversationViewController ()<UITableViewDelegate,UITableViewDataSource,RCIMReceiveMessageDelegate,RCIMChatBarDelegate>
 @property (nonatomic,strong) NSString * targedId;
 @property (nonatomic,assign) RCConversationType conversationType;
 @property (nonatomic,strong) RCUserInfo * userInfo;

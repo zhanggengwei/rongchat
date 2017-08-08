@@ -10,7 +10,8 @@
 #import "RCIMConversationViewModel.h"
 #import "RCIMTextFullScreenViewController.h"
 #import <PhotoBrowser.h>
-@interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource>
+#import "RCChatBar.h"
+@interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource,RCIMChatBarDelegate>
 @property (nonatomic,strong) id currentUser;
 @property (nonatomic,strong) RCIMConversationViewModel * viewModel;
 @end
@@ -19,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.chatBar.delegate = self;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.allowScrollToBottom = YES;
     _viewModel = [[RCIMConversationViewModel alloc]initWithParentViewController:self];
     _viewModel.conversationId = self.conversation.targetId;
@@ -152,7 +155,71 @@
 {
     
 }
+- (void)chatBarFrameDidChange:(RCChatBar *)chatBar shouldScrollToBottom:(BOOL)shouldScrollToBottom
+{
+    [UIView animateWithDuration:RCAnimateDuration animations:^{
+        [self.tableView.superview layoutIfNeeded];
+         self.allowScrollToBottom = shouldScrollToBottom;
+        [self scrollToBottomAnimated:NO];
+    } completion:nil];
+}
 
+/*!
+ *  发送图片信息,支持多张图片
+ *
+ *  @param chatBar
+ *  @param pictures 需要发送的图片信息
+ */
+- (void)chatBar:(RCChatBar *)chatBar sendPictures:(NSArray *)pictures
+{
+    
+}
+
+/*!
+ *  发送地理位置信息
+ *
+ *  @param chatBar
+ *  @param locationCoordinate 需要发送的地址位置经纬度
+ *  @param locationText       需要发送的地址位置对应信息
+ */
+- (void)chatBar:(RCChatBar *)chatBar sendLocation:(CLLocationCoordinate2D)locationCoordinate locationText:(NSString *)locationText
+{
+    
+}
+
+/*!
+ *  发送普通的文字信息,可能带有表情
+ *
+ *  @param chatBar
+ *  @param message 需要发送的文字信息
+ */
+- (void)chatBar:(RCChatBar *)chatBar sendMessage:(NSString *)message
+{
+    
+}
+
+/*!
+ *  发送语音信息
+ *
+ *  @param chatBar
+ *  @param voiceData 语音data数据
+ *  @param seconds   语音时长
+ */
+- (void)chatBar:(RCChatBar *)chatBar sendVoice:(NSString *)voiceFileName seconds:(NSTimeInterval)seconds
+{
+    
+}
+
+/*!
+ *  输入了 @ 的时候
+ *
+ */
+- (void)didInputAtSign:(RCChatBar *)chatBar
+{
+    
+}
+
+//- (NSArray *)regulationForBatchDeleteText;
 /*
 #pragma mark - Navigation
 
