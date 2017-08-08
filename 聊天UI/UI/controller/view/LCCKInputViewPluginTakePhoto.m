@@ -11,7 +11,7 @@
 #import "RCIMConversationViewController.h"
 
 
-@interface LCCKInputViewPluginTakePhoto()<UIImagePickerControllerDelegate>
+@interface LCCKInputViewPluginTakePhoto()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, copy) RCIdResultBlock sendCustomMessageHandler;
 @property (nonatomic, copy) UIImagePickerController *pickerController;
@@ -78,7 +78,7 @@
         //[self.conversationViewController dismissViewControllerAnimated:YES completion:nil];
         UIImage *image = (UIImage *)object;
         if (object) {
-           // [self.conversationViewController sendImageMessage:image];
+//            [self.conversationViewController sendImageMessage:image];
         }
         _sendCustomMessageHandler = nil;
     };

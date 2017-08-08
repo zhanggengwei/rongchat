@@ -140,6 +140,7 @@
 		751D2A441F34662700426D12 /* RCIMConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2A431F34662700426D12 /* RCIMConversationViewController.m */; };
 		751D2A471F3468F800426D12 /* RCIMConversationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2A461F3468F800426D12 /* RCIMConversationViewModel.m */; };
 		751D2A4A1F346D8300426D12 /* RCIMMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2A491F346D8300426D12 /* RCIMMessageManager.m */; };
+		7526794C1F3A053D0002AC45 /* RCIMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526794B1F3A053D0002AC45 /* RCIMLocationManager.m */; };
 		75278A0E1F0E8F2D000C70AF /* RCChatBaseMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A0D1F0E8F2D000C70AF /* RCChatBaseMessageCell.m */; };
 		75278A111F0E9167000C70AF /* RCContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A101F0E9167000C70AF /* RCContentView.m */; };
 		75278A141F0E9294000C70AF /* RCMessageSendStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A131F0E9294000C70AF /* RCMessageSendStateView.m */; };
@@ -459,6 +460,8 @@
 		751D2A461F3468F800426D12 /* RCIMConversationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMConversationViewModel.m; sourceTree = "<group>"; };
 		751D2A481F346D8300426D12 /* RCIMMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMMessageManager.h; sourceTree = "<group>"; };
 		751D2A491F346D8300426D12 /* RCIMMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMMessageManager.m; sourceTree = "<group>"; };
+		7526794A1F3A053D0002AC45 /* RCIMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMLocationManager.h; sourceTree = "<group>"; };
+		7526794B1F3A053D0002AC45 /* RCIMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMLocationManager.m; sourceTree = "<group>"; };
 		75278A0C1F0E8F2D000C70AF /* RCChatBaseMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatBaseMessageCell.h; sourceTree = "<group>"; };
 		75278A0D1F0E8F2D000C70AF /* RCChatBaseMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatBaseMessageCell.m; sourceTree = "<group>"; };
 		75278A0F1F0E9167000C70AF /* RCContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCContentView.h; sourceTree = "<group>"; };
@@ -1235,6 +1238,8 @@
 				75278A4D1F10D7D3000C70AF /* RCCellIdentifierFactory.m */,
 				75278A4F1F10E512000C70AF /* RCBubbleImageFactory.h */,
 				75278A501F10E512000C70AF /* RCBubbleImageFactory.m */,
+				7526794A1F3A053D0002AC45 /* RCIMLocationManager.h */,
+				7526794B1F3A053D0002AC45 /* RCIMLocationManager.m */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -1964,6 +1969,7 @@
 				758E8B9F1E0AC6EB00D5DD4E /* RCIMWebViewProgress.m in Sources */,
 				75CEF9521DDDDDD000541660 /* PPIndicatorView.m in Sources */,
 				7584DAF71E2A5B98007249C2 /* RCIMImageManager.m in Sources */,
+				7526794C1F3A053D0002AC45 /* RCIMLocationManager.m in Sources */,
 				7584DAF61E2A5B98007249C2 /* RCIM.m in Sources */,
 				7584DAF81E2A5B98007249C2 /* RCIMWeakReference.m in Sources */,
 				75278A251F0FC30A000C70AF /* RCChatFileMessageCell.m in Sources */,

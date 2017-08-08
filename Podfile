@@ -44,6 +44,7 @@ def pods
     #MAP
     pod 'AMapSearch', '~> 4.2.0'
     pod 'AMapLocation', '~> 2.1.1'
+    pod 'AMap2DMap', '~> 4.6.0'
     
     #Versions
     pod 'ICEVersionUpdate', '~> 1.0.0'

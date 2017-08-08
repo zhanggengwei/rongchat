@@ -171,28 +171,40 @@
     void (^sendMeidaMessage)(void) = ^(void)
     {
         [_client sendMediaMessage:type targetId:conversationId content:messageContent pushContent:nil pushData:nil progress:^(int progress, long messageId) {
-            if(progressBlock)
-            {
-                progressBlock(progress,messageId);
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(progressBlock)
+                {
+                    progressBlock(progress,messageId);
+                }
+            });
+           
             
         } success:^(long messageId) {
-            if(sucessBlock)
-            {
-                sucessBlock(messageId);
-            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(sucessBlock)
+                {
+                    sucessBlock(messageId);
+                }
+            });
             
         } error:^(RCErrorCode errorCode, long messageId) {
-            if(failBlock)
-            {
-                failBlock(errorCode,messageId);
-            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(failBlock)
+                {
+                    failBlock(errorCode,messageId);
+                }
+            });
             
         } cancel:^(long messageId) {
-            if(cancelBlock)
-            {
-                cancelBlock(messageId);
-            }
+           
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(cancelBlock)
+                {
+                    cancelBlock(messageId);
+                }
+            });
         }];
     };
     sendMeidaMessage();

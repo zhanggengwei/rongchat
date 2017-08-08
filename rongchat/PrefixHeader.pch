@@ -32,7 +32,7 @@
 #define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 
 
-#define KAppMapKey @"b8a7c749ef0285be63475eb7dcdcb516"
+#define KAppMapKey @"ea77edf8b4f6031617d25ce3708ca48e"
 
 
 // Include any system framework and library headers here that should be included in all compilation units.

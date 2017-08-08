@@ -11,8 +11,6 @@
 @interface PPLocationManager : NSObject
 
 @property (nonatomic,strong,readonly) AMapLocationReGeocode * regeoCode;
-
-
 +(instancetype)shareManager;
 -(void)requestLocation;
 

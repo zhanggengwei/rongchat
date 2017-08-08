@@ -11,7 +11,7 @@
 #import "RCIMTextFullScreenViewController.h"
 #import <PhotoBrowser.h>
 #import "RCChatBar.h"
-@interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource,RCIMChatBarDelegate>
+@interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource,RCIMChatBarDelegate,RCIMConversationViewModelDelegate>
 @property (nonatomic,strong) id currentUser;
 @property (nonatomic,strong) RCIMConversationViewModel * viewModel;
 @end
@@ -26,6 +26,7 @@
     _viewModel = [[RCIMConversationViewModel alloc]initWithParentViewController:self];
     _viewModel.conversationId = self.conversation.targetId;
     _viewModel.conversationType = self.conversation.conversationType;
+    _viewModel.delegate = self;
     self.tableView.delegate = _viewModel;
     self.tableView.dataSource = _viewModel;
     [_viewModel loadMessagesFirstTimeWithCallback:^(BOOL succeeded, id object, NSError *error) {
@@ -48,7 +49,12 @@
 }
 - (void)sendImagesMessage:(NSArray<UIImage *> *_Nullable)images
 {
-    
+    NSMutableArray<RCImageMessage *> * array = [NSMutableArray new];
+    [images enumerateObjectsUsingBlock:^(UIImage * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        RCImageMessage * imageMessage = [RCImageMessage messageWithImage:obj];
+        [array addObject:imageMessage];
+    }];
+    [self.viewModel sendMediaMessages:array];
 }
 - (void)sendFileMessage:(NSString *_Nullable)filePath
 {
@@ -173,7 +179,7 @@
  */
 - (void)chatBar:(RCChatBar *)chatBar sendPictures:(NSArray *)pictures
 {
-    
+   
 }
 
 /*!
@@ -220,6 +226,23 @@
 {
     
 }
+
+- (void)messageSendStateChanged:(RCSentStatus)sendState  withProgress:(CGFloat)progress forIndex:(NSUInteger)index
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    RCChatBaseMessageCell *messageCell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (![self.tableView.visibleCells containsObject:messageCell]) {
+        return;
+    }
+    if ([messageCell.message.objectName isEqualToString:RCImageMessageTypeIdentifier]) {
+        NSLog(@"progress == %f",progress);
+        [(RCChatImageMessageCell *)messageCell setUploadProgress:progress];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        messageCell.messageSendState = sendState;
+    });
+}
+
 
 //- (NSArray *)regulationForBatchDeleteText;
 /*
