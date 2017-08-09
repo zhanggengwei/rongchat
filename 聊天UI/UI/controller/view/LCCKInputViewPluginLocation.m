@@ -10,7 +10,7 @@
 #import "RCIMLocationController.h"
 #import "RCIMLocationController.h"
 #import "UIImage+RCIMExtension.h"
-
+#import "RCIMConversationViewController.h"
 
 @interface LCCKInputViewPluginLocation()<RCIMLocationControllerDelegate>
 
@@ -83,8 +83,8 @@
         [self.inputViewRef.controllerRef dismissViewControllerAnimated:YES completion:nil];
   
         if (object) {
-            CLPlacemark *placemark = (CLPlacemark *)object;
-           // [self.conversationViewController sendLocationMessageWithLocationCoordinate:placemark.location.coordinate locatioTitle:placemark.name];
+            RCIMLocationObj *placemark = (RCIMLocationObj *)object;
+            [self.conversationViewController sendLocation:placemark];
         }
         _sendCustomMessageHandler = nil;
     };

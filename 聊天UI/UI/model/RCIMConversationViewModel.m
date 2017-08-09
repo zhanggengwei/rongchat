@@ -423,6 +423,11 @@
     }];
     
 }
+
+- (void)sendLocationMessage:(RCLocationMessage *)content
+{
+    
+}
 - (void)loadMessagesFirstTimeWithCallback:(RCIdBoolResultBlock)callback
 {
     [[RCIMMessageManager shareManager]queryLastedMessageWithConversationType:self.conversationType withConversationId:self.conversationId withCount:10 withHandle:^(NSArray<RCMessage *> *messages, NSError *error) {

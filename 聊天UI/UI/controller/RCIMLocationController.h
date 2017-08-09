@@ -11,7 +11,7 @@
 @protocol RCIMLocationControllerDelegate <NSObject>
 
 - (void)cancelLocation;
-- (void)sendLocation:(CLPlacemark *)placemark;
+- (void)sendLocation:(RCIMLocationObj *)placemark;
 
 @end
 

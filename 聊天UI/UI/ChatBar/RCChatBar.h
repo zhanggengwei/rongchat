@@ -108,7 +108,8 @@ typedef NS_ENUM(NSUInteger, LCCKFunctionViewShowType){
  *  @param locationCoordinate 需要发送的地址位置经纬度
  *  @param locationText       需要发送的地址位置对应信息
  */
-- (void)chatBar:(RCChatBar *)chatBar sendLocation:(CLLocationCoordinate2D)locationCoordinate locationText:(NSString *)locationText;
+- (void)chatBar:(RCChatBar *)chatBar sendLocation:(RCIMLocationObj *)location;
+
 
 /*!
  *  发送普通的文字信息,可能带有表情

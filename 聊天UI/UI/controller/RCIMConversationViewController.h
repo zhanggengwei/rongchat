@@ -20,10 +20,12 @@
 - (void)sendTextMessage:(NSString *_Nullable)text;
 - (void)sendImagesMessage:(NSArray<UIImage *> *_Nullable)images;
 - (void)sendFileMessage:(NSString *_Nullable)filePath;
-- (void)sendLocationMessage:(CLLocation *_Nullable)location;
+
 - (void)sendVoiceMessageWithPath:(NSString *_Nullable)voicePath time:(NSTimeInterval)recordingSeconds;
 
 - (void)sendLocalFeedbackTextMessge:(NSString *_Nullable)localFeedbackTextMessge;
+- (void)sendLocation:(RCIMLocationObj *)location;
+
 
 
 @end

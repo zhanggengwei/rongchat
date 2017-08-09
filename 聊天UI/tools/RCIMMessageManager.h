@@ -67,4 +67,5 @@
 - (void)sendMediaMessages:(RCMessageContent*)messageContent withConversationId:(NSString *)conversationId conversationType:(RCConversationType)type withProgress:(RCProgressBlock)progressBlock failed:(RCErrorSendMessageBlock)failBlock sucessBlock:(RCSucessedSendMessageBlock)sucessBlock cancelBlock:(RCCancelSendMessageBlock)cancelBlock;
 
 
+
 @end

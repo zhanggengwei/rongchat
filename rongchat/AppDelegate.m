@@ -13,7 +13,7 @@
 #import "LCCKInputViewPluginTakePhoto.h"
 #import "LCCKInputViewPluginLocation.h"
 #import "LCCKInputViewPluginPickImage.h"
-
+#import "RCIMLocationManager.h"
 @interface AppDelegate ()
 
 @end
@@ -42,13 +42,14 @@
        [self createTabbarController];
     }else
     {
-       
-        
         [self createLoginController];
     }
     [[PPChatTools shareManager]autoLogin];
     [[AMapServices sharedServices]setApiKey:KAppMapKey];
     [[PPLocationManager shareManager]requestLocation];
+    [[RCIMLocationManager shareManager]requestReGeocodeLocation:^(AMapLocationReGeocode *response, NSError *error) {
+        
+    }];
     NSLog(@"path = %@",NSHomeDirectory());
     
     [[UINavigationBar appearance]setBackgroundImage:[PPImageUtil imageFromColor:[UIColor blackColor]] forBarMetrics:UIBarMetricsDefault];

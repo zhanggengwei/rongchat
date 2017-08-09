@@ -40,6 +40,8 @@
 
 - (void)sendMediaMessages:(NSArray<RCMessageContent *> *)contents;
 
+- (void)sendLocationMessage:(RCLocationMessage *)content;
+
 
 
 @end

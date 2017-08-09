@@ -208,7 +208,5 @@
         }];
     };
     sendMeidaMessage();
-    
 }
-
 @end

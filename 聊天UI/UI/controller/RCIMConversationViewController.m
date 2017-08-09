@@ -60,9 +60,10 @@
 {
     
 }
-- (void)sendLocationMessage:(CLLocation *_Nullable)location
+- (void)sendLocation:(RCIMLocationObj *)location
 {
-    
+    RCLocationMessage * messageContent = [RCLocationMessage messageWithLocationImage:location.thumbnailImage location:location.location locationName:location.name];
+    [self.viewModel sendMessage:messageContent];
 }
 - (void)sendVoiceMessageWithPath:(NSString *_Nullable)voicePath time:(NSTimeInterval)recordingSeconds
 {
@@ -189,7 +190,7 @@
  *  @param locationCoordinate 需要发送的地址位置经纬度
  *  @param locationText       需要发送的地址位置对应信息
  */
-- (void)chatBar:(RCChatBar *)chatBar sendLocation:(CLLocationCoordinate2D)locationCoordinate locationText:(NSString *)locationText
+- (void)chatBar:(RCChatBar *)chatBar sendLocation:(RCIMLocationObj *)location
 {
     
 }
