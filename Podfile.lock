@@ -27,8 +27,9 @@ PODS:
     - AMapFoundation (~> 1.2)
   - AMapSearch (4.2.0):
     - AMapFoundation (~> 1.0)
-  - Bugly (2.4.2)
+  - Bugly (2.4.8)
   - DACircularProgress (2.3.1)
+  - FHHFPSIndicator (1.0.0)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -64,6 +65,7 @@ PODS:
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
   - SFHFKeychainUtils (0.0.1)
+  - TZImagePickerController (1.8.1)
   - UITableView+FDTemplateLayoutCell (1.6)
   - UIView+FrameEx (0.0.1)
   - WActionSheet (0.0.3)
@@ -84,8 +86,9 @@ DEPENDENCIES:
   - AMap2DMap (~> 4.6.0)
   - AMapLocation (~> 2.1.1)
   - AMapSearch (~> 4.2.0)
-  - Bugly (~> 2.4.2)
+  - Bugly (~> 2.4.8)
   - DACircularProgress (~> 2.3.1)
+  - FHHFPSIndicator (~> 1.0.0)
   - FMDB
   - iAppInfos (~> 0.2.1)
   - ICEVersionUpdate (~> 1.0.0)
@@ -106,6 +109,7 @@ DEPENDENCIES:
   - RongCloudIM/IMLib (~> 2.8.12)
   - SDWebImage (~> 3.7.1)
   - SFHFKeychainUtils (~> 0.0.1)
+  - TZImagePickerController (= 1.8.1)
   - UITableView+FDTemplateLayoutCell (~> 1.6)
   - UIView+FrameEx (~> 0.0.1)
   - WActionSheet (~> 0.0.3)
@@ -118,8 +122,9 @@ SPEC CHECKSUMS:
   AMapFoundation: 843dc27b2c02bc0bc2ef3346bb3dd0456cf64dbb
   AMapLocation: dd203f76b034ef5cb546600f4e1ffad2a3a14072
   AMapSearch: 788020fca7ed18819e8bc2bfca716a6775a05ada
-  Bugly: b09cd3c7e54048a0e079be88a7a99610f14eab8f
+  Bugly: da3c02408c14838d498429320545a8e439392978
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  FHHFPSIndicator: b4d34c3a93b702ad18358a4eb49839f83f4f30fb
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   iAppInfos: 090ecd9a694be25968bbdbdbff97841b301a9107
   ICEVersionUpdate: 28cbd6aecca9f9eb79afb853a066bd5abccb5e39
@@ -140,6 +145,7 @@ SPEC CHECKSUMS:
   RongCloudIM: 13599772038afa20dc62aff70c620b9305e6ac96
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SFHFKeychainUtils: 9576b411a79a058f4d5381ace6f3242b9a62e664
+  TZImagePickerController: 086034156913375cb19c8e4103562f15322c3b36
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UIView+FrameEx: ab0c53e158ef0621d7b0b0a26626e175ac17e471
   WActionSheet: d940181cdbc9bfcea8edfe6f7dc707070166fc46
@@ -149,6 +155,6 @@ SPEC CHECKSUMS:
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: e38ba3b5754a4be5fba9c2bd32939b39cb3e4faa
+PODFILE CHECKSUM: 4ab8daf81e8181912a36b48b8ffff0727ca6b863
 
 COCOAPODS: 1.2.1

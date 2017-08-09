@@ -369,7 +369,6 @@
 
 - (void)sendCustomMessage:(RCMessage *)message
 {
-    
     void (^setMessageSendStatus)(RCSentStatus status,NSInteger messageId) = ^(RCSentStatus status,NSInteger messageId)
     {
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[self.dataArray indexOfObject:message] inSection:0];
@@ -407,7 +406,6 @@
             [[RCIMMessageManager shareManager]sendMediaMessages:obj.content withConversationId:self.conversationId conversationType:self.conversationType withProgress:^(NSInteger percentDone, NSInteger messageId) {
                 if([self.delegate respondsToSelector:@selector(messageSendStateChanged:withProgress:forIndex:)])
                 {
-                    NSLog(@"percentDone = %d",percentDone);
                     [self.delegate messageSendStateChanged:SentStatus_SENDING withProgress:percentDone/100.0 forIndex:[self.dataArray indexOfObject:obj]];
                 }
                 

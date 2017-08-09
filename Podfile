@@ -40,7 +40,6 @@ def pods
     
     pod 'ZYCornerRadius'
     
-    pod 'Bugly', '~> 2.4.2'
     #MAP
     pod 'AMapSearch', '~> 4.2.0'
     pod 'AMapLocation', '~> 2.1.1'
@@ -53,8 +52,11 @@ def pods
     #拼音
     pod 'PinYin4Objc', '~> 1.1.1'
     pod 'PhotoBrowser', '~> 0.6.4'
-    
+    pod 'TZImagePickerController', '1.8.1'
   
+   #bugly crash
+    pod 'Bugly', '~> 2.4.8'
+    pod 'FHHFPSIndicator', '~> 1.0.0'
     
 end
 
