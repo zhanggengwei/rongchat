@@ -8,8 +8,8 @@
 
 #import "RCIMLocationController.h"
 #import <MAMapKit/MAMapKit.h>
-
-@interface RCIMLocationController ()
+#import <UIView+MJExtension.h>
+@interface RCIMLocationController ()<MAMapViewDelegate>
 @property (nonatomic,strong) MAMapView * mapView;
 
 @end
@@ -20,14 +20,14 @@
     [super viewDidLoad];
     self.title = @"位置";
     [self createNavUI];
-    self.mapView = [[MAMapView alloc]initWithFrame:CGRectZero];
+    self.mapView = [[MAMapView alloc]initWithFrame:self.view.bounds];
+    self.mapView.mj_h = 300;
     [self.view addSubview:self.mapView];
-    [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(self.view);
-        make.height.mas_equalTo(300);
-    }];
+    [AMapServices sharedServices].enableHTTPS = YES;
+    _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
-    _mapView.userTrackingMode = MAUserTrackingModeFollow;
+    _mapView.userTrackingMode = MAUserTrackingModeNone;
+    _mapView.distanceFilter = kCLLocationAccuracyBest;
     
     // Do any additional setup after loading the view.
 }
@@ -55,7 +55,12 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
+{
+    [mapView setCenterCoordinate:userLocation.coordinate animated:YES];
+    _mapView.region = MACoordinateRegionMake(_mapView.centerCoordinate, MACoordinateSpanMake(0.01, 0.01));
+    
+}
 /*
 #pragma mark - Navigation
 
