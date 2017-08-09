@@ -10,7 +10,7 @@
 #import "RCIMPhotoBrowser.h"
 #import "RCIMZoomingScrollView.h"
 
-#import "pop/POP.h"
+#import "POP.h"
 
 #ifndef RCIMPhotoBrowserLocalizedStrings
 #define RCIMPhotoBrowserLocalizedStrings(key) \

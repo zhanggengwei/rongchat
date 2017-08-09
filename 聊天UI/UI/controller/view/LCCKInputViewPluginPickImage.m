@@ -9,11 +9,12 @@
 #import "LCCKInputViewPluginPickImage.h"
 #import "UIImage+RCIMExtension.h"
 #import "RCIMConversationViewController.h"
+#import <TZImagePickerController.h>
+@interface LCCKInputViewPluginPickImage()<TZImagePickerControllerDelegate>
 
-@interface LCCKInputViewPluginPickImage()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@property (nonatomic, copy) RCArrayResultBlock sendCustomMessageHandler;
 
-@property (nonatomic, copy) RCIdResultBlock sendCustomMessageHandler;
-@property (nonatomic, strong) UIImagePickerController *pickerController;
+@property (nonatomic, strong) TZImagePickerController * imagePickController;
 
 @end
 
@@ -55,18 +56,17 @@
 - (void)pluginDidClicked {
     [super pluginDidClicked];
     //显示相册
-    [self.conversationViewController presentViewController:self.pickerController animated:YES completion:nil];
+    [self.conversationViewController presentViewController:self.imagePickController animated:YES completion:nil];
 }
 
-- (RCIdResultBlock)sendCustomMessageHandler {
+- (RCArrayResultBlock)sendCustomMessageHandler {
     if (_sendCustomMessageHandler) {
         return _sendCustomMessageHandler;
     }
-    RCIdResultBlock sendCustomMessageHandler = ^(id object, NSError *error) {
+    RCArrayResultBlock sendCustomMessageHandler = ^(NSArray *objects, NSError *error) {
         [self.conversationViewController dismissViewControllerAnimated:YES completion:nil];
-        if (object) {
-            UIImage *image = (UIImage *)object;
-            [self.conversationViewController sendImagesMessage:@[image]];
+        if (objects) {
+            [self.conversationViewController sendImagesMessage:objects];
         } else {
             NSLog(@"%@", error.description);
         }
@@ -78,13 +78,12 @@
 
 #pragma mark -
 #pragma mark - Private Methods
-- (UIImagePickerController *)pickerController {
-    if (_pickerController) {
-        return _pickerController;
+- (TZImagePickerController *)imagePickController {
+    if (_imagePickController) {
+        return _imagePickController;
     }
-    _pickerController = [[UIImagePickerController alloc] init];
-    _pickerController.delegate = self;
-    return _pickerController;
+    _imagePickController = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+    return _imagePickController;
 }
 
 - (UIImage *)imageInBundlePathForImageName:(NSString *)imageName {
@@ -92,14 +91,22 @@
     return image;
 }
 
-#pragma mark - UIImagePickerControllerDelegate
+#pragma mark - TZImagePickerControllerDelegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    !self.sendCustomMessageHandler ?: self.sendCustomMessageHandler(image, nil);
+
+
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto
+{
+
+    !self.sendCustomMessageHandler ?: self.sendCustomMessageHandler(photos, nil);
 }
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos
+{
+    
+}
+//- (void)imagePickerControllerDidCancel:(TZImagePickerController *)picker __attribute__((deprecated("Use -tz_imagePickerControllerDidCancel:.")));
+- (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker
+{
     NSInteger code = 0;
     NSString *errorReasonText = @"cancel image picker without result";
     NSDictionary *errorInfo = @{

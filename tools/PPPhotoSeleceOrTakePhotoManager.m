@@ -8,8 +8,6 @@
 
 #import "PPPhotoSeleceOrTakePhotoManager.h"
 #import <AVFoundation/AVFoundation.h>
-#import <LBXScan/LBXScanWrapper.h>
-//#import <LBXScan/LBXScanViewController.h>
 #import "SubLBXScanViewController.h"
 
 @interface PPPhotoSeleceOrTakePhotoManager ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -85,21 +83,25 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
 + (UIImage *)createQRCode:(NSString *)content imageWidth:(CGFloat)width
 {
     
-  return   [LBXScanWrapper createQRWithString:content size:CGSizeMake(width, width)];
+//  return   [LBXScanWrapper createQRWithString:content size:CGSizeMake(width, width)];
+    return nil;
 }
 + (UIImage*)createQRWithString:(NSString*)text imageWidth:(CGFloat)width QRColor:(UIColor*)qrColor backGroundColor:(UIColor*)bkColor
 {
-    return [LBXScanWrapper createQRWithString:text QRSize:CGSizeMake(width, width) QRColor:qrColor bkColor:bkColor];
+//    return [LBXScanWrapper createQRWithString:text QRSize:CGSizeMake(width, width) QRColor:qrColor bkColor:bkColor];
+    return nil;
     
 }
 + (UIImage*)imageBlackToTransparent:(UIImage*)image withRed:(CGFloat)red andGreen:(CGFloat)green andBlue:(CGFloat)blue
 {
-    return [LBXScanWrapper imageBlackToTransparent:image withRed:red andGreen:green andBlue:blue];
+//    return [LBXScanWrapper imageBlackToTransparent:image withRed:red andGreen:green andBlue:blue];
+    return nil;
     
 }
 + (UIImage*)addImageLogo:(UIImage*)srcImg centerLogoImage:(UIImage*)LogoImage logoSizeWidth:(CGFloat)width;
 {
-    return [LBXScanWrapper addImageLogo:srcImg centerLogoImage:LogoImage logoSize:CGSizeMake(width, width)];
+//    return [LBXScanWrapper addImageLogo:srcImg centerLogoImage:LogoImage logoSize:CGSizeMake(width, width)];
+    return nil;
     
 }
 

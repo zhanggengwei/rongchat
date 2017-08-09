@@ -20,7 +20,7 @@
 #import "singleton.h"
 #import "XIAlertView.h"
 #import "PPUrlDef.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 #import "RCConstants.h"
 #import "RCIMSettingService.h"
 #import "RCChatSystemMessageCell.h"
@@ -43,6 +43,9 @@
 #import "RCConversationCacheObj.h"
 
 #import "RCIM.h"
-#import <RongCloudIM/RongIMLib/RongIMLib.h>
-
+#import <RongIMLib/RongIMLib.h>
+#define LBXScan_Define_Native  //包含native库
+#define LBXScan_Define_ZXing   //包含ZXing库
+#define LBXScan_Define_ZBar   //包含ZBar库
+#define LBXScan_Define_UI     //包含界面库
 #endif /* PrefixHeader_pch */

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		008506534756DB82E16B34FA /* libPods-rongchat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */; };
 		406833761E7A657700E03427 /* PPListItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833651E7A657700E03427 /* PPListItemViewController.m */; };
 		406833771E7A657700E03427 /* RCConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833671E7A657700E03427 /* RCConversationListViewController.m */; };
 		406833781E7A657700E03427 /* RCConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833691E7A657700E03427 /* RCConversationViewController.m */; };
@@ -261,6 +260,7 @@
 		75DE61831DE48CA400DF1CA4 /* Country_Code.json in Resources */ = {isa = PBXBuildFile; fileRef = 75DE61821DE48CA400DF1CA4 /* Country_Code.json */; };
 		75DE618B1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DE618A1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m */; };
 		75DE618E1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DE618D1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m */; };
+		899A97B728BC4DA4C65C4E21 /* libPods-rongchat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D58E0E637674430A8503FE12 /* libPods-rongchat.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -702,8 +702,8 @@
 		75DE618C1DE490BD00DF1CA4 /* PPSelectAreaViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSelectAreaViewCell.h; sourceTree = "<group>"; };
 		75DE618D1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSelectAreaViewCell.m; sourceTree = "<group>"; };
 		78D01DBD98BAF4E7A89239B3 /* Pods-rongchat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.release.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.release.xcconfig"; sourceTree = "<group>"; };
+		D58E0E637674430A8503FE12 /* libPods-rongchat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rongchat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFA4B35F629690DB9A8BA296 /* Pods-rongchat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rongchat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rongchat/Pods-rongchat.debug.xcconfig"; sourceTree = "<group>"; };
-		EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rongchat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -714,7 +714,7 @@
 				7513A2FA1DE73B4C00CCAB61 /* PhotosUI.framework in Frameworks */,
 				758E8BA11E0AC6EB00D5DD4E /* lame.framework in Frameworks */,
 				7513A2F81DE73B4500CCAB61 /* Photos.framework in Frameworks */,
-				008506534756DB82E16B34FA /* libPods-rongchat.a in Frameworks */,
+				899A97B728BC4DA4C65C4E21 /* libPods-rongchat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,7 +856,7 @@
 			path = tools;
 			sourceTree = "<group>";
 		};
-		409F50771DDD6E6F00015DB7 /* 登陆 */ = {
+		409F50771DDD6E6F00015DB7 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				40785E9C1DEEA1F500875E00 /* register.storyboard */,
@@ -878,6 +878,7 @@
 				4084F18E1EE132EF00F4A917 /* CustomView.h */,
 				4084F18F1EE132EF00F4A917 /* CustomView.m */,
 			);
+			name = Login;
 			path = "登陆";
 			sourceTree = "<group>";
 		};
@@ -901,12 +902,13 @@
 			path = Codec;
 			sourceTree = "<group>";
 		};
-		409F50981DDD721500015DB7 /* 我的 */ = {
+		409F50981DDD721500015DB7 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
 				7584DB3B1E2A5BE6007249C2 /* controller */,
 				409F50A21DDD721500015DB7 /* view */,
 			);
+			name = Mine;
 			path = "我的";
 			sourceTree = "<group>";
 		};
@@ -929,7 +931,7 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		409F79301DF65B210090D67F /* 聊天UI */ = {
+		409F79301DF65B210090D67F /* Chat */ = {
 			isa = PBXGroup;
 			children = (
 				75278A291F106798000C70AF /* Resources */,
@@ -940,6 +942,7 @@
 				758E8B631E0AC6EB00D5DD4E /* Vendor */,
 				758E8B4A1E0A9FBD00D5DD4E /* Categories */,
 			);
+			name = Chat;
 			path = "聊天UI";
 			sourceTree = "<group>";
 		};
@@ -1448,10 +1451,10 @@
 		75CEF8581DDC878500541660 = {
 			isa = PBXGroup;
 			children = (
-				409F79301DF65B210090D67F /* 聊天UI */,
-				409F50981DDD721500015DB7 /* 我的 */,
+				409F79301DF65B210090D67F /* Chat */,
+				409F50981DDD721500015DB7 /* Mine */,
 				409F50841DDD704100015DB7 /* Codec */,
-				409F50771DDD6E6F00015DB7 /* 登陆 */,
+				409F50771DDD6E6F00015DB7 /* Login */,
 				409F506C1DDD6E5100015DB7 /* tools */,
 				409F504C1DDD6E3100015DB7 /* manager */,
 				75CEF8631DDC878500541660 /* rongchat */,
@@ -1561,7 +1564,7 @@
 			children = (
 				7513A2F91DE73B4C00CCAB61 /* PhotosUI.framework */,
 				7513A2F71DE73B4500CCAB61 /* Photos.framework */,
-				EFFAB02F70B9D831F8E263B2 /* libPods-rongchat.a */,
+				D58E0E637674430A8503FE12 /* libPods-rongchat.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

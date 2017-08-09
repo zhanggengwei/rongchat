@@ -9,8 +9,9 @@
 #import "SubLBXScanViewController.h"
 #import "MyQRViewController.h"
 #import <LBXScan/LBXScanViewController.h>
-#import <LBXScan/LBXScanResult.h>
-#import <LBXScan/LBXScanWrapper.h>
+#import <LBXScan/LBXZBarWrapper.h>
+#import <LBXScan/LBXScanViewStyle.h>
+
 
 
 
@@ -32,12 +33,12 @@
     self.view.backgroundColor = [UIColor blackColor];
     
     //设置扫码后需要扫码图像
-    //self.isNeedScanImage = YES;
+    self.isNeedScanImage = YES;
     //设置扫码区域参数设置
     
     //创建参数对象
     LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
-    
+
     //矩形区域中心上移，默认中心点为屏幕中心点
     style.centerUpOffset = 44;
     
@@ -59,11 +60,10 @@
     //线条上下移动图片
     style.animationImage = [UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_light_green"];
     
-    //SubLBXScanViewController继承自LBXScanViewController
-    //添加一些扫码或相册结果处理
+//    SubLBXScanViewController继承自LBXScanViewController
+//    添加一些扫码或相册结果处理
    
     self.style = style;
-    
     self.isQQSimulator = YES;
     self.isVideoZoom = YES;
     
@@ -226,21 +226,13 @@
 //打开相册
 - (void)openPhoto
 {
-    if ([LBXScanWrapper isGetPhotoPermission])
-        [self openLocalPhoto];
-    else
-    {
-        [self showError:@"      请到设置->隐私中开启本程序相册权限     "];
-    }
+    
 }
-
 //开关闪光灯
 - (void)openOrCloseFlash
 {
     
     [super openOrCloseFlash];
-   
-    
     if (self.isOpenFlash)
     {
         [_btnFlash setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_btn_flash_down"] forState:UIControlStateNormal];

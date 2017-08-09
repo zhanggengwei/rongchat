@@ -7,7 +7,6 @@
 //
 
 #import "MyQRViewController.h"
-#import <LBXScan/LBXScanWrapper.h>
 #import "LBXAlertAction.h"
 #import <ZYCornerRadius/UIImageView+CornerRadius.h>
 
@@ -123,15 +122,15 @@
     _qrView.hidden = NO;
     _tView.hidden = YES;
     
-    _qrImgView.image = [LBXScanWrapper createQRWithString:@"lbxia20091227@foxmail.com" size:_qrImgView.bounds.size];
+//    _qrImgView.image = [LBXScanWrapper createQRWithString:@"lbxia20091227@foxmail.com" size:_qrImgView.bounds.size];
     
     CGSize logoSize=CGSizeMake(30, 30);
     UIImageView* imageView = [self roundCornerWithImage:[UIImage imageNamed:@"logo.JPG"] size:logoSize];
    // [LBXScanWrapper addImageViewLogo:_qrImgView.image centerLogoImageView:imageView.image logoSize:logoSize];
     
-    [LBXScanWrapper addImageLogo:_qrImgView.image centerLogoImage:imageView.image logoSize:logoSize];
-    
-    
+//    [LBXScanWrapper addImageLogo:_qrImgView.image centerLogoImage:imageView.image logoSize:logoSize];
+//    
+//    
     
 }
 
@@ -158,9 +157,9 @@
     _qrView.hidden = NO;
     _tView.hidden = YES;
     
-    UIImage *image = [LBXScanWrapper createQRWithString:@"lbxia20091227@foxmail.com" size:_qrImgView.bounds.size];
-    //二维码上色
-    _qrImgView.image = [LBXScanWrapper imageBlackToTransparent:image withRed:255.0f andGreen:74.0f andBlue:89.0f];
+//    UIImage *image = [LBXScanWrapper createQRWithString:@"lbxia20091227@foxmail.com" size:_qrImgView.bounds.size];
+//    //二维码上色
+//    _qrImgView.image = [LBXScanWrapper imageBlackToTransparent:image withRed:255.0f andGreen:74.0f andBlue:89.0f];
     
 }
 
@@ -170,10 +169,10 @@
     _tView.hidden = YES;
     
     //生成的不好识别，自己去调好颜色应该就可以识别了
-    _qrImgView.image = [LBXScanWrapper createQRWithString:@"lbxia20091227@foxmail.com"
-                                                 QRSize:_qrImgView.bounds.size
-                                                QRColor:[UIColor colorWithRed:200./255. green:84./255. blue:40./255 alpha:1.0]
-                                                bkColor:[UIColor colorWithRed:41./255. green:130./255. blue:45./255. alpha:1.0]];
+//    _qrImgView.image = [LBXScanWrapper createQRWithString:@"lbxia20091227@foxmail.com"
+//                                                 QRSize:_qrImgView.bounds.size
+//                                                QRColor:[UIColor colorWithRed:200./255. green:84./255. blue:40./255 alpha:1.0]
+//                                                bkColor:[UIColor colorWithRed:41./255. green:130./255. blue:45./255. alpha:1.0]];
 }
 
 //商品条形码
@@ -182,7 +181,7 @@
     _qrView.hidden = YES;
     _tView.hidden = NO;
     
-    _tImgView.image = [LBXScanWrapper createCodeWithString:@"6944551723107" size:_qrImgView.bounds.size CodeFomart:AVMetadataObjectTypeEAN13Code];
+//    _tImgView.image = [LBXScanWrapper createCodeWithString:@"6944551723107" size:_qrImgView.bounds.size CodeFomart:AVMetadataObjectTypeEAN13Code];
 }
 
 - (void)createCode93
@@ -191,7 +190,7 @@
     _tView.hidden = NO;
     
     //支付宝付款码-条款码
-    _tImgView.image = [LBXScanWrapper createCodeWithString:@"283657461695996598" size:_qrImgView.bounds.size CodeFomart:AVMetadataObjectTypeCode128Code];
+//    _tImgView.image = [LBXScanWrapper createCodeWithString:@"283657461695996598" size:_qrImgView.bounds.size CodeFomart:AVMetadataObjectTypeCode128Code];
 }
 
 

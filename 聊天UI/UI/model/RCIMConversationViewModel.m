@@ -362,8 +362,9 @@
         
     }];
     [self.dataArray addObjectsFromArray:sendMessages];
-    [self.parentController.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-    [self.parentController.tableView scrollToRowAtIndexPath:indexPaths.lastObject atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self.parentController.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
+//    [self.parentController.tableView scrollToRowAtIndexPath:indexPaths.lastObject atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self.parentController scrollToBottomAnimated:YES];
     return sendMessages;
 }
 

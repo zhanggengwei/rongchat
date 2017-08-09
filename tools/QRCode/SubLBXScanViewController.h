@@ -13,8 +13,6 @@
 //继承LBXScanViewController,在界面上绘制想要的按钮，提示语等
 @interface SubLBXScanViewController : LBXScanViewController
 
-
-
 #pragma mark -模仿qq界面
 
 @property (nonatomic, assign) BOOL isQQSimulator;

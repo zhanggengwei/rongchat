@@ -3,7 +3,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 
 inhibit_all_warnings!
-
 def pods
     
     # Data
@@ -28,14 +27,14 @@ def pods
     pod 'MJRefresh', '~> 3.1.12'
     pod 'DACircularProgress', '~> 2.3.1'
     pod 'pop', '~> 1.0.9'
-    pod 'ReactiveCocoa'
+    pod 'ReactiveObjC', '~> 3.0.0'
     pod 'MLLabel', '~> 1.10.3'
     pod 'UITableView+FDTemplateLayoutCell', '~> 1.6'
 #    pod 'Realm'
     
     #log
     #QRCode
-    pod 'LBXScan'
+    pod 'LBXScan', '~> 2.2'
     pod 'LBXAlertAction'
     
     pod 'ZYCornerRadius'
@@ -56,7 +55,7 @@ def pods
   
    #bugly crash
     pod 'Bugly', '~> 2.4.8'
-    pod 'FHHFPSIndicator', '~> 1.0.0'
+    #pod 'FHHFPSIndicator', '~> 1.0.0'
     
 end
 

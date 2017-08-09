@@ -108,9 +108,10 @@
     return [[self alloc] initWithTitle:title message:message preferredStyle:preferredStyle];
 }
 
-- (instancetype)init NS_UNAVAILABLE {
-    assert(0);
-}
+//- (instancetype)init NS_UNAVAILABLE {
+//    assert(0);
+//    
+//}
 
 - (instancetype)initWithTitle:(NSString *)title message:(NSString *)message preferredStyle:(RCIMAlertControllerStyle)preferredStyle {
     if ((self = [super init])) {
