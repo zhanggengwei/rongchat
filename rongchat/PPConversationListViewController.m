@@ -7,7 +7,6 @@
 //
 
 #import "PPConversationListViewController.h"
-#import "PPMessageViewController.h"
 
 @interface PPConversationListViewController ()
 //@property(nonatomic, strong) RCConversationModel *tempModel;

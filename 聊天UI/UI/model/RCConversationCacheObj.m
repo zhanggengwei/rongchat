@@ -8,7 +8,6 @@
 
 #import "RCConversationCacheObj.h"
 #import <FMDB/FMDB.h>
-#import "RCIM.h"
 #import "PPTDBEngine.h"
 #import "RCContactUserInfo.h"
 

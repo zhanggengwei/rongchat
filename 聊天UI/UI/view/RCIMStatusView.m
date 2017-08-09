@@ -47,7 +47,7 @@ static CGFloat RCIMHorizontalLittleSpacing = 5;
         _statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(RCIMHorizontalSpacing, (RCIMStatusViewHight - RCIMStatusImageViewHeight) / 2, RCIMStatusImageViewHeight, RCIMStatusImageViewHeight)];
         _statusImageView.image =  ({
             NSString *imageName = @"MessageSendFail";
-            UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"MessageBubble" bundleForClass:[self class]];
+            UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"MessageBubble" bundleForClass:[self class]];
             image;});
     }
     return _statusImageView;

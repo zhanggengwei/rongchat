@@ -94,7 +94,7 @@
     NSMutableArray *messageWithSystemMessages = lastMessage ? @[lastMessage].mutableCopy : @[].mutableCopy;
     for (RCMessage * message in messages) {
         [messageWithSystemMessages addObject:message];
-        [message lcck_shouldDisplayTimestampForMessages:messageWithSystemMessages callback:^(BOOL shouldDisplayTimestamp, NSTimeInterval messageTimestamp) {
+        [message RCIM_shouldDisplayTimestampForMessages:messageWithSystemMessages callback:^(BOOL shouldDisplayTimestamp, NSTimeInterval messageTimestamp) {
             if (shouldDisplayTimestamp) {
                 [messageWithSystemMessages insertObject:[RCMessage systemMessageWithTimestamp:messageTimestamp] atIndex:(messageWithSystemMessages.count - 1)];
             }

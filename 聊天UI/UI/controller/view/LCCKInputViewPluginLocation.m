@@ -96,7 +96,7 @@
 #pragma mark - Private Methods
 
 - (UIImage *)imageInBundlePathForImageName:(NSString *)imageName {
-    UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"ChatKeyboard" bundleForClass:[self class]];
+    UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"ChatKeyboard" bundleForClass:[self class]];
     return image;
     return nil;
     

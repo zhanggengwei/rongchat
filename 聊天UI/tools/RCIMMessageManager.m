@@ -8,7 +8,7 @@
 
 #import "RCIMMessageManager.h"
 
-@interface RCIMMessageManager ()<RCIMClientReceiveMessageDelegate,RCIMConnectionStatusDelegate>
+@interface RCIMMessageManager ()<RCIMClientReceiveMessageDelegate,RCConnectionStatusChangeDelegate>
 {
     RCIMClient * _client;
     //创建一个子线程用于查询历史消息

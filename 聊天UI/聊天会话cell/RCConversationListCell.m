@@ -108,15 +108,7 @@
             
         }else
         {
-            if([RCIM sharedRCIM].userInfoDataSource)
-            {
-               [[RCIM sharedRCIM].userInfoDataSource getUserInfoWithUserId:conversation.targetId completion:^(RCUserInfo *userInfo) {
-                   
-                   [self.avaturImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.portraitUri]];
-                   self.receiveLabel.text = userInfo.name;
-               }];
-                
-            }
+           
         }
         
     }

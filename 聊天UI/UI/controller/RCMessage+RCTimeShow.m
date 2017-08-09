@@ -11,7 +11,7 @@
 @implementation RCMessage (RCTimeShow)
 
 
-- (NSTimeInterval)lcck_messageTimestamp {
+- (NSTimeInterval)RCIM_messageTimestamp {
     NSTimeInterval selfMessageTimestamp;
     
         NSTimeInterval sendTime = self.sentTime;
@@ -24,13 +24,13 @@
 }
 
 // 是否显示时间轴Label
-- (void)lcck_shouldDisplayTimestampForMessages:(NSArray *)messages callback:(RCIMShouldDisplayTimestampCallBack)callback {
+- (void)RCIM_shouldDisplayTimestampForMessages:(NSArray *)messages callback:(RCIMShouldDisplayTimestampCallBack)callback {
 
     BOOL containsMessage= [messages containsObject:self];
     if (!containsMessage) {
         return;
     }
-    NSTimeInterval selfMessageTimestamp = [self lcck_messageTimestamp];
+    NSTimeInterval selfMessageTimestamp = [self RCIM_messageTimestamp];
     
     NSUInteger index = [messages indexOfObject:self];
     if (index == 0) {
@@ -39,7 +39,7 @@
     }
     id lastMessage = [messages objectAtIndex:index - 1];
     
-    NSTimeInterval lastMessageTimestamp = [lastMessage lcck_messageTimestamp];
+    NSTimeInterval lastMessageTimestamp = [lastMessage RCIM_messageTimestamp];
     NSTimeInterval interval = (selfMessageTimestamp - lastMessageTimestamp) / 1000;
     
     int limitInterval = 60 * 3;

@@ -256,7 +256,7 @@ static BOOL LCCKAllLogsEnabled;
     if (conversationId.length == 0 || !conversationId) {
         return;
     }
-    image = [image lcck_scalingPatternImageToSize:scaledToSize];
+    image = [image RCIM_scalingPatternImageToSize:scaledToSize];
     NSData *imageData = (UIImagePNGRepresentation(image) ? UIImagePNGRepresentation(image) : UIImageJPEGRepresentation(image, 1));
     NSString *imageName = [NSString stringWithFormat:@"%@.jpg", [[NSUUID UUID] UUIDString]];
     NSString *imagePath = [imageName lcck_pathForConversationBackgroundImage];;

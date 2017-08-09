@@ -7,13 +7,12 @@
 //
 
 #import "PPChatTools.h"
-#import "RCIM.h"
 
 
 #import "PPDateEngine.h"
 
-@interface PPChatTools ()<RCIMConnectionStatusDelegate,RCIMReceiveMessageDelegate,RCIMUserInfoDataSource>
-@property (nonatomic,strong)RCIM * client;
+@interface PPChatTools ()
+@property (nonatomic,strong)RCIMClient * client;
 
 @end
 
@@ -27,13 +26,8 @@
     
     dispatch_once(&token, ^{
         shareInstance = [PPChatTools new];
-        shareInstance.client = [RCIM sharedRCIM];
+        shareInstance.client = [RCIMClient sharedRCIMClient];
         [shareInstance initRCIM];
-        [shareInstance.client setConnectionStatusDelegate:shareInstance];
-        
-        shareInstance.client.receiveMessageDelegate = shareInstance;
-        shareInstance.client.userInfoDataSource = shareInstance;
-        shareInstance.client.enablePersistentUserInfoCache = YES;
     });
     return shareInstance;
 }
@@ -105,14 +99,13 @@
 }
 - (void)disconnect
 {
-    [self.client disconnect];
+   
     
 }
 
 - (void)disconnectConnection:(BOOL)isReceivePush
 {
-    [self.client disconnect:isReceivePush];
-    
+   
 }
 
 #pragma mark onRCIMConnectionStatusChangedDelegate
@@ -224,9 +217,8 @@
             PPUserBaseInfo * userInfo = [PPUserBaseInfo new];
             userInfo.user = base;
             RCUserInfo * info = [[RCUserInfo alloc]initWithUserId:userId name:base.nickname portrait:base.portraitUri];
-            [[RCIM sharedRCIM]
-             refreshUserInfoCache:userInfo
-             withUserId:info.userId];
+            
+            
             completion(info);
         }
         

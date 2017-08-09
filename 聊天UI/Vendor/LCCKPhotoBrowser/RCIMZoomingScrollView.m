@@ -276,7 +276,7 @@
     
     if (!_loadingError) {
         _loadingError = [[UIImageView alloc] init];
-        _loadingError.image = [UIImage lcck_imageNamed:@"RCIMPhotoBrowser_error" bundleName:@"RCIMPhotoBrowser" bundleForClass:[self class]];
+        _loadingError.image = [UIImage RCIM_imageNamed:@"RCIMPhotoBrowser_error" bundleName:@"RCIMPhotoBrowser" bundleForClass:[self class]];
         _loadingError.userInteractionEnabled = NO;
         _loadingError.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin |
         UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;

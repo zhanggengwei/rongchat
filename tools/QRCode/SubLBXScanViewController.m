@@ -240,17 +240,10 @@
     else
         [_btnFlash setImage:[UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_btn_flash_nor"] forState:UIControlStateNormal];
 }
-
-
 #pragma mark -底部功能项
-
-
 - (void)myQRCode
 {
     MyQRViewController *vc = [MyQRViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-
-
 @end

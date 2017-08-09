@@ -115,7 +115,7 @@ NSString *const kLCCKAudioDataKey;
         });
     }];
     
-    [blockOperation setName:[[NSString stringWithFormat:@"%@_%@",self.URLString, self.identifier] lcck_MD5String]];
+    [blockOperation setName:[[NSString stringWithFormat:@"%@_%@",self.URLString, self.identifier] RCIM_MD5String]];
     
     [self.audioDataOperationQueue addOperation:blockOperation];
     
@@ -147,7 +147,7 @@ NSString *const kLCCKAudioDataKey;
     //1.检查URLString是本地文件还是网络文件
     if ([URLString hasPrefix:@"http"] || [URLString hasPrefix:@"https"]) {
         //2.来自网络,先检查本地缓存,缓存key是URLString的MD5编码
-        NSString *audioCacheKey = [URLString lcck_MD5String];
+        NSString *audioCacheKey = [URLString RCIM_MD5String];
         
         //3.本地缓存存在->直接读取本地缓存   不存在->从网络获取数据,并且缓存
         if ([[NSFileManager defaultManager] fileExistsAtPath:[self.cachePath stringByAppendingPathComponent:audioCacheKey]]) {
@@ -162,7 +162,7 @@ NSString *const kLCCKAudioDataKey;
     
     //4.判断audioData是否读取成功,成功则添加对应的audioDataKey
     if (audioData) {
-        objc_setAssociatedObject(audioData, &kLCCKAudioDataKey, [[NSString stringWithFormat:@"%@_%@",URLString,identifier] lcck_MD5String], OBJC_ASSOCIATION_COPY);
+        objc_setAssociatedObject(audioData, &kLCCKAudioDataKey, [[NSString stringWithFormat:@"%@_%@",URLString,identifier] RCIM_MD5String], OBJC_ASSOCIATION_COPY);
     }
 
     return audioData;
@@ -173,7 +173,7 @@ NSString *const kLCCKAudioDataKey;
     
     NSString *audioURLMD5String = objc_getAssociatedObject(audioData, &kLCCKAudioDataKey);
     
-    if (![[[NSString stringWithFormat:@"%@_%@",self.URLString,self.identifier] lcck_MD5String] isEqualToString:audioURLMD5String]) {
+    if (![[[NSString stringWithFormat:@"%@_%@",self.URLString,self.identifier] RCIM_MD5String] isEqualToString:audioURLMD5String]) {
         return;
     }
 
@@ -194,7 +194,7 @@ NSString *const kLCCKAudioDataKey;
 
 - (void)cancelOperation {
     for (NSOperation *operation in self.audioDataOperationQueue.operations) {
-        if ([operation.name isEqualToString:[[NSString stringWithFormat:@"%@_%@",self.URLString, self.identifier] lcck_MD5String]]) {
+        if ([operation.name isEqualToString:[[NSString stringWithFormat:@"%@_%@",self.URLString, self.identifier] RCIM_MD5String]]) {
             [operation cancel];
             break;
         }

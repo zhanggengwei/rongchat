@@ -41,7 +41,7 @@ static void * const LCCKSendImageViewShouldShowIndicatorViewContext = (void*)&LC
 - (void)showErrorIcon:(BOOL)showErrorIcon {
     if (showErrorIcon) {
         NSString *imageName = @"MessageSendFail";
-        UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"MessageBubble" bundleForClass:[self class]];
+        UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"MessageBubble" bundleForClass:[self class]];
         [self setImage:image forState:UIControlStateNormal];
     } else {
         [self setImage:nil forState:UIControlStateNormal];

@@ -12,7 +12,7 @@
 
 @implementation NSBundle (MyCategory)
 
-+ (NSString *)lcck_pathForResource:(NSString *)name
++ (NSString *)RCIM_pathForResource:(NSString *)name
                             ofType:(NSString *)extension {
     // First try with the main bundle
     NSBundle * mainBundle = [NSBundle mainBundle];
@@ -47,7 +47,7 @@
 #pragma mark -
 #pragma mark - public Methods
 
-- (UIImage *)lcck_imageByScalingAspectFill {
+- (UIImage *)RCIM_imageByScalingAspectFill {
     CGSize kMaxImageViewSize = {.width = 200, .height = 200};
     CGSize originSize = ({
         CGFloat width = self.size.width;
@@ -55,17 +55,17 @@
         CGSize size = CGSizeMake(width, height);
         size;
     });
-    UIImage *resizedImage = [self lcck_imageByScalingAspectFillWithOriginSize:originSize limitSize:kMaxImageViewSize];
+    UIImage *resizedImage = [self RCIM_imageByScalingAspectFillWithOriginSize:originSize limitSize:kMaxImageViewSize];
     return resizedImage;
 }
 
-- (UIImage *)lcck_imageByScalingAspectFillWithOriginSize:(CGSize)originSize {
+- (UIImage *)RCIM_imageByScalingAspectFillWithOriginSize:(CGSize)originSize {
     CGSize kMaxImageViewSize = {.width = 200, .height = 200};
-    UIImage *resizedImage = [self lcck_imageByScalingAspectFillWithOriginSize:originSize limitSize:kMaxImageViewSize];
+    UIImage *resizedImage = [self RCIM_imageByScalingAspectFillWithOriginSize:originSize limitSize:kMaxImageViewSize];
     return resizedImage;
 }
 
-- (UIImage *)lcck_imageByScalingAspectFillWithOriginSize:(CGSize)originSize
+- (UIImage *)RCIM_imageByScalingAspectFillWithOriginSize:(CGSize)originSize
                                                limitSize:(CGSize)limitSize {
     if (originSize.width == 0 || originSize.height == 0) {
         return self;
@@ -82,10 +82,10 @@
         width = limitSize.height * aspectRatio;
         height = limitSize.height;
     }
-    return [self lcck_scaledToSize:CGSizeMake(width, height)];
+    return [self RCIM_scaledToSize:CGSizeMake(width, height)];
 }
 
-+ (UIImage *)lcck_imageNamed:(NSString *)imageName bundleName:(NSString *)bundleName bundleForClass:(Class)aClass {
++ (UIImage *)RCIM_imageNamed:(NSString *)imageName bundleName:(NSString *)bundleName bundleForClass:(Class)aClass {
     if (imageName.length == 0) return nil;
     if ([imageName hasSuffix:@"/"]) return nil;
     NSBundle *bundle = [NSBundle lcck_bundleForName:bundleName class:aClass];
@@ -99,7 +99,7 @@
     return image;
 }
 
-+ (UIImage *)lcck_imageNamed:(NSString *)imageName {
++ (UIImage *)RCIM_imageNamed:(NSString *)imageName {
     RCIMImageManager *manager = [RCIMImageManager defaultManager];
     UIImage *image = [manager getImageWithName:imageName];
     if (!image) {
@@ -112,7 +112,7 @@
 #pragma mark -
 #pragma mark - Private Methods
 
-- (UIImage *)lcck_scaledToSize:(CGSize)newSize {
+- (UIImage *)RCIM_scaledToSize:(CGSize)newSize {
     //UIGraphicsBeginImageContext(newSize);
     // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
     // Pass 1.0 to force exact pixel size.
@@ -123,7 +123,7 @@
     return newImage;
 }
 
-- (UIImage *)lcck_scalingPatternImageToSize:(CGSize)size {
+- (UIImage *)RCIM_scalingPatternImageToSize:(CGSize)size {
     CGFloat scale = 0.0f;
     CGFloat x = 0.0f;
     CGFloat y = 0.0f;

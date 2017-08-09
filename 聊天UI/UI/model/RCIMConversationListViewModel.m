@@ -311,7 +311,7 @@
 
 - (UIImage *)imageInBundleForImageName:(NSString *)imageName {
     return ({
-        UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
+        UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
         image;});
 }
 

@@ -9,8 +9,8 @@
 #import <RongIMLib/RongIMLib.h>
 
 @interface RCMessage (RCTimeShow)
-- (void)lcck_shouldDisplayTimestampForMessages:(NSArray *)messages callback:(RCIMShouldDisplayTimestampCallBack)callback;
-- (NSTimeInterval)lcck_messageTimestamp;
+- (void)RCIM_shouldDisplayTimestampForMessages:(NSArray *)messages callback:(RCIMShouldDisplayTimestampCallBack)callback;
+- (NSTimeInterval)RCIM_messageTimestamp;
 + (instancetype)systemMessageWithTimestamp:(NSTimeInterval)time;
 @end
 

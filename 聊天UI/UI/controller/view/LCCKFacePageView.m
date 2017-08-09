@@ -32,7 +32,7 @@
 - (void)setup{
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:({
         NSString *imageName = @"preview_background";
-        UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"ChatKeyboard" bundleForClass:[self class]];
+        UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"ChatKeyboard" bundleForClass:[self class]];
         image;})
                                         ];
     [self addSubview:self.backgroundImageView = backgroundImageView];

@@ -10,6 +10,6 @@
 
 @interface NSString (RCIMMD5)
 
-- (NSString *)lcck_MD5String;
+- (NSString *)RCIM_MD5String;
 
 @end

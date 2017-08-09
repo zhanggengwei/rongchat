@@ -11,7 +11,7 @@
 
 @implementation NSString (RCIMMD5)
 
-- (NSString *)lcck_MD5String {
+- (NSString *)RCIM_MD5String {
     const char* str = [self UTF8String];
     unsigned char result[CC_MD5_DIGEST_LENGTH];
     uint32_t length = (CC_LONG)strlen(str);

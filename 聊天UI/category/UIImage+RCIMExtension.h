@@ -11,18 +11,18 @@
 
 @interface UIImage (RCIMExtension)
 
-- (UIImage *)lcck_imageByScalingAspectFill;
+- (UIImage *)RCIM_imageByScalingAspectFill;
 /*!
  * @attention This will invoke `CGSize kMaxImageViewSize = {.width = 200, .height = 200};`.
  */
-- (UIImage *)lcck_imageByScalingAspectFillWithOriginSize:(CGSize)originSize;
+- (UIImage *)RCIM_imageByScalingAspectFillWithOriginSize:(CGSize)originSize;
 
-- (UIImage *)lcck_imageByScalingAspectFillWithOriginSize:(CGSize)originSize
+- (UIImage *)RCIM_imageByScalingAspectFillWithOriginSize:(CGSize)originSize
                                                limitSize:(CGSize)limitSize;
 
-+ (UIImage *)lcck_imageNamed:(NSString *)imageName bundleName:(NSString *)bundleName bundleForClass:(Class)aClass;
-+ (UIImage *)lcck_imageNamed:(NSString *)name;
++ (UIImage *)RCIM_imageNamed:(NSString *)imageName bundleName:(NSString *)bundleName bundleForClass:(Class)aClass;
++ (UIImage *)RCIM_imageNamed:(NSString *)name;
 
-- (UIImage *)lcck_scalingPatternImageToSize:(CGSize)size;
+- (UIImage *)RCIM_scalingPatternImageToSize:(CGSize)size;
 
 @end

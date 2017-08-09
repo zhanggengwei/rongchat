@@ -72,7 +72,7 @@
         if (imageLocalPath && isLocalPath) {
             NSData *imageData = [NSData dataWithContentsOfFile:imageLocalPath];
             UIImage *image = [UIImage imageWithData:imageData];
-            UIImage *resizedImage = [image lcck_imageByScalingAspectFill];
+            UIImage *resizedImage = [image RCIM_imageByScalingAspectFill];
             self.messageImageView.image = resizedImage;
             model.originalImage = image;
             model.thumbnailImage = resizedImage;
@@ -86,7 +86,7 @@
                                                  dispatch_async(dispatch_get_main_queue(),^{
                                                      if (image){
                                                          model.originalImage = image;
-                                                         model.thumbnailImage = [image lcck_imageByScalingAspectFill];
+                                                         model.thumbnailImage = [image RCIM_imageByScalingAspectFill];
                                                          if ([self.delegate respondsToSelector:@selector(fileMessageDidDownload:)]) {
                                                              [self.delegate fileMessageDidDownload:self];
                                                          }
@@ -102,7 +102,7 @@
 }
 - (UIImage *)imageInBundleForImageName:(NSString *)imageName {
     return ({
-        UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
+        UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
         image;});
 }
 

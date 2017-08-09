@@ -8,7 +8,6 @@
 
 #import "PPContactListViewController.h"
 #import "PPContactListCell.h"
-#import "PPMessageViewController.h"
 #import "RCContactUserInfo.h"
 #import "NSString+isValid.h"
 

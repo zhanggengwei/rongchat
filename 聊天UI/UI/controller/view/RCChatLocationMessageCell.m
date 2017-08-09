@@ -81,7 +81,7 @@
         _locationImageView = [[UIImageView alloc] init];
         _locationImageView.contentMode = UIViewContentModeScaleAspectFill;
         _locationImageView.image = ({
-            UIImage *image = [UIImage lcck_imageNamed:@"MessageBubble_Location" bundleName:@"MessageBubble" bundleForClass:[self class]];
+            UIImage *image = [UIImage RCIM_imageNamed:@"MessageBubble_Location" bundleName:@"MessageBubble" bundleForClass:[self class]];
             image;
         });
     }

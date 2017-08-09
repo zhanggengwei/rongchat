@@ -42,7 +42,6 @@
 #import "RCThemeDefine.h"
 #import "RCConversationCacheObj.h"
 
-#import "RCIM.h"
 #import <RongIMLib/RongIMLib.h>
 #define LBXScan_Define_Native  //包含native库
 #define LBXScan_Define_ZXing   //包含ZXing库

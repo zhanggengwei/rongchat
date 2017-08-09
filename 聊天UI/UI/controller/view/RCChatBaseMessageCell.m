@@ -338,7 +338,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:info.portraitUri]
                             placeholderImage:({
         NSString *imageName = @"Placeholder_Avatar";
-        UIImage *image = [UIImage lcck_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
+        UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
         image;})
      ];
     self.messageSendState = message.sentStatus;
