@@ -11,6 +11,7 @@
 #import "RCIMTextFullScreenViewController.h"
 #import <PhotoBrowser.h>
 #import "RCChatBar.h"
+#import "RCIMShowLocationController.h"
 @interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource,RCIMChatBarDelegate,RCIMConversationViewModelDelegate>
 @property (nonatomic,strong) id currentUser;
 @property (nonatomic,strong) RCIMConversationViewModel * viewModel;
@@ -85,6 +86,7 @@
 }
 - (void)messageCellTappedMessage:(RCChatBaseMessageCell *)messageCell
 {
+    if([messageCell.message.objectName isEqualToString:RCImageMessageTypeIdentifier]){
     NSLog(@"%s",__PRETTY_FUNCTION__);
     PBViewController * controller = [[PBViewController alloc]init];
     NSInteger index = [self.viewModel.imageArray indexOfObject:messageCell.message];
@@ -95,6 +97,13 @@
     controller.pb_dataSource = self;
     
     [self.navigationController pushViewController:controller animated:YES];
+    }else if ([messageCell.message.objectName isEqualToString:RCLocationMessageTypeIdentifier])
+    {
+        RCIMShowLocationController * controller = [RCIMShowLocationController new];
+        RCLocationMessage * messageContent = (RCLocationMessage *)messageCell.message.content;
+        controller.coordinate = messageContent.location;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
     
     
 }

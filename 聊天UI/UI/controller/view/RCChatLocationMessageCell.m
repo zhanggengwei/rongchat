@@ -55,7 +55,6 @@
         make.right.mas_equalTo(self.messageContentView.mas_right);
         make.height.mas_equalTo(self.locationAddressLabel.mas_height).offset(2*offset);
     }];
-   
     [super setup];
     [self addGeneralView];
     [self.locationAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,6 +62,9 @@
         make.width.mas_equalTo(self.locationAddressOverlay.mas_width).mas_offset(-16);
         make.centerX.mas_equalTo(self.locationAddressOverlay);
     }];
+    UITapGestureRecognizer * gecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTaplocationImageViewGestureRecognizerHandler:)];
+    [self.messageContentView addGestureRecognizer:gecognizer];
+    
 }
 
 - (void)singleTaplocationImageViewGestureRecognizerHandler:(UITapGestureRecognizer *)tapGestureRecognizer {
