@@ -49,24 +49,20 @@
         make.width.lessThanOrEqualTo(@(240));
     }];
     CGFloat offset = 8.f;
-    [self.locationAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(self.locationAddressOverlay).with.insets(UIEdgeInsetsMake(offset, offset, offset, offset));
-//        make.right.mas_equalTo(self.locationAddressOverlay.mas_right).mas_offset(-offset);
-//        make.left.mas_equalTo(self.locationAddressOverlay.mas_left).mas_offset(offset);
-//        make.left.right.mas_equalTo(self.locationAddressOverlay);
-        make.bottom.mas_equalTo(self.locationAddressOverlay.mas_bottom).mas_offset(-offset);
-        make.width.lessThanOrEqualTo(@(240-2*offset));
-        make.centerX.mas_equalTo(self.locationAddressOverlay);
-        
-    }];
     [self.locationAddressOverlay mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.messageContentView.mas_bottom);
         make.left.mas_equalTo(self.messageContentView.mas_left);
         make.right.mas_equalTo(self.messageContentView.mas_right);
         make.height.mas_equalTo(self.locationAddressLabel.mas_height).offset(2*offset);
     }];
+   
     [super setup];
     [self addGeneralView];
+    [self.locationAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.locationAddressOverlay.mas_bottom).mas_offset(-offset);
+        make.width.mas_equalTo(self.locationAddressOverlay.mas_width).mas_offset(-16);
+        make.centerX.mas_equalTo(self.locationAddressOverlay);
+    }];
 }
 
 - (void)singleTaplocationImageViewGestureRecognizerHandler:(UITapGestureRecognizer *)tapGestureRecognizer {
