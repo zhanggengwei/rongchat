@@ -11,6 +11,7 @@
 #import <UIView+MJExtension.h>
 #import "PPImageUtil.h"
 #import "RCIMLocationManager.h"
+#import "RCIMLocationTableViewCell.h"
 
 @interface RCIMLocationController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) MAMapView * mapView;
@@ -33,14 +34,10 @@
     _mapView.showsUserLocation = YES;
     _mapView.userTrackingMode = MAUserTrackingModeNone;
     _mapView.distanceFilter = kCLLocationAccuracyBest;
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    CGRect tableViewFrame = CGRectMake(0, CGRectGetMaxY(self.mapView.frame), self.view.bounds.size.width, CGRectGetMaxY(self.view.frame) - CGRectGetMaxY(self.mapView.frame));
+    self.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(self.view);
-        make.bottom.mas_equalTo(self.view.mas_bottom);
-        make.height.mas_equalTo(SCREEN_HEIHGHT - 300);
-    }];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    [self.tableView registerClass:[RCIMLocationTableViewCell class] forCellReuseIdentifier:@"RCIMLocationTableViewCell"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.formattedAddress;
@@ -132,10 +129,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    AMapPOI * model = self.pois[indexPath.row];
-    cell.detailTextLabel.text = model.name;
-    cell.textLabel.text = model.name;
+    RCIMLocationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCIMLocationTableViewCell"];
+    AMapPOI * model = nil;
+    if(indexPath.row==0)
+    {
+        model = [AMapPOI new];
+        model.name = [RCIMLocationManager shareManager].locationReGeocode.POIName;
+    }else
+    {
+        model = self.pois[indexPath.row-1];
+    }
+    cell.area = model;
     return cell;
 }
 
@@ -145,9 +149,22 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.pois.count;
+    return self.pois.count + ([RCIMLocationManager shareManager].locationReGeocode?1:0);
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if(indexPath.row==0)
+    {
+        CLLocation * location = [RCIMLocationManager shareManager].location;
+         [self.mapView setCenterCoordinate:location.coordinate animated:YES];
+        
+    }else
+    {
+        AMapPOI * model = self.pois[indexPath.row-1];
+        [self.mapView setCenterCoordinate:  CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude) animated:YES];
+    }
+}
 /*
 #pragma mark - Navigation
 
