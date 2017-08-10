@@ -177,6 +177,25 @@
     }
     
 }
+- (void)recallMessageWithCell:(RCChatBaseMessageCell *)cell withMessage:(RCMessage *)message
+{
+    [[RCIMMessageManager shareManager]recallMessage:message success:^(long messageId) {
+        NSInteger index = [self.dataArray indexOfObject:message];
+        [self.dataArray removeObject:message];
+        dispatch_async(dispatch_get_main_queue(), ^{
+             [self.parentController.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+            RCMessage * recalMessage = [[RCIMMessageManager shareManager]getMessageByMessagId:messageId];
+            [self.dataArray addObject:recalMessage];
+            [self.parentController.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.dataArray.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+            [self.parentController scrollToBottomAnimated:YES];
+            
+        });
+       
+        
+    } error:^(RCErrorCode errorcode) {
+        NSLog(@"errorcode %d",errorcode);
+    }];
+}
 - (NSArray *)messagesWithLocalMessages:(NSArray *)messages freshTimestamp:(int64_t)timestamp
 {
     NSMutableArray * data = [NSMutableArray new];

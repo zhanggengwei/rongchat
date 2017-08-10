@@ -213,6 +213,11 @@
               success:(void (^)(long messageId))successBlock
                 error:(void(^)(RCErrorCode errorcode))errorBlock
 {
-    [_client recallMessage:message success:successBlock error:errorBlock];
+    RCMessage * recallMessage = [self getMessageByMessagId:message.messageId];
+    [_client recallMessage:recallMessage success:successBlock error:errorBlock];
+}
+- (RCMessage *)getMessageByMessagId:(NSInteger)messageId
+{
+    return [_client getMessage:messageId];
 }
 @end

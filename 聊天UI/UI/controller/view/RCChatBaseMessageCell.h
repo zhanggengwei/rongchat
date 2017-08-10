@@ -44,7 +44,7 @@
 - (void)fileMessageDidDownload:(RCChatBaseMessageCell *)messageCell;
 @optional
 - (void)messageCellDidDeleteMessageCell:(RCChatBaseMessageCell *)messageCell message:(RCMessage *)message;
-
+- (void)messageCellDidRecallMessageCell:(RCChatBaseMessageCell *)messageCell message:(RCMessage *)message;
 @end
 
 

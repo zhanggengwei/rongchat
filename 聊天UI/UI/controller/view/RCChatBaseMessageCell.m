@@ -502,10 +502,10 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
                                                                        }];
                 //TODO:添加“转发”
                 if ([self.message.objectName isEqualToString:RCTextMessageTypeIdentifier]) {
-                     menuItems = @[[self deleteItem],copyItem];
+                     menuItems = @[[self deleteItem],copyItem,[self recallMessageItem]];
                 }else
                 {
-                    menuItems = @[[self deleteItem],copyItem];
+                    menuItems = @[[self deleteItem],copyItem,[self recallMessageItem]];
                 }
             //}
             UIMenuController *menuController = [UIMenuController sharedMenuController];
@@ -573,6 +573,16 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     return deleteItem;
 }
 
+- (RCIMMenuItem *)recallMessageItem
+{
+    RCIMMenuItem * recallMessageItem = [[RCIMMenuItem alloc]initWithTitle:@"撤回" block:^{
+        if([self.delegate respondsToSelector:@selector(messageCellDidRecallMessageCell:message:)])
+        {
+            [self.delegate messageCellDidRecallMessageCell:self message:self.message];
+        }
+    }];
+    return recallMessageItem;
+}
 
 
 @end

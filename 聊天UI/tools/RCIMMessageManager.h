@@ -70,4 +70,6 @@
               success:(void (^)(long messageId))successBlock
                 error:(void(^)(RCErrorCode errorcode))errorBlock;
 
+- (RCMessage *)getMessageByMessagId:(NSInteger)messageId;
+
 @end

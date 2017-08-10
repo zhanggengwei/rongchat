@@ -104,8 +104,6 @@
         controller.coordinate = messageContent.location;
         [self.navigationController pushViewController:controller animated:YES];
     }
-    
-    
 }
 - (void)textMessageCellDoubleTapped:(RCChatBaseMessageCell *)messageCell
 {
@@ -148,6 +146,11 @@
 {
     [self.viewModel deleteMessageWithCell:messageCell withMessage:message];
     
+}
+
+- (void)messageCellDidRecallMessageCell:(RCChatBaseMessageCell *)messageCell message:(RCMessage *)message
+{
+    [self.viewModel recallMessageWithCell:messageCell withMessage:message];
 }
 
 - (NSInteger)numberOfPagesInViewController:(nonnull PBViewController *)viewController

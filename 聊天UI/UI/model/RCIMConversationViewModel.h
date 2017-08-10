@@ -35,6 +35,8 @@
 
 - (void)deleteMessageWithCell:(RCChatBaseMessageCell *)cell withMessage:(RCMessage *)message;
 
+- (void)recallMessageWithCell:(RCChatBaseMessageCell *)cell withMessage:(RCMessage *)message;
+
 - (void)sendMessage:(RCMessageContent *)content;
 - (void)resendMessage:(RCMessage *)message;
 
