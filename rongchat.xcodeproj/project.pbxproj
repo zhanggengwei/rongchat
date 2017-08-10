@@ -141,6 +141,10 @@
 		752679541F3AEB0E0002AC45 /* RCIMLocationObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 752679531F3AEB0E0002AC45 /* RCIMLocationObj.m */; };
 		752679581F3BEE9B0002AC45 /* RCIMLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 752679571F3BEE9B0002AC45 /* RCIMLocationTableViewCell.m */; };
 		7526795B1F3C55500002AC45 /* RCIMShowLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526795A1F3C55500002AC45 /* RCIMShowLocationController.m */; };
+		7526795E1F3CA6F40002AC45 /* RCIMAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526795D1F3CA6F40002AC45 /* RCIMAnimation.m */; };
+		752679621F3CAEF00002AC45 /* redPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7526795F1F3CAEF00002AC45 /* redPin.png */; };
+		752679631F3CAEF00002AC45 /* redPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 752679601F3CAEF00002AC45 /* redPin@2x.png */; };
+		752679641F3CAEF00002AC45 /* redPin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 752679611F3CAEF00002AC45 /* redPin@3x.png */; };
 		75278A0E1F0E8F2D000C70AF /* RCChatBaseMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A0D1F0E8F2D000C70AF /* RCChatBaseMessageCell.m */; };
 		75278A111F0E9167000C70AF /* RCContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A101F0E9167000C70AF /* RCContentView.m */; };
 		75278A141F0E9294000C70AF /* RCMessageSendStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A131F0E9294000C70AF /* RCMessageSendStateView.m */; };
@@ -462,6 +466,11 @@
 		752679571F3BEE9B0002AC45 /* RCIMLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMLocationTableViewCell.m; sourceTree = "<group>"; };
 		752679591F3C55500002AC45 /* RCIMShowLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMShowLocationController.h; sourceTree = "<group>"; };
 		7526795A1F3C55500002AC45 /* RCIMShowLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMShowLocationController.m; sourceTree = "<group>"; };
+		7526795C1F3CA6F40002AC45 /* RCIMAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMAnimation.h; sourceTree = "<group>"; };
+		7526795D1F3CA6F40002AC45 /* RCIMAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMAnimation.m; sourceTree = "<group>"; };
+		7526795F1F3CAEF00002AC45 /* redPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redPin.png; sourceTree = "<group>"; };
+		752679601F3CAEF00002AC45 /* redPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPin@2x.png"; sourceTree = "<group>"; };
+		752679611F3CAEF00002AC45 /* redPin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPin@3x.png"; sourceTree = "<group>"; };
 		75278A0C1F0E8F2D000C70AF /* RCChatBaseMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatBaseMessageCell.h; sourceTree = "<group>"; };
 		75278A0D1F0E8F2D000C70AF /* RCChatBaseMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatBaseMessageCell.m; sourceTree = "<group>"; };
 		75278A0F1F0E9167000C70AF /* RCContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCContentView.h; sourceTree = "<group>"; };
@@ -936,6 +945,9 @@
 		40C2601E1E0396FB00823111 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				7526795F1F3CAEF00002AC45 /* redPin.png */,
+				752679601F3CAEF00002AC45 /* redPin@2x.png */,
+				752679611F3CAEF00002AC45 /* redPin@3x.png */,
 				409F792E1DF564C80090D67F /* common_line_g@2x.png */,
 				75DE61821DE48CA400DF1CA4 /* Country_Code.json */,
 				40C2601F1E0396FB00823111 /* AddressBook */,
@@ -1178,6 +1190,8 @@
 				75278A591F13D29A000C70AF /* RCIMCellRegisterController.m */,
 				75278A461F107279000C70AF /* NSObject+RCIMExtension.h */,
 				75278A471F107279000C70AF /* NSObject+RCIMExtension.m */,
+				7526795C1F3CA6F40002AC45 /* RCIMAnimation.h */,
+				7526795D1F3CA6F40002AC45 /* RCIMAnimation.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1695,6 +1709,7 @@
 			files = (
 				40C260961E0396FB00823111 /* ff_IconQRCode@3x.png in Resources */,
 				40C260A01E0396FB00823111 /* MoreGame@3x.png in Resources */,
+				752679631F3CAEF00002AC45 /* redPin@2x.png in Resources */,
 				40C2607E1E0396FB00823111 /* Country_Code.json in Resources */,
 				40C260B11E0396FB00823111 /* me_setting@2x.png in Resources */,
 				40C260751E0396FB00823111 /* add_friend_icon_addgroup@3x.png in Resources */,
@@ -1743,6 +1758,7 @@
 				40C260A21E0396FB00823111 /* Shake_icon_musicHL@2x.png in Resources */,
 				40C260851E0396FB00823111 /* bottleButtonFish.png in Resources */,
 				407261071DEBD12400554D00 /* CodeScan.bundle in Resources */,
+				752679641F3CAEF00002AC45 /* redPin@3x.png in Resources */,
 				75278A351F106798000C70AF /* BarButtonIcon.bundle in Resources */,
 				40C260C01E0396FB00823111 /* tabbar_me@2x.png in Resources */,
 				40C2609B1E0396FB00823111 /* ff_IconShowAlbum@2x.png in Resources */,
@@ -1764,6 +1780,7 @@
 				75278A3B1F106798000C70AF /* MBProgressHUD.bundle in Resources */,
 				40C260B81E0396FB00823111 /* tabbar_discover@2x.png in Resources */,
 				40C260771E0396FB00823111 /* add_friend_icon_offical@3x.png in Resources */,
+				752679621F3CAEF00002AC45 /* redPin.png in Resources */,
 				40C260991E0396FB00823111 /* ff_IconShake@3x.png in Resources */,
 				40C260BC1E0396FB00823111 /* tabbar_mainframe@2x.png in Resources */,
 				40C2607B1E0396FB00823111 /* plugins_FriendNotify@3x.png in Resources */,
@@ -1961,6 +1978,7 @@
 				75278A251F0FC30A000C70AF /* RCChatFileMessageCell.m in Sources */,
 				7584DB6E1E2A5BF5007249C2 /* kPPObserverDef.m in Sources */,
 				7584DAE11E2A5B92007249C2 /* UIView+RCIMExtension.m in Sources */,
+				7526795E1F3CA6F40002AC45 /* RCIMAnimation.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				7584DADC1E2A5B92007249C2 /* NSString+RCIMMD5.m in Sources */,
 				753CA0601F26177B00F313EE /* RCCKChatMoreView.m in Sources */,

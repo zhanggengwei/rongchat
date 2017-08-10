@@ -13,13 +13,17 @@
 #import "RCIMLocationManager.h"
 #import "RCIMLocationTableViewCell.h"
 #import <MJRefresh.h>
-@interface RCIMLocationController ()<UITableViewDelegate,UITableViewDataSource>
+
+
+@interface RCIMLocationController ()<UITableViewDelegate,UITableViewDataSource,MAMapViewDelegate>
 @property (nonatomic,strong) MAMapView * mapView;
 @property (nonatomic,strong) RCIMLocationObj * currentObj;
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) AMapGeoPoint * mapPoint;
 @property (nonatomic,strong) NSMutableArray<AMapPOI *> * pois;
 @property (nonatomic,assign) NSInteger meters;
+@property (nonatomic,strong) MAPointAnnotation * currentAnimation;
+
 @end
 
 @implementation RCIMLocationController
@@ -32,10 +36,8 @@
     self.mapView = [[MAMapView alloc]initWithFrame:self.view.bounds];
     self.mapView.mj_h = 300;
     [self.view addSubview:self.mapView];
+    self.mapView.delegate = self;
     [AMapServices sharedServices].enableHTTPS = YES;
-    _mapView.showsUserLocation = YES;
-    _mapView.userTrackingMode = MAUserTrackingModeNone;
-    _mapView.distanceFilter = kCLLocationAccuracyBest;
     CGRect tableViewFrame = CGRectMake(0, CGRectGetMaxY(self.mapView.frame), self.view.bounds.size.width, CGRectGetMaxY(self.view.frame) - CGRectGetMaxY(self.mapView.frame));
     self.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
     self.tableView.tableFooterView = [UIView new];
@@ -52,14 +54,34 @@
     AMapGeoPoint * mapPoint = [AMapGeoPoint locationWithLatitude:location.latitude longitude:location.longitude];
     self.mapPoint = mapPoint;
     [self loadNearAddressByMeters:self.meters];
-  
-    
+    [self addSelectAreaAnimation];
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)addSelectAreaAnimation
+{
+    if(self.currentAnimation)
+    {
+        [self.mapView removeAnnotation:self.currentAnimation];
+    }
+    [self.currentAnimation setCoordinate:self.currentObj.location];
+    self.currentAnimation.title = self.currentObj.name;
+    [self.mapView addAnnotation:self.currentAnimation];
+}
+
+- (MAPointAnnotation *)currentAnimation
+{
+    if(_currentAnimation==nil)
+    {
+        _currentAnimation = [MAPointAnnotation new];
+    }
+    return _currentAnimation;
 }
 
 - (NSMutableArray<AMapPOI *> *)pois
@@ -81,7 +103,6 @@
     };
     meters = meters * 100;
     [[RCIMLocationManager shareManager]loadAreasWithAreaName:self.mapPoint withRadious:meters searchAroundAddressBlock:^(AMapPOISearchResponse *response, NSError *error) {
-        [self.pois removeAllObjects];
         [self.pois addObjectsFromArray:response.pois];
         [self.tableView reloadData];
         if(!self.tableView.mj_footer)
@@ -126,18 +147,7 @@
         [self.delegate sendLocation:self.currentObj];
     }
 }
-//- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation
-//{
-//    [mapView setCenterCoordinate:userLocation.coordinate animated:YES];
-//    _mapView.region = MACoordinateRegionMake(_mapView.centerCoordinate, MACoordinateSpanMake(0.01, 0.01));
-//    self.currentObj.location = CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
-//    self.currentObj.thumbnailImage = [PPImageUtil imageFromView:self.mapView];
-//    AMapGeoPoint * mapPoint = [AMapGeoPoint locationWithLatitude:userLocation.location.coordinate.latitude longitude:userLocation.location.coordinate.longitude];
-//    self.mapPoint = mapPoint;
-//    [self loadNearAddressByMeters:1];
-//    
-//    
-//}
+
 
 #pragma mark UITableViewDelegate
 
@@ -185,7 +195,35 @@
         [self.mapView setCenterCoordinate:  CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude) animated:YES];
         self.currentObj.name = model.name;
         self.currentObj.location = CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude);
+        [self addSelectAreaAnimation];
     }
+}
+#pragma mark MAMapViewDelegate
+
+- (MAAnnotationView*)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation
+{
+    if([annotation isKindOfClass:[MAPointAnnotation class]])
+    {
+        MAAnnotationView * view = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MAAnnotationView"];
+        MAPointAnnotation * animation = self.currentAnimation;
+        if(view==nil)
+        {
+            view = [[MAAnnotationView alloc]initWithAnnotation:animation reuseIdentifier:@"MAAnnotationView"];
+            
+        }else
+        {
+            view= [mapView dequeueReusableAnnotationViewWithIdentifier:@"MAAnnotationView"];
+        }
+        view.draggable = YES;
+        [view setAnnotation:animation];
+        view.image = [UIImage imageNamed:@"redPin"];
+        return view;
+    }
+    return nil;
+}
+- (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
 }
 /*
 #pragma mark - Navigation

@@ -181,14 +181,11 @@
 {
     [[RCIMMessageManager shareManager]recallMessage:message success:^(long messageId) {
         NSInteger index = [self.dataArray indexOfObject:message];
-        [self.dataArray removeObject:message];
         dispatch_async(dispatch_get_main_queue(), ^{
-             [self.parentController.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-            RCMessage * recalMessage = [[RCIMMessageManager shareManager]getMessageByMessagId:messageId];
-            [self.dataArray addObject:recalMessage];
-            [self.parentController.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.dataArray.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-            [self.parentController scrollToBottomAnimated:YES];
-            
+            [self.dataArray removeObject:message];
+            [self.parentController.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            RCRecallNotificationMessage * reacalMessage = (RCRecallNotificationMessage *)[[RCIMMessageManager shareManager]getMessageByMessagId:messageId].content;
+            [self sendLocalMessages:@[reacalMessage]];
         });
        
         
@@ -363,7 +360,7 @@
         
         NSString * identifier= [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:message.conversationType];
         RCChatBaseMessageCell * cell = [self.parentController.tableView dequeueReusableCellWithIdentifier:identifier];
-        if(![message.objectName isEqualToString:RCTimeMessageTypeIdentifier])
+        if((![message.objectName isEqualToString:RCTimeMessageTypeIdentifier])||(![message.objectName isEqualToString:RCRecallNotificationMessageIdentifier]))
         {
             targetCell = cell;
             message.sentStatus = SentStatus_SENDING;
@@ -383,7 +380,6 @@
     }];
     [self.dataArray addObjectsFromArray:sendMessages];
     [self.parentController.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
-//    [self.parentController.tableView scrollToRowAtIndexPath:indexPaths.lastObject atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     [self.parentController scrollToBottomAnimated:YES];
     return sendMessages;
 }
@@ -491,7 +487,11 @@
 }
 -(void)onMessageRecalled:(long)messageId
 {
-    NSLog(@"消息撤回");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        RCRecallNotificationMessage * reacalMessage = (RCRecallNotificationMessage *)[[RCIMMessageManager shareManager]getMessageByMessagId:messageId].content;
+        [self sendLocalMessages:@[reacalMessage]];
+    });
+  
 }
 #pragma mark - UIScrollView Delegate
 
