@@ -36,6 +36,9 @@
     }else if ([message.objectName isEqualToString:RCLocationMessageTypeIdentifier])
     {
         [reuseIdentifier appendString:@"RCChatLocationMessageCell"];
+    }else if ([message.objectName isEqualToString:RCRecallNotificationMessageIdentifier])
+    {
+        [reuseIdentifier appendString:@"RCChatSystemMessageCell"];
     }
     switch (message.messageDirection) {
         case MessageDirection_SEND:

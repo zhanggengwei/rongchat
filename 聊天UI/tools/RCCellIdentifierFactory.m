@@ -76,13 +76,8 @@
     NSString *cellIdentifier = [NSString stringWithFormat:@"%@_%@_%@", typeKey, ownerKey, groupKey];
     return cellIdentifier;
 }
-
-
-
 + (NSString *)cacheKeyForMessage:(RCMessage *)message {
-    
-        return [NSString stringWithFormat:@"%@%ld",message.objectName,message.messageId];
-    
+    return [NSString stringWithFormat:@"%@%ld",message.objectName,message.messageId];
 }
 
 @end

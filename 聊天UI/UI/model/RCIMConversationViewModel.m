@@ -238,6 +238,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RCMessage * message = self.dataArray[indexPath.row];
+    
     NSString * identifier= [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:message.conversationType];
     RCChatBaseMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
