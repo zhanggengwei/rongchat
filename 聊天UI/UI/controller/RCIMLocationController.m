@@ -12,19 +12,21 @@
 #import "PPImageUtil.h"
 #import "RCIMLocationManager.h"
 #import "RCIMLocationTableViewCell.h"
-
+#import <MJRefresh.h>
 @interface RCIMLocationController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) MAMapView * mapView;
 @property (nonatomic,strong) RCIMLocationObj * currentObj;
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) AMapGeoPoint * mapPoint;
 @property (nonatomic,strong) NSMutableArray<AMapPOI *> * pois;
+@property (nonatomic,assign) NSInteger meters;
 @end
 
 @implementation RCIMLocationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.meters = 1;
     self.title = @"位置";
     [self createNavUI];
     self.mapView = [[MAMapView alloc]initWithFrame:self.view.bounds];
@@ -36,20 +38,22 @@
     _mapView.distanceFilter = kCLLocationAccuracyBest;
     CGRect tableViewFrame = CGRectMake(0, CGRectGetMaxY(self.mapView.frame), self.view.bounds.size.width, CGRectGetMaxY(self.view.frame) - CGRectGetMaxY(self.mapView.frame));
     self.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.tableHeaderView = [UIView new];
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[RCIMLocationTableViewCell class] forCellReuseIdentifier:@"RCIMLocationTableViewCell"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.formattedAddress;
+    self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.AOIName;
     CLLocationCoordinate2D  location = [RCIMLocationManager shareManager].location.coordinate;
     [self.mapView setCenterCoordinate:location animated:YES];
     _mapView.region = MACoordinateRegionMake(_mapView.centerCoordinate, MACoordinateSpanMake(0.01, 0.01));
     self.currentObj.location = CLLocationCoordinate2DMake(location.latitude,location.longitude);
-    
-    self.currentObj.thumbnailImage = [PPImageUtil imageFromView:self.mapView];
     AMapGeoPoint * mapPoint = [AMapGeoPoint locationWithLatitude:location.latitude longitude:location.longitude];
     self.mapPoint = mapPoint;
-    [self loadNearAddressByMeters:100];
+    [self loadNearAddressByMeters:self.meters];
+  
+    
     // Do any additional setup after loading the view.
 }
 
@@ -69,10 +73,22 @@
 
 - (void)loadNearAddressByMeters:(NSInteger)meters
 {
+    void (^createFooterView)(void) = ^(void)
+    {
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [self loadNearAddressByMeters:self.meters++];
+        }];
+    };
+    meters = meters * 100;
     [[RCIMLocationManager shareManager]loadAreasWithAreaName:self.mapPoint withRadious:meters searchAroundAddressBlock:^(AMapPOISearchResponse *response, NSError *error) {
-        NSLog(@"response == %d",response.count);
+        [self.pois removeAllObjects];
         [self.pois addObjectsFromArray:response.pois];
         [self.tableView reloadData];
+        if(!self.tableView.mj_footer)
+        {
+            createFooterView();
+        }
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -104,6 +120,7 @@
 - (void)sendLocationMessage
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    self.currentObj.thumbnailImage = [PPImageUtil imageFromView:self.mapView];
     if([self.delegate respondsToSelector:@selector(sendLocation:)])
     {
         [self.delegate sendLocation:self.currentObj];
@@ -156,13 +173,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if(indexPath.row==0)
     {
+        
+        self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.AOIName;
         CLLocation * location = [RCIMLocationManager shareManager].location;
-         [self.mapView setCenterCoordinate:location.coordinate animated:YES];
+        self.currentObj.location = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        [self.mapView setCenterCoordinate:location.coordinate animated:YES];
         
     }else
     {
         AMapPOI * model = self.pois[indexPath.row-1];
         [self.mapView setCenterCoordinate:  CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude) animated:YES];
+        self.currentObj.name = model.name;
+        self.currentObj.location = CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude);
     }
 }
 /*

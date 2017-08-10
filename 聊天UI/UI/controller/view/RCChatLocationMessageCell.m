@@ -46,7 +46,7 @@
     [self.locationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.messageContentView).with.insets(edgeMessageBubbleCustomize);
         make.height.equalTo(@(141));
-        //make.width.equalTo(@(250));
+        make.width.equalTo(@(240));
     }];
     CGFloat offset = 8.f;
     [self.locationAddressOverlay mas_makeConstraints:^(MASConstraintMaker *make) {
