@@ -81,7 +81,6 @@
 
 + (NSString *)cacheKeyForMessage:(RCMessage *)message {
     
-  
         return [NSString stringWithFormat:@"%@%ld",message.objectName,message.messageId];
     
 }

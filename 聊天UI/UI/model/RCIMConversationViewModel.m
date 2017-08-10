@@ -469,6 +469,10 @@
         }
     }
 }
+-(void)onMessageRecalled:(long)messageId
+{
+    NSLog(@"消息撤回");
+}
 #pragma mark - UIScrollView Delegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

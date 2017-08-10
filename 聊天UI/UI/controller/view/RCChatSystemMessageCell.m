@@ -52,6 +52,10 @@
     if([message.objectName isEqualToString:RCTimeMessageTypeIdentifier])
     {
         self.systemMessageLabel.text = [NSDate systemMessageWithTimestamp:message.sentTime];
+    }else if ([message.objectName isEqualToString:RCRecallNotificationMessageIdentifier])
+    {
+        RCRecallNotificationMessage * messageContent = (RCRecallNotificationMessage *)message.content;
+        self.systemMessageLabel.text = [NSString stringWithFormat:@"%@撤回了一条消息",messageContent.operatorId];
     }
    
 }
