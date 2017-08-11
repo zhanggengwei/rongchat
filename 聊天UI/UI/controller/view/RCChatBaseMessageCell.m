@@ -75,8 +75,6 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    
-  
     NSString * identify = [self RCIM_registerCell:reuseIdentifier];
     if (self = [super initWithStyle:style reuseIdentifier:identify]) {
         [self setup];
@@ -279,12 +277,9 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     [self.contentView addSubview:self.messageContentView];
     [self.contentView addSubview:self.messageReadStateImageView];
     [self.contentView addSubview:self.messageSendStateView];
-    
+
     [self.messageContentBackgroundImageView setImage:[RCBubbleImageFactory bubbleImageViewForType:self.messageOwner messageType:self.mediaType isHighlighted:NO]];
     [self.messageContentBackgroundImageView setHighlightedImage:[RCBubbleImageFactory bubbleImageViewForType:self.messageOwner messageType:self.mediaType isHighlighted:YES]];
-    
-
-    
     
     self.messageContentView.layer.mask.contents = (__bridge id _Nullable)(self.messageContentBackgroundImageView.image.CGImage);
     [self.contentView insertSubview:self.messageContentBackgroundImageView belowSubview:self.messageContentView];
