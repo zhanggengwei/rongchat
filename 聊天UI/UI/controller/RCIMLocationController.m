@@ -7,54 +7,32 @@
 //
 
 #import "RCIMLocationController.h"
-#import <MAMapKit/MAMapKit.h>
+#import "RCIMCustomMapView.h"
 #import <UIView+MJExtension.h>
 #import "PPImageUtil.h"
 #import "RCIMLocationManager.h"
 #import "RCIMLocationTableViewCell.h"
 #import <MJRefresh.h>
+#import <UITableView+FDTemplateLayoutCell.h>
 
-
-@interface RCIMLocationController ()<UITableViewDelegate,UITableViewDataSource,MAMapViewDelegate>
-@property (nonatomic,strong) MAMapView * mapView;
+@interface RCIMLocationController ()<UITableViewDelegate,UITableViewDataSource,RCIMCustomMapViewDelegate>
+@property (nonatomic,strong) RCIMCustomMapView * customMapView;
 @property (nonatomic,strong) RCIMLocationObj * currentObj;
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) AMapGeoPoint * mapPoint;
 @property (nonatomic,strong) NSMutableArray<AMapPOI *> * pois;
 @property (nonatomic,assign) NSInteger meters;
-@property (nonatomic,strong) MAPointAnnotation * currentAnimation;
-
 @end
 
 @implementation RCIMLocationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self createUI];
+    [self loadAreaData];
     self.meters = 1;
     self.title = @"位置";
-    [self createNavUI];
-    self.mapView = [[MAMapView alloc]initWithFrame:self.view.bounds];
-    self.mapView.mj_h = 300;
-    [self.view addSubview:self.mapView];
-    self.mapView.delegate = self;
-    [AMapServices sharedServices].enableHTTPS = YES;
-    CGRect tableViewFrame = CGRectMake(0, CGRectGetMaxY(self.mapView.frame), self.view.bounds.size.width, CGRectGetMaxY(self.view.frame) - CGRectGetMaxY(self.mapView.frame));
-    self.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
-    self.tableView.tableFooterView = [UIView new];
-    self.tableView.tableHeaderView = [UIView new];
-    [self.view addSubview:self.tableView];
-    [self.tableView registerClass:[RCIMLocationTableViewCell class] forCellReuseIdentifier:@"RCIMLocationTableViewCell"];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.AOIName;
-    CLLocationCoordinate2D  location = [RCIMLocationManager shareManager].location.coordinate;
-    [self.mapView setCenterCoordinate:location animated:YES];
-    _mapView.region = MACoordinateRegionMake(_mapView.centerCoordinate, MACoordinateSpanMake(0.01, 0.01));
-    self.currentObj.location = CLLocationCoordinate2DMake(location.latitude,location.longitude);
-    AMapGeoPoint * mapPoint = [AMapGeoPoint locationWithLatitude:location.latitude longitude:location.longitude];
-    self.mapPoint = mapPoint;
-    [self loadNearAddressByMeters:self.meters];
-    [self addSelectAreaAnimation];
+    [self loadAreaData];
     // Do any additional setup after loading the view.
 }
 
@@ -63,25 +41,50 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)addSelectAreaAnimation
+- (void)loadAreaData
 {
-    if(self.currentAnimation)
-    {
-        [self.mapView removeAnnotation:self.currentAnimation];
-    }
-    [self.currentAnimation setCoordinate:self.currentObj.location];
-    self.currentAnimation.title = self.currentObj.name;
-    [self.mapView addAnnotation:self.currentAnimation];
+    [AMapServices sharedServices].enableHTTPS = YES;
+    
+    self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.AOIName;
+    CLLocationCoordinate2D  location = [RCIMLocationManager shareManager].location.coordinate;
+    self.currentObj.location = CLLocationCoordinate2DMake(location.latitude,location.longitude);
+    AMapGeoPoint * mapPoint = [AMapGeoPoint locationWithLatitude:location.latitude longitude:location.longitude];
+    self.mapPoint = mapPoint;
+    [self loadNearAddressByMeters:self.meters];
+    MAPointAnnotation * animation = [MAPointAnnotation new];
+    animation.coordinate = self.currentObj.location;
+    [self addSelectCurrentAnimation:animation];
 }
 
-- (MAPointAnnotation *)currentAnimation
+- (void)createUI
 {
-    if(_currentAnimation==nil)
+    [self createNavUI];
+    [self.view addSubview:self.customMapView];
+    CGRect tableViewFrame = CGRectMake(0, CGRectGetMaxY(self.customMapView.frame), self.view.bounds.size.width, CGRectGetMaxY(self.view.frame) - CGRectGetMaxY(self.customMapView.frame));
+    self.tableView = [[UITableView alloc]initWithFrame:tableViewFrame style:UITableViewStylePlain];
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.tableHeaderView = [UIView new];
+    [self.view addSubview:self.tableView];
+    [self.tableView registerClass:[RCIMLocationTableViewCell class] forCellReuseIdentifier:@"RCIMLocationTableViewCell"];
+    [self.tableView registerClass:[RCIMLocationCustomTableViewCell class] forCellReuseIdentifier:@"RCIMLocationCustomTableViewCell"];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
+
+- (RCIMCustomMapView *)customMapView
+{
+    if(_customMapView == nil)
     {
-        _currentAnimation = [MAPointAnnotation new];
+        _customMapView = [[RCIMCustomMapView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 300)];
+        _customMapView.delegate = self;
+        
     }
-    return _currentAnimation;
+    return _customMapView;
+}
+
+- (void)addSelectCurrentAnimation:(id<MAAnnotation>)animation
+{
+    [self.customMapView addAnimation:animation];
 }
 
 - (NSMutableArray<AMapPOI *> *)pois
@@ -141,22 +144,15 @@
 - (void)sendLocationMessage
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-    self.currentObj.thumbnailImage = [PPImageUtil imageFromView:self.mapView];
+    self.currentObj.thumbnailImage = [self.customMapView snapLocationImage];
     if([self.delegate respondsToSelector:@selector(sendLocation:)])
     {
         [self.delegate sendLocation:self.currentObj];
     }
 }
 
-
-#pragma mark UITableViewDelegate
-
-
-#pragma makr UITableViewDataSource
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (RCIMShowLocationCell * )loadDataCell:(NSIndexPath *)indexPath withCell:(RCIMShowLocationCell *)cell
 {
-    RCIMLocationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCIMLocationTableViewCell"];
     AMapPOI * model = nil;
     if(indexPath.row==0)
     {
@@ -170,6 +166,25 @@
     return cell;
 }
 
+
+#pragma mark UITableViewDelegate
+
+
+#pragma makr UITableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RCIMShowLocationCell * cell = nil;
+    if(indexPath.row==0)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"RCIMLocationTableViewCell"];
+    }else
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"RCIMLocationCustomTableViewCell"];
+    }
+    return [self loadDataCell:indexPath withCell:cell];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -178,53 +193,41 @@
 {
     return self.pois.count + ([RCIMLocationManager shareManager].locationReGeocode?1:0);
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+   NSString * identifier = indexPath.row==0?@"RCIMLocationTableViewCell":@"RCIMLocationCustomTableViewCell";
+   return [tableView fd_heightForCellWithIdentifier:identifier cacheByIndexPath:indexPath configuration:^(RCIMLocationTableViewCell * cell) {
+       [self loadDataCell:indexPath withCell:cell];
+   }];
+    
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    MAPointAnnotation * animation = [MAPointAnnotation new];
     if(indexPath.row==0)
     {
-        
         self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.AOIName;
         CLLocation * location = [RCIMLocationManager shareManager].location;
         self.currentObj.location = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-        [self.mapView setCenterCoordinate:location.coordinate animated:YES];
-        
     }else
     {
         AMapPOI * model = self.pois[indexPath.row-1];
-        [self.mapView setCenterCoordinate:  CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude) animated:YES];
         self.currentObj.name = model.name;
         self.currentObj.location = CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude);
-        [self addSelectAreaAnimation];
     }
+    animation.coordinate = self.currentObj.location;
+    [self addSelectCurrentAnimation:animation];
 }
-#pragma mark MAMapViewDelegate
 
-- (MAAnnotationView*)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation
+- (void)mapViewAnimationDidChange:(id<MAAnnotation>)animation
 {
-    if([annotation isKindOfClass:[MAPointAnnotation class]])
-    {
-        MAAnnotationView * view = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MAAnnotationView"];
-        MAPointAnnotation * animation = self.currentAnimation;
-        if(view==nil)
-        {
-            view = [[MAAnnotationView alloc]initWithAnnotation:animation reuseIdentifier:@"MAAnnotationView"];
-            
-        }else
-        {
-            view= [mapView dequeueReusableAnnotationViewWithIdentifier:@"MAAnnotationView"];
-        }
-        view.draggable = YES;
-        [view setAnnotation:animation];
-        view.image = [UIImage imageNamed:@"redPin"];
-        return view;
-    }
-    return nil;
+    
 }
-- (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate
-{
-    NSLog(@"%s",__PRETTY_FUNCTION__);
-}
+
 /*
 #pragma mark - Navigation
 

@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RCIMLocationTableViewCell : UITableViewCell
+@protocol RCIMLocationCellProtrocal <NSObject>
 @property (nonatomic,strong) AMapPOI * area;
+
+
+@end
+
+@interface RCIMShowLocationCell : UITableViewCell<RCIMLocationCellProtrocal>
+@property (nonatomic,strong) AMapPOI * area;
+@property (nonatomic,strong,readonly) UIImageView * selectdIconImageView;
+@end
+
+@interface RCIMLocationTableViewCell : RCIMShowLocationCell
+@end
+
+@interface RCIMLocationCustomTableViewCell : RCIMShowLocationCell
+
 @end

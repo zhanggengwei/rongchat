@@ -42,12 +42,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/GitHub/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/LCCKInputViewPluginTakePhoto.m"
-                  timestampString = "524123600.833161"
+                  timestampString = "524162035.131586"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
                   endingLineNumber = "77"
-                  offsetFromSymbolStart = "95">
+                  offsetFromSymbolStart = "120">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,12 +57,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/GitHub/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/LCCKInputViewPluginTakePhoto.m"
-                  timestampString = "524123600.836076"
+                  timestampString = "524162035.135048"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "79"
                   endingLineNumber = "79"
-                  offsetFromSymbolStart = "75">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>

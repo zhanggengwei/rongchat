@@ -137,6 +137,10 @@
 		751D2A441F34662700426D12 /* RCIMConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2A431F34662700426D12 /* RCIMConversationViewController.m */; };
 		751D2A471F3468F800426D12 /* RCIMConversationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2A461F3468F800426D12 /* RCIMConversationViewModel.m */; };
 		751D2A4A1F346D8300426D12 /* RCIMMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 751D2A491F346D8300426D12 /* RCIMMessageManager.m */; };
+		752658BA1F3DDBF90056BBFD /* fav_fileicon_down90Custom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 752658B81F3DDBF90056BBFD /* fav_fileicon_down90Custom@2x.png */; };
+		752658BB1F3DDBF90056BBFD /* fav_fileicon_down90h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 752658B91F3DDBF90056BBFD /* fav_fileicon_down90h@2x.png */; };
+		752658BE1F3DDD5E0056BBFD /* RCIMCustomMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 752658BD1F3DDD5E0056BBFD /* RCIMCustomMapView.m */; };
+		752658C01F3E0C460056BBFD /* locationSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 752658BF1F3E0C460056BBFD /* locationSelected@2x.png */; };
 		7526794C1F3A053D0002AC45 /* RCIMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526794B1F3A053D0002AC45 /* RCIMLocationManager.m */; };
 		752679541F3AEB0E0002AC45 /* RCIMLocationObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 752679531F3AEB0E0002AC45 /* RCIMLocationObj.m */; };
 		752679581F3BEE9B0002AC45 /* RCIMLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 752679571F3BEE9B0002AC45 /* RCIMLocationTableViewCell.m */; };
@@ -480,6 +484,11 @@
 		751D2A461F3468F800426D12 /* RCIMConversationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMConversationViewModel.m; sourceTree = "<group>"; };
 		751D2A481F346D8300426D12 /* RCIMMessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMMessageManager.h; sourceTree = "<group>"; };
 		751D2A491F346D8300426D12 /* RCIMMessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMMessageManager.m; sourceTree = "<group>"; };
+		752658B81F3DDBF90056BBFD /* fav_fileicon_down90Custom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav_fileicon_down90Custom@2x.png"; sourceTree = "<group>"; };
+		752658B91F3DDBF90056BBFD /* fav_fileicon_down90h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav_fileicon_down90h@2x.png"; sourceTree = "<group>"; };
+		752658BC1F3DDD5E0056BBFD /* RCIMCustomMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMCustomMapView.h; sourceTree = "<group>"; };
+		752658BD1F3DDD5E0056BBFD /* RCIMCustomMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMCustomMapView.m; sourceTree = "<group>"; };
+		752658BF1F3E0C460056BBFD /* locationSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationSelected@2x.png"; sourceTree = "<group>"; };
 		7526794A1F3A053D0002AC45 /* RCIMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMLocationManager.h; sourceTree = "<group>"; };
 		7526794B1F3A053D0002AC45 /* RCIMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMLocationManager.m; sourceTree = "<group>"; };
 		752679521F3AEB0E0002AC45 /* RCIMLocationObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMLocationObj.h; sourceTree = "<group>"; };
@@ -1184,6 +1193,8 @@
 				753CA0681F26180000F313EE /* LCCKInputViewPluginTakePhoto.m */,
 				752679561F3BEE9B0002AC45 /* RCIMLocationTableViewCell.h */,
 				752679571F3BEE9B0002AC45 /* RCIMLocationTableViewCell.m */,
+				752658BC1F3DDD5E0056BBFD /* RCIMCustomMapView.h */,
+				752658BD1F3DDD5E0056BBFD /* RCIMCustomMapView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1605,6 +1616,9 @@
 		75F163E31F3D5BDD0018A022 /* wechatfile */ = {
 			isa = PBXGroup;
 			children = (
+				752658BF1F3E0C460056BBFD /* locationSelected@2x.png */,
+				752658B81F3DDBF90056BBFD /* fav_fileicon_down90Custom@2x.png */,
+				752658B91F3DDBF90056BBFD /* fav_fileicon_down90h@2x.png */,
 				75F163E41F3D5BDD0018A022 /* fav_fileicon_keynote90@2x.png */,
 				75F163E51F3D5BDD0018A022 /* fav_fileicon_keynote90@3x.png */,
 				75F163E61F3D5BDD0018A022 /* fav_fileicon_music90@2x.png */,
@@ -1843,6 +1857,7 @@
 				40C260A81E0396FB00823111 /* friendList.txt in Resources */,
 				40C260A21E0396FB00823111 /* Shake_icon_musicHL@2x.png in Resources */,
 				40C260851E0396FB00823111 /* bottleButtonFish.png in Resources */,
+				752658BB1F3DDBF90056BBFD /* fav_fileicon_down90h@2x.png in Resources */,
 				407261071DEBD12400554D00 /* CodeScan.bundle in Resources */,
 				752679641F3CAEF00002AC45 /* redPin@3x.png in Resources */,
 				75278A351F106798000C70AF /* BarButtonIcon.bundle in Resources */,
@@ -1853,6 +1868,7 @@
 				75278A3C1F106798000C70AF /* MessageBubble.bundle in Resources */,
 				40C260901E0396FB00823111 /* ff_IconBottle@3x.png in Resources */,
 				40C260BF1E0396FB00823111 /* tabbar_mainframeHL@3x.png in Resources */,
+				752658C01F3E0C460056BBFD /* locationSelected@2x.png in Resources */,
 				75DE61831DE48CA400DF1CA4 /* Country_Code.json in Resources */,
 				40C2609F1E0396FB00823111 /* MoreGame@2x.png in Resources */,
 				75F163FF1F3D5BDD0018A022 /* fav_fileicon_pdf90@3x.png in Resources */,
@@ -1877,6 +1893,7 @@
 				40C260BC1E0396FB00823111 /* tabbar_mainframe@2x.png in Resources */,
 				40C2607B1E0396FB00823111 /* plugins_FriendNotify@3x.png in Resources */,
 				40C260B01E0396FB00823111 /* me_photo@2x.png in Resources */,
+				752658BA1F3DDBF90056BBFD /* fav_fileicon_down90Custom@2x.png in Resources */,
 				75F164031F3D5BDD0018A022 /* fav_fileicon_ppt90@3x.png in Resources */,
 				40C260B21E0396FB00823111 /* MoreExpressionShops@3x.png in Resources */,
 				75278A3D1F106798000C70AF /* Other.bundle in Resources */,
@@ -2031,6 +2048,7 @@
 				753CA0C11F27109F00F313EE /* LCCKChatFaceView.m in Sources */,
 				751D2A441F34662700426D12 /* RCIMConversationViewController.m in Sources */,
 				407261081DEBD12400554D00 /* MyQRViewController.m in Sources */,
+				752658BE1F3DDD5E0056BBFD /* RCIMCustomMapView.m in Sources */,
 				7584DAF51E2A5B98007249C2 /* RCConversationModel.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
 				7584DB921E2A623F007249C2 /* RCProgressHUD.m in Sources */,

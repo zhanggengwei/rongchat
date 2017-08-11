@@ -8,18 +8,21 @@
 
 #import "RCIMShowLocationController.h"
 #import <MAMapKit/MAMapKit.h>
+#import "RCIMCustomMapView.h"
 @interface RCIMShowLocationController ()
-@property (nonatomic,strong) MAMapView * mapView;
+@property (nonatomic,strong) RCIMCustomMapView * customMapView;
 @end
 
 @implementation RCIMShowLocationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.mapView = [[MAMapView alloc]initWithFrame:self.view.bounds];
-    [self.view addSubview:self.mapView];
-    [self.mapView setCenterCoordinate:self.coordinate animated:YES];
-    _mapView.region = MACoordinateRegionMake(_mapView.centerCoordinate, MACoordinateSpanMake(0.01, 0.01));
+    [self.view addSubview:self.customMapView];
+    MAPointAnnotation * animation = [MAPointAnnotation new];
+    animation.coordinate = self.coordinate;
+    [self.customMapView addAnimation:animation];
+    
+   
     
     // Do any additional setup after loading the view.
 }
@@ -27,6 +30,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark lazy Method
+
+- (RCIMCustomMapView *)customMapView
+{
+    if(_customMapView==nil)
+    {
+        _customMapView = [[RCIMCustomMapView alloc]initWithFrame:self.view.bounds];
+    }
+    return _customMapView;
 }
 
 /*
