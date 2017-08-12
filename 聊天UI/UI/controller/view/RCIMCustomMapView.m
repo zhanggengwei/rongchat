@@ -98,12 +98,12 @@
     }
     return nil;
 }
-- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+- (void)mapView:(MAMapView *)mapView mapWillMoveByUser:(BOOL)wasUserAction
 {
     [mapView removeAnnotation:self.currentAnimation];
     self.currentAnimation.coordinate = mapView.centerCoordinate;
     [self.mapView addAnnotation:self.currentAnimation];
-    if([self.delegate respondsToSelector:@selector(mapViewAnimationDidChange:)])
+    if(wasUserAction&&[self.delegate respondsToSelector:@selector(mapViewAnimationDidChange:)])
     {
         [self.delegate mapViewAnimationDidChange:self.currentAnimation];
     }

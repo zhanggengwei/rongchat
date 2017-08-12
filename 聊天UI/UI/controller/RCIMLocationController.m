@@ -14,6 +14,7 @@
 #import "RCIMLocationTableViewCell.h"
 #import <MJRefresh.h>
 #import <UITableView+FDTemplateLayoutCell.h>
+#import "RCIMConversationRefreshHeader.h"
 
 @interface RCIMLocationController ()<UITableViewDelegate,UITableViewDataSource,RCIMCustomMapViewDelegate>
 @property (nonatomic,strong) RCIMCustomMapView * customMapView;
@@ -22,6 +23,7 @@
 @property (nonatomic,strong) AMapGeoPoint * mapPoint;
 @property (nonatomic,strong) NSMutableArray<AMapPOI *> * pois;
 @property (nonatomic,assign) NSInteger meters;
+@property (nonatomic,assign) NSInteger row;
 @end
 
 @implementation RCIMLocationController
@@ -29,10 +31,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createUI];
-    [self loadAreaData];
     self.meters = 1;
     self.title = @"位置";
-    [self loadAreaData];
+    [AMapServices sharedServices].enableHTTPS = YES;
+    self.currentObj.location = [RCIMLocationManager shareManager].location.coordinate;
+    self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.AOIName;
+    [self beginRefreshing];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -41,15 +46,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)beginRefreshing
+{
+    self.tableView.mj_header = [RCIMConversationRefreshHeader headerWithRefreshingBlock:^{
+        [self.pois removeAllObjects];
+        AMapGeoPoint * point = [AMapGeoPoint locationWithLatitude:self.currentObj.location.latitude longitude:self.currentObj.location.longitude];
+        self.mapPoint = point;
+        AMapPOI * poi = [AMapPOI new];
+        poi.location = point;
+        poi.name = self.currentObj.name;
+        poi.selected = YES;
+        [self.pois addObject:poi];
+        self.meters = 1;
+        [self loadAreaData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+}
+
 - (void)loadAreaData
 {
-    [AMapServices sharedServices].enableHTTPS = YES;
-    
-    self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.AOIName;
-    CLLocationCoordinate2D  location = [RCIMLocationManager shareManager].location.coordinate;
-    self.currentObj.location = CLLocationCoordinate2DMake(location.latitude,location.longitude);
-    AMapGeoPoint * mapPoint = [AMapGeoPoint locationWithLatitude:location.latitude longitude:location.longitude];
-    self.mapPoint = mapPoint;
     [self loadNearAddressByMeters:self.meters];
     MAPointAnnotation * animation = [MAPointAnnotation new];
     animation.coordinate = self.currentObj.location;
@@ -112,6 +128,10 @@
         {
             createFooterView();
         }
+        if(self.tableView.mj_header)
+        {
+            self.tableView.mj_header = nil;
+        }
         [self.tableView.mj_footer endRefreshing];
     }];
 }
@@ -153,15 +173,7 @@
 
 - (RCIMShowLocationCell * )loadDataCell:(NSIndexPath *)indexPath withCell:(RCIMShowLocationCell *)cell
 {
-    AMapPOI * model = nil;
-    if(indexPath.row==0)
-    {
-        model = [AMapPOI new];
-        model.name = [RCIMLocationManager shareManager].locationReGeocode.POIName;
-    }else
-    {
-        model = self.pois[indexPath.row-1];
-    }
+    AMapPOI * model = self.pois[indexPath.row];
     cell.area = model;
     return cell;
 }
@@ -191,7 +203,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.pois.count + ([RCIMLocationManager shareManager].locationReGeocode?1:0);
+    return self.pois.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -207,24 +219,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    MAPointAnnotation * animation = [MAPointAnnotation new];
-    if(indexPath.row==0)
-    {
-        self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.AOIName;
-        CLLocation * location = [RCIMLocationManager shareManager].location;
-        self.currentObj.location = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-    }else
-    {
-        AMapPOI * model = self.pois[indexPath.row-1];
-        self.currentObj.name = model.name;
-        self.currentObj.location = CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude);
+    if (indexPath.row==self.row) {
+        return;
     }
+    MAPointAnnotation * animation = [MAPointAnnotation new];
+    AMapPOI * model = self.pois[indexPath.row];
+    model.selected = YES;
+    self.currentObj.name = model.name;
+    self.currentObj.location = CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude);
     animation.coordinate = self.currentObj.location;
     [self addSelectCurrentAnimation:animation];
+   
+    AMapPOI * model2 = self.pois[self.row];
+    model2.selected = NO;
+    NSLog(@"model2.selected =%d",model2.selected);
+    self.row = indexPath.row;
 }
 
 - (void)mapViewAnimationDidChange:(id<MAAnnotation>)animation
 {
+    self.currentObj.location = animation.coordinate;
+    self.currentObj.name = animation.title;
+    [self beginRefreshing];
     
 }
 

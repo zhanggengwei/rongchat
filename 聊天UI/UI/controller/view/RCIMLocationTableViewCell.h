@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @protocol RCIMLocationCellProtrocal <NSObject>
 @property (nonatomic,strong) AMapPOI * area;
+@end
 
-
+@interface AMapPOI (RCShowSelectIcon)
+@property (nonatomic,assign) BOOL selected;
 @end
 
 @interface RCIMShowLocationCell : UITableViewCell<RCIMLocationCellProtrocal>
@@ -23,5 +27,4 @@
 @end
 
 @interface RCIMLocationCustomTableViewCell : RCIMShowLocationCell
-
 @end

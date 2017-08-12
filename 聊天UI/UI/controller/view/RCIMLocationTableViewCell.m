@@ -7,6 +7,21 @@
 //
 
 #import "RCIMLocationTableViewCell.h"
+#import <objc/objc.h>
+#import <objc/runtime.h>
+const static void * RCshowSelectIcon = &RCshowSelectIcon;
+
+@implementation AMapPOI (RCShowSelectIcon)
+- (void)setSelected:(BOOL)selected
+{
+    objc_setAssociatedObject(self, RCshowSelectIcon,@(selected), OBJC_ASSOCIATION_ASSIGN);
+}
+- (BOOL)selected
+{
+    return [objc_getAssociatedObject(self, RCshowSelectIcon) boolValue];
+}
+
+@end
 
 @interface RCIMShowLocationCell ()
 @property (nonatomic,strong) UIImageView * selectdIconImageView;
@@ -19,22 +34,30 @@
 {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
-        [self addObserver:self forKeyPath:@"selected" options:NSKeyValueObservingOptionNew context:nil];
+        [self addObserver:self forKeyPath:@"area.selected" options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
-    if([keyPath isEqualToString:@"selected"])
+    if([keyPath isEqualToString:@"area.selected"])
     {
-        BOOL isSelected = [change objectForKey:NSKeyValueChangeNewKey];
+        NSLog(@"selected == %d %@",self.area.selected,change);
+        BOOL isSelected = self.area.selected;
         self.selectdIconImageView.hidden=!isSelected;
     }
+     NSLog(@"selected == %d",self.area.selected);
 }
+
+- (void)setArea:(AMapPOI *)area
+{
+    _area = area;
+}
+
 - (void)dealloc
 {
-    [self removeObserver:self forKeyPath:@"selected"];
+    [self removeObserver:self forKeyPath:@"area.selected"];
     
 }
 
@@ -111,6 +134,7 @@
 
 - (void)setArea:(AMapPOI *)area
 {
+    [super setArea:area];
     self.titleLabel.text = area.name;
     self.selectdIconImageView.image = [UIImage imageNamed:@"locationSelected"];
 }
