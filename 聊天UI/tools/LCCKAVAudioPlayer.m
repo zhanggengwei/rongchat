@@ -11,11 +11,8 @@
 #import <objc/runtime.h>
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-
 #import "LCCKChatUntiles.h"
-
 #import "NSString+RCIMMD5.h"
-
 
 NSString *const kLCCKAudioDataKey;
 
@@ -31,7 +28,7 @@ NSString *const kLCCKAudioDataKey;
  */
 @property (nonatomic, copy, readonly) NSString *cachePath;
 @property (nonatomic, strong) NSOperationQueue *audioDataOperationQueue;
-
+@property (nonatomic, strong) RCMessage * message;
 @end
 
 @implementation LCCKAVAudioPlayer
@@ -84,38 +81,37 @@ NSString *const kLCCKAudioDataKey;
     
 }
 
-#pragma mark - Public Methods
-
-- (void)playAudioWithURLString:(NSString *)URLString identifier:(NSString *)identifier {
-    
-    if (!URLString) {
+- (void)playAudioWavData:(RCMessage *)message identifier:(NSString *)identifier
+{
+    if (!message) {
+        NSLog(@"message  == nil");
         return;
     }
-    
     //如果来自同一个URLString并且index相同,则直接取消
-    if ([self.URLString isEqualToString:URLString] && self.identifier == identifier) {
+    if (self.message==message) {
         [self stopAudioPlayer];
         [self setAudioPlayerState:RCVoiceMessageStateCancel];
         return;
     }
     
     //TODO 从URL中读取音频data
-    self.URLString = URLString;
+    self.message = message;
     self.identifier = identifier;
     
     NSBlockOperation *blockOperation = [NSBlockOperation blockOperationWithBlock:^{
         [self setAudioPlayerState:RCVoiceMessageStateDownloading];
-        NSData *audioData = [self audioDataFromURLString:URLString identifier:identifier];
+        RCVoiceMessage * voiceMessage = (RCVoiceMessage *)self.message.content;
+        NSData *audioData = voiceMessage.wavAudioData;
         if (!audioData) {
             [self setAudioPlayerState:RCVoiceMessageStateCancel];
             return;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self playAudioWithData:audioData];
+            [self playAudioWithData:message];
         });
     }];
     
-    [blockOperation setName:[[NSString stringWithFormat:@"%@_%@",self.URLString, self.identifier] RCIM_MD5String]];
+    [blockOperation setName:[[NSString stringWithFormat:@"%@_%@",@"", self.identifier] RCIM_MD5String]];
     
     [self.audioDataOperationQueue addOperation:blockOperation];
     
@@ -138,48 +134,12 @@ NSString *const kLCCKAudioDataKey;
     }
 }
 
-
-#pragma mark - Private Methods
-
-- (NSData *)audioDataFromURLString:(NSString *)URLString identifier:(NSString *)identifier {
-    NSData *audioData;
+- (void)playAudioWithData:(RCMessage *)message {
     
-    //1.检查URLString是本地文件还是网络文件
-    if ([URLString hasPrefix:@"http"] || [URLString hasPrefix:@"https"]) {
-        //2.来自网络,先检查本地缓存,缓存key是URLString的MD5编码
-        NSString *audioCacheKey = [URLString RCIM_MD5String];
-        
-        //3.本地缓存存在->直接读取本地缓存   不存在->从网络获取数据,并且缓存
-        if ([[NSFileManager defaultManager] fileExistsAtPath:[self.cachePath stringByAppendingPathComponent:audioCacheKey]]) {
-            audioData = [NSData dataWithContentsOfFile:[self.cachePath stringByAppendingPathComponent:audioCacheKey]];
-        } else {
-            audioData = [NSData dataWithContentsOfURL:[NSURL URLWithString:URLString]];
-            [audioData writeToFile:[self.cachePath stringByAppendingPathComponent:audioCacheKey] atomically:YES];
-        }
-    } else {
-        audioData = [NSData dataWithContentsOfFile:URLString];
-    }
-    
-    //4.判断audioData是否读取成功,成功则添加对应的audioDataKey
-    if (audioData) {
-        objc_setAssociatedObject(audioData, &kLCCKAudioDataKey, [[NSString stringWithFormat:@"%@_%@",URLString,identifier] RCIM_MD5String], OBJC_ASSOCIATION_COPY);
-    }
-
-    return audioData;
-}
-
-- (void)playAudioWithData:(NSData *)audioData {
-    
-    
-    NSString *audioURLMD5String = objc_getAssociatedObject(audioData, &kLCCKAudioDataKey);
-    
-    if (![[[NSString stringWithFormat:@"%@_%@",self.URLString,self.identifier] RCIM_MD5String] isEqualToString:audioURLMD5String]) {
-        return;
-    }
-
+    RCVoiceMessage * voiceMessage = (RCVoiceMessage *)message.content;
     NSError *audioPlayerError;
-    _audioPlayer = [[AVAudioPlayer alloc] initWithData:audioData error:&audioPlayerError];
-    if (!_audioPlayer || !audioData) {
+    _audioPlayer = [[AVAudioPlayer alloc] initWithData:voiceMessage.wavAudioData error:&audioPlayerError];
+    if (!_audioPlayer || !voiceMessage.wavAudioData) {
         [self setAudioPlayerState:RCVoiceMessageStateCancel];
         return;
     }
@@ -194,7 +154,7 @@ NSString *const kLCCKAudioDataKey;
 
 - (void)cancelOperation {
     for (NSOperation *operation in self.audioDataOperationQueue.operations) {
-        if ([operation.name isEqualToString:[[NSString stringWithFormat:@"%@_%@",self.URLString, self.identifier] RCIM_MD5String]]) {
+        if ([operation.name isEqualToString:[[NSString stringWithFormat:@"%ld_%@",self.message.messageId, self.identifier] RCIM_MD5String]]) {
             [operation cancel];
             break;
         }
@@ -212,6 +172,10 @@ NSString *const kLCCKAudioDataKey;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, .2f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self stopAudioPlayer];
     });
+}
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
+{
+    NSLog(@"error %d",error);
 }
 
 #pragma mark - NSNotificationCenter Methods
@@ -245,20 +209,20 @@ NSString *const kLCCKAudioDataKey;
 
 #pragma mark - Setters
 
-- (void)setURLString:(NSString *)URLString {
-    if (_URLString) {
+- (void)setMessage:(RCMessage *)message {
+    if (_message) {
         //说明当前有正在播放, 或者正在加载的视频,取消 operation(如果没有在执行任务),停止播放
         [self cancelOperation];
         [self stopAudioPlayer];
         [self setAudioPlayerState:RCVoiceMessageStateCancel];
     }
-    _URLString = [URLString copy];
+    _message = message;
 }
 
 - (void)setAudioPlayerState:(RCVoiceMessageState)audioPlayerState {
     _audioPlayerState = audioPlayerState;
     if (_audioPlayerState == RCVoiceMessageStateCancel || _audioPlayerState == RCVoiceMessageStateNormal) {
-        _URLString = nil;
+        _message = nil;
         _identifier = nil;
     }
 }

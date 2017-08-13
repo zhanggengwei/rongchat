@@ -13,6 +13,7 @@
 #import "RCChatBar.h"
 #import "RCIMShowLocationController.h"
 #import "RCIMDocumentsFileDownController.h"
+#import "LCCKAVAudioPlayer.h"
 @interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource,RCIMChatBarDelegate,RCIMConversationViewModelDelegate>
 @property (nonatomic,strong) id currentUser;
 @property (nonatomic,strong) RCIMConversationViewModel * viewModel;
@@ -109,6 +110,11 @@
         RCIMDocumentsFileDownController * controller = [RCIMDocumentsFileDownController new];
         controller.message = messageCell.message;
         [self.navigationController pushViewController:controller animated:YES];
+    }else if ([messageCell.message.objectName isEqualToString:RCVoiceMessageTypeIdentifier])
+    {
+        
+        [[LCCKAVAudioPlayer sharePlayer]playAudioWavData:messageCell.message identifier:@(messageCell.indexPath.row).stringValue];
+        
     }
 }
 - (void)textMessageCellDoubleTapped:(RCChatBaseMessageCell *)messageCell
@@ -232,8 +238,11 @@
  *  @param voiceData 语音data数据
  *  @param seconds   语音时长
  */
-- (void)chatBar:(RCChatBar *)chatBar sendVoice:(NSString *)voiceFileName seconds:(NSTimeInterval)seconds
+- (void)chatBar:(RCChatBar *)chatBar sendVoice:(NSData *)voiceData seconds:(NSTimeInterval)seconds
 {
+    NSLog(@"发送消息");
+    RCVoiceMessage * voiceMessage = [RCVoiceMessage messageWithAudio:voiceData duration:seconds];
+    [self.viewModel sendMessage:voiceMessage];
     
 }
 

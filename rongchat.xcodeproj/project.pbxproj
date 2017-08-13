@@ -247,7 +247,7 @@
 		758E8B9F1E0AC6EB00D5DD4E /* RCIMWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B8B1E0AC6EB00D5DD4E /* RCIMWebViewProgress.m */; };
 		758E8BA01E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B8D1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m */; };
 		758E8BA11E0AC6EB00D5DD4E /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758E8B8F1E0AC6EB00D5DD4E /* lame.framework */; };
-		758E8BA21E0AC6EB00D5DD4E /* Mp3Recorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B911E0AC6EB00D5DD4E /* Mp3Recorder.m */; };
+		758E8BA21E0AC6EB00D5DD4E /* RCIMRecoarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B911E0AC6EB00D5DD4E /* RCIMRecoarder.m */; };
 		75B2E56F1F279A9A003240B9 /* LCCKAVAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */; };
 		75B2E5841F285E44003240B9 /* LCCKMessageVoiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E5831F285E44003240B9 /* LCCKMessageVoiceFactory.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
@@ -695,8 +695,8 @@
 		758E8B8C1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMWebViewProgressView.h; sourceTree = "<group>"; };
 		758E8B8D1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMWebViewProgressView.m; sourceTree = "<group>"; };
 		758E8B8F1E0AC6EB00D5DD4E /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lame.framework; sourceTree = "<group>"; };
-		758E8B901E0AC6EB00D5DD4E /* Mp3Recorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mp3Recorder.h; sourceTree = "<group>"; };
-		758E8B911E0AC6EB00D5DD4E /* Mp3Recorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mp3Recorder.m; sourceTree = "<group>"; };
+		758E8B901E0AC6EB00D5DD4E /* RCIMRecoarder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMRecoarder.h; sourceTree = "<group>"; };
+		758E8B911E0AC6EB00D5DD4E /* RCIMRecoarder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMRecoarder.m; sourceTree = "<group>"; };
 		75B2E56D1F279A9A003240B9 /* LCCKAVAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKAVAudioPlayer.h; sourceTree = "<group>"; };
 		75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKAVAudioPlayer.m; sourceTree = "<group>"; };
 		75B2E5701F279AEF003240B9 /* LCCKChatUntiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatUntiles.h; sourceTree = "<group>"; };
@@ -1519,8 +1519,8 @@
 			isa = PBXGroup;
 			children = (
 				758E8B8F1E0AC6EB00D5DD4E /* lame.framework */,
-				758E8B901E0AC6EB00D5DD4E /* Mp3Recorder.h */,
-				758E8B911E0AC6EB00D5DD4E /* Mp3Recorder.m */,
+				758E8B901E0AC6EB00D5DD4E /* RCIMRecoarder.h */,
+				758E8B911E0AC6EB00D5DD4E /* RCIMRecoarder.m */,
 			);
 			path = VoiceLib;
 			sourceTree = "<group>";
@@ -2048,7 +2048,7 @@
 				409F50961DDD704100015DB7 /* UrlDecode.m in Sources */,
 				75D472BB1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m in Sources */,
 				753CA0C21F27109F00F313EE /* LCCKFacePageView.m in Sources */,
-				758E8BA21E0AC6EB00D5DD4E /* Mp3Recorder.m in Sources */,
+				758E8BA21E0AC6EB00D5DD4E /* RCIMRecoarder.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
 				753CA06C1F26180000F313EE /* LCCKInputViewPluginTakePhoto.m in Sources */,
 				7584DAD61E2A5B92007249C2 /* NSBundle+RCIMExtension.m in Sources */,

@@ -11,13 +11,14 @@
 #import "LCCKChatFaceView.h"
 #import "UIImage+RCIMExtension.h"
 #import "NSString+RCIMExtension.h"
+#import "RCIMRecoarder.h"
 
 //#import "LCCKConversationService.h"
 
 NSString *const kLCCKBatchDeleteTextPrefix = @"kLCCKBatchDeleteTextPrefix";
 NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 
-@interface RCChatBar () <UITextViewDelegate, UINavigationControllerDelegate/*, Mp3RecorderDelegate,*/, LCCKChatFaceViewDelegate>
+@interface RCChatBar () <UITextViewDelegate, UINavigationControllerDelegate, RCIMRecoarderDelegate, LCCKChatFaceViewDelegate>
 
 //@property (strong, nonatomic) Mp3Recorder *MP3;
 @property (nonatomic, strong) UIView *inputBarBackgroundView; /**< 输入栏目背景视图 */
@@ -38,6 +39,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 @property (assign, nonatomic) CGFloat oldTextViewHeight;
 @property (nonatomic, assign, getter=shouldAllowTextViewContentOffset) BOOL allowTextViewContentOffset;
 @property (nonatomic, assign, getter=isClosed) BOOL close;
+@property (nonatomic,strong) RCIMRecoarder * recoarder;
 
 #pragma mark - MessageInputView Customize UI
 ///=============================================================================
@@ -60,6 +62,15 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
         [self setup];
     }
     return self;
+}
+- (RCIMRecoarder *)recoarder
+{
+    if(_recoarder==nil)
+    {
+        _recoarder = [[RCIMRecoarder alloc]initWithDelegate:self];
+        
+    }
+    return _recoarder;
 }
 
 - (void)setupConstraints {
@@ -326,24 +337,6 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     });
 }
 
-#pragma mark - MP3RecordedDelegate
-
-- (void)endConvertWithMP3FileName:(NSString *)fileName {
-    if (fileName) {
-       // [LCCKProgressHUD dismissWithProgressState:LCCKProgressSuccess];
-        //[self sendVoiceMessage:fileName seconds:[LCCKProgressHUD seconds]];
-    } else {
-      //  [LCCKProgressHUD dismissWithProgressState:LCCKProgressError];
-    }
-}
-
-- (void)failRecord {
-   // [LCCKProgressHUD dismissWithProgressState:LCCKProgressError];
-}
-
-- (void)beginConvert {
-    //[LCCKProgressHUD changeSubTitle:@"正在转换..."];
-}
 
 #pragma mark - LCCKChatFaceViewDelegate
 
@@ -508,7 +501,7 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 - (void)startRecordVoice {
    // [LCCKProgressHUD show];
     self.voiceRecordButton.highlighted = YES;
-   // [self.MP3 startRecord];
+    [self.recoarder startRecord];
 }
 
 /**
@@ -517,14 +510,14 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
 - (void)cancelRecordVoice {
    // [LCCKProgressHUD dismissWithMessage:@"取消录音"];
     self.voiceRecordButton.highlighted = NO;
-   // [self.MP3 cancelRecord];
+    [self.recoarder cancelRecord];
 }
 
 /**
  *  录音结束
  */
 - (void)confirmRecordVoice {
-    //[self.MP3 stopRecord];
+    [self.recoarder stopRecord];
 }
 
 /**
@@ -683,9 +676,9 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
  *  @param voiceData 发送的语音信息data
  *  @param seconds   语音时长
  */
-- (void)sendVoiceMessage:(NSString *)voiceFileName seconds:(NSTimeInterval)seconds {
+- (void)sendVoiceMessage:(NSData *)voiceData seconds:(NSTimeInterval)seconds {
     if ((seconds > 0) && self.delegate && [self.delegate respondsToSelector:@selector(chatBar:sendVoice:seconds:)]) {
-        [self.delegate chatBar:self sendVoice:voiceFileName seconds:seconds];
+        [self.delegate chatBar:self sendVoice:voiceData seconds:seconds];
     }
 }
 
@@ -852,4 +845,28 @@ NSString *const kLCCKBatchDeleteTextSuffix = @"kLCCKBatchDeleteTextSuffix";
     return _messageInputViewRecordTextColor;
 }
 
+- (void)failRecord
+{
+    NSLog(@"failRecoard");
+}
+- (void)beginConvert
+{
+    NSLog(@"beginConvert");
+}
+- (void)endConvertWithData:(NSData *)audioData withTimeInterval:(CGFloat)timeInterval
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+    [self sendVoiceMessage:audioData seconds:timeInterval];
+    
+}
+//#pragma mark - MP3RecordedDelegate
+//
+//- (void)endConvertWithMP3FileName:(NSString *)fileName {
+//    if (fileName) {
+//        // [LCCKProgressHUD dismissWithProgressState:LCCKProgressSuccess];
+//        //[self sendVoiceMessage:fileName seconds:[LCCKProgressHUD seconds]];
+//    } else {
+//        //  [LCCKProgressHUD dismissWithProgressState:LCCKProgressError];
+//    }
+//}
 @end

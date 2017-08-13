@@ -130,7 +130,7 @@
     [LCCKInputViewPluginPickImage registerSubclass];
     [LCCKInputViewPluginLocation registerSubclass];
     
-  
+    NSLog(@"home== %@",NSHomeDirectory());
     
     return YES;
 }

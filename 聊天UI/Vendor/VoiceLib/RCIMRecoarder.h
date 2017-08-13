@@ -8,16 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol Mp3RecorderDelegate <NSObject>
+@protocol RCIMRecoarderDelegate <NSObject>
 - (void)failRecord;
 - (void)beginConvert;
-- (void)endConvertWithMP3FileName:(NSString *)fileName;
+- (void)endConvertWithData:(NSData *)audioData withTimeInterval:(CGFloat)timeInterval;
+
 @end
 
-@interface Mp3Recorder : NSObject
-@property (nonatomic, weak) id<Mp3RecorderDelegate> delegate;
+@interface RCIMRecoarder : NSObject
+@property (nonatomic, weak) id<RCIMRecoarderDelegate> delegate;
 
-- (id)initWithDelegate:(id<Mp3RecorderDelegate>)delegate;
+- (id)initWithDelegate:(id<RCIMRecoarderDelegate>)delegate;
 - (void)startRecord;
 - (void)stopRecord;
 - (void)cancelRecord;

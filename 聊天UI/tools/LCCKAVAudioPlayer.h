@@ -18,7 +18,7 @@
 
 @interface LCCKAVAudioPlayer : NSObject
 
-@property (nonatomic, copy) NSString *URLString;
+@property (nonatomic, strong,readonly) RCMessage * message;
 
 /**
  *  identifier -> 主要作用是提供记录,用来控制对应的tableViewCell的状态
@@ -32,7 +32,8 @@
 
 + (instancetype)sharePlayer;
 
-- (void)playAudioWithURLString:(NSString *)URLString identifier:(NSString *)identifier;
+
+- (void)playAudioWavData:(RCMessage *)message identifier:(NSString *)identifier;
 
 - (void)stopAudioPlayer;
 

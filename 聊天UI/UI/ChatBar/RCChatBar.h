@@ -126,7 +126,7 @@ typedef NS_ENUM(NSUInteger, LCCKFunctionViewShowType){
  *  @param voiceData 语音data数据
  *  @param seconds   语音时长
  */
-- (void)chatBar:(RCChatBar *)chatBar sendVoice:(NSString *)voiceFileName seconds:(NSTimeInterval)seconds;
+- (void)chatBar:(RCChatBar *)chatBar sendVoice:(NSData *)voiceData seconds:(NSTimeInterval)seconds;
 
 /*!
  *  输入了 @ 的时候
