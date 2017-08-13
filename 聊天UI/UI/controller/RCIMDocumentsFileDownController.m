@@ -31,15 +31,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     RCFileMessage * messageContent = (RCFileMessage *)self.message.content;
     NSLog(@"messageContent.fileUrl %@",messageContent.localPath);
-    if([self.message.class canReadOpenApp:messageContent]&&[messageContent.localPath isValid])
-    {
-        [self addChildViewController:self.preViewController];
-        [self.view addSubview:self.preViewController.view];
-        [self.preViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(self.view);
-        }];
-        [self.preViewController didMoveToParentViewController:self];
-    }else
+    if(![self canOpenDocuments])
     {
         [self createUI];
     }
@@ -50,6 +42,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)canOpenDocuments
+{
+    RCFileMessage * messageContent = (RCFileMessage *)self.message.content;
+    if([self.message.class canReadOpenApp:messageContent]&&[messageContent.localPath isValid])
+    {
+        [self addChildViewController:self.preViewController];
+        [self.view addSubview:self.preViewController.view];
+        [self.preViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(self.view);
+        }];
+        [self.preViewController didMoveToParentViewController:self];
+        return YES;
+    }
+    return NO;
 }
 
 - (QLPreviewController *)preViewController
@@ -220,6 +228,9 @@
     } failed:^(RCErrorCode error) {
         
     } sucessBlock:^(NSString *path) {
+        RCFileMessage * fileMessage = (RCFileMessage *)self.message.content;
+        fileMessage.localPath = path;
+        [self canOpenDocuments];
         
     } cancelBlock:^(NSInteger messageId) {
         [self stopDownload];
