@@ -12,5 +12,7 @@
 - (void)RCIM_shouldDisplayTimestampForMessages:(NSArray *)messages callback:(RCIMShouldDisplayTimestampCallBack)callback;
 - (NSTimeInterval)RCIM_messageTimestamp;
 + (instancetype)systemMessageWithTimestamp:(NSTimeInterval)time;
+- (NSString *)fileSizeString:(long long)size;
++ (BOOL)canReadOpenApp:(RCFileMessage *)messageContent;
 @end
 

@@ -12,6 +12,7 @@
 #import <PhotoBrowser.h>
 #import "RCChatBar.h"
 #import "RCIMShowLocationController.h"
+#import "RCIMDocumentsFileDownController.h"
 @interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource,RCIMChatBarDelegate,RCIMConversationViewModelDelegate>
 @property (nonatomic,strong) id currentUser;
 @property (nonatomic,strong) RCIMConversationViewModel * viewModel;
@@ -103,6 +104,11 @@
         RCLocationMessage * messageContent = (RCLocationMessage *)messageCell.message.content;
         controller.coordinate = messageContent.location;
         [self.navigationController pushViewController:controller animated:YES];
+    }else if ([messageCell.message.objectName isEqualToString:RCFileMessageTypeIdentifier])
+    {
+        RCIMDocumentsFileDownController * controller = [RCIMDocumentsFileDownController new];
+        controller.message = messageCell.message;
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 - (void)textMessageCellDoubleTapped:(RCChatBaseMessageCell *)messageCell
@@ -139,7 +145,7 @@
 }
 - (void)fileMessageDidDownload:(RCChatBaseMessageCell *)messageCell
 {
-    
+   
 }
 
 - (void)messageCellDidDeleteMessageCell:(RCChatBaseMessageCell *)messageCell message:(RCMessage *)message

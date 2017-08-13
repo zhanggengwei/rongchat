@@ -187,6 +187,8 @@
 		753CA0C11F27109F00F313EE /* LCCKChatFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0BE1F27109F00F313EE /* LCCKChatFaceView.m */; };
 		753CA0C21F27109F00F313EE /* LCCKFacePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0C01F27109F00F313EE /* LCCKFacePageView.m */; };
 		753CA0C71F27110600F313EE /* LCCKFaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0C41F27110600F313EE /* LCCKFaceManager.m */; };
+		75445DE01F403B2800E57265 /* RCIMDocumentsFileDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75445DDF1F403B2800E57265 /* RCIMDocumentsFileDownController.m */; };
+		75445DE41F4053FC00E57265 /* download_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75445DE31F4053FC00E57265 /* download_delete@2x.png */; };
 		7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */; };
 		7584DA9E1E2A5B83007249C2 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA991E2A5B83007249C2 /* RCConversationListCell.m */; };
 		7584DA9F1E2A5B83007249C2 /* RCTextMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA9C1E2A5B83007249C2 /* RCTextMessageTableViewCell.m */; };
@@ -568,6 +570,9 @@
 		753CA0C01F27109F00F313EE /* LCCKFacePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKFacePageView.m; sourceTree = "<group>"; };
 		753CA0C31F27110600F313EE /* LCCKFaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKFaceManager.h; sourceTree = "<group>"; };
 		753CA0C41F27110600F313EE /* LCCKFaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKFaceManager.m; sourceTree = "<group>"; };
+		75445DDE1F403B2800E57265 /* RCIMDocumentsFileDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMDocumentsFileDownController.h; sourceTree = "<group>"; };
+		75445DDF1F403B2800E57265 /* RCIMDocumentsFileDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMDocumentsFileDownController.m; sourceTree = "<group>"; };
+		75445DE31F4053FC00E57265 /* download_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download_delete@2x.png"; sourceTree = "<group>"; };
 		7584DA951E2A5B83007249C2 /* PPTZeroSelectListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTZeroSelectListCell.h; sourceTree = "<group>"; };
 		7584DA961E2A5B83007249C2 /* RCConversationBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationBaseCell.h; sourceTree = "<group>"; };
 		7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationBaseCell.m; sourceTree = "<group>"; };
@@ -811,6 +816,8 @@
 				7531E9821F3958B3001C1326 /* RCIMTextFullScreenViewController.m */,
 				752679591F3C55500002AC45 /* RCIMShowLocationController.h */,
 				7526795A1F3C55500002AC45 /* RCIMShowLocationController.m */,
+				75445DDE1F403B2800E57265 /* RCIMDocumentsFileDownController.h */,
+				75445DDF1F403B2800E57265 /* RCIMDocumentsFileDownController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -998,6 +1005,7 @@
 		40C2601E1E0396FB00823111 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				75445DE31F4053FC00E57265 /* download_delete@2x.png */,
 				7526795F1F3CAEF00002AC45 /* redPin.png */,
 				752679601F3CAEF00002AC45 /* redPin@2x.png */,
 				752679611F3CAEF00002AC45 /* redPin@3x.png */,
@@ -1891,6 +1899,7 @@
 				752679621F3CAEF00002AC45 /* redPin.png in Resources */,
 				40C260991E0396FB00823111 /* ff_IconShake@3x.png in Resources */,
 				40C260BC1E0396FB00823111 /* tabbar_mainframe@2x.png in Resources */,
+				75445DE41F4053FC00E57265 /* download_delete@2x.png in Resources */,
 				40C2607B1E0396FB00823111 /* plugins_FriendNotify@3x.png in Resources */,
 				40C260B01E0396FB00823111 /* me_photo@2x.png in Resources */,
 				752658BA1F3DDBF90056BBFD /* fav_fileicon_down90Custom@2x.png in Resources */,
@@ -2100,6 +2109,7 @@
 				409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */,
 				7584DB4E1E2A5BE6007249C2 /* PPInfoMessageViewController.m in Sources */,
 				758E8B921E0AC6EB00D5DD4E /* RCIMError.m in Sources */,
+				75445DE01F403B2800E57265 /* RCIMDocumentsFileDownController.m in Sources */,
 				7584DADF1E2A5B92007249C2 /* UIImageView+RCIMExtension.m in Sources */,
 				7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */,
 				75D472BE1DEEFE160013AA3E /* PPUrlDef.m in Sources */,

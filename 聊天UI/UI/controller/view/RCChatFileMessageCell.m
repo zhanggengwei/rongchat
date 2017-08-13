@@ -7,7 +7,7 @@
 //
 
 #import "RCChatFileMessageCell.h"
-
+#import "RCMessage+RCTimeShow.h"
 @interface RCChatFileMessageCell ()
 @property (nonatomic,strong) UILabel * fileLabel;
 @property (nonatomic,strong) UIButton * downButton;
@@ -25,8 +25,8 @@
     [super configureCellWithData:message];
     RCFileMessage * fileContent = (RCFileMessage *)message.content;
     self.fileLabel.text = fileContent.name;
-    self.fileIconImageView.image = [self fileImageWithFileExtension:fileContent.type];
-    NSString * content = [NSString stringWithFormat:@"%@\n%@",fileContent.name,[self fileSizeString:fileContent.size]];
+    self.fileIconImageView.image = [[RCIMSettingService shareManager]fileImageWithFileExtension:fileContent.type];
+    NSString * content = [NSString stringWithFormat:@"%@\n%@",fileContent.name,[self.message fileSizeString:fileContent.size]];
     NSMutableAttributedString * attributeString = [[NSMutableAttributedString alloc]initWithString:content];
     [attributeString setAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor blackColor]} range:NSMakeRange(0, fileContent.name.length)];
     
@@ -72,6 +72,15 @@
         make.right.mas_equalTo(self.downButton.mas_left).mas_offset(-2*offset);
         make.left.mas_equalTo(self.fileIconImageView.mas_right);
     }];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapMessageImageViewGestureRecognizerHandler:)];
+    [self.messageContentView addGestureRecognizer:recognizer];
+}
+- (void)singleTapMessageImageViewGestureRecognizerHandler:(UITapGestureRecognizer *)tapGestureRecognizer {
+    if (tapGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        if ([self.delegate respondsToSelector:@selector(messageCellTappedMessage:)]) {
+            [self.delegate messageCellTappedMessage:self];
+        }
+    }
 }
 
 - (UILabel *)fileLabel
@@ -93,26 +102,7 @@
     }
     return _fileIconImageView;
 }
-//默认
-- (NSString *)fileSizeString:(long long)size
-{
-    long long byte = size;
-    if(byte<1024)
-    {
-        return [@(byte).stringValue stringByAppendingString:@"B"];
-    }
-    long long kb = byte/1024.0;
-    if(kb<1024)
-    {
-        return [@(kb).stringValue stringByAppendingString:@"KB"];
-    }
-    long long MB = kb/1024.0;
-    if(MB<1024)
-    {
-        return [@(MB).stringValue stringByAppendingString:@"MB"];
-    }
-    return [@(MB/1024.0).stringValue stringByAppendingString:@"G"];
-}
+
 
 - (UIButton *)downButton
 {
@@ -143,38 +133,6 @@
         [self.delegate fileMessageDidDownload:self];
     }
 }
-
-- (UIImage *)fileImageWithFileExtension:(NSString *)extension
-{
-    NSString * imageName = nil;
-    if([extension containsString:@"ppt"])
-    {
-        imageName = @"fav_fileicon_ppt90";
-    }else if ([extension containsString:@"txt"])
-    {
-        imageName = @"fav_fileicon_txt90";
-    }else if ([extension containsString:@"word"])
-    {
-        imageName = @"fav_fileicon_word90";
-    }else if ([extension containsString:@"xls"])
-    {
-        imageName = @"fav_fileicon_xls90";
-    }else if ([extension containsString:@"zip"])
-    {
-         imageName = @"fav_fileicon_zip90";
-    }else if ([extension containsString:@"pdf"])
-    {
-        imageName = @"fav_fileicon_pdf90";
-    }
-    else
-    {
-        imageName = @"fav_fileicon_unknow90";
-    }
-    return [UIImage imageNamed:imageName];
-}
-
-
-
 #pragma mark
 + (void)load {
     [self registerSubclass];

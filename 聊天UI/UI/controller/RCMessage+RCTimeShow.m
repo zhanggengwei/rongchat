@@ -56,5 +56,47 @@
     timeMessage.sentTime = time;
     return timeMessage;
 }
-
+//默认
+- (NSString *)fileSizeString:(long long)size
+{
+    long long byte = size;
+    if(byte<1024)
+    {
+        return [@(byte).stringValue stringByAppendingString:@"B"];
+    }
+    long long kb = byte/1024.0;
+    if(kb<1024)
+    {
+        return [@(kb).stringValue stringByAppendingString:@"KB"];
+    }
+    long long MB = kb/1024.0;
+    if(MB<1024)
+    {
+        return [@(MB).stringValue stringByAppendingString:@"MB"];
+    }
+    return [@(MB/1024.0).stringValue stringByAppendingString:@"G"];
+}
++ (BOOL)canReadOpenApp:(RCFileMessage *)messageContent
+{
+    NSString * type = messageContent.type;
+    if([type hasPrefix:@"doc"])
+    {
+         return YES;
+    }else if ([type hasPrefix:@"txt"])
+    {
+         return YES;
+    }else if ([type hasPrefix:@"xls"])
+    {
+        return YES;
+        
+    }else if ([type hasPrefix:@"ppt"])
+    {
+        return YES;
+    }
+    else if ([type hasPrefix:@"html"])
+    {
+        return YES;
+    }
+    return NO;
+}
 @end

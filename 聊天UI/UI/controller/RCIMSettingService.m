@@ -272,5 +272,32 @@ static BOOL LCCKAllLogsEnabled;
                                };
     [[NSNotificationCenter defaultCenter] postNotificationName:RCNotificationConversationViewControllerBackgroundImageDidChanged object:userInfo];
 }
-
+- (UIImage *)fileImageWithFileExtension:(NSString *)extension
+{
+    NSString * imageName = nil;
+    if([extension containsString:@"ppt"])
+    {
+        imageName = @"fav_fileicon_ppt90";
+    }else if ([extension containsString:@"txt"])
+    {
+        imageName = @"fav_fileicon_txt90";
+    }else if ([extension containsString:@"word"])
+    {
+        imageName = @"fav_fileicon_word90";
+    }else if ([extension containsString:@"xls"])
+    {
+        imageName = @"fav_fileicon_xls90";
+    }else if ([extension containsString:@"zip"])
+    {
+        imageName = @"fav_fileicon_zip90";
+    }else if ([extension containsString:@"pdf"])
+    {
+        imageName = @"fav_fileicon_pdf90";
+    }
+    else
+    {
+        imageName = @"fav_fileicon_unknow90";
+    }
+    return [UIImage imageNamed:imageName];
+}
 @end

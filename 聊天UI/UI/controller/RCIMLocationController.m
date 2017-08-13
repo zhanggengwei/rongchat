@@ -35,7 +35,7 @@
     self.title = @"位置";
     [AMapServices sharedServices].enableHTTPS = YES;
     self.currentObj.location = [RCIMLocationManager shareManager].location.coordinate;
-    self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.AOIName;
+    self.currentObj.name = [RCIMLocationManager shareManager].locationReGeocode.POIName;
     [self beginRefreshing];
     
     // Do any additional setup after loading the view.

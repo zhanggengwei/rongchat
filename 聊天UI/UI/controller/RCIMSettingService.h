@@ -46,6 +46,6 @@
 - (NSString *)hollowRightHighlightImageNameMessageBubbleCustomize;
 - (NSString *)hollowLeftNormalImageNameMessageBubbleCustomize;
 - (NSString *)hollowLeftHighlightImageNameMessageBubbleCustomize;
-
+- (UIImage *)fileImageWithFileExtension:(NSString *)extension;
 
 @end

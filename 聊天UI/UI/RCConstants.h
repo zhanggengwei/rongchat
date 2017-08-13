@@ -46,6 +46,10 @@ typedef void(^RCCancelSendMessageBlock)(NSInteger messageId);
 typedef void (^RCImageResultBlock)(UIImage * image, NSError *error);
 typedef void (^RCProgressBlock)(NSInteger percentDone,NSInteger messageId);
 
+typedef void (^RCDownMediaProgressBlock)(NSInteger percentDone);
+typedef void (^RCDownMediaSucessedBlock)(NSString *path);
+typedef void (^RCDownFailedBlock)(RCErrorCode error);
+typedef void(^RCCancelDownMediaMessageBlock)(NSInteger messageId);
 
 //search Messags
 typedef void (^RCQueryMessagesBlock)(NSArray<RCMessage *> *messages,NSError * error);

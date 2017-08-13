@@ -72,4 +72,5 @@
 
 - (RCMessage *)getMessageByMessagId:(NSInteger)messageId;
 
+- (void)downloadMediaMessage:(RCMessage *)message withProgress:(RCDownMediaProgressBlock)progressBlock failed:(RCDownFailedBlock)failBlock sucessBlock:(RCDownMediaSucessedBlock)sucessBlock cancelBlock:(RCCancelDownMediaMessageBlock)cancelBlock;
 @end

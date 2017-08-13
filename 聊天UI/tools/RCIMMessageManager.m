@@ -220,4 +220,25 @@
 {
     return [_client getMessage:messageId];
 }
+- (void)downloadMediaMessage:(RCMessage *)message withProgress:(RCDownMediaProgressBlock)progressBlock failed:(RCDownFailedBlock)failBlock sucessBlock:(RCDownMediaSucessedBlock)sucessBlock cancelBlock:(RCCancelDownMediaMessageBlock)cancelBlock
+{
+    [_client downloadMediaMessage:message.messageId progress:^(int progress) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            progressBlock(progress);
+        });
+    } success:^(NSString *mediaPath) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            sucessBlock(mediaPath);
+        });
+    } error:^(RCErrorCode errorCode) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failBlock(errorCode);
+        });
+    } cancel:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cancelBlock(message.messageId);
+        });
+    }];
+    
+}
 @end
