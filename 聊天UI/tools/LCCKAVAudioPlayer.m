@@ -138,7 +138,9 @@ NSString *const kLCCKAudioDataKey;
     
     RCVoiceMessage * voiceMessage = (RCVoiceMessage *)message.content;
     NSError *audioPlayerError;
+    NSLog(@"data == %@",voiceMessage.wavAudioData);
     _audioPlayer = [[AVAudioPlayer alloc] initWithData:voiceMessage.wavAudioData error:&audioPlayerError];
+    
     if (!_audioPlayer || !voiceMessage.wavAudioData) {
         [self setAudioPlayerState:RCVoiceMessageStateCancel];
         return;

@@ -35,21 +35,17 @@
     NSURL *url = [NSURL fileURLWithPath:[self cafPath]];
     NSMutableDictionary *settings = [[NSMutableDictionary alloc] init];
     //录音格式 无法使用
-//    [settings setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey: AVFormatIDKey];
-//    //采样率
-//    [settings setValue :[NSNumber numberWithFloat:11025.0] forKey: AVSampleRateKey];//44100.0
-//    //通道数
-//    [settings setValue :[NSNumber numberWithInt:1] forKey: AVNumberOfChannelsKey];
-//    //音频质量,采样质量
-//    [settings setValue:[NSNumber numberWithInt:AVAudioQualityMin] forKey:AVEncoderAudioQualityKey];
-    settings = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                          [NSNumber numberWithFloat:16000], AVSampleRateKey,
-                                          [NSNumber numberWithInt:kAudioFormatLinearPCM],AVFormatIDKey,
-                                          [NSNumber numberWithInt:1], AVNumberOfChannelsKey,
-                                          [NSNumber numberWithInt:16], AVLinearPCMBitDepthKey,
-                                          [NSNumber numberWithBool:NO],AVLinearPCMIsBigEndianKey,
-                                          [NSNumber numberWithBool:NO],AVLinearPCMIsFloatKey,
-                                          nil];
+    [settings setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey: AVFormatIDKey];
+    //采样率
+    [settings setValue :[NSNumber numberWithFloat:8000.0] forKey: AVSampleRateKey];//44100.0
+    //通道数
+    [settings setValue :[NSNumber numberWithInt:1] forKey: AVNumberOfChannelsKey];
+    //音频质量,采样质量
+    [settings setValue:[NSNumber numberWithInt:AVAudioQualityMin] forKey:AVEncoderAudioQualityKey];
+    [settings setValue:@(16) forKey:AVLinearPCMBitDepthKey];
+    [settings setValue:@(NO) forKey:AVLinearPCMIsNonInterleaved];
+    [settings setValue:@(NO) forKey:AVLinearPCMIsFloatKey];
+    [settings setValue:@(NO) forKey:AVLinearPCMIsBigEndianKey];
     _recorder = [[AVAudioRecorder alloc] initWithURL:url
                                             settings:settings
                                                error:&recorderSetupError];
@@ -59,6 +55,9 @@
     _recorder.meteringEnabled = YES;
     _recorder.delegate = self;
     [_recorder prepareToRecord];
+    
+    
+//    NSDictionary * settings1 = @{AVFormatIDKey:@(kAudioFormatLinearPCM),AVSampleRateKey: @8000.00f,AVNumberOfChannelsKey: @1,AVLinearPCMBitDepthKey: @16,AVLinearPCMIsNonInterleaved: @NO,AVLinearPCMIsFloatKey: @NO,AVLinearPC:'MIsBigEndianKey: @NO};
 }
 
 - (void)setSesstion
@@ -182,7 +181,7 @@
 //    }
     //pcm -> amr
     NSData * data= [NSData dataWithContentsOfFile:[self cafPath]];
-    NSData * audioData = [[RCAMRDataConverter sharedAMRDataConverter]encodeWAVEToAMR:data channel:1 nBitsPerSample:8000];
+    NSData * audioData = data;//[[RCAMRDataConverter sharedAMRDataConverter]encodeWAVEToAMR:data channel:1 nBitsPerSample:16];
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
             //NSLog(@"MP3转换结束");
             if (_delegate && [_delegate respondsToSelector:@selector(endConvertWithData:withTimeInterval:)]) {
@@ -193,7 +192,7 @@
 
 #pragma mark - Path Utils
 - (NSString *)cafPath {
-    NSString *cafPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"tmp.caf"];
+    NSString *cafPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"tmp.wav"];
     return cafPath;
 }
 
