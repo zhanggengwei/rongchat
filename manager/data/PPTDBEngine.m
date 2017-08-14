@@ -27,7 +27,6 @@
 {
     static dispatch_once_t token;
     static PPTDBEngine * shareInstance;
-    
     dispatch_once(&token, ^{
         shareInstance = [self new];
         [[NSNotificationCenter defaultCenter]addObserver:shareInstance selector:@selector(logoutSucess:) name:kPPObserverLogoutSucess object:nil];
@@ -162,8 +161,6 @@
         }
 }
 
-
-
 #pragma mark - util method
 - (BOOL)ifHaveRecordWithTable:(NSString *)table
 {
@@ -226,9 +223,6 @@
     return user_Info;
 }
 
-
-
-
 - (NSArray *)queryFriendList
 {
     NSArray * contactlist = [NSArray new];
@@ -251,24 +245,16 @@
                 
                 RCContactUserInfo * info = [[RCContactUserInfo alloc]transFromPPUserBaseInfoToRCContactUserInfo:baseInfo];
                 contactlist = [contactlist arrayByAddingObject:info];
-                
             }
-        
         }
-        
-        
     }
     return contactlist;
-    
 }
 
 - (BOOL)updateUserInfo:(PPUserBaseInfo *)info
 {
     if([self.db open])
     {
-        /*
-         indexId text  primary key not null,nickname text,displayName text,portraitUri text,updatedAt text,phone text,region text,isSelf bool
-         */
         NSString * updateSql = [NSString stringWithFormat:@"update %@ set nickname = ?,displayName = ?,portraitUri = ?, updatedAt = ?,phone = ?,region = ? where indexId = ?",USER_INFO_TABLENAME];
         BOOL ret  = [self.db executeUpdate:updateSql,info.user.nickname,info.displayName,info.user.portraitUri,info.updatedAt,info.user.phone,info.user.region,info.user.indexId];
         return ret;
@@ -312,14 +298,14 @@
                     return NO;
                 }
             }
-            if ([self.db inTransaction])
+            if ([self.db isInTransaction])
             {
                 [self.db commit];
             }
         }
         @catch (NSException *exception)
         {
-            if([self.db inTransaction])
+            if([self.db isInTransaction])
             {
                 [self.db rollback];
             }

@@ -15,7 +15,6 @@
 
 +(instancetype)manager;
 
-
 //注册
 - (void)registerWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord verifyCode:(NSString *)code andNickName:(NSString *)nickName;
 

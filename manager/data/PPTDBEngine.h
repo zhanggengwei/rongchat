@@ -17,7 +17,6 @@
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
 
 //保存用户的好友列表
-
 - (BOOL)saveContactList:(NSArray <PPUserBaseInfo *> *)contactList;
 
 - (PPUserBaseInfo *)queryUser_InfoWithIndexId:(NSString *)indexId;

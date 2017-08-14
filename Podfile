@@ -55,6 +55,7 @@ def pods
   
    #bugly crash
     pod 'Bugly', '~> 2.4.8'
+    pod 'CocoaLumberjack', '~> 3.2.0'
     #pod 'FHHFPSIndicator', '~> 1.0.0'
     
 end

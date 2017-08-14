@@ -149,6 +149,7 @@
 		752679621F3CAEF00002AC45 /* redPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 7526795F1F3CAEF00002AC45 /* redPin.png */; };
 		752679631F3CAEF00002AC45 /* redPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 752679601F3CAEF00002AC45 /* redPin@2x.png */; };
 		752679641F3CAEF00002AC45 /* redPin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 752679611F3CAEF00002AC45 /* redPin@3x.png */; };
+		7526AFD01F41865900FE662F /* RCIMBuglyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7526AFCF1F41865900FE662F /* RCIMBuglyConfig.m */; };
 		75278A0E1F0E8F2D000C70AF /* RCChatBaseMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A0D1F0E8F2D000C70AF /* RCChatBaseMessageCell.m */; };
 		75278A111F0E9167000C70AF /* RCContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A101F0E9167000C70AF /* RCContentView.m */; };
 		75278A141F0E9294000C70AF /* RCMessageSendStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75278A131F0E9294000C70AF /* RCMessageSendStateView.m */; };
@@ -504,6 +505,8 @@
 		7526795F1F3CAEF00002AC45 /* redPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redPin.png; sourceTree = "<group>"; };
 		752679601F3CAEF00002AC45 /* redPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPin@2x.png"; sourceTree = "<group>"; };
 		752679611F3CAEF00002AC45 /* redPin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redPin@3x.png"; sourceTree = "<group>"; };
+		7526AFCE1F41865900FE662F /* RCIMBuglyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMBuglyConfig.h; sourceTree = "<group>"; };
+		7526AFCF1F41865900FE662F /* RCIMBuglyConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMBuglyConfig.m; sourceTree = "<group>"; };
 		75278A0C1F0E8F2D000C70AF /* RCChatBaseMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCChatBaseMessageCell.h; sourceTree = "<group>"; };
 		75278A0D1F0E8F2D000C70AF /* RCChatBaseMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCChatBaseMessageCell.m; sourceTree = "<group>"; };
 		75278A0F1F0E9167000C70AF /* RCContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCContentView.h; sourceTree = "<group>"; };
@@ -1381,6 +1384,8 @@
 				7584DB651E2A5BF5007249C2 /* PPTDBEngine.m */,
 				7584DB661E2A5BF5007249C2 /* PPTUserInfoEngine.h */,
 				7584DB671E2A5BF5007249C2 /* PPTUserInfoEngine.m */,
+				7526AFCE1F41865900FE662F /* RCIMBuglyConfig.h */,
+				7526AFCF1F41865900FE662F /* RCIMBuglyConfig.m */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -2102,6 +2107,7 @@
 				7584DB6E1E2A5BF5007249C2 /* kPPObserverDef.m in Sources */,
 				7584DAE11E2A5B92007249C2 /* UIView+RCIMExtension.m in Sources */,
 				7526795E1F3CA6F40002AC45 /* RCIMAnimation.m in Sources */,
+				7526AFD01F41865900FE662F /* RCIMBuglyConfig.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				7584DADC1E2A5B92007249C2 /* NSString+RCIMMD5.m in Sources */,
 				753CA0601F26177B00F313EE /* RCCKChatMoreView.m in Sources */,

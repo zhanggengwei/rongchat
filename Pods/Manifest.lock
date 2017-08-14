@@ -28,6 +28,12 @@ PODS:
   - AMapSearch (4.2.0):
     - AMapFoundation (~> 1.0)
   - Bugly (2.4.8)
+  - CocoaLumberjack (3.2.0):
+    - CocoaLumberjack/Default (= 3.2.0)
+    - CocoaLumberjack/Extensions (= 3.2.0)
+  - CocoaLumberjack/Default (3.2.0)
+  - CocoaLumberjack/Extensions (3.2.0):
+    - CocoaLumberjack/Default
   - DACircularProgress (2.3.1)
   - FMDB (2.7.2):
     - FMDB/standard (= 2.7.2)
@@ -82,6 +88,7 @@ DEPENDENCIES:
   - AMapLocation (~> 2.1.1)
   - AMapSearch (~> 4.2.0)
   - Bugly (~> 2.4.8)
+  - CocoaLumberjack (~> 3.2.0)
   - DACircularProgress (~> 2.3.1)
   - FMDB
   - iAppInfos (~> 0.2.1)
@@ -117,6 +124,7 @@ SPEC CHECKSUMS:
   AMapLocation: dd203f76b034ef5cb546600f4e1ffad2a3a14072
   AMapSearch: 788020fca7ed18819e8bc2bfca716a6775a05ada
   Bugly: da3c02408c14838d498429320545a8e439392978
+  CocoaLumberjack: 9b4aed7073d242f29cc2f62068d995faf67f703a
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   iAppInfos: 090ecd9a694be25968bbdbdbff97841b301a9107
@@ -148,6 +156,6 @@ SPEC CHECKSUMS:
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: 95f9909143d09d87e85a9f9d175c99e6726ac774
+PODFILE CHECKSUM: 44e37e1d09b930721761942fba2aff1857f5facd
 
 COCOAPODS: 1.2.1

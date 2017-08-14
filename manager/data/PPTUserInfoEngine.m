@@ -11,8 +11,10 @@
 #import "RCConversationCacheObj.h"
 
 @interface PPTUserInfoEngine ()
+
 @property (nonatomic,strong) PPUserBaseInfo * user_Info;
 @property (nonatomic,strong) NSArray * contactList;
+
 @end
 
 @implementation PPTUserInfoEngine
@@ -35,15 +37,12 @@
     self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
     self.contactList = [[PPTDBEngine shareManager]queryFriendList];
     self.contactList = [self setDataTest:self.contactList];
-    
     [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
         
         PPUserBaseInfo * info = [PPUserBaseInfo new];
         info.user = aTaskResponse.result;
         [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
     } userID:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil]];
-    
-    
 }
 
 #pragma mark 测试的数据
@@ -53,7 +52,7 @@
     NSArray  * nameArr = [name componentsSeparatedByString:@" "];
     __block NSArray * contactListArr = [NSArray new];
     
-   contactListArr = [contactListArr arrayByAddingObjectsFromArray:self.contactList];
+    contactListArr = [contactListArr arrayByAddingObjectsFromArray:self.contactList];
     
     for (int i = 0; i <=100; i++)
     {
@@ -78,7 +77,7 @@
 
 - (BOOL)saveUserFriendList:(NSArray<PPUserBaseInfo *> *)baseInfoArr
 {
-   __block NSArray * arr = [NSArray new];
+    __block NSArray * arr = [NSArray new];
     [baseInfoArr enumerateObjectsUsingBlock:^(PPUserBaseInfo * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         NSString * name = obj.user.nickname;
@@ -88,7 +87,7 @@
         }
         RCContactUserInfo * userInfo = [[RCContactUserInfo alloc]transFromPPUserBaseInfoToRCContactUserInfo:obj];
         arr = [arr arrayByAddingObject:userInfo];
-       
+        
     }];
     self.contactList = arr;
     return [[PPTDBEngine shareManager]saveContactList:baseInfoArr];
@@ -99,13 +98,10 @@
     [[PPDateEngine manager]getFriendListResponse:^(PPUserFriendListResponse * aTaskResponse) {
         if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
         {
-            
             [self saveUserFriendList:aTaskResponse.result];
-            
         }
         NSLog(@"aTaskResponse == %@",aTaskResponse);
     }];
-    
 }
 - (RCUserInfo *)quertyUserInfoByUserId:(NSString *)userId
 {

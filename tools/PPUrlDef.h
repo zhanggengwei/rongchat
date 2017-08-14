@@ -82,10 +82,6 @@
 #define kPPUrlInviteFriend [NSString stringWithFormat:@"%@friendship/invite",kPPUrlHttp]
 ///user/set_portrait_uri
 
-
-
-
-
 @interface PPUrlDef : NSObject
 
 @end
