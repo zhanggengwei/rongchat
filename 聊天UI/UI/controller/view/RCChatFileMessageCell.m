@@ -40,7 +40,7 @@
     [self.messageContentView addSubview:self.fileContentView];
     [self.fileContentView addSubview:self.fileIconImageView];
     [self.fileContentView addSubview:self.fileLabel];
-    [self.fileContentView addSubview:self.downButton];
+//    [self.fileContentView addSubview:self.downButton];
     UIEdgeInsets edgeMessageBubbleCustomize;
     if (self.messageOwner == MessageDirection_SEND) {
         UIEdgeInsets rightEdgeMessageBubbleCustomize = [RCIMSettingService shareManager].rightHollowEdgeMessageBubbleCustomize;
@@ -57,10 +57,11 @@
         make.centerY.mas_equalTo(self.fileContentView.mas_centerY);
         make.top.mas_equalTo(self.fileContentView.mas_top).mas_offset(offset);
     }];
-    [self.downButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.fileContentView.mas_centerY);
-        make.right.mas_equalTo(self.fileContentView.mas_right).mas_offset(-2*offset);
-    }];
+//    [self.downButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(self.fileContentView.mas_centerY);
+//        make.right.mas_equalTo(self.fileContentView.mas_right).mas_offset(-2*offset);
+//        make.width.height.mas_equalTo(44);
+//    }];
     [self.fileContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.messageContentView).with.insets(edgeMessageBubbleCustomize);
         make.width.lessThanOrEqualTo(@200);
@@ -69,7 +70,7 @@
     
     [self.fileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.fileContentView.mas_centerY);
-        make.right.mas_equalTo(self.downButton.mas_left).mas_offset(-2*offset);
+        make.right.mas_equalTo(self.fileContentView.mas_right).mas_offset(-2*offset);
         make.left.mas_equalTo(self.fileIconImageView.mas_right);
     }];
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapMessageImageViewGestureRecognizerHandler:)];
@@ -104,17 +105,17 @@
 }
 
 
-- (UIButton *)downButton
-{
-    if(_downButton==nil)
-    {
-        _downButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_downButton setBackgroundImage:[UIImage imageNamed:@"fav_fileicon_down90Custom"] forState:UIControlStateNormal];
-        [_downButton setBackgroundImage:[UIImage imageNamed:@"fav_fileicon_down90h"] forState:UIControlStateHighlighted];
-        [_downButton addTarget:self action:@selector(downloadFile:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _downButton;
-}
+//- (UIButton *)downButton
+//{
+//    if(_downButton==nil)
+//    {
+//        _downButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_downButton setBackgroundImage:[UIImage imageNamed:@"fav_fileicon_down90Custom"] forState:UIControlStateNormal];
+//        [_downButton setBackgroundImage:[UIImage imageNamed:@"fav_fileicon_down90h"] forState:UIControlStateHighlighted];
+//        [_downButton addTarget:self action:@selector(downloadFile:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _downButton;
+//}
 
 - (UIImageView *)fileContentView
 {
