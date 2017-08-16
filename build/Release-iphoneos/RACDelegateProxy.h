@@ -1,6 +1,6 @@
 //
 //  RACDelegateProxy.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Cody Krieger on 5/19/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class RACSignal;
+@class RACSignal<__covariant ValueType>;
+
+NS_ASSUME_NONNULL_BEGIN
 
 // A private delegate object suitable for using
 // -rac_signalForSelector:fromProtocol: upon.
@@ -26,3 +28,5 @@
 - (RACSignal *)signalForSelector:(SEL)selector;
 
 @end
+
+NS_ASSUME_NONNULL_END

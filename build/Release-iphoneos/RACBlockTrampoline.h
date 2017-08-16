@@ -1,6 +1,6 @@
 //
 //  RACBlockTrampoline.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 10/21/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  RACQueueScheduler+Subclass.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 6/6/13.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.
@@ -9,13 +9,15 @@
 #import "RACQueueScheduler.h"
 #import "RACScheduler+Subclass.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// An interface for use by GCD queue-based subclasses.
 ///
 /// See RACScheduler+Subclass.h for subclassing notes.
 @interface RACQueueScheduler ()
 
 /// The queue on which blocks are enqueued.
-#if OS_OBJECT_HAVE_OBJC_SUPPORT
+#if OS_OBJECT_USE_OBJC
 @property (nonatomic, strong, readonly) dispatch_queue_t queue;
 #else
 // Swift builds with OS_OBJECT_HAVE_OBJC_SUPPORT=0 for Playgrounds and LLDB :(
@@ -30,7 +32,7 @@
 ///         This argument must not be NULL.
 ///
 /// Returns the initialized object.
-- (id)initWithName:(NSString *)name queue:(dispatch_queue_t)queue;
+- (instancetype)initWithName:(nullable NSString *)name queue:(dispatch_queue_t)queue;
 
 /// Converts a date into a GCD time using dispatch_walltime().
 ///
@@ -38,3 +40,5 @@
 + (dispatch_time_t)wallTimeWithDate:(NSDate *)date;
 
 @end
+
+NS_ASSUME_NONNULL_END

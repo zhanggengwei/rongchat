@@ -1,6 +1,6 @@
 //
 //  NSInvocation+RACTypeParsing.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 11/17/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.

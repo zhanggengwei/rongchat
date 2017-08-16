@@ -1,6 +1,6 @@
 //
 //  NSObject+RACLifting.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 10/13/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class RACSignal;
+@class RACSignal<__covariant ValueType>;
+@class RACTuple;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (RACLifting)
 
@@ -37,25 +40,12 @@
 
 /// Like -rac_liftSelector:withSignals:, but accepts an array instead of
 /// a variadic list of arguments.
-- (RACSignal *)rac_liftSelector:(SEL)selector withSignalsFromArray:(NSArray *)signals;
+- (RACSignal *)rac_liftSelector:(SEL)selector withSignalsFromArray:(NSArray<RACSignal *> *)signals;
 
 /// Like -rac_liftSelector:withSignals:, but accepts a signal sending tuples of
 /// arguments instead of a variadic list of arguments.
-- (RACSignal *)rac_liftSelector:(SEL)selector withSignalOfArguments:(RACSignal *)arguments;
+- (RACSignal *)rac_liftSelector:(SEL)selector withSignalOfArguments:(RACSignal<RACTuple *> *)arguments;
 
 @end
 
-@interface NSObject (RACLiftingDeprecated)
-
-- (RACSignal *)rac_liftSelector:(SEL)selector withObjects:(id)arg, ... __attribute__((deprecated("Use -rac_liftSelector:withSignals: instead")));
-- (RACSignal *)rac_liftSelector:(SEL)selector withObjectsFromArray:(NSArray *)args __attribute__((deprecated("Use -rac_liftSelector:withSignalsFromArray: instead")));
-- (RACSignal *)rac_liftBlock:(id)block withArguments:(id)arg, ... NS_REQUIRES_NIL_TERMINATION __attribute__((deprecated("Use +combineLatest:reduce: instead")));
-- (RACSignal *)rac_liftBlock:(id)block withArgumentsFromArray:(NSArray *)args __attribute__((deprecated("Use +combineLatest:reduce: instead")));
-
-@end
-
-@interface NSObject (RACLiftingUnavailable)
-
-- (instancetype)rac_lift __attribute__((unavailable("Use -rac_liftSelector:withSignals: instead")));
-
-@end
+NS_ASSUME_NONNULL_END

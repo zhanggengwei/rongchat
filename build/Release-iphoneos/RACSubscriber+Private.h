@@ -1,6 +1,6 @@
 //
 //  RACSubscriber+Private.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Justin Spahr-Summers on 2013-06-13.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.

@@ -7,34 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 
 
 /**
  扫码区域动画效果
  */
-typedef enum LBXScanViewAnimationStyle
+typedef NS_ENUM(NSInteger,LBXScanViewAnimationStyle)
 {
     LBXScanViewAnimationStyle_LineMove,   //线条上下移动
     LBXScanViewAnimationStyle_NetGrid,//网格
     LBXScanViewAnimationStyle_LineStill,//线条停止在扫码区域中央
     LBXScanViewAnimationStyle_None    //无动画
     
-}LBXScanViewAnimationStyle;
-
+};
 
 /**
  扫码区域4个角位置类型
  */
-typedef enum LBXScanViewPhotoframeAngleStyle
+typedef NS_ENUM(NSInteger, LBXScanViewPhotoframeAngleStyle)
 {
     LBXScanViewPhotoframeAngleStyle_Inner,//内嵌，一般不显示矩形框情况下
     LBXScanViewPhotoframeAngleStyle_Outer,//外嵌,包围在矩形框的4个角
     LBXScanViewPhotoframeAngleStyle_On   //在矩形框的4个角上，覆盖
-}LBXScanViewPhotoframeAngleStyle;
+};
 
 
-
+NS_ASSUME_NONNULL_BEGIN
 
 @interface LBXScanViewStyle : NSObject
 
@@ -53,7 +52,7 @@ typedef enum LBXScanViewPhotoframeAngleStyle
 
 
 /**
- @brief  矩形框(视频显示透明区)域向上移动偏移量，0表示扫码透明区域在当前视图中心位置，如果负值表示扫码区域下移
+ @brief  矩形框(视频显示透明区)域向上移动偏移量，0表示扫码透明区域在当前视图中心位置，< 0 表示扫码区域下移, >0 表示扫码区域上移
  */
 @property (nonatomic, assign) CGFloat centerUpOffset;
 
@@ -96,30 +95,20 @@ typedef enum LBXScanViewPhotoframeAngleStyle
 @property (nonatomic, assign) LBXScanViewAnimationStyle anmiationStyle;
 
 /**
- *  动画效果的图像，如线条或网格的图像
+ *  动画效果的图像，如线条或网格的图像，如果为nil，表示不需要动画效果
  */
-@property (nonatomic,strong) UIImage *animationImage;
+@property (nonatomic,strong,nullable) UIImage *animationImage;
 
 
 
-#pragma mark -非识别区域颜色,默认 RGBA (0,0,0,0.5)，范围（0--1）
-@property (nonatomic, assign) CGFloat red_notRecoginitonArea;
-@property (nonatomic, assign) CGFloat green_notRecoginitonArea;
-@property (nonatomic, assign) CGFloat blue_notRecoginitonArea;
-@property (nonatomic, assign) CGFloat alpa_notRecoginitonArea;
+#pragma mark -非识别区域颜色,默认 RGBA (0,0,0,0.5)
 
-
-
-
-
-
-
-
-
-
-
+/**
+ must be create by [UIColor colorWithRed: green: blue: alpha:]
+ */
+@property (nonatomic, strong) UIColor *notRecoginitonArea;
 
 
 @end
 
-
+NS_ASSUME_NONNULL_END

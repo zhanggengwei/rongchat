@@ -1,6 +1,6 @@
 //
 //  RACImmediateScheduler.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 11/30/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.

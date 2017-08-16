@@ -1,15 +1,17 @@
 //
 //  RACSubscriptingAssignmentTrampoline.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 9/24/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "RACEXTKeyPathCoding.h"
+#import <ReactiveObjC/RACEXTKeyPathCoding.h>
 
-@class RACSignal;
+@class RACSignal<__covariant ValueType>;
+
+NS_ASSUME_NONNULL_BEGIN
 
 /// Assigns a signal to an object property, automatically setting the given key
 /// path on every `next`. When the signal completes, the binding is automatically
@@ -48,7 +50,9 @@
 
 @interface RACSubscriptingAssignmentTrampoline : NSObject
 
-- (id)initWithTarget:(id)target nilValue:(id)nilValue;
+- (nullable instancetype)initWithTarget:(nullable id)target nilValue:(nullable id)nilValue;
 - (void)setObject:(RACSignal *)signal forKeyedSubscript:(NSString *)keyPath;
 
 @end
+
+NS_ASSUME_NONNULL_END

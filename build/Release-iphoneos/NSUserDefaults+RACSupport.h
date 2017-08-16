@@ -1,6 +1,6 @@
 //
 //  NSUserDefaults+RACSupport.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Matt Diephouse on 12/19/13.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.
@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @class RACChannelTerminal;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSUserDefaults (RACSupport)
 
@@ -25,3 +27,5 @@
 - (RACChannelTerminal *)rac_channelTerminalForKey:(NSString *)key;
 
 @end
+
+NS_ASSUME_NONNULL_END

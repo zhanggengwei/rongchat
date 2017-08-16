@@ -1,12 +1,14 @@
 //
 //  RACUnit.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 3/27/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
 
 /// A unit represents an empty value.
 ///
@@ -17,3 +19,5 @@
 + (RACUnit *)defaultUnit;
 
 @end
+
+NS_ASSUME_NONNULL_END

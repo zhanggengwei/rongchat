@@ -1,6 +1,6 @@
 //
 //  RACSignal+Operations.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Justin Spahr-Summers on 2012-09-06.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "RACSignal.h"
+
+@class RACCommand;
+@class RACDisposable;
+@class RACMulticastConnection<__covariant ValueType>;
+@class RACScheduler;
+@class RACSequence<__covariant ValueType>;
+@class RACSubject<ValueType>;
+@class RACTuple;
+@class RACTwoTuple<__covariant First, __covariant Second>;
+@class RACEvent<__covariant ValueType>;
+@class RACGroupedSignal;
+@protocol RACSubscriber;
+
+NS_ASSUME_NONNULL_BEGIN
 
 /// The domain for errors originating in RACSignal operations.
 extern NSString * const RACSignalErrorDomain;
@@ -19,28 +33,19 @@ extern const NSInteger RACSignalErrorTimedOut;
 /// match any of the cases, and no default was given.
 extern const NSInteger RACSignalErrorNoMatchingCase;
 
-@class RACCommand;
-@class RACDisposable;
-@class RACMulticastConnection;
-@class RACScheduler;
-@class RACSequence;
-@class RACSubject;
-@class RACTuple;
-@protocol RACSubscriber;
-
-@interface RACSignal (Operations)
+@interface RACSignal<__covariant ValueType> (Operations)
 
 /// Do the given block on `next`. This should be used to inject side effects into
 /// the signal.
-- (RACSignal *)doNext:(void (^)(id x))block;
+- (RACSignal<ValueType> *)doNext:(void (^)(ValueType _Nullable x))block RAC_WARN_UNUSED_RESULT;
 
 /// Do the given block on `error`. This should be used to inject side effects
 /// into the signal.
-- (RACSignal *)doError:(void (^)(NSError *error))block;
+- (RACSignal<ValueType> *)doError:(void (^)(NSError * _Nonnull error))block RAC_WARN_UNUSED_RESULT;
 
 /// Do the given block on `completed`. This should be used to inject side effects
 /// into the signal.
-- (RACSignal *)doCompleted:(void (^)(void))block;
+- (RACSignal<ValueType> *)doCompleted:(void (^)(void))block RAC_WARN_UNUSED_RESULT;
 
 /// Sends `next`s only if we don't receive another `next` in `interval` seconds.
 ///
@@ -54,7 +59,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal which sends throttled and delayed `next` events. Completion
 /// and errors are always forwarded immediately.
-- (RACSignal *)throttle:(NSTimeInterval)interval;
+- (RACSignal<ValueType> *)throttle:(NSTimeInterval)interval RAC_WARN_UNUSED_RESULT;
 
 /// Throttles `next`s for which `predicate` returns YES.
 ///
@@ -79,7 +84,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal which sends `next` events, throttled when `predicate`
 /// returns YES. Completion and errors are always forwarded immediately.
-- (RACSignal *)throttle:(NSTimeInterval)interval valuesPassingTest:(BOOL (^)(id next))predicate;
+- (RACSignal<ValueType> *)throttle:(NSTimeInterval)interval valuesPassingTest:(BOOL (^)(id _Nullable next))predicate RAC_WARN_UNUSED_RESULT;
 
 /// Forwards `next` and `completed` events after delaying for `interval` seconds
 /// on the current scheduler (on which the events were delivered).
@@ -89,10 +94,10 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal which sends delayed `next` and `completed` events. Errors
 /// are always forwarded immediately.
-- (RACSignal *)delay:(NSTimeInterval)interval;
+- (RACSignal<ValueType> *)delay:(NSTimeInterval)interval RAC_WARN_UNUSED_RESULT;
 
 /// Resubscribes when the signal completes.
-- (RACSignal *)repeat;
+- (RACSignal<ValueType> *)repeat RAC_WARN_UNUSED_RESULT;
 
 /// Executes the given block each time a subscription is created.
 ///
@@ -118,10 +123,10 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal that passes through all events of the receiver, plus
 /// introduces side effects which occur prior to any subscription side effects
 /// of the receiver.
-- (RACSignal *)initially:(void (^)(void))block;
+- (RACSignal<ValueType> *)initially:(void (^)(void))block RAC_WARN_UNUSED_RESULT;
 
 /// Executes the given block when the signal completes or errors.
-- (RACSignal *)finally:(void (^)(void))block;
+- (RACSignal<ValueType> *)finally:(void (^)(void))block RAC_WARN_UNUSED_RESULT;
 
 /// Divides the receiver's `next`s into buffers which deliver every `interval`
 /// seconds.
@@ -134,7 +139,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal which sends RACTuples of the buffered values at each
 /// interval on `scheduler`. When the receiver completes, any currently-buffered
 /// values will be sent immediately.
-- (RACSignal *)bufferWithTime:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler;
+- (RACSignal<RACTuple *> *)bufferWithTime:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler;
 
 /// Collects all receiver's `next`s into a NSArray. Nil values will be converted
 /// to NSNull.
@@ -143,13 +148,13 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal which sends a single NSArray when the receiver completes
 /// successfully.
-- (RACSignal *)collect;
+- (RACSignal<NSArray<ValueType> *> *)collect RAC_WARN_UNUSED_RESULT;
 
 /// Takes the last `count` `next`s after the receiving signal completes.
-- (RACSignal *)takeLast:(NSUInteger)count;
+- (RACSignal<ValueType> *)takeLast:(NSUInteger)count RAC_WARN_UNUSED_RESULT;
 
 /// Combines the latest values from the receiver and the given signal into
-/// RACTuples, once both have sent at least one `next`.
+/// 2-tuples, once both have sent at least one `next`.
 ///
 /// Any additional `next`s will result in a new RACTuple with the latest values
 /// from both signals.
@@ -158,7 +163,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal which sends RACTuples of the combined values, forwards any
 /// `error` events, and completes when both input signals complete.
-- (RACSignal *)combineLatestWith:(RACSignal *)signal;
+- (RACSignal<RACTwoTuple<ValueType, id> *> *)combineLatestWith:(RACSignal *)signal RAC_WARN_UNUSED_RESULT;
 
 /// Combines the latest values from the given signals into RACTuples, once all
 /// the signals have sent at least one `next`.
@@ -171,7 +176,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal which sends RACTuples of the combined values, forwards any
 /// `error` events, and completes when all input signals complete.
-+ (RACSignal *)combineLatest:(id<NSFastEnumeration>)signals;
++ (RACSignal<RACTuple *> *)combineLatest:(id<NSFastEnumeration>)signals RAC_WARN_UNUSED_RESULT;
 
 /// Combines signals using +combineLatest:, then reduces the resulting tuples
 /// into a single value using -reduceEach:.
@@ -192,18 +197,18 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal which sends the results from each invocation of
 /// `reduceBlock`.
-+ (RACSignal *)combineLatest:(id<NSFastEnumeration>)signals reduce:(id (^)())reduceBlock;
++ (RACSignal<ValueType> *)combineLatest:(id<NSFastEnumeration>)signals reduce:(ValueType _Nullable (^)())reduceBlock RAC_WARN_UNUSED_RESULT;
 
 /// Merges the receiver and the given signal with `+merge:` and returns the
 /// resulting signal.
-- (RACSignal *)merge:(RACSignal *)signal;
+- (RACSignal *)merge:(RACSignal *)signal RAC_WARN_UNUSED_RESULT;
 
 /// Sends the latest `next` from any of the signals.
 ///
 /// Returns a signal that passes through values from each of the given signals,
 /// and sends `completed` when all of them complete. If any signal sends an error,
 /// the returned signal sends `error` immediately.
-+ (RACSignal *)merge:(id<NSFastEnumeration>)signals;
++ (RACSignal<ValueType> *)merge:(id<NSFastEnumeration>)signals RAC_WARN_UNUSED_RESULT;
 
 /// Merges the signals sent by the receiver into a flattened signal, but only
 /// subscribes to `maxConcurrent` number of signals at a time. New signals are
@@ -218,7 +223,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// maxConcurrent - the maximum number of signals to subscribe to at a
 ///                 time. If 0, it subscribes to an unlimited number of
 ///                 signals.
-- (RACSignal *)flatten:(NSUInteger)maxConcurrent;
+- (RACSignal *)flatten:(NSUInteger)maxConcurrent RAC_WARN_UNUSED_RESULT;
 
 /// Ignores all `next`s from the receiver, waits for the receiver to complete,
 /// then subscribes to a new signal.
@@ -229,10 +234,10 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal which will pass through the events of the signal created in
 /// `block`. If the receiver errors out, the returned signal will error as well.
-- (RACSignal *)then:(RACSignal * (^)(void))block;
+- (RACSignal *)then:(RACSignal * (^)(void))block RAC_WARN_UNUSED_RESULT;
 
 /// Concats the inner signals of a signal of signals.
-- (RACSignal *)concat;
+- (RACSignal *)concat RAC_WARN_UNUSED_RESULT;
 
 /// Aggregates the `next` values of the receiver into a single combined value.
 ///
@@ -257,7 +262,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal that will send the aggregated value when the receiver
 /// completes, then itself complete. If the receiver never sends any values,
 /// `start` will be sent instead.
-- (RACSignal *)aggregateWithStart:(id)start reduce:(id (^)(id running, id next))reduceBlock;
+- (RACSignal *)aggregateWithStart:(id)start reduce:(id (^)(id running, id next))reduceBlock RAC_WARN_UNUSED_RESULT;
 
 /// Aggregates the `next` values of the receiver into a single combined value.
 /// This is indexed version of -aggregateWithStart:reduce:.
@@ -272,7 +277,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal that will send the aggregated value when the receiver
 /// completes, then itself complete. If the receiver never sends any values,
 /// `start` will be sent instead.
-- (RACSignal *)aggregateWithStart:(id)start reduceWithIndex:(id (^)(id running, id next, NSUInteger index))reduceBlock;
+- (RACSignal *)aggregateWithStart:(id)start reduceWithIndex:(id (^)(id running, id next, NSUInteger index))reduceBlock RAC_WARN_UNUSED_RESULT;
 
 /// Aggregates the `next` values of the receiver into a single combined value.
 ///
@@ -288,7 +293,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal that will send the aggregated value when the receiver
 /// completes, then itself complete. If the receiver never sends any values,
 /// the return value of `startFactory` will be sent instead.
-- (RACSignal *)aggregateWithStartFactory:(id (^)(void))startFactory reduce:(id (^)(id running, id next))reduceBlock;
+- (RACSignal *)aggregateWithStartFactory:(id (^)(void))startFactory reduce:(id (^)(id running, id next))reduceBlock RAC_WARN_UNUSED_RESULT;
 
 /// Invokes -setKeyPath:onObject:nilValue: with `nil` for the nil value.
 ///
@@ -326,7 +331,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///            object is set to `nil`).
 ///
 /// Returns a disposable which can be used to terminate the binding.
-- (RACDisposable *)setKeyPath:(NSString *)keyPath onObject:(NSObject *)object nilValue:(id)nilValue;
+- (RACDisposable *)setKeyPath:(NSString *)keyPath onObject:(NSObject *)object nilValue:(nullable id)nilValue;
 
 /// Sends NSDate.date every `interval` seconds.
 ///
@@ -336,7 +341,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal that sends the current date/time every `interval` on
 /// `scheduler`.
-+ (RACSignal *)interval:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler;
++ (RACSignal<NSDate *> *)interval:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler RAC_WARN_UNUSED_RESULT;
 
 /// Sends NSDate.date at intervals of at least `interval` seconds, up to
 /// approximately `interval` + `leeway` seconds.
@@ -354,14 +359,14 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal that sends the current date/time at intervals of at least
 /// `interval seconds` up to approximately `interval` + `leeway` seconds on
 /// `scheduler`.
-+ (RACSignal *)interval:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler withLeeway:(NSTimeInterval)leeway;
++ (RACSignal<NSDate *> *)interval:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler withLeeway:(NSTimeInterval)leeway RAC_WARN_UNUSED_RESULT;
 
 /// Takes `next`s until the `signalTrigger` sends `next` or `completed`.
 ///
 /// Returns a signal which passes through all events from the receiver until
 /// `signalTrigger` sends `next` or `completed`, at which point the returned signal
 /// will send `completed`.
-- (RACSignal *)takeUntil:(RACSignal *)signalTrigger;
+- (RACSignal<ValueType> *)takeUntil:(RACSignal *)signalTrigger RAC_WARN_UNUSED_RESULT;
 
 /// Takes `next`s until the `replacement` sends an event.
 ///
@@ -372,13 +377,28 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// until `replacement` sends an event, at which point the returned signal will
 /// send that event and switch to passing through events from `replacement`
 /// instead, regardless of whether the receiver has sent events already.
-- (RACSignal *)takeUntilReplacement:(RACSignal *)replacement;
+- (RACSignal *)takeUntilReplacement:(RACSignal *)replacement RAC_WARN_UNUSED_RESULT;
 
 /// Subscribes to the returned signal when an error occurs.
-- (RACSignal *)catch:(RACSignal * (^)(NSError *error))catchBlock;
+- (RACSignal *)catch:(RACSignal * (^)(NSError * _Nonnull error))catchBlock RAC_WARN_UNUSED_RESULT;
 
 /// Subscribes to the given signal when an error occurs.
-- (RACSignal *)catchTo:(RACSignal *)signal;
+- (RACSignal *)catchTo:(RACSignal *)signal RAC_WARN_UNUSED_RESULT;
+
+/// Returns a signal that will either immediately send the return value of
+/// `tryBlock` and complete, or error using the `NSError` passed out from the
+/// block.
+///
+/// tryBlock - An action that performs some computation that could fail. If the
+///            block returns nil, the block must return an error via the
+///            `errorPtr` parameter.
+///
+/// Example:
+///
+///   [RACSignal try:^(NSError **error) {
+///       return [NSJSONSerialization JSONObjectWithData:someJSONData options:0 error:error];
+///   }];
++ (RACSignal<ValueType> *)try:(nullable ValueType (^)(NSError **errorPtr))tryBlock RAC_WARN_UNUSED_RESULT;
 
 /// Runs `tryBlock` against each of the receiver's values, passing values
 /// until `tryBlock` returns NO, or the receiver completes.
@@ -398,7 +418,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal which passes through all the values of the receiver. If
 /// `tryBlock` fails for any value, the returned signal will error using the
 /// `NSError` passed out from the block.
-- (RACSignal *)try:(BOOL (^)(id value, NSError **errorPtr))tryBlock;
+- (RACSignal<ValueType> *)try:(BOOL (^)(id _Nullable value, NSError **errorPtr))tryBlock RAC_WARN_UNUSED_RESULT;
 
 /// Runs `mapBlock` against each of the receiver's values, mapping values until
 /// `mapBlock` returns nil, or the receiver completes.
@@ -418,21 +438,21 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal which transforms all the values of the receiver. If
 /// `mapBlock` returns nil for any value, the returned signal will error using
 /// the `NSError` passed out from the block.
-- (RACSignal *)tryMap:(id (^)(id value, NSError **errorPtr))mapBlock;
+- (RACSignal *)tryMap:(id (^)(id _Nullable value, NSError **errorPtr))mapBlock RAC_WARN_UNUSED_RESULT;
 
 /// Returns the first `next`. Note that this is a blocking call.
-- (id)first;
+- (nullable ValueType)first;
 
 /// Returns the first `next` or `defaultValue` if the signal completes or errors
 /// without sending a `next`. Note that this is a blocking call.
-- (id)firstOrDefault:(id)defaultValue;
+- (nullable ValueType)firstOrDefault:(nullable ValueType)defaultValue;
 
 /// Returns the first `next` or `defaultValue` if the signal completes or errors
 /// without sending a `next`. If an error occurs success will be NO and error
 /// will be populated. Note that this is a blocking call.
 ///
 /// Both success and error may be NULL.
-- (id)firstOrDefault:(id)defaultValue success:(BOOL *)success error:(NSError **)error;
+- (nullable ValueType)firstOrDefault:(nullable ValueType)defaultValue success:(nullable BOOL *)success error:(NSError * _Nullable * _Nullable)error;
 
 /// Blocks the caller and waits for the signal to complete.
 ///
@@ -440,12 +460,12 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns whether the signal completed successfully. If NO, `error` will be set
 /// to the error that occurred.
-- (BOOL)waitUntilCompleted:(NSError **)error;
+- (BOOL)waitUntilCompleted:(NSError * _Nullable * _Nullable)error;
 
 /// Defers creation of a signal until the signal's actually subscribed to.
 ///
 /// This can be used to effectively turn a hot signal into a cold signal.
-+ (RACSignal *)defer:(RACSignal * (^)(void))block;
++ (RACSignal<ValueType> *)defer:(RACSignal<ValueType> * (^)(void))block RAC_WARN_UNUSED_RESULT;
 
 /// Every time the receiver sends a new RACSignal, subscribes and sends `next`s and
 /// `error`s only for that signal.
@@ -455,7 +475,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal which passes through `next`s and `error`s from the latest
 /// signal sent by the receiver, and sends `completed` when both the receiver and
 /// the last sent signal complete.
-- (RACSignal *)switchToLatest;
+- (RACSignal *)switchToLatest RAC_WARN_UNUSED_RESULT;
 
 /// Switches between the signals in `cases` as well as `defaultSignal` based on
 /// the latest value sent by `signal`.
@@ -474,7 +494,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// the signals in `cases` or `defaultSignal`, and sends `completed` when both
 /// `signal` and the last used signal complete. If no `defaultSignal` is given,
 /// an unmatched `next` will result in an error on the returned signal.
-+ (RACSignal *)switch:(RACSignal *)signal cases:(NSDictionary *)cases default:(RACSignal *)defaultSignal;
++ (RACSignal<ValueType> *)switch:(RACSignal *)signal cases:(NSDictionary *)cases default:(nullable RACSignal *)defaultSignal RAC_WARN_UNUSED_RESULT;
 
 /// Switches between `trueSignal` and `falseSignal` based on the latest value
 /// sent by `boolSignal`.
@@ -489,7 +509,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a signal which passes through `next`s and `error`s from `trueSignal`
 /// and/or `falseSignal`, and sends `completed` when both `boolSignal` and the
 /// last switched signal complete.
-+ (RACSignal *)if:(RACSignal *)boolSignal then:(RACSignal *)trueSignal else:(RACSignal *)falseSignal;
++ (RACSignal<ValueType> *)if:(RACSignal<NSNumber *> *)boolSignal then:(RACSignal *)trueSignal else:(RACSignal *)falseSignal RAC_WARN_UNUSED_RESULT;
 
 /// Adds every `next` to an array. Nils are represented by NSNulls. Note that
 /// this is a blocking call.
@@ -498,7 +518,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// that behavior instead.
 ///
 /// Returns the array of `next` values, or nil if an error occurs.
-- (NSArray *)toArray;
+- (nullable NSArray<ValueType> *)toArray;
 
 /// Adds every `next` to a sequence. Nils are represented by NSNulls.
 ///
@@ -507,28 +527,28 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Returns a sequence which provides values from the signal as they're sent.
 /// Trying to retrieve a value from the sequence which has not yet been sent will
 /// block.
-@property (nonatomic, strong, readonly) RACSequence *sequence;
+@property (nonatomic, strong, readonly) RACSequence<ValueType> *sequence;
 
 /// Creates and returns a multicast connection. This allows you to share a single
 /// subscription to the underlying signal.
-- (RACMulticastConnection *)publish;
+- (RACMulticastConnection<ValueType> *)publish RAC_WARN_UNUSED_RESULT;
 
 /// Creates and returns a multicast connection that pushes values into the given
 /// subject. This allows you to share a single subscription to the underlying
 /// signal.
-- (RACMulticastConnection *)multicast:(RACSubject *)subject;
+- (RACMulticastConnection<ValueType> *)multicast:(RACSubject<ValueType> *)subject RAC_WARN_UNUSED_RESULT;
 
 /// Multicasts the signal to a RACReplaySubject of unlimited capacity, and
 /// immediately connects to the resulting RACMulticastConnection.
 ///
 /// Returns the connected, multicasted signal.
-- (RACSignal *)replay;
+- (RACSignal<ValueType> *)replay;
 
 /// Multicasts the signal to a RACReplaySubject of capacity 1, and immediately
 /// connects to the resulting RACMulticastConnection.
 ///
 /// Returns the connected, multicasted signal.
-- (RACSignal *)replayLast;
+- (RACSignal<ValueType> *)replayLast;
 
 /// Multicasts the signal to a RACReplaySubject of unlimited capacity, and
 /// lazily connects to the resulting RACMulticastConnection.
@@ -537,7 +557,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// when the former receives its first subscription.
 ///
 /// Returns the lazily connected, multicasted signal.
-- (RACSignal *)replayLazily;
+- (RACSignal<ValueType> *)replayLazily;
 
 /// Sends an error after `interval` seconds if the source doesn't complete
 /// before then.
@@ -551,7 +571,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal that passes through the receiver's events, until the stream
 /// finishes or times out, at which point an error will be sent on `scheduler`.
-- (RACSignal *)timeout:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler;
+- (RACSignal<ValueType> *)timeout:(NSTimeInterval)interval onScheduler:(RACScheduler *)scheduler RAC_WARN_UNUSED_RESULT;
 
 /// Creates and returns a signal that delivers its events on the given scheduler.
 /// Any side effects of the receiver will still be performed on the original
@@ -561,7 +581,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// thread, but you want to handle its events elsewhere.
 ///
 /// This corresponds to the `ObserveOn` method in Rx.
-- (RACSignal *)deliverOn:(RACScheduler *)scheduler;
+- (RACSignal<ValueType> *)deliverOn:(RACScheduler *)scheduler RAC_WARN_UNUSED_RESULT;
 
 /// Creates and returns a signal that executes its side effects and delivers its
 /// events on the given scheduler.
@@ -569,7 +589,7 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// Use of this operator should be avoided whenever possible, because the
 /// receiver's side effects may not be safe to run on another thread. If you just
 /// want to receive the signal's events on `scheduler`, use -deliverOn: instead.
-- (RACSignal *)subscribeOn:(RACScheduler *)scheduler;
+- (RACSignal<ValueType> *)subscribeOn:(RACScheduler *)scheduler RAC_WARN_UNUSED_RESULT;
 
 /// Creates and returns a signal that delivers its events on the main thread.
 /// If events are already being sent on the main thread, they may be passed on
@@ -583,42 +603,42 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 /// This can be used when a signal will cause UI updates, to avoid potential
 /// flicker caused by delayed delivery of events, such as the first event from
 /// a RACObserve at view instantiation.
-- (RACSignal *)deliverOnMainThread;
+- (RACSignal<ValueType> *)deliverOnMainThread RAC_WARN_UNUSED_RESULT;
 
 /// Groups each received object into a group, as determined by calling `keyBlock`
 /// with that object. The object sent is transformed by calling `transformBlock`
 /// with the object. If `transformBlock` is nil, it sends the original object.
 ///
 /// The returned signal is a signal of RACGroupedSignal.
-- (RACSignal *)groupBy:(id<NSCopying> (^)(id object))keyBlock transform:(id (^)(id object))transformBlock;
+- (RACSignal<RACGroupedSignal *> *)groupBy:(id<NSCopying> _Nullable (^)(id _Nullable object))keyBlock transform:(nullable id _Nullable (^)(id _Nullable object))transformBlock  RAC_WARN_UNUSED_RESULT;
 
 /// Calls -[RACSignal groupBy:keyBlock transform:nil].
-- (RACSignal *)groupBy:(id<NSCopying> (^)(id object))keyBlock;
+- (RACSignal<RACGroupedSignal *> *)groupBy:(id<NSCopying> _Nullable (^)(id _Nullable object))keyBlock  RAC_WARN_UNUSED_RESULT;
 
 /// Sends an [NSNumber numberWithBool:YES] if the receiving signal sends any
 /// objects.
-- (RACSignal *)any;
+- (RACSignal<NSNumber *> *)any RAC_WARN_UNUSED_RESULT;
 
 /// Sends an [NSNumber numberWithBool:YES] if the receiving signal sends any
 /// objects that pass `predicateBlock`.
 ///
 /// predicateBlock - cannot be nil.
-- (RACSignal *)any:(BOOL (^)(id object))predicateBlock;
+- (RACSignal<NSNumber *> *)any:(BOOL (^)(id _Nullable object))predicateBlock RAC_WARN_UNUSED_RESULT;
 
 /// Sends an [NSNumber numberWithBool:YES] if all the objects the receiving 
 /// signal sends pass `predicateBlock`.
 ///
 /// predicateBlock - cannot be nil.
-- (RACSignal *)all:(BOOL (^)(id object))predicateBlock;
+- (RACSignal<NSNumber *> *)all:(BOOL (^)(id _Nullable object))predicateBlock RAC_WARN_UNUSED_RESULT;
 
 /// Resubscribes to the receiving signal if an error occurs, up until it has
 /// retried the given number of times.
 ///
 /// retryCount - if 0, it keeps retrying until it completes.
-- (RACSignal *)retry:(NSInteger)retryCount;
+- (RACSignal<ValueType> *)retry:(NSInteger)retryCount RAC_WARN_UNUSED_RESULT;
 
 /// Resubscribes to the receiving signal if an error occurs.
-- (RACSignal *)retry;
+- (RACSignal<ValueType> *)retry RAC_WARN_UNUSED_RESULT;
 
 /// Sends the latest value from the receiver only when `sampler` sends a value.
 /// The returned signal could repeat values if `sampler` fires more often than
@@ -627,45 +647,45 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// sampler - The signal that controls when the latest value from the receiver
 ///           is sent. Cannot be nil.
-- (RACSignal *)sample:(RACSignal *)sampler;
+- (RACSignal<ValueType> *)sample:(RACSignal *)sampler RAC_WARN_UNUSED_RESULT;
 
 /// Ignores all `next`s from the receiver.
 ///
 /// Returns a signal which only passes through `error` or `completed` events from
 /// the receiver.
-- (RACSignal *)ignoreValues;
+- (RACSignal *)ignoreValues RAC_WARN_UNUSED_RESULT;
 
 /// Converts each of the receiver's events into a RACEvent object.
 ///
 /// Returns a signal which sends the receiver's events as RACEvents, and
 /// completes after the receiver sends `completed` or `error`.
-- (RACSignal *)materialize;
+- (RACSignal<RACEvent<ValueType> *> *)materialize RAC_WARN_UNUSED_RESULT;
 
 /// Converts each RACEvent in the receiver back into "real" RACSignal events.
 ///
 /// Returns a signal which sends `next` for each value RACEvent, `error` for each
 /// error RACEvent, and `completed` for each completed RACEvent.
-- (RACSignal *)dematerialize;
+- (RACSignal *)dematerialize RAC_WARN_UNUSED_RESULT;
 
 /// Inverts each NSNumber-wrapped BOOL sent by the receiver. It will assert if
 /// the receiver sends anything other than NSNumbers.
 ///
 /// Returns a signal of inverted NSNumber-wrapped BOOLs.
-- (RACSignal *)not;
+- (RACSignal<NSNumber *> *)not RAC_WARN_UNUSED_RESULT;
 
 /// Performs a boolean AND on all of the RACTuple of NSNumbers in sent by the receiver.
 ///
 /// Asserts if the receiver sends anything other than a RACTuple of one or more NSNumbers.
 ///
 /// Returns a signal that applies AND to each NSNumber in the tuple.
-- (RACSignal *)and;
+- (RACSignal<NSNumber *> *)and RAC_WARN_UNUSED_RESULT;
 
 /// Performs a boolean OR on all of the RACTuple of NSNumbers in sent by the receiver.
 ///
 /// Asserts if the receiver sends anything other than a RACTuple of one or more NSNumbers.
 /// 
 /// Returns a signal that applies OR to each NSNumber in the tuple.
-- (RACSignal *)or;
+- (RACSignal<NSNumber *> *)or RAC_WARN_UNUSED_RESULT;
 
 /// Sends the result of calling the block with arguments as packed in each RACTuple
 /// sent by the receiver.
@@ -686,24 +706,8 @@ extern const NSInteger RACSignalErrorNoMatchingCase;
 ///
 /// Returns a signal of the result of applying the first element of each tuple
 /// to the remaining elements.
-- (RACSignal *)reduceApply;
+- (RACSignal *)reduceApply RAC_WARN_UNUSED_RESULT;
 
 @end
 
-@interface RACSignal (OperationsDeprecated)
-
-- (RACSignal *)windowWithStart:(RACSignal *)openSignal close:(RACSignal * (^)(RACSignal *start))closeBlock __attribute__((deprecated("See https://github.com/ReactiveCocoa/ReactiveCocoa/issues/587")));
-- (RACSignal *)buffer:(NSUInteger)bufferCount __attribute__((deprecated("See https://github.com/ReactiveCocoa/ReactiveCocoa/issues/587")));
-- (RACSignal *)let:(RACSignal * (^)(RACSignal *sharedSignal))letBlock __attribute__((deprecated("Use -publish instead")));
-+ (RACSignal *)interval:(NSTimeInterval)interval __attribute__((deprecated("Use +interval:onScheduler: instead")));
-+ (RACSignal *)interval:(NSTimeInterval)interval withLeeway:(NSTimeInterval)leeway __attribute__((deprecated("Use +interval:onScheduler:withLeeway: instead")));
-- (RACSignal *)bufferWithTime:(NSTimeInterval)interval __attribute__((deprecated("Use -bufferWithTime:onScheduler: instead")));
-- (RACSignal *)timeout:(NSTimeInterval)interval __attribute__((deprecated("Use -timeout:onScheduler: instead")));
-- (RACDisposable *)toProperty:(NSString *)keyPath onObject:(NSObject *)object __attribute__((deprecated("Renamed to -setKeyPath:onObject:")));
-- (RACSignal *)ignoreElements __attribute__((deprecated("Renamed to -ignoreValues")));
-- (RACSignal *)sequenceNext:(RACSignal * (^)(void))block __attribute__((deprecated("Renamed to -then:")));
-- (RACSignal *)aggregateWithStart:(id)start combine:(id (^)(id running, id next))combineBlock __attribute__((deprecated("Renamed to -aggregateWithStart:reduce:")));
-- (RACSignal *)aggregateWithStartFactory:(id (^)(void))startFactory combine:(id (^)(id running, id next))combineBlock __attribute__((deprecated("Renamed to -aggregateWithStartFactory:reduce:")));
-- (RACDisposable *)executeCommand:(RACCommand *)command __attribute__((deprecated("Use -flattenMap: or -subscribeNext: instead")));
-
-@end
+NS_ASSUME_NONNULL_END

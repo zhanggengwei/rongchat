@@ -1,12 +1,14 @@
 //
 //  RACQueueScheduler.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 11/30/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
 //
 
 #import "RACScheduler.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 /// An abstract scheduler which asynchronously enqueues all its work to a Grand
 /// Central Dispatch queue.
@@ -16,3 +18,5 @@
 /// interface and use that instead.
 @interface RACQueueScheduler : RACScheduler
 @end
+
+NS_ASSUME_NONNULL_END

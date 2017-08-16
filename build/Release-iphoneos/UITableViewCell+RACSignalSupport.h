@@ -1,6 +1,6 @@
 //
 //  UITableViewCell+RACSignalSupport.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Justin Spahr-Summers on 2013-07-22.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.
@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class RACSignal;
+@class RACSignal<__covariant ValueType>;
+@class RACUnit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableViewCell (RACSignalSupport)
 
@@ -23,6 +26,8 @@
 ///     subscribeNext:^(UIButton *x) {
 ///         // do other things
 ///     }];
-@property (nonatomic, strong, readonly) RACSignal *rac_prepareForReuseSignal;
+@property (nonatomic, strong, readonly) RACSignal<RACUnit *> *rac_prepareForReuseSignal;
 
 @end
+
+NS_ASSUME_NONNULL_END

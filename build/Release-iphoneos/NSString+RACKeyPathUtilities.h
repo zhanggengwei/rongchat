@@ -1,6 +1,6 @@
 //
 //  NSString+RACKeyPathUtilities.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Uri Baghin on 05/05/2013.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.

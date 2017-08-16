@@ -1,6 +1,6 @@
 //
 //  RACEagerSequence.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Uri Baghin on 02/01/2013.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.

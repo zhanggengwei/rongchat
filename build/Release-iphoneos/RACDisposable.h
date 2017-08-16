@@ -1,6 +1,6 @@
 //
 //  RACDisposable.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 3/16/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @class RACScopedDisposable;
+
+NS_ASSUME_NONNULL_BEGIN
 
 /// A disposable encapsulates the work necessary to tear down and cleanup a
 /// subscription.
@@ -33,3 +35,5 @@
 - (RACScopedDisposable *)asScopedDisposable;
 
 @end
+
+NS_ASSUME_NONNULL_END

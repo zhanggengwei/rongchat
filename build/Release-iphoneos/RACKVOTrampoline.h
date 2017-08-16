@@ -1,6 +1,6 @@
 //
 //  RACKVOTrampoline.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 1/15/13.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.
@@ -26,6 +26,6 @@
 //            Cannot be nil.
 //
 // Returns the initialized object.
-- (id)initWithTarget:(__weak NSObject *)target observer:(__weak NSObject *)observer keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(RACKVOBlock)block;
+- (instancetype)initWithTarget:(__weak NSObject *)target observer:(__weak NSObject *)observer keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options block:(RACKVOBlock)block;
 
 @end

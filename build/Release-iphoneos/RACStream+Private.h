@@ -1,6 +1,6 @@
 //
 //  RACStream+Private.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Justin Spahr-Summers on 2013-07-22.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.
@@ -18,6 +18,6 @@
 //           values.
 //
 // Returns a combined stream.
-+ (instancetype)join:(id<NSFastEnumeration>)streams block:(RACStream * (^)(id, id))block;
++ (__kindof RACStream *)join:(id<NSFastEnumeration>)streams block:(RACStream * (^)(id, id))block;
 
 @end

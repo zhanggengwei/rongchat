@@ -1,6 +1,6 @@
 //
 //  NSObject+RACDeallocating.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Kazuo Koga on 2013/03/15.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.
@@ -10,7 +10,9 @@
 
 @class RACCompoundDisposable;
 @class RACDisposable;
-@class RACSignal;
+@class RACSignal<__covariant ValueType>;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (RACDeallocating)
 
@@ -25,10 +27,4 @@
 
 @end
 
-@interface NSObject (RACDeallocatingDeprecated)
-
-- (RACSignal *)rac_didDeallocSignal __attribute__((deprecated("Use -rac_willDeallocSignal")));
-
-- (void)rac_addDeallocDisposable:(RACDisposable *)disposable __attribute__((deprecated("Add disposables to -rac_deallocDisposable instead")));
-
-@end
+NS_ASSUME_NONNULL_END

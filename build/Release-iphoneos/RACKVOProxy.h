@@ -1,6 +1,6 @@
 //
 //  RACKVOProxy.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Richard Speyer on 4/10/14.
 //  Copyright (c) 2014 GitHub, Inc. All rights reserved.

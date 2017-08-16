@@ -1,6 +1,6 @@
 //
 //  UICollectionReusableView+RACSignalSupport.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Kent Wong on 2013-10-04.
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.
@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class RACSignal;
+@class RACSignal<__covariant ValueType>;
+@class RACUnit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 // This category is only applicable to iOS >= 6.0.
 @interface UICollectionReusableView (RACSignalSupport)
@@ -24,6 +27,8 @@
 ///     subscribeNext:^(UIButton *x) {
 ///         // do other things
 ///     }];
-@property (nonatomic, strong, readonly) RACSignal *rac_prepareForReuseSignal;
+@property (nonatomic, strong, readonly) RACSignal<RACUnit *> *rac_prepareForReuseSignal;
 
 @end
+
+NS_ASSUME_NONNULL_END

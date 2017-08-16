@@ -12,7 +12,7 @@
 #import "LBXScanNetAnimation.h"
 #import "LBXScanViewStyle.h"
 
-
+#define LBXScan_Define_UI
 
 /**
  扫码区域显示效果
@@ -51,12 +51,23 @@
 //
 
 /**
- @brief  根据矩形区域，获取识别兴趣区域
+ @brief  根据矩形区域，获取Native扫码识别兴趣区域
  @param view  视频流显示UIView
  @param style 效果界面参数
  @return 识别区域
  */
 + (CGRect)getScanRectWithPreView:(UIView*)view style:(LBXScanViewStyle*)style;
+
+
+
+/**
+ 根据矩形区域，获取ZXing库扫码识别兴趣区域
+
+ @param view 视频流显示视图
+ @param style 效果界面参数
+ @return 识别区域
+ */
++ (CGRect)getZXingScanRectWithPreView:(UIView*)view style:(LBXScanViewStyle*)style;
 
 
 @end

@@ -11,6 +11,7 @@
 
 #import "ZXBarcodeFormat.h"
 
+#define LBXScan_Define_ZXing
 
 /*!
  *  ZXing扫码封装
@@ -19,9 +20,22 @@
 
 
 
+/**
+ 初始化ZXing
+
+ @param preView 视频预览视图
+ @param block 返回识别结果
+ @return 返回封装对象
+ */
 - (instancetype)initWithPreView:(UIView*)preView block:(void(^)(ZXBarcodeFormat barcodeFormat,NSString *str,UIImage *scanImg))block;
 
 
+
+/**
+ 设置识别区域，不设置默认全屏识别
+
+ @param scanRect 识别区域
+ */
 - (void)setScanRect:(CGRect)scanRect;
 
 
@@ -46,7 +60,7 @@
 
 
 /*!
- *  打开关闭闪光灯
+ *  根据闪光灯状态，自动切换
  */
 - (void)openOrCloseTorch;
 
@@ -62,7 +76,7 @@
 + (UIImage*)createCodeWithString:(NSString*)str size:(CGSize)size CodeFomart:(ZXBarcodeFormat)format;
 
 
-//识别图片上的二维码
+
 
 /*!
  *  识别各种码图片

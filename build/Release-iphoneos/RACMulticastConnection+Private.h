@@ -1,6 +1,6 @@
 //
 //  RACMulticastConnection+Private.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 4/11/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
@@ -10,8 +10,8 @@
 
 @class RACSubject;
 
-@interface RACMulticastConnection ()
+@interface RACMulticastConnection<__covariant ValueType> ()
 
-- (id)initWithSourceSignal:(RACSignal *)source subject:(RACSubject *)subject;
+- (instancetype)initWithSourceSignal:(RACSignal<ValueType> *)source subject:(RACSubject *)subject;
 
 @end

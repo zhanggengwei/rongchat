@@ -1,13 +1,13 @@
 //
 //  RACKVOChannel.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Uri Baghin on 27/12/2012.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
 //
 
 #import "RACChannel.h"
-#import "RACEXTKeyPathCoding.h"
+#import <ReactiveObjC/RACEXTKeyPathCoding.h>
 #import "RACmetamacros.h"
 
 /// Creates a RACKVOChannel to the given key path. When the targeted object
@@ -60,8 +60,10 @@
 #define RACChannelTo_(TARGET, KEYPATH, NILVALUE) \
     [[RACKVOChannel alloc] initWithTarget:(TARGET) keyPath:@keypath(TARGET, KEYPATH) nilValue:(NILVALUE)][@keypath(RACKVOChannel.new, followingTerminal)]
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// A RACChannel that observes a KVO-compliant key path for changes.
-@interface RACKVOChannel : RACChannel
+@interface RACKVOChannel<ValueType> : RACChannel<ValueType>
 
 /// Initializes a channel that will observe the given object and key path.
 ///
@@ -82,9 +84,14 @@
 ///            an NSValue should be used for primitive properties, to avoid an
 ///            exception if `nil` is received (which might occur if an intermediate
 ///            object is set to `nil`).
-- (id)initWithTarget:(__weak NSObject *)target keyPath:(NSString *)keyPath nilValue:(id)nilValue;
+#if OS_OBJECT_HAVE_OBJC_SUPPORT
+- (instancetype)initWithTarget:(__weak NSObject *)target keyPath:(NSString *)keyPath nilValue:(nullable ValueType)nilValue;
+#else
+// Swift builds with OS_OBJECT_HAVE_OBJC_SUPPORT=0 for Playgrounds and LLDB :(
+- (instancetype)initWithTarget:(NSObject *)target keyPath:(NSString *)keyPath nilValue:(nullable ValueType)nilValue;
+#endif
 
-- (id)init __attribute__((unavailable("Use -initWithTarget:keyPath:nilValue: instead")));
+- (instancetype)init __attribute__((unavailable("Use -initWithTarget:keyPath:nilValue: instead")));
 
 @end
 
@@ -95,3 +102,6 @@
 - (void)setObject:(RACChannelTerminal *)otherTerminal forKeyedSubscript:(NSString *)key;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

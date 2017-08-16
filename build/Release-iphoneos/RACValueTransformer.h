@@ -1,6 +1,6 @@
 //
 //  RACValueTransformer.h
-//  ReactiveCocoa
+//  ReactiveObjC
 //
 //  Created by Josh Abernathy on 3/6/12.
 //  Copyright (c) 2012 GitHub, Inc. All rights reserved.
