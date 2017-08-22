@@ -13,7 +13,11 @@
 #define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 
 
-+(instancetype)manager;
++ (instancetype)manager;
+- (instancetype)init __attribute__((unavailable("PPDateEngine init is not avaliable")));
+
+                                   
+
 
 //注册
 - (void)registerWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord verifyCode:(NSString *)code andNickName:(NSString *)nickName;
@@ -107,7 +111,9 @@
 //用户修改名称
 @property (nonatomic,strong,readonly) RACCommand * modifyNickNameCommand;
 //密码重置
-@property (nonatomic,strong,readonly) RACCommand * resetPassWordCommand;
+@property (nonatomic,strong,readonly) RACCommand * resetPassWordCommand __attribute__((deprecated("")));
+
+
 //NSDictionary *params = @{
 //@"password":passWord,
 //@"verification_token" : token
