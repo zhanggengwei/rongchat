@@ -99,6 +99,17 @@
 @property (nonatomic,strong,readonly) RACCommand * contactListCommand;
 //查询用户信息
 @property (nonatomic,strong,readonly) RACCommand * searchUserInfoCommand;
-
-
+//好友添加 PPHTTPManager * manager = [PPHTTPManager manager];
+//NSDictionary *params = @{
+//@"friendId" : friendUserID,
+//@"message" : content};
+@property (nonatomic,strong,readonly) RACCommand * addContactCommand;
+//用户修改名称
+@property (nonatomic,strong,readonly) RACCommand * modifyNickNameCommand;
+//密码重置
+@property (nonatomic,strong,readonly) RACCommand * resetPassWordCommand;
+//NSDictionary *params = @{
+//@"password":passWord,
+//@"verification_token" : token
+//};
 @end

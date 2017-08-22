@@ -19,6 +19,9 @@
 @interface PPDateEngine ()
 @property (nonatomic,strong) RACCommand * contactListCommand;
 @property (nonatomic,strong) RACCommand * searchUserInfoCommand;
+@property (nonatomic,strong) RACCommand * addContactCommand;
+@property (nonatomic,strong) RACCommand * modifyNickNameCommand;
+@property (nonatomic,strong) RACCommand * resetPassWordCommand;
 @end
 
 @implementation PPDateEngine
@@ -251,7 +254,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
         [self _completeWithResponse:response block:aResponseBlock];
-        
     }];
     
     
@@ -693,6 +695,73 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
     }
     return _searchUserInfoCommand;
+}
+
+- (RACCommand *)addContactCommand
+{
+    if(_addContactCommand==nil)
+    {
+        _addContactCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:kPPUrlInviteFriend parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [subscriber sendNext:responseObject];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+        
+    }
+    return _addContactCommand;
+}
+
+- (RACCommand *)modifyNickNameCommand
+{
+
+    if (_modifyNickNameCommand==nil) {
+        _modifyNickNameCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+           RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+               PPHTTPManager * manager = [PPHTTPManager manager];
+               [manager GET:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.indexId) parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                   [subscriber sendNext:responseObject];
+                   [subscriber sendCompleted];
+               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                   [subscriber sendError:error];
+                   [subscriber sendCompleted];
+               }];
+               return nil;
+           }];
+            return signal;
+        }];
+    }
+    return _modifyNickNameCommand;
+}
+
+- (RACCommand *)resetPassWordCommand
+{
+    if(_resetPassWordCommand == nil)
+    {
+        _resetPassWordCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:kPPResetPassWord parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [subscriber sendNext:responseObject];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _resetPassWordCommand;
 }
 
 @end
