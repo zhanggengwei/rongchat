@@ -26,7 +26,6 @@
     [super viewDidLoad];
     self.array = @[@"新的朋友",@"群聊",@"标签",@"公众号"];
     self.imageArray = @[@"plugins_FriendNotify",@"add_friend_icon_addgroup",@"Contact_icon_ContactTag",@"add_friend_icon_offical"];
-    
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.tableView registerClass:[PPContactListCell class] forCellReuseIdentifier:@"PPContactListCell"];
     
@@ -34,17 +33,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor whiteColor];
-    
-    
     self.indexArr = [NSMutableArray new];
-    
-    
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
-    
     self.tableView.sectionIndexColor = [UIColor grayColor];
-    
-    
-    // self.tableView.sectionIndexMinimumDisplayRowCount = 6;
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"contacts_add_friend") style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
  
     self.navigationItem.rightBarButtonItem = rightItem;
@@ -67,7 +58,7 @@
 
 - (void)dealloc
 {
-//    [[PPTUserInfoEngine shareEngine] removeObserver:self forKeyPath:@"contactList"];
+    //[[PPTUserInfoEngine shareEngine] removeObserver:self forKeyPath:@"contactList"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

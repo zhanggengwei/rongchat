@@ -105,6 +105,9 @@ alpha:a]
 
 //104/255.0 green:187/255.0 blue:30/255.0
 #define kPPLoginButtonColor  UIColorFromFloatValueRGBA(104,187,30,1.0)
+
+#define kPPLoginButtonDisableColor  UIColorFromFloatValueRGBA(104,187,30,0.4)
+
 //142/255.0 green:148/255.0 blue:165/255.0 alpha:1
 #define kPPEamil_ButtonColor UIColorFromFloatValueRGBA(142,148,165,1.0)
 
@@ -117,7 +120,6 @@ alpha:a]
 
 #import <RongIMLib/RongIMLib.h>
 #import  <PinYin4Objc/PinYin4Objc.h>
-
 
 
 

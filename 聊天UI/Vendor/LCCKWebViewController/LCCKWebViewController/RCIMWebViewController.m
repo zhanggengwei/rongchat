@@ -48,8 +48,6 @@
     _showsNavigationToolbar = YES;
 }
 
-
-
 -(void)webViewProgress:(RCIMWebViewProgress *)webViewProgress updateProgress:(float)progress {
     [_progressView setProgress:progress animated:YES];
     self.title = [_webView stringByEvaluatingJavaScriptFromString:@"document.title"];

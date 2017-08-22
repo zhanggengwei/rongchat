@@ -10,6 +10,7 @@
 
 @interface PPTUserInfoEngine : NSObject
 @property (nonatomic,strong,readonly) PPUserBaseInfo * user_Info;
+//联系人数据
 @property (nonatomic,strong,readonly) NSArray * contactList;
 
 + (instancetype)shareEngine;

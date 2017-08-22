@@ -11,6 +11,7 @@
 #import <UIImage+YYWebImage.h>
 #import <WActionSheet/NLActionSheet.h>
 #import "PPResetPassWordViewController.h"
+
 @interface PPLoginViewController ()<UITableViewDelegate,UITableViewDataSource,PPLoginTableViewCellDelegate>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) UILabel * headerView;
@@ -20,6 +21,8 @@
 @property (nonatomic,strong) NSString * passWord;
 @property (nonatomic,strong) UIButton * loginBtn;
 @property (nonatomic,strong) UITextField * textfiled;
+@property (nonatomic,strong) RACSignal * userNameSignal;
+@property (nonatomic,strong) RACSignal * passWordSignal;
 @end
 
 @implementation PPLoginViewController
@@ -40,6 +43,18 @@
         
     }];
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    RAC(self.loginBtn,enabled) = [RACSignal combineLatest:@[] reduce:^id _Nullable{
+        
+        return nil;
+    }];
+    self.userNameSignal = RACObserve(self,acount);
+    self.passWordSignal = RACObserve(self,passWord);
+    RAC(self.loginBtn,enabled)=[RACSignal combineLatest:@[self.userNameSignal,self.passWordSignal] reduce:^id (NSString * account,NSString * passWord){
+        return @(account&&passWord);
+    }];
+    
+    
+    
     
     // Do any additional setup after loading the view.
 }
@@ -86,7 +101,7 @@
         make.right.mas_equalTo(self.footerView.mas_right).mas_offset(-31);
         make.height.mas_equalTo(40);
     }];
-    [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:kPPLoginButtonColor] forState:UIControlStateDisabled];
+    [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:kPPLoginButtonDisableColor] forState:UIControlStateDisabled];
     [loginBtn setBackgroundImage:[UIImage yy_imageWithColor:kPPLoginButtonColor] forState:UIControlStateNormal];
     
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -123,30 +138,7 @@
      moreButton.titleLabel.font = COMMON_FONT_SIZE;
     
     [moreButton addTarget:self action:@selector(moreAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-  
-   
-    
-   [[RACScheduler currentScheduler]after:[NSDate date] schedule:^{
-       
-       NSLog(@"date == ");
-   }];
-    
-    [[RACScheduler currentScheduler]afterDelay:10 schedule:^{
-        NSLog(@"启动定时器");
-    }];
-    
-    [[RACScheduler currentScheduler]after:[NSDate date] repeatingEvery:60 withLeeway:1 schedule:^{
-        NSLog(@"fdfdfsdfsd");
-    }];
-  
- 
-    
 }
-
-
-
-
 - (void)moreAction:(id)sender
 {
     NLActionSheet * sheet = [[NLActionSheet alloc]initWithTitle:@"" cancelTitle:@"取消" otherTitles:@[@"注册",@"忘记密码"]];
@@ -164,19 +156,12 @@
             
         }
     }];
-    
-    
 }
-
-
 - (void)cancelAction:(UIBarButtonItem *)sender
 {
-    
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -191,8 +176,6 @@
     }else if(indexPath.row == 1)
     {
         [cell layoutLeftContent:@"+86" content:@"请填写手机号码" andStyle:PPLoginTableViewCellTextField];
-        
-        
     }else
     {
         [cell layoutLeftContent:@"密码" content:@"请填写密码" andStyle:PPLoginTableViewCellNotLine];
@@ -200,7 +183,6 @@
     cell.delegate = self;
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    RAC(self,passWord) = cell.rightText.rac_textSignal;
     return cell;
 }
 
@@ -250,19 +232,10 @@
     {
         self.acount = text;
         //帐号
-        
     }else if (astyle == PPLoginTableViewCellNotLine)
     {
         //密码
         self.passWord = text;
-        
-    }
-    if (self.acount.length>=11&&self.passWord.length>=1)
-    {
-        self.loginBtn.enabled = YES;
-    }else
-    {
-        self.loginBtn.enabled = NO;
     }
 }
 
@@ -278,6 +251,8 @@
         [PPIndicatorView hideLoadingInView:self.view];
         if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
         {
+            [[NSNotificationCenter defaultCenter]postNotificationName:RCIMLoginSucessedNotifaction object:nil];
+            
             [PPIndicatorView showString:@"登录成功"];
         }else
         {

@@ -16,6 +16,10 @@
 
 #define ContentType @"application/json"
 
+@interface PPDateEngine ()
+@property (nonatomic,strong) RACCommand * contactListCommand;
+@property (nonatomic,strong) RACCommand * searchUserInfoCommand;
+@end
 
 @implementation PPDateEngine
 
@@ -645,4 +649,50 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [self _completeWithResponse:response block:aResponseBlock];
     }];
 }
+
+- (RACCommand *)contactListCommand
+{
+    if(_contactListCommand==nil)
+    {
+        _contactListCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                AFHTTPSessionManager * manager = [AFHTTPSessionManager new];
+                [manager GET:kPPGetAllFriendsList parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                    [subscriber sendNext:responseObject];
+                    [subscriber sendCompleted];
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _contactListCommand;
+}
+
+- (RACCommand *)searchUserInfoCommand
+{
+    if(_searchUserInfoCommand==nil)
+    {
+        _searchUserInfoCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:kPPUrlUserInfo(input) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [subscriber sendNext:responseObject];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+        
+    }
+    return _searchUserInfoCommand;
+}
+
 @end

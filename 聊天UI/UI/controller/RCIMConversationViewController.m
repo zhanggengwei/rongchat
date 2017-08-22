@@ -14,6 +14,8 @@
 #import "RCIMShowLocationController.h"
 #import "RCIMDocumentsFileDownController.h"
 #import "LCCKAVAudioPlayer.h"
+#import "RCIMWebViewController.h"
+
 @interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource,RCIMChatBarDelegate,RCIMConversationViewModelDelegate>
 @property (nonatomic,strong) id currentUser;
 @property (nonatomic,strong) RCIMConversationViewModel * viewModel;
@@ -143,7 +145,9 @@
         
     }else if (linkType ==MLLinkTypeURL)
     {
-        
+        RCIMWebViewController * controller = [RCIMWebViewController new];
+        controller.URL = [NSURL URLWithString:linkText];
+        [self.navigationController pushViewController:controller animated:YES];
     }else if (linkType == MLLinkTypeEmail)
     {
         

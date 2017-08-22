@@ -130,7 +130,16 @@
     [LCCKInputViewPluginPickImage registerSubclass];
     [LCCKInputViewPluginLocation registerSubclass];
     
-    NSLog(@"home== %@",NSHomeDirectory());
+    
+    
+    //登陆成功后进行数据的储藏
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:RCIMLoginSucessedNotifaction object:nil]subscribeNext:^(NSNotification * _Nullable x) {
+        [self loginSucessed];
+    }];
+    
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:RCIMLogoutSucessedNotifaction object:nil]subscribeNext:^(NSNotification * _Nullable x) {
+        [self logoutSucessed];
+    }];
     
     return YES;
 }
@@ -170,7 +179,7 @@
     NSArray *  titleArray = @[@"微信",@"通讯录",@"发现",@"我的"];
     NSArray *  imageArray = @[@"tabbar_mainframe",@"tabbar_contacts",@"tabbar_discover",@"tabbar_me"];
     NSArray *  selImageArray = @[@"tabbar_mainframeHL",@"tabbar_contactsHL",@"tabbar_discoverHL",@"tabbar_meHL"];
-    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"RCConversationListViewController",@"RCConversationListViewController",@"ViewController",@"PPMyViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
+    PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"RCConversationListViewController",@"PPContactListViewController",@"ViewController",@"PPMyViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
     [controller showPointMarkIndex:0];
     [controller showBadgeMark:100 index:1];
     self.window.rootViewController = controller;
@@ -259,5 +268,31 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     //NewData就是使用新的数据 更新界面，响应点击通知这个动作
     completionHandler(UIBackgroundFetchResultNewData);
 }
+
+- (void)loginSucessed
+{
+    [[PPTUserInfoEngine shareEngine]asynFriendList];
+    [[[PPDateEngine manager].contactListCommand execute:nil]subscribeNext:^(id  _Nullable x) {
+        NSLog(@"sucessed %@",x);
+    } error:^(NSError * _Nullable error) {
+        NSLog(@"error %@",error);
+    } completed:^{
+        
+    }];
+    [[[PPDateEngine manager].searchUserInfoCommand execute:@"2012"]subscribeNext:^(id  _Nullable x) {
+        NSLog(@"x==%@",x);
+    } error:^(NSError * _Nullable error) {
+        NSLog(@"error == %@",error);
+    } completed:^{
+        
+    }];
+    
+}
+
+- (void)logoutSucessed
+{
+    //清理数据
+}
+
 
 @end

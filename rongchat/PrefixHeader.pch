@@ -30,6 +30,7 @@
 #import "RCChatLocationMessageCell.h"
 #import "RCChatTextMessageCell.h"
 #import "RCIMLocationObj.h"
+#import <ReactiveObjC/ReactiveObjC.h>
 
 #define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 

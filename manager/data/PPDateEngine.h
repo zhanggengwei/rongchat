@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface PPDateEngine : NSObject
 #define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
@@ -42,12 +42,6 @@
 
 //获得用户的个人信息
 - (void)requestGetUserInfoResponse:(PPResponseBlock())aResponseBlock userID:(NSString *)userId;
-
-
-
-
-
-
 
 //获取 friendList
 - (void)getFriendListResponse:(PPResponseBlock())aResponseBlock;
@@ -102,6 +96,9 @@
 
 - (void)requestSetHeadUrlResponse:(PPResponseBlock())aResponseBlock  headUrl:(NSString *)headUrl;//user/set_portrait_uri
 
+@property (nonatomic,strong,readonly) RACCommand * contactListCommand;
+//查询用户信息
+@property (nonatomic,strong,readonly) RACCommand * searchUserInfoCommand;
 
 
 @end
