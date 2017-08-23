@@ -193,6 +193,8 @@
 
 - (void)loginStateChaned:(NSNotification *)noti
 {
+    
+    
     if([noti.name isEqualToString:kPPObserverLoginSucess])
     {
         [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -209,7 +211,7 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     
-    NSString *token = [deviceToken description];
+    NSString *token = [NSString stringWithFormat:@"%@",deviceToken];
     token = [token stringByReplacingOccurrencesOfString:@"<"
                                              withString:@""];
     token = [token stringByReplacingOccurrencesOfString:@">"
@@ -271,21 +273,25 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)loginSucessed
 {
-    [[PPTUserInfoEngine shareEngine]asynFriendList];
+    //加载好友的列表
     [[[PPDateEngine manager].contactListCommand execute:nil]subscribeNext:^(id  _Nullable x) {
-        NSLog(@"sucessed %@",x);
+        
     } error:^(NSError * _Nullable error) {
-        NSLog(@"error %@",error);
+        
     } completed:^{
         
     }];
-    [[[PPDateEngine manager].searchUserInfoCommand execute:@"2012"]subscribeNext:^(id  _Nullable x) {
-        NSLog(@"x==%@",x);
+    //请求个人信息数据
+    [[[PPDateEngine manager].searchUserInfoCommand execute:nil]subscribeNext:^(id  _Nullable x) {
+        
     } error:^(NSError * _Nullable error) {
-        NSLog(@"error == %@",error);
+        
     } completed:^{
         
     }];
+    //好友列表的黑名单
+    
+    
     
 }
 
@@ -293,6 +299,4 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 {
     //清理数据
 }
-
-
 @end

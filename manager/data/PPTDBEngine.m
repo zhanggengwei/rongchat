@@ -60,9 +60,7 @@
         [self createTables];
     }
     [self.db close];
-    
 }
-
 - (void)createTables
 {
      [self createUser_Info_TableName];

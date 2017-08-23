@@ -15,10 +15,6 @@
 
 + (instancetype)manager;
 - (instancetype)init __attribute__((unavailable("PPDateEngine init is not avaliable")));
-
-                                   
-
-
 //注册
 - (void)registerWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord verifyCode:(NSString *)code andNickName:(NSString *)nickName;
 
@@ -54,9 +50,6 @@
 
 
 - (void)requestUploadImageToken:(PPResponseBlock())aResponseBlock;
-
-
-
 
 //user/blacklist
 //获取用户的黑名单
@@ -100,6 +93,7 @@
 
 - (void)requestSetHeadUrlResponse:(PPResponseBlock())aResponseBlock  headUrl:(NSString *)headUrl;//user/set_portrait_uri
 
+#pragma mark user
 @property (nonatomic,strong,readonly) RACCommand * contactListCommand;
 //查询用户信息
 @property (nonatomic,strong,readonly) RACCommand * searchUserInfoCommand;
@@ -112,10 +106,61 @@
 @property (nonatomic,strong,readonly) RACCommand * modifyNickNameCommand;
 //密码重置
 @property (nonatomic,strong,readonly) RACCommand * resetPassWordCommand __attribute__((deprecated("")));
+//密码修改
+@property (nonatomic,strong,readonly) RACCommand * updatePassWordCommand;
+//好友黑名单
+@property (nonatomic,strong,readonly) RACCommand * friendBlackListCommand;
+//通过手机号查找好友
+@property (nonatomic,strong,readonly) RACCommand * searchUserInfoByMobleCommand;
+//设置好友备注信息
+@property (nonatomic,strong,readonly) RACCommand * setFriendNickNameCommand;
+//获取用户的详细资料
+@property (nonatomic,strong,readonly) RACCommand * userInfoDetailCommand;
+//加入黑名单
+@property (nonatomic,strong,readonly) RACCommand * addFriendToBlackListCommand;
+//删除黑名单中的成员
+@property (nonatomic,strong,readonly) RACCommand * delFriendFromBlackListCommand;
+//图片上传的token
+@property (nonatomic,strong,readonly) RACCommand * uploadImageToken;
+//token
+@property (nonatomic,strong,readonly) RACCommand * token;
+//登陆
+@property (nonatomic,strong,readonly) RACCommand * loginCommand;
+//注册
+@property (nonatomic,strong,readonly) RACCommand * registerCommand;
+//checkPhoneNumberAvailable 验证手机号码是否可用
+@property (nonatomic,strong,readonly) RACCommand * checkPhoneNumberAvailableCommand;
+//获得验证码
+@property (nonatomic,strong,readonly) RACCommand * getVrificationCodeCommand;
+//验证验证码
+@property (nonatomic,strong,readonly) RACCommand * verfifyCodeCommand;
 
 
-//NSDictionary *params = @{
-//@"password":passWord,
-//@"verification_token" : token
-//};
+#pragma makr contactGroup
+//创建群聊
+@property (nonatomic,strong,readonly) RACCommand * createContactGroupCommand;
+//修改群聊的名称
+@property (nonatomic,strong,readonly) RACCommand * modifyContactGroupNameCommand;
+//查询群聊成员
+@property (nonatomic,strong,readonly) RACCommand * getGroupMemberCommand;
+//退出分组
+@property (nonatomic,strong,readonly) RACCommand * quitContactGroupCommand;
+//解散群聊
+@property (nonatomic,strong,readonly) RACCommand * dismissContactGroupCommand;
+//删除分组中的成员
+@property (nonatomic,strong,readonly) RACCommand * kickMembersContactGroupCommand;
+//添加成员到群聊中
+@property (nonatomic,strong,readonly) RACCommand * addMembersContactGroupCommand;
+//申请加入群聊
+@property (nonatomic,strong,readonly) RACCommand * joinInContactGroupCommand;
+//所有的群聊
+@property (nonatomic,strong,readonly) RACCommand * contactGroupsCommand;
+//上传群聊的图片
+@property (nonatomic,strong,readonly) RACCommand * uploadContactGroupAvatarImageCommand;
+//获得群聊 groudID
+@property (nonatomic,strong,readonly) RACCommand * getContactGroupByGroupIdCommand;
+
+
+
+
 @end

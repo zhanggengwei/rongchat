@@ -22,6 +22,8 @@
 @property (nonatomic,strong) RACCommand * addContactCommand;
 @property (nonatomic,strong) RACCommand * modifyNickNameCommand;
 @property (nonatomic,strong) RACCommand * resetPassWordCommand;
+@property (nonatomic,strong) RACCommand * updatePassWordCommand;
+@property (nonatomic,strong) RACCommand * friendBlackListCommand;
 @end
 
 @implementation PPDateEngine
@@ -763,5 +765,42 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }
     return _resetPassWordCommand;
 }
+
+- (RACCommand *)updatePassWordCommand
+{
+    if(_updatePassWordCommand==nil)
+    {
+        _updatePassWordCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:nil parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [subscriber sendNext:responseObject];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _updatePassWordCommand;
+}
+
+- (RACCommand *)friendBlackListCommand
+{
+    if(_friendBlackListCommand==nil)
+    {
+        _friendBlackListCommand = [RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+           RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+               return nil;
+           }];
+            return signal;
+        }];
+    }
+    return _friendBlackListCommand;
+}
+
 
 @end

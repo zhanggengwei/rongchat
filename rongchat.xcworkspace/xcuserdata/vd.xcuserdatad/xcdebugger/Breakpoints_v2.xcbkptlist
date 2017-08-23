@@ -42,7 +42,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/GitHub/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/LCCKInputViewPluginTakePhoto.m"
-                  timestampString = "525101518.779363"
+                  timestampString = "525188510.229848"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
@@ -57,7 +57,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/GitHub/rongchat/%E8%81%8A%E5%A4%A9UI/UI/controller/view/LCCKInputViewPluginTakePhoto.m"
-                  timestampString = "525101518.782321"
+                  timestampString = "525188510.233508"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "79"
@@ -122,6 +122,22 @@
             startingLineNumber = "93"
             endingLineNumber = "93"
             landmarkName = "-messageCellTappedMessage:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "rongchat/AppDelegate.m"
+            timestampString = "525188508.963498"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "-application:didReceiveRemoteNotification:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

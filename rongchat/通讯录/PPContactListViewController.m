@@ -17,7 +17,6 @@
 @property (nonatomic,strong) NSArray * imageArray;
 @property (nonatomic,strong) NSMutableDictionary * contactDict;
 @property (nonatomic,strong) NSMutableArray * indexArr;
-
 @end
 
 @implementation PPContactListViewController
@@ -140,26 +139,16 @@
 
 -(void)addFriend
 {
-//    PPAddFriendViewController * controller = [PPAddFriendViewController new];
-//    controller.hidesBottomBarWhenPushed = true;
-//    self.navigationController.pushViewController(controller, animated: true);
 }
-
-
-
 #pragma mark UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PPContactListCell *  cell = [tableView dequeueReusableCellWithIdentifier:@"PPContactListCell"];
-    
     if(indexPath.section==0)
     {
-        //- (void)setLeftIconImageNamed:(NSString *)imageName andRightContentLabel:(NSString *)content
         NSString  * imageName = self.imageArray[indexPath.row];
-        
         NSString * content = self.array[indexPath.row];
-        
         [cell setLeftIconImageNamed:imageName andRightContentLabel:content];
     }else
     {

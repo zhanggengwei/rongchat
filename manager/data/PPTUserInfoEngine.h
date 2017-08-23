@@ -12,14 +12,10 @@
 @property (nonatomic,strong,readonly) PPUserBaseInfo * user_Info;
 //联系人数据
 @property (nonatomic,strong,readonly) NSArray * contactList;
+- (instancetype)init __attribute__((unavailable("user shareEngine init")));
 
 + (instancetype)shareEngine;
-
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
-
-- (void)asynFriendList;
-
-- (RCUserInfo *)quertyUserInfoByUserId:(NSString *)userId;
-
-
+- (void)saveUserInfoList:(NSArray<PPUserBaseInfo *> *) friendList;
+- (PPUserBaseInfo *)quertyUserInfoByUserId:(NSString *)userId;
 @end
