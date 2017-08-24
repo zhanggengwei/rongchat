@@ -10,6 +10,7 @@
 #import "PPContactListCell.h"
 #import "RCContactUserInfo.h"
 #import "NSString+isValid.h"
+#import "PPContactListViewModel.h"
 
 @interface PPContactListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -17,12 +18,16 @@
 @property (nonatomic,strong) NSArray * imageArray;
 @property (nonatomic,strong) NSMutableDictionary * contactDict;
 @property (nonatomic,strong) NSMutableArray * indexArr;
+@property (nonatomic,strong) PPContactListViewModel * contactListViewModel;
+
 @end
 
 @implementation PPContactListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.contactListViewModel = [PPContactListViewModel new];
+    
     self.array = @[@"新的朋友",@"群聊",@"标签",@"公众号"];
     self.imageArray = @[@"plugins_FriendNotify",@"add_friend_icon_addgroup",@"Contact_icon_ContactTag",@"add_friend_icon_offical"];
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
@@ -41,10 +46,14 @@
     self.contactDict = [NSMutableDictionary new];
     
     [[PPTUserInfoEngine shareEngine] addObserver:self forKeyPath:@"contactList" options:NSKeyValueObservingOptionNew context:nil];
-    [self loadData];
+//    [self loadData];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = kMainBackGroundColor;
-    
+    @weakify(self);
+    [RACObserve(self.contactListViewModel,contactList) subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        [self.tableView reloadData];
+    }];
     
     
     // Do any additional setup after loading the view.
@@ -58,6 +67,11 @@
 - (void)dealloc
 {
     //[[PPTUserInfoEngine shareEngine] removeObserver:self forKeyPath:@"contactList"];
+}
+
+- (void)createUI
+{
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

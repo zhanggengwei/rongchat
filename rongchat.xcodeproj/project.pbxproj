@@ -190,6 +190,7 @@
 		753CA0C71F27110600F313EE /* LCCKFaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA0C41F27110600F313EE /* LCCKFaceManager.m */; };
 		75445DE01F403B2800E57265 /* RCIMDocumentsFileDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75445DDF1F403B2800E57265 /* RCIMDocumentsFileDownController.m */; };
 		75445DE41F4053FC00E57265 /* download_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75445DE31F4053FC00E57265 /* download_delete@2x.png */; };
+		757D8CDF1F4E9EC30061CA2B /* PPContactListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 757D8CDE1F4E9EC30061CA2B /* PPContactListViewModel.m */; };
 		7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */; };
 		7584DA9E1E2A5B83007249C2 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA991E2A5B83007249C2 /* RCConversationListCell.m */; };
 		7584DA9F1E2A5B83007249C2 /* RCTextMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA9C1E2A5B83007249C2 /* RCTextMessageTableViewCell.m */; };
@@ -576,6 +577,8 @@
 		75445DDE1F403B2800E57265 /* RCIMDocumentsFileDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMDocumentsFileDownController.h; sourceTree = "<group>"; };
 		75445DDF1F403B2800E57265 /* RCIMDocumentsFileDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMDocumentsFileDownController.m; sourceTree = "<group>"; };
 		75445DE31F4053FC00E57265 /* download_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download_delete@2x.png"; sourceTree = "<group>"; };
+		757D8CDD1F4E9EC30061CA2B /* PPContactListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPContactListViewModel.h; path = ../PPContactListViewModel.h; sourceTree = "<group>"; };
+		757D8CDE1F4E9EC30061CA2B /* PPContactListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPContactListViewModel.m; path = ../PPContactListViewModel.m; sourceTree = "<group>"; };
 		7584DA951E2A5B83007249C2 /* PPTZeroSelectListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTZeroSelectListCell.h; sourceTree = "<group>"; };
 		7584DA961E2A5B83007249C2 /* RCConversationBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationBaseCell.h; sourceTree = "<group>"; };
 		7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationBaseCell.m; sourceTree = "<group>"; };
@@ -1618,6 +1621,8 @@
 		75CEF9461DDD29DF00541660 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				757D8CDD1F4E9EC30061CA2B /* PPContactListViewModel.h */,
+				757D8CDE1F4E9EC30061CA2B /* PPContactListViewModel.m */,
 				409F792B1DF5649D0090D67F /* UITableViewCell+addLineView.h */,
 				409F792C1DF5649D0090D67F /* UITableViewCell+addLineView.m */,
 				75CEF9471DDD2A0600541660 /* PPContactListCell.h */,
@@ -2033,6 +2038,7 @@
 				409F50821DDD6E6F00015DB7 /* PPRegisterViewController.m in Sources */,
 				752679581F3BEE9B0002AC45 /* RCIMLocationTableViewCell.m in Sources */,
 				4068337C1E7A657700E03427 /* RCIMConversationListViewModel.m in Sources */,
+				757D8CDF1F4E9EC30061CA2B /* PPContactListViewModel.m in Sources */,
 				409F50761DDD6E5100015DB7 /* PPTool.m in Sources */,
 				751D2A471F3468F800426D12 /* RCIMConversationViewModel.m in Sources */,
 				75278A5A1F13D29A000C70AF /* RCIMCellRegisterController.m in Sources */,

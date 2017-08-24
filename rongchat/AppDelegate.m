@@ -274,21 +274,21 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)loginSucessed
 {
     //加载好友的列表
-    [[[PPDateEngine manager].contactListCommand execute:nil]subscribeNext:^(id  _Nullable x) {
-        
-    } error:^(NSError * _Nullable error) {
-        
-    } completed:^{
-        
-    }];
-    //请求个人信息数据
-    [[[PPDateEngine manager].searchUserInfoCommand execute:nil]subscribeNext:^(id  _Nullable x) {
-        
-    } error:^(NSError * _Nullable error) {
-        
-    } completed:^{
-        
-    }];
+//    [[[PPDateEngine manager].contactListCommand execute:nil]subscribeNext:^(id  _Nullable x) {
+//        
+//    } error:^(NSError * _Nullable error) {
+//        
+//    } completed:^{
+//        
+//    }];
+//    //请求个人信息数据
+//    [[[PPDateEngine manager].searchUserInfoCommand execute:nil]subscribeNext:^(id  _Nullable x) {
+//        
+//    } error:^(NSError * _Nullable error) {
+//        
+//    } completed:^{
+//        
+//    }];
     //好友列表的黑名单
     
     
