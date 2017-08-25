@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
+
+@interface NSObject (DATABASE)
+
+@end
+
+
 @interface PPDataDef : MTLModel <MTLJSONSerializing>
 
 @end
@@ -26,25 +32,19 @@
 
 @end
 
-@interface PPUserBase : RCUserInfo
+@interface PPUserBaseInfo : RCUserInfo
 
-@property (nonatomic,strong) NSString * phone;
-@property (nonatomic,strong) NSString * region;
-
-@end
-
-@interface PPUserBaseInfo : PPDataDef
-
+@property (nonatomic,copy) NSString * phone;
+@property (nonatomic,copy) NSString * region;
 @property (nonatomic,copy) NSString * displayName;
+@property (nonatomic,copy) NSString * indexChar;
+@property (nonatomic,copy) NSString * nickNameWord;
 @property (nonatomic,copy) NSString * message;
 @property (nonatomic,copy) NSString * updatedAt;
-@property (nonatomic,copy) NSString * nickNameWord;
-@property (nonatomic,copy) NSString * indexChar;
-@property (nonatomic,assign) NSInteger  status;
-@property (nonatomic,strong) PPUserBase * user;
-
+@property (nonatomic,assign) BOOL isBlack;
+@property (nonatomic,assign) NSInteger status;
+//是否是黑名单中的成员
 @end
-
 
 @interface PPUploadImageToken : PPDataDef
 @property (nonatomic,strong) NSString * target;
@@ -65,7 +65,21 @@
 
 @interface PPVertifyDef : PPDataDef
 @property (nonatomic,strong) NSString * verification_token;
+@end
 
+
+@interface RCContactGroupMember : RCUserInfo
+@property (nonatomic,copy) NSString * groupId;//组合主键
+@end
+
+
+//群组信息
+@interface RCContactGroup : PPDataDef
+
+@property (nonatomic,copy) NSString * name;
+@property (nonatomic,copy) NSString * groupId;
+@property (nonatomic,copy) NSString * portraitUri;//群组头像
+@property (nonatomic,strong) NSArray<RCContactGroupMember *> * members;
 @end
 
 

@@ -113,7 +113,7 @@
         NSString * key = self.indexArr[indexPath.section];
         NSArray * arr = [self.contactDict objectForKey:key];
         PPUserBaseInfo * info = arr[indexPath.row];
-        [cell setLeftIconImageNamed:info.user.portraitUri andRightContentLabel:info.displayName];
+        [cell setLeftIconImageNamed:info.portraitUri andRightContentLabel:info.displayName];
     }
     return cell;
 }

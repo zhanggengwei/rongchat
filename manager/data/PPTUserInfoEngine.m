@@ -34,7 +34,7 @@
     [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
         
         PPUserBaseInfo * info = [PPUserBaseInfo new];
-        info.user = aTaskResponse.result;
+        info = aTaskResponse.result;
         [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
     } userID:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil]];
 }
@@ -63,7 +63,7 @@
     __block NSArray * arr = [NSArray new];
     [baseInfoArr enumerateObjectsUsingBlock:^(PPUserBaseInfo * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        NSString * name = obj.user.name;
+        NSString * name = obj.name;
         if([obj.displayName isEqualToString:@""])
         {
             name = obj.displayName;

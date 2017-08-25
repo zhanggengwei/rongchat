@@ -64,11 +64,6 @@
 
 @implementation PPLoginOrRegisterHTTPResponse
 
-+ (NSValueTransformer *)resultJSONTransformer
-{
-    return  [MTLJSONAdapter dictionaryTransformerWithModelClass:[PPUserBase class]];
-    
-}
 @end
 
 

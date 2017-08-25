@@ -95,6 +95,6 @@
 
 - (RACCommand *)loginCommandWithUserName:(NSString *)account passWord:(NSString *)passWord;
 
-
+- (RACCommand *)getContactListCommandWithUserId:(NSString *)userId;
 
 @end

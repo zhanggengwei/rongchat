@@ -80,7 +80,7 @@
 - (void)saveUserInfoList:(NSArray <PPUserBaseInfo *> *)userList
 {
     [userList enumerateObjectsUsingBlock:^(PPUserBaseInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.cache setObject:obj forKey:(PPUserBaseInfo *)obj.user.userId];
+        [self.cache setObject:obj forKey:obj.userId];
     }];
     [[PPTDBEngine shareManager]saveContactList:userList];
 }

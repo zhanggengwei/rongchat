@@ -9,9 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface PPTUserInfoEngine : NSObject
+//自己的信息数据
 @property (nonatomic,strong,readonly) PPUserBaseInfo * user_Info;
 //联系人数据
 @property (nonatomic,strong,readonly) NSArray * contactList;
+//群组数据
+@property (nonatomic,strong,readonly) NSArray<RCContactGroup *> *contactGroupList;
+@property (nonatomic,strong,readonly) NSArray<PPUserBaseInfo *> * contactBlackList;
+
 - (instancetype)init __attribute__((unavailable("user shareEngine init")));
 
 + (instancetype)shareEngine;

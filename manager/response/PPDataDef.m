@@ -9,13 +9,6 @@
 #import "PPDataDef.h"
 
 @implementation PPDataDef
-+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSMutableDictionary *mapping = [[NSDictionary mtl_identityPropertyMapWithModel:self] mutableCopy];
-    if ([mapping objectForKey:@"indexId"]) {
-        [mapping setObject:@"id"forKey:@"indexId"];
-    }
-    return mapping;
-}
 @end
 @implementation PPTokenDef
 
@@ -24,25 +17,14 @@
 @implementation PPPersonal
 @end
 
-@implementation PPUserBase
-
-@end
-
 @implementation PPUserBaseInfo
-+(NSValueTransformer *)userJSONTransformer
-{
-    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[PPUserBase class]];
-}
-- (NSString *)indexChar
-{
-    if(self.nickNameWord.length>=1)
-    {
-        NSString * keyWord = [self.nickNameWord substringToIndex:1];
-        return keyWord;
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    NSMutableDictionary *mapping = [[NSDictionary mtl_identityPropertyMapWithModel:self] mutableCopy];
+    if ([mapping objectForKey:@"userId"]) {
+        [mapping setObject:@"id"forKey:@"userId"];
     }
-    return @"#";
+    return mapping;
 }
-
 @end
 
 
@@ -57,5 +39,13 @@
 
 @implementation PPVertifyDef
 
+
+@end
+
+@implementation RCContactGroupMember
+
+@end
+
+@implementation RCContactGroup
 
 @end

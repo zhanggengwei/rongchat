@@ -140,6 +140,7 @@
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:RCIMLogoutSucessedNotifaction object:nil]subscribeNext:^(NSNotification * _Nullable x) {
         [self logoutSucessed];
     }];
+    [[PPDateEngine manager] getContactListCommandWithUserId:nil];
     
     return YES;
 }

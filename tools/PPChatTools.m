@@ -208,22 +208,5 @@
 
 - (void)getUserInfoWithUserId:(NSString *)userId
                    completion:(void (^)(RCUserInfo *userInfo))completion
-{
-    
-    [[PPDateEngine manager]requestGetUserInfoResponse:^(PPUserBaseInfoResponse * aTaskResponse) {
-        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-        {
-            PPUserBase * base = aTaskResponse.result;
-            PPUserBaseInfo * userInfo = [PPUserBaseInfo new];
-            userInfo.user = base;
-            RCUserInfo * info = [[RCUserInfo alloc]initWithUserId:userId name:base.name portrait:base.portraitUri];
-            
-            
-            completion(info);
-        }
-        
-    } userID:userId];
-    
-}
-
+{}
 @end

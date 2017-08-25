@@ -141,7 +141,6 @@
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {
                     PPUserBaseInfo * info = [PPUserBaseInfo new];
-                    info.user = aTaskResponse.result;
                     [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
                 }
             } userID:userID];
@@ -408,22 +407,22 @@
     NSDictionary * dict = @{@"nickname" : nickName};
     
     
-    [manager POST:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.userId) parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        PPHTTPResponse * resonse = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
-        
-        PPUserBaseInfo * user_info=[PPTUserInfoEngine shareEngine].user_Info;
-        user_info.user.name = nickName;
-        [[PPTUserInfoEngine shareEngine]saveUserInfo:user_info];
-        
-        [self _completeWithResponse:resonse block:aResponseBlock];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
-        [self _completeWithResponse:response block:aResponseBlock];
-        
-        
-    }];
+//    [manager POST:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.userId) parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        PPHTTPResponse * resonse = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
+//        
+//        PPUserBaseInfo * user_info=[PPTUserInfoEngine shareEngine].user_Info;
+//        user_info.user.name = nickName;
+//        [[PPTUserInfoEngine shareEngine]saveUserInfo:user_info];
+//        
+//        [self _completeWithResponse:resonse block:aResponseBlock];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+//        [self _completeWithResponse:response block:aResponseBlock];
+//        
+//        
+//    }];
     
 }
 
@@ -670,7 +669,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         if(response.code.integerValue == kPPResponseSucessCode)
         {
             PPUserBaseInfo * baseInfo = [PPTUserInfoEngine shareEngine].user_Info;
-            baseInfo.user.portraitUri = headUrl;
+            //baseInfo.user.portraitUri = headUrl;
             [[PPTUserInfoEngine shareEngine]saveUserInfo:baseInfo];
             
         }
@@ -788,7 +787,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         _modifyNickNameCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                PPHTTPManager * manager = [PPHTTPManager manager];
-               [manager GET:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.userId) parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+               [manager GET:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.userId) parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
                    [subscriber sendNext:responseObject];
                    [subscriber sendCompleted];
                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -864,6 +863,12 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     [self.loginCommand execute:@{}];
     return self.loginCommand;
+}
+
+- (RACCommand *)getContactListCommandWithUserId:(NSString *)userId
+{
+    [self.contactListCommand execute:@{}];
+    return self.contactListCommand;
 }
 
 @end

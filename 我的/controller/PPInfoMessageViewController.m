@@ -107,7 +107,7 @@ NSArray * titleArr ()
     {
  
         PPInfoMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPInfoMessageCell"];
-        [cell layoutLeftContent:arr[indexPath.row] rightImage:indexPath.row ==0? [PPTUserInfoEngine shareEngine].user_Info.user.portraitUri:[UIImage imageNamed:@"setting_myQR"] imageWidth:indexPath.row == 0 ? 70:20];
+//        [cell layoutLeftContent:arr[indexPath.row] rightImage:indexPath.row ==0? [PPTUserInfoEngine shareEngine].user.portraitUri:[UIImage imageNamed:@"setting_myQR"] imageWidth:indexPath.row == 0 ? 70:20];
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
@@ -118,7 +118,7 @@ NSArray * titleArr ()
         PPSettingCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPSettingCell"];
         if([arr[indexPath.row] isEqualToString:@"名字"])
         {
-            [cell layoutContent:arr[indexPath.row] textAligent:NSTextAlignmentLeft andDetailText:[PPTUserInfoEngine shareEngine].user_Info.user.name];
+//            [cell layoutContent:arr[indexPath.row] textAligent:NSTextAlignmentLeft andDetailText:[PPTUserInfoEngine shareEngine].user_Info.user.name];
             
         }
         else

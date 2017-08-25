@@ -7,16 +7,16 @@
 //
 
 #define USER_INFO_TABLENAME @"USER_INFO_TABLENAME"
-
+#define CONTACT_GRAOUP_MEMBER_TABLENAME @"CONTACT_GRAOUP_MEMBER_TABLENAME"
+#define CONTACT_GRAOUP_TABLENAME @"CONTACT_GRAOUP_TABLENAME"
+#define USER_BASE_TABLENAME @"USER_BASE_TABLENAME"
 #import "PPTDBEngine.h"
 #import "PPFileManager.h"
 #import <FMDB/FMDB.h>
 #import "OTFileManager.h"
 
 @interface PPTDBEngine ()
-
-@property (nonatomic,strong) FMDatabase * db;
-
+@property (nonatomic,strong) FMDatabaseQueue * dataBaseQueue;
 @end
 
 @implementation PPTDBEngine
@@ -33,7 +33,13 @@
     });
     return shareInstance;
 }
-
+- (instancetype)init
+{
+    if((self = [super init]))
+    {
+    }
+    return self;
+}
 - (void)logoutSucess:(NSNotification *)noti
 {
   
@@ -46,271 +52,92 @@
     
     NSFileManager *fm = [[NSFileManager alloc]init];
     BOOL isNewUser = ![fm fileExistsAtPath:dbPath];
-    
-    self.db = [FMDatabase databaseWithPath:dbPath];
-    if(![self.db open])
-    {
-        [fm removeItemAtPath:dbPath error:nil];
-        self.db = [FMDatabase databaseWithPath:dbPath];
-        [self createTables];
-    }
-    else if(isNewUser)
+    self.dataBaseQueue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
+    if(isNewUser)
     {
         [self createTables];
     }
-    [self.db close];
 }
 - (void)createTables
 {
-     [self createUser_Info_TableName];
-        
+    NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,displayName text,portraitUri text,updatedAt text,phone text,region text,isSelf BOOL,isBlackList BOOL,)",USER_INFO_TABLENAME];
+    NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100),url varchar(100),groupId varchar(100) not null,primary key(groupid))",CONTACT_GRAOUP_TABLENAME];
+    NSString * createContactGroupMemberTableSql = [NSString stringWithFormat:@"create table if not exists %@(name varchar(100),userId varchar(100) not null,groupId varchar(100) not null,portraitUri varchar(100),primary key(userId,groupId))",CONTACT_GRAOUP_MEMBER_TABLENAME];
+    NSString * createBaseSql = [NSString stringWithFormat:@"create table if not exists %@(displayName varchar(100),message varchar(100),status int,updatedAt varchar(100),userId varchar(30),primary key(userId))",USER_BASE_TABLENAME];
+    [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        [db executeUpdate:createBaseSql];
+        [db executeUpdate:createUserInfoSql];
+        [db executeUpdate:createContactGroupTableSql];
+        [db executeUpdate:createContactGroupMemberTableSql];
+    }];
 }
-- (BOOL)queryTable:(NSString *)tableName
-{
-    
-    NSString * selectSql = [NSString stringWithFormat:@"select * from \'%@\';",tableName];
-    FMResultSet * result;
-    if([self.db open])
-    {
-        result = [self.db executeQuery:selectSql];
-          return  result.next;
-    }
-    return NO;
- 
-}
-
-- (void)dropTableName:(NSString *)tableName
-{
-    NSString * dropSql = [NSString stringWithFormat: @"truncate table \'%@\'",tableName];
-    if([self.db open])
-    {
-        [self.db executeUpdate:dropSql];
-    }
-    
-    
-//    [self.db  executeUpdate:dropSql];
-    
-}
-
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
 {
-    if(baseInfo == nil)
-    {
-        return NO;
-    }
-    if ([self.db open])
-    {
-        NSString *sql;
-        
-        BOOL ret = NO;
-        @try
-        {
-            if ([self ifHaveRecordWithTable:USER_INFO_TABLENAME])
-            {
-                sql =  [NSString stringWithFormat:@"DELETE  FROM %@ where indexId = \'%@\'",USER_INFO_TABLENAME,baseInfo.user.userId];
-                ret = [_db executeUpdate:sql];
-            
-                if (NO == ret)
-                {
-                    [PPIndicatorView showString:@"数据库个人信息保存失败" duration:1];
-                    
-                    [_db close];
-                    return NO;
-                }
-            }
-            sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
-            ret = [_db executeUpdate:sql,baseInfo.user.userId, baseInfo.user.name,baseInfo.displayName, baseInfo.user.portraitUri,baseInfo.updatedAt, baseInfo.user.phone, baseInfo.user.region, [NSNumber numberWithBool:baseInfo.status]];
-            
-            if (NO == ret)
-            {
-                [_db close];
-                return NO;
-            }
-        }
-        @catch (NSException *exception)
-        {
-            [_db close];
-            return NO;
-        }
-        @finally
-        {
-            [_db close];
-            
-            return YES;
-        }
-    }
+
+    NSString * updateSql = [NSString stringWithFormat:@"update %@ set displayName = %@,message = %@,status = %ld,updatedAt = %@ where userId = %@",USER_BASE_TABLENAME,baseInfo.displayName,baseInfo.message,baseInfo.status,baseInfo.updatedAt, baseInfo.userId];
+    NSString * insertSql = @"insert into %@ (phone,region,userId,isBlack,name,portraitUri) values(%@,%@,%@,%@,%@)";
     return NO;
 }
 
-- (void)createUser_Info_TableName
-{
-    
-        NSString * createUser_Info = [NSString stringWithFormat:@"create table  if not exists %@(indexId text  primary key not null,nickname text,displayName text,portraitUri text,updatedAt text,phone text,region text,isSelf bool)",USER_INFO_TABLENAME];
-        
-        
-        BOOL createSucesss = [self.db executeUpdate:createUser_Info];
-        if (createSucesss)
-        {
-            NSLog(@"创建成功");
-        }else
-        {
-            NSLog(@"创建失败");
-        }
-}
-
-#pragma mark - util method
-- (BOOL)ifHaveRecordWithTable:(NSString *)table
-{
-    if([self.db open])
-    {
-        FMResultSet *resultSet = [_db executeQuery:[NSString stringWithFormat:@"select * from \'%@\';", table]];
-        
-        if ([resultSet next])
-        {
-            return YES;
-        }
-        return NO;
-    }
-    return NO;
-
-}
 
 - (PPUserBaseInfo *)queryUser_Info
 {
     NSString * userID = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
-
     return [self queryUser_InfoWithIndexId:userID];
 }
-
 - (PPUserBaseInfo *)queryUser_InfoWithIndexId:(NSString *)indexId
 {
-    
-    //[self loadDataBase:indexId];
-    PPUserBaseInfo * user_Info = nil;
-    if([self.db open])
-    {
-        NSString * searchSql = [NSString stringWithFormat: @"select * from %@ where indexId= \'%@\'",USER_INFO_TABLENAME,indexId];
-        
-        FMResultSet * result = [self.db executeQuery:searchSql];
-        if(result == nil||(!result.next))
-        {
-            return nil;
-        }
-        user_Info = [PPUserBaseInfo new];
-        
-        NSString * indexID = [result stringForColumn:@"indexId"];
-        NSString * nickName = [result stringForColumn:@"nickname"];
-        NSString * displayName = [result stringForColumn:@"displayName"];
-        NSString * portraitUrl = [result stringForColumn:@"portraitUri"];
-        NSString * updatedAt = [result stringForColumn:@"updatedAt"];
-        NSString * phone = [result stringForColumn:@"phone"];
-        NSString * region = [result stringForColumn:@"region"];
-        
-        user_Info.displayName = displayName;
-        user_Info.updatedAt = updatedAt;
-        user_Info.user = [PPUserBase new];
-        user_Info.user.name = nickName;
-        user_Info.user.userId = indexID;
-        user_Info.user.phone = phone;
-        user_Info.user.region = region;
-        user_Info.user.portraitUri = portraitUrl;
-    }
-    
-    [self.db close];
-    return user_Info;
+    return nil;
 }
 
 - (NSArray *)queryFriendList
 {
     NSMutableArray * contactlist = [NSMutableArray new];
-    
-    if([self.db open])
-    {
-        NSString * searchSql = [NSString stringWithFormat:@"select * from %@ where isSelf = \'%@\'",USER_INFO_TABLENAME,@"0"];
-        
-        FMResultSet * result = [self.db executeQuery:searchSql];
-        while (result.next)
-        {
-            PPUserBaseInfo * baseInfo = [self queryUser_InfoWithIndexId:[result stringForColumn:@"indexId"]];
-            if(baseInfo)
-            {
-                NSString * name = baseInfo.user.name;
-                if([baseInfo.displayName isEqualToString:@""])
-                {
-                    name = baseInfo.displayName;
-                }
-            }
-            [contactlist addObject:baseInfo];
-        }
-    }
     return contactlist;
 }
 
 - (BOOL)updateUserInfo:(PPUserBaseInfo *)info
 {
-    if([self.db open])
-    {
-        NSString * updateSql = [NSString stringWithFormat:@"update %@ set nickname = ?,displayName = ?,portraitUri = ?, updatedAt = ?,phone = ?,region = ? where indexId = ?",USER_INFO_TABLENAME];
-        BOOL ret  = [self.db executeUpdate:updateSql,info.user.name,info.displayName,info.user.portraitUri,info.updatedAt,info.user.phone,info.user.region,info.user.userId];
-        return ret;
-
-    }
-    NSLog(@"database not opened ");
     
     return NO;
 }
-
-
-- (BOOL)saveContactList:(NSArray <PPUserBaseInfo *> *)contactList
+- (NSArray *)contactGroupLists
 {
-    //进行事务处理
+    NSMutableArray * contactGroups = [NSMutableArray new];
+    NSString * sql = [NSString stringWithFormat: @"select * from %@",CONTACT_GRAOUP_TABLENAME];
+    [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        FMResultSet * results = [db executeQuery:sql];
+        while (results.next) {
+            RCContactGroup * contactGroup = [RCContactGroup new];
+            contactGroup.groupId = [results stringForColumn:@"groupId"];
+            contactGroup.name = [results stringForColumn:@"name"];
+            contactGroup.portraitUri = results[@"portraitUri"];
+            [contactGroups addObject:contactGroup];
+        }
+    }];
+    return contactGroups;
     
-    if([self.db open])
-    {
-    
-        BOOL ret = NO;
-        [self.db beginTransaction];
+}
+- (void)addOrUpdateContactGroup:(RCContactGroup *)contactGroup
+{
+    //删除数据
+    NSString * deleteSql = [NSString stringWithFormat:@"delete * from %@ where groupId = %@",CONTACT_GRAOUP_TABLENAME,contactGroup.groupId];
+    NSString * deleteMemberSql = [NSString stringWithFormat:@"delete from %@ where groupId = %@",CONTACT_GRAOUP_MEMBER_TABLENAME,contactGroup.groupId];
+    NSString * insertSql = [NSString stringWithFormat:@"insert into %@ (name,groupId,portraitUri) values (%@,%@,%@)",CONTACT_GRAOUP_TABLENAME,contactGroup.name,contactGroup.groupId,contactGroup.portraitUri];
+    [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        [db executeUpdate:deleteSql];
+        [db executeUpdate:deleteMemberSql];
+        [db executeUpdate:insertSql];
+        [contactGroup.members enumerateObjectsUsingBlock:^(RCContactGroupMember * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString * inserMembesSql = @"insert into %@ (groupId,name,)";
+        }];
         
-        @try
-        {
-            
-            BOOL del=[self.db executeUpdate:[NSString stringWithFormat:@"delete from %@ where isSelf = \'0\'",USER_INFO_TABLENAME]];
-            if(!del)
-            {
-                [PPIndicatorView showString:@"contactList 删除失败" duration:1];
-            }
-            for (PPUserBaseInfo * info in contactList)
-            {
-                NSString * sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
-                
-                ret = [_db executeUpdate:sql,info.user.userId, info.user.name,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:0]];
-                if(ret==NO)
-                {
-                    [PPIndicatorView showString:@"好友保存失败" duration:1];
-                    
-                    
-                    [_db close];
-                    return NO;
-                }
-            }
-            if ([self.db isInTransaction])
-            {
-                [self.db commit];
-            }
-        }
-        @catch (NSException *exception)
-        {
-            if([self.db isInTransaction])
-            {
-                [self.db rollback];
-            }
-        }
-        @finally
-        {
-            [self.db close];
-            return YES;
-        }
-    }
-    return NO;
+    }];
+    
+    
+}
+- (void)addOrUpdateContactGroupLists:(NSArray<RCContactGroup *>*)contactGroupLists
+{
+    
 }
 @end
