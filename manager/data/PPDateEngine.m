@@ -718,11 +718,13 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     {
         _contactListCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                AFHTTPSessionManager * manager = [AFHTTPSessionManager new];
-                [manager GET:kPPGetAllFriendsList parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                    [subscriber sendNext:responseObject];
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:kPPGetAllFriendsList parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSError * error;
+                    PPUserFriendListResponse * response = [MTLJSONAdapter modelOfClass:[PPUserFriendListResponse class] fromJSONDictionary:responseObject error:&error];
+                    [subscriber sendNext:response];
                     [subscriber sendCompleted];
-                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     [subscriber sendError:error];
                     [subscriber sendCompleted];
                 }];
@@ -865,10 +867,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     return self.loginCommand;
 }
 
-- (RACCommand *)getContactListCommandWithUserId:(NSString *)userId
+- (RACSignal *)getContactListCommandWithUserId:(NSString *)userId
 {
-    [self.contactListCommand execute:@{}];
-    return self.contactListCommand;
+   return [self.contactListCommand execute:@{}];
 }
 
 @end

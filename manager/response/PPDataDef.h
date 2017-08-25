@@ -41,9 +41,10 @@
 @property (nonatomic,copy) NSString * nickNameWord;
 @property (nonatomic,copy) NSString * message;
 @property (nonatomic,copy) NSString * updatedAt;
-@property (nonatomic,assign) BOOL isBlack;
+@property (nonatomic,assign) NSInteger isBlack;
 @property (nonatomic,assign) NSInteger status;
-//是否是黑名单中的成员
+
+
 @end
 
 @interface PPUploadImageToken : PPDataDef
@@ -81,5 +82,26 @@
 @property (nonatomic,copy) NSString * portraitUri;//群组头像
 @property (nonatomic,strong) NSArray<RCContactGroupMember *> * members;
 @end
+
+
+
+//网络请求使用的类
+@interface RCUserInfoBaseData : PPDataDef
+@property (nonatomic,copy) NSString * region;
+@property (nonatomic,copy) NSString * phone;
+@property (nonatomic,copy) NSString * userId;
+@property (nonatomic,copy) NSString * name;
+@property (nonatomic,copy) NSString * portraitUri;
+@end
+
+@interface RCUserInfoData : PPDataDef
+@property (nonatomic,copy) NSString * displayName;
+@property (nonatomic,copy) NSString * message;
+@property (nonatomic,copy) NSString * updatedAt;
+@property (nonatomic,assign) NSInteger status;
+@property (nonatomic,strong) RCUserInfoBaseData * user;
+@end
+
+
 
 

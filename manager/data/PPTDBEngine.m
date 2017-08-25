@@ -60,7 +60,7 @@
 }
 - (void)createTables
 {
-    NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,displayName text,portraitUri text,updatedAt text,phone text,region text,isSelf BOOL,isBlackList BOOL,)",USER_INFO_TABLENAME];
+    NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,displayName text,portraitUri text,updatedAt text,phone text,region text,message varchar(100),isBlack BOOL,status INT)",USER_INFO_TABLENAME];
     NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100),url varchar(100),groupId varchar(100) not null,primary key(groupid))",CONTACT_GRAOUP_TABLENAME];
     NSString * createContactGroupMemberTableSql = [NSString stringWithFormat:@"create table if not exists %@(name varchar(100),userId varchar(100) not null,groupId varchar(100) not null,portraitUri varchar(100),primary key(userId,groupId))",CONTACT_GRAOUP_MEMBER_TABLENAME];
     NSString * createBaseSql = [NSString stringWithFormat:@"create table if not exists %@(displayName varchar(100),message varchar(100),status int,updatedAt varchar(100),userId varchar(30),primary key(userId))",USER_BASE_TABLENAME];
@@ -133,8 +133,19 @@
         }];
         
     }];
-    
-    
+}
+//保存用户的好友列表
+- (BOOL)saveContactList:(NSArray <PPUserBaseInfo *> *)contactList
+{
+    __block BOOL sucessed = NO;
+    [_dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        [contactList enumerateObjectsUsingBlock:^(PPUserBaseInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString * insertSql = [NSString stringWithFormat: @"insert into %@(phone,message,region,name,displayName,updatedAt,isBlack,status,userId) values (\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',%ld,%ld,\'%@\')",USER_INFO_TABLENAME,obj.phone,obj.message,obj.region,obj.name,obj.displayName,obj.updatedAt,obj.isBlack,obj.status,obj.userId];
+            [db executeUpdate:insertSql];
+            sucessed = !rollback;
+        }];
+    }];
+    return sucessed;
 }
 - (void)addOrUpdateContactGroupLists:(NSArray<RCContactGroup *>*)contactGroupLists
 {

@@ -9,6 +9,13 @@
 #import "PPDataDef.h"
 
 @implementation PPDataDef
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    NSMutableDictionary *mapping = [[NSDictionary mtl_identityPropertyMapWithModel:self] mutableCopy];
+    if ([mapping objectForKey:@"userId"]) {
+        [mapping setObject:@"id"forKey:@"userId"];
+    }
+    return mapping;
+}
 @end
 @implementation PPTokenDef
 
@@ -18,13 +25,6 @@
 @end
 
 @implementation PPUserBaseInfo
-+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSMutableDictionary *mapping = [[NSDictionary mtl_identityPropertyMapWithModel:self] mutableCopy];
-    if ([mapping objectForKey:@"userId"]) {
-        [mapping setObject:@"id"forKey:@"userId"];
-    }
-    return mapping;
-}
 @end
 
 
@@ -48,4 +48,27 @@
 
 @implementation RCContactGroup
 
+@end
+
+
+@implementation RCUserInfoBaseData
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    NSMutableDictionary *mapping = [[NSDictionary mtl_identityPropertyMapWithModel:self] mutableCopy];
+    if ([mapping objectForKey:@"userId"]) {
+        [mapping setObject:@"id"forKey:@"userId"];
+    }
+    
+    if ([mapping objectForKey:@"name"]) {
+        [mapping setObject:@"nickname"forKey:@"name"];
+    }
+    return mapping;
+}
+@end
+
+@implementation RCUserInfoData
+
++ (NSValueTransformer *)userJSONTransformer
+{
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[RCUserInfoBaseData class]];
+}
 @end

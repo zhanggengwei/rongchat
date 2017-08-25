@@ -140,7 +140,25 @@
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:RCIMLogoutSucessedNotifaction object:nil]subscribeNext:^(NSNotification * _Nullable x) {
         [self logoutSucessed];
     }];
-    [[PPDateEngine manager] getContactListCommandWithUserId:nil];
+    [[[PPDateEngine manager] getContactListCommandWithUserId:nil] subscribeNext:^(PPUserFriendListResponse *response) {
+        NSMutableArray * data = [NSMutableArray new];
+        [response.result enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            PPUserBaseInfo * info = [PPUserBaseInfo new];
+            info.message = obj.message;
+            info.phone = obj.user.phone;
+            info.region = obj.user.region;
+            info.name = obj.user.name;
+            info.portraitUri = obj.user.portraitUri;
+            info.userId = obj.user.userId;
+            NSLog(@"userid == %@",info.userId);
+            info.displayName = obj.displayName;
+            info.status = obj.status;
+            info.updatedAt = obj.updatedAt;
+            [data addObject:info];
+        }];
+        [[PPTDBEngine shareManager]saveContactList:data];
+        
+    }];
     
     return YES;
 }

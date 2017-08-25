@@ -37,8 +37,7 @@
 
 + (NSValueTransformer *)resultJSONTransformer
 {
-    
-    return [MTLJSONAdapter arrayTransformerWithModelClass:[PPUserBaseInfo class]];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[RCUserInfoData class]];
 }
 @end
 
@@ -47,7 +46,7 @@
 + (NSValueTransformer *)resultJSONTransformer
 {
     
-    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[PPUserBaseInfo class]];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[PPUserBaseInfo class]];
 }
 
 @end
