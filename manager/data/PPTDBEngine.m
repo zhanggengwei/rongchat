@@ -12,7 +12,6 @@
 #import "PPFileManager.h"
 #import <FMDB/FMDB.h>
 #import "OTFileManager.h"
-#import "RCContactUserInfo.h"
 
 @interface PPTDBEngine ()
 
@@ -108,7 +107,7 @@
         {
             if ([self ifHaveRecordWithTable:USER_INFO_TABLENAME])
             {
-                sql =  [NSString stringWithFormat:@"DELETE  FROM %@ where indexId = \'%@\'",USER_INFO_TABLENAME,baseInfo.user.indexId];
+                sql =  [NSString stringWithFormat:@"DELETE  FROM %@ where indexId = \'%@\'",USER_INFO_TABLENAME,baseInfo.user.userId];
                 ret = [_db executeUpdate:sql];
             
                 if (NO == ret)
@@ -120,7 +119,7 @@
                 }
             }
             sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
-            ret = [_db executeUpdate:sql,baseInfo.user.indexId, baseInfo.user.nickname,baseInfo.displayName, baseInfo.user.portraitUri,baseInfo.updatedAt, baseInfo.user.phone, baseInfo.user.region, [NSNumber numberWithBool:baseInfo.status]];
+            ret = [_db executeUpdate:sql,baseInfo.user.userId, baseInfo.user.name,baseInfo.displayName, baseInfo.user.portraitUri,baseInfo.updatedAt, baseInfo.user.phone, baseInfo.user.region, [NSNumber numberWithBool:baseInfo.status]];
             
             if (NO == ret)
             {
@@ -210,8 +209,8 @@
         user_Info.displayName = displayName;
         user_Info.updatedAt = updatedAt;
         user_Info.user = [PPUserBase new];
-        user_Info.user.nickname = nickName;
-        user_Info.user.indexId = indexID;
+        user_Info.user.name = nickName;
+        user_Info.user.userId = indexID;
         user_Info.user.phone = phone;
         user_Info.user.region = region;
         user_Info.user.portraitUri = portraitUrl;
@@ -223,7 +222,7 @@
 
 - (NSArray *)queryFriendList
 {
-    NSArray * contactlist = [NSArray new];
+    NSMutableArray * contactlist = [NSMutableArray new];
     
     if([self.db open])
     {
@@ -235,15 +234,13 @@
             PPUserBaseInfo * baseInfo = [self queryUser_InfoWithIndexId:[result stringForColumn:@"indexId"]];
             if(baseInfo)
             {
-                NSString * name = baseInfo.user.nickname;
+                NSString * name = baseInfo.user.name;
                 if([baseInfo.displayName isEqualToString:@""])
                 {
                     name = baseInfo.displayName;
                 }
-                
-                RCContactUserInfo * info = [[RCContactUserInfo alloc]transFromPPUserBaseInfoToRCContactUserInfo:baseInfo];
-                contactlist = [contactlist arrayByAddingObject:info];
             }
+            [contactlist addObject:baseInfo];
         }
     }
     return contactlist;
@@ -254,7 +251,7 @@
     if([self.db open])
     {
         NSString * updateSql = [NSString stringWithFormat:@"update %@ set nickname = ?,displayName = ?,portraitUri = ?, updatedAt = ?,phone = ?,region = ? where indexId = ?",USER_INFO_TABLENAME];
-        BOOL ret  = [self.db executeUpdate:updateSql,info.user.nickname,info.displayName,info.user.portraitUri,info.updatedAt,info.user.phone,info.user.region,info.user.indexId];
+        BOOL ret  = [self.db executeUpdate:updateSql,info.user.name,info.displayName,info.user.portraitUri,info.updatedAt,info.user.phone,info.user.region,info.user.userId];
         return ret;
 
     }
@@ -286,7 +283,7 @@
             {
                 NSString * sql = [NSString stringWithFormat:@"INSERT INTO %@ (indexId, nickname, displayName, portraitUri, updatedAt, phone, region, isSelf) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",USER_INFO_TABLENAME];
                 
-                ret = [_db executeUpdate:sql,info.user.indexId, info.user.nickname,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:0]];
+                ret = [_db executeUpdate:sql,info.user.userId, info.user.name,info.displayName, info.user.portraitUri,info.updatedAt, info.user.phone, info.user.region, [NSNumber numberWithBool:0]];
                 if(ret==NO)
                 {
                     [PPIndicatorView showString:@"好友保存失败" duration:1];

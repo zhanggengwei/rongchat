@@ -33,6 +33,15 @@
 {
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:[PPUserBase class]];
 }
+- (NSString *)indexChar
+{
+    if(self.nickNameWord.length>=1)
+    {
+        NSString * keyWord = [self.nickNameWord substringToIndex:1];
+        return keyWord;
+    }
+    return @"#";
+}
 
 @end
 

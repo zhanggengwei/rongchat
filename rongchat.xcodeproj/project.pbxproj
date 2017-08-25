@@ -207,7 +207,6 @@
 		7584DADF1E2A5B92007249C2 /* UIImageView+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAD01E2A5B92007249C2 /* UIImageView+RCIMExtension.m */; };
 		7584DAE01E2A5B92007249C2 /* UITableViewCell+addLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAD21E2A5B92007249C2 /* UITableViewCell+addLineView.m */; };
 		7584DAE11E2A5B92007249C2 /* UIView+RCIMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAD41E2A5B92007249C2 /* UIView+RCIMExtension.m */; };
-		7584DAF41E2A5B98007249C2 /* RCContactUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAE41E2A5B98007249C2 /* RCContactUserInfo.m */; };
 		7584DAF51E2A5B98007249C2 /* RCConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAE71E2A5B98007249C2 /* RCConversationModel.m */; };
 		7584DAF71E2A5B98007249C2 /* RCIMImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAEC1E2A5B98007249C2 /* RCIMImageManager.m */; };
 		7584DAF81E2A5B98007249C2 /* RCIMWeakReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DAEE1E2A5B98007249C2 /* RCIMWeakReference.m */; };
@@ -612,8 +611,6 @@
 		7584DAD21E2A5B92007249C2 /* UITableViewCell+addLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+addLineView.m"; sourceTree = "<group>"; };
 		7584DAD31E2A5B92007249C2 /* UIView+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RCIMExtension.h"; sourceTree = "<group>"; };
 		7584DAD41E2A5B92007249C2 /* UIView+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RCIMExtension.m"; sourceTree = "<group>"; };
-		7584DAE31E2A5B98007249C2 /* RCContactUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCContactUserInfo.h; sourceTree = "<group>"; };
-		7584DAE41E2A5B98007249C2 /* RCContactUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCContactUserInfo.m; sourceTree = "<group>"; };
 		7584DAE51E2A5B98007249C2 /* RCConversationCacheObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationCacheObj.h; sourceTree = "<group>"; };
 		7584DAE61E2A5B98007249C2 /* RCConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationModel.h; sourceTree = "<group>"; };
 		7584DAE71E2A5B98007249C2 /* RCConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationModel.m; sourceTree = "<group>"; };
@@ -1312,8 +1309,6 @@
 				75B2E56D1F279A9A003240B9 /* LCCKAVAudioPlayer.h */,
 				75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */,
 				7584DAE51E2A5B98007249C2 /* RCConversationCacheObj.h */,
-				7584DAE31E2A5B98007249C2 /* RCContactUserInfo.h */,
-				7584DAE41E2A5B98007249C2 /* RCContactUserInfo.m */,
 				7584DAE61E2A5B98007249C2 /* RCConversationModel.h */,
 				7584DAE71E2A5B98007249C2 /* RCConversationModel.m */,
 				7584DAEB1E2A5B98007249C2 /* RCIMImageManager.h */,
@@ -2154,7 +2149,6 @@
 				7513A2FD1DE92CF900CCAB61 /* XIAlertView.m in Sources */,
 				7584DADE1E2A5B92007249C2 /* UIImage+RCIMExtension.m in Sources */,
 				7584DB531E2A5BE6007249C2 /* PPShowSelectIconViewController.m in Sources */,
-				7584DAF41E2A5B98007249C2 /* RCContactUserInfo.m in Sources */,
 				758E8B971E0AC6EB00D5DD4E /* RCIMCaptionView.m in Sources */,
 				7584DB721E2A5BF5007249C2 /* PPLocationManager.m in Sources */,
 				7584DADB1E2A5B92007249C2 /* NSString+RCIMExtension.m in Sources */,

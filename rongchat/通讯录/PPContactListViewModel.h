@@ -16,5 +16,10 @@
 @end
 
 @interface PPContactListViewModel : NSObject
-@property (nonatomic,strong,readonly) NSMutableArray * contactList;
+
+//@property (nonatomic,strong,readonly) RACSubject * contactListSubject;
+@property (nonatomic,strong,readonly) RACSignal * changeSignal;
+// 冷信号 被动发生
+
+
 @end

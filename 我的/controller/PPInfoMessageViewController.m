@@ -118,7 +118,7 @@ NSArray * titleArr ()
         PPSettingCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPSettingCell"];
         if([arr[indexPath.row] isEqualToString:@"名字"])
         {
-            [cell layoutContent:arr[indexPath.row] textAligent:NSTextAlignmentLeft andDetailText:[PPTUserInfoEngine shareEngine].user_Info.user.nickname];
+            [cell layoutContent:arr[indexPath.row] textAligent:NSTextAlignmentLeft andDetailText:[PPTUserInfoEngine shareEngine].user_Info.user.name];
             
         }
         else

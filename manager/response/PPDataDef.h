@@ -26,22 +26,22 @@
 
 @end
 
-@interface PPUserBase : PPDataDef
-@property (nonatomic,strong) NSString * indexId;
-@property (nonatomic,strong) NSString * nickname;
+@interface PPUserBase : RCUserInfo
+
 @property (nonatomic,strong) NSString * phone;
-@property (nonatomic,strong) NSString * portraitUri;
 @property (nonatomic,strong) NSString * region;
 
 @end
 
 @interface PPUserBaseInfo : PPDataDef
-@property (nonatomic,strong) NSString * displayName;
-@property (nonatomic,strong) NSString * message;
-@property (nonatomic,strong) NSString * updatedAt;
+
+@property (nonatomic,copy) NSString * displayName;
+@property (nonatomic,copy) NSString * message;
+@property (nonatomic,copy) NSString * updatedAt;
+@property (nonatomic,copy) NSString * nickNameWord;
+@property (nonatomic,copy) NSString * indexChar;
 @property (nonatomic,assign) NSInteger  status;
 @property (nonatomic,strong) PPUserBase * user;
-@property (nonatomic,strong) NSString * nickNameWord;
 
 @end
 

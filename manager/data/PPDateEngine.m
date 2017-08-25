@@ -408,11 +408,11 @@
     NSDictionary * dict = @{@"nickname" : nickName};
     
     
-    [manager POST:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.indexId) parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.userId) parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         PPHTTPResponse * resonse = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
         
         PPUserBaseInfo * user_info=[PPTUserInfoEngine shareEngine].user_Info;
-        user_info.user.nickname = nickName;
+        user_info.user.name = nickName;
         [[PPTUserInfoEngine shareEngine]saveUserInfo:user_info];
         
         [self _completeWithResponse:resonse block:aResponseBlock];
@@ -788,7 +788,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         _modifyNickNameCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                PPHTTPManager * manager = [PPHTTPManager manager];
-               [manager GET:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.indexId) parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+               [manager GET:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.userId) parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
                    [subscriber sendNext:responseObject];
                    [subscriber sendCompleted];
                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

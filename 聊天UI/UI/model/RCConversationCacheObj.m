@@ -9,7 +9,6 @@
 #import "RCConversationCacheObj.h"
 #import <FMDB/FMDB.h>
 #import "PPTDBEngine.h"
-#import "RCContactUserInfo.h"
 
 
 @interface RCConversationCacheObj ()
@@ -59,7 +58,7 @@
         
         
     }
-    return [[RCContactUserInfo alloc]transFromPPUserBaseInfoToRCContactUserInfo:info].info;
+    return info;
     
 }
 
@@ -81,7 +80,7 @@
 - (void)saveUserInfoList:(NSArray <PPUserBaseInfo *> *)userList
 {
     [userList enumerateObjectsUsingBlock:^(PPUserBaseInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.cache setObject:obj forKey:(PPUserBaseInfo *)obj.user.indexId];
+        [self.cache setObject:obj forKey:(PPUserBaseInfo *)obj.user.userId];
     }];
     [[PPTDBEngine shareManager]saveContactList:userList];
 }

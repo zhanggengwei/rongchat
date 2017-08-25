@@ -7,7 +7,6 @@
 //
 
 #import "PPTUserInfoEngine.h"
-#import "RCContactUserInfo.h"
 #import "RCConversationCacheObj.h"
 
 @interface PPTUserInfoEngine ()
@@ -64,14 +63,12 @@
     __block NSArray * arr = [NSArray new];
     [baseInfoArr enumerateObjectsUsingBlock:^(PPUserBaseInfo * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        NSString * name = obj.user.nickname;
+        NSString * name = obj.user.name;
         if([obj.displayName isEqualToString:@""])
         {
             name = obj.displayName;
         }
-        RCContactUserInfo * userInfo = [[RCContactUserInfo alloc]transFromPPUserBaseInfoToRCContactUserInfo:obj];
-        arr = [arr arrayByAddingObject:userInfo];
-        
+        arr = [arr arrayByAddingObject:obj];
     }];
     self.contactList = arr;
     return [[PPTDBEngine shareManager]saveContactList:baseInfoArr];
