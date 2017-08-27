@@ -28,7 +28,7 @@
 @interface PPUserFriendListResponse : PPHTTPResponse
 
 @end
-
+//通过userId查询的个人信息
 @interface PPUserBaseInfoResponse :PPHTTPResponse
 
 @end
@@ -45,6 +45,10 @@
 
 
 @interface PPJudgeVerificationResponse : PPHTTPResponse
+
+@end
+
+@interface PPContactGroupListResponse : PPHTTPResponse
 
 @end
 

@@ -22,7 +22,12 @@
 - (instancetype)init __attribute__((unavailable("user shareEngine init")));
 
 + (instancetype)shareEngine;
-- (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
-- (void)saveUserInfoList:(NSArray<PPUserBaseInfo *> *) friendList;
+
 - (PPUserBaseInfo *)quertyUserInfoByUserId:(NSString *)userId;
+
+- (void)loginSucessed;//登录成功后调用这个方法 进行个人数据信息的保存 请求
+
+- (void)logoutSucessed;//退出登陆成功后进行数据的清理
+
+
 @end

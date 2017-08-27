@@ -53,6 +53,7 @@
 {
     [self deleteStoreItems];
     [self.client logout];
+    
     [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLogoutSucess object:nil];
 }
 

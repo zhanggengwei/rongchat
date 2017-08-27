@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class PPUserBaseInfo;
+@class RCContactGroupData;
 
 @interface PPTDBEngine : NSObject
 
@@ -16,6 +17,7 @@
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
 //保存用户的好友列表
 - (BOOL)saveContactList:(NSArray<PPUserBaseInfo *> *)contactList;
+- (BOOL)addOrUpdateContactGroupLists:(NSArray<RCContactGroupData *>*)contactGroupLists;
 //查询好友信息
 - (PPUserBaseInfo *)queryUser_InfoWithIndexId:(NSString *)indexId;
 //查询个人信息
@@ -28,4 +30,7 @@
 - (NSArray *)contactGroupLists;
 //加载userid 数据库
 - (void)loadDataBase:(NSString *)userID;
+//数据库清理工作
+- (void)clearAccount;
+
 @end

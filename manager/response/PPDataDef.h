@@ -101,6 +101,24 @@
 @property (nonatomic,strong) RCUserInfoBaseData * user;
 @end
 
+@interface RCContactGroupData : PPDataDef
+
+@property (nonatomic,strong) NSString * creatorId;
+@property (nonatomic,strong) NSString * portraitUri;
+@property (nonatomic,strong) NSString * name;
+@property (nonatomic,strong) NSString * indexId;
+@property (nonatomic,assign) NSInteger maxMemberCount;
+@property (nonatomic,assign) NSInteger memberCount;
+
+@end
+
+@interface PPTContactGroupModel : PPDataDef
+
+@property (nonatomic,strong) RCContactGroupData * group;
+@property (nonatomic,assign) NSInteger  role;
+@end
+
+
 
 
 

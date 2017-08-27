@@ -120,6 +120,7 @@
             if(!isCancel&&clickedIndex == 0)
             {
                 [[PPChatTools shareManager]logout];
+                [[PPTUserInfoEngine shareEngine]logoutSucessed];
                 
             }
             

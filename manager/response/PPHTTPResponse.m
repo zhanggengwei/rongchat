@@ -45,8 +45,8 @@
 
 + (NSValueTransformer *)resultJSONTransformer
 {
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[RCUserInfoBaseData class]];
     
-    return [MTLJSONAdapter arrayTransformerWithModelClass:[PPUserBaseInfo class]];
 }
 
 @end
@@ -71,6 +71,14 @@
 + (NSValueTransformer *)resultJSONTransformer
 {
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:[PPVertifyDef class]];
+}
+@end
+
+@implementation PPContactGroupListResponse
+//@property (nonatomic,strong) NSArray<RCContactGroupData>
++ (NSValueTransformer *)resultJSONTransformer
+{
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[PPTContactGroupModel class]];
 }
 
 @end

@@ -96,5 +96,9 @@
 - (RACCommand *)loginCommandWithUserName:(NSString *)account passWord:(NSString *)passWord;
 
 - (RACSignal *)getContactListCommandWithUserId:(NSString *)userId;
+- (RACSignal *)getContactGroupsCommand;
+
+//通过userId 获得个人信息的接口
+- (RACSignal *)getUserInfoCommandByUserId:(NSString *)userId;
 
 @end

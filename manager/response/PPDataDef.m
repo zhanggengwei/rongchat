@@ -78,3 +78,17 @@
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:[RCUserInfoBaseData class]];
 }
 @end
+
+@implementation RCContactGroupData
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    NSMutableDictionary *mapping = [[NSDictionary mtl_identityPropertyMapWithModel:self] mutableCopy];
+    if ([mapping objectForKey:@"indexId"]) {
+        [mapping setObject:@"id"forKey:@"indexId"];
+    }
+    return mapping;
+}
+
+@end
+
+@implementation PPTContactGroupModel
+@end

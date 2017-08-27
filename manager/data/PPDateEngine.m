@@ -141,7 +141,6 @@
                 if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
                 {
                     PPUserBaseInfo * info = [PPUserBaseInfo new];
-                    [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
                 }
             } userID:userID];
             [self loginSucessAfterLoginRCIMResponse:^(PPHTTPResponse * aTaskResponse) {
@@ -668,10 +667,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         PPHTTPResponse * response = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
         if(response.code.integerValue == kPPResponseSucessCode)
         {
-            PPUserBaseInfo * baseInfo = [PPTUserInfoEngine shareEngine].user_Info;
-            //baseInfo.user.portraitUri = headUrl;
-            [[PPTUserInfoEngine shareEngine]saveUserInfo:baseInfo];
-            
+            PPUserBaseInfo * baseInfo = [PPTUserInfoEngine shareEngine].user_Info;            
         }
         [self _completeWithResponse:response block:aResponseBlock];
         
@@ -691,6 +687,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [SFHFKeychainUtils storeUsername:kPPLoginPassWord andPassword:passWord forServiceName:kPPServiceName updateExisting:YES error:&error];
     [SFHFKeychainUtils storeUsername:kPPLoginToken andPassword:token forServiceName:kPPServiceName updateExisting:YES error:&error];
     [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:userID forServiceName:kPPServiceName updateExisting:YES error:&error];
+    [[PPTUserInfoEngine shareEngine]loginSucessed];
+    
 }
 
 
@@ -743,7 +741,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 PPHTTPManager * manager = [PPHTTPManager manager];
                 [manager GET:kPPUrlUserInfo(input) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    [subscriber sendNext:responseObject];
+                    NSError * error;
+                    PPUserBaseInfoResponse * response = [MTLJSONAdapter modelOfClass:[PPUserBaseInfoResponse class] fromJSONDictionary:responseObject error:&error];
+                    [subscriber sendNext:response];
                     [subscriber sendCompleted];
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     [subscriber sendError:error];
@@ -851,6 +851,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     if(_friendBlackListCommand==nil)
     {
+        
         _friendBlackListCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                return nil;
@@ -860,6 +861,31 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }
     return _friendBlackListCommand;
 }
+
+- (RACCommand *)contactGroupsCommand
+{
+    if(_contactGroupsCommand==nil)
+    {
+        _contactGroupsCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signale = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:kPPUrlGetAllGroups parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSError * error;
+                    PPContactGroupListResponse * resoponse = [MTLJSONAdapter modelOfClass:[PPContactGroupListResponse class] fromJSONDictionary:responseObject error:&error];
+                    [subscriber sendNext:resoponse];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+                return nil;
+            }];
+            return signale;
+        }];
+    }
+    return _contactGroupsCommand;
+}
+
 - (RACCommand *)loginCommandWithUserName:(NSString *)account passWord:(NSString *)passWord
 {
     [self.loginCommand execute:@{}];
@@ -870,5 +896,13 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
    return [self.contactListCommand execute:@{}];
 }
-
+- (RACSignal *)getContactGroupsCommand
+{
+    return [self.contactGroupsCommand execute:nil];
+}
+//通过userId 获得个人信息的接口
+- (RACSignal *)getUserInfoCommandByUserId:(NSString *)userId
+{
+    return [self.searchUserInfoCommand execute:userId];
+}
 @end

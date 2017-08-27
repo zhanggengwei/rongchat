@@ -8,6 +8,8 @@
 // 成员信息表 好友信息，群成员信息
 #define USER_INFO_TABLENAME @"USER_INFO_TABLENAME"
 #define CONTACT_GRAOUP_TABLENAME @"CONTACT_GRAOUP_TABLENAME"
+
+#define CONTACT_GRAOUP_MEMBER_TABLENAME @"CONTACT_GRAOUP_MEMBER_TABLENAME"
 //好友信息表
 #define USER_INFO_FRIENDLIST_TABLENAME @"USER_INFO_FRIENDLIST_TABLENAME"
 
@@ -65,13 +67,15 @@
 - (void)createTables
 {
     NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,displayName text,portraitUri text,updatedAt text,phone text,region text,message varchar(100),status INT)",USER_INFO_TABLENAME];
-    //isContact 是否是好友信息
-    NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100),url varchar(100),groupId varchar(100) not null,userId varchar(100),primary key(groupid,userId))",CONTACT_GRAOUP_TABLENAME];
+    
+    NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100) not null,creatorId varchar(100)not null,portraitUri varchar(100),indexId varchar(100) not null,maxMemberCount INT,memberCount INT,primary key(indexId))",CONTACT_GRAOUP_TABLENAME];
+    NSString * createContactGroupMemberSql = [NSString stringWithFormat:@"create table if not exists %@ (indexId varchar (100)not null,userId varchar(100) not null,primary key(indexId,userId))",CONTACT_GRAOUP_MEMBER_TABLENAME];
     NSString * createFriendListSql = [NSString stringWithFormat:@"create table if not exists %@ (userId text not null,isBlack BOOL,primary key(userId))",USER_INFO_FRIENDLIST_TABLENAME];
     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         [db executeUpdate:createUserInfoSql];
         [db executeUpdate:createContactGroupTableSql];
         [db executeUpdate:createFriendListSql];
+        [db executeUpdate:createContactGroupMemberSql];
     }];
 }
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
@@ -135,26 +139,29 @@
     }];
     return sucessed;
 }
-- (BOOL)addOrUpdateContactGroupLists:(NSArray<RCContactGroup *>*)contactGroupLists
+- (BOOL)addOrUpdateContactGroupLists:(NSArray<PPTContactGroupModel *>*)contactGroupLists
 {
     __block BOOL sucessed;
-    [contactGroupLists enumerateObjectsUsingBlock:^(RCContactGroup * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [contactGroupLists enumerateObjectsUsingBlock:^(PPTContactGroupModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //删除数据
-        NSString * deleteSql = [NSString stringWithFormat:@"delete * from %@ where groupId = %@",CONTACT_GRAOUP_TABLENAME,obj.groupId];
-        NSString * deleteMemberSql = [NSString stringWithFormat:@"delete * from %@ where groupId = %@",CONTACT_GRAOUP_TABLENAME,obj.groupId];
+        NSString * deleteSql = [NSString stringWithFormat:@"delete  from \'%@\' where indexId = \'%@\'",CONTACT_GRAOUP_TABLENAME,obj.group.indexId];
         [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
             [db executeUpdate:deleteSql];
-            [db executeUpdate:deleteMemberSql];
-            [obj.members enumerateObjectsUsingBlock:^(PPUserBaseInfo * _Nonnull info, NSUInteger idx, BOOL * _Nonnull stop) {
-               NSString * insertSql = [NSString stringWithFormat:@"insert into %@ (name,groupId,portraitUri,userId) values (\'%@\',\'%@\',\'%@\',\'%@\')",CONTACT_GRAOUP_TABLENAME,obj.name,obj.groupId,obj.portraitUri,info.userId];
-                   [db executeUpdate:insertSql];
-            }];
-            [self saveContactList:obj.members];
+            NSString * insertSql = [NSString stringWithFormat:@"insert into \'%@\'(name,creatorId,portraitUri,indexId,maxMemberCount,memberCount) values(\'%@\',\'%@\',\'%@\',\'%@\',%ld,%ld)",CONTACT_GRAOUP_TABLENAME,obj.group.name,obj.group.creatorId,obj.group.portraitUri,obj.group.indexId,obj.group.maxMemberCount,obj.group.memberCount];
+            [db executeUpdate:insertSql];
             sucessed = !rollback;
         }];
     }];
     return sucessed;
 }
-
+- (void)clearAccount
+{
+    [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        [db executeUpdate:@"DELETE FROM USER_INFO_TABLENAME"];
+        [db executeUpdate:@"DELETE FROM CONTACT_GRAOUP_TABLENAME"];
+        [db executeUpdate:@"DELETE FROM CONTACT_GRAOUP_MEMBER_TABLENAME"];
+        [db executeUpdate:@"DELETE FROM  USER_INFO_FRIENDLIST_TABLENAME"];
+    }];
+}
 
 @end
