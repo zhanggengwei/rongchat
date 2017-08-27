@@ -8,7 +8,6 @@
 
 #ifndef PPMarchos_h
 #define PPMarchos_h
-#import "PPChatTools.h"
 #import <RongIMLib/RongIMLib.h>
 #import "SFHFKeychainUtils.h"
 #import "kPPObserverDef.h"

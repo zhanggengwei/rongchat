@@ -8,18 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol PPContactListViewModelProtrocal <NSObject>
-
-- (void)didSelectedCell:(id)model;
-
-
-@end
-
 @interface PPContactListViewModel : NSObject
-
-//@property (nonatomic,strong,readonly) RACSubject * contactListSubject;
+//联系人列表发生变化
 @property (nonatomic,strong,readonly) RACSignal * changeSignal;
-// 冷信号 被动发生
-
 
 @end

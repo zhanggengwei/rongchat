@@ -32,7 +32,7 @@
     static PPTDBEngine * shareInstance;
     dispatch_once(&token, ^{
         shareInstance = [self new];
-        [[NSNotificationCenter defaultCenter]addObserver:shareInstance selector:@selector(logoutSucess:) name:kPPObserverLogoutSucess object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:shareInstance selector:@selector(logoutSucess:) name:RCIMLogoutSucessedNotifaction object:nil];
     });
     return shareInstance;
 }
@@ -70,7 +70,7 @@
     
     NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100) not null,creatorId varchar(100)not null,portraitUri varchar(100),indexId varchar(100) not null,maxMemberCount INT,memberCount INT,primary key(indexId))",CONTACT_GRAOUP_TABLENAME];
     NSString * createContactGroupMemberSql = [NSString stringWithFormat:@"create table if not exists %@ (indexId varchar (100)not null,userId varchar(100) not null,primary key(indexId,userId))",CONTACT_GRAOUP_MEMBER_TABLENAME];
-    NSString * createFriendListSql = [NSString stringWithFormat:@"create table if not exists %@ (userId text not null,isBlack BOOL,primary key(userId))",USER_INFO_FRIENDLIST_TABLENAME];
+    NSString * createFriendListSql = [NSString stringWithFormat:@"create table if not exists %@ (userId text not null,isBlack BOOL default 0,primary key(userId))",USER_INFO_FRIENDLIST_TABLENAME];
     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         [db executeUpdate:createUserInfoSql];
         [db executeUpdate:createContactGroupTableSql];
@@ -94,8 +94,35 @@
 
 - (NSArray *)queryFriendList
 {
-    NSMutableArray * contactlist = [NSMutableArray new];
-    return contactlist;
+    NSString * searchSql = @"select userId from %@ where userId != %@";
+    NSMutableArray * indexIds = [NSMutableArray new];
+    NSMutableArray * contactList = [NSMutableArray new];
+    [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        NSString * searchSql = [NSString stringWithFormat:@"select * from \'%@\' where (userId != \'%@\')",USER_INFO_FRIENDLIST_TABLENAME,[PPTUserInfoEngine shareEngine].userId];
+        
+        FMResultSet * sets = [db executeQuery:searchSql];
+        while (sets.next) {
+            NSString * userId = [sets stringForColumn:@"userId"];
+            [indexIds addObject:userId];
+        }
+        if(indexIds)
+        {
+            NSString * sql = [NSString stringWithFormat:@"select * from \'%@\'where userId in (\'%@\')",USER_INFO_TABLENAME,[indexIds componentsJoinedByString:@","]];
+            
+           FMResultSet * results = [db executeQuery:sql];
+            while (results.next) {
+                PPUserBaseInfo * info = [PPUserBaseInfo new];
+                info.name = [results stringForColumn:@"name"];
+                info.userId = [results stringForColumn:@"userId"];
+                info.displayName = [results stringForColumn:@"displayName"];
+                info.phone = [results stringForColumn:@"phone"];
+                info.region = [results stringForColumn:@"region"];
+                info.portraitUri = [results stringForColumn:@"portraitUri"];
+                [contactList addObject:info];
+            }
+        }
+    }];
+    return contactList;
 }
 
 - (BOOL)updateUserInfo:(PPUserBaseInfo *)info

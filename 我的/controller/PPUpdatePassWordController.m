@@ -141,8 +141,6 @@
     if(indexPath.row == 0)
     {
         cell.cellStyle = PPUpdatePassWordTableViewCellDisable;
-        
-        [cell setLeftContent:@"手机号" rightContent:[SFHFKeychainUtils getPasswordForUsername:kPPLoginName andServiceName:kPPServiceName error:nil]];
        
     }else if (indexPath.row == 1)
     {

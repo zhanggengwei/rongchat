@@ -787,13 +787,23 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     if(!_connectRCIMCommand)
     {
         _connectRCIMCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            NSLog(@"input ==%@",input);
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                /*
+                 {
+                 "code": 200,
+                 "result": {
+                 "id": "jnKhfP960",
+                 "token": "J/sWDPJrtOC9T7MuaZnpgq+YsUIoF3ojin3K277sfOnr8J7ydLsAKLTqeaYCOeAP/59uSO1/vWDyDgkMFKAXBKtdpZUyLdaH"
+                 }
+                 }*/
                 [[RCIMClient sharedRCIMClient]connectWithToken:input success:^(NSString *userId) {
-                    
+                    [subscriber sendNext:userId];
+                    [subscriber sendCompleted];
                 } error:^(RCConnectErrorCode status) {
-                    
+                    NSLog(@"dd");
                 } tokenIncorrect:^{
-                    
+                     NSLog(@"dd");
                 }];
                 return nil;
             }];
@@ -810,7 +820,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         _loginCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 PPHTTPManager * manager = [PPHTTPManager manager];
-                [manager GET:kPPUrlLoginUrl parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [manager POST:kPPUrlLoginUrl parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
                     NSError * error;
                     PPUserInfoTokenResponse * response = [MTLJSONAdapter modelOfClass:[PPUserInfoTokenResponse class] fromJSONDictionary:responseObject error:&error];
                     [subscriber sendNext:response];

@@ -9,9 +9,9 @@
 #import "PPContactListViewModel.h"
 
 @interface PPContactListViewModel ()
-//@property (nonatomic,strong) RACSubject * contactListSubject;
+
 @property (nonatomic,strong) RACSignal * changeSignal;
-@property (nonatomic,strong) NSMutableArray * contactList;// @[['A':{}],'B':@{}];
+@property (nonatomic,strong) NSMutableArray * contactList;
 @end
 
 @implementation PPContactListViewModel

@@ -92,7 +92,7 @@
 
 - (void)deleteMessageWithMessageId:(int)messageId withHandle:(RCErrorBlock)block
 {
-
+    
 }
 #pragma makr recallMessage 撤回消息
 
@@ -100,6 +100,7 @@
 - (void)queryLastConversationListWithConversationTypeArray:(NSArray *)conversationTypeArr WithHandle:(RCQueryConversationListBlock)block
 {
     dispatch_async(_queryConversationListQueue, ^{
+        
         NSArray <RCConversation *> *conversationList = [_client getConversationList:conversationTypeArr];
         dispatch_async(dispatch_get_main_queue(), ^{
             !block ?:block(conversationList,nil);
@@ -145,7 +146,7 @@
 
 - (void)sendCustomMessages:(RCMessageContent*)messageContent withConversationId:(NSString *)conversationId conversationType:(RCConversationType)type failed:(RCErrorSendMessageBlock)failBlock sucessBlock:(RCSucessedSendMessageBlock)sucessBlock
 {
-
+    
     void (^sendCustomMessage)(void) = ^(void)
     {
         [_client sendMessage:type targetId:conversationId content:messageContent pushContent:nil pushData:nil success:^(long messageId) {
@@ -177,7 +178,7 @@
                     progressBlock(progress,messageId);
                 }
             });
-           
+            
             
         } success:^(long messageId) {
             
@@ -198,7 +199,7 @@
             });
             
         } cancel:^(long messageId) {
-           
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 if(cancelBlock)
                 {

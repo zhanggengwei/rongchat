@@ -28,7 +28,6 @@
 		409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50511DDD6E3100015DB7 /* OTFileManager.m */; };
 		409F50641DDD6E3100015DB7 /* PPFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50531DDD6E3100015DB7 /* PPFileManager.m */; };
 		409F50741DDD6E5100015DB7 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F506F1DDD6E5100015DB7 /* NSString+MD5.m */; };
-		409F50751DDD6E5100015DB7 /* PPChatTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50711DDD6E5100015DB7 /* PPChatTools.m */; };
 		409F50761DDD6E5100015DB7 /* PPTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50731DDD6E5100015DB7 /* PPTool.m */; };
 		409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50791DDD6E6F00015DB7 /* PPLoginTableViewCell.m */; };
 		409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F507B1DDD6E6F00015DB7 /* PPLoginViewController.m */; };
@@ -350,8 +349,6 @@
 		409F50531DDD6E3100015DB7 /* PPFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPFileManager.m; sourceTree = "<group>"; };
 		409F506E1DDD6E5100015DB7 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		409F506F1DDD6E5100015DB7 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-		409F50701DDD6E5100015DB7 /* PPChatTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPChatTools.h; sourceTree = "<group>"; };
-		409F50711DDD6E5100015DB7 /* PPChatTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPChatTools.m; sourceTree = "<group>"; };
 		409F50721DDD6E5100015DB7 /* PPTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTool.h; sourceTree = "<group>"; };
 		409F50731DDD6E5100015DB7 /* PPTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTool.m; sourceTree = "<group>"; };
 		409F50781DDD6E6F00015DB7 /* PPLoginTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLoginTableViewCell.h; sourceTree = "<group>"; };
@@ -902,8 +899,6 @@
 				409F50B41DDD72F600015DB7 /* PPImageUtil.m */,
 				409F506E1DDD6E5100015DB7 /* NSString+MD5.h */,
 				409F506F1DDD6E5100015DB7 /* NSString+MD5.m */,
-				409F50701DDD6E5100015DB7 /* PPChatTools.h */,
-				409F50711DDD6E5100015DB7 /* PPChatTools.m */,
 				409F50721DDD6E5100015DB7 /* PPTool.h */,
 				409F50731DDD6E5100015DB7 /* PPTool.m */,
 				7513A2F01DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.h */,
@@ -2076,7 +2071,6 @@
 				7584DB741E2A5BF5007249C2 /* PPTUserInfoEngine.m in Sources */,
 				7531E9831F3958B3001C1326 /* RCIMTextFullScreenViewController.m in Sources */,
 				75278A111F0E9167000C70AF /* RCContentView.m in Sources */,
-				409F50751DDD6E5100015DB7 /* PPChatTools.m in Sources */,
 				40785E981DEE9E7900875E00 /* PPResetPassWordViewController.m in Sources */,
 				7584DAE01E2A5B92007249C2 /* UITableViewCell+addLineView.m in Sources */,
 				753CA06A1F26180000F313EE /* LCCKInputViewPluginLocation.m in Sources */,

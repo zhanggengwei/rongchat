@@ -31,18 +31,18 @@
     [self.window makeKeyAndVisible];
 
     [[NSNotificationCenter defaultCenter]addObserver:self
-                                            selector:@selector(loginStateChaned:) name:kPPObserverLoginSucess object:nil];
+                                            selector:@selector(loginStateChaned:) name:RCIMLogoutSucessedNotifaction object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self
-                                            selector:@selector(loginStateChaned:) name:kPPObserverLogoutSucess object:nil];
-    
+                                            selector:@selector(loginStateChaned:) name:RCIMLoginSucessedNotifaction object:nil];
+    [[RCIMClient sharedRCIMClient]initWithAppKey:@"n19jmcy59f1q9"];
     if([PPTUserInfoEngine shareEngine].userId)
-    {   
+    {
+       [[PPDateEngine manager]connectRCIM];
        [self createTabbarController];
     }else
     {
         [self createLoginController];
     }
-    [[PPChatTools shareManager]autoLogin];
     [[AMapServices sharedServices]setApiKey:KAppMapKey];
     [[PPLocationManager shareManager]requestLocation];
     [[RCIMLocationManager shareManager]requestReGeocodeLocation:^(AMapLocationReGeocode *response, NSError *error) {
@@ -188,9 +188,7 @@
 
 - (void)loginStateChaned:(NSNotification *)noti
 {
-    
-    
-    if([noti.name isEqualToString:kPPObserverLoginSucess])
+    if([noti.name isEqualToString:RCIMLoginSucessedNotifaction])
     {
         [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
         [[NSUserDefaults standardUserDefaults]setObject:OBJC_APPIsLogin forKey:OBJC_APPIsLogin];
@@ -198,11 +196,9 @@
         [self createTabbarController];
     }else
     {
-        [[PPChatTools shareManager]deleteStoreItems];
         [self createLoginController];
     }
 }
-
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     

@@ -119,11 +119,9 @@
         [sheet dismissForCompletionHandle:^(NSInteger clickedIndex, BOOL isCancel) {
             if(!isCancel&&clickedIndex == 0)
             {
-                [[PPChatTools shareManager]logout];
+                [[NSNotificationCenter defaultCenter]postNotificationName:RCIMLogoutSucessedNotifaction object:nil];
                 [[PPTUserInfoEngine shareEngine]logoutSucessed];
-                
             }
-            
         }];
         
     }
