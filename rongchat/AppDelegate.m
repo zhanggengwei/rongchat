@@ -38,7 +38,13 @@
     if([PPTUserInfoEngine shareEngine].userId)
     {
        [self createTabbarController];
-       [[PPDateEngine manager]connectRCIM];
+        [[RCIMClient sharedRCIMClient]connectWithToken:[PPTUserInfoEngine shareEngine].token success:^(NSString *userId) {
+           
+        } error:^(RCConnectErrorCode status) {
+            NSLog(@"dd");
+        } tokenIncorrect:^{
+            NSLog(@"dd");
+        }];
     }else
     {
         [self createLoginController];
