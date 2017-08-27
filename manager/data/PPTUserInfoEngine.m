@@ -13,7 +13,8 @@
 
 @property (nonatomic,strong) PPUserBaseInfo * user_Info;
 @property (nonatomic,strong) NSArray * contactList;
-
+@property (nonatomic,copy) NSString * userId;
+@property (nonatomic,strong) RACSignal * accountChangeSignal;
 @end
 
 @implementation PPTUserInfoEngine
@@ -24,15 +25,22 @@
     dispatch_once(&token, ^{
         instance = [[self alloc]init];
         [instance loadData];
-        
     });
     return instance;
+}
+
+- (instancetype)init
+{
+    if(self = [super init])
+    {
+        self.userId = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
+    }
+    return self;
 }
 
 - (void)loadUserInfo
 {
     [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
-        
         PPUserBaseInfo * info = [PPUserBaseInfo new];
         info = aTaskResponse.result;
         [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
@@ -41,9 +49,13 @@
 
 - (void)loadData
 {
-    [[PPTDBEngine shareManager] loadDataBase:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil]];
+    [RACObserve(self, userId) subscribeNext:^(id x) {
+        // 其他的一些设置
+        if(x){
+        [[PPTDBEngine shareManager]loadDataBase:x];
+        }
+    }];
     self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
-//    self.contactList = [[PPTDBEngine shareManager]queryFriendList];
 }
 
 - (NSArray *)contactList

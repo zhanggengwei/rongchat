@@ -35,10 +35,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(loginStateChaned:) name:kPPObserverLogoutSucess object:nil];
     
-    if([[NSUserDefaults standardUserDefaults]objectForKey:OBJC_APPIsLogin])
-    {
-       [PPTUserInfoEngine shareEngine];
-        
+    if([PPTUserInfoEngine shareEngine].userId)
+    {   
        [self createTabbarController];
     }else
     {
@@ -130,8 +128,6 @@
     [LCCKInputViewPluginPickImage registerSubclass];
     [LCCKInputViewPluginLocation registerSubclass];
     
-    
-    
     //登陆成功后进行数据的储藏
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:RCIMLoginSucessedNotifaction object:nil]subscribeNext:^(NSNotification * _Nullable x) {
         [self loginSucessed];
@@ -157,6 +153,9 @@
             [data addObject:info];
         }];
         [[PPTDBEngine shareManager]saveContactList:data];
+        
+    }];
+    [[PPDateEngine manager]getFriendListResponse:^(id aTaskResponse) {
         
     }];
     

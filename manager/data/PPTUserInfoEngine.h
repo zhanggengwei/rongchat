@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface PPTUserInfoEngine : NSObject
+
+@property (nonatomic,copy,readonly) NSString * userId;
 //自己的信息数据
 @property (nonatomic,strong,readonly) PPUserBaseInfo * user_Info;
 //联系人数据

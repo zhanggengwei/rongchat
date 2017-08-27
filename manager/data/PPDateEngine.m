@@ -690,7 +690,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [SFHFKeychainUtils storeUsername:kPPLoginName andPassword:phone forServiceName:kPPServiceName updateExisting:YES error:&error];
     [SFHFKeychainUtils storeUsername:kPPLoginPassWord andPassword:passWord forServiceName:kPPServiceName updateExisting:YES error:&error];
     [SFHFKeychainUtils storeUsername:kPPLoginToken andPassword:token forServiceName:kPPServiceName updateExisting:YES error:&error];
-    
     [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:userID forServiceName:kPPServiceName updateExisting:YES error:&error];
 }
 

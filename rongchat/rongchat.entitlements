@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.popoteam.iosPoClientweixin</string>
+		<string>$(AppIdentifierPrefix)com.kdyz.doctor</string>
 	</array>
 </dict>
 </plist>

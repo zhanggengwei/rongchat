@@ -15,7 +15,7 @@
 //保存用户的个人信息
 - (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
 //保存用户的好友列表
-- (BOOL)saveContactList:(NSArray <PPUserBaseInfo *> *)contactList;
+- (BOOL)saveContactList:(NSArray<PPUserBaseInfo *> *)contactList;
 //查询好友信息
 - (PPUserBaseInfo *)queryUser_InfoWithIndexId:(NSString *)indexId;
 //查询个人信息
@@ -28,8 +28,4 @@
 - (NSArray *)contactGroupLists;
 //加载userid 数据库
 - (void)loadDataBase:(NSString *)userID;
-- (void)createContactGroupMemberTable;
-
-
-
 @end

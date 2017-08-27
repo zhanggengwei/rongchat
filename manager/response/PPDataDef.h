@@ -41,7 +41,6 @@
 @property (nonatomic,copy) NSString * nickNameWord;
 @property (nonatomic,copy) NSString * message;
 @property (nonatomic,copy) NSString * updatedAt;
-@property (nonatomic,assign) NSInteger isBlack;
 @property (nonatomic,assign) NSInteger status;
 
 
@@ -80,7 +79,7 @@
 @property (nonatomic,copy) NSString * name;
 @property (nonatomic,copy) NSString * groupId;
 @property (nonatomic,copy) NSString * portraitUri;//群组头像
-@property (nonatomic,strong) NSArray<RCContactGroupMember *> * members;
+@property (nonatomic,strong) NSArray<PPUserBaseInfo *> * members;
 @end
 
 

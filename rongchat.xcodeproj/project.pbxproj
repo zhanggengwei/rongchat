@@ -1754,7 +1754,7 @@
 					};
 					75CEF8791DDC878500541660 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = R6B5BG54J2;
+						DevelopmentTeam = TJ7XWRA893;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 75CEF8601DDC878500541660;
 					};
@@ -2357,7 +2357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = R6B5BG54J2;
+				DEVELOPMENT_TEAM = TJ7XWRA893;
 				INFOPLIST_FILE = rongchatTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2371,7 +2371,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = R6B5BG54J2;
+				DEVELOPMENT_TEAM = TJ7XWRA893;
 				INFOPLIST_FILE = rongchatTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

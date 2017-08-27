@@ -18,7 +18,13 @@
 }
 @end
 @implementation PPTokenDef
-
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    NSMutableDictionary *mapping = [[NSDictionary mtl_identityPropertyMapWithModel:self] mutableCopy];
+    if ([mapping objectForKey:@"indexId"]) {
+        [mapping setObject:@"id"forKey:@"indexId"];
+    }
+    return mapping;
+}
 @end
 
 @implementation PPPersonal
