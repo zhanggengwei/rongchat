@@ -71,26 +71,7 @@
 
 - (void)autoLogin
 {
-    
-    NSString * token = [SFHFKeychainUtils getPasswordForUsername:kPPLoginToken andServiceName:kPPServiceName error:nil];
-    if(token==nil||token.length<=0)
-    {
-        [[PPChatTools shareManager]logout];
-        return;
-    }
-    [self connectWithToken:token sucessBlock:^(NSString *content) {
-        
-    } failBlock:^(RCConnectErrorCode code) {
-        NSLog(@"code ==%d",code);
-        
-    } tokenIncorrectBlock:^{
-        [[PPChatTools shareManager]logout];
-        [PPIndicatorView showString:@"token 错误" duration:1];
-        
-        
-    }];
-    
-    
+    [[PPDateEngine manager]connectRCIM];
 }
 
 - (void)connectWithToken:(NSString *)token sucessBlock:(void (^)(NSString * content))block failBlock:(void(^)(RCConnectErrorCode code))failBlock tokenIncorrectBlock:(void(^)(void))tokenIncorrectBlock

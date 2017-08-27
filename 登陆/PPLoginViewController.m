@@ -246,21 +246,19 @@
 - (void)loginAction:(id)sender
 {
     [PPIndicatorView  showLoadingInView:self.view];
-    
-    [[PPDateEngine manager]loginWithWithResponse:^(PPHTTPResponse * aTaskResponse) {
-        [PPIndicatorView hideLoadingInView:self.view];
-        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+    [[[PPDateEngine manager]loginCommandWithUserName:self.acount passWord:self.passWord region:@"86"]subscribeNext:^(PPUserInfoTokenResponse * response) {
+        if(response.code.integerValue == kPPResponseSucessCode)
         {
-            [[NSNotificationCenter defaultCenter]postNotificationName:RCIMLoginSucessedNotifaction object:nil];
-            
             [PPIndicatorView showString:@"登录成功"];
+            //保存必要信息
+            
+            //连接容云
         }else
         {
-            [PPIndicatorView showString:@"登录失败"];
+            [PPIndicatorView showString:response.message];
         }
-        
-    } Phone:self.acount passWord:self.passWord region:@"86"];
-    
+    } error:^(NSError * _Nullable error) {
+    }];
 }
 
 @end

@@ -59,6 +59,7 @@
 //验证验证码
 @property (nonatomic,strong) RACCommand * verfifyCodeCommand;
 
+@property (nonatomic,strong) RACCommand * connectRCIMCommand;
 
 #pragma makr contactGroup
 //创建群聊
@@ -103,57 +104,6 @@
     if (aResponseBlock) {
         aResponseBlock(aResponse);
     }
-}
-- (void)loginWithWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord region:(NSString *)region
-{
-    
-    PPHTTPManager *manager = [PPHTTPManager manager];
-    NSDictionary * dict = @{
-                            @"region" : region,
-                            @"phone" : phone,
-                            @"password" : passWord};
-    [manager POST:kPPUrlLoginUrl parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSError * error;
-        PPUserInfoTokenResponse * response = [MTLJSONAdapter modelOfClass:[PPUserInfoTokenResponse class] fromJSONDictionary:responseObject error:&error];
-        NSString * token = ((PPTokenDef *)(response.result)).token;
-        NSString * userID = ((PPTokenDef *)(response.result)).indexId;
-        [self _completeWithResponse:response block:aResponseBlock];
-        if(response.code.integerValue == kPPResponseSucessCode)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                NSString * dbPath = [[PPFileManager sharedManager]pathForDomain:PPFileDirDomain_User appendPathName:userID];
-                //创建用户文件夹
-                BOOL isDir;
-                OTF_FileExistsAtPath(dbPath, &isDir);
-                if (!isDir) {
-                    OTF_CreateDir(dbPath);
-                }
-                [self loginSucessUserID:userID phone:phone passWord:passWord loginToken:token];
-                PPHTTPResponse * response = [PPHTTPResponse new];
-                response.code = @200;
-                response.message = @"登录成功";
-                [self _completeWithResponse:response block:aResponseBlock];
-                [[NSNotificationCenter defaultCenter]postNotificationName:kPPObserverLoginSucess object:nil];
-                
-            });
-            [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
-                if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-                {
-                    PPUserBaseInfo * info = [PPUserBaseInfo new];
-                }
-            } userID:userID];
-            [self loginSucessAfterLoginRCIMResponse:^(PPHTTPResponse * aTaskResponse) {
-                
-                
-            } loginToken:token UserID:userID phone:phone passWord:passWord];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        PPHTTPResponse *response = [PPHTTPResponse responseWithError:error];
-        [self _completeWithResponse:response block:aResponseBlock];
-        
-    }];
-    
 }
 - (void)registerWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord verifyCode:(NSString *)code andNickName:(NSString *)nickName
 {
@@ -679,36 +629,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }];
     
 }
-//登录成功之后进行数据的存储
-- (void)loginSucessUserID:(NSString *)userID phone:(NSString *)phone passWord:(NSString *)passWord loginToken:(NSString *)token
-{
-    NSError * error;
-    [SFHFKeychainUtils storeUsername:kPPLoginName andPassword:phone forServiceName:kPPServiceName updateExisting:YES error:&error];
-    [SFHFKeychainUtils storeUsername:kPPLoginPassWord andPassword:passWord forServiceName:kPPServiceName updateExisting:YES error:&error];
-    [SFHFKeychainUtils storeUsername:kPPLoginToken andPassword:token forServiceName:kPPServiceName updateExisting:YES error:&error];
-    [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:userID forServiceName:kPPServiceName updateExisting:YES error:&error];
-    [[PPTUserInfoEngine shareEngine]loginSucessed];
-    
-}
-
-
-
-//登录成功之后登录融云的即时通讯
-- (void)loginSucessAfterLoginRCIMResponse:(PPResponseBlock())aResponseBlock loginToken:(NSString *)token UserID:(NSString *)userID phone:(NSString *)phone passWord:(NSString *)passWord
-{
-    [[PPChatTools shareManager]connectWithToken:token sucessBlock:^(NSString *content) {
-        
-    } failBlock:^(RCConnectErrorCode code) {
-        NSLog(@"code == %ld",code);
-        PPHTTPResponse * response = [PPHTTPResponse responseWithError:[NSError errorWithDomain:@"" code:code userInfo:nil]];
-        [self _completeWithResponse:response block:aResponseBlock];
-    } tokenIncorrectBlock:^{
-        PPHTTPResponse * response = [PPHTTPResponse responseWithError:[NSError errorWithDomain:@"" code:904 userInfo:nil]];
-        response.message = @"token错误";
-        [self _completeWithResponse:response block:aResponseBlock];
-    }];
-}
-
+ 
 - (RACCommand *)contactListCommand
 {
     if(_contactListCommand==nil)
@@ -861,6 +782,50 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }
     return _friendBlackListCommand;
 }
+- (RACCommand *)connectRCIMCommand
+{
+    if(!_connectRCIMCommand)
+    {
+        _connectRCIMCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                [[RCIMClient sharedRCIMClient]connectWithToken:input success:^(NSString *userId) {
+                    
+                } error:^(RCConnectErrorCode status) {
+                    
+                } tokenIncorrect:^{
+                    
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _connectRCIMCommand;
+}
+
+- (RACCommand *)loginCommand
+{
+    if(_loginCommand==nil)
+    {
+        _loginCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:kPPUrlLoginUrl parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSError * error;
+                    PPUserInfoTokenResponse * response = [MTLJSONAdapter modelOfClass:[PPUserInfoTokenResponse class] fromJSONDictionary:responseObject error:&error];
+                    [subscriber sendNext:response];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _loginCommand;
+}
 
 - (RACCommand *)contactGroupsCommand
 {
@@ -886,12 +851,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     return _contactGroupsCommand;
 }
 
-- (RACCommand *)loginCommandWithUserName:(NSString *)account passWord:(NSString *)passWord
-{
-    [self.loginCommand execute:@{}];
-    return self.loginCommand;
-}
-
 - (RACSignal *)getContactListCommandWithUserId:(NSString *)userId
 {
    return [self.contactListCommand execute:@{}];
@@ -905,4 +864,26 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 {
     return [self.searchUserInfoCommand execute:userId];
 }
+- (RACSignal *)loginCommandWithUserName:(NSString *)account passWord:(NSString *)passWord region:(NSString *)region
+{
+    NSMutableDictionary * params = [NSMutableDictionary new];
+    if(account)
+    {
+        [params setObject:account forKey:@"phone"];
+    }
+    if(passWord)
+    {
+        [params setObject:passWord forKey:@"password"];
+    }
+    if(region)
+    {
+        [params setObject:region forKey:@"region"];
+    }
+    return [self.loginCommand execute:params];
+}
+- (RACSignal *)connectRCIM
+{
+    return [self.connectRCIMCommand execute:[PPTUserInfoEngine shareEngine].token];
+}
+
 @end

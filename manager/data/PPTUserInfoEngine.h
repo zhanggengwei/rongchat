@@ -11,6 +11,7 @@
 @interface PPTUserInfoEngine : NSObject
 
 @property (nonatomic,copy,readonly) NSString * userId;
+@property (nonatomic,copy,readonly) NSString * token;
 //自己的信息数据
 @property (nonatomic,strong,readonly) PPUserBaseInfo * user_Info;
 //联系人数据
@@ -25,9 +26,8 @@
 
 - (PPUserBaseInfo *)quertyUserInfoByUserId:(NSString *)userId;
 
-- (void)loginSucessed;//登录成功后调用这个方法 进行个人数据信息的保存 请求
+- (void)loginSucessed:(PPUserInfoTokenResponse *)response;//登录成功后调用这个方法 进行个人数据信息的保存 请求
 
 - (void)logoutSucessed;//退出登陆成功后进行数据的清理
-
 
 @end

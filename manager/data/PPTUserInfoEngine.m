@@ -8,6 +8,8 @@
 
 #import "PPTUserInfoEngine.h"
 #import "RCConversationCacheObj.h"
+#import "PPFileManager.h"
+#import "OTFileManager.h"
 
 @interface PPTUserInfoEngine ()
 
@@ -15,6 +17,7 @@
 @property (nonatomic,strong) NSArray * contactList;
 @property (nonatomic,copy) NSString * userId;
 @property (nonatomic,strong) RACSignal * accountChangeSignal;
+@property (nonatomic,copy) NSString * token;
 @end
 
 @implementation PPTUserInfoEngine
@@ -50,7 +53,8 @@
 - (void)loadData
 {
     self.userId = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
-    [RACObserve(self, userId) subscribeNext:^(id x){
+    self.token = [SFHFKeychainUtils getPasswordForUsername:kPPLoginToken andServiceName:kPPServiceName error:nil];
+    [RACObserve(self,userId) subscribeNext:^(id x){
         // 其他的一些设置
         if(x){
            [[PPTDBEngine shareManager]loadDataBase:x];
@@ -103,14 +107,20 @@
     return nil;
 }
 //登录成功后调用这个方法 进行个人数据信息的保存 请求
-- (void)loginSucessed
+- (void)loginSucessed:(PPUserInfoTokenResponse *)response
 {
-    // 个人数据库文件的建立
-    //登录成功后进行个人数据信息的请求
-    //好友列表信息的请求
-    //聊天会话的请求
-    //黑名单数据的网络请求
-    self.userId = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
+    PPTokenDef * tokenDef = response.result;
+    NSString * dbPath = [[PPFileManager sharedManager]pathForDomain:PPFileDirDomain_User appendPathName:tokenDef.indexId];
+    //创建用户文件夹
+    BOOL isDir;
+    OTF_FileExistsAtPath(dbPath, &isDir);
+    if (!isDir) {
+        OTF_CreateDir(dbPath);
+    }
+    self.token = tokenDef.token;
+    self.userId = tokenDef.indexId;
+    [[PPDateEngine manager]connectRCIM];
+    [self saveCustomMessage];
     [[[PPDateEngine manager] getContactListCommandWithUserId:nil] subscribeNext:^(PPUserFriendListResponse *response) {
         NSMutableArray * data = [NSMutableArray new];
         [response.result enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -156,6 +166,12 @@
     _userId = nil;
     _user_Info = nil;
 }
-
+//登录成功之后进行数据的存储
+- (void)saveCustomMessage
+{
+    NSError * error;
+    [SFHFKeychainUtils storeUsername:kPPLoginToken andPassword:self.token forServiceName:kPPServiceName updateExisting:YES error:&error];
+    [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:self.userId forServiceName:kPPServiceName updateExisting:YES error:&error];
+}
 
 @end

@@ -18,9 +18,6 @@
 //注册
 - (void)registerWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord verifyCode:(NSString *)code andNickName:(NSString *)nickName;
 
-// 登陆
-- (void)loginWithWithResponse:(PPResponseBlock())aResponseBlock Phone:(NSString *)phone passWord:(NSString *)passWord region:(NSString *)region;
-
 - (void)logout;
 
 //发送验证码
@@ -93,12 +90,19 @@
 
 - (void)requestSetHeadUrlResponse:(PPResponseBlock())aResponseBlock  headUrl:(NSString *)headUrl;//user/set_portrait_uri
 
-- (RACCommand *)loginCommandWithUserName:(NSString *)account passWord:(NSString *)passWord;
+- (RACSignal *)loginCommandWithUserName:(NSString *)account passWord:(NSString *)passWord region:(NSString *)region;
 
 - (RACSignal *)getContactListCommandWithUserId:(NSString *)userId;
 - (RACSignal *)getContactGroupsCommand;
 
 //通过userId 获得个人信息的接口
 - (RACSignal *)getUserInfoCommandByUserId:(NSString *)userId;
+- (RACSignal *)resgisterUserCommandByAccount:(NSString *)account passWord:(NSString *)passWord nickName:(NSString *)nickName verifyCode:(NSString *)code;
+- (RACSignal *)getVerificationCodeCommand:(NSString *)region phone:(NSString *)phone;
+- (RACSignal *)verifyVerificationCodeCommand:(NSString *)phoneNumber verifyCode:(NSString *)code;
+//登录完成后连接容云通讯
+- (RACSignal *)connectRCIM;
+
+
 
 @end
