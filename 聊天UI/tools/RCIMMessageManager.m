@@ -100,7 +100,6 @@
 - (void)queryLastConversationListWithConversationTypeArray:(NSArray *)conversationTypeArr WithHandle:(RCQueryConversationListBlock)block
 {
     dispatch_async(_queryConversationListQueue, ^{
-        
         NSArray <RCConversation *> *conversationList = [_client getConversationList:conversationTypeArr];
         dispatch_async(dispatch_get_main_queue(), ^{
             !block ?:block(conversationList,nil);

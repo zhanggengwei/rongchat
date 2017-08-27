@@ -893,6 +893,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 }
 - (RACSignal *)connectRCIM
 {
+    NSLog(@"token==%@",[PPTUserInfoEngine shareEngine].token);
     return [self.connectRCIMCommand execute:[PPTUserInfoEngine shareEngine].token];
 }
 

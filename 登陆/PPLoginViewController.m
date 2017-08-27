@@ -249,7 +249,7 @@
     [[[PPDateEngine manager]loginCommandWithUserName:self.acount passWord:self.passWord region:@"86"]subscribeNext:^(PPUserInfoTokenResponse * response) {
         if(response.code.integerValue == kPPResponseSucessCode)
         {
-             [[PPTUserInfoEngine shareEngine]loginSucessed:response];
+            [[PPTUserInfoEngine shareEngine]loginSucessed:response];
             [[NSNotificationCenter defaultCenter]postNotificationName:RCIMLoginSucessedNotifaction object:nil];
            
             [PPIndicatorView showString:@"登录成功"];

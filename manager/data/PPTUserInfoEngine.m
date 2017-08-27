@@ -163,6 +163,8 @@
 - (void)logoutSucessed
 {
     [[PPTDBEngine shareManager]clearAccount];
+    [SFHFKeychainUtils deleteItemForUsername:kPPLoginToken andServiceName:kPPServiceName error:nil];
+    [SFHFKeychainUtils deleteItemForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
     _userId = nil;
     _user_Info = nil;
 }

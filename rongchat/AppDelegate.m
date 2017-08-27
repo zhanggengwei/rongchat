@@ -37,8 +37,8 @@
     [[RCIMClient sharedRCIMClient]initWithAppKey:@"n19jmcy59f1q9"];
     if([PPTUserInfoEngine shareEngine].userId)
     {
-       [[PPDateEngine manager]connectRCIM];
        [self createTabbarController];
+       [[PPDateEngine manager]connectRCIM];
     }else
     {
         [self createLoginController];
