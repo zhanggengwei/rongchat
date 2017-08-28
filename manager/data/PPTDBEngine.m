@@ -66,8 +66,7 @@
 }
 - (void)createTables
 {
-    NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,displayName text,portraitUri text,updatedAt text,phone text,region text,message varchar(100),status INT)",USER_INFO_TABLENAME];
-    
+    NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,displayName text,portraitUri text,updatedAt text,phone text,region text,message varchar(100),status INT,nickNameWord varchar(100),indexChar varchar(1))",USER_INFO_TABLENAME];
     NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100) not null,creatorId varchar(100)not null,portraitUri varchar(100),indexId varchar(100) not null,maxMemberCount INT,memberCount INT,primary key(indexId))",CONTACT_GRAOUP_TABLENAME];
     NSString * createContactGroupMemberSql = [NSString stringWithFormat:@"create table if not exists %@ (indexId varchar (100)not null,userId varchar(100) not null,primary key(indexId,userId))",CONTACT_GRAOUP_MEMBER_TABLENAME];
     NSString * createFriendListSql = [NSString stringWithFormat:@"create table if not exists %@ (userId text not null,isBlack BOOL default 0,primary key(userId))",USER_INFO_FRIENDLIST_TABLENAME];
@@ -78,16 +77,16 @@
         [db executeUpdate:createContactGroupMemberSql];
     }];
 }
-- (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
+- (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo
 {
     return [self saveContactList:@[baseInfo]];
 }
-- (PPUserBaseInfo *)queryUser_Info
+- (RCUserInfoData *)queryUser_Info
 {
     NSString * userID = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
     return [self queryUser_InfoWithIndexId:userID];
 }
-- (PPUserBaseInfo *)queryUser_InfoWithIndexId:(NSString *)indexId
+- (RCUserInfoData *)queryUser_InfoWithIndexId:(NSString *)indexId
 {
     return nil;
 }
@@ -111,13 +110,17 @@
             
            FMResultSet * results = [db executeQuery:sql];
             while (results.next) {
-                PPUserBaseInfo * info = [PPUserBaseInfo new];
-                info.name = [results stringForColumn:@"name"];
-                info.userId = [results stringForColumn:@"userId"];
+                RCUserInfoData * info = [RCUserInfoData new];
+                info.user = [RCUserInfoBaseData new];
+                
+                info.user.name = [results stringForColumn:@"name"];
+                info.user.userId = [results stringForColumn:@"userId"];
                 info.displayName = [results stringForColumn:@"displayName"];
-                info.phone = [results stringForColumn:@"phone"];
-                info.region = [results stringForColumn:@"region"];
-                info.portraitUri = [results stringForColumn:@"portraitUri"];
+                info.user.phone = [results stringForColumn:@"phone"];
+                info.user.region = [results stringForColumn:@"region"];
+                info.user.portraitUri = [results stringForColumn:@"portraitUri"];
+                info.user.nickNameWord = results[@"nickNameWord"];
+                info.user.indexChar = results[@"indexChar"];
                 [contactList addObject:info];
             }
         }
@@ -125,7 +128,7 @@
     return contactList;
 }
 
-- (BOOL)updateUserInfo:(PPUserBaseInfo *)info
+- (BOOL)updateUserInfo:(RCUserInfoData *)info
 {
     
     return NO;
@@ -152,16 +155,23 @@
   return [self addOrUpdateContactGroupLists:@[contactGroup]];
 }
 //保存用户的好友列表
-- (BOOL)saveContactList:(NSArray<PPUserBaseInfo *> *)contactList
+- (BOOL)saveContactList:(NSArray<RCUserInfoData *> *)contactList
 {
     __block BOOL sucessed = NO;
     [_dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        [contactList enumerateObjectsUsingBlock:^(PPUserBaseInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString * insertSql = [NSString stringWithFormat: @"insert into %@(phone,message,region,name,displayName,updatedAt,status,userId) values (\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',%ld,\'%@\')",USER_INFO_TABLENAME,obj.phone,obj.message,obj.region,obj.name,obj.displayName,obj.updatedAt,obj.status,obj.userId];
-            [db executeUpdate:insertSql];
-            [db executeUpdate:[NSString stringWithFormat:@"insert into \'%@\' (userId) values (\'%@\')",USER_INFO_FRIENDLIST_TABLENAME,obj.userId]];
-            
-            sucessed = !rollback;
+        [contactList enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            HanyuPinyinOutputFormat * outFormat = [HanyuPinyinOutputFormat new];
+            outFormat.caseType = CaseTypeLowercase;
+            outFormat.toneType =ToneTypeWithoutTone;
+            outFormat.vCharType = VCharTypeWithUUnicode;
+            [PinyinHelper toHanyuPinyinStringWithNSString:obj.user.name withHanyuPinyinOutputFormat:outFormat withNSString:@"" outputBlock:^(NSString *pinYin) {
+                obj.user.nickNameWord = pinYin;
+                obj.user.indexChar = [pinYin substringToIndex:1];
+                NSString * insertSql = [NSString stringWithFormat: @"insert into %@(phone,message,region,name,displayName,updatedAt,status,userId,nickNameWord,indexChar) values (\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',%ld,\'%@\',\'%@\',\'%@\')",USER_INFO_TABLENAME,obj.user.phone,obj.message,obj.user.region,obj.user.name,obj.displayName,obj.updatedAt,obj.status,obj.user.userId,obj.user.nickNameWord,obj.user.indexChar];
+                [db executeUpdate:insertSql];
+                [db executeUpdate:[NSString stringWithFormat:@"insert into \'%@\' (userId) values (\'%@\')",USER_INFO_FRIENDLIST_TABLENAME,obj.user.userId]];
+                sucessed = !rollback;
+            }];
         }];
     }];
     return sucessed;

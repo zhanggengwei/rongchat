@@ -356,22 +356,22 @@
     NSDictionary * dict = @{@"nickname" : nickName};
     
     
-//    [manager POST:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.userId) parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        PPHTTPResponse * resonse = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
-//        
-//        PPUserBaseInfo * user_info=[PPTUserInfoEngine shareEngine].user_Info;
-//        user_info.user.name = nickName;
-//        [[PPTUserInfoEngine shareEngine]saveUserInfo:user_info];
-//        
-//        [self _completeWithResponse:resonse block:aResponseBlock];
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
-//        [self _completeWithResponse:response block:aResponseBlock];
-//        
-//        
-//    }];
+    //    [manager POST:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.userId) parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    //        PPHTTPResponse * resonse = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
+    //
+    //        PPUserBaseInfo * user_info=[PPTUserInfoEngine shareEngine].user_Info;
+    //        user_info.user.name = nickName;
+    //        [[PPTUserInfoEngine shareEngine]saveUserInfo:user_info];
+    //
+    //        [self _completeWithResponse:resonse block:aResponseBlock];
+    //
+    //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    //
+    //        PPHTTPResponse * response = [PPHTTPResponse responseWithError:error];
+    //        [self _completeWithResponse:response block:aResponseBlock];
+    //
+    //
+    //    }];
     
 }
 
@@ -617,7 +617,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         PPHTTPResponse * response = [MTLJSONAdapter modelOfClass:[PPHTTPResponse class] fromJSONDictionary:responseObject error:nil];
         if(response.code.integerValue == kPPResponseSucessCode)
         {
-            PPUserBaseInfo * baseInfo = [PPTUserInfoEngine shareEngine].user_Info;            
+          
         }
         [self _completeWithResponse:response block:aResponseBlock];
         
@@ -629,7 +629,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }];
     
 }
- 
+
 - (RACCommand *)contactListCommand
 {
     if(_contactListCommand==nil)
@@ -704,20 +704,20 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 
 - (RACCommand *)modifyNickNameCommand
 {
-
+    
     if (_modifyNickNameCommand==nil) {
         _modifyNickNameCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-           RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-               PPHTTPManager * manager = [PPHTTPManager manager];
-               [manager GET:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.userId) parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                   [subscriber sendNext:responseObject];
-                   [subscriber sendCompleted];
-               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                   [subscriber sendError:error];
-                   [subscriber sendCompleted];
-               }];
-               return nil;
-           }];
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:kPPUrlUpdateNickName([PPTUserInfoEngine shareEngine].user_Info.user.userId) parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [subscriber sendNext:responseObject];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+                return nil;
+            }];
             return signal;
         }];
     }
@@ -774,9 +774,9 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     {
         
         _friendBlackListCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-           RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-               return nil;
-           }];
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                return nil;
+            }];
             return signal;
         }];
     }
@@ -797,15 +797,21 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                  "token": "J/sWDPJrtOC9T7MuaZnpgq+YsUIoF3ojin3K277sfOnr8J7ydLsAKLTqeaYCOeAP/59uSO1/vWDyDgkMFKAXBKtdpZUyLdaH"
                  }
                  }*/
-                [[RCIMClient sharedRCIMClient]connectWithToken:input success:^(NSString *userId) {
-                    [subscriber sendNext:userId];
-                    [subscriber sendCompleted];
-                } error:^(RCConnectErrorCode status) {
-                    NSLog(@"dd");
-                } tokenIncorrect:^{
-                     NSLog(@"dd");
+//                [[RCIMClient sharedRCIMClient]connectWithToken:input success:^(NSString *userId) {
+//                    [subscriber sendNext:userId];
+//                    [subscriber sendCompleted];
+//                    
+//                } error:^(RCConnectErrorCode status) {
+//                    NSLog(@"dd");
+//                } tokenIncorrect:^{
+//                    NSLog(@"dd");
+//                }];
+                [[RCIMClient sharedRCIMClient]connectWithToken:input success:nil error:nil tokenIncorrect:nil];
+                
+                return [RACDisposable disposableWithBlock:^{
+                    
                 }];
-                return nil;
+                
             }];
             return signal;
         }];
@@ -863,7 +869,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 
 - (RACSignal *)getContactListCommandWithUserId:(NSString *)userId
 {
-   return [self.contactListCommand execute:@{}];
+    return [self.contactListCommand execute:@{}];
 }
 - (RACSignal *)getContactGroupsCommand
 {
@@ -891,10 +897,16 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }
     return [self.loginCommand execute:params];
 }
-- (RACSignal *)connectRCIM
+- (void)connectRCIM
 {
-    NSLog(@"token==%@",[PPTUserInfoEngine shareEngine].token);
-    return [self.connectRCIMCommand execute:[PPTUserInfoEngine shareEngine].token];
+    [[RCIMClient sharedRCIMClient]connectWithToken:[PPTUserInfoEngine shareEngine].token success:^(NSString *userId) {
+    } error:^(RCConnectErrorCode status) {
+        NSLog(@"dd");
+    } tokenIncorrect:^{
+        NSLog(@"dd");
+    }];
+//    [self.connectRCIMCommand execute:[PPTUserInfoEngine shareEngine].token];
+//    
 }
 
 @end

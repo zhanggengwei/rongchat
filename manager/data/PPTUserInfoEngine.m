@@ -13,7 +13,7 @@
 
 @interface PPTUserInfoEngine ()
 
-@property (nonatomic,strong) PPUserBaseInfo * user_Info;
+@property (nonatomic,strong) RCUserInfoData * user_Info;
 @property (nonatomic,strong) NSArray * contactList;
 @property (nonatomic,copy) NSString * userId;
 @property (nonatomic,strong) RACSignal * accountChangeSignal;
@@ -44,8 +44,8 @@
 - (void)loadUserInfo
 {
     [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
-        PPUserBaseInfo * info = [PPUserBaseInfo new];
-        info = aTaskResponse.result;
+        RCUserInfoData * info = [RCUserInfoData new];
+        info.user = aTaskResponse.result;
         [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
     } userID:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil]];
 }
@@ -68,20 +68,20 @@
     return [[PPTDBEngine shareManager]queryFriendList];
 }
 //保存自己的个人信息
-- (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo
+- (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo
 {
     self.user_Info = baseInfo;
     BOOL ret = [[PPTDBEngine shareManager]saveUserInfo:baseInfo];
-    self.userId = baseInfo.userId;
+    self.userId = baseInfo.user.userId;
     return ret;
 }
 
-- (BOOL)saveUserFriendList:(NSArray<PPUserBaseInfo *> *)baseInfoArr
+- (BOOL)saveUserFriendList:(NSArray<RCUserInfoData *> *)baseInfoArr
 {
     __block NSArray * arr = [NSArray new];
-    [baseInfoArr enumerateObjectsUsingBlock:^(PPUserBaseInfo * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [baseInfoArr enumerateObjectsUsingBlock:^(RCUserInfoData * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        NSString * name = obj.name;
+        NSString * name = obj.user.name;
         if([obj.displayName isEqualToString:@""])
         {
             name = obj.displayName;
@@ -124,18 +124,7 @@
     [[[PPDateEngine manager] getContactListCommandWithUserId:nil] subscribeNext:^(PPUserFriendListResponse *response) {
         NSMutableArray * data = [NSMutableArray new];
         [response.result enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            PPUserBaseInfo * info = [PPUserBaseInfo new];
-            info.message = obj.message;
-            info.phone = obj.user.phone;
-            info.region = obj.user.region;
-            info.name = obj.user.name;
-            info.portraitUri = obj.user.portraitUri;
-            info.userId = obj.user.userId;
-            NSLog(@"userid == %@",info.userId);
-            info.displayName = obj.displayName;
-            info.status = obj.status;
-            info.updatedAt = obj.updatedAt;
-            [data addObject:info];
+            [data addObject:obj];
         }];
         [[PPTDBEngine shareManager]saveContactList:data];
         
@@ -149,11 +138,11 @@
     }];
     [[[PPDateEngine manager]getUserInfoCommandByUserId:self.userId ]subscribeNext:^(PPUserBaseInfoResponse * response) {
         RCUserInfoBaseData * data = response.result;
-        PPUserBaseInfo * info = [PPUserBaseInfo new];
-        info.name = data.name;
-        info.userId = data.userId;
-        info.portraitUri = data.portraitUri;
-        [[PPTDBEngine shareManager]saveUserInfo:info];
+//        PPUserBaseInfo * info = [PPUserBaseInfo new];
+//        info.name = data.name;
+//        info.userId = data.userId;
+//        info.portraitUri = data.portraitUri;
+//        [[PPTDBEngine shareManager]saveUserInfo:info];
     } error:^(NSError * _Nullable error) {
         
     }];
@@ -163,6 +152,7 @@
 - (void)logoutSucessed
 {
     [[PPTDBEngine shareManager]clearAccount];
+    [[RCIMClient sharedRCIMClient]logout];
     [SFHFKeychainUtils deleteItemForUsername:kPPLoginToken andServiceName:kPPServiceName error:nil];
     [SFHFKeychainUtils deleteItemForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
     _userId = nil;

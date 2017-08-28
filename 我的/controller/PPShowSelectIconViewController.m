@@ -37,7 +37,7 @@
     }];
   
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[PPTUserInfoEngine shareEngine].user_Info.portraitUri] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[PPTUserInfoEngine shareEngine].user_Info.user.portraitUri] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.imageView.image = image;
     }];
     

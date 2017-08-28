@@ -32,19 +32,6 @@
 
 @end
 
-@interface PPUserBaseInfo : RCUserInfo
-
-@property (nonatomic,copy) NSString * phone;
-@property (nonatomic,copy) NSString * region;
-@property (nonatomic,copy) NSString * displayName;
-@property (nonatomic,copy) NSString * indexChar;
-@property (nonatomic,copy) NSString * nickNameWord;
-@property (nonatomic,copy) NSString * message;
-@property (nonatomic,copy) NSString * updatedAt;
-@property (nonatomic,assign) NSInteger status;
-
-
-@end
 
 @interface PPUploadImageToken : PPDataDef
 @property (nonatomic,strong) NSString * target;
@@ -73,14 +60,7 @@
 @end
 
 
-//群组信息
-@interface RCContactGroup : PPDataDef
 
-@property (nonatomic,copy) NSString * name;
-@property (nonatomic,copy) NSString * groupId;
-@property (nonatomic,copy) NSString * portraitUri;//群组头像
-@property (nonatomic,strong) NSArray<PPUserBaseInfo *> * members;
-@end
 
 
 
@@ -91,7 +71,19 @@
 @property (nonatomic,copy) NSString * userId;
 @property (nonatomic,copy) NSString * name;
 @property (nonatomic,copy) NSString * portraitUri;
+@property (nonatomic,copy) NSString * indexChar;
+@property (nonatomic,copy) NSString * nickNameWord;
 @end
+
+//群组信息
+@interface RCContactGroup : PPDataDef
+
+@property (nonatomic,copy) NSString * name;
+@property (nonatomic,copy) NSString * groupId;
+@property (nonatomic,copy) NSString * portraitUri;//群组头像
+@property (nonatomic,strong) NSArray<RCUserInfoBaseData *> * members;
+@end
+
 
 @interface RCUserInfoData : PPDataDef
 @property (nonatomic,copy) NSString * displayName;

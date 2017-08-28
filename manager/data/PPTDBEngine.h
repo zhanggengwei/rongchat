@@ -7,23 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-@class PPUserBaseInfo;
 @class RCContactGroupData;
+@class RCUserInfoData;
 
 @interface PPTDBEngine : NSObject
 
 + (instancetype)shareManager;
 //保存用户的个人信息
-- (BOOL)saveUserInfo:(PPUserBaseInfo *)baseInfo;
+- (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo;
 //保存用户的好友列表
-- (BOOL)saveContactList:(NSArray<PPUserBaseInfo *> *)contactList;
+- (BOOL)saveContactList:(NSArray<RCUserInfoData *> *)contactList;
 - (BOOL)addOrUpdateContactGroupLists:(NSArray<RCContactGroupData *>*)contactGroupLists;
 //查询好友信息
-- (PPUserBaseInfo *)queryUser_InfoWithIndexId:(NSString *)indexId;
+- (RCUserInfoData *)queryUser_InfoWithIndexId:(NSString *)indexId;
 //查询个人信息
-- (PPUserBaseInfo *)queryUser_Info;
+- (RCUserInfoData *)queryUser_Info;
 //保存个人信息
-- (BOOL)updateUserInfo:(PPUserBaseInfo *)info;
+- (BOOL)updateUserInfo:(RCUserInfoData *)info;
 //查询好友列表
 - (NSArray *)queryFriendList;
 //查询群聊列表

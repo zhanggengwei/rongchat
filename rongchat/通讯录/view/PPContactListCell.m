@@ -9,8 +9,8 @@
 #import "PPContactListCell.h"
 #import "UITableViewCell+addLineView.h"
 @interface PPContactListCell ()
-@property (nonatomic,strong) UIImageView * leftIconView;
-@property (nonatomic,strong) UILabel * contentLabel;
+@property (nonatomic,strong) UIImageView * avatarImageView;
+@property (nonatomic,strong) UILabel * nackNameLabel;
 
 
 @end
@@ -40,46 +40,36 @@
 }
 - (void)createUI
 {
-    self.leftIconView = [UIImageView new];
-    [self.contentView addSubview:self.leftIconView];
+    self.avatarImageView = [UIImageView new];
+    [self.contentView addSubview:self.avatarImageView];
     
-    self.contentLabel = [UILabel new];
-    [self.contentView addSubview:self.contentLabel];
+    self.nackNameLabel = [UILabel new];
+    [self.contentView addSubview:self.nackNameLabel];
     
-    [self.leftIconView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).mas_offset(15);
         make.top.mas_equalTo(self.mas_top).mas_offset(10);
         make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-10);
         make.width.mas_equalTo(self.frame.size.height - 15);
     }];
     
-    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.nackNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
-        make.height.mas_equalTo(@16);
-        make.left.mas_equalTo(self.leftIconView.mas_right).mas_offset(10);
+        make.left.mas_equalTo(self.avatarImageView.mas_right).mas_offset(10);
         make.right.mas_equalTo(self.contentView.mas_right);
-        
     }];
-    
-    self.contentLabel.font = [UIFont systemFontOfSize:14];
-    self.contentLabel.textAlignment = NSTextAlignmentLeft;
+    self.nackNameLabel.font = [UIFont systemFontOfSize:14];
+    self.nackNameLabel.textAlignment = NSTextAlignmentLeft;
     [self addBottomLine];
-    
-    
-    
 }
-- (void)setLeftIconImageNamed:(NSString *)imageName andRightContentLabel:(NSString *)content
+- (void)setModel:(RCUserInfoData *)model
 {
- 
-    if([imageName containsString:@"//"])
+    if(!model.user.portraitUri)
     {
-        SD_LOADIMAGE(self.leftIconView, imageName, nil);
-    }else
-    {
-       self.leftIconView.image = [UIImage imageNamed:imageName];
+        model.user.portraitUri = @"";
     }
-    self.contentLabel.text = content;
+    _nackNameLabel.text = model.displayName?model.displayName:model.user.name;
+    SD_LOADIMAGE(self.avatarImageView,model.user.portraitUri, nil);
 }
-
 
 @end

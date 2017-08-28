@@ -15,8 +15,7 @@
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray * array;
 @property (nonatomic,strong) NSArray * imageArray;
-@property (nonatomic,strong) NSMutableDictionary * contactDict;
-@property (nonatomic,strong) NSMutableArray * indexArr;
+@property (nonatomic,strong) NSArray * contactDict;
 @property (nonatomic,strong) PPContactListViewModel * contactListViewModel;
 
 @end
@@ -26,7 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.contactListViewModel = [PPContactListViewModel new];
-    
     self.array = @[@"新的朋友",@"群聊",@"标签",@"公众号"];
     self.imageArray = @[@"plugins_FriendNotify",@"add_friend_icon_addgroup",@"Contact_icon_ContactTag",@"add_friend_icon_offical"];
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
@@ -36,27 +34,19 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor whiteColor];
-    self.indexArr = [NSMutableArray new];
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     self.tableView.sectionIndexColor = [UIColor grayColor];
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"contacts_add_friend") style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
  
     self.navigationItem.rightBarButtonItem = rightItem;
-    self.contactDict = [NSMutableDictionary new];
-    
-    [[PPTUserInfoEngine shareEngine] addObserver:self forKeyPath:@"contactList" options:NSKeyValueObservingOptionNew context:nil];
-//    [self loadData];
+    self.contactDict = [NSArray new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = kMainBackGroundColor;
     @weakify(self);
-//    [self.contactListViewModel.contactListSubject subscribeNext:^(id  _Nullable x) {
-//        NSLog(@"x == %@",x);
-//    } error:^(NSError * _Nullable error) {
-//        NSLog(@"error == %@",error);
-//    }];
-    
     [self.contactListViewModel.changeSignal subscribeNext:^(id  _Nullable x) {
-        NSLog(@"x == %@",x);
+        @strongify(self)
+        self.contactDict = x;
+        [self.tableView reloadData];
     } error:^(NSError * _Nullable error) {
         NSLog(@"error == %@",error);
     }];
@@ -71,29 +61,13 @@
 
 - (void)dealloc
 {
-    //[[PPTUserInfoEngine shareEngine] removeObserver:self forKeyPath:@"contactList"];
+
 }
 
 - (void)createUI
 {
     
 }
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-  [self loadData];
-}
-- (void)loadData
-{
-}
-- (void)sortPinyin
-{
-    
-}
-
-
-
-
 
 -(void)addFriend
 {
@@ -105,15 +79,16 @@
     PPContactListCell *  cell = [tableView dequeueReusableCellWithIdentifier:@"PPContactListCell"];
     if(indexPath.section==0)
     {
-        NSString  * imageName = self.imageArray[indexPath.row];
-        NSString * content = self.array[indexPath.row];
-        [cell setLeftIconImageNamed:imageName andRightContentLabel:content];
+//        NSString  * imageName = self.imageArray[indexPath.row];
+//        NSString * content = self.array[indexPath.row];
+//        [cell setLeftIconImageNamed:imageName andRightContentLabel:content];
     }else
     {
-        NSString * key = self.indexArr[indexPath.section];
-        NSArray * arr = [self.contactDict objectForKey:key];
-        PPUserBaseInfo * info = arr[indexPath.row];
-        [cell setLeftIconImageNamed:info.portraitUri andRightContentLabel:info.displayName];
+//        @['a':{},]
+        NSDictionary * dict = [self.contactDict objectAtIndex:indexPath.section-1];
+        NSArray * array = [dict.allValues objectAtIndex:0];
+        RCUserInfoData * info = array[indexPath.row];
+        cell.model = info;
     }
     return cell;
 }
@@ -124,10 +99,7 @@
     {
         return 4;
     }
-    NSString * key = self.indexArr[section];
-    NSArray * arr = [self.contactDict objectForKey:key];
-    return arr.count;
-    
+    return self.contactDict.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -139,21 +111,9 @@
 {
     return 50;
 }
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString * key = self.indexArr[indexPath.section];
-    NSArray * arr = [self.contactDict objectForKey:key];
-//    RCContactUserInfo * info = arr[indexPath.row];
-    
-//    PPMessageViewController * conversationController = [[PPMessageViewController alloc]initWithConversationType:ConversationType_PRIVATE targetId:info.user.indexId];
-  //  conversationController.hidesBottomBarWhenPushed = YES;
-   // [self.navigationController pushViewController:conversationController animated:YES];
-    
-    
-    
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -162,12 +122,13 @@
     {
         return nil;
     }
-    return  self.indexArr[section];
+    return @"";
     
 }
 - (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return self.indexArr;
+    return @[@"d"];
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
@@ -187,12 +148,8 @@
     return 25;
     
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.01;
 }
-
-
-
 @end

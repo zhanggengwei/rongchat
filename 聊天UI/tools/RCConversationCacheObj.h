@@ -18,9 +18,9 @@
 
 - (RCUserInfo *)searchUserInfoByUserId:(NSString *)indexId;
 
-- (void)refreshUserInfo:(PPUserBaseInfo *)userInfo byUserId:(NSString *)indexId;
+- (void)refreshUserInfo:(RCUserInfoData *)userInfo byUserId:(NSString *)indexId;
 
-- (void)saveUserInfoList:(NSArray <PPUserBaseInfo *> *)userList;
+- (void)saveUserInfoList:(NSArray <RCUserInfoData *> *)userList;
 
 
 

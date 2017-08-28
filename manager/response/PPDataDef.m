@@ -29,11 +29,6 @@
 
 @implementation PPPersonal
 @end
-
-@implementation PPUserBaseInfo
-@end
-
-
 @implementation PPUploadImageToken
 
 @end

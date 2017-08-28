@@ -14,6 +14,7 @@
 #import "LCCKInputViewPluginLocation.h"
 #import "LCCKInputViewPluginPickImage.h"
 #import "RCIMLocationManager.h"
+#import <PinyinFormatter.h>
 @interface AppDelegate ()
 
 @end
@@ -38,13 +39,15 @@
     if([PPTUserInfoEngine shareEngine].userId)
     {
        [self createTabbarController];
-        [[RCIMClient sharedRCIMClient]connectWithToken:[PPTUserInfoEngine shareEngine].token success:^(NSString *userId) {
-           
-        } error:^(RCConnectErrorCode status) {
-            NSLog(@"dd");
-        } tokenIncorrect:^{
-            NSLog(@"dd");
-        }];
+        [[PPDateEngine manager]connectRCIM];
+        
+//        [[RCIMClient sharedRCIMClient]connectWithToken:[PPTUserInfoEngine shareEngine].token success:^(NSString *userId) {
+//           
+//        } error:^(RCConnectErrorCode status) {
+//            NSLog(@"dd");
+//        } tokenIncorrect:^{
+//            NSLog(@"dd");
+//        }];
     }else
     {
         [self createLoginController];

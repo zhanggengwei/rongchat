@@ -44,7 +44,7 @@
 - (RCUserInfo *)searchUserInfoByUserId:(NSString *)indexId
 {
    // [self.cache removeObjectForKey:indexId];
-    PPUserBaseInfo * info = [self.cache objectForKey:indexId];
+    RCUserInfoData * info = [self.cache objectForKey:indexId];
     if(!info)
     {
         info = [[PPTDBEngine shareManager]queryUser_InfoWithIndexId:indexId];
@@ -62,7 +62,7 @@
     
 }
 
-- (void)refreshUserInfo:(PPUserBaseInfo *)userInfo byUserId:(NSString *)indexId
+- (void)refreshUserInfo:(RCUserInfoData *)userInfo byUserId:(NSString *)indexId
 {
     //判断是否存在
     BOOL exists = [[PPTDBEngine shareManager]queryUser_InfoWithIndexId:indexId];
@@ -77,10 +77,10 @@
     [self.cache setObject:userInfo forKey:indexId];
     
 }
-- (void)saveUserInfoList:(NSArray <PPUserBaseInfo *> *)userList
+- (void)saveUserInfoList:(NSArray <RCUserInfoData *> *)userList
 {
-    [userList enumerateObjectsUsingBlock:^(PPUserBaseInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.cache setObject:obj forKey:obj.userId];
+    [userList enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.cache setObject:obj forKey:obj.user.userId];
     }];
     [[PPTDBEngine shareManager]saveContactList:userList];
 }

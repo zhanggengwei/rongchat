@@ -101,7 +101,7 @@
 - (RACSignal *)getVerificationCodeCommand:(NSString *)region phone:(NSString *)phone;
 - (RACSignal *)verifyVerificationCodeCommand:(NSString *)phoneNumber verifyCode:(NSString *)code;
 //登录完成后连接容云通讯
-- (RACSignal *)connectRCIM;
+- (void)connectRCIM;
 
 
 

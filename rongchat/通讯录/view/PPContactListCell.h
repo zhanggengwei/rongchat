@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PPContactListCell : UITableViewCell
-- (void)setLeftIconImageNamed:(NSString *)imageName andRightContentLabel:(NSString *)content;
-
+@property (nonatomic,strong) RCUserInfoData * model;
 @end

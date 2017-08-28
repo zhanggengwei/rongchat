@@ -27,26 +27,26 @@
 - (void)loadFriendList
 {
     self.contactList = [NSMutableArray new];
-    NSArray * (^indexsContactListBlock)(NSArray<PPUserBaseInfo *> * arr) = ^(NSArray<PPUserBaseInfo *> * arr)
+    NSArray * (^indexsContactListBlock)(NSArray<RCUserInfoData *> * arr) = ^(NSArray<RCUserInfoData *> * arr)
     {
         NSMutableArray * contactlistResults = [NSMutableArray new];
         NSMutableDictionary * results = [NSMutableDictionary new];
-        [arr enumerateObjectsUsingBlock:^(PPUserBaseInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if(![results objectForKey:obj.indexChar])
+        [arr enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if(![results objectForKey:obj.user.indexChar])
             {
                 NSMutableArray * indexContactLists = [NSMutableArray arrayWithObject:obj];
-                [results setObject:indexContactLists forKey:obj.indexChar];
+                [results setObject:indexContactLists forKey:obj.user.indexChar];
             }else
             {
-                NSMutableArray * indexContactLists = [results objectForKey:obj.indexChar];
+                NSMutableArray * indexContactLists = [results objectForKey:obj.user.indexChar];
                 [indexContactLists addObject:obj];
             }
         }];
         NSArray * indexKeys = [results keysSortedByValueUsingSelector:@selector(compare:)];
         [indexKeys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSArray<PPUserBaseInfo *> * userInfoArray = results[obj];
-            NSArray * sortArray = [userInfoArray sortedArrayUsingComparator:^NSComparisonResult(PPUserBaseInfo *   obj1, PPUserBaseInfo * obj2) {
-                return [obj1.nickNameWord compare:obj2.nickNameWord];
+            NSArray<RCUserInfoData *> * userInfoArray = results[obj];
+            NSArray * sortArray = [userInfoArray sortedArrayUsingComparator:^NSComparisonResult(RCUserInfoData *   obj1, RCUserInfoData * obj2) {
+                return [obj1.user.nickNameWord compare:obj2.user.nickNameWord];
             }];
             [contactlistResults addObject:@{obj:sortArray}];
         }];

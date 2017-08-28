@@ -13,18 +13,18 @@
 @property (nonatomic,copy,readonly) NSString * userId;
 @property (nonatomic,copy,readonly) NSString * token;
 //自己的信息数据
-@property (nonatomic,strong,readonly) PPUserBaseInfo * user_Info;
+@property (nonatomic,strong,readonly) RCUserInfoData * user_Info;
 //联系人数据
 @property (nonatomic,strong,readonly) NSArray * contactList;
 //群组数据
 @property (nonatomic,strong,readonly) NSArray<RCContactGroup *> *contactGroupList;
-@property (nonatomic,strong,readonly) NSArray<PPUserBaseInfo *> * contactBlackList;
+@property (nonatomic,strong,readonly) NSArray<RCUserInfoData *> * contactBlackList;
 
 - (instancetype)init __attribute__((unavailable("user shareEngine init")));
 
 + (instancetype)shareEngine;
 
-- (PPUserBaseInfo *)quertyUserInfoByUserId:(NSString *)userId;
+- (RCUserInfoData *)quertyUserInfoByUserId:(NSString *)userId;
 
 - (void)loginSucessed:(PPUserInfoTokenResponse *)response;//登录成功后调用这个方法 进行个人数据信息的保存 请求
 
