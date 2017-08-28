@@ -10,7 +10,7 @@
 #import "UITableViewCell+addLineView.h"
 @interface PPContactListCell ()
 @property (nonatomic,strong) UIImageView * avatarImageView;
-@property (nonatomic,strong) UILabel * nackNameLabel;
+@property (nonatomic,strong) UILabel * nickNameLabel;
 
 
 @end
@@ -43,8 +43,8 @@
     self.avatarImageView = [UIImageView new];
     [self.contentView addSubview:self.avatarImageView];
     
-    self.nackNameLabel = [UILabel new];
-    [self.contentView addSubview:self.nackNameLabel];
+    self.nickNameLabel = [UILabel new];
+    [self.contentView addSubview:self.nickNameLabel];
     
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).mas_offset(15);
@@ -53,13 +53,14 @@
         make.width.mas_equalTo(self.frame.size.height - 15);
     }];
     
-    [self.nackNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
         make.left.mas_equalTo(self.avatarImageView.mas_right).mas_offset(10);
         make.right.mas_equalTo(self.contentView.mas_right);
+        make.height.mas_equalTo(@16);
     }];
-    self.nackNameLabel.font = [UIFont systemFontOfSize:14];
-    self.nackNameLabel.textAlignment = NSTextAlignmentLeft;
+    self.nickNameLabel.font = [UIFont systemFontOfSize:14];
+    self.nickNameLabel.textAlignment = NSTextAlignmentLeft;
     [self addBottomLine];
 }
 - (void)setModel:(RCUserInfoData *)model
@@ -68,7 +69,7 @@
     {
         model.user.portraitUri = @"";
     }
-    _nackNameLabel.text = model.displayName?model.displayName:model.user.name;
+    _nickNameLabel.text = model.user.name;
     SD_LOADIMAGE(self.avatarImageView,model.user.portraitUri, nil);
 }
 
