@@ -137,12 +137,9 @@
         NSLog(@"finish==");
     }];
     [[[PPDateEngine manager]getUserInfoCommandByUserId:self.userId ]subscribeNext:^(PPUserBaseInfoResponse * response) {
-        RCUserInfoBaseData * data = response.result;
-//        PPUserBaseInfo * info = [PPUserBaseInfo new];
-//        info.name = data.name;
-//        info.userId = data.userId;
-//        info.portraitUri = data.portraitUri;
-//        [[PPTDBEngine shareManager]saveUserInfo:info];
+        RCUserInfoData * data =[RCUserInfoData new];
+        data.user = response.result;
+        [[PPTDBEngine shareManager]saveUserInfo:data];
     } error:^(NSError * _Nullable error) {
         
     }];
