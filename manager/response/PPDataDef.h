@@ -91,6 +91,7 @@
 @property (nonatomic,copy) NSString * updatedAt;
 @property (nonatomic,assign) NSInteger status;
 @property (nonatomic,strong) RCUserInfoBaseData * user;
+@property (nonatomic,strong) NSString * placeImage;
 @end
 
 @interface RCContactGroupData : PPDataDef

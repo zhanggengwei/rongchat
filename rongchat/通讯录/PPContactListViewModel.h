@@ -11,5 +11,4 @@
 @interface PPContactListViewModel : NSObject
 //联系人列表发生变化
 @property (nonatomic,strong,readonly) RACSignal * changeSignal;
-
 @end

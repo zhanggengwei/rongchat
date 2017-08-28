@@ -70,7 +70,7 @@
         model.user.portraitUri = @"";
     }
     _nickNameLabel.text = model.user.name;
-    SD_LOADIMAGE(self.avatarImageView,model.user.portraitUri, nil);
+    SD_LOADIMAGE(self.avatarImageView,model.user.portraitUri,[UIImage imageNamed:model.placeImage]);
 }
 
 @end

@@ -72,6 +72,12 @@
 {
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:[RCUserInfoBaseData class]];
 }
+
+- (NSString *)placeImage
+{
+    return _placeImage?_placeImage:@"";
+}
+
 @end
 
 @implementation RCContactGroupData

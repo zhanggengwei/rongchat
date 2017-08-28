@@ -25,8 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.contactListViewModel = [PPContactListViewModel new];
-    self.array = @[@"新的朋友",@"群聊",@"标签",@"公众号"];
-    self.imageArray = @[@"plugins_FriendNotify",@"add_friend_icon_addgroup",@"Contact_icon_ContactTag",@"add_friend_icon_offical"];
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.tableView registerClass:[PPContactListCell class] forCellReuseIdentifier:@"PPContactListCell"];
     
@@ -37,7 +35,7 @@
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     self.tableView.sectionIndexColor = [UIColor grayColor];
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"contacts_add_friend") style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
- 
+    
     self.navigationItem.rightBarButtonItem = rightItem;
     self.contactDict = [NSArray new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -61,7 +59,7 @@
 
 - (void)dealloc
 {
-
+    
 }
 
 - (void)createUI
@@ -77,34 +75,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PPContactListCell *  cell = [tableView dequeueReusableCellWithIdentifier:@"PPContactListCell"];
-    if(indexPath.section==0)
-    {
-//        NSString  * imageName = self.imageArray[indexPath.row];
-//        NSString * content = self.array[indexPath.row];
-//        [cell setLeftIconImageNamed:imageName andRightContentLabel:content];
-    }else
-    {
-//        @['a':{},]
-        NSDictionary * dict = [self.contactDict objectAtIndex:indexPath.section-1];
-        NSArray * array = [dict.allValues objectAtIndex:0];
-        RCUserInfoData * info = array[indexPath.row];
-        cell.model = info;
-    }
+    
+    NSDictionary * dict = [self.contactDict objectAtIndex:indexPath.section];
+    NSArray * array = dict.allValues.firstObject;
+    RCUserInfoData * info = array[indexPath.row];
+    cell.model = info;
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section==0)
-    {
-        return 4;
-    }
-    return self.contactDict.count;
+    NSDictionary * dict = [self.contactDict objectAtIndex:section];
+    NSArray * array = [dict.allValues objectAtIndex:0];
+    return array.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1 + self.contactDict.count;
+    return self.contactDict.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,11 +106,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if(section==0)
-    {
-        return nil;
-    }
-    return @"";
+    NSDictionary * dict = [self.contactDict objectAtIndex:section];
+    return [dict allKeys].firstObject;
     
 }
 - (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -134,7 +119,7 @@
 {
     if(0 == index)
     {
-   
+        
         return -1;
     }
     else
@@ -145,7 +130,11 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 25;
+    if(section==0)
+    {
+        return 45;
+    }
+    return 30;
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

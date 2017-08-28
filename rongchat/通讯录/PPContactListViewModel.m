@@ -26,6 +26,24 @@
 
 - (void)loadFriendList
 {
+    NSDictionary * (^headerArrayBlock)(void) = ^(void)
+    {
+        NSMutableArray * source = [NSMutableArray new];
+        NSArray * array = @[@"新的朋友",@"群聊",@"标签",@"公众号"];
+        NSArray * imageArray = @[@"plugins_FriendNotify",@"add_friend_icon_addgroup",@"Contact_icon_ContactTag",@"add_friend_icon_offical"];
+        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            RCUserInfoData *  userInfo = [RCUserInfoData new];
+            userInfo.user = [RCUserInfoBaseData new];
+            userInfo.user.name = obj;
+            userInfo.placeImage = imageArray[idx];
+            [source addObject:userInfo];
+        }];
+        return @{@"":source};
+    };
+    
+    
+    
+    
     self.contactList = [NSMutableArray new];
     NSArray * (^indexsContactListBlock)(NSArray<RCUserInfoData *> * arr) = ^(NSArray<RCUserInfoData *> * arr)
     {
@@ -43,6 +61,7 @@
             }
         }];
         NSArray * indexKeys = [results keysSortedByValueUsingSelector:@selector(compare:)];
+        
         [indexKeys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<RCUserInfoData *> * userInfoArray = results[obj];
             NSArray * sortArray = [userInfoArray sortedArrayUsingComparator:^NSComparisonResult(RCUserInfoData *   obj1, RCUserInfoData * obj2) {
@@ -50,7 +69,8 @@
             }];
             [contactlistResults addObject:@{obj:sortArray}];
         }];
-        return contactlistResults;
+        [contactlistResults insertObject:headerArrayBlock() atIndex:0];
+        return  contactlistResults;
     };
     self.changeSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         [RACObserve([PPTUserInfoEngine shareEngine], contactList) subscribeNext:^(id  _Nullable x) {

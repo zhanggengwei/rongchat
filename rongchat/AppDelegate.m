@@ -145,6 +145,7 @@
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:RCIMLogoutSucessedNotifaction object:nil]subscribeNext:^(NSNotification * _Nullable x) {
         [self logoutSucessed];
     }];
+    NSLog(@"%@", [[NSHTTPCookieStorage sharedHTTPCookieStorage]cookies]);
     return YES;
 }
 
