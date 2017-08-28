@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 @class RCContactGroupData;
 @class RCUserInfoData;
+@class RCIMInviteMessage;
 
 @interface PPTDBEngine : NSObject
 
@@ -18,6 +19,8 @@
 //保存用户的好友列表
 - (BOOL)saveContactList:(NSArray<RCUserInfoData *> *)contactList;
 - (BOOL)addOrUpdateContactGroupLists:(NSArray<RCContactGroupData *>*)contactGroupLists;
+- (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages;
+
 //查询好友信息
 - (RCUserInfoData *)queryUser_InfoWithIndexId:(NSString *)indexId;
 //查询个人信息
@@ -32,5 +35,6 @@
 - (void)loadDataBase:(NSString *)userID;
 //数据库清理工作
 - (void)clearAccount;
+
 
 @end

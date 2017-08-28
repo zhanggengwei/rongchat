@@ -7,10 +7,12 @@
 //
 
 #import "RCIMMessageManager.h"
+#import "RCIMInviteMessage.h"
 
 @interface RCIMMessageManager ()<RCIMClientReceiveMessageDelegate,RCConnectionStatusChangeDelegate>
 {
     RCIMClient * _client;
+    NSMutableArray * _contactMessages;
     //创建一个子线程用于查询历史消息
     dispatch_queue_t _queryMessageQueue;
     //创建一个查询会话数据
@@ -34,6 +36,7 @@
     if(self=[super init])
     {
         _client = [RCIMClient sharedRCIMClient];
+        _contactMessages = [NSMutableArray new];
         [_client setReceiveMessageDelegate:self object:nil];
         _queryMessageQueue = dispatch_queue_create("queryMessageQueue", DISPATCH_QUEUE_SERIAL);//创建一个串行的队列
         _queryConversationListQueue = dispatch_queue_create("queryConversationListQueue", DISPATCH_QUEUE_SERIAL);//创建一个串行的队列
@@ -43,13 +46,40 @@
 
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object
 {
-    if([self.delegate respondsToSelector:@selector(onReceived:left:object:)])
+    static BOOL refresh;
+    if([message.objectName isEqualToString:RCContactNotificationMessageIdentifier])
     {
-        [self.delegate onReceived:message left:nLeft object:object];
+        RCContactNotificationMessage * contactMessage = (RCContactNotificationMessage *)message.content;
+        RCIMInviteMessage * inviteMessage = [RCIMInviteMessage new];
+        inviteMessage.message = contactMessage.message;
+        inviteMessage.sourceUserId = contactMessage.sourceUserId;
+        inviteMessage.targetUserId = contactMessage.targetUserId;
+        inviteMessage.read = NO;
+        inviteMessage.status = 0;
+        [_contactMessages addObject:inviteMessage];
+        if(nLeft<=0)
+        {
+            if(refresh)
+            {
+                [[NSNotificationCenter defaultCenter]postNotificationName:RCDidReceiveMessagesDidChanged object:nil]; 
+            }
+            refresh = NO;
+            [[PPTUserInfoEngine shareEngine]addContactNotificationMessages:_contactMessages];
+            [_contactMessages removeAllObjects];
+        }
     }
-    if(nLeft<=0)
+    else
     {
-        [[NSNotificationCenter defaultCenter]postNotificationName:RCDidReceiveMessagesDidChanged object:nil];
+        refresh = YES;
+        if([self.delegate respondsToSelector:@selector(onReceived:left:object:)])
+        {
+            [self.delegate onReceived:message left:nLeft object:object];
+        }
+        if(nLeft<=0)
+        {
+            refresh = NO;
+            [[NSNotificationCenter defaultCenter]postNotificationName:RCDidReceiveMessagesDidChanged object:nil];
+        }
     }
 }
 

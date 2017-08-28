@@ -465,6 +465,12 @@
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object
 {
     
+    if([message.objectName isEqualToString:RCContactNotificationMessageIdentifier])
+    {
+        RCContactNotificationMessage * contactMessage = (RCContactNotificationMessage *) message.content;
+        
+        
+    }
     if([message.targetId isEqualToString:self.conversationId])
     {
         [_leftMessages addObject:message];

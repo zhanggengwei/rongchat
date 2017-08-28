@@ -126,6 +126,7 @@
 		40C260C11E0396FB00823111 /* tabbar_me@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260711E0396FB00823111 /* tabbar_me@3x.png */; };
 		40C260C21E0396FB00823111 /* tabbar_meHL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260721E0396FB00823111 /* tabbar_meHL@2x.png */; };
 		40C260C31E0396FB00823111 /* tabbar_meHL@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260731E0396FB00823111 /* tabbar_meHL@3x.png */; };
+		7507B0D31F5454B7006616B0 /* RCIMInviteMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507B0D21F5454B7006616B0 /* RCIMInviteMessage.m */; };
 		7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */; };
 		7513A2F81DE73B4500CCAB61 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F71DE73B4500CCAB61 /* Photos.framework */; };
 		7513A2FA1DE73B4C00CCAB61 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F91DE73B4C00CCAB61 /* PhotosUI.framework */; };
@@ -465,6 +466,8 @@
 		40C260711E0396FB00823111 /* tabbar_me@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_me@3x.png"; sourceTree = "<group>"; };
 		40C260721E0396FB00823111 /* tabbar_meHL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_meHL@2x.png"; sourceTree = "<group>"; };
 		40C260731E0396FB00823111 /* tabbar_meHL@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_meHL@3x.png"; sourceTree = "<group>"; };
+		7507B0D11F5454B7006616B0 /* RCIMInviteMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMInviteMessage.h; sourceTree = "<group>"; };
+		7507B0D21F5454B7006616B0 /* RCIMInviteMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMInviteMessage.m; sourceTree = "<group>"; };
 		7513A2F01DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPhotoSeleceOrTakePhotoManager.h; sourceTree = "<group>"; };
 		7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPhotoSeleceOrTakePhotoManager.m; sourceTree = "<group>"; };
 		7513A2F61DE737D600CCAB61 /* singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = singleton.h; sourceTree = "<group>"; };
@@ -834,6 +837,8 @@
 				751D2A461F3468F800426D12 /* RCIMConversationViewModel.m */,
 				752679521F3AEB0E0002AC45 /* RCIMLocationObj.h */,
 				752679531F3AEB0E0002AC45 /* RCIMLocationObj.m */,
+				7507B0D11F5454B7006616B0 /* RCIMInviteMessage.h */,
+				7507B0D21F5454B7006616B0 /* RCIMInviteMessage.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2087,6 +2092,7 @@
 				758E8B9C1E0AC6EB00D5DD4E /* RCIMZoomingScrollView.m in Sources */,
 				7584DB6D1E2A5BF5007249C2 /* PPBaseViewController.m in Sources */,
 				758E8B981E0AC6EB00D5DD4E /* RCIMPhoto.m in Sources */,
+				7507B0D31F5454B7006616B0 /* RCIMInviteMessage.m in Sources */,
 				7584DB6F1E2A5BF5007249C2 /* PPDateEngine.m in Sources */,
 				4068337A1E7A657700E03427 /* PPListItem.m in Sources */,
 				7584DB761E2A5BF5007249C2 /* PPHTTPResponse.m in Sources */,

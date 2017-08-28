@@ -30,4 +30,8 @@
 
 - (void)logoutSucessed;//退出登陆成功后进行数据的清理
 
+- (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages;
+
+
+
 @end

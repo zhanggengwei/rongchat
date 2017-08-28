@@ -40,10 +40,7 @@
         }];
         return @{@"":source};
     };
-    
-    
-    
-    
+
     self.contactList = [NSMutableArray new];
     NSArray * (^indexsContactListBlock)(NSArray<RCUserInfoData *> * arr) = ^(NSArray<RCUserInfoData *> * arr)
     {
@@ -60,7 +57,7 @@
                 [indexContactLists addObject:obj];
             }
         }];
-        NSArray * indexKeys = [results keysSortedByValueUsingSelector:@selector(compare:)];
+        NSArray * indexKeys = [[results allKeys]sortedArrayUsingSelector:@selector(compare:)];
         
         [indexKeys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<RCUserInfoData *> * userInfoArray = results[obj];

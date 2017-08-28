@@ -13,26 +13,26 @@
 @implementation UITableViewCell (addLineView)
 - (void)addTopLine
 {
-    UIImageView * lineView = [UIImageView new];
+    UIView * lineView = [UIView new];
     [self.contentView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top);
         make.height.mas_equalTo(@1);
         make.width.mas_equalTo(SCREEN_WIDTH);
-        make.left.mas_equalTo(self.contentView.mas_left);
+        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(16);
     }];
-    [lineView setImage:[PPImageUtil resizableImageWithName:@"common_line_g"]];
+   lineView.backgroundColor = UIColorFromRGB(0xd3d5d7);
 }
 - (void)addBottomLine
 {
-    UIImageView * lineView = [UIImageView new];
+    UIView * lineView = [UIView new];
     [self.contentView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.contentView.mas_bottom);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
         make.width.mas_equalTo(SCREEN_WIDTH);
-        make.left.mas_equalTo(self.contentView.mas_left);
+        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(16);
     }];
-    [lineView setImage:[PPImageUtil resizableImageWithName:@"common_line_g"]];
+    lineView.backgroundColor = UIColorFromRGB(0xd3d5d7);
 }
 @end

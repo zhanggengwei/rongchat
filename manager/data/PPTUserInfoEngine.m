@@ -58,9 +58,9 @@
         // 其他的一些设置
         if(x){
            [[PPTDBEngine shareManager]loadDataBase:x];
+            self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
         }
     }];
-    self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
 }
 
 - (NSArray *)contactList
@@ -161,6 +161,11 @@
     NSError * error;
     [SFHFKeychainUtils storeUsername:kPPLoginToken andPassword:self.token forServiceName:kPPServiceName updateExisting:YES error:&error];
     [SFHFKeychainUtils storeUsername:kPPUserInfoUserID andPassword:self.userId forServiceName:kPPServiceName updateExisting:YES error:&error];
+}
+
+- (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages
+{
+    return [[PPTDBEngine shareManager]addContactNotificationMessages:messages];
 }
 
 @end

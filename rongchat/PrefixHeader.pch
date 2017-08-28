@@ -31,6 +31,7 @@
 #import "RCChatTextMessageCell.h"
 #import "RCIMLocationObj.h"
 #import <ReactiveObjC/ReactiveObjC.h>
+#import "RCIMInviteMessage.h"
 
 #define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 
