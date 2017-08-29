@@ -25,6 +25,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)setCellClass:(Class)cellClass
 {
     _cellClass = cellClass;
@@ -57,8 +58,19 @@
     id model = array[indexPath.row];
     self.selectCellSignal = [self.didSelectCommand execute:model];
 }
-
-
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSDictionary * dict = [self.dataSource objectAtIndex:section];
+    return [dict allKeys].firstObject;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RCContactListCell * cell = [self.tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.cellClass)];
