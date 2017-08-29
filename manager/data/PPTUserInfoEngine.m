@@ -67,6 +67,13 @@
 {
     return [[PPTDBEngine shareManager]queryFriendList];
 }
+- (NSArray *)contactRequestList
+{
+    return [[PPTDBEngine shareManager]queryContactRequestList];
+    
+}
+
+
 //保存自己的个人信息
 - (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo
 {

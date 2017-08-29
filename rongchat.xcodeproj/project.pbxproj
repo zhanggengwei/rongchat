@@ -252,6 +252,10 @@
 		758E8BA11E0AC6EB00D5DD4E /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758E8B8F1E0AC6EB00D5DD4E /* lame.framework */; };
 		758E8BA21E0AC6EB00D5DD4E /* RCIMRecoarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B911E0AC6EB00D5DD4E /* RCIMRecoarder.m */; };
 		75A588551F55909000E34B46 /* RCContactListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588541F55909000E34B46 /* RCContactListCell.m */; };
+		75A588581F55B86500E34B46 /* RCIMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588571F55B86500E34B46 /* RCIMNavigationController.m */; };
+		75A5885B1F55BA3E00E34B46 /* RCIMAddContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A5885A1F55BA3E00E34B46 /* RCIMAddContactCell.m */; };
+		75A5885E1F55C28600E34B46 /* RCIMPublicServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A5885D1F55C28600E34B46 /* RCIMPublicServiceViewController.m */; };
+		75A588611F55C38B00E34B46 /* RCIMPublicServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588601F55C38B00E34B46 /* RCIMPublicServiceCell.m */; };
 		75B2E56F1F279A9A003240B9 /* LCCKAVAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */; };
 		75B2E5841F285E44003240B9 /* LCCKMessageVoiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E5831F285E44003240B9 /* LCCKMessageVoiceFactory.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
@@ -709,6 +713,14 @@
 		758E8B911E0AC6EB00D5DD4E /* RCIMRecoarder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMRecoarder.m; sourceTree = "<group>"; };
 		75A588531F55909000E34B46 /* RCContactListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCContactListCell.h; sourceTree = "<group>"; };
 		75A588541F55909000E34B46 /* RCContactListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCContactListCell.m; sourceTree = "<group>"; };
+		75A588561F55B86500E34B46 /* RCIMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMNavigationController.h; sourceTree = "<group>"; };
+		75A588571F55B86500E34B46 /* RCIMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMNavigationController.m; sourceTree = "<group>"; };
+		75A588591F55BA3E00E34B46 /* RCIMAddContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMAddContactCell.h; sourceTree = "<group>"; };
+		75A5885A1F55BA3E00E34B46 /* RCIMAddContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMAddContactCell.m; sourceTree = "<group>"; };
+		75A5885C1F55C28600E34B46 /* RCIMPublicServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMPublicServiceViewController.h; sourceTree = "<group>"; };
+		75A5885D1F55C28600E34B46 /* RCIMPublicServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMPublicServiceViewController.m; sourceTree = "<group>"; };
+		75A5885F1F55C38B00E34B46 /* RCIMPublicServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMPublicServiceCell.h; sourceTree = "<group>"; };
+		75A588601F55C38B00E34B46 /* RCIMPublicServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMPublicServiceCell.m; sourceTree = "<group>"; };
 		75B2E56D1F279A9A003240B9 /* LCCKAVAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKAVAudioPlayer.h; sourceTree = "<group>"; };
 		75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKAVAudioPlayer.m; sourceTree = "<group>"; };
 		75B2E5701F279AEF003240B9 /* LCCKChatUntiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatUntiles.h; sourceTree = "<group>"; };
@@ -834,6 +846,8 @@
 				7507B0D91F547DF1006616B0 /* RCIMCustomTableViewController.m */,
 				7507B0D51F547C67006616B0 /* RCIMNewContactListViewController.h */,
 				7507B0D61F547C67006616B0 /* RCIMNewContactListViewController.m */,
+				75A5885C1F55C28600E34B46 /* RCIMPublicServiceViewController.h */,
+				75A5885D1F55C28600E34B46 /* RCIMPublicServiceViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1170,6 +1184,8 @@
 				751D2A3D1F3459CE00426D12 /* RCIMBaseConversationViewController.m */,
 				4068336A1E7A657700E03427 /* RCIMBaseViewController.h */,
 				4068336B1E7A657700E03427 /* RCIMBaseViewController.m */,
+				75A588561F55B86500E34B46 /* RCIMNavigationController.h */,
+				75A588571F55B86500E34B46 /* RCIMNavigationController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1221,6 +1237,10 @@
 				752658BD1F3DDD5E0056BBFD /* RCIMCustomMapView.m */,
 				75A588531F55909000E34B46 /* RCContactListCell.h */,
 				75A588541F55909000E34B46 /* RCContactListCell.m */,
+				75A588591F55BA3E00E34B46 /* RCIMAddContactCell.h */,
+				75A5885A1F55BA3E00E34B46 /* RCIMAddContactCell.m */,
+				75A5885F1F55C38B00E34B46 /* RCIMPublicServiceCell.h */,
+				75A588601F55C38B00E34B46 /* RCIMPublicServiceCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2038,6 +2058,7 @@
 				753CA0C71F27110600F313EE /* LCCKFaceManager.m in Sources */,
 				758E8B9E1E0AC6EB00D5DD4E /* RCIMWebViewController.m in Sources */,
 				758E8B991E0AC6EB00D5DD4E /* RCIMPhotoBrowser.m in Sources */,
+				75A588611F55C38B00E34B46 /* RCIMPublicServiceCell.m in Sources */,
 				758E8B9D1E0AC6EB00D5DD4E /* RCIMSafariActivity.m in Sources */,
 				409F50951DDD704100015DB7 /* rc4.m in Sources */,
 				7584DB751E2A5BF5007249C2 /* PPDataDef.m in Sources */,
@@ -2126,6 +2147,7 @@
 				7584DAE11E2A5B92007249C2 /* UIView+RCIMExtension.m in Sources */,
 				7526795E1F3CA6F40002AC45 /* RCIMAnimation.m in Sources */,
 				7526AFD01F41865900FE662F /* RCIMBuglyConfig.m in Sources */,
+				75A5885E1F55C28600E34B46 /* RCIMPublicServiceViewController.m in Sources */,
 				7507B0D71F547C67006616B0 /* RCIMNewContactListViewController.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				7584DADC1E2A5B92007249C2 /* NSString+RCIMMD5.m in Sources */,
@@ -2148,6 +2170,7 @@
 				409F50631DDD6E3100015DB7 /* OTFileManager.m in Sources */,
 				75278A221F0FC2F7000C70AF /* RCChatVoiceMessageCell.m in Sources */,
 				7531E97F1F384CF2001C1326 /* RCMessage+RCTimeShow.m in Sources */,
+				75A588581F55B86500E34B46 /* RCIMNavigationController.m in Sources */,
 				409F50801DDD6E6F00015DB7 /* PPLoginTableViewCell.m in Sources */,
 				7584DAF91E2A5B98007249C2 /* RCKitUtility.m in Sources */,
 				406833771E7A657700E03427 /* RCConversationListViewController.m in Sources */,
@@ -2176,6 +2199,7 @@
 				7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */,
 				753CA06B1F26180000F313EE /* LCCKInputViewPluginPickImage.m in Sources */,
 				75CEF9451DDD28C100541660 /* PPContactListViewController.m in Sources */,
+				75A5885B1F55BA3E00E34B46 /* RCIMAddContactCell.m in Sources */,
 				753CA06F1F2618D000F313EE /* RCIMLocationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

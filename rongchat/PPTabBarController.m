@@ -8,7 +8,7 @@
 //
 
 #import "PPTabBarController.h"
-
+#import "RCIMNavigationController.h"
 @interface PPButton : UIButton
 
 @end
@@ -245,7 +245,7 @@
         Class cls = NSClassFromString(className);
         UIViewController * controller = [cls new];
         controller.title = self.titleArray[idx];
-        UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
+        RCIMNavigationController * nav = [[RCIMNavigationController alloc]initWithRootViewController:controller];
         [navArray addObject:nav];
     }];
     self.viewControllers = navArray;

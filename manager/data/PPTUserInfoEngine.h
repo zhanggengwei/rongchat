@@ -16,6 +16,7 @@
 @property (nonatomic,strong,readonly) RCUserInfoData * user_Info;
 //联系人数据
 @property (nonatomic,strong,readonly) NSArray * contactList;
+@property (nonatomic,strong,readonly) NSArray * contactRequestList;
 //群组数据
 @property (nonatomic,strong,readonly) NSArray<RCContactGroup *> *contactGroupList;
 @property (nonatomic,strong,readonly) NSArray<RCUserInfoData *> * contactBlackList;

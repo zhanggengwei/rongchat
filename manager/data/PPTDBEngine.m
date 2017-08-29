@@ -96,11 +96,15 @@
 
 - (NSArray *)queryFriendList
 {
+    return [self getFriendListByStatus:20];
+}
+
+- (NSArray *)getFriendListByStatus:(NSInteger)status
+{
     NSMutableArray * indexIds = [NSMutableArray new];
     NSMutableArray * contactList = [NSMutableArray new];
     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         NSString * searchSql = [NSString stringWithFormat:@"select * from \'%@\' where (userId != \'%@\')",USER_INFO_FRIENDLIST_TABLENAME,[PPTUserInfoEngine shareEngine].userId];
-        
         FMResultSet * sets = [db executeQuery:searchSql];
         while (sets.next) {
             NSString * userId = [sets stringForColumn:@"userId"];
@@ -108,9 +112,9 @@
         }
         if(indexIds)
         {
-            NSString * sql = [NSString stringWithFormat:@"select * from \'%@\'where userId in (\'%@\')and status = 20",USER_INFO_TABLENAME,[indexIds componentsJoinedByString:@"','"]];
+            NSString * sql = [NSString stringWithFormat:@"select * from \'%@\'where userId in (\'%@\')and status = %ld",USER_INFO_TABLENAME,[indexIds componentsJoinedByString:@"','"],status];
             
-           FMResultSet * results = [db executeQuery:sql];
+            FMResultSet * results = [db executeQuery:sql];
             while (results.next) {
                 RCUserInfoData * info = [RCUserInfoData new];
                 info.user = [RCUserInfoBaseData new];
@@ -131,9 +135,12 @@
     return contactList;
 }
 
+- (NSArray *)queryContactRequestList
+{
+   return [self getFriendListByStatus:11];
+}
 - (BOOL)updateUserInfo:(RCUserInfoData *)info
 {
-    
     return NO;
 }
 - (NSArray *)contactGroupLists

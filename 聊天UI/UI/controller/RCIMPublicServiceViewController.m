@@ -1,28 +1,24 @@
 //
-//  RCIMNewContactListViewController.m
+//  RCIMPublicServiceViewController.m
 //  rongchat
 //
 //  Created by VD on 2017/8/29.
 //  Copyright © 2017年 vd. All rights reserved.
 //
 
-#import "RCIMNewContactListViewController.h"
-#import "RCIMAddContactCell.h"
-@interface RCIMNewContactListViewController ()
+#import "RCIMPublicServiceViewController.h"
+
+@interface RCIMPublicServiceViewController ()
+
 @end
 
-@implementation RCIMNewContactListViewController
+@implementation RCIMPublicServiceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"新的朋友";
-    self.cellClass = [RCIMAddContactCell class];
-    @weakify(self);
-    [RACObserve([PPTUserInfoEngine shareEngine], contactRequestList)subscribeNext:^(NSArray<RCUserInfoData *> * data) {
-        @strongify(self);
-        NSArray * arr = @[@{@"":data}];
-        self.dataSource = arr;
-    }];
+    NSArray * publicServiceList = [[RCIMClient sharedRCIMClient]getPublicServiceList];
+    NSLog(@"publicServiceList ==%@",publicServiceList);
+    
     // Do any additional setup after loading the view.
 }
 

@@ -31,6 +31,10 @@
 - (NSArray *)queryFriendList;
 //查询群聊列表
 - (NSArray *)contactGroupLists;
+//查询好友添加请求
+- (NSArray *)queryContactRequestList;
+
+
 //加载userid 数据库
 - (void)loadDataBase:(NSString *)userID;
 //数据库清理工作

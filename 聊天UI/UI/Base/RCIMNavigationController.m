@@ -1,28 +1,21 @@
 //
-//  RCIMNewContactListViewController.m
+//  RCIMNavigationController.m
 //  rongchat
 //
 //  Created by VD on 2017/8/29.
 //  Copyright © 2017年 vd. All rights reserved.
 //
 
-#import "RCIMNewContactListViewController.h"
-#import "RCIMAddContactCell.h"
-@interface RCIMNewContactListViewController ()
+#import "RCIMNavigationController.h"
+
+@interface RCIMNavigationController ()
+
 @end
 
-@implementation RCIMNewContactListViewController
+@implementation RCIMNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"新的朋友";
-    self.cellClass = [RCIMAddContactCell class];
-    @weakify(self);
-    [RACObserve([PPTUserInfoEngine shareEngine], contactRequestList)subscribeNext:^(NSArray<RCUserInfoData *> * data) {
-        @strongify(self);
-        NSArray * arr = @[@{@"":data}];
-        self.dataSource = arr;
-    }];
     // Do any additional setup after loading the view.
 }
 
@@ -30,7 +23,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    //获取导航控制器的子控制器的个数
+    NSInteger navChildCount = self.viewControllers.count;
+    if(navChildCount)
+    {
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
+    [super pushViewController:viewController animated:animated];
+}
 /*
 #pragma mark - Navigation
 

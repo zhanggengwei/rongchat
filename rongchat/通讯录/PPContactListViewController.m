@@ -11,6 +11,7 @@
 #import "NSString+isValid.h"
 #import "PPContactListViewModel.h"
 #import "RCIMNewContactListViewController.h"
+#import "RCIMPublicServiceViewController.h"
 
 @interface PPContactListViewController ()
 @property (nonatomic,strong) PPContactListViewModel * contactListViewModel;
@@ -35,6 +36,16 @@
     } error:^(NSError * _Nullable error) {
         NSLog(@"error == %@",error);
     }];
+    [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
+        @strongify(self);
+        [signal subscribeNext:^(RCUserInfoData * data) {
+            RCIMNewContactListViewController * controller = [RCIMNewContactListViewController new];
+            controller.style = UITableViewStyleGrouped;
+            [self.navigationController pushViewController:controller animated:YES];
+        }];
+    }];
+    
+  
     
     // Do any additional setup after loading the view.
 }

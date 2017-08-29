@@ -20,11 +20,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
+    [self.didSelectCommand execute:nil];
     @weakify(self);
     [RACObserve(self,dataSource) subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         [self.tableView reloadData];
     }];
+   
 }
 
 
@@ -38,6 +40,7 @@
     if(_tableView==nil)
     {
         _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:self.style];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
