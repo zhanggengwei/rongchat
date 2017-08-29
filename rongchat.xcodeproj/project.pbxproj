@@ -127,6 +127,8 @@
 		40C260C21E0396FB00823111 /* tabbar_meHL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260721E0396FB00823111 /* tabbar_meHL@2x.png */; };
 		40C260C31E0396FB00823111 /* tabbar_meHL@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260731E0396FB00823111 /* tabbar_meHL@3x.png */; };
 		7507B0D31F5454B7006616B0 /* RCIMInviteMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507B0D21F5454B7006616B0 /* RCIMInviteMessage.m */; };
+		7507B0D71F547C67006616B0 /* RCIMNewContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507B0D61F547C67006616B0 /* RCIMNewContactListViewController.m */; };
+		7507B0DA1F547DF1006616B0 /* RCIMCustomTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507B0D91F547DF1006616B0 /* RCIMCustomTableViewController.m */; };
 		7513A2F21DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */; };
 		7513A2F81DE73B4500CCAB61 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F71DE73B4500CCAB61 /* Photos.framework */; };
 		7513A2FA1DE73B4C00CCAB61 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7513A2F91DE73B4C00CCAB61 /* PhotosUI.framework */; };
@@ -468,6 +470,10 @@
 		40C260731E0396FB00823111 /* tabbar_meHL@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_meHL@3x.png"; sourceTree = "<group>"; };
 		7507B0D11F5454B7006616B0 /* RCIMInviteMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMInviteMessage.h; sourceTree = "<group>"; };
 		7507B0D21F5454B7006616B0 /* RCIMInviteMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMInviteMessage.m; sourceTree = "<group>"; };
+		7507B0D51F547C67006616B0 /* RCIMNewContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMNewContactListViewController.h; sourceTree = "<group>"; };
+		7507B0D61F547C67006616B0 /* RCIMNewContactListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMNewContactListViewController.m; sourceTree = "<group>"; };
+		7507B0D81F547DF1006616B0 /* RCIMCustomTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMCustomTableViewController.h; sourceTree = "<group>"; };
+		7507B0D91F547DF1006616B0 /* RCIMCustomTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMCustomTableViewController.m; sourceTree = "<group>"; };
 		7513A2F01DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPhotoSeleceOrTakePhotoManager.h; sourceTree = "<group>"; };
 		7513A2F11DE7353400CCAB61 /* PPPhotoSeleceOrTakePhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPhotoSeleceOrTakePhotoManager.m; sourceTree = "<group>"; };
 		7513A2F61DE737D600CCAB61 /* singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = singleton.h; sourceTree = "<group>"; };
@@ -821,6 +827,10 @@
 				7526795A1F3C55500002AC45 /* RCIMShowLocationController.m */,
 				75445DDE1F403B2800E57265 /* RCIMDocumentsFileDownController.h */,
 				75445DDF1F403B2800E57265 /* RCIMDocumentsFileDownController.m */,
+				7507B0D81F547DF1006616B0 /* RCIMCustomTableViewController.h */,
+				7507B0D91F547DF1006616B0 /* RCIMCustomTableViewController.m */,
+				7507B0D51F547C67006616B0 /* RCIMNewContactListViewController.h */,
+				7507B0D61F547C67006616B0 /* RCIMNewContactListViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2064,6 +2074,7 @@
 				751D2A441F34662700426D12 /* RCIMConversationViewController.m in Sources */,
 				407261081DEBD12400554D00 /* MyQRViewController.m in Sources */,
 				752658BE1F3DDD5E0056BBFD /* RCIMCustomMapView.m in Sources */,
+				7507B0DA1F547DF1006616B0 /* RCIMCustomTableViewController.m in Sources */,
 				7584DAF51E2A5B98007249C2 /* RCConversationModel.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
 				7584DB921E2A623F007249C2 /* RCProgressHUD.m in Sources */,
@@ -2109,6 +2120,7 @@
 				7584DAE11E2A5B92007249C2 /* UIView+RCIMExtension.m in Sources */,
 				7526795E1F3CA6F40002AC45 /* RCIMAnimation.m in Sources */,
 				7526AFD01F41865900FE662F /* RCIMBuglyConfig.m in Sources */,
+				7507B0D71F547C67006616B0 /* RCIMNewContactListViewController.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				7584DADC1E2A5B92007249C2 /* NSString+RCIMMD5.m in Sources */,
 				753CA0601F26177B00F313EE /* RCCKChatMoreView.m in Sources */,

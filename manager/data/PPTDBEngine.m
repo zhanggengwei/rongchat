@@ -108,7 +108,7 @@
         }
         if(indexIds)
         {
-            NSString * sql = [NSString stringWithFormat:@"select * from \'%@\'where userId in (\'%@\')",USER_INFO_TABLENAME,[indexIds componentsJoinedByString:@"','"]];
+            NSString * sql = [NSString stringWithFormat:@"select * from \'%@\'where userId in (\'%@\')and status = 20",USER_INFO_TABLENAME,[indexIds componentsJoinedByString:@"','"]];
             
            FMResultSet * results = [db executeQuery:sql];
             while (results.next) {
@@ -123,6 +123,7 @@
                 info.user.portraitUri = [results stringForColumn:@"portraitUri"];
                 info.user.nickNameWord = results[@"nickNameWord"];
                 info.user.indexChar = results[@"indexChar"];
+                info.status = [results intForColumn:@"status"];
                 [contactList addObject:info];
             }
         }

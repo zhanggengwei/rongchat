@@ -10,6 +10,7 @@
 #import "PPContactListCell.h"
 #import "NSString+isValid.h"
 #import "PPContactListViewModel.h"
+#import "RCIMNewContactListViewController.h"
 
 @interface PPContactListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -102,6 +103,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    RCIMNewContactListViewController * controller = [RCIMNewContactListViewController new];
+    [self.navigationController pushViewController:controller animated:YES];
+    
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
