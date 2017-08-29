@@ -122,8 +122,6 @@
     
 
     self.seleBtn.selected = false;
-    
-    
     PPButton * button = [self.customBar viewWithTag:(1000+index) ];
     
     button.selected = true;
@@ -239,16 +237,13 @@
 
 -(void)addController
 {
-   
-    NSMutableArray * navArray = [NSMutableArray new];
     
+    NSMutableArray * navArray = [NSMutableArray new];
     [self.controllerArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
        
         NSString * className = obj;
         Class cls = NSClassFromString(className);
-        
         UIViewController * controller = [cls new];
-        
         controller.title = self.titleArray[idx];
         UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:controller];
         [navArray addObject:nav];

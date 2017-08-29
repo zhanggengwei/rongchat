@@ -7,24 +7,43 @@
 //
 
 #import "RCIMCustomTableViewController.h"
+#import <ReactiveObjC.h>
 
 @interface RCIMCustomTableViewController ()
+@property (nonatomic,strong) RACSignal * selectCellSignal;
 @property (nonatomic,strong) RACCommand * didSelectCommand;
+@property (nonatomic,strong) UITableView * tableView;
 @end
 
 @implementation RCIMCustomTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    @weakify(self);
+    [RACObserve(self,dataSource) subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        [self.tableView reloadData];
+    }];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (UITableView *)tableView
+{
+    if(_tableView==nil)
+    {
+        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:self.style];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    }
+    return _tableView;
+}
 
 - (void)setCellClass:(Class)cellClass
 {
@@ -52,7 +71,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSDictionary * dict = [self.dataSource objectAtIndex:indexPath.section];
     NSArray * array = [dict.allValues objectAtIndex:0];
     id model = array[indexPath.row];
@@ -73,12 +92,12 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RCContactListCell * cell = [self.tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.cellClass)];
+    RCContactListCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.cellClass)];
     NSDictionary * dict = [self.dataSource objectAtIndex:indexPath.section];
     NSArray * array = [dict.allValues objectAtIndex:0];
     id model = array[indexPath.row];
     cell.model = model;
-    return nil;
+    return cell;
 }
 
 - (RACCommand *)didSelectCommand

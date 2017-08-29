@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RCContactListCell.h"
 
-@interface PPContactListCell : UITableViewCell
-@property (nonatomic,strong) RCUserInfoData * model;
+@interface PPContactListCell : RCContactListCell
 @end

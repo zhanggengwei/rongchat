@@ -7,7 +7,8 @@
 //
 
 #import "PPBaseViewController.h"
+#import "RCIMCustomTableViewController.h"
 
-@interface PPContactListViewController : PPBaseViewController
+@interface PPContactListViewController : RCIMCustomTableViewController
 
 @end

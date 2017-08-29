@@ -251,6 +251,7 @@
 		758E8BA01E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B8D1E0AC6EB00D5DD4E /* RCIMWebViewProgressView.m */; };
 		758E8BA11E0AC6EB00D5DD4E /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 758E8B8F1E0AC6EB00D5DD4E /* lame.framework */; };
 		758E8BA21E0AC6EB00D5DD4E /* RCIMRecoarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 758E8B911E0AC6EB00D5DD4E /* RCIMRecoarder.m */; };
+		75A588551F55909000E34B46 /* RCContactListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588541F55909000E34B46 /* RCContactListCell.m */; };
 		75B2E56F1F279A9A003240B9 /* LCCKAVAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */; };
 		75B2E5841F285E44003240B9 /* LCCKMessageVoiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E5831F285E44003240B9 /* LCCKMessageVoiceFactory.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
@@ -706,6 +707,8 @@
 		758E8B8F1E0AC6EB00D5DD4E /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = lame.framework; sourceTree = "<group>"; };
 		758E8B901E0AC6EB00D5DD4E /* RCIMRecoarder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMRecoarder.h; sourceTree = "<group>"; };
 		758E8B911E0AC6EB00D5DD4E /* RCIMRecoarder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMRecoarder.m; sourceTree = "<group>"; };
+		75A588531F55909000E34B46 /* RCContactListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCContactListCell.h; sourceTree = "<group>"; };
+		75A588541F55909000E34B46 /* RCContactListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCContactListCell.m; sourceTree = "<group>"; };
 		75B2E56D1F279A9A003240B9 /* LCCKAVAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKAVAudioPlayer.h; sourceTree = "<group>"; };
 		75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKAVAudioPlayer.m; sourceTree = "<group>"; };
 		75B2E5701F279AEF003240B9 /* LCCKChatUntiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatUntiles.h; sourceTree = "<group>"; };
@@ -1216,6 +1219,8 @@
 				752679571F3BEE9B0002AC45 /* RCIMLocationTableViewCell.m */,
 				752658BC1F3DDD5E0056BBFD /* RCIMCustomMapView.h */,
 				752658BD1F3DDD5E0056BBFD /* RCIMCustomMapView.m */,
+				75A588531F55909000E34B46 /* RCContactListCell.h */,
+				75A588541F55909000E34B46 /* RCContactListCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2076,6 +2081,7 @@
 				752658BE1F3DDD5E0056BBFD /* RCIMCustomMapView.m in Sources */,
 				7507B0DA1F547DF1006616B0 /* RCIMCustomTableViewController.m in Sources */,
 				7584DAF51E2A5B98007249C2 /* RCConversationModel.m in Sources */,
+				75A588551F55909000E34B46 /* RCContactListCell.m in Sources */,
 				75CEF8661DDC878500541660 /* main.m in Sources */,
 				7584DB921E2A623F007249C2 /* RCProgressHUD.m in Sources */,
 				75CEF8991DDC87B200541660 /* PPTabBarController.m in Sources */,
