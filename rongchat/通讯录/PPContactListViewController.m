@@ -39,7 +39,7 @@
     [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
         @strongify(self);
         [signal subscribeNext:^(RCUserInfoData * data) {
-            RCIMNewContactListViewController * controller = [RCIMNewContactListViewController new];
+            RCIMPublicServiceViewController * controller = [RCIMPublicServiceViewController new];
             controller.style = UITableViewStyleGrouped;
             [self.navigationController pushViewController:controller animated:YES];
         }];

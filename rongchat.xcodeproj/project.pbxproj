@@ -256,6 +256,7 @@
 		75A5885B1F55BA3E00E34B46 /* RCIMAddContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A5885A1F55BA3E00E34B46 /* RCIMAddContactCell.m */; };
 		75A5885E1F55C28600E34B46 /* RCIMPublicServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A5885D1F55C28600E34B46 /* RCIMPublicServiceViewController.m */; };
 		75A588611F55C38B00E34B46 /* RCIMPublicServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588601F55C38B00E34B46 /* RCIMPublicServiceCell.m */; };
+		75A588641F55D8E500E34B46 /* RCIMPublicServiceProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588631F55D8E500E34B46 /* RCIMPublicServiceProfile.m */; };
 		75B2E56F1F279A9A003240B9 /* LCCKAVAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */; };
 		75B2E5841F285E44003240B9 /* LCCKMessageVoiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E5831F285E44003240B9 /* LCCKMessageVoiceFactory.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
@@ -721,6 +722,8 @@
 		75A5885D1F55C28600E34B46 /* RCIMPublicServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMPublicServiceViewController.m; sourceTree = "<group>"; };
 		75A5885F1F55C38B00E34B46 /* RCIMPublicServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMPublicServiceCell.h; sourceTree = "<group>"; };
 		75A588601F55C38B00E34B46 /* RCIMPublicServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMPublicServiceCell.m; sourceTree = "<group>"; };
+		75A588621F55D8E500E34B46 /* RCIMPublicServiceProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMPublicServiceProfile.h; sourceTree = "<group>"; };
+		75A588631F55D8E500E34B46 /* RCIMPublicServiceProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMPublicServiceProfile.m; sourceTree = "<group>"; };
 		75B2E56D1F279A9A003240B9 /* LCCKAVAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKAVAudioPlayer.h; sourceTree = "<group>"; };
 		75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKAVAudioPlayer.m; sourceTree = "<group>"; };
 		75B2E5701F279AEF003240B9 /* LCCKChatUntiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatUntiles.h; sourceTree = "<group>"; };
@@ -1657,6 +1660,8 @@
 				409F792C1DF5649D0090D67F /* UITableViewCell+addLineView.m */,
 				75CEF9471DDD2A0600541660 /* PPContactListCell.h */,
 				75CEF9481DDD2A0600541660 /* PPContactListCell.m */,
+				75A588621F55D8E500E34B46 /* RCIMPublicServiceProfile.h */,
+				75A588631F55D8E500E34B46 /* RCIMPublicServiceProfile.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2065,6 +2070,7 @@
 				409F50831DDD6E6F00015DB7 /* UITextField+UITextField_WJ.m in Sources */,
 				75278A451F10709E000C70AF /* RCChatLocationMessageCell.m in Sources */,
 				7584DB711E2A5BF5007249C2 /* PPHTTPRequestSerializer.m in Sources */,
+				75A588641F55D8E500E34B46 /* RCIMPublicServiceProfile.m in Sources */,
 				75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */,
 				409F50821DDD6E6F00015DB7 /* PPRegisterViewController.m in Sources */,
 				752679581F3BEE9B0002AC45 /* RCIMLocationTableViewCell.m in Sources */,
