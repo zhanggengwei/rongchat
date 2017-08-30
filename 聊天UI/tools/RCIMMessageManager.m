@@ -85,10 +85,16 @@
 //处理添加好友的网络请求
 - (void)managerAddContactRequest:(RCMessage *)message
 {
-    RCContactNotificationMessage * contactNotificationMessage = message.content;
+    RCContactNotificationMessage * contactNotificationMessage = (RCContactNotificationMessage *)message.content;
     if([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationRequest])
     {
+        RCIMInviteMessage * inviteMessage = [RCIMInviteMessage new];
+        inviteMessage.sourceUserId = contactNotificationMessage.sourceUserId;
+        inviteMessage.targetUserId = contactNotificationMessage.targetUserId;
+        inviteMessage.message = contactNotificationMessage.message;
+        inviteMessage.status = RCIMInviteMessageStatusCustom;
         //好友申请
+        [[PPTUserInfoEngine shareEngine]addContactNotificationMessages:@[inviteMessage]];
         
     }else if ([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationAcceptResponse])
     {

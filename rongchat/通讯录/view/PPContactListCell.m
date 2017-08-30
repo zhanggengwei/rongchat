@@ -11,7 +11,7 @@
 @interface PPContactListCell ()
 @property (nonatomic,strong) UIImageView * avatarImageView;
 @property (nonatomic,strong) UILabel * nickNameLabel;
-
+@property (nonatomic,strong) UIButton * selectButton;
 @end
 
 @implementation PPContactListCell
@@ -39,15 +39,21 @@
 }
 - (void)createUI
 {
+    self.selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.contentView addSubview:self.selectButton];
     self.avatarImageView = [UIImageView new];
     [self.contentView addSubview:self.avatarImageView];
     
     self.nickNameLabel = [UILabel new];
     self.nickNameLabel.numberOfLines = 0;
     [self.contentView addSubview:self.nickNameLabel];
+    [self.selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(15);
+        make.centerY.mas_equalTo(self.contentView);
+    }];
     
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.mas_left).mas_offset(15);
+        make.left.mas_equalTo(self.selectButton.mas_right).mas_offset(15);
         make.top.mas_equalTo(self.mas_top).mas_offset(10);
         make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-10);
         make.width.mas_equalTo(self.frame.size.height - 15);
