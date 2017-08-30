@@ -24,7 +24,6 @@
 }
 - (void)addBottomLine
 {
-
     UIImageView * lineView = [UIImageView new];
     [self.contentView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -10,5 +10,5 @@
 #import "RCContactListCell.h"
 
 @interface PPContactListCell : RCContactListCell
-@property (nonatomic,strong,readonly) UIButton * selectButton;
+@property (nonatomic,assign) NSInteger unreadCount;
 @end

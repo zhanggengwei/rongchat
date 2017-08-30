@@ -23,6 +23,8 @@
         NSArray * arr = @[@{@"":data}];
         self.dataSource = arr;
     }];
+    //清理好友请求
+    [[PPTUserInfoEngine shareEngine]clearPromptCount];
     // Do any additional setup after loading the view.
 }
 

@@ -236,4 +236,13 @@
     }];
     return sucessed;
 }
+- (NSInteger)queryUnreadFriendCount
+{
+    __block NSInteger count = 0;
+    [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        count =[db intForQuery:[NSString stringWithFormat:@"select count(*) from \'%@\'",INVITE_USERINO_TABLE]];
+    }];
+    return count;
+}
+
 @end

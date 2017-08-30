@@ -23,6 +23,7 @@
 @property (nonatomic,strong) NSArray<RCUserInfoData *> * contactList;
 @property (nonatomic,strong) RCUserInfoData * user_Info;
 @property (nonatomic,strong) RACSignal * accountChangeSignal;
+@property (nonatomic,assign) NSInteger promptCount;
 
 @end
 
@@ -70,7 +71,7 @@
             self.contactGroupList = [[PPTDBEngine shareManager]contactGroupLists];
             self.contactList = [[PPTDBEngine shareManager]queryFriendList];
             self.contactRequestList = [[[[PPTDBEngine shareManager]queryContactRequestList] arrayByAddingObjectsFromArray:self.contactList] sortedArrayUsingSelector:@selector(compare:)];
-            
+            self.promptCount = [[PPTDBEngine shareManager]queryUnreadFriendCount];
         }
     }];
 }
@@ -196,5 +197,8 @@
 {
     return [[PPTDBEngine shareManager]addContactNotificationMessages:messages];
 }
-
+- (void)clearPromptCount
+{
+    self.promptCount = 0;
+}
 @end

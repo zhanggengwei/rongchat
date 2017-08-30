@@ -5,13 +5,15 @@
 //  Created by vd on 2016/11/3.
 //  Copyright © 2016年 vd. All rights reserved.
 //
-
+#define UNREADWIDTH 15
 #import "PPContactListCell.h"
 #import "UITableViewCell+addLineView.h"
+#import "UIImage+RCIMExtension.h"
+
 @interface PPContactListCell ()
 @property (nonatomic,strong) UIImageView * avatarImageView;
 @property (nonatomic,strong) UILabel * nickNameLabel;
-//@property (nonatomic,strong) UIButton * selectButton;
+@property (nonatomic,strong) UILabel * unreadLabel;
 @end
 
 @implementation PPContactListCell
@@ -37,49 +39,101 @@
     }
     return self;
 }
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.unreadLabel.hidden = YES;
+}
+
 - (void)createUI
 {
-//    self.selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.contentView addSubview:self.selectButton];
-    self.avatarImageView = [UIImageView new];
+
+    [self.contentView addSubview:self.unreadLabel];
     [self.contentView addSubview:self.avatarImageView];
-    
-    self.nickNameLabel = [UILabel new];
-    self.nickNameLabel.numberOfLines = 0;
     [self.contentView addSubview:self.nickNameLabel];
-//    [self.selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(15);
-//        make.centerY.mas_equalTo(self.contentView);
-//    }];
     
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(15);
-        make.top.mas_equalTo(self.mas_top).mas_offset(10);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-10);
-        make.width.mas_equalTo(self.frame.size.height - 15);
+        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(8);
+        make.top.mas_equalTo(self.mas_top).mas_offset(8);
+        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-8);
+        make.width.mas_equalTo(self.avatarImageView.mas_height).multipliedBy(1);
     }];
-    
     [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
         make.left.mas_equalTo(self.avatarImageView.mas_right).mas_offset(10);
-        make.right.mas_equalTo(self.contentView.mas_right);
-        make.height.mas_equalTo(@16);
+        make.right.mas_lessThanOrEqualTo(self.contentView.mas_right).mas_offset(-100);
     }];
-    self.nickNameLabel.font = [UIFont systemFontOfSize:14];
-    self.nickNameLabel.textAlignment = NSTextAlignmentLeft;
+    [self.unreadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.nickNameLabel.mas_right).mas_offset(16);
+        make.centerY.mas_equalTo(self.contentView);
+        make.width.height.mas_equalTo(UNREADWIDTH);
+    }];
     [self addBottomLine];
 }
+
+- (void)setUnreadCount:(NSInteger)unreadCount
+{
+    if(unreadCount)
+    {
+        self.unreadLabel.hidden = NO;
+        self.unreadLabel.text = @(unreadCount).stringValue;
+    }else
+    {
+        self.unreadLabel.hidden = YES;
+    }
+}
+
+- (UIImageView *)avatarImageView
+{
+    if(_avatarImageView==nil)
+    {
+        _avatarImageView = [UIImageView new];
+    }
+    return _avatarImageView;
+}
+
+- (UILabel *)unreadLabel
+{
+    if(_unreadLabel==nil)
+    {
+        _unreadLabel = [UILabel new];
+        _unreadLabel.textAlignment = NSTextAlignmentCenter;
+        _unreadLabel.textColor = [UIColor whiteColor];
+        _unreadLabel.backgroundColor = [UIColor redColor];
+        _unreadLabel.layer.masksToBounds = YES;
+        _unreadLabel.layer.cornerRadius = UNREADWIDTH/2.0;
+        _unreadLabel.font = [UIFont systemFontOfSize:12];
+        _unreadLabel.hidden = YES;
+    }
+    return _unreadLabel;
+}
+
+- (UILabel *)nickNameLabel
+{
+    if(_nickNameLabel==nil)
+    {
+        _nickNameLabel = [UILabel new];
+        _nickNameLabel.numberOfLines = 0;
+        _nickNameLabel.font = [UIFont systemFontOfSize:14];
+        _nickNameLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _nickNameLabel;
+}
+
 - (void)setModel:(id)model
 {
     if([model isKindOfClass:[PPTContactGroupModel class]])
     {
+        NSString *imageName = @"Placeholder_Avatar";
+        UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
         PPTContactGroupModel * contactGroup = model;
         _nickNameLabel.text = contactGroup.group.name;
         if(!contactGroup.group.portraitUri)
         {
             contactGroup.group.portraitUri = @"";
         }
-        SD_LOADIMAGE(self.avatarImageView,contactGroup.group.portraitUri,nil);
+        SD_LOADIMAGE(self.avatarImageView,contactGroup.group.portraitUri,image);
     }else if([model isKindOfClass:[RCUserInfoData class]]){
         RCUserInfoData * userInfo = model;
         if(!userInfo.user.portraitUri)

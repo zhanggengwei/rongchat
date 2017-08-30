@@ -11,7 +11,7 @@
 @interface PPTUserInfoEngine : NSObject
 
 @property (nonatomic,copy,readonly) NSString * userId;
-
+@property (nonatomic,assign,readonly) NSInteger promptCount;
 @property (nonatomic,copy,readonly) NSString * token;
 //自己的信息数据
 @property (nonatomic,strong,readonly) RCUserInfoData * user_Info;
@@ -33,6 +33,7 @@
 - (void)logoutSucessed;//退出登陆成功后进行数据的清理
 
 - (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages;
+- (void)clearPromptCount;
 
 
 

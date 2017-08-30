@@ -66,7 +66,25 @@
 
 -(void)addFriend
 {
+    
 }
+
+- (PPContactListCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PPContactListCell * cell = (PPContactListCell *)[super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if(indexPath.section==0&&indexPath.row==0)
+    {
+        [RACObserve([PPTUserInfoEngine shareEngine], promptCount)subscribeNext:^(NSString * x) {
+            cell.unreadCount = [x integerValue];
+        }];
+    }
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
 //#pragma mark UITableViewDataSource
 //
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

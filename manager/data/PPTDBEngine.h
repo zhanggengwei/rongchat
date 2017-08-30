@@ -33,12 +33,13 @@
 - (NSArray *)contactGroupLists;
 //查询好友添加请求
 - (NSArray *)queryContactRequestList;
-
-
 //加载userid 数据库
 - (void)loadDataBase:(NSString *)userID;
 //数据库清理工作
 - (void)clearAccount;
+//查询未读的好友请求
+- (NSInteger)queryUnreadFriendCount;
+
 
 
 @end

@@ -22,11 +22,7 @@
     [super setModel:model];
     RCUserInfoData * data = model;
     @weakify(self);
-    [RACObserve(data, isSelected)subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        self.selectButton.selected = [x boolValue];
-    }];
-    RAC(self.selectButton,enabled) = RACObserve(data,enabled);
+   
 }
 
 @end
