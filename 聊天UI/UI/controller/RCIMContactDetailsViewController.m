@@ -9,7 +9,6 @@
 #import "RCIMContactDetailsViewController.h"
 
 @interface RCIMContactDetailsViewController ()
-
 @end
 
 @implementation RCIMContactDetailsViewController

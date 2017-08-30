@@ -131,6 +131,8 @@
                 info.user.nickNameWord = results[@"nickNameWord"];
                 info.user.indexChar = results[@"indexChar"];
                 info.status = [results intForColumn:@"status"];
+                info.message = results[@"message"];
+                info.updatedAt = results[@"updatedAt"];
                 [contactList addObject:info];
             }
         }

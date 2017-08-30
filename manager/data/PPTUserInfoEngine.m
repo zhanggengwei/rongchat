@@ -68,8 +68,9 @@
             [[PPTDBEngine shareManager]loadDataBase:self.userId];
             self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
             self.contactGroupList = [[PPTDBEngine shareManager]contactGroupLists];
-            self.contactRequestList = [[PPTDBEngine shareManager]queryContactRequestList];
             self.contactList = [[PPTDBEngine shareManager]queryFriendList];
+            self.contactRequestList = [[[[PPTDBEngine shareManager]queryContactRequestList] arrayByAddingObjectsFromArray:self.contactList] sortedArrayUsingSelector:@selector(compare:)];
+            
         }
     }];
 }
@@ -128,14 +129,35 @@
     self.userId = tokenDef.indexId;
     [[PPDateEngine manager]connectRCIM];
     [self saveCustomMessage];
+
+    
     [[[PPDateEngine manager] getContactListCommandWithUserId:nil] subscribeNext:^(PPUserFriendListResponse *response) {
         NSMutableArray * data = [NSMutableArray new];
+        dispatch_group_t group = dispatch_group_create();
         [response.result enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [data addObject:obj];
+            dispatch_group_enter(group);
+            HanyuPinyinOutputFormat * outFormat = [HanyuPinyinOutputFormat new];
+            outFormat.caseType = CaseTypeLowercase;
+            outFormat.toneType =ToneTypeWithoutTone;
+            outFormat.vCharType = VCharTypeWithUUnicode;
+            [PinyinHelper toHanyuPinyinStringWithNSString:obj.user.name withHanyuPinyinOutputFormat:outFormat withNSString:@"" outputBlock:^(NSString *pinYin) {
+                obj.user.nickNameWord = pinYin;
+                char ch = [[[pinYin substringToIndex:1]uppercaseString]characterAtIndex:0];
+                if(ch<'A'||ch>'Z')
+                {
+                    ch = '#';
+                }
+                obj.user.indexChar = [NSString stringWithFormat:@"%c",ch];
+                dispatch_group_leave(group);
+            }];
         }];
-        self.contactList = data;
-        [[PPTDBEngine shareManager]saveContactList:data];
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            [[PPTDBEngine shareManager]saveContactList:data];
+            self.contactList = data;
+        });
     }];
+   
     [[[PPDateEngine manager]getContactGroupsCommand]subscribeNext:^(PPContactGroupListResponse * response) {
         [[PPTDBEngine shareManager]addOrUpdateContactGroupLists:response.result];
         self.contactGroupList = response.result;
@@ -152,8 +174,6 @@
     } error:^(NSError * _Nullable error) {
         
     }];
-    
-    
 }
 - (void)logoutSucessed
 {

@@ -35,10 +35,10 @@
         NSMutableArray * source = [NSMutableArray new];
         NSArray * array = @[@"新的朋友",@"群聊",@"标签",@"公众号"];
         NSArray * imageArray = @[@"plugins_FriendNotify",@"add_friend_icon_addgroup",@"Contact_icon_ContactTag",@"add_friend_icon_offical"];
-        NSArray  * targerControllerArray = @[[RCIMNewContactListViewController new],[RCIMContactGroupListViewController new],[RCIMContactGroupListViewController new],[RCIMPublicServiceViewController new]];
+        NSArray  * targerControllerArray = @[NSStringFromClass([RCIMNewContactListViewController class]),NSStringFromClass([RCIMContactGroupListViewController class]),NSStringFromClass([RCIMContactGroupListViewController class]),NSStringFromClass([RCIMPublicServiceViewController class])];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             RCUserInfoData *  userInfo = [RCUserInfoData new];
-            userInfo.targerController = targerControllerArray[idx];
+            userInfo.controllerName = targerControllerArray[idx];
             userInfo.user = [RCUserInfoBaseData new];
             userInfo.user.name = obj;
             userInfo.placeImage = imageArray[idx];
@@ -53,9 +53,7 @@
         NSMutableArray * contactlistResults = [NSMutableArray new];
         NSMutableDictionary * results = [NSMutableDictionary new];
         [arr enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            RCIMContactDetailsViewController * controller= [RCIMContactDetailsViewController createViewController];
-            obj.targerController = controller;
-//            controller.userInfo = obj;
+            obj.controllerName = NSStringFromClass( [RCIMContactDetailsViewController class]);
             if(![results objectForKey:obj.user.indexChar])
             {
                 NSMutableArray * indexContactLists = [NSMutableArray arrayWithObject:obj];
@@ -104,4 +102,10 @@
 //    [self.contactListSubject sendCompleted];
     
 }
+
+- (void)dealloc
+{
+    NSLog(@"");
+}
+
 @end

@@ -39,7 +39,7 @@
         @strongify(self);
         [signal subscribeNext:^(RCUserInfoData * data) {
             
-            UIViewController * controller = data.targerController;
+            UIViewController * controller = [NSClassFromString(data.controllerName) new];
             [self.navigationController pushViewController:controller animated:YES];
         }];
     }];

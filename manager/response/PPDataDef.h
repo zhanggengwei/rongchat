@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <Mantle/Mantle.h>
 
+typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
+    RCIMContactCustom=20,//好友
+    RCIMContactRequestFriend=11// 请求称为好友
+};
+
 @interface NSObject (DATABASE)
 
 @end
@@ -83,7 +88,7 @@
 @property (nonatomic,strong) RCUserInfoBaseData * user;
 //默认头像
 @property (nonatomic,strong) NSString * placeImage;
-@property (nonatomic,strong) UIViewController * targerController;
+@property (nonatomic,strong) NSString * controllerName;
 
 @end
 

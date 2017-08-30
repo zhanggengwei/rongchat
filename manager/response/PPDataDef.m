@@ -72,6 +72,21 @@
 {
     return _placeImage?_placeImage:@"";
 }
+-(NSComparisonResult)compare:(RCUserInfoData *)data{
+    
+    return [self timeIntervalByDateString:self.updatedAt]<[self  timeIntervalByDateString:data.updatedAt];
+}
+- (NSInteger)timeIntervalByDateString:(NSString *)time
+{
+    if(time==nil)
+    {
+        return [[NSDate date]timeIntervalSince1970];
+    }
+    NSString * dateTimeString = [time stringByReplacingOccurrencesOfString:@"Z" withString:@" UTC"];
+    NSInteger timeInterval = [[NSDate lcck_dateWithString:dateTimeString formatString:@"yyyy-MM-dd'T'HH:mm:ss.SSS Z"]timeIntervalSince1970];
+    return timeInterval;
+}
+
 
 @end
 
