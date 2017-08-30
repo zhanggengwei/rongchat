@@ -82,6 +82,23 @@
         }
     }
 }
+//处理添加好友的网络请求
+- (void)managerAddContactRequest:(RCMessage *)message
+{
+    RCContactNotificationMessage * contactNotificationMessage = message.content;
+    if([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationRequest])
+    {
+        //好友申请
+        
+    }else if ([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationAcceptResponse])
+    {
+        
+    }else
+    {
+        //拒绝
+        
+    }
+}
 
 - (void)onMessageRecalled:(long)messageId
 {
