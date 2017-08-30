@@ -185,8 +185,12 @@
     NSArray *  imageArray = @[@"tabbar_mainframe",@"tabbar_contacts",@"tabbar_discover",@"tabbar_me"];
     NSArray *  selImageArray = @[@"tabbar_mainframeHL",@"tabbar_contactsHL",@"tabbar_discoverHL",@"tabbar_meHL"];
     PPTabBarController * controller = [[PPTabBarController alloc]init:@[@"RCConversationListViewController",@"PPContactListViewController",@"ViewController",@"PPMyViewController"] selectImageArr:selImageArray titleArr:titleArray normalImageArr:imageArray];
-    [controller showPointMarkIndex:0];
-    [controller showBadgeMark:100 index:1];
+    
+    [RACObserve([PPTUserInfoEngine shareEngine], promptCount)subscribeNext:^(id  _Nullable x) {
+        NSInteger count = [x integerValue];
+        [controller showBadgeMark:count index:1];
+    }];
+    
     self.window.rootViewController = controller;
     
 }

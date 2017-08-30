@@ -70,7 +70,8 @@
             [[PPTDBEngine shareManager]loadDataBase:self.userId];
             self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
             self.contactGroupList = [[PPTDBEngine shareManager]contactGroupLists];
-            self.contactList = [[PPTDBEngine shareManager]queryFriendList];
+            self.contactList = [[[[PPTDBEngine shareManager]queryFriendList]arrayByAddingObjectsFromArray:[[PPTDBEngine shareManager]queryFriendList]]arrayByAddingObjectsFromArray:[[PPTDBEngine shareManager]queryFriendList]];
+            
             self.contactRequestList = [[[[PPTDBEngine shareManager]queryContactRequestList] arrayByAddingObjectsFromArray:self.contactList] sortedArrayUsingSelector:@selector(compare:)];
             self.promptCount = [[PPTDBEngine shareManager]queryUnreadFriendCount];
         }
@@ -82,7 +83,6 @@
 {
     self.user_Info = baseInfo;
     BOOL ret = [[PPTDBEngine shareManager]saveUserInfo:baseInfo];
-    self.userId = baseInfo.user.userId;
     return ret;
 }
 

@@ -134,8 +134,6 @@
 
 -(void)showBadgeMark:(NSInteger)badge index:(NSInteger)index
 {
-    
-
     UILabel *  numLabel = [self.customBar viewWithTag:(1020+index)];
     
     numLabel.hidden = false;
@@ -144,15 +142,13 @@
     if (badge <= 0) {
         //隐藏角标
         [self hideMarkIndex:index];
-        
-        
     } else {
         
         if (badge > 0 && badge <= 9)
         {
             
             nFrame.size.width = TabBarNumberMarkD;
-            
+    
             
         } else if (badge > 9 && badge <= 19) {
             

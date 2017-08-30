@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.style = UITableViewStylePlain;
     self.cellClass = [PPContactListCell class];
     self.contactListViewModel = [PPContactListViewModel new];
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"contacts_add_friend") style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
@@ -31,7 +32,6 @@
     [self.contactListViewModel.changeSignal subscribeNext:^(id  _Nullable x) {
         @strongify(self)
         self.dataSource = x;
-        [self.tableView reloadData];
     } error:^(NSError * _Nullable error) {
         NSLog(@"error == %@",error);
     }];
@@ -43,8 +43,7 @@
             [self.navigationController pushViewController:controller animated:YES];
         }];
     }];
-    
-  
+    self.tableView.backgroundColor = [UIColor whiteColor];
     
     // Do any additional setup after loading the view.
 }
@@ -84,7 +83,28 @@
 {
     return 50;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section==self.dataSource.count-1) {
+        NSInteger count = [PPTUserInfoEngine shareEngine].contactList.count;
+        UILabel * bottomLabel = [UILabel new];
+        bottomLabel.font = [UIFont systemFontOfSize:15];
+        bottomLabel.text = [NSString stringWithFormat:@"%ld位联系人",count];
+        bottomLabel.textColor = UIColorFromRGB(0x727272);
+        bottomLabel.textAlignment = NSTextAlignmentCenter;
+        bottomLabel.backgroundColor = [UIColor whiteColor];
+        return bottomLabel;
+    }
+    return nil;
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section==self.dataSource.count-1) {
+        return 50;
+    }
+    return 0;
+}
 //#pragma mark UITableViewDataSource
 //
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
