@@ -47,11 +47,6 @@
 
 @end
 
-@implementation RCContactGroup
-
-@end
-
-
 @implementation RCUserInfoBaseData
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     NSMutableDictionary *mapping = [[NSDictionary mtl_identityPropertyMapWithModel:self] mutableCopy];

@@ -12,7 +12,6 @@
 @property (nonatomic,strong) UIImageView * avatarImageView;
 @property (nonatomic,strong) UILabel * nickNameLabel;
 
-
 @end
 
 @implementation PPContactListCell
@@ -24,7 +23,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -44,6 +43,7 @@
     [self.contentView addSubview:self.avatarImageView];
     
     self.nickNameLabel = [UILabel new];
+    self.nickNameLabel.numberOfLines = 0;
     [self.contentView addSubview:self.nickNameLabel];
     
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,14 +63,25 @@
     self.nickNameLabel.textAlignment = NSTextAlignmentLeft;
     [self addBottomLine];
 }
-- (void)setModel:(RCUserInfoData *)model
+- (void)setModel:(id)model
 {
-    if(!model.user.portraitUri)
+    if([model isKindOfClass:[PPTContactGroupModel class]])
     {
-        model.user.portraitUri = @"";
+        PPTContactGroupModel * contactGroup = model;
+        _nickNameLabel.text = contactGroup.group.name;
+        if(!contactGroup.group.portraitUri)
+        {
+            contactGroup.group.portraitUri = @"";
+        }
+        SD_LOADIMAGE(self.avatarImageView,contactGroup.group.portraitUri,nil);
+    }else if([model isKindOfClass:[RCUserInfoData class]]){
+        RCUserInfoData * userInfo = model;
+        if(!userInfo.user.portraitUri)
+        {
+            userInfo.user.portraitUri = @"";
+        }
+        _nickNameLabel.text = userInfo.user.name;
+        SD_LOADIMAGE(self.avatarImageView,userInfo.user.portraitUri,[UIImage imageNamed:userInfo.placeImage]);
     }
-    _nickNameLabel.text = model.user.name;
-    SD_LOADIMAGE(self.avatarImageView,model.user.portraitUri,[UIImage imageNamed:model.placeImage]);
 }
-
 @end

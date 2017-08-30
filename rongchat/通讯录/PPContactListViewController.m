@@ -12,6 +12,7 @@
 #import "PPContactListViewModel.h"
 #import "RCIMNewContactListViewController.h"
 #import "RCIMPublicServiceViewController.h"
+#import "RCIMContactGroupListViewController.h"
 
 @interface PPContactListViewController ()
 @property (nonatomic,strong) PPContactListViewModel * contactListViewModel;
@@ -39,7 +40,7 @@
     [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
         @strongify(self);
         [signal subscribeNext:^(RCUserInfoData * data) {
-            RCIMPublicServiceViewController * controller = [RCIMPublicServiceViewController new];
+            RCIMContactGroupListViewController * controller = [RCIMContactGroupListViewController new];
             controller.style = UITableViewStyleGrouped;
             [self.navigationController pushViewController:controller animated:YES];
         }];

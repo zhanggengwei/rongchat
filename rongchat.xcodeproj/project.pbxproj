@@ -257,6 +257,7 @@
 		75A5885E1F55C28600E34B46 /* RCIMPublicServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A5885D1F55C28600E34B46 /* RCIMPublicServiceViewController.m */; };
 		75A588611F55C38B00E34B46 /* RCIMPublicServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588601F55C38B00E34B46 /* RCIMPublicServiceCell.m */; };
 		75A588641F55D8E500E34B46 /* RCIMPublicServiceProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588631F55D8E500E34B46 /* RCIMPublicServiceProfile.m */; };
+		75A588681F564A7400E34B46 /* RCIMContactGroupListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588671F564A7400E34B46 /* RCIMContactGroupListViewController.m */; };
 		75B2E56F1F279A9A003240B9 /* LCCKAVAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */; };
 		75B2E5841F285E44003240B9 /* LCCKMessageVoiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E5831F285E44003240B9 /* LCCKMessageVoiceFactory.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
@@ -724,6 +725,8 @@
 		75A588601F55C38B00E34B46 /* RCIMPublicServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMPublicServiceCell.m; sourceTree = "<group>"; };
 		75A588621F55D8E500E34B46 /* RCIMPublicServiceProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMPublicServiceProfile.h; sourceTree = "<group>"; };
 		75A588631F55D8E500E34B46 /* RCIMPublicServiceProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMPublicServiceProfile.m; sourceTree = "<group>"; };
+		75A588661F564A7400E34B46 /* RCIMContactGroupListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMContactGroupListViewController.h; sourceTree = "<group>"; };
+		75A588671F564A7400E34B46 /* RCIMContactGroupListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMContactGroupListViewController.m; sourceTree = "<group>"; };
 		75B2E56D1F279A9A003240B9 /* LCCKAVAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKAVAudioPlayer.h; sourceTree = "<group>"; };
 		75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKAVAudioPlayer.m; sourceTree = "<group>"; };
 		75B2E5701F279AEF003240B9 /* LCCKChatUntiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatUntiles.h; sourceTree = "<group>"; };
@@ -851,6 +854,8 @@
 				7507B0D61F547C67006616B0 /* RCIMNewContactListViewController.m */,
 				75A5885C1F55C28600E34B46 /* RCIMPublicServiceViewController.h */,
 				75A5885D1F55C28600E34B46 /* RCIMPublicServiceViewController.m */,
+				75A588661F564A7400E34B46 /* RCIMContactGroupListViewController.h */,
+				75A588671F564A7400E34B46 /* RCIMContactGroupListViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2137,6 +2142,7 @@
 				7584DB6D1E2A5BF5007249C2 /* PPBaseViewController.m in Sources */,
 				758E8B981E0AC6EB00D5DD4E /* RCIMPhoto.m in Sources */,
 				7507B0D31F5454B7006616B0 /* RCIMInviteMessage.m in Sources */,
+				75A588681F564A7400E34B46 /* RCIMContactGroupListViewController.m in Sources */,
 				7584DB6F1E2A5BF5007249C2 /* PPDateEngine.m in Sources */,
 				4068337A1E7A657700E03427 /* PPListItem.m in Sources */,
 				7584DB761E2A5BF5007249C2 /* PPHTTPResponse.m in Sources */,

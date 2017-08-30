@@ -11,20 +11,26 @@
 #import "PPFileManager.h"
 #import "OTFileManager.h"
 
+
 @interface PPTUserInfoEngine ()
 
-@property (nonatomic,strong) RCUserInfoData * user_Info;
-@property (nonatomic,strong) NSArray * contactList;
-@property (nonatomic,copy) NSString * userId;
-@property (nonatomic,strong) RACSignal * accountChangeSignal;
 @property (nonatomic,copy) NSString * token;
+@property (nonatomic,copy) NSString * userId;
+//群组数据
+@property (nonatomic,strong) NSArray<PPTContactGroupModel *> *contactGroupList;
+@property (nonatomic,strong) NSArray<RCUserInfoData *> * contactBlackList;
+@property (nonatomic,strong) NSArray<RCUserInfoData *> * contactRequestList;
+@property (nonatomic,strong) NSArray<RCUserInfoData *> * contactList;
+@property (nonatomic,strong) RCUserInfoData * user_Info;
+@property (nonatomic,strong) RACSignal * accountChangeSignal;
+
 @end
 
 @implementation PPTUserInfoEngine
 + (instancetype)shareEngine
 {
     static dispatch_once_t token;
-    static PPTUserInfoEngine * instance;
+    static PPTUserInfoEngine * instance = nil;
     dispatch_once(&token, ^{
         instance = [[self alloc]init];
         [instance loadData];
@@ -54,25 +60,19 @@
 {
     self.userId = [SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil];
     self.token = [SFHFKeychainUtils getPasswordForUsername:kPPLoginToken andServiceName:kPPServiceName error:nil];
+    @weakify(self);
     [RACObserve(self,userId) subscribeNext:^(id x){
+        @strongify(self);
         // 其他的一些设置
         if(x){
-           [[PPTDBEngine shareManager]loadDataBase:x];
+            [[PPTDBEngine shareManager]loadDataBase:self.userId];
             self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
+            self.contactGroupList = [[PPTDBEngine shareManager]contactGroupLists];
+            self.contactRequestList = [[PPTDBEngine shareManager]queryContactRequestList];
+            self.contactList = [[PPTDBEngine shareManager]queryFriendList];
         }
     }];
 }
-
-- (NSArray *)contactList
-{
-    return [[PPTDBEngine shareManager]queryFriendList];
-}
-- (NSArray *)contactRequestList
-{
-    return [[PPTDBEngine shareManager]queryContactRequestList];
-    
-}
-
 
 //保存自己的个人信息
 - (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo
@@ -133,11 +133,12 @@
         [response.result enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [data addObject:obj];
         }];
+        self.contactList = data;
         [[PPTDBEngine shareManager]saveContactList:data];
-        
     }];
     [[[PPDateEngine manager]getContactGroupsCommand]subscribeNext:^(PPContactGroupListResponse * response) {
         [[PPTDBEngine shareManager]addOrUpdateContactGroupLists:response.result];
+        self.contactGroupList = response.result;
     } error:^(NSError * _Nullable error) {
         NSLog(@"error==%@",error);
     } completed:^{
@@ -147,6 +148,7 @@
         RCUserInfoData * data =[RCUserInfoData new];
         data.user = response.result;
         [[PPTDBEngine shareManager]saveUserInfo:data];
+        self.user_Info = data;
     } error:^(NSError * _Nullable error) {
         
     }];

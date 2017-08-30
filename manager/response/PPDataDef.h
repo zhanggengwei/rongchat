@@ -75,16 +75,6 @@
 @property (nonatomic,copy) NSString * nickNameWord;
 @end
 
-//群组信息
-@interface RCContactGroup : PPDataDef
-
-@property (nonatomic,copy) NSString * name;
-@property (nonatomic,copy) NSString * groupId;
-@property (nonatomic,copy) NSString * portraitUri;//群组头像
-@property (nonatomic,strong) NSArray<RCUserInfoBaseData *> * members;
-@end
-
-
 @interface RCUserInfoData : PPDataDef
 @property (nonatomic,copy) NSString * displayName;
 @property (nonatomic,copy) NSString * message;

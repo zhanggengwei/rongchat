@@ -11,6 +11,7 @@
 @interface PPTUserInfoEngine : NSObject
 
 @property (nonatomic,copy,readonly) NSString * userId;
+
 @property (nonatomic,copy,readonly) NSString * token;
 //自己的信息数据
 @property (nonatomic,strong,readonly) RCUserInfoData * user_Info;
@@ -18,7 +19,7 @@
 @property (nonatomic,strong,readonly) NSArray * contactList;
 @property (nonatomic,strong,readonly) NSArray * contactRequestList;
 //群组数据
-@property (nonatomic,strong,readonly) NSArray<RCContactGroup *> *contactGroupList;
+@property (nonatomic,strong,readonly) NSArray<PPTContactGroupModel *> *contactGroupList;
 @property (nonatomic,strong,readonly) NSArray<RCUserInfoData *> * contactBlackList;
 
 - (instancetype)init __attribute__((unavailable("user shareEngine init")));

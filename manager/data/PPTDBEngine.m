@@ -22,6 +22,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 @interface PPTDBEngine ()
 @property (nonatomic,strong) FMDatabaseQueue * dataBaseQueue;
+@property (nonatomic,strong) NSString * userId;
 @end
 
 @implementation PPTDBEngine
@@ -51,6 +52,7 @@
 
 - (void)loadDataBase:(NSString *)userID
 {
+    self.userId = userID;
     NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"test.sqlite"];
     
     // 2、创建队列
@@ -78,6 +80,7 @@
         [db executeUpdate:createFriendListSql];
         [db executeUpdate:createContactGroupMemberSql];
         [db executeUpdate:createInviteMessageSql];
+        
     }];
 }
 - (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo
@@ -103,8 +106,9 @@
 {
     NSMutableArray * indexIds = [NSMutableArray new];
     NSMutableArray * contactList = [NSMutableArray new];
+    NSString * searchSql = [NSString stringWithFormat:@"select * from \'%@\' where (userId != \'%@\')",USER_INFO_FRIENDLIST_TABLENAME,self.userId];
     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        NSString * searchSql = [NSString stringWithFormat:@"select * from \'%@\' where (userId != \'%@\')",USER_INFO_FRIENDLIST_TABLENAME,[PPTUserInfoEngine shareEngine].userId];
+       
         FMResultSet * sets = [db executeQuery:searchSql];
         while (sets.next) {
             NSString * userId = [sets stringForColumn:@"userId"];
@@ -118,7 +122,6 @@
             while (results.next) {
                 RCUserInfoData * info = [RCUserInfoData new];
                 info.user = [RCUserInfoBaseData new];
-                
                 info.user.name = [results stringForColumn:@"name"];
                 info.user.userId = [results stringForColumn:@"userId"];
                 info.displayName = [results stringForColumn:@"displayName"];
@@ -131,6 +134,7 @@
                 [contactList addObject:info];
             }
         }
+        
     }];
     return contactList;
 }
@@ -150,17 +154,22 @@
     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         FMResultSet * results = [db executeQuery:sql];
         while (results.next) {
-            RCContactGroup * contactGroup = [RCContactGroup new];
-            contactGroup.groupId = [results stringForColumn:@"groupId"];
-            contactGroup.name = [results stringForColumn:@"name"];
-            contactGroup.portraitUri = results[@"portraitUri"];
+            PPTContactGroupModel * contactGroup = [PPTContactGroupModel new];
+            contactGroup.group= [RCContactGroupData new];
+            contactGroup.group.indexId = [results stringForColumn:@"indexId"];
+            contactGroup.group.name = [results stringForColumn:@"name"];
+            contactGroup.group.portraitUri = results[@"portraitUri"];
+            contactGroup.group.creatorId = results[@"creatorId"];
+            contactGroup.group.maxMemberCount = [results[@"maxMemberCount"] integerValue];
+            contactGroup.group.memberCount = [results[@"memberCount"] integerValue];
             [contactGroups addObject:contactGroup];
         }
+       
     }];
     return contactGroups;
     
 }
-- (BOOL)addOrUpdateContactGroup:(RCContactGroup *)contactGroup
+- (BOOL)addOrUpdateContactGroup:(PPTContactGroupModel *)contactGroup
 {
   return [self addOrUpdateContactGroupLists:@[contactGroup]];
 }
