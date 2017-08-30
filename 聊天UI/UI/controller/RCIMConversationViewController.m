@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.conversation.conversationTitle;
     self.chatBar.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.allowScrollToBottom = YES;
