@@ -7,6 +7,10 @@
 //
 
 #import "PPContactListViewModel.h"
+#import "RCIMNewContactListViewController.h"
+#import "RCIMPublicServiceViewController.h"
+#import "RCIMContactGroupListViewController.h"
+#import "RCIMContactDetailsViewController.h"
 
 @interface PPContactListViewModel ()
 
@@ -31,8 +35,10 @@
         NSMutableArray * source = [NSMutableArray new];
         NSArray * array = @[@"新的朋友",@"群聊",@"标签",@"公众号"];
         NSArray * imageArray = @[@"plugins_FriendNotify",@"add_friend_icon_addgroup",@"Contact_icon_ContactTag",@"add_friend_icon_offical"];
+        NSArray  * targerControllerArray = @[[RCIMNewContactListViewController new],[RCIMContactGroupListViewController new],[RCIMContactGroupListViewController new],[RCIMPublicServiceViewController new]];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             RCUserInfoData *  userInfo = [RCUserInfoData new];
+            userInfo.targerController = targerControllerArray[idx];
             userInfo.user = [RCUserInfoBaseData new];
             userInfo.user.name = obj;
             userInfo.placeImage = imageArray[idx];
@@ -47,6 +53,9 @@
         NSMutableArray * contactlistResults = [NSMutableArray new];
         NSMutableDictionary * results = [NSMutableDictionary new];
         [arr enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            RCIMContactDetailsViewController * controller= [RCIMContactDetailsViewController createViewController];
+            obj.targerController = controller;
+//            controller.userInfo = obj;
             if(![results objectForKey:obj.user.indexChar])
             {
                 NSMutableArray * indexContactLists = [NSMutableArray arrayWithObject:obj];

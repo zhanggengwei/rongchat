@@ -1,24 +1,31 @@
 //
-//  RCIMContactGroupListViewController.m
+//  RCIMContactDetailsViewController.m
 //  rongchat
 //
 //  Created by VD on 2017/8/30.
 //  Copyright © 2017年 vd. All rights reserved.
 //
 
-#import "RCIMContactGroupListViewController.h"
-#import "PPContactListCell.h"
-@interface RCIMContactGroupListViewController ()
+#import "RCIMContactDetailsViewController.h"
+
+@interface RCIMContactDetailsViewController ()
 
 @end
 
-@implementation RCIMContactGroupListViewController
+@implementation RCIMContactDetailsViewController
 
++ (instancetype)createViewController
+{
+    return [[UIStoryboard storyboardWithName:@"RCContact" bundle:nil]instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.cellClass = [PPContactListCell class];
-    self.dataSource= @[@{@"":[PPTUserInfoEngine shareEngine].contactGroupList}];
     // Do any additional setup after loading the view.
+}
+- (void)dealloc
+{
+    NSLog(@"dd");
 }
 
 - (void)didReceiveMemoryWarning {

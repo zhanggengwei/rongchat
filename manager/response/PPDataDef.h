@@ -81,7 +81,10 @@
 @property (nonatomic,copy) NSString * updatedAt;
 @property (nonatomic,assign) NSInteger status;
 @property (nonatomic,strong) RCUserInfoBaseData * user;
+//默认头像
 @property (nonatomic,strong) NSString * placeImage;
+@property (nonatomic,strong) UIViewController * targerController;
+
 @end
 
 @interface RCContactGroupData : PPDataDef
