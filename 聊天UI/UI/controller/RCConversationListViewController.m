@@ -23,10 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.needRefresh = YES;
-    self.conversationTypeArr = @[@(ConversationType_PRIVATE)];
+    self.conversationTypeArr = @[@(ConversationType_PRIVATE),@(ConversationType_GROUP)];
     [self.tableView registerClass:[RCConversationListCell class] forCellReuseIdentifier:@"RCConversationListCell"];
     [self reloadConversationList];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveNewMessages:) name:RCDidReceiveMessagesDidChanged object:nil];
+    
     
     
 }

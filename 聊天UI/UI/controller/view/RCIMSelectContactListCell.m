@@ -27,7 +27,6 @@
         self.selectButton.selected = [x boolValue];
     }];
     RAC(self.selectButton,enabled) = RACObserve(data,enabled);
-    
 }
 
 @end
