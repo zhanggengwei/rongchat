@@ -48,13 +48,14 @@
     return self;
 }
 
-- (void)loadUserInfo
+- (void)loadUserInfoWithUserId:(NSString *)userId
 {
     [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
         RCUserInfoData * info = [RCUserInfoData new];
         info.user = aTaskResponse.result;
         [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
-    } userID:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil]];
+    } userID:userId];
+    
 }
 
 - (void)loadData
@@ -155,7 +156,11 @@
         }];
         dispatch_group_notify(group, dispatch_get_main_queue(), ^{
             [[PPTDBEngine shareManager]saveContactList:data];
-            self.contactList = data;
+            NSPredicate * predicate = [NSPredicate predicateWithFormat:@"self.status == %d",RCIMContactCustom];
+            NSPredicate * requestPredicate = [NSPredicate predicateWithFormat:@"self.status == %d",RCIMContactRequestFriend];
+            self.contactList = [data filteredArrayUsingPredicate:predicate];
+            self.contactRequestList = [data filteredArrayUsingPredicate:requestPredicate];
+            
         });
     }];
    
@@ -195,6 +200,11 @@
 
 - (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages
 {
+    NSLog(@"message ==%@",messages);
+    [messages enumerateObjectsUsingBlock:^(RCIMInviteMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[PPTUserInfoEngine shareEngine]loadUserInfoWithUserId:obj.sourceUserId];
+    }];
+    self.promptCount+=messages.count;
     return [[PPTDBEngine shareManager]addContactNotificationMessages:messages];
 }
 - (void)clearPromptCount

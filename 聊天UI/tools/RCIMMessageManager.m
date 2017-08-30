@@ -12,7 +12,6 @@
 @interface RCIMMessageManager ()<RCIMClientReceiveMessageDelegate,RCConnectionStatusChangeDelegate>
 {
     RCIMClient * _client;
-    NSMutableArray * _contactMessages;
     //创建一个子线程用于查询历史消息
     dispatch_queue_t _queryMessageQueue;
     //创建一个查询会话数据
@@ -36,7 +35,6 @@
     if(self=[super init])
     {
         _client = [RCIMClient sharedRCIMClient];
-        _contactMessages = [NSMutableArray new];
         [_client setReceiveMessageDelegate:self object:nil];
         _queryMessageQueue = dispatch_queue_create("queryMessageQueue", DISPATCH_QUEUE_SERIAL);//创建一个串行的队列
         _queryConversationListQueue = dispatch_queue_create("queryConversationListQueue", DISPATCH_QUEUE_SERIAL);//创建一个串行的队列
@@ -49,14 +47,7 @@
     static BOOL refresh;
     if([message.objectName isEqualToString:RCContactNotificationMessageIdentifier])
     {
-        RCContactNotificationMessage * contactMessage = (RCContactNotificationMessage *)message.content;
-        RCIMInviteMessage * inviteMessage = [RCIMInviteMessage new];
-        inviteMessage.message = contactMessage.message;
-        inviteMessage.sourceUserId = contactMessage.sourceUserId;
-        inviteMessage.targetUserId = contactMessage.targetUserId;
-        inviteMessage.read = NO;
-        inviteMessage.status = 0;
-        [_contactMessages addObject:inviteMessage];
+        [self managerAddContactRequest:message];
         if(nLeft<=0)
         {
             if(refresh)
@@ -64,8 +55,6 @@
                 [[NSNotificationCenter defaultCenter]postNotificationName:RCDidReceiveMessagesDidChanged object:nil]; 
             }
             refresh = NO;
-            [[PPTUserInfoEngine shareEngine]addContactNotificationMessages:_contactMessages];
-            [_contactMessages removeAllObjects];
         }
     }
     else
@@ -85,25 +74,29 @@
 //处理添加好友的网络请求
 - (void)managerAddContactRequest:(RCMessage *)message
 {
-    RCContactNotificationMessage * contactNotificationMessage = (RCContactNotificationMessage *)message.content;
-    if([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationRequest])
-    {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        RCContactNotificationMessage * contactNotificationMessage = (RCContactNotificationMessage *)message.content;
         RCIMInviteMessage * inviteMessage = [RCIMInviteMessage new];
         inviteMessage.sourceUserId = contactNotificationMessage.sourceUserId;
         inviteMessage.targetUserId = contactNotificationMessage.targetUserId;
         inviteMessage.message = contactNotificationMessage.message;
-        inviteMessage.status = RCIMInviteMessageStatusCustom;
-        //好友申请
-        [[PPTUserInfoEngine shareEngine]addContactNotificationMessages:@[inviteMessage]];
-        
-    }else if ([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationAcceptResponse])
-    {
-        
-    }else
-    {
-        //拒绝
-        
-    }
+        if([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationRequest])
+        {
+            inviteMessage.status = RCIMInviteMessageStatusCustom;
+            //好友申请
+            [[PPTUserInfoEngine shareEngine]addContactNotificationMessages:@[inviteMessage]];
+            
+        }else if ([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationAcceptResponse])
+        {
+            inviteMessage.status = RCIMInviteMessageStatusAgree;
+            [[PPTUserInfoEngine shareEngine]addContactNotificationMessages:@[inviteMessage]];
+        }else
+        {
+            //拒绝
+            
+        }
+    });
+
 }
 
 - (void)onMessageRecalled:(long)messageId
