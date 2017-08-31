@@ -178,6 +178,7 @@
 //保存用户的好友列表
 - (BOOL)saveContactList:(NSArray<RCUserInfoData *> *)contactList
 {
+    
     __block BOOL sucessed = NO;
     [_dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         [contactList enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

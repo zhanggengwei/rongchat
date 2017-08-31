@@ -81,6 +81,7 @@
         inviteMessage.sourceUserId = contactNotificationMessage.sourceUserId;
         inviteMessage.targetUserId = contactNotificationMessage.targetUserId;
         inviteMessage.message = contactNotificationMessage.message;
+        inviteMessage.date = [NSDate dateWithTimeIntervalSince1970:message.sentTime/1000];
         if([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationRequest])
         {
             inviteMessage.status = RCIMContactRequestFriend;

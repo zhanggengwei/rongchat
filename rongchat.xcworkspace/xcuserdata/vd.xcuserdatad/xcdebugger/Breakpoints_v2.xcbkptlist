@@ -35,54 +35,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "manager/data/PPTUserInfoEngine.m"
-            timestampString = "525855384.397755"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "-asynFriendList"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PPTUserInfoEngine asynFriendList]"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Documents/GitHub/rongchat/manager/data/PPTUserInfoEngine.m"
-                  timestampString = "525862840.642061"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "125"
-                  endingLineNumber = "125"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__35-[PPTUserInfoEngine asynFriendList]_block_invoke"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Documents/GitHub/rongchat/manager/data/PPTUserInfoEngine.m"
-                  timestampString = "525862840.644628"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "126"
-                  endingLineNumber = "126"
-                  offsetFromSymbolStart = "44">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "manager/data/PPDateEngine.m"
             timestampString = "525791598.207407"
             startingColumnNumber = "9223372036854775807"
@@ -90,38 +42,6 @@
             startingLineNumber = "124"
             endingLineNumber = "124"
             landmarkName = "-requestGetUserInfoResponse:userID:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "manager/data/PPTUserInfoEngine.m"
-            timestampString = "525855384.397755"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "-appendFrinedUserInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "manager/data/PPTUserInfoEngine.m"
-            timestampString = "525855384.397755"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "-appendFrinedUserInfo:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -180,7 +100,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/GitHub/rongchat/manager/data/PPDateEngine.m"
-                  timestampString = "525862840.686474"
+                  timestampString = "525891546.425046"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "853"
@@ -195,7 +115,7 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/GitHub/rongchat/manager/data/PPDateEngine.m"
-                  timestampString = "525862840.692696"
+                  timestampString = "525891546.428049"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "853"
@@ -203,54 +123,6 @@
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "manager/data/PPTUserInfoEngine.m"
-            timestampString = "525862625.776986"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "-loginSucessed:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "manager/data/PPTUserInfoEngine.m"
-            timestampString = "525862629.57902"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-loginSucessed:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "manager/data/PPDateEngine.m"
-            timestampString = "525862709.531044"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "642"
-            endingLineNumber = "642"
-            landmarkName = "-contactListCommand"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

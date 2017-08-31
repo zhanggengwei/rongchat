@@ -10,6 +10,7 @@
 #import "RCConversationCacheObj.h"
 #import "PPFileManager.h"
 #import "OTFileManager.h"
+#import "NSDate+RCIMDateTools.h"
 
 
 @interface PPTUserInfoEngine ()
@@ -43,7 +44,7 @@
 {
     if(self = [super init])
     {
-       
+        
     }
     return self;
 }
@@ -54,11 +55,16 @@
         if(response.code.integerValue== 200)
         {
             RCUserInfoData * data =[RCUserInfoData new];
+            NSString * updateAt = [message.date lcck_formattedDateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
             data.message = message.message;
-            data.updatedAt = message.date;
+            data.updatedAt = updateAt;
             data.status = message.status;
             data.user = response.result;
-            self.contactRequestList = [self.contactRequestList arrayByAddingObject:data];
+            if (data.status==RCIMContactCustom) {
+                self.contactList = [self.contactList arrayByAddingObject:data];
+            }else{
+                self.contactRequestList = [self.contactRequestList arrayByAddingObject:data];
+            }
             [[PPTDBEngine shareManager]saveUserInfo:data];
         }
     } error:^(NSError * _Nullable error) {
@@ -79,9 +85,8 @@
             [[PPTDBEngine shareManager]loadDataBase:self.userId];
             self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
             self.contactGroupList = [[PPTDBEngine shareManager]contactGroupLists];
-            self.contactList = [[[[PPTDBEngine shareManager]queryFriendList]arrayByAddingObjectsFromArray:[[PPTDBEngine shareManager]queryFriendList]]arrayByAddingObjectsFromArray:[[PPTDBEngine shareManager]queryFriendList]];
-            
-            self.contactRequestList = [[[[PPTDBEngine shareManager]queryContactRequestList] arrayByAddingObjectsFromArray:self.contactList] sortedArrayUsingSelector:@selector(compare:)];
+            self.contactList = [[PPTDBEngine shareManager]queryFriendList];
+            self.contactRequestList = [[[PPTDBEngine shareManager]queryContactRequestList]sortedArrayUsingSelector:@selector(compare:)];
             self.promptCount = [[PPTDBEngine shareManager]queryUnreadFriendCount];
         }
     }];
@@ -149,7 +154,7 @@
     self.userId = tokenDef.indexId;
     [[PPDateEngine manager]connectRCIM];
     [self saveCustomMessage];
-
+    
     
     [[[PPDateEngine manager] getContactListCommandWithUserId:nil] subscribeNext:^(PPUserFriendListResponse *response) {
         NSMutableArray * data = [NSMutableArray new];
@@ -182,7 +187,7 @@
             
         });
     }];
-   
+    
     [[[PPDateEngine manager]getContactGroupsCommand]subscribeNext:^(PPContactGroupListResponse * response) {
         [[PPTDBEngine shareManager]addOrUpdateContactGroupLists:response.result];
         self.contactGroupList = response.result;
@@ -219,7 +224,6 @@
 
 - (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages
 {
-    NSLog(@"message ==%@",messages);
     [messages enumerateObjectsUsingBlock:^(RCIMInviteMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [[PPTUserInfoEngine shareEngine]loadUserInfoWithInviteMessage:obj];
     }];

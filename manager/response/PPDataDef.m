@@ -7,6 +7,7 @@
 //
 
 #import "PPDataDef.h"
+#import "NSDate+RCIMDateTools.h"
 
 @implementation PPDataDef
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -68,12 +69,27 @@
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:[RCUserInfoBaseData class]];
 }
 
+- (void)setUpdatedAt:(NSString *)updatedAt
+{
+    _updatedAt = updatedAt;
+    _updatedAt = [_updatedAt stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+    NSString * regex = @"^[1-9]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\\s+(20|21|22|23|[0-1]\\d):[0-5]\\d:[0-5]\\d";
+    NSRegularExpression * expression = [[NSRegularExpression alloc]initWithPattern:regex options:NSRegularExpressionCaseInsensitive error:nil];
+    NSRange range = [expression  rangeOfFirstMatchInString:_updatedAt options:NSMatchingReportProgress range:NSMakeRange(0, updatedAt.length)];
+    if(range.location!= NSNotFound&&range.length)
+    {
+        _updatedAt = [_updatedAt substringWithRange:range];
+    }
+    NSLog(@"_updatedAt ==%@",_updatedAt);
+    
+}
+
 - (NSString *)placeImage
 {
     return _placeImage?_placeImage:@"";
 }
 -(NSComparisonResult)compare:(RCUserInfoData *)data{
-    return self.updatedAt<data.updatedAt;
+    return [self timeIntervalByDateString:self.updatedAt]<[self timeIntervalByDateString:data.updatedAt];
 }
 - (NSInteger)timeIntervalByDateString:(NSString *)time
 {
@@ -81,8 +97,7 @@
     {
         return [[NSDate date]timeIntervalSince1970];
     }
-    NSString * dateTimeString = [time stringByReplacingOccurrencesOfString:@"Z" withString:@" UTC"];
-    NSInteger timeInterval = [[NSDate lcck_dateWithString:dateTimeString formatString:@"yyyy-MM-dd'T'HH:mm:ss.SSS Z"]timeIntervalSince1970];
+    NSInteger timeInterval = [[NSDate lcck_dateWithString:time formatString:@"yyyy-MM-dd HH:mm:ss"]timeIntervalSince1970];
     return timeInterval;
 }
 
