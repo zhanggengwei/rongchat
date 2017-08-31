@@ -132,6 +132,7 @@
 		7504C85C1F56B11E008FEF2B /* RCIMSelectContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7504C85B1F56B11E008FEF2B /* RCIMSelectContactsViewController.m */; };
 		7504C85F1F56B66A008FEF2B /* RCIMSelectContactListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7504C85E1F56B66A008FEF2B /* RCIMSelectContactListCell.m */; };
 		7504C8621F57996A008FEF2B /* RCIMTableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7504C8611F57996A008FEF2B /* RCIMTableSectionHeaderView.m */; };
+		7504C8661F57ACEE008FEF2B /* RCIMIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7504C8651F57ACEE008FEF2B /* RCIMIndexView.m */; };
 		7507B0D31F5454B7006616B0 /* RCIMInviteMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507B0D21F5454B7006616B0 /* RCIMInviteMessage.m */; };
 		7507B0D71F547C67006616B0 /* RCIMNewContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507B0D61F547C67006616B0 /* RCIMNewContactListViewController.m */; };
 		7507B0DA1F547DF1006616B0 /* RCIMCustomTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7507B0D91F547DF1006616B0 /* RCIMCustomTableViewController.m */; };
@@ -492,6 +493,8 @@
 		7504C85E1F56B66A008FEF2B /* RCIMSelectContactListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMSelectContactListCell.m; sourceTree = "<group>"; };
 		7504C8601F57996A008FEF2B /* RCIMTableSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMTableSectionHeaderView.h; sourceTree = "<group>"; };
 		7504C8611F57996A008FEF2B /* RCIMTableSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMTableSectionHeaderView.m; sourceTree = "<group>"; };
+		7504C8641F57ACEE008FEF2B /* RCIMIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMIndexView.h; sourceTree = "<group>"; };
+		7504C8651F57ACEE008FEF2B /* RCIMIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMIndexView.m; sourceTree = "<group>"; };
 		7507B0D11F5454B7006616B0 /* RCIMInviteMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMInviteMessage.h; sourceTree = "<group>"; };
 		7507B0D21F5454B7006616B0 /* RCIMInviteMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMInviteMessage.m; sourceTree = "<group>"; };
 		7507B0D51F547C67006616B0 /* RCIMNewContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMNewContactListViewController.h; sourceTree = "<group>"; };
@@ -1277,6 +1280,8 @@
 				7504C85E1F56B66A008FEF2B /* RCIMSelectContactListCell.m */,
 				7504C8601F57996A008FEF2B /* RCIMTableSectionHeaderView.h */,
 				7504C8611F57996A008FEF2B /* RCIMTableSectionHeaderView.m */,
+				7504C8641F57ACEE008FEF2B /* RCIMIndexView.h */,
+				7504C8651F57ACEE008FEF2B /* RCIMIndexView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2136,6 +2141,7 @@
 				753CA06C1F26180000F313EE /* LCCKInputViewPluginTakePhoto.m in Sources */,
 				7584DAD61E2A5B92007249C2 /* NSBundle+RCIMExtension.m in Sources */,
 				7584DB8A1E2A623F007249C2 /* RCChatBar.m in Sources */,
+				7504C8661F57ACEE008FEF2B /* RCIMIndexView.m in Sources */,
 				75DE618B1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m in Sources */,
 				753CA0C11F27109F00F313EE /* LCCKChatFaceView.m in Sources */,
 				751D2A441F34662700426D12 /* RCIMConversationViewController.m in Sources */,

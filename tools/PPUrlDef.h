@@ -25,6 +25,7 @@
 
 
 #define kPPUrlProfile(friendId) [NSString stringWithFormat:@"%@friendship/%@/profile",kPPUrlHttp,friendId]
+
 #define kPPUrlUploadImageToken [NSString stringWithFormat:@"%@user/get_image_token",kPPUrlHttp]
 
 #define KppUrlsetAvatuaUrl [NSString stringWithFormat:@"%@user/set_portrait_uri",kPPUrlHttp]

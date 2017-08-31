@@ -9,6 +9,10 @@
 #import "RCIMCustomTableViewController.h"
 #import <ReactiveObjC.h>
 #import "RCIMTableSectionHeaderView.h"
+#import "RCIMIndexView.h"
+#import <UIView+FrameEx.h>
+#import "NSString+isValid.h"
+
 
 @interface RCIMCustomTableViewController ()
 @property (nonatomic,strong) RACSignal * selectCellSignal;
@@ -16,6 +20,7 @@
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSMutableArray<RCIMTableSectionHeaderView*> *headerArray;
 @property (nonatomic,assign) NSInteger topSection;
+@property (nonatomic,strong) RCIMIndexView * indexView;
 
 @end
 
@@ -25,10 +30,20 @@
     [super viewDidLoad];
     self.headerArray = [NSMutableArray new];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.indexView];
     [self.didSelectCommand execute:nil];
     @weakify(self);
     [RACObserve(self,dataSource) subscribeNext:^(id  _Nullable x) {
         @strongify(self);
+        NSMutableArray * indexArrays = [NSMutableArray new];
+        [self.dataSource enumerateObjectsUsingBlock:^(NSDictionary * dict, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString * title = [dict allKeys].firstObject;
+            if([title isValid]){
+            [indexArrays addObject:title];
+            }
+        }];
+        self.indexView.indexArray = indexArrays;
+        self.indexView.y = (SCREEN_HEIHGHT-64-49 - self.indexView.height)*0.5;
         [self.tableView reloadData];
     }];
 }
@@ -45,10 +60,24 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.showsVerticalScrollIndicator = NO;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     }
     return _tableView;
+}
+
+- (RCIMIndexView *)indexView
+{
+    if(_indexView==nil)
+    {
+        _indexView= [[RCIMIndexView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 20, 100,15,SCREEN_HEIHGHT)];
+        [_indexView selectIndexBlock:^(NSInteger section)
+         {
+             [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+          }];
+    }
+    return _indexView;
 }
 
 - (void)setCellClass:(Class)cellClass

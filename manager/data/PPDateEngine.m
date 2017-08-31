@@ -843,6 +843,30 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     return _loginCommand;
 }
 
+- (RACCommand *)userInfoDetailCommand
+{
+    if(_userInfoDetailCommand==nil)
+    {
+        _userInfoDetailCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:kPPUrlProfile(input) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSError * error;
+                    PPContactGroupListResponse * resoponse = [MTLJSONAdapter modelOfClass:[PPContactGroupListResponse class] fromJSONDictionary:responseObject error:&error];
+                    [subscriber sendNext:resoponse];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _userInfoDetailCommand;
+}
+
 - (RACCommand *)contactGroupsCommand
 {
     if(_contactGroupsCommand==nil)
@@ -907,6 +931,11 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }];
 //    [self.connectRCIMCommand execute:[PPTUserInfoEngine shareEngine].token];
 //    
+}
+- (RACSignal *)getUserInfoDetailCommand:(NSString *)friendId
+{
+    return [self.userInfoDetailCommand execute:friendId];
+
 }
 
 @end

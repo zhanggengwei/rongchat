@@ -8,6 +8,7 @@
 
 #import "RCIMMessageManager.h"
 #import "RCIMInviteMessage.h"
+#import "PPDataDef.h"
 
 @interface RCIMMessageManager ()<RCIMClientReceiveMessageDelegate,RCConnectionStatusChangeDelegate>
 {
@@ -82,13 +83,13 @@
         inviteMessage.message = contactNotificationMessage.message;
         if([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationRequest])
         {
-            inviteMessage.status = RCIMInviteMessageStatusCustom;
+            inviteMessage.status = RCIMContactRequestFriend;
             //好友申请
             [[PPTUserInfoEngine shareEngine]addContactNotificationMessages:@[inviteMessage]];
             
         }else if ([contactNotificationMessage.operation isEqualToString:ContactNotificationMessage_ContactOperationAcceptResponse])
         {
-            inviteMessage.status = RCIMInviteMessageStatusAgree;
+            inviteMessage.status = RCIMContactCustom;
             [[PPTUserInfoEngine shareEngine]addContactNotificationMessages:@[inviteMessage]];
         }else
         {

@@ -38,7 +38,6 @@
     [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
         @strongify(self);
         [signal subscribeNext:^(RCUserInfoData * data) {
-            
             UIViewController * controller = [NSClassFromString(data.controllerName) new];
             [self.navigationController pushViewController:controller animated:YES];
         }];

@@ -43,18 +43,27 @@
 {
     if(self = [super init])
     {
-        
+       
     }
     return self;
 }
 
-- (void)loadUserInfoWithUserId:(NSString *)userId
+- (void)loadUserInfoWithInviteMessage:(RCIMInviteMessage *)message
 {
-    [[PPDateEngine manager]requestGetUserInfoResponse:^(PPLoginOrRegisterHTTPResponse * aTaskResponse) {
-        RCUserInfoData * info = [RCUserInfoData new];
-        info.user = aTaskResponse.result;
-        [[PPTUserInfoEngine shareEngine]saveUserInfo:info];
-    } userID:userId];
+    [[[PPDateEngine manager]getUserInfoCommandByUserId:message.sourceUserId]subscribeNext:^(PPUserBaseInfoResponse * response) {
+        if(response.code.integerValue== 200)
+        {
+            RCUserInfoData * data =[RCUserInfoData new];
+            data.message = message.message;
+            data.updatedAt = message.interval;
+            data.status = message.status;
+            data.user = response.result;
+            self.contactRequestList = [self.contactRequestList arrayByAddingObject:data];
+            [[PPTDBEngine shareManager]saveUserInfo:data];
+        }
+    } error:^(NSError * _Nullable error) {
+        
+    }];
     
 }
 
@@ -82,9 +91,18 @@
 - (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo
 {
     self.user_Info = baseInfo;
+    self.userId = baseInfo.user.userId;
     BOOL ret = [[PPTDBEngine shareManager]saveUserInfo:baseInfo];
     return ret;
 }
+
+- (BOOL)appendFrinedUserInfo:(RCUserInfoData *)baseInfo
+{
+    BOOL ret = [[PPTDBEngine shareManager]saveUserInfo:baseInfo];
+    self.contactRequestList = [self.contactRequestList arrayByAddingObject:baseInfo];
+    return ret;
+}
+
 
 - (BOOL)saveUserFriendList:(NSArray<RCUserInfoData *> *)baseInfoArr
 {
@@ -202,7 +220,7 @@
 {
     NSLog(@"message ==%@",messages);
     [messages enumerateObjectsUsingBlock:^(RCIMInviteMessage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[PPTUserInfoEngine shareEngine]loadUserInfoWithUserId:obj.sourceUserId];
+        [[PPTUserInfoEngine shareEngine]loadUserInfoWithInviteMessage:obj];
     }];
     self.promptCount+=messages.count;
     return [[PPTDBEngine shareManager]addContactNotificationMessages:messages];

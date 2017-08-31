@@ -100,6 +100,10 @@
 - (RACSignal *)resgisterUserCommandByAccount:(NSString *)account passWord:(NSString *)passWord nickName:(NSString *)nickName verifyCode:(NSString *)code;
 - (RACSignal *)getVerificationCodeCommand:(NSString *)region phone:(NSString *)phone;
 - (RACSignal *)verifyVerificationCodeCommand:(NSString *)phoneNumber verifyCode:(NSString *)code;
+
+- (RACSignal *)getUserInfoDetailCommand:(NSString *)friendId;
+
+
 //登录完成后连接容云通讯
 - (void)connectRCIM;
 

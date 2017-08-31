@@ -66,7 +66,7 @@
         _titleLabel.textColor = UIColorFromRGB(0x727272);
     }else
     {
-        _titleLabel.textColor = [UIColor greenColor];
+        _titleLabel.textColor = kPPLoginButtonColor;
     }
 }
 

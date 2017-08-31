@@ -8,17 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger,RCIMInviteMessageStatus) {
-    RCIMInviteMessageStatusCustom,
-    RCIMInviteMessageStatusRejected,
-    RCIMInviteMessageStatusAgree
-};
-
 @interface RCIMInviteMessage : NSObject
 
 @property (nonatomic, strong) NSString * sourceUserId;
 @property (nonatomic, strong) NSString * targetUserId;
 @property (nonatomic, strong) NSString * message;
-@property (nonatomic, assign) RCIMInviteMessageStatus status;
+@property (nonatomic, assign) RCIMContactStatus status;
 @property (nonatomic, assign) BOOL read;//是否读取
+@property (nonatomic, strong) NSString * interval;
 @end

@@ -58,9 +58,9 @@
         
     }];
     NSLog(@"path = %@",NSHomeDirectory());
-    
+//    
     [[UINavigationBar appearance]setBackgroundImage:[PPImageUtil imageFromColor:[UIColor blackColor]] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance]setTranslucent:YES];
+    [[UINavigationBar appearance]setTranslucent:NO];
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];//导航栏字体颜色

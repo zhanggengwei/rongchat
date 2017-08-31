@@ -33,7 +33,7 @@ static UIImage * saveImage = nil;
     else
     {
         CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-        UIGraphicsBeginImageContextWithOptions(rect.size, NO, 1.0f);
+        UIGraphicsBeginImageContextWithOptions(rect.size, YES, 1.0f);
         
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetFillColorWithColor(context, [aColor CGColor]);
