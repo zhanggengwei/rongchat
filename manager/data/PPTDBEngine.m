@@ -69,7 +69,7 @@
 }
 - (void)createTables
 {
-    NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,displayName text,portraitUri text,updatedAt text,phone text,region text,message varchar(100),status INT,nickNameWord varchar(100),indexChar varchar(1))",USER_INFO_TABLENAME];
+    NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,displayName text,portraitUri text,updatedAt timestamp not null default current_timestamp,phone text,region text,message varchar(100),status INT,nickNameWord varchar(100),indexChar varchar(1))",USER_INFO_TABLENAME];
     NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100) not null,creatorId varchar(100)not null,portraitUri varchar(100),indexId varchar(100) not null,maxMemberCount INT,memberCount INT,primary key(indexId))",CONTACT_GRAOUP_TABLENAME];
     NSString * createContactGroupMemberSql = [NSString stringWithFormat:@"create table if not exists %@ (indexId varchar (100)not null,userId varchar(100) not null,primary key(indexId,userId))",CONTACT_GRAOUP_MEMBER_TABLENAME];
     NSString * createFriendListSql = [NSString stringWithFormat:@"create table if not exists %@ (userId text not null,isBlack BOOL default 0,primary key(userId))",USER_INFO_FRIENDLIST_TABLENAME];
@@ -181,6 +181,8 @@
     __block BOOL sucessed = NO;
     [_dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         [contactList enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [db executeUpdate:[NSString stringWithFormat:@"delete from \'%@\' where userId=\'%@\'",USER_INFO_TABLENAME,obj.user.userId]];
+            [db executeUpdate:[NSString stringWithFormat:@"delete from \'%@\' where userId=\'%@\'",USER_INFO_FRIENDLIST_TABLENAME,obj.user.userId]];
             HanyuPinyinOutputFormat * outFormat = [HanyuPinyinOutputFormat new];
             outFormat.caseType = CaseTypeLowercase;
             outFormat.toneType =ToneTypeWithoutTone;

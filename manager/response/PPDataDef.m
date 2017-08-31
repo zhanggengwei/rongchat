@@ -73,8 +73,7 @@
     return _placeImage?_placeImage:@"";
 }
 -(NSComparisonResult)compare:(RCUserInfoData *)data{
-    
-    return [self timeIntervalByDateString:self.updatedAt]<[self  timeIntervalByDateString:data.updatedAt];
+    return self.updatedAt<data.updatedAt;
 }
 - (NSInteger)timeIntervalByDateString:(NSString *)time
 {

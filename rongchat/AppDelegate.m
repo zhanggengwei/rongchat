@@ -145,14 +145,26 @@
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:RCIMLogoutSucessedNotifaction object:nil]subscribeNext:^(NSNotification * _Nullable x) {
         [self logoutSucessed];
     }];
-    NSLog(@"%@", [[NSHTTPCookieStorage sharedHTTPCookieStorage]cookies]);
-    return YES;
-}
-
-
-- (void)applicationWillResignActive:(UIApplication *)application {
+    
+    
+ 
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    RCIMInviteMessage * message = [RCIMInviteMessage new];
+    message.targetUserId = @"CLNBb8LzF";
+    message.sourceUserId = @"CLNBb8LzF";
+    message.message= @"我是法国股";
+    message.status =11;
+    NSInteger timeInterval = [[NSDate date]timeIntervalSince1970];
+    
+    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    NSLog(@"NSdate ==%@",[formatter stringFromDate:[NSDate date]]);
+    message.date =[NSDate date];
+    [[PPTUserInfoEngine shareEngine]addContactNotificationMessages:@[message]];
+    
+    return YES;
+    
 }
 
 

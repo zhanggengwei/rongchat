@@ -15,5 +15,5 @@
 @property (nonatomic, strong) NSString * message;
 @property (nonatomic, assign) RCIMContactStatus status;
 @property (nonatomic, assign) BOOL read;//是否读取
-@property (nonatomic, strong) NSString * interval;
+@property (nonatomic, strong) NSDate * date;
 @end

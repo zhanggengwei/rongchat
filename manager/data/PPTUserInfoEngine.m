@@ -55,7 +55,7 @@
         {
             RCUserInfoData * data =[RCUserInfoData new];
             data.message = message.message;
-            data.updatedAt = message.interval;
+            data.updatedAt = message.date;
             data.status = message.status;
             data.user = response.result;
             self.contactRequestList = [self.contactRequestList arrayByAddingObject:data];
@@ -177,7 +177,8 @@
             NSPredicate * predicate = [NSPredicate predicateWithFormat:@"self.status == %d",RCIMContactCustom];
             NSPredicate * requestPredicate = [NSPredicate predicateWithFormat:@"self.status == %d",RCIMContactRequestFriend];
             self.contactList = [data filteredArrayUsingPredicate:predicate];
-            self.contactRequestList = [data filteredArrayUsingPredicate:requestPredicate];
+            self.contactRequestList = [[data filteredArrayUsingPredicate:requestPredicate]sortedArrayUsingSelector:@selector(compare:)];
+            
             
         });
     }];
@@ -227,6 +228,7 @@
 }
 - (void)clearPromptCount
 {
+    
     self.promptCount = 0;
 }
 @end
