@@ -154,8 +154,6 @@
     self.userId = tokenDef.indexId;
     [[PPDateEngine manager]connectRCIM];
     [self saveCustomMessage];
-    
-    
     [[[PPDateEngine manager] getContactListCommandWithUserId:nil] subscribeNext:^(PPUserFriendListResponse *response) {
         NSMutableArray * data = [NSMutableArray new];
         dispatch_group_t group = dispatch_group_create();
@@ -183,8 +181,6 @@
             NSPredicate * requestPredicate = [NSPredicate predicateWithFormat:@"self.status == %d",RCIMContactRequestFriend];
             self.contactList = [data filteredArrayUsingPredicate:predicate];
             self.contactRequestList = [[data filteredArrayUsingPredicate:requestPredicate]sortedArrayUsingSelector:@selector(compare:)];
-            
-            
         });
     }];
     

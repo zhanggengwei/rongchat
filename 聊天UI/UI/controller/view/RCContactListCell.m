@@ -20,5 +20,9 @@
 
     // Configure the view for the selected state
 }
+- (void)setModel:(id)model
+{
+    _model = model;
+}
 
 @end

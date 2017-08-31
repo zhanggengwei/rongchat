@@ -10,6 +10,7 @@
 #import "PPContactListCell.h"
 #import "NSString+isValid.h"
 #import "PPContactListViewModel.h"
+#import "RCIMAddNewContactViewController.h"
 
 
 @interface PPContactListViewController ()
@@ -64,7 +65,8 @@
 
 -(void)addFriend
 {
-    
+    RCIMAddNewContactViewController * controller = [RCIMAddNewContactViewController new];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (PPContactListCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
