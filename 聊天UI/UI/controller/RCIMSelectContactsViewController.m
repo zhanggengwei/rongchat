@@ -8,6 +8,8 @@
 
 #import "RCIMSelectContactsViewController.h"
 #import "PPContactListViewModel.h"
+#import "RCIMSelectContactListCell.h"
+
 
 @interface RCIMSelectContactsViewController ()
 @property (nonatomic,strong) PPContactListViewModel * viewModel;
@@ -17,10 +19,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"选择联系人";
     self.viewModel = [PPContactListViewModel new];
-    [self.viewModel.changeSignal subscribeNext:^(NSArray * results) {
+    self.cellClass = [RCIMSelectContactListCell class];
+    @weakify(self);
+    [self.viewModel.changeSignal subscribeNext:^(NSArray *  x) {
+        @strongify(self)
+        self.dataSource = [x subarrayWithRange:NSMakeRange(1,x.count-2)];
         
+    } error:^(NSError * _Nullable error) {
+        NSLog(@"error == %@",error);
     }];
+    
+    
+    [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
+        [signal subscribeNext:^(RCUserInfoData * data) {
+            data.isSelected = !data.isSelected;
+        }];
+    }];
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 - (void)didReceiveMemoryWarning {

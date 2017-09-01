@@ -53,6 +53,7 @@
         NSMutableArray * contactlistResults = [NSMutableArray new];
         NSMutableDictionary * results = [NSMutableDictionary new];
         [arr enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.enabled = YES;
             obj.controllerName = NSStringFromClass( [RCIMContactDetailsViewController class]);
             if(![results objectForKey:obj.user.indexChar])
             {

@@ -15,6 +15,7 @@
 #import "RCConversationListCell.h"
 #import "UIImage+RCIMExtension.h"
 #import <PopoverView.h>
+#import "RCIMSelectContactsViewController.h"
 
 
 @interface RCConversationListViewController ()
@@ -61,6 +62,8 @@
     UIImage * image = [UIImage RCIM_imageNamed:@"barbuttonicon_InfoSingle" bundleName:@"BarButtonIcon" bundleForClass:[self class]];
     
     PopoverAction * action1 = [PopoverAction actionWithImage:image title:@"发起群聊" handler:^(PopoverAction *action) {
+        RCIMSelectContactsViewController * controller =[RCIMSelectContactsViewController new];
+        [self.navigationController pushViewController:controller animated:YES];
         
     }];
     PopoverAction * action2 = [PopoverAction actionWithImage:image title:@"添加朋友" handler:^(PopoverAction *action) {
