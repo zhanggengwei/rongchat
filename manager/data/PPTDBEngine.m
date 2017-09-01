@@ -94,7 +94,35 @@
 }
 - (RCUserInfoData *)queryUser_InfoWithIndexId:(NSString *)indexId
 {
-    return nil;
+   __block RCUserInfoData * data = [RCUserInfoData new];
+    [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        NSString * searchSql = @"select * from %@ where userId = \'%@\'";
+        FMResultSet *sets = [db executeQuery:[NSString stringWithFormat:searchSql,USER_INFO_TABLENAME,indexId]];
+        while (sets.next) {
+             data = [self getUserInfo:sets];
+        }
+       
+    }];
+    return data;
+}
+
+
+- (RCUserInfoData *)getUserInfo:(FMResultSet *)results
+{
+    RCUserInfoData * info = [RCUserInfoData new];
+    info.user = [RCUserInfoBaseData new];
+    info.user.name = [results stringForColumn:@"name"];
+    info.user.userId = [results stringForColumn:@"userId"];
+    info.displayName = [results stringForColumn:@"displayName"];
+    info.user.phone = [results stringForColumn:@"phone"];
+    info.user.region = [results stringForColumn:@"region"];
+    info.user.portraitUri = [results stringForColumn:@"portraitUri"];
+    info.user.nickNameWord = results[@"nickNameWord"];
+    info.user.indexChar = results[@"indexChar"];
+    info.status = [results intForColumn:@"status"];
+    info.message = results[@"message"];
+    info.updatedAt = results[@"updatedAt"];
+    return info;
 }
 
 - (NSArray *)queryFriendList
@@ -120,19 +148,7 @@
             
             FMResultSet * results = [db executeQuery:sql];
             while (results.next) {
-                RCUserInfoData * info = [RCUserInfoData new];
-                info.user = [RCUserInfoBaseData new];
-                info.user.name = [results stringForColumn:@"name"];
-                info.user.userId = [results stringForColumn:@"userId"];
-                info.displayName = [results stringForColumn:@"displayName"];
-                info.user.phone = [results stringForColumn:@"phone"];
-                info.user.region = [results stringForColumn:@"region"];
-                info.user.portraitUri = [results stringForColumn:@"portraitUri"];
-                info.user.nickNameWord = results[@"nickNameWord"];
-                info.user.indexChar = results[@"indexChar"];
-                info.status = [results intForColumn:@"status"];
-                info.message = results[@"message"];
-                info.updatedAt = results[@"updatedAt"];
+                RCUserInfoData * info = [self getUserInfo:results];
                 [contactList addObject:info];
             }
         }

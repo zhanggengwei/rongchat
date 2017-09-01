@@ -20,7 +20,6 @@
 - (BOOL)saveContactList:(NSArray<RCUserInfoData *> *)contactList;
 - (BOOL)addOrUpdateContactGroupLists:(NSArray<RCContactGroupData *>*)contactGroupLists;
 - (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages;
-
 //查询好友信息
 - (RCUserInfoData *)queryUser_InfoWithIndexId:(NSString *)indexId;
 //查询个人信息
@@ -29,10 +28,10 @@
 - (BOOL)updateUserInfo:(RCUserInfoData *)info;
 //查询好友列表
 - (NSArray *)queryFriendList;
-//查询群聊列表
-- (NSArray *)contactGroupLists;
 //查询好友添加请求
 - (NSArray *)queryContactRequestList;
+//查询群聊列表
+- (NSArray *)contactGroupLists;
 //加载userid 数据库
 - (void)loadDataBase:(NSString *)userID;
 //数据库清理工作

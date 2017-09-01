@@ -82,6 +82,7 @@
 - (void)setUpdatedAt:(NSString *)updatedAt
 {
     _updatedAt = updatedAt;
+    if(_updatedAt&&[updatedAt isKindOfClass:[NSString class]]){
     _updatedAt = [_updatedAt stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     NSString * regex = @"^[1-9]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\\s+(20|21|22|23|[0-1]\\d):[0-5]\\d:[0-5]\\d";
     NSRegularExpression * expression = [[NSRegularExpression alloc]initWithPattern:regex options:NSRegularExpressionCaseInsensitive error:nil];
@@ -91,6 +92,7 @@
         _updatedAt = [_updatedAt substringWithRange:range];
     }
     NSLog(@"_updatedAt ==%@",_updatedAt);
+    }
     
 }
 

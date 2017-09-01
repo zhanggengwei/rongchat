@@ -41,7 +41,7 @@
 }
 
 
-- (RCUserInfo *)searchUserInfoByUserId:(NSString *)indexId
+- (RCUserInfoData *)searchUserInfoByUserId:(NSString *)indexId
 {
    // [self.cache removeObjectForKey:indexId];
     RCUserInfoData * info = [self.cache objectForKey:indexId];

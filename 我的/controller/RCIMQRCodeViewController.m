@@ -49,6 +49,7 @@
             make.width.height.mas_equalTo(50);
         }];
         SD_LOADIMAGE(avatarImageView, [PPTUserInfoEngine shareEngine].user_Info.user.portraitUri, nil);
+        NSLog(@"%@",[[PPTUserInfoEngine shareEngine].user_Info.user dictionaryValue]);
         
         UILabel * bottomLabel = [UILabel new];
         bottomLabel.text = @"扫一扫上面的二维码的图案,加我为好友";

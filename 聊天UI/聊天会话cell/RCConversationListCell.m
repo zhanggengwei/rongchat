@@ -100,11 +100,11 @@
         
         self.contentLabel.text = message.content;
         
-        RCUserInfo * info = [[RCConversationCacheObj shareManager] searchUserInfoByUserId:conversation.targetId];
+        RCUserInfoData * info = [[RCConversationCacheObj shareManager] searchUserInfoByUserId:conversation.targetId];
         if(info)
         {
-            [self.avaturImageView sd_setImageWithURL:[NSURL URLWithString:info.portraitUri]];
-            self.receiveLabel.text = info.name;
+            [self.avaturImageView sd_setImageWithURL:[NSURL URLWithString:info.user.portraitUri]];
+            self.receiveLabel.text = info.user.name;
             
         }else
         {
