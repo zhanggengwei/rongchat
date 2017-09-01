@@ -30,12 +30,10 @@ def pods
     pod 'ReactiveObjC', '~> 3.0.0'
     pod 'MLLabel', '~> 1.10.3'
     pod 'UITableView+FDTemplateLayoutCell', '~> 1.6'
-#    pod 'Realm'
-    
-    #log
-    #QRCode
+
     pod 'LBXScan', '~> 2.2'
     pod 'LBXAlertAction'
+    pod 'GDQrCode', '~> 1.0.0'
     
     pod 'ZYCornerRadius'
     
