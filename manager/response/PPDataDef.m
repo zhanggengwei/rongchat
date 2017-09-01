@@ -60,6 +60,16 @@
     }
     return mapping;
 }
+
+- (NSString *)portraitUri
+{
+    if(_portraitUri==nil)
+    {
+        return @"";
+    }
+    return _portraitUri;
+}
+
 @end
 
 @implementation RCUserInfoData

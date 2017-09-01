@@ -17,7 +17,7 @@ NSArray * titleArr ()
 #import "PPSelectAreaViewController.h"
 #import "PPPhotoSeleceOrTakePhotoManager.h"
 #import "PPUpdateNickNameController.h"
-
+#import "RCIMQRCodeViewController.h"
 
 @interface PPInfoMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -67,8 +67,10 @@ NSArray * titleArr ()
     NSArray * arr = titleArr()[indexPath.section];
     if([arr[indexPath.row] isEqualToString:@"我的二维码"])
     {
-        PPPhotoSeleceOrTakePhotoManager * manager = [PPPhotoSeleceOrTakePhotoManager sharedPPPhotoSeleceOrTakePhotoManager];
-        [manager pushQRCodeController:self];
+//        PPPhotoSeleceOrTakePhotoManager * manager = [PPPhotoSeleceOrTakePhotoManager sharedPPPhotoSeleceOrTakePhotoManager];
+//        [manager pushQRCodeController:self];
+        [self.navigationController pushViewController:[RCIMQRCodeViewController new] animated:YES];
+        
     }else if ([arr[indexPath.row] isEqualToString:@"名字"])
     {
         PPUpdateNickNameController * controller = [PPUpdateNickNameController new];
