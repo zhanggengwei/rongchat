@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PPRegisterViewController : UIViewController
+#import "PPBaseViewController.h"
+@interface PPRegisterViewController : PPBaseViewController
 
 @end

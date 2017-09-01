@@ -11,6 +11,7 @@
 #import <UIImage+YYWebImage.h>
 #import <WActionSheet/NLActionSheet.h>
 #import "PPResetPassWordViewController.h"
+#import "PPRegisterViewController.h"
 
 @interface PPLoginViewController ()<UITableViewDelegate,UITableViewDataSource,PPLoginTableViewCellDelegate>
 @property (nonatomic,strong) UITableView * tableView;
@@ -153,6 +154,8 @@
             
         }else if (!isCancel&&clickedIndex == 0)
         {
+            PPRegisterViewController * registerController = [PPRegisterViewController new];
+            [self presentViewController:registerController animated:YES completion:nil];
             
         }
     }];
@@ -162,6 +165,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
