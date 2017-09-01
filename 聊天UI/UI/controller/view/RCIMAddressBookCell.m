@@ -7,6 +7,7 @@
 //
 
 #import "RCIMAddressBookCell.h"
+#import "PPImageUtil.h"
 
 @implementation RCIMAddressModel
 
@@ -66,7 +67,7 @@
     }];
     
     [self.addButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.contentView.mas_right).mas_offset(-16);
+        make.right.mas_equalTo(self.contentView.mas_right).mas_offset(-8);
         make.centerY.mas_equalTo(self.contentView);
         make.height.mas_equalTo(30);
         make.width.mas_equalTo(50);
@@ -119,6 +120,26 @@
     if(_addButton==nil)
     {
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_addButton setTitle:@"添加" forState:UIControlStateNormal];
+        [_addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_addButton setBackgroundImage:[PPImageUtil imageFromColor:kPPLoginButtonColor] forState:UIControlStateNormal];
+        [_addButton setTitleColor:UIColorFromRGB(0xa2a2a2) forState:UIControlStateDisabled];
+        [_addButton setTitle:@"已添加" forState:UIControlStateDisabled];
+        [_addButton setBackgroundImage:nil forState:UIControlStateDisabled];
+        _addButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        self.clickSignal = [_addButton rac_signalForControlEvents:UIControlEventTouchUpInside];
+        [RACObserve(_addButton, enabled)subscribeNext:^(id  _Nullable x) {
+            BOOL  flag = [x boolValue];
+            if(flag)
+            {
+                _addButton.layer.cornerRadius = 3;
+                _addButton.layer.masksToBounds = YES;
+            }else
+            {
+                _addButton.layer.cornerRadius = 0;
+            }
+        }];
+
     }
     return _addButton;
 }
@@ -129,15 +150,11 @@
     SD_LOADIMAGE(self.avatarImageView,model.portraitUri, nil);
     self.nameLabel.text = model.userName;
     self.detailLabel.text = model.name;
+    @weakify(self);
     [RACObserve(self.model, add)subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
         BOOL add = [x boolValue];
-        if(add)
-        {
-            
-        }else
-        {
-            
-        }
+        self.addButton.enabled = !add;
     }];
     
 }

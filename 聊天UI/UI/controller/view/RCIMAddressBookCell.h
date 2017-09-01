@@ -22,5 +22,7 @@
 
 @interface RCIMAddressBookCell : UITableViewCell
 @property (nonatomic,strong) RCIMAddressModel * model;
+@property (nonatomic,strong) RACSignal * clickSignal;
+
 
 @end

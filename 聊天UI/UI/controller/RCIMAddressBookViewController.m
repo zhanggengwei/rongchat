@@ -6,11 +6,36 @@
 //  Copyright © 2017年 vd. All rights reserved.
 //
 
+//#define MARCHO_NAME(name)  return (name==nil:@"":name)
+static inline NSString * MARCHO_NAME(NSString * name)
+{
+    if(name==nil)
+    {
+        return @"";
+    }
+    return name;
+}
+
 #import "RCIMAddressBookViewController.h"
 #import <APContact.h>
 #import <APAddressBook.h>
 #import "RCIMObjPinYinHelper.h"
 #import "RCIMAddressBookCell.h"
+
+@interface NSString (compareIndexTitles)
+
+- (NSComparisonResult)compareIndexTitles:(NSString *)index;
+
+@end
+
+@implementation NSString(compareIndexTitles)
+
+- (NSComparisonResult)compareIndexTitles:(NSString *)index
+{
+    return [self compare:index];
+}
+
+@end
 
 @interface RCIMAddressBookViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) NSArray * dataSource;
@@ -43,6 +68,9 @@
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+    }];
     [self.tableView registerClass:[RCIMAddressBookCell class] forCellReuseIdentifier:@"RCIMAddressBookCell"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -50,6 +78,13 @@
     self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
     self.tableView.sectionIndexColor = [UIColor blackColor];
     self.tableView.tableFooterView = [UIView new];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"关闭" style:UIBarButtonItemStylePlain target:self action:@selector(closeAction:)];
+}
+
+- (void)closeAction:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void)loadData
@@ -62,7 +97,7 @@
                 dispatch_group_t group =  dispatch_group_create();
                 [contacts enumerateObjectsUsingBlock:^(APContact * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     dispatch_group_enter(group);
-                    NSString * name = [NSString stringWithFormat:@"%@%@%@",obj.name.firstName,obj.name.middleName,obj.name.lastName];
+                    NSString * name = obj.name.compositeName;
                     RCIMAddressModel * model = [RCIMAddressModel new];
                     model.name = name;
                     model.phone = obj.phones.firstObject.number;
@@ -83,10 +118,21 @@
                 }];
                 dispatch_group_notify(group, dispatch_get_main_queue(), ^{
                     NSMutableArray * lastArray = [NSMutableArray new];
-                    for (NSString * key in [dict.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
+                    BOOL flag = NO;
+                    for (NSString * key in [dict.allKeys sortedArrayUsingSelector:@selector(compareIndexTitles:)]) {
+                        if([key isEqualToString:@"#"])
+                        {
+                            flag = YES;
+                        }
                         NSDictionary * contactDict = @{key:[dict objectForKey:key]};
                         [lastArray addObject:contactDict];
-                    } ;
+                    };
+                    if(flag)
+                    {
+                        NSArray *firstIndexs = lastArray.firstObject;
+                        [lastArray removeObject:firstIndexs];
+                        [lastArray addObject:firstIndexs];
+                    }
                     self.dataSource = lastArray;
                     [self.tableView reloadData];
                 });
@@ -110,6 +156,9 @@
     NSArray * arr = dict.allValues;
     RCIMAddressModel * model = arr.firstObject[indexPath.row];
     cell.model = model;
+    [cell.clickSignal subscribeNext:^(id  _Nullable x) {
+        NSLog(@"click ==%@",x);
+    }];
     return cell;
 }
 
@@ -146,6 +195,12 @@
 {
     return [self.indextitles indexOfObject:title];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
 /*
 #pragma mark - Navigation
 
