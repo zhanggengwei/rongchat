@@ -100,12 +100,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/GitHub/rongchat/manager/data/PPDateEngine.m"
-                  timestampString = "525943251.385816"
+                  timestampString = "525944041.292548"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "853"
                   endingLineNumber = "853"
-                  offsetFromSymbolStart = "117">
+                  offsetFromSymbolStart = "124">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -115,12 +115,12 @@
                   moduleName = "rongchat"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vd/Documents/GitHub/rongchat/manager/data/PPDateEngine.m"
-                  timestampString = "525943251.388214"
+                  timestampString = "525944041.294211"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "853"
                   endingLineNumber = "853"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "24">
                </Location>
             </Locations>
          </BreakpointContent>

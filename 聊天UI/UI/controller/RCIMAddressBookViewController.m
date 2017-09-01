@@ -16,6 +16,7 @@
 @property (nonatomic,strong) NSArray * dataSource;
 @property (nonatomic,strong) APAddressBook * addressBook;
 @property (nonatomic,strong) UITableView * tableView;
+@property (nonatomic,strong) NSArray * indextitles;
 @end
 
 @implementation RCIMAddressBookViewController
@@ -46,6 +47,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = kMainBackGroundColor;
+    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    self.tableView.sectionIndexColor = [UIColor blackColor];
     self.tableView.tableFooterView = [UIView new];
 }
 
@@ -130,7 +133,19 @@
     NSDictionary * dict = self.dataSource[section];
     return dict.allKeys.firstObject;
 }
-
+- (nullable NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    NSMutableArray * arr = [NSMutableArray new];
+    for (NSDictionary * dict in self.dataSource) {
+        [arr addObject:dict.allKeys.firstObject];
+    }
+    self.indextitles = arr;
+    return arr;
+}
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    return [self.indextitles indexOfObject:title];
+}
 /*
 #pragma mark - Navigation
 

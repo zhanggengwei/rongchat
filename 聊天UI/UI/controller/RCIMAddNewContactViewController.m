@@ -93,12 +93,10 @@
 {
     
 }
-
 - (void)enterCreateContactGroupController
 {
     
 }
-
 - (void)enterAddresBookController
 {
     RCIMAddressBookViewController * controller = [RCIMAddressBookViewController new];
@@ -164,6 +162,8 @@
 {
     return 100;
 }
+
+
 /*
 #pragma mark - Navigation
 
