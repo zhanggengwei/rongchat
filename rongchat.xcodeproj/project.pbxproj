@@ -45,7 +45,6 @@
 		409F50B51DDD72F600015DB7 /* PPColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50B21DDD72F600015DB7 /* PPColorUtil.m */; };
 		409F50B61DDD72F600015DB7 /* PPImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F50B41DDD72F600015DB7 /* PPImageUtil.m */; };
 		409F792D1DF5649D0090D67F /* UITableViewCell+addLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F792C1DF5649D0090D67F /* UITableViewCell+addLineView.m */; };
-		409F792F1DF564C80090D67F /* common_line_g@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 409F792E1DF564C80090D67F /* common_line_g@2x.png */; };
 		40C260741E0396FB00823111 /* add_friend_icon_addgroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260201E0396FB00823111 /* add_friend_icon_addgroup@2x.png */; };
 		40C260751E0396FB00823111 /* add_friend_icon_addgroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260211E0396FB00823111 /* add_friend_icon_addgroup@3x.png */; };
 		40C260761E0396FB00823111 /* add_friend_icon_offical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260221E0396FB00823111 /* add_friend_icon_offical@2x.png */; };
@@ -271,6 +270,7 @@
 		75A588681F564A7400E34B46 /* RCIMContactGroupListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75A588671F564A7400E34B46 /* RCIMContactGroupListViewController.m */; };
 		75B2E56F1F279A9A003240B9 /* LCCKAVAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */; };
 		75B2E5841F285E44003240B9 /* LCCKMessageVoiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B2E5831F285E44003240B9 /* LCCKMessageVoiceFactory.m */; };
+		75C3A3A51F59375D00482F5A /* RCIMObjPinYinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C3A3A41F59375D00482F5A /* RCIMObjPinYinHelper.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* PPConversationListViewController.m */; };
@@ -765,6 +765,8 @@
 		75B2E5701F279AEF003240B9 /* LCCKChatUntiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKChatUntiles.h; sourceTree = "<group>"; };
 		75B2E5821F285E44003240B9 /* LCCKMessageVoiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCCKMessageVoiceFactory.h; sourceTree = "<group>"; };
 		75B2E5831F285E44003240B9 /* LCCKMessageVoiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCKMessageVoiceFactory.m; sourceTree = "<group>"; };
+		75C3A3A31F59375D00482F5A /* RCIMObjPinYinHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMObjPinYinHelper.h; sourceTree = "<group>"; };
+		75C3A3A41F59375D00482F5A /* RCIMObjPinYinHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMObjPinYinHelper.m; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1426,6 +1428,8 @@
 				75278A501F10E512000C70AF /* RCBubbleImageFactory.m */,
 				7526794A1F3A053D0002AC45 /* RCIMLocationManager.h */,
 				7526794B1F3A053D0002AC45 /* RCIMLocationManager.m */,
+				75C3A3A31F59375D00482F5A /* RCIMObjPinYinHelper.h */,
+				75C3A3A41F59375D00482F5A /* RCIMObjPinYinHelper.m */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -2017,7 +2021,6 @@
 				75F164041F3D5BDD0018A022 /* fav_fileicon_txt90@2x.png in Resources */,
 				40C260B91E0396FB00823111 /* tabbar_discover@3x.png in Resources */,
 				40C260BA1E0396FB00823111 /* tabbar_discoverHL@2x.png in Resources */,
-				409F792F1DF564C80090D67F /* common_line_g@2x.png in Resources */,
 				40C260AB1E0396FB00823111 /* LaunchImage-800-667h@2x.png in Resources */,
 				40C260831E0396FB00823111 /* bottleBoard.png in Resources */,
 				75F1640A1F3D5BDD0018A022 /* fav_fileicon_word90@2x.png in Resources */,
@@ -2078,9 +2081,21 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-rongchat/Pods-rongchat-resources.sh",
+				"${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle",
+				"${PODS_ROOT}/LBXScan/LBXScan/UI/CodeScan.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/PinYin4Objc/PinYin4Objc/Resources/unicode_to_hanyu_pinyin.txt",
+				"${PODS_ROOT}/RongCloudIM/RongCloudIM/RCConfig.plist",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-back.png",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-help.html",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-helpicons.png",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-samples.png",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2093,13 +2108,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-rongchat-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2177,6 +2195,7 @@
 				40785E991DEE9E7900875E00 /* RJBackView.m in Sources */,
 				7504C85F1F56B66A008FEF2B /* RCIMSelectContactListCell.m in Sources */,
 				409F50971DDD704100015DB7 /* UrlEncode.m in Sources */,
+				75C3A3A51F59375D00482F5A /* RCIMObjPinYinHelper.m in Sources */,
 				409F50921DDD704100015DB7 /* Base64.m in Sources */,
 				75278A1F1F0FC2E9000C70AF /* RCChatImageMessageCell.m in Sources */,
 				758E8B9B1E0AC6EB00D5DD4E /* RCIMTapDetectingView.m in Sources */,

@@ -68,10 +68,13 @@
                 break;
         }
     };
-    [self.selectCellSignal subscribeNext:^(id  _Nullable x) {
+    [RACObserve(self, selectCellSignal) subscribeNext:^(id  _Nullable x) {
         @strongify(self);
-        NSInteger index = [self.dataSource indexOfObject:x];
-        didSelectCellIndex(index);
+        [self.selectCellSignal subscribeNext:^(id  _Nullable obj) {
+            NSArray * arr = [self.dataSource.firstObject allValues];
+            NSInteger index = [arr.firstObject indexOfObject:obj];
+            didSelectCellIndex(index);
+        }];
     }];
         // Do any additional setup after loading the view.
 }

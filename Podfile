@@ -52,7 +52,7 @@ def pods
     pod 'PinYin4Objc', '~> 1.1.1'
     pod 'PhotoBrowser', '~> 0.6.4'
     pod 'TZImagePickerController', '1.8.1'
-  
+    pod 'APAddressBook', '~> 0.3.1'
    #bugly crash
     pod 'Bugly', '~> 2.4.8'
     pod 'CocoaLumberjack', '~> 3.2.0'
