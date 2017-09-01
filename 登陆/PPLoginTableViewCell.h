@@ -19,21 +19,12 @@ typedef enum : NSUInteger {
 - (void)loginActionPassWord:(NSString *)passWord style:(PPLoginTableViewCellStyle)astyle;
 
 - (void)textFieldChange:(NSString *)text style:(PPLoginTableViewCellStyle)astyle;
-
-
-
 @end
-
-
 @interface PPLoginTableViewCell : UITableViewCell
 @property (nonatomic,strong,readonly) UITextField * rightText;
 
 @property (nonatomic,strong,readonly) RACSignal * signal;
 @property (nonatomic,assign,readonly) PPLoginTableViewCellStyle style;
 @property (nonatomic,weak) id<PPLoginTableViewCellDelegate>delegate;
-
 - (void)layoutLeftContent:(NSString *)left content:(NSString *)content andStyle:(PPLoginTableViewCellStyle)style;
-
-
-
 @end

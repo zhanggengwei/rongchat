@@ -95,6 +95,22 @@
     return headerView;
 }
 
+- (RCIMTableSectionHeaderView *)getHeaderViewBySection:(NSInteger)section
+{
+    RCIMTableSectionHeaderView * headerView = nil;
+    if(self.headerArray.count<=section)
+    {
+        headerView = [self createHeaderView];
+    }else{
+        headerView= [self.headerArray objectAtIndex:section];
+        if(headerView==nil)
+        {
+            headerView = [self createHeaderView];
+        }
+    }
+    return headerView;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -119,6 +135,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    if(self.showIndexTitles){
     NSDictionary * dict = [self.dataSource objectAtIndex:section];
     NSString * title = [dict allKeys].firstObject;
     RCIMTableSectionHeaderStyle style;
@@ -130,18 +147,13 @@
     {
         style = RCIMTableSectionHeaderStyleCustom;
     }
-    if(self.headerArray.count<=section)
-    {
-        headerView = [self createHeaderView];
-    }else{
-        headerView= [self.headerArray objectAtIndex:section];
-        if(headerView==nil)
-        {
-            headerView = [self createHeaderView];
-        }
-    }
+    headerView = [self getHeaderViewBySection:section];
     [headerView setTitle:title style:style];
     return headerView;
+    }else
+    {
+        return nil;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -153,7 +165,6 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     RCContactListCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.cellClass)];
     UIView * view = [tableView headerViewForSection:indexPath.section];
     NSLog(@"frame==%f",view.frame.origin.y);
@@ -182,18 +193,20 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSArray<RCContactListCell *> * cells = [self.tableView visibleCells];
-    NSInteger section = INT_MAX;
-    for (RCContactListCell * cell in cells) {
-        NSIndexPath * indexPath  = [self.tableView indexPathForCell:cell];
-        section = MIN(section,indexPath.section);
-        RCIMTableSectionHeaderView * headerView = [self.headerArray objectAtIndex:indexPath.section];
-        headerView.style = RCIMTableSectionHeaderStyleCustom;
+    if(self.showIndexTitles)
+    {
+        NSArray<RCContactListCell *> * cells = [self.tableView visibleCells];
+        NSInteger section = INT_MAX;
+        for (RCContactListCell * cell in cells) {
+            NSIndexPath * indexPath  = [self.tableView indexPathForCell:cell];
+            section = MIN(section,indexPath.section);
+            RCIMTableSectionHeaderView * headerView = headerView = [self getHeaderViewBySection:section];
+            headerView.style = RCIMTableSectionHeaderStyleCustom;
+        }
+        self.topSection = section;
+        RCIMTableSectionHeaderView * view = [self.headerArray objectAtIndex:section];
+        [view setStyle:RCIMTableSectionHeaderStyleSelected];
     }
-    self.topSection = section;
-    RCIMTableSectionHeaderView * view = [self.headerArray objectAtIndex:section];
-    [view setStyle:RCIMTableSectionHeaderStyleSelected];
-    
 }
 
 @end

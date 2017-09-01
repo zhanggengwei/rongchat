@@ -111,7 +111,6 @@
 - (UIView *)createHeaderView
 {
     UIView * headerView = [UIView new];
-    
     UIView * topView = [UIView new];
     [headerView addSubview:topView];
     [topView mas_makeConstraints:^(MASConstraintMaker *make) {

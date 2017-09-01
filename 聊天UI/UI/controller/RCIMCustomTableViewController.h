@@ -15,4 +15,5 @@
 @property (nonatomic,strong) NSArray * dataSource;
 @property (nonatomic,strong,readonly) RACSignal * selectCellSignal;
 @property (nonatomic,strong) Class<RCContactListCellProtrocal> cellClass;
+@property (nonatomic,assign) BOOL showIndexTitles;
 @end
