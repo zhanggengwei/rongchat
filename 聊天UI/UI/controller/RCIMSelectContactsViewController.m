@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.viewModel = [PPContactListViewModel new];
-    [self.viewModel.changeSignal subscribeNext:^(NSArray *   results) {
+    [self.viewModel.changeSignal subscribeNext:^(NSArray * results) {
         
     }];
     // Do any additional setup after loading the view.

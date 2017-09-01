@@ -13,6 +13,10 @@
 #import "RCIMMessageManager.h"
 #import "RCIMConversationViewController.h"
 #import "RCConversationListCell.h"
+#import "UIImage+RCIMExtension.h"
+#import <PopoverView.h>
+
+
 @interface RCConversationListViewController ()
 @property (nonatomic,assign) BOOL needRefresh;//是否刷新界面
 @property (nonatomic,assign) BOOL receiveNewMessages;//收到信的消息
@@ -27,9 +31,12 @@
     [self.tableView registerClass:[RCConversationListCell class] forCellReuseIdentifier:@"RCConversationListCell"];
     [self reloadConversationList];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveNewMessages:) name:RCDidReceiveMessagesDidChanged object:nil];
-    
-    
-    
+    UIImage * rightImage = [UIImage RCIM_imageNamed:@"barbuttonicon_add" bundleName:@"BarButtonIcon" bundleForClass:[self class]];
+    UIButton * moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    moreButton.frame = CGRectMake(0, 0,30, 30);
+    [moreButton setBackgroundImage:rightImage forState:UIControlStateNormal];
+    [moreButton addTarget:self action:@selector(showSheetView:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:moreButton];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -46,6 +53,34 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showSheetView:(id)sender
+{
+    
+    UIImage * image = [UIImage RCIM_imageNamed:@"barbuttonicon_InfoSingle" bundleName:@"BarButtonIcon" bundleForClass:[self class]];
+    
+    PopoverAction * action1 = [PopoverAction actionWithImage:image title:@"发起群聊" handler:^(PopoverAction *action) {
+        
+    }];
+    PopoverAction * action2 = [PopoverAction actionWithImage:image title:@"添加朋友" handler:^(PopoverAction *action) {
+        
+    }];
+    
+    PopoverAction * action3 = [PopoverAction actionWithImage:image title:@"扫一扫" handler:^(PopoverAction *action) {
+        
+    }];
+    
+    PopoverAction * action4 = [PopoverAction actionWithImage:image title:@"收付款" handler:^(PopoverAction *action) {
+        
+    }];
+    PopoverView *popoverView = [PopoverView popoverView];
+    popoverView.style = PopoverViewStyleDark;
+    [popoverView showToView:sender withActions:@[action1,action2,action3,action4]];
+    
+    
+    
+   
 }
 
 - (void)reloadConversationList

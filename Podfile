@@ -34,7 +34,7 @@ def pods
     pod 'LBXScan', '~> 2.2'
     pod 'LBXAlertAction'
     pod 'GDQrCode', '~> 1.0.0'
-    
+    pod 'Popover.OC', '~> 1.0'
     pod 'ZYCornerRadius'
     
     #MAP

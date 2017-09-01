@@ -157,11 +157,12 @@ typedef NS_ENUM(NSUInteger,QRCodeStyle) {
 
 - (void)loadImageStyle:(QRCodeStyle)style imageView:(UIImageView *)imageView
 {
-    NSString * message = [NSString stringWithFormat:@"RCIM://userId=%@",[PPTUserInfoEngine shareEngine].userId];
+    
+    NSString * message = [NSString stringWithFormat:@"RCIMCONTACT://userId=%@",[PPTUserInfoEngine shareEngine].userId];
     switch (style) {
         case QRCodeStyleCustom1:
         {
-            [imageView gd_setQRCodeImageWithQRCodeImageSize:100 qrCodeImageColor:[UIColor orangeColor] qrCodeBgImageColor:[UIColor blackColor] centerImage:nil placeholderImage:nil codeMessage:message];
+            [imageView gd_setQRCodeImageWithQRCodeImageSize:100 qrCodeImageColor:[UIColor orangeColor] qrCodeBgImageColor:[UIColor clearColor] centerImage:nil placeholderImage:nil codeMessage:message];
             break;
         }
         case QRCodeStyleCustom2:

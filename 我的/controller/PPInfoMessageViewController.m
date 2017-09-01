@@ -32,12 +32,9 @@ NSArray * titleArr ()
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
     [self.tableView registerClass:[PPSettingCell class] forCellReuseIdentifier:@"PPSettingCell"];
-    
     [self.tableView registerClass:[PPInfoMessageCell class] forCellReuseIdentifier:@"PPInfoMessageCell"];
     self.title = @"个人信息";
-    
     self.tableView.sectionFooterHeight = 0.1;
     // Do any additional setup after loading the view.
 }
