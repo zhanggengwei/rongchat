@@ -6,8 +6,8 @@
 //  Copyright © 2017年 vd. All rights reserved.
 //
 
-#import "RCIMCustomTableViewController.h"
+#import "PPBaseViewController.h"
 
-@interface RCIMAddressBookViewController : RCIMCustomTableViewController
+@interface RCIMAddressBookViewController : PPBaseViewController
 
 @end

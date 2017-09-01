@@ -9,6 +9,7 @@
 #import "RCIMAddNewContactViewController.h"
 #import "RCIMAddContactTableViewCell.h"
 #import "RCIMAddContactModel.h"
+#import "RCIMAddressBookViewController.h"
 
 @interface RCIMAddNewContactViewController ()
 
@@ -42,8 +43,37 @@
     model5.title = @"公众号";
     model5.detail = @"获取更多的资讯和服务";
     self.dataSource = @[@{@"":@[model1,model2,model3,model4,model5]}];
+    self.tableView.backgroundColor = kMainBackGroundColor;
+    @weakify(self);
     
-    // Do any additional setup after loading the view.
+    void (^didSelectCellIndex)(NSInteger index) = ^(NSInteger index)
+    {
+        switch (index) {
+            case 0:
+                [self enterRadarAddContactController];
+                break;
+            case 1:
+                [self enterCreateContactGroupController];
+                break;
+            case 2:
+                [self enterQRCodeScanController];
+                break;
+            case 3:
+                [self enterAddresBookController];
+                break;
+            case 4:
+                [self enterPublicServiceController];
+                break;
+            default:
+                break;
+        }
+    };
+    [self.selectCellSignal subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        NSInteger index = [self.dataSource indexOfObject:x];
+        didSelectCellIndex(index);
+    }];
+        // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +81,85 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)enterPublicServiceController
+{
+    
+}
+
+- (void)enterQRCodeScanController
+{
+    
+}
+
+- (void)enterCreateContactGroupController
+{
+    
+}
+
+- (void)enterAddresBookController
+{
+    RCIMAddressBookViewController * controller = [RCIMAddressBookViewController new];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)enterRadarAddContactController
+{
+    
+}
+- (UIView *)createHeaderView
+{
+    UIView * headerView = [UIView new];
+    
+    UIView * topView = [UIView new];
+    [headerView addSubview:topView];
+    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(headerView);
+        make.height.mas_equalTo(50);
+    }];
+    
+    UIView * bottomView = [UIView new];
+    [headerView addSubview:bottomView];
+    [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(headerView);
+        make.height.mas_equalTo(50);
+    }];
+    UIView * contentView = [UIView new];
+    UILabel * label = [UILabel new];
+    UIImageView * codeImageView = [UIImageView new];
+    [contentView addSubview:label];
+    [contentView addSubview:codeImageView];
+    
+    
+    [codeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(15);
+        make.right.top.mas_equalTo(contentView);
+    }];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.mas_equalTo(contentView);
+        make.right.mas_equalTo(codeImageView.mas_left).mas_offset(-8);
+    }];
+    label.text = @"我的微信号:2012VD";
+    label.font = [UIFont systemFontOfSize:14];
+    [bottomView addSubview:contentView];
+    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(bottomView.mas_centerX);
+        make.top.mas_equalTo(topView.mas_bottom).mas_offset(10);
+        make.width.lessThanOrEqualTo(@200);
+        //make.height.mas_equalTo(30);
+    }];
+    return headerView;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [self createHeaderView];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 100;
+}
 /*
 #pragma mark - Navigation
 

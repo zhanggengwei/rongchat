@@ -54,7 +54,6 @@
 		40C260791E0396FB00823111 /* Contact_icon_ContactTag@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260251E0396FB00823111 /* Contact_icon_ContactTag@3x.png */; };
 		40C2607A1E0396FB00823111 /* plugins_FriendNotify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260261E0396FB00823111 /* plugins_FriendNotify@2x.png */; };
 		40C2607B1E0396FB00823111 /* plugins_FriendNotify@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260271E0396FB00823111 /* plugins_FriendNotify@3x.png */; };
-		40C2607C1E0396FB00823111 /* common_line_g@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260281E0396FB00823111 /* common_line_g@2x.png */; };
 		40C2607D1E0396FB00823111 /* contacts_add_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C260291E0396FB00823111 /* contacts_add_friend@2x.png */; };
 		40C2607E1E0396FB00823111 /* Country_Code.json in Resources */ = {isa = PBXBuildFile; fileRef = 40C2602A1E0396FB00823111 /* Country_Code.json */; };
 		40C2607F1E0396FB00823111 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 40C2602C1E0396FB00823111 /* 1.png */; };
@@ -190,6 +189,7 @@
 		752B6E871F58796E006003AC /* RCIMAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 752B6E861F58796E006003AC /* RCIMAddressBookViewController.m */; };
 		752B6E8A1F587B14006003AC /* RCIMAddContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 752B6E891F587B14006003AC /* RCIMAddContactModel.m */; };
 		752B6E8D1F587BCA006003AC /* RCIMAddContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 752B6E8C1F587BCA006003AC /* RCIMAddContactTableViewCell.m */; };
+		752B6E901F592587006003AC /* RCIMAddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 752B6E8F1F592587006003AC /* RCIMAddressBookCell.m */; };
 		7531E97F1F384CF2001C1326 /* RCMessage+RCTimeShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531E97E1F384CF2001C1326 /* RCMessage+RCTimeShow.m */; };
 		7531E9831F3958B3001C1326 /* RCIMTextFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531E9821F3958B3001C1326 /* RCIMTextFullScreenViewController.m */; };
 		753CA0601F26177B00F313EE /* RCCKChatMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA05F1F26177B00F313EE /* RCCKChatMoreView.m */; };
@@ -414,7 +414,6 @@
 		40C260251E0396FB00823111 /* Contact_icon_ContactTag@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Contact_icon_ContactTag@3x.png"; sourceTree = "<group>"; };
 		40C260261E0396FB00823111 /* plugins_FriendNotify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plugins_FriendNotify@2x.png"; sourceTree = "<group>"; };
 		40C260271E0396FB00823111 /* plugins_FriendNotify@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plugins_FriendNotify@3x.png"; sourceTree = "<group>"; };
-		40C260281E0396FB00823111 /* common_line_g@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_line_g@2x.png"; sourceTree = "<group>"; };
 		40C260291E0396FB00823111 /* contacts_add_friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contacts_add_friend@2x.png"; sourceTree = "<group>"; };
 		40C2602A1E0396FB00823111 /* Country_Code.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Country_Code.json; sourceTree = "<group>"; };
 		40C2602C1E0396FB00823111 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -596,6 +595,8 @@
 		752B6E891F587B14006003AC /* RCIMAddContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMAddContactModel.m; sourceTree = "<group>"; };
 		752B6E8B1F587BCA006003AC /* RCIMAddContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMAddContactTableViewCell.h; sourceTree = "<group>"; };
 		752B6E8C1F587BCA006003AC /* RCIMAddContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMAddContactTableViewCell.m; sourceTree = "<group>"; };
+		752B6E8E1F592587006003AC /* RCIMAddressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMAddressBookCell.h; sourceTree = "<group>"; };
+		752B6E8F1F592587006003AC /* RCIMAddressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMAddressBookCell.m; sourceTree = "<group>"; };
 		7531E97D1F384CF2001C1326 /* RCMessage+RCTimeShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCMessage+RCTimeShow.h"; path = "../UI/controller/RCMessage+RCTimeShow.h"; sourceTree = "<group>"; };
 		7531E97E1F384CF2001C1326 /* RCMessage+RCTimeShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCMessage+RCTimeShow.m"; path = "../UI/controller/RCMessage+RCTimeShow.m"; sourceTree = "<group>"; };
 		7531E9811F3958B3001C1326 /* RCIMTextFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMTextFullScreenViewController.h; sourceTree = "<group>"; };
@@ -1095,7 +1096,6 @@
 				409F792E1DF564C80090D67F /* common_line_g@2x.png */,
 				75DE61821DE48CA400DF1CA4 /* Country_Code.json */,
 				40C2601F1E0396FB00823111 /* AddressBook */,
-				40C260281E0396FB00823111 /* common_line_g@2x.png */,
 				40C260291E0396FB00823111 /* contacts_add_friend@2x.png */,
 				40C2602A1E0396FB00823111 /* Country_Code.json */,
 				40C2602B1E0396FB00823111 /* discover */,
@@ -1302,6 +1302,8 @@
 				7504C8651F57ACEE008FEF2B /* RCIMIndexView.m */,
 				752B6E8B1F587BCA006003AC /* RCIMAddContactTableViewCell.h */,
 				752B6E8C1F587BCA006003AC /* RCIMAddContactTableViewCell.m */,
+				752B6E8E1F592587006003AC /* RCIMAddressBookCell.h */,
+				752B6E8F1F592587006003AC /* RCIMAddressBookCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1958,7 +1960,6 @@
 				40C260AD1E0396FB00823111 /* LaunchImage@2x.png in Resources */,
 				4084F18D1EE12EE800F4A917 /* LoginInputView.xib in Resources */,
 				40C260A31E0396FB00823111 /* Shake_icon_people@2x.png in Resources */,
-				40C2607C1E0396FB00823111 /* common_line_g@2x.png in Resources */,
 				40C260981E0396FB00823111 /* ff_IconShake@2x.png in Resources */,
 				75278A371F106798000C70AF /* DateTools.bundle in Resources */,
 				40C2607F1E0396FB00823111 /* 1.png in Resources */,
@@ -2214,6 +2215,7 @@
 				7584DAF81E2A5B98007249C2 /* RCIMWeakReference.m in Sources */,
 				75278A251F0FC30A000C70AF /* RCChatFileMessageCell.m in Sources */,
 				752B6E8A1F587B14006003AC /* RCIMAddContactModel.m in Sources */,
+				752B6E901F592587006003AC /* RCIMAddressBookCell.m in Sources */,
 				7584DB6E1E2A5BF5007249C2 /* kPPObserverDef.m in Sources */,
 				7584DAE11E2A5B92007249C2 /* UIView+RCIMExtension.m in Sources */,
 				7526795E1F3CA6F40002AC45 /* RCIMAnimation.m in Sources */,

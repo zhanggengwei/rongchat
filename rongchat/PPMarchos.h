@@ -42,7 +42,7 @@
 #define TabBarColor  [UIColor whiteColor]
 #define TabBarTitleColor [UIColor grayColor]
 #define ColorTitleSel COLOR(0,167,0,1)
-
+#define kPPSperactorColor UIColorFromRGB(0xd3d5d7)
 
 // RGB颜色转换（16进制->10进制）
 #define UIColorFromRGB(rgbValue)\
@@ -69,6 +69,7 @@ alpha:a]
 #define kPPTFontColorBlack UIColorFromRGB(0x1c1c1c)
 #define kPPTFontColorWhite UIColorFromRGB(0xffffff)
 
+
 #define CONTACT_LIST_NO_FRIENDS_LABEL_COLOR UIColorFromRGB(0xa2a2a2)
 
 
@@ -92,7 +93,7 @@ alpha:a]
 
 
 #pragma mark - image color
-#define kMainBackGroundColor UIColorFromRGB(0xf9f9f9)
+#define kMainBackGroundColor     [UIColor colorWithRed:239/255.0 green:239/255.0 blue:246/255.0 alpha:1];
 #define kNavigationBarBackGroundColor UIColorFromRGB(0xffffff)
 #define kButtonColorPink UIColorFromRGB(0xfa688f)
 #define kButtonColorBlue UIColorFromRGB(0x88ceff)

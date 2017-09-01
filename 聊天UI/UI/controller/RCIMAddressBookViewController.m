@@ -9,7 +9,7 @@
 #import "RCIMAddressBookViewController.h"
 
 @interface RCIMAddressBookViewController ()
-
+@property (nonatomic,strong) NSArray * dataSource;
 @end
 
 @implementation RCIMAddressBookViewController

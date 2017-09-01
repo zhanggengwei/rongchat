@@ -44,20 +44,28 @@
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.detailLabel];
     [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(self.contentView).mas_offset(UIEdgeInsetsMake(8, 8, 8, 8));
+        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(8);
+        make.top.mas_equalTo(self.contentView.mas_top).mas_offset(8);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-8);
         make.width.mas_equalTo(self.avatarImageView.mas_height).multipliedBy(1);
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.avatarImageView.mas_right);
-//        make.right.lessThanOrEqualTo(self.contentView);
-       // make.top.mas_equalTo(self.avatarImageView.mas_top);
+        make.left.mas_equalTo(self.avatarImageView.mas_right).mas_offset(8);
+        make.right.lessThanOrEqualTo(self.contentView.mas_right).mas_offset(-40);
+        make.top.mas_equalTo(self.avatarImageView.mas_top);
     }];
-//    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.mas_equalTo(self.titleLabel);
-//        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(4);
-//    }];
-    
-    
+    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self.titleLabel);
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(4);
+    }];
+    UIView * line = [UIView new];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.avatarImageView.mas_left);
+        make.right.bottom.mas_equalTo(self.contentView);
+        make.height.mas_equalTo(@0.5);
+    }];
+    line.backgroundColor = kPPSperactorColor;    
 }
 
 - (UILabel *)titleLabel
@@ -79,6 +87,15 @@
         _detailLabel.textColor = UIColorFromRGB(0xa2a2a2);
     }
     return _detailLabel;
+}
+
+- (UIImageView *)avatarImageView
+{
+    if(_avatarImageView==nil)
+    {
+        _avatarImageView = [UIImageView new];
+    }
+    return _avatarImageView;
 }
 
 - (void)setModel:(RCIMAddContactModel *)model
