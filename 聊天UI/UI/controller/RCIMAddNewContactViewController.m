@@ -10,7 +10,7 @@
 #import "RCIMAddContactTableViewCell.h"
 #import "RCIMAddContactModel.h"
 #import "RCIMAddressBookViewController.h"
-
+#import "RCIMNavigationController.h"
 @interface RCIMAddNewContactViewController ()
 
 @end
@@ -102,7 +102,8 @@
 - (void)enterAddresBookController
 {
     RCIMAddressBookViewController * controller = [RCIMAddressBookViewController new];
-    [self.navigationController pushViewController:controller animated:YES];
+    RCIMNavigationController * navController = [[RCIMNavigationController alloc]initWithRootViewController:controller];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)enterRadarAddContactController
