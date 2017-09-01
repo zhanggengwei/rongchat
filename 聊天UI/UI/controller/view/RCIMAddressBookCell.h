@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RCContactListCell.h"
 
 @interface RCIMAddressModel : NSObject
 @property (nonatomic,strong) NSString * userName;
@@ -20,8 +21,7 @@
 
 @end
 
-@interface RCIMAddressBookCell : UITableViewCell
-@property (nonatomic,strong) RCIMAddressModel * model;
+@interface RCIMAddressBookCell : RCContactListCell
 @property (nonatomic,strong) RACSignal * clickSignal;
 
 

@@ -152,6 +152,8 @@ static inline NSString * MARCHO_NAME(NSString * name)
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RCIMAddressBookCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCIMAddressBookCell"];
+    cell.indexPath = indexPath;
+    cell.tableView = tableView;
     NSDictionary * dict = self.dataSource[indexPath.section];
     NSArray * arr = dict.allValues;
     RCIMAddressModel * model = arr.firstObject[indexPath.row];

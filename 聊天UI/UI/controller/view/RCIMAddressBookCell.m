@@ -8,6 +8,7 @@
 
 #import "RCIMAddressBookCell.h"
 #import "PPImageUtil.h"
+#import "UIImage+RCIMExtension.h"
 
 @implementation RCIMAddressModel
 
@@ -63,7 +64,7 @@
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(10);
         make.top.mas_equalTo(self.contentView.mas_top).mas_offset(10);
         make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-10);
-        make.width.mas_equalTo(self.contentView.mas_height).multipliedBy(1);
+        make.width.mas_equalTo(self.avatarImageView.mas_height).multipliedBy(1);
     }];
     
     [self.addButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,12 +147,13 @@
 
 - (void)setModel:(RCIMAddressModel *)model
 {
-    _model = model;
-    SD_LOADIMAGE(self.avatarImageView,model.portraitUri, nil);
+    [super setModel:model];
+    UIImage  * image = [UIImage RCIM_imageNamed:@"Placeholder_Avatar" bundleName:@"Placeholder" bundleForClass:[self class]];
+    SD_LOADIMAGE(self.avatarImageView,model.portraitUri, image);
     self.nameLabel.text = model.userName;
     self.detailLabel.text = model.name;
     @weakify(self);
-    [RACObserve(self.model, add)subscribeNext:^(id  _Nullable x) {
+    [RACObserve(model, add)subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         BOOL add = [x boolValue];
         self.addButton.enabled = !add;

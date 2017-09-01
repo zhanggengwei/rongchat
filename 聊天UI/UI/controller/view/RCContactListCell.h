@@ -14,5 +14,7 @@
 
 @interface RCContactListCell : UITableViewCell<RCContactListCellProtrocal>
 @property (nonatomic,strong) id model;
+@property (nonatomic,strong) NSIndexPath * indexPath;
+@property (nonatomic,weak) UITableView * tableView;
 
 @end

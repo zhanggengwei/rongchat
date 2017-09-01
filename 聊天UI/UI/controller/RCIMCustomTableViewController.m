@@ -166,6 +166,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RCContactListCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(self.cellClass)];
+    cell.tableView = self.tableView;
+    cell.indexPath = indexPath;
     UIView * view = [tableView headerViewForSection:indexPath.section];
     NSLog(@"frame==%f",view.frame.origin.y);
     NSDictionary * dict = [self.dataSource objectAtIndex:indexPath.section];

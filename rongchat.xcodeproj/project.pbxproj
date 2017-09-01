@@ -279,6 +279,7 @@
 		75CCCFC71F599EE60076EF18 /* icon_checkbox_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CCCFC11F599EE60076EF18 /* icon_checkbox_selected@3x.png */; };
 		75CCCFC81F599EE60076EF18 /* icon_checkbox_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CCCFC21F599EE60076EF18 /* icon_checkbox_unselected@2x.png */; };
 		75CCCFC91F599EE60076EF18 /* icon_checkbox_unselected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CCCFC31F599EE60076EF18 /* icon_checkbox_unselected@3x.png */; };
+		75CCCFCC1F59D61D0076EF18 /* RCIMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFCB1F59D61D0076EF18 /* RCIMTableViewCell.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* PPConversationListViewController.m */; };
@@ -784,6 +785,8 @@
 		75CCCFC11F599EE60076EF18 /* icon_checkbox_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_checkbox_selected@3x.png"; sourceTree = "<group>"; };
 		75CCCFC21F599EE60076EF18 /* icon_checkbox_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_checkbox_unselected@2x.png"; sourceTree = "<group>"; };
 		75CCCFC31F599EE60076EF18 /* icon_checkbox_unselected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_checkbox_unselected@3x.png"; sourceTree = "<group>"; };
+		75CCCFCA1F59D61D0076EF18 /* RCIMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMTableViewCell.h; sourceTree = "<group>"; };
+		75CCCFCB1F59D61D0076EF18 /* RCIMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMTableViewCell.m; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1330,6 +1333,8 @@
 				752B6E8C1F587BCA006003AC /* RCIMAddContactTableViewCell.m */,
 				752B6E8E1F592587006003AC /* RCIMAddressBookCell.h */,
 				752B6E8F1F592587006003AC /* RCIMAddressBookCell.m */,
+				75CCCFCA1F59D61D0076EF18 /* RCIMTableViewCell.h */,
+				75CCCFCB1F59D61D0076EF18 /* RCIMTableViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2253,6 +2258,7 @@
 				7584DB6D1E2A5BF5007249C2 /* PPBaseViewController.m in Sources */,
 				758E8B981E0AC6EB00D5DD4E /* RCIMPhoto.m in Sources */,
 				7507B0D31F5454B7006616B0 /* RCIMInviteMessage.m in Sources */,
+				75CCCFCC1F59D61D0076EF18 /* RCIMTableViewCell.m in Sources */,
 				75A588681F564A7400E34B46 /* RCIMContactGroupListViewController.m in Sources */,
 				7584DB6F1E2A5BF5007249C2 /* PPDateEngine.m in Sources */,
 				4068337A1E7A657700E03427 /* PPListItem.m in Sources */,

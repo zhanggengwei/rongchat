@@ -7,7 +7,6 @@
 //
 #define UNREADWIDTH 15
 #import "PPContactListCell.h"
-#import "UITableViewCell+addLineView.h"
 #import "UIImage+RCIMExtension.h"
 
 @interface PPContactListCell ()
@@ -69,7 +68,6 @@
         make.centerY.mas_equalTo(self.contentView);
         make.width.height.mas_equalTo(UNREADWIDTH);
     }];
-    [self addBottomLine];
 }
 
 - (void)setUnreadCount:(NSInteger)unreadCount
@@ -123,6 +121,7 @@
 
 - (void)setModel:(id)model
 {
+    [super setModel:model];
     if([model isKindOfClass:[PPTContactGroupModel class]])
     {
         NSString *imageName = @"Placeholder_Avatar";
