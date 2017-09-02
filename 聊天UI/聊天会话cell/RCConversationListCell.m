@@ -10,29 +10,31 @@
 #import "RCThemeDefine.h"
 #import "UIImage+RCIMExtension.h"
 #import "PPViewUtil.h"
+#import "PPImageUtil.h"
 
 
-@interface RCIMRemindLabel : UILabel
+@interface RCIMRemindButton : UIButton
 
 @end
 
-@implementation RCIMRemindLabel
+@implementation RCIMRemindButton
 
 - (CGSize)intrinsicContentSize
 {
-    if (!self.text.length) {
+    if (!self.titleLabel.text.length) {
         return CGSizeZero;
     } else {
-        CGSize size = [PPViewUtil sizeWithString:self.text font:self.font constrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
+        CGSize size = [PPViewUtil sizeWithString:self.titleLabel.text font:self.titleLabel.font constrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
         self.layer.cornerRadius = MIN(size.height,size.width) * 0.5;
         return CGSizeMake(size.width+6, size.height);
     }
 }
 
-- (void)setText:(NSString *)text
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
 {
-    text = [text integerValue]?text:@"";
-    [super setText:text];
+    title = [title integerValue]?title:@"";
+    [super setTitle:title forState:state];
+    
 }
 
 @end
@@ -43,7 +45,7 @@
 @property (nonatomic,strong) UILabel * receiveLabel;// 接受者的名字
 @property (nonatomic,strong) UILabel * contentLabel;// 最后的一条消息
 @property (nonatomic,strong) UILabel * timeLabel;//受到最后一条消息的时间
-@property (nonatomic,strong) RCIMRemindLabel * reamindLabel;
+@property (nonatomic,strong) RCIMRemindButton * reamindButton;
 @end
 
 @implementation RCConversationListCell
@@ -87,7 +89,7 @@
     [self.contentView addSubview:self.receiveLabel];
     [self.receiveLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.avaturImageView.mas_right).mas_offset(8);
-        make.top.mas_equalTo(self.avaturImageView.mas_top).mas_offset(4);
+        make.top.mas_equalTo(self.avaturImageView.mas_top);
         make.right.lessThanOrEqualTo(self.timeLabel.mas_left).mas_offset(-10);
     }];
     
@@ -98,11 +100,11 @@
         make.width.mas_equalTo(self.receiveLabel.mas_width);
     }];
    
-    [self.contentView addSubview:self.reamindLabel];
-    [self.reamindLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView addSubview:self.reamindButton];
+    [self.reamindButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.avaturImageView.mas_right);
         make.centerY.mas_equalTo(self.avaturImageView.mas_top);
-        make.width.mas_greaterThanOrEqualTo(self.reamindLabel.mas_height).multipliedBy(1);
+        make.width.mas_greaterThanOrEqualTo(self.reamindButton.mas_height).multipliedBy(1);
     }];
     
     
@@ -115,13 +117,15 @@
     UIImage * placeHolderImage = nil;
     if(conversation.conversationType == ConversationType_GROUP)
     {
-        avatarUrl = [[PPTUserInfoEngine shareEngine].contactGroupList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.group.indexId = %@",conversation.targetId]].firstObject.group.portraitUri;
+        PPTContactGroupModel * model = [[PPTUserInfoEngine shareEngine].contactGroupList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.group.indexId = %@",conversation.targetId]].firstObject;
+        avatarUrl = model.group.portraitUri;
         placeHolderImage = RCIM_CONTACT_GROUP_ARATARIMAGE;
         if(![avatarUrl isValid])
         {
              avatarUrl = @"";
         }
         SD_LOADIMAGE(self.avaturImageView, avatarUrl,placeHolderImage);
+        self.receiveLabel.text = model.group.name;
     }else
     {
         placeHolderImage = RCIM_PLACE_ARATARIMAGE;
@@ -130,11 +134,13 @@
         if (conversation.conversationType==ConversationType_PRIVATE)
         {
             SD_LOADIMAGE(self.avaturImageView, userInfo.user.portraitUri,placeHolderImage);
+            self.receiveLabel.text = userInfo.user.name;
         }
-        self.receiveLabel.text = userInfo.user.name;
+        
     }];
     self.contentLabel.text = [self loadRecentConversation:conversation];
-    self.reamindLabel.text = @(conversation.unreadMessageCount).stringValue;
+    [self.reamindButton setTitle:@(conversation.unreadMessageCount).stringValue forState:UIControlStateNormal];
+    
 }
 
 - (NSString *)loadRecentConversation:(RCConversation *)conversation
@@ -166,18 +172,18 @@
 }
 
 
-- (RCIMRemindLabel *)reamindLabel
+- (RCIMRemindButton *)reamindButton
 {
-    if(_reamindLabel==nil)
+    if(_reamindButton==nil)
     {
-        _reamindLabel = [RCIMRemindLabel new];
-        _reamindLabel.backgroundColor = RCIM_REMIND_COLOR;
-        _reamindLabel.font = [UIFont systemFontOfSize:12];
-        _reamindLabel.layer.masksToBounds = YES;
-        _reamindLabel.textColor = [UIColor whiteColor];
-        _reamindLabel.textAlignment = NSTextAlignmentCenter;
+        _reamindButton = [RCIMRemindButton new];
+        [_reamindButton setBackgroundImage:[PPImageUtil imageFromColor:RCIM_REMIND_COLOR] forState:UIControlStateDisabled];
+        _reamindButton.enabled = NO;
+        _reamindButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        _reamindButton.layer.masksToBounds = YES;
+        [_reamindButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
-    return _reamindLabel;
+    return _reamindButton;
 }
 
 - (UILabel *)contentLabel
