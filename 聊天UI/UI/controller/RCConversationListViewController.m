@@ -80,10 +80,6 @@
     PopoverView *popoverView = [PopoverView popoverView];
     popoverView.style = PopoverViewStyleDark;
     [popoverView showToView:sender withActions:@[action1,action2,action3,action4]];
-    
-    
-    
-   
 }
 
 - (void)reloadConversationList
@@ -120,7 +116,7 @@
 {
     RCConversationListCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCConversationListCell"];
     RCConversation * conversation= self.dataSource[indexPath.row];
-    [cell setConversation:conversation avatarStyle:0];
+    cell.conversation = conversation;
     return cell;
 }
 

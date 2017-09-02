@@ -127,14 +127,9 @@
 
 - (NSArray *)queryFriendList
 {
-    return [self getFriendListByStatus:20];
-}
-
-- (NSArray *)getFriendListByStatus:(NSInteger)status
-{
     NSMutableArray * indexIds = [NSMutableArray new];
     NSMutableArray * contactList = [NSMutableArray new];
-    NSString * searchSql = [NSString stringWithFormat:@"select * from \'%@\' where (userId != \'%@\')",USER_INFO_FRIENDLIST_TABLENAME,self.userId];
+    NSString * searchSql = [NSString stringWithFormat:@"select * from \'%@\'",USER_INFO_FRIENDLIST_TABLENAME];
     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
        
         FMResultSet * sets = [db executeQuery:searchSql];
@@ -144,8 +139,7 @@
         }
         if(indexIds)
         {
-            NSString * sql = [NSString stringWithFormat:@"select * from \'%@\'where userId in (\'%@\')and status = %ld",USER_INFO_TABLENAME,[indexIds componentsJoinedByString:@"','"],status];
-            
+            NSString * sql = [NSString stringWithFormat:@"select * from \'%@\'where userId in (\'%@\')",USER_INFO_TABLENAME,[indexIds componentsJoinedByString:@"','"]];
             FMResultSet * results = [db executeQuery:sql];
             while (results.next) {
                 RCUserInfoData * info = [self getUserInfo:results];
@@ -155,11 +149,6 @@
         
     }];
     return contactList;
-}
-
-- (NSArray *)queryContactRequestList
-{
-   return [self getFriendListByStatus:11];
 }
 - (BOOL)updateUserInfo:(RCUserInfoData *)info
 {

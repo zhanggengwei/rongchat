@@ -34,6 +34,7 @@ typedef void (^RCArrayResultBlock)(NSArray *objects, NSError *error);
 typedef void (^RCSetResultBlock)(NSSet *channels, NSError *error);
 typedef void (^RCDataResultBlock)(NSData *data, NSError *error);
 typedef void (^RCIdResultBlock)(id object, NSError *error);
+typedef void (^RCIMUserInfoResultBlock)(RCUserInfoData * userInfo);
 typedef void (^RCIdBoolResultBlock)(BOOL succeeded, id object, NSError *error);
 typedef void (^RCRequestAuthorizationBoolResultBlock)(BOOL granted, NSError *error);
 

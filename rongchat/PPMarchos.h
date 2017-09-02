@@ -18,6 +18,7 @@
 #import "PPHTTPResponse.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "PPTUserInfoEngine.h"
+#import "RCConstants.h"
 
 #define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIHGHT  [UIScreen mainScreen].bounds.size.height

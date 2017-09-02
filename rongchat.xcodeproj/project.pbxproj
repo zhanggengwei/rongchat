@@ -11,7 +11,6 @@
 		406833771E7A657700E03427 /* RCConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833671E7A657700E03427 /* RCConversationListViewController.m */; };
 		406833791E7A657700E03427 /* RCIMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068336B1E7A657700E03427 /* RCIMBaseViewController.m */; };
 		4068337A1E7A657700E03427 /* PPListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068336E1E7A657700E03427 /* PPListItem.m */; };
-		4068337B1E7A657700E03427 /* RCConversationCacheObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068336F1E7A657700E03427 /* RCConversationCacheObj.m */; };
 		4068337C1E7A657700E03427 /* RCIMConversationListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833711E7A657700E03427 /* RCIMConversationListViewModel.m */; };
 		4068337D1E7A657700E03427 /* PPTZeroSelectListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833731E7A657700E03427 /* PPTZeroSelectListCell.m */; };
 		4068337E1E7A657700E03427 /* RCIMStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 406833751E7A657700E03427 /* RCIMStatusView.m */; };
@@ -350,7 +349,6 @@
 		4068336B1E7A657700E03427 /* RCIMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCIMBaseViewController.m; path = ../controller/RCIMBaseViewController.m; sourceTree = "<group>"; };
 		4068336D1E7A657700E03427 /* PPListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPListItem.h; sourceTree = "<group>"; };
 		4068336E1E7A657700E03427 /* PPListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPListItem.m; sourceTree = "<group>"; };
-		4068336F1E7A657700E03427 /* RCConversationCacheObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationCacheObj.m; sourceTree = "<group>"; };
 		406833701E7A657700E03427 /* RCIMConversationListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMConversationListViewModel.h; sourceTree = "<group>"; };
 		406833711E7A657700E03427 /* RCIMConversationListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMConversationListViewModel.m; sourceTree = "<group>"; };
 		406833731E7A657700E03427 /* PPTZeroSelectListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTZeroSelectListCell.m; sourceTree = "<group>"; };
@@ -662,7 +660,6 @@
 		7584DAD21E2A5B92007249C2 /* UITableViewCell+addLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+addLineView.m"; sourceTree = "<group>"; };
 		7584DAD31E2A5B92007249C2 /* UIView+RCIMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+RCIMExtension.h"; sourceTree = "<group>"; };
 		7584DAD41E2A5B92007249C2 /* UIView+RCIMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RCIMExtension.m"; sourceTree = "<group>"; };
-		7584DAE51E2A5B98007249C2 /* RCConversationCacheObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationCacheObj.h; sourceTree = "<group>"; };
 		7584DAE61E2A5B98007249C2 /* RCConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCConversationModel.h; sourceTree = "<group>"; };
 		7584DAE71E2A5B98007249C2 /* RCConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCConversationModel.m; sourceTree = "<group>"; };
 		7584DAEB1E2A5B98007249C2 /* RCIMImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMImageManager.h; sourceTree = "<group>"; };
@@ -934,7 +931,6 @@
 			children = (
 				4068336D1E7A657700E03427 /* PPListItem.h */,
 				4068336E1E7A657700E03427 /* PPListItem.m */,
-				4068336F1E7A657700E03427 /* RCConversationCacheObj.m */,
 				406833701E7A657700E03427 /* RCIMConversationListViewModel.h */,
 				406833711E7A657700E03427 /* RCIMConversationListViewModel.m */,
 				751D2A451F3468F800426D12 /* RCIMConversationViewModel.h */,
@@ -1442,7 +1438,6 @@
 				75B2E5701F279AEF003240B9 /* LCCKChatUntiles.h */,
 				75B2E56D1F279A9A003240B9 /* LCCKAVAudioPlayer.h */,
 				75B2E56E1F279A9A003240B9 /* LCCKAVAudioPlayer.m */,
-				7584DAE51E2A5B98007249C2 /* RCConversationCacheObj.h */,
 				7584DAE61E2A5B98007249C2 /* RCConversationModel.h */,
 				7584DAE71E2A5B98007249C2 /* RCConversationModel.m */,
 				7584DAEB1E2A5B98007249C2 /* RCIMImageManager.h */,
@@ -2201,7 +2196,6 @@
 				751D2A471F3468F800426D12 /* RCIMConversationViewModel.m in Sources */,
 				75278A5A1F13D29A000C70AF /* RCIMCellRegisterController.m in Sources */,
 				758E8B951E0AC6EB00D5DD4E /* RCIMDeallocExecutor.m in Sources */,
-				4068337B1E7A657700E03427 /* RCConversationCacheObj.m in Sources */,
 				7584DADD1E2A5B92007249C2 /* UIColor+RCIMExtension.m in Sources */,
 				409F50931DDD704100015DB7 /* des.m in Sources */,
 				7584DB551E2A5BE6007249C2 /* PPUpdatePassWordController.m in Sources */,

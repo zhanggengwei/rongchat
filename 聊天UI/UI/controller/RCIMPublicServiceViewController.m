@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"公众号";
+    self.showIndexTitles = YES;
     NSArray * (^indexsContactListBlock)(NSArray<RCIMPublicServiceProfile *> * arr) = ^(NSArray<RCIMPublicServiceProfile *> * arr)
     {
         NSMutableArray * contactlistResults = [NSMutableArray new];

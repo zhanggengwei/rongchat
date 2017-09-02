@@ -28,8 +28,7 @@
 - (BOOL)updateUserInfo:(RCUserInfoData *)info;
 //查询好友列表
 - (NSArray *)queryFriendList;
-//查询好友添加请求
-- (NSArray *)queryContactRequestList;
+
 //查询群聊列表
 - (NSArray *)contactGroupLists;
 //加载userid 数据库

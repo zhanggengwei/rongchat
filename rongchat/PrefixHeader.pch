@@ -46,7 +46,6 @@
 #pragma mark ChatUI
 
 #import "RCThemeDefine.h"
-#import "RCConversationCacheObj.h"
 
 #import <RongIMLib/RongIMLib.h>
 #define LBXScan_Define_Native  //包含native库

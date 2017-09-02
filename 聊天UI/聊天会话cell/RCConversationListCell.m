@@ -10,7 +10,6 @@
 #import "RCThemeDefine.h"
 @interface RCConversationListCell ()
 
-@property (nonatomic,assign) RCUserAvatarStyle avatarStyle;// 头像的类型
 @property (nonatomic,strong) UIImageView * avaturImageView;//接受者的头像
 @property (nonatomic,strong) UILabel * receiveLabel;// 接受者的名字
 @property (nonatomic,strong) UILabel * contentLabel;// 最后的一条消息
@@ -40,10 +39,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        self.avatarSizeWidth = 36;
-        self.avatarStyle = RC_USER_AVATAR_RECTANGLE;
         [self createUI];
-        
     }
     return self;
 }
@@ -54,8 +50,8 @@
     [self.avaturImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(15);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
-        make.width.mas_equalTo(self.avatarSizeWidth);
-        make.height.mas_equalTo(self.avatarSizeWidth);
+        make.top.mas_equalTo(self.contentView.mas_top);
+        make.width.mas_equalTo(self.avaturImageView.mas_height);
     }];
     self.timeLabel = [UILabel new];
     [self.contentView addSubview:self.timeLabel];
@@ -91,29 +87,17 @@
 
 }
 
-- (void)setConversation:(RCConversation *)conversation avatarStyle:(RCUserAvatarStyle)style
+- (void)setConversation:(RCConversation *)conversation
 {
-    
     if([conversation.objectName isEqualToString:RCTextMessageTypeIdentifier])
     {
         RCTextMessage * message = (RCTextMessage *)conversation.lastestMessage;
-        
         self.contentLabel.text = message.content;
-        
-        RCUserInfoData * info = [[RCConversationCacheObj shareManager] searchUserInfoByUserId:conversation.targetId];
-        if(info)
-        {
-            [self.avaturImageView sd_setImageWithURL:[NSURL URLWithString:info.user.portraitUri]];
-            self.receiveLabel.text = info.user.name;
-            
-        }else
-        {
-           
-        }
-        
+        [[PPTUserInfoEngine shareEngine]queryUserInfoWithUserId:conversation.targetId resultCallback:^(RCUserInfoData *userInfo) {
+            [self.avaturImageView sd_setImageWithURL:[NSURL URLWithString:userInfo.user.portraitUri]];
+            self.receiveLabel.text = userInfo.user.name;
+        }];
     }
-    self.timeLabel.text = @"2012...";
-   // self.ContentLabel.text = conversation.lastestMessage.t
 }
 
 @end

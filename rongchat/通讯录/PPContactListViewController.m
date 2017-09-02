@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.showIndexTitles = YES;
     self.style = UITableViewStylePlain;
     self.cellClass = [PPContactListCell class];
     self.contactListViewModel = [PPContactListViewModel new];

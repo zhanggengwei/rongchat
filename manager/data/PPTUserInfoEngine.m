@@ -7,7 +7,6 @@
 //
 
 #import "PPTUserInfoEngine.h"
-#import "RCConversationCacheObj.h"
 #import "PPFileManager.h"
 #import "OTFileManager.h"
 #import "NSDate+RCIMDateTools.h"
@@ -25,7 +24,6 @@
 @property (nonatomic,strong) RCUserInfoData * user_Info;
 @property (nonatomic,strong) RACSignal * accountChangeSignal;
 @property (nonatomic,assign) NSInteger promptCount;
-
 @end
 
 @implementation PPTUserInfoEngine
@@ -83,10 +81,12 @@
         // 其他的一些设置
         if(x){
             [[PPTDBEngine shareManager]loadDataBase:self.userId];
-            self.user_Info = [[PPTDBEngine shareManager]queryUser_Info];
+            
+            NSArray<RCUserInfoData *> * data = [[PPTDBEngine shareManager]queryFriendList];
+            self.user_Info = [data filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.user.userId = %@",self.userId]].firstObject;
             self.contactGroupList = [[PPTDBEngine shareManager]contactGroupLists];
-            self.contactList = [[PPTDBEngine shareManager]queryFriendList];
-            self.contactRequestList = [[[PPTDBEngine shareManager]queryContactRequestList]sortedArrayUsingSelector:@selector(compare:)];
+            self.contactList = [data filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.status = %d",RCIMContactCustom]];
+            self.contactRequestList = [[data filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.status = %d",RCIMContactRequestFriend]]sortedArrayUsingSelector:@selector(compare:)];
             self.promptCount = [[PPTDBEngine shareManager]queryUnreadFriendCount];
         }
     }];
@@ -230,5 +230,38 @@
 {
     
     self.promptCount = 0;
+}
+- (void)queryUserInfoWithUserId:(NSString *)uid resultCallback:(RCIMUserInfoResultBlock)block
+{
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"self.user.userId = %@",uid];
+    RCUserInfoData * userData = [self.contactList filteredArrayUsingPredicate:predicate].firstObject;
+    if(!userData)
+    {
+        userData = [self.contactRequestList filteredArrayUsingPredicate:predicate].firstObject;
+    }
+    if(!userData)
+    {
+        userData = [self.contactBlackList filteredArrayUsingPredicate:predicate].firstObject;
+    }
+    if(userData==nil)
+    {
+        [[[PPDateEngine manager]getUserInfoCommandByUserId:self.userId ]subscribeNext:^(PPUserBaseInfoResponse * response) {
+            RCUserInfoData * data =[RCUserInfoData new];
+            data.user = response.result;
+            if(block)
+            {
+                block(data);
+            }
+        } error:^(NSError * _Nullable error) {
+            
+        }];
+    }else
+    {
+        if(block)
+        {
+            block(userData);
+        }
+    }
 }
 @end
