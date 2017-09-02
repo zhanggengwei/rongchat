@@ -29,6 +29,12 @@
     }
 }
 
+- (void)setText:(NSString *)text
+{
+    text = [text integerValue]?text:@"";
+    [super setText:text];
+}
+
 @end
 
 @interface RCConversationListCell ()
@@ -82,7 +88,6 @@
     [self.receiveLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.avaturImageView.mas_right).mas_offset(8);
         make.top.mas_equalTo(self.avaturImageView.mas_top).mas_offset(4);
-        make.height.mas_equalTo(15);
         make.right.lessThanOrEqualTo(self.timeLabel.mas_left).mas_offset(-10);
     }];
     
@@ -106,17 +111,46 @@
 
 - (void)setConversation:(RCConversation *)conversation
 {
-    if([conversation.objectName isEqualToString:RCTextMessageTypeIdentifier])
+    NSString * avatarUrl = nil;
+    UIImage * placeHolderImage = nil;
+    if(conversation.conversationType == ConversationType_GROUP)
     {
-        RCTextMessage * message = (RCTextMessage *)conversation.lastestMessage;
-        self.contentLabel.text = message.content;
-        [[PPTUserInfoEngine shareEngine]queryUserInfoWithUserId:conversation.targetId resultCallback:^(RCUserInfoData *userInfo) {
-            UIImage * avatarImage = RCIM_PLACE_ARATARIMAGE;
-            SD_LOADIMAGE(self.avaturImageView, userInfo.user.portraitUri,avatarImage);
-            self.receiveLabel.text = userInfo.user.name;
-        }];
+        avatarUrl = [[PPTUserInfoEngine shareEngine].contactGroupList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.group.indexId = %@",conversation.targetId]].firstObject.group.portraitUri;
+        placeHolderImage = RCIM_CONTACT_GROUP_ARATARIMAGE;
+        if(![avatarUrl isValid])
+        {
+             avatarUrl = @"";
+        }
+        SD_LOADIMAGE(self.avaturImageView, avatarUrl,placeHolderImage);
+    }else
+    {
+        placeHolderImage = RCIM_PLACE_ARATARIMAGE;
     }
-    self.reamindLabel.text = @"10";
+    [[PPTUserInfoEngine shareEngine]queryUserInfoWithUserId:conversation.targetId resultCallback:^(RCUserInfoData *userInfo) {
+        if (conversation.conversationType==ConversationType_PRIVATE)
+        {
+            SD_LOADIMAGE(self.avaturImageView, userInfo.user.portraitUri,placeHolderImage);
+        }
+        self.receiveLabel.text = userInfo.user.name;
+    }];
+    self.contentLabel.text = [self loadRecentConversation:conversation];
+    self.reamindLabel.text = @(conversation.unreadMessageCount).stringValue;
+}
+
+- (NSString *)loadRecentConversation:(RCConversation *)conversation
+{
+    if([conversation.lastestMessage isKindOfClass:[RCTextMessage class]])
+    {
+        RCTextMessage * textMessage = (RCTextMessage *)conversation.lastestMessage;
+        return textMessage.content;
+    }else if ([conversation.lastestMessage isKindOfClass:[RCImageMessage class]])
+    {
+        return @"图片";
+    }else if ([conversation.lastestMessage isKindOfClass:[RCVoiceMessage class]])
+    {
+        return @"语音";
+    }
+    return @"UNKOWN MESSAGE";
 }
 
 

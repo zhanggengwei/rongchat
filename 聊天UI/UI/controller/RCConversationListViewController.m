@@ -92,6 +92,9 @@
             [self.tableView reloadData];
         }
     }];
+    
+    NSLog(@"conversation.count==%d",[[RCIMClient sharedRCIMClient]getTotalUnreadCount]);
+    
 }
 
 - (void)receiveNewMessages:(NSNotification *)noti
@@ -126,7 +129,6 @@
     RCConversation * conversation= self.dataSource[indexPath.row];
     RCIMConversationViewController * conversationController = [RCIMConversationViewController new];
     conversationController.conversation = conversation;
-    [conversationController setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:conversationController animated:YES];
     self.needRefresh = NO;
 }

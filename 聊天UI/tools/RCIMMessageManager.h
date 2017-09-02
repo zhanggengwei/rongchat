@@ -47,7 +47,7 @@
 @interface RCIMMessageManager : NSObject
 
 + (instancetype)shareManager;
-
+@property (nonatomic,strong,readonly) NSString * unReadMessageCount;
 @property (nonatomic,weak)id<RCIMMessageManagerDelegate>delegate;
 @property (nonatomic,weak)id<RCIMMessageManagerConnectionStatusChangeDelegate>conectDelegate;
 

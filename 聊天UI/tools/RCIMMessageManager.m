@@ -13,12 +13,14 @@
 @interface RCIMMessageManager ()<RCIMClientReceiveMessageDelegate,RCConnectionStatusChangeDelegate>
 {
     RCIMClient * _client;
+    
     //创建一个子线程用于查询历史消息
     dispatch_queue_t _queryMessageQueue;
     //创建一个查询会话数据
     dispatch_queue_t _queryConversationListQueue;
     
 }
+@property (nonatomic,strong) NSString * unReadMessageCount;
 @end
 @implementation RCIMMessageManager
 + (instancetype)shareManager
@@ -69,6 +71,7 @@
         {
             refresh = NO;
             [[NSNotificationCenter defaultCenter]postNotificationName:RCDidReceiveMessagesDidChanged object:nil];
+            self.unReadMessageCount = @([_client getTotalUnreadCount]).stringValue;
         }
     }
 }
