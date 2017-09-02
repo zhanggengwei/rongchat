@@ -9,10 +9,14 @@
 
 #import "RCIMContactGroupDetilsViewController.h"
 #import "RCIMCustomTableViewCell.h"
+#import "RCIMMemberView.h"
+#import "PPImageUtil.h"
 
 @interface RCIMContactGroupDetilsViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray * data;
+@property (nonatomic,strong) RCIMMemberView * memberListView;
+@property (nonatomic,strong) NSArray * members;
 @end
 
 @implementation RCIMContactGroupDetilsViewController
@@ -21,13 +25,43 @@
     [super viewDidLoad];
     self.title = @"聊天信息";
     [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+    }];
     [self loadData];
+    [self loadMemberList];
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (RCIMMemberView *)memberListView
+{
+    if(_memberListView==nil)
+    {
+        _memberListView = [RCIMMemberView new];
+    }
+    return _memberListView;
+}
+
+- (void)loadMemberList
+{
+    RCIMContactGroupMemberModel * model1 = [RCIMContactGroupMemberModel new];
+    model1.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
+    RCIMContactGroupMemberModel * model2 = [RCIMContactGroupMemberModel new];
+    model2.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
+    RCIMContactGroupMemberModel * model3 = [RCIMContactGroupMemberModel new];
+    model3.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
+    RCIMContactGroupMemberModel * model4 = [RCIMContactGroupMemberModel new];
+    model4.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
+    RCIMContactGroupMemberModel * model5 = [RCIMContactGroupMemberModel new];
+    model5.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
+    self.members = @[model1,model2,model3,model4,model5];
+    self.memberListView.dataSource = self.members;
+    
+    
 }
 
 - (void)loadData
@@ -131,11 +165,51 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if(section==0)
+    {
+        return [self.memberListView.class contentViewHeight:self.members.count];
+    }
     return 0.01;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    if(section==self.data.count-1)
+    {
+        return 85;
+    }
     return 20;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section==0)
+    {
+        return self.memberListView;
+    }
+    return nil;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if(section==self.data.count-1)
+    {
+        UIView * footerView = [UIView new];
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.layer.cornerRadius = 5;
+        button.layer.masksToBounds = YES;
+        [footerView addSubview:button];
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(footerView).insets(UIEdgeInsetsMake(20, 20, 20, 20));
+        }];
+        [button setBackgroundImage:[PPImageUtil imageFromColor:[UIColor redColor]]forState:UIControlStateNormal];
+        [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(__kindof UIControl * _Nullable x) {
+            
+        }];
+        [button setTitle:@"删除并退出" forState:UIControlStateNormal];
+        return footerView;
+    }
+    return nil;
+}
+
 
 @end

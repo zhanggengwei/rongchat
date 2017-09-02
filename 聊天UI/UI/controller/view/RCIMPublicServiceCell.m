@@ -61,6 +61,7 @@
 }
 - (void)setModel:(RCIMPublicServiceProfile *)model
 {
+    [super setModel:model];
     SD_LOADIMAGE(self.avatarImageView,model.model.portraitUrl, nil);
     self.nameLabel.text = model.model.name;
 }
