@@ -10,6 +10,7 @@
 #import "RCIMNewContactListViewController.h"
 #import "RCIMPublicServiceViewController.h"
 #import "RCIMContactGroupListViewController.h"
+#import "RCIMContactGroupDetilsViewController.h"
 #import "RCIMContactDetailsViewController.h"
 
 @interface PPContactListViewModel ()

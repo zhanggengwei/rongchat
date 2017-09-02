@@ -58,14 +58,10 @@
         make.left.mas_equalTo(self.avatarImageView.mas_right).mas_offset(16);
         make.right.mas_equalTo(self.contentView.mas_right).mas_offset(-8);
     }];
-    
 }
-
 - (void)setModel:(RCIMPublicServiceProfile *)model
 {
     SD_LOADIMAGE(self.avatarImageView,model.model.portraitUrl, nil);
     self.nameLabel.text = model.model.name;
 }
-
-
 @end

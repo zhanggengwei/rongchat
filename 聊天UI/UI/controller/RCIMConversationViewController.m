@@ -15,6 +15,9 @@
 #import "RCIMDocumentsFileDownController.h"
 #import "LCCKAVAudioPlayer.h"
 #import "RCIMWebViewController.h"
+#import "UIImage+RCIMExtension.h"
+#import "RCIMContactGroupDetilsViewController.h"
+
 
 @interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource,RCIMChatBarDelegate,RCIMConversationViewModelDelegate>
 @property (nonatomic,strong) id currentUser;
@@ -25,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self createNav];
     self.title = self.conversation.conversationTitle;
     self.chatBar.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -47,6 +51,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)createNav
+{
+//    barbuttonicon_InfoMulti@2x
+//    
+    UIImage * image = [UIImage RCIM_imageNamed:@"barbuttonicon_InfoMulti" bundleName:@"BarButtonIcon" bundleForClass:[self class]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(enterGroupDetil:)];
+    
+    
+}
+
+- (void)enterGroupDetil:(id)sender
+{
+    [self.navigationController pushViewController:[RCIMContactGroupDetilsViewController new] animated:YES];
+    
 }
 
 - (void)sendTextMessage:(NSString *_Nullable)text

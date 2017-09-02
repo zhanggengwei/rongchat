@@ -33,6 +33,7 @@
 #import "RCIMLocationObj.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "RCIMInviteMessage.h"
+#import "NSString+isValid.h"
 
 #define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
 
