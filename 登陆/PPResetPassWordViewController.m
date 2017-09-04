@@ -69,29 +69,29 @@
 - (IBAction)BtnCodeAction:(id)sender
 {
 
-    [[PPDateEngine manager]sendVerifyWithResponse:^(PPHTTPResponse * aTaskResponse) {
-        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-        {
-            [self.getCodeBtn startTime];
-        }
-    } phone:self.numberText.text regionString:@"86"];
-    
+//    [[PPDateEngine manager]sendVerifyWithResponse:^(PPHTTPResponse * aTaskResponse) {
+//        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+//        {
+//            [self.getCodeBtn startTime];
+//        }
+//    } phone:self.numberText.text regionString:@"86"];
+//    
 
 }
 - (IBAction)finishAction:(id)sender
 {
-    [[PPDateEngine manager]requestJudegeVaildWithResponse:^(PPJudgeVerificationResponse * aTaskResponse) {
-        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-        {
-            PPVertifyDef * obj = aTaskResponse.result;
-            
-            [[PPDateEngine manager]requestResetPassWordResponse:^(id aTaskResponse) {
-                
-            } resetPassWord:self.PassWord.text verification_token:obj.verification_token];
-            
-        }
-        
-    } verfityCode:self.vertifyCode.text region:@"86" phone:self.numberText.text];
+//    [[PPDateEngine manager]requestJudegeVaildWithResponse:^(PPJudgeVerificationResponse * aTaskResponse) {
+//        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+//        {
+//            PPVertifyDef * obj = aTaskResponse.result;
+//            
+//            [[PPDateEngine manager]requestResetPassWordResponse:^(id aTaskResponse) {
+//                
+//            } resetPassWord:self.PassWord.text verification_token:obj.verification_token];
+//            
+//        }
+//        
+//    } verfityCode:self.vertifyCode.text region:@"86" phone:self.numberText.text];
     
     
 }

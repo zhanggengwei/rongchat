@@ -124,17 +124,6 @@
     self.contactList = arr;
     return [[PPTDBEngine shareManager]saveContactList:baseInfoArr];
 }
-- (void)asynFriendList
-{
-    
-    [[PPDateEngine manager]getFriendListResponse:^(PPUserFriendListResponse * aTaskResponse) {
-        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-        {
-            [self saveUserFriendList:aTaskResponse.result];
-        }
-        NSLog(@"aTaskResponse == %@",aTaskResponse);
-    }];
-}
 - (RCUserInfo *)quertyUserInfoByUserId:(NSString *)userId
 {
     return nil;

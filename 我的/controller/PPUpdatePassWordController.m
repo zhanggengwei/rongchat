@@ -78,6 +78,7 @@
 
 - (void)rightAction:(id)sender
 {
+    /*
     [PPIndicatorView showLoadingInView:self.view];
     [[PPDateEngine manager]requestResponse:^(PPHTTPResponse * aTaskResponse) {
         [PPIndicatorView hideLoadingInView:self.view];
@@ -99,6 +100,7 @@
         }
         
     } changePassWord:self.updatePassWord oldPassWord:self.oldPassWord];
+     */
     
 }
 

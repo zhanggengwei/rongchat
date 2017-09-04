@@ -12,8 +12,6 @@
 #import "PPFileManager.h"
 #import "OTFileManager.h"
 
-
-
 #define ContentType @"application/json"
 
 @interface PPDateEngine ()
@@ -21,10 +19,6 @@
 @property (nonatomic,strong) RACCommand * contactListCommand;
 //查询用户信息
 @property (nonatomic,strong) RACCommand * searchUserInfoCommand;
-//好友添加 PPHTTPManager * manager = [PPHTTPManager manager];
-//NSDictionary *params = @{
-//@"friendId" : friendUserID,
-//@"message" : content};
 @property (nonatomic,strong) RACCommand * addContactCommand;
 //用户修改名称
 @property (nonatomic,strong) RACCommand * modifyNickNameCommand;
@@ -61,15 +55,15 @@
 
 @property (nonatomic,strong) RACCommand * connectRCIMCommand;
 
-#pragma makr contactGroup
+#pragma mark contactGroup
 //创建群聊
 @property (nonatomic,strong) RACCommand * createContactGroupCommand;
 //修改群聊的名称
 @property (nonatomic,strong) RACCommand * modifyContactGroupNameCommand;
 //查询群聊成员
-@property (nonatomic,strong) RACCommand * getGroupMemberCommand;
+@property (nonatomic,strong) RACCommand * groupMembersCommand;
 //退出分组
-@property (nonatomic,strong) RACCommand * quitContactGroupCommand;
+@property (nonatomic,strong) RACCommand * leaveContactGroupCommand;
 //解散群聊
 @property (nonatomic,strong) RACCommand * dismissContactGroupCommand;
 //删除分组中的成员
@@ -82,8 +76,11 @@
 @property (nonatomic,strong) RACCommand * contactGroupsCommand;
 //上传群聊的图片
 @property (nonatomic,strong) RACCommand * uploadContactGroupAvatarImageCommand;
-//获得群聊 groudID
-@property (nonatomic,strong) RACCommand * getContactGroupByGroupIdCommand;
+//获得群聊通过contactGroupId
+@property (nonatomic,strong) RACCommand * contactGroupByGroupIdCommand;
+//群公告
+@property (nonatomic,strong) RACCommand * contactGroupPublicServiceCommand;
+
 @end
 
 @implementation PPDateEngine
@@ -723,6 +720,172 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     }
     return _modifyNickNameCommand;
 }
+#pragma mark contactGroup
+- (RACCommand *)createContactGroupCommand
+{
+    if(_createContactGroupCommand==nil)
+    {
+        _createContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:@"" parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _createContactGroupCommand;
+}
+
+- (RACCommand *)addMembersContactGroupCommand
+{
+    if(_addMembersContactGroupCommand==nil)
+    {
+        _addMembersContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _addMembersContactGroupCommand;
+}
+
+- (RACCommand *)uploadContactGroupAvatarImageCommand
+{
+    if(_uploadContactGroupAvatarImageCommand==nil)
+    {
+        _uploadContactGroupAvatarImageCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                 return nil;
+             }];
+            return signal;
+        }];
+    }
+    return _uploadContactGroupAvatarImageCommand;
+}
+- (RACCommand *)modifyContactGroupNameCommand
+{
+    if(_modifyContactGroupNameCommand==nil)
+    {
+        _modifyContactGroupNameCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _modifyContactGroupNameCommand;
+}
+
+- (RACCommand *)kickMembersContactGroupCommand
+{
+    if(_kickMembersContactGroupCommand==nil)
+    {
+        _kickMembersContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _kickMembersContactGroupCommand;
+}
+
+- (RACCommand *)contactGroupByGroupIdCommand
+{
+    if(_contactGroupByGroupIdCommand==nil)
+    {
+        _contactGroupByGroupIdCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _contactGroupByGroupIdCommand;
+}
+
+- (RACCommand *)groupMembersCommand
+{
+    if(_groupMembersCommand==nil)
+    {
+        _groupMembersCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _groupMembersCommand;
+}
+
+- (RACCommand *)leaveContactGroupCommand
+{
+    if(_leaveContactGroupCommand==nil)
+    {
+        _leaveContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _leaveContactGroupCommand;
+}
+
+- (RACCommand *)joinInContactGroupCommand
+{
+    if(_joinInContactGroupCommand==nil)
+    {
+        _joinInContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _joinInContactGroupCommand;
+}
+
+- (RACCommand *)dismissContactGroupCommand
+{
+    if(_dismissContactGroupCommand==nil)
+    {
+        _dismissContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _dismissContactGroupCommand;
+}
+
+- (RACCommand *)contactGroupPublicServiceCommand
+{
+    if(_contactGroupPublicServiceCommand==nil)
+    {
+        _contactListCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _contactGroupPublicServiceCommand;
+}
+
+
+
+
+
+#pragma mark user
 
 - (RACCommand *)resetPassWordCommand
 {
@@ -935,7 +1098,46 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 - (RACSignal *)getUserInfoDetailCommand:(NSString *)friendId
 {
     return [self.userInfoDetailCommand execute:friendId];
-
 }
-
+//创建群组成员
+- (RACSignal *)createContactGroupName:(NSString *)name members:(NSArray<NSString *> *)userIds
+{
+    return [self.createContactGroupCommand execute:nil];
+    
+}
+//删除群组的成员
+- (RACSignal *)deleteMemberFormContactGroup:(NSString *)groudId members:(NSArray<NSString *> *)userIds
+{
+    return  [self.kickMembersContactGroupCommand execute:nil];
+}
+//添加群组成员
+- (RACSignal *)addMemberFormContactGroup:(NSString *)groudId members:(NSArray<NSString *> *)userIds
+{
+    return [self.addMembersContactGroupCommand execute:nil];
+}
+//修改群姓名
+- (RACSignal *)updateContactGroupName:(NSString *)groupName withGroupId:(NSString *)groupId
+{
+    return [self.modifyContactGroupNameCommand execute:nil];
+}
+//退出群组
+- (RACSignal *)leaveContactGroup:(NSString *)groupId
+{
+  return  [self.leaveContactGroupCommand execute:nil];
+}
+//解散群组
+- (RACSignal *)dismissContactGroup:(NSString *)groupId
+{
+   return [self.dismissContactGroupCommand execute:nil];
+}
+//发布群公告
+- (RACSignal *)submitContactGroupPublicService:(NSString *)groupId publicService:(NSString *)publicService
+{
+    return [self.contactGroupPublicServiceCommand execute:nil];
+}
+//修改群组的图片
+- (RACSignal *)uploadContactGroupAvatarImage:(NSString *)groupId avatarImage:(UIImage *)avatarImage
+{
+    return [self.uploadContactGroupAvatarImageCommand execute:nil];
+}
 @end

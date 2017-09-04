@@ -43,9 +43,9 @@
 - (void)saveAction:(id)sender
 {
     
-    [[PPDateEngine manager]requestUpdateNickNameResponse:^(id aTaskResponse) {
-        
-    } nickName:self.nickNameTextField.text];
+//    [[PPDateEngine manager]requestUpdateNickNameResponse:^(id aTaskResponse) {
+//        
+//    } nickName:self.nickNameTextField.text];
     
 }
 

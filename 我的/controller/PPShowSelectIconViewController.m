@@ -114,6 +114,7 @@
 
 - (void)uploadImage:(UIImage *)uploadImage
 {
+    /*
     self.uploadImage =  [PPImageUtil imageCompressLargeImageToAspectFillScreen:uploadImage];
     
     self.imageView.image = self.uploadImage;
@@ -131,6 +132,7 @@
             } UploadFile:UIImagePNGRepresentation(self.uploadImage) UserId:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil] uploadToken:image_token];
         }
     }];
+     */
 }
 
 /*
