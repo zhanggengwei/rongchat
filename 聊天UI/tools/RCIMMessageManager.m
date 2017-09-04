@@ -48,6 +48,7 @@
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object
 {
     static BOOL refresh;
+    NSLog(@"content == %@",message.content);
     if([message.objectName isEqualToString:RCContactNotificationMessageIdentifier])
     {
         [self managerAddContactRequest:message];
@@ -75,6 +76,35 @@
         }
     }
 }
+
+- (void)managerContactGroupMessage:(RCGroupNotificationMessage *)contactGroupMessage
+{
+    NSLog(@"contactGroupMessage==%@",contactGroupMessage.operation);
+    
+}
+//
+- (BOOL)customMessage:(RCMessage*)message
+{
+    
+    if([message.objectName isEqualToString:@"RCContactNotificationMessageIdentifier"])
+    {
+        return NO;
+    }else if ([message.objectName isEqualToString:RCGroupNotificationMessageIdentifier])
+    {
+        return NO;
+    }else if ([message.objectName isEqualToString:@"RCProfileNotificationMessageIdentifier"])
+    {
+        return NO;
+    }else if([message.objectName isEqualToString:RCPublicServiceCommandMessageTypeIdentifier])
+    {
+        return NO;
+    }else if ([message.objectName isEqualToString:RCDiscussionNotificationTypeIdentifier])
+    {
+        return NO;
+    }
+    return YES;
+}
+
 //处理添加好友的网络请求
 - (void)managerAddContactRequest:(RCMessage *)message
 {
