@@ -10,22 +10,31 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 
 @interface PPDateEngine : NSObject
-#define PPResponseBlock(blockName) void(^blockName)(id aTaskResponse)
-
-
 + (instancetype)manager;
 - (instancetype)init __attribute__((unavailable("PPDateEngine init is not avaliable")));
 
-- (RACSignal *)loginCommandWithUserName:(NSString *)account passWord:(NSString *)passWord region:(NSString *)region;
-
-- (RACSignal *)getContactListCommandWithUserId:(NSString *)userId;
-- (RACSignal *)getContactGroupsCommand;
+#pragma mark User
 
 //通过userId 获得个人信息的接口
 - (RACSignal *)getUserInfoCommandByUserId:(NSString *)userId;
+
 - (RACSignal *)resgisterUserCommandByAccount:(NSString *)account passWord:(NSString *)passWord nickName:(NSString *)nickName verifyCode:(NSString *)code;
+
 - (RACSignal *)getVerificationCodeCommand:(NSString *)region phone:(NSString *)phone;
+
 - (RACSignal *)verifyVerificationCodeCommand:(NSString *)phoneNumber verifyCode:(NSString *)code;
+
+
+- (RACSignal *)getContactListCommandWithUserId:(NSString *)userId;
+
+- (RACSignal *)loginCommandWithUserName:(NSString *)account passWord:(NSString *)passWord region:(NSString *)region;
+
+- (RACSignal *)getUserInfoDetailCommand:(NSString *)friendId;
+
+
+#pragma mark contactGroup
+
+- (RACSignal *)getContactGroupsCommand;
 
 //创建群组成员
 - (RACSignal *)createContactGroupName:(NSString *)name members:(NSArray<NSString *> *)userIds;
@@ -44,10 +53,6 @@
 //修改群组的图片
 - (RACSignal *)uploadContactGroupAvatarImage:(NSString *)groupId avatarImage:(UIImage *)avatarImage;
 
-
-
-
-- (RACSignal *)getUserInfoDetailCommand:(NSString *)friendId;
 //登录完成后连接容云通讯
 - (void)connectRCIM;
 

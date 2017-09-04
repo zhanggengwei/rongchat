@@ -11,8 +11,11 @@
 #import "RCIMAddContactModel.h"
 #import "RCIMAddressBookViewController.h"
 #import "RCIMNavigationController.h"
-@interface RCIMAddNewContactViewController ()
+#import "JKRSearchController.h"
+#import "JKRSearchResultViewController.h"
 
+@interface RCIMAddNewContactViewController ()<JKRSearchControllerhResultsUpdating, JKRSearchControllerDelegate, JKRSearchBarDelegate>
+@property (nonatomic, strong) JKRSearchController *searchController;
 @end
 
 @implementation RCIMAddNewContactViewController
@@ -76,6 +79,7 @@
             didSelectCellIndex(index);
         }];
     }];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
         // Do any additional setup after loading the view.
 }
 
@@ -83,7 +87,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (JKRSearchController *)searchController {
+    if (!_searchController) {
+        JKRSearchResultViewController *resultSearchController = [[JKRSearchResultViewController alloc] init];
+        _searchController = [[JKRSearchController alloc] initWithSearchResultsController:resultSearchController];
+        _searchController.searchBar.placeholder = @"搜索";
+        _searchController.hidesNavigationBarDuringPresentation = YES;
+        _searchController.searchResultsUpdater = self;
+        _searchController.searchBar.delegate = self;
+        _searchController.delegate = self;
+    }
+    return _searchController;
+}
 - (void)enterPublicServiceController
 {
     
@@ -117,7 +132,7 @@
         make.left.right.top.mas_equalTo(headerView);
         make.height.mas_equalTo(50);
     }];
-    
+ 
     UIView * bottomView = [UIView new];
     [headerView addSubview:bottomView];
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {

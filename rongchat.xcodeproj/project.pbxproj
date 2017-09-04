@@ -280,6 +280,18 @@
 		75CCCFD21F5A76730076EF18 /* RCIMCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFD11F5A76730076EF18 /* RCIMCustomTableViewCell.m */; };
 		75CCCFD51F5A86A00076EF18 /* RCIMContactDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFD41F5A86A00076EF18 /* RCIMContactDetailsViewController.m */; };
 		75CCCFD81F5A8E6B0076EF18 /* RCIMMemberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFD71F5A8E6B0076EF18 /* RCIMMemberView.m */; };
+		75CCCFEA1F5DB6300076EF18 /* JKRSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFE51F5DB6300076EF18 /* JKRSearchBar.m */; };
+		75CCCFEB1F5DB6300076EF18 /* JKRSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFE71F5DB6300076EF18 /* JKRSearchController.m */; };
+		75CCCFEC1F5DB6300076EF18 /* JKRSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFE91F5DB6300076EF18 /* JKRSearchTextField.m */; };
+		75CCD0011F5DB6D80076EF18 /* UIColor+JKRColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFF11F5DB6D80076EF18 /* UIColor+JKRColor.m */; };
+		75CCD0021F5DB6D80076EF18 /* UIGestureRecognizer+JKRTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFF31F5DB6D80076EF18 /* UIGestureRecognizer+JKRTouch.m */; };
+		75CCD0031F5DB6D80076EF18 /* UINavigationBar+JKR_BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFF51F5DB6D80076EF18 /* UINavigationBar+JKR_BackgroundColor.m */; };
+		75CCD0041F5DB6D80076EF18 /* UIView+JKR_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFF71F5DB6D80076EF18 /* UIView+JKR_Frame.m */; };
+		75CCD0051F5DB6D80076EF18 /* UIView+JKRSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFF91F5DB6D80076EF18 /* UIView+JKRSubView.m */; };
+		75CCD0061F5DB6D80076EF18 /* UIView+JKRTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFFB1F5DB6D80076EF18 /* UIView+JKRTouch.m */; };
+		75CCD0071F5DB6D80076EF18 /* UIView+JKRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFFD1F5DB6D80076EF18 /* UIView+JKRViewController.m */; };
+		75CCD0081F5DB6D80076EF18 /* UIViewController+JKRStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFFF1F5DB6D80076EF18 /* UIViewController+JKRStatusBarStyle.m */; };
+		75CCD00C1F5DBA1F0076EF18 /* JKRSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCD00B1F5DBA1F0076EF18 /* JKRSearchResultViewController.m */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* PPConversationListViewController.m */; };
@@ -787,6 +799,31 @@
 		75CCCFD41F5A86A00076EF18 /* RCIMContactDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMContactDetailsViewController.m; sourceTree = "<group>"; };
 		75CCCFD61F5A8E6B0076EF18 /* RCIMMemberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMMemberView.h; sourceTree = "<group>"; };
 		75CCCFD71F5A8E6B0076EF18 /* RCIMMemberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMMemberView.m; sourceTree = "<group>"; };
+		75CCCFE41F5DB6300076EF18 /* JKRSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKRSearchBar.h; sourceTree = "<group>"; };
+		75CCCFE51F5DB6300076EF18 /* JKRSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKRSearchBar.m; sourceTree = "<group>"; };
+		75CCCFE61F5DB6300076EF18 /* JKRSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKRSearchController.h; sourceTree = "<group>"; };
+		75CCCFE71F5DB6300076EF18 /* JKRSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKRSearchController.m; sourceTree = "<group>"; };
+		75CCCFE81F5DB6300076EF18 /* JKRSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKRSearchTextField.h; sourceTree = "<group>"; };
+		75CCCFE91F5DB6300076EF18 /* JKRSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKRSearchTextField.m; sourceTree = "<group>"; };
+		75CCCFF01F5DB6D80076EF18 /* UIColor+JKRColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JKRColor.h"; sourceTree = "<group>"; };
+		75CCCFF11F5DB6D80076EF18 /* UIColor+JKRColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JKRColor.m"; sourceTree = "<group>"; };
+		75CCCFF21F5DB6D80076EF18 /* UIGestureRecognizer+JKRTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+JKRTouch.h"; sourceTree = "<group>"; };
+		75CCCFF31F5DB6D80076EF18 /* UIGestureRecognizer+JKRTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+JKRTouch.m"; sourceTree = "<group>"; };
+		75CCCFF41F5DB6D80076EF18 /* UINavigationBar+JKR_BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+JKR_BackgroundColor.h"; sourceTree = "<group>"; };
+		75CCCFF51F5DB6D80076EF18 /* UINavigationBar+JKR_BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+JKR_BackgroundColor.m"; sourceTree = "<group>"; };
+		75CCCFF61F5DB6D80076EF18 /* UIView+JKR_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JKR_Frame.h"; sourceTree = "<group>"; };
+		75CCCFF71F5DB6D80076EF18 /* UIView+JKR_Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JKR_Frame.m"; sourceTree = "<group>"; };
+		75CCCFF81F5DB6D80076EF18 /* UIView+JKRSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JKRSubView.h"; sourceTree = "<group>"; };
+		75CCCFF91F5DB6D80076EF18 /* UIView+JKRSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JKRSubView.m"; sourceTree = "<group>"; };
+		75CCCFFA1F5DB6D80076EF18 /* UIView+JKRTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JKRTouch.h"; sourceTree = "<group>"; };
+		75CCCFFB1F5DB6D80076EF18 /* UIView+JKRTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JKRTouch.m"; sourceTree = "<group>"; };
+		75CCCFFC1F5DB6D80076EF18 /* UIView+JKRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JKRViewController.h"; sourceTree = "<group>"; };
+		75CCCFFD1F5DB6D80076EF18 /* UIView+JKRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JKRViewController.m"; sourceTree = "<group>"; };
+		75CCCFFE1F5DB6D80076EF18 /* UIViewController+JKRStatusBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JKRStatusBarStyle.h"; sourceTree = "<group>"; };
+		75CCCFFF1F5DB6D80076EF18 /* UIViewController+JKRStatusBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JKRStatusBarStyle.m"; sourceTree = "<group>"; };
+		75CCD0091F5DB7830076EF18 /* JKRSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKRSearchHeader.h; sourceTree = "<group>"; };
+		75CCD00A1F5DBA1F0076EF18 /* JKRSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKRSearchResultViewController.h; sourceTree = "<group>"; };
+		75CCD00B1F5DBA1F0076EF18 /* JKRSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKRSearchResultViewController.m; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1377,6 +1414,7 @@
 		7584DAA01E2A5B8A007249C2 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				75CCCFE31F5DB6300076EF18 /* searchController */,
 				752679511F3AC3CC0002AC45 /* Base */,
 				406833631E7A657700E03427 /* controller */,
 				4068336C1E7A657700E03427 /* model */,
@@ -1659,6 +1697,47 @@
 				758E8B911E0AC6EB00D5DD4E /* RCIMRecoarder.m */,
 			);
 			path = VoiceLib;
+			sourceTree = "<group>";
+		};
+		75CCCFE31F5DB6300076EF18 /* searchController */ = {
+			isa = PBXGroup;
+			children = (
+				75CCD0091F5DB7830076EF18 /* JKRSearchHeader.h */,
+				75CCCFED1F5DB6D80076EF18 /* category */,
+				75CCCFE41F5DB6300076EF18 /* JKRSearchBar.h */,
+				75CCCFE51F5DB6300076EF18 /* JKRSearchBar.m */,
+				75CCCFE61F5DB6300076EF18 /* JKRSearchController.h */,
+				75CCCFE71F5DB6300076EF18 /* JKRSearchController.m */,
+				75CCCFE81F5DB6300076EF18 /* JKRSearchTextField.h */,
+				75CCCFE91F5DB6300076EF18 /* JKRSearchTextField.m */,
+				75CCD00A1F5DBA1F0076EF18 /* JKRSearchResultViewController.h */,
+				75CCD00B1F5DBA1F0076EF18 /* JKRSearchResultViewController.m */,
+			);
+			name = searchController;
+			path = controller/searchController;
+			sourceTree = "<group>";
+		};
+		75CCCFED1F5DB6D80076EF18 /* category */ = {
+			isa = PBXGroup;
+			children = (
+				75CCCFF01F5DB6D80076EF18 /* UIColor+JKRColor.h */,
+				75CCCFF11F5DB6D80076EF18 /* UIColor+JKRColor.m */,
+				75CCCFF21F5DB6D80076EF18 /* UIGestureRecognizer+JKRTouch.h */,
+				75CCCFF31F5DB6D80076EF18 /* UIGestureRecognizer+JKRTouch.m */,
+				75CCCFF41F5DB6D80076EF18 /* UINavigationBar+JKR_BackgroundColor.h */,
+				75CCCFF51F5DB6D80076EF18 /* UINavigationBar+JKR_BackgroundColor.m */,
+				75CCCFF61F5DB6D80076EF18 /* UIView+JKR_Frame.h */,
+				75CCCFF71F5DB6D80076EF18 /* UIView+JKR_Frame.m */,
+				75CCCFF81F5DB6D80076EF18 /* UIView+JKRSubView.h */,
+				75CCCFF91F5DB6D80076EF18 /* UIView+JKRSubView.m */,
+				75CCCFFA1F5DB6D80076EF18 /* UIView+JKRTouch.h */,
+				75CCCFFB1F5DB6D80076EF18 /* UIView+JKRTouch.m */,
+				75CCCFFC1F5DB6D80076EF18 /* UIView+JKRViewController.h */,
+				75CCCFFD1F5DB6D80076EF18 /* UIView+JKRViewController.m */,
+				75CCCFFE1F5DB6D80076EF18 /* UIViewController+JKRStatusBarStyle.h */,
+				75CCCFFF1F5DB6D80076EF18 /* UIViewController+JKRStatusBarStyle.m */,
+			);
+			path = category;
 			sourceTree = "<group>";
 		};
 		75CEF8581DDC878500541660 = {
@@ -2167,7 +2246,9 @@
 				7584DADA1E2A5B92007249C2 /* NSString+RCIMAddScale.m in Sources */,
 				7584DA9E1E2A5B83007249C2 /* RCConversationListCell.m in Sources */,
 				409F50941DDD704100015DB7 /* Md5.m in Sources */,
+				75CCD00C1F5DBA1F0076EF18 /* JKRSearchResultViewController.m in Sources */,
 				751D2A3E1F3459CE00426D12 /* RCIMBaseConversationViewController.m in Sources */,
+				75CCD0031F5DB6D80076EF18 /* UINavigationBar+JKR_BackgroundColor.m in Sources */,
 				75278A0E1F0E8F2D000C70AF /* RCChatBaseMessageCell.m in Sources */,
 				7584DB541E2A5BE6007249C2 /* PPUpdateNickNameController.m in Sources */,
 				75DE618E1DE490BD00DF1CA4 /* PPSelectAreaViewCell.m in Sources */,
@@ -2180,6 +2261,7 @@
 				758E8B991E0AC6EB00D5DD4E /* RCIMPhotoBrowser.m in Sources */,
 				75A588611F55C38B00E34B46 /* RCIMPublicServiceCell.m in Sources */,
 				7504C8621F57996A008FEF2B /* RCIMTableSectionHeaderView.m in Sources */,
+				75CCCFEC1F5DB6300076EF18 /* JKRSearchTextField.m in Sources */,
 				758E8B9D1E0AC6EB00D5DD4E /* RCIMSafariActivity.m in Sources */,
 				409F50951DDD704100015DB7 /* rc4.m in Sources */,
 				7584DB751E2A5BF5007249C2 /* PPDataDef.m in Sources */,
@@ -2212,9 +2294,12 @@
 				75D472BB1DEDBA7F0013AA3E /* PPUpdatePassWordTableViewCell.m in Sources */,
 				753CA0C21F27109F00F313EE /* LCCKFacePageView.m in Sources */,
 				758E8BA21E0AC6EB00D5DD4E /* RCIMRecoarder.m in Sources */,
+				75CCD0061F5DB6D80076EF18 /* UIView+JKRTouch.m in Sources */,
 				75CEF8691DDC878500541660 /* AppDelegate.m in Sources */,
+				75CCCFEB1F5DB6300076EF18 /* JKRSearchController.m in Sources */,
 				753CA06C1F26180000F313EE /* LCCKInputViewPluginTakePhoto.m in Sources */,
 				7584DAD61E2A5B92007249C2 /* NSBundle+RCIMExtension.m in Sources */,
+				75CCD0071F5DB6D80076EF18 /* UIView+JKRViewController.m in Sources */,
 				7584DB8A1E2A623F007249C2 /* RCChatBar.m in Sources */,
 				7504C8661F57ACEE008FEF2B /* RCIMIndexView.m in Sources */,
 				75DE618B1DE490A300DF1CA4 /* PPSelectAreaTableViewCell.m in Sources */,
@@ -2243,6 +2328,7 @@
 				75C3A3A81F595B8300482F5A /* RCIMQRCodeViewController.m in Sources */,
 				753CA06A1F26180000F313EE /* LCCKInputViewPluginLocation.m in Sources */,
 				409F50AF1DDD721500015DB7 /* PPPersonTableViewCell.m in Sources */,
+				75CCD0081F5DB6D80076EF18 /* UIViewController+JKRStatusBarStyle.m in Sources */,
 				751D2A4A1F346D8300426D12 /* RCIMMessageManager.m in Sources */,
 				7584DB701E2A5BF5007249C2 /* PPHTTPManager.m in Sources */,
 				75278A4B1F1076B2000C70AF /* RCIMMenuItem.m in Sources */,
@@ -2265,6 +2351,7 @@
 				75CEF9551DDDDE1300541660 /* PPViewUtil.m in Sources */,
 				75B2E5841F285E44003240B9 /* LCCKMessageVoiceFactory.m in Sources */,
 				758E8B9F1E0AC6EB00D5DD4E /* RCIMWebViewProgress.m in Sources */,
+				75CCD0021F5DB6D80076EF18 /* UIGestureRecognizer+JKRTouch.m in Sources */,
 				75CEF9521DDDDDD000541660 /* PPIndicatorView.m in Sources */,
 				7584DAF71E2A5B98007249C2 /* RCIMImageManager.m in Sources */,
 				7526794C1F3A053D0002AC45 /* RCIMLocationManager.m in Sources */,
@@ -2278,6 +2365,7 @@
 				7526AFD01F41865900FE662F /* RCIMBuglyConfig.m in Sources */,
 				75A5885E1F55C28600E34B46 /* RCIMPublicServiceViewController.m in Sources */,
 				7507B0D71F547C67006616B0 /* RCIMNewContactListViewController.m in Sources */,
+				75CCD0011F5DB6D80076EF18 /* UIColor+JKRColor.m in Sources */,
 				409F50811DDD6E6F00015DB7 /* PPLoginViewController.m in Sources */,
 				7584DADC1E2A5B92007249C2 /* NSString+RCIMMD5.m in Sources */,
 				753CA0601F26177B00F313EE /* RCCKChatMoreView.m in Sources */,
@@ -2290,6 +2378,7 @@
 				7584DADF1E2A5B92007249C2 /* UIImageView+RCIMExtension.m in Sources */,
 				7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */,
 				75CCCFCF1F5A75800076EF18 /* RCIMContactGroupDetilsViewController.m in Sources */,
+				75CCCFEA1F5DB6300076EF18 /* JKRSearchBar.m in Sources */,
 				75D472BE1DEEFE160013AA3E /* PPUrlDef.m in Sources */,
 				407261091DEBD12400554D00 /* SubLBXScanViewController.m in Sources */,
 				75278A511F10E512000C70AF /* RCBubbleImageFactory.m in Sources */,
@@ -2315,6 +2404,7 @@
 				75278A141F0E9294000C70AF /* RCMessageSendStateView.m in Sources */,
 				75CEF9491DDD2A0600541660 /* PPContactListCell.m in Sources */,
 				75278A281F105FBD000C70AF /* RCIMSettingService.m in Sources */,
+				75CCD0041F5DB6D80076EF18 /* UIView+JKR_Frame.m in Sources */,
 				7584DB511E2A5BE6007249C2 /* PPSelectAreaViewController.m in Sources */,
 				758E8B931E0AC6EB00D5DD4E /* NSDate+RCIMDateTools.m in Sources */,
 				758E8B961E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.m in Sources */,
@@ -2338,6 +2428,7 @@
 				75CCCFD21F5A76730076EF18 /* RCIMCustomTableViewCell.m in Sources */,
 				75A5885B1F55BA3E00E34B46 /* RCIMAddContactCell.m in Sources */,
 				753CA06F1F2618D000F313EE /* RCIMLocationController.m in Sources */,
+				75CCD0051F5DB6D80076EF18 /* UIView+JKRSubView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
