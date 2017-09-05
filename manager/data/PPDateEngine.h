@@ -31,12 +31,15 @@
 
 - (RACSignal *)getUserInfoDetailCommand:(NSString *)friendId;
 
+- (RACSignal *)sendSmsCode:(NSString *)phone region:(NSString *)region;
+
+
 
 #pragma mark contactGroup
 
 - (RACSignal *)getContactGroupsCommand;
 
-//创建群组成员
+//创建群组
 - (RACSignal *)createContactGroupName:(NSString *)name members:(NSArray<NSString *> *)userIds;
 //删除群组的成员
 - (RACSignal *)deleteMemberFormContactGroup:(NSString *)groudId members:(NSArray<NSString *> *)userIds;

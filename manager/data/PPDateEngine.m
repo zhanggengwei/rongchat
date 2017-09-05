@@ -40,8 +40,6 @@
 @property (nonatomic,strong) RACCommand * delFriendFromBlackListCommand;
 //图片上传的token
 @property (nonatomic,strong) RACCommand * uploadImageToken;
-//token
-@property (nonatomic,strong) RACCommand * token;
 //登陆
 @property (nonatomic,strong) RACCommand * loginCommand;
 //注册
@@ -205,6 +203,46 @@
     return _searchUserInfoCommand;
 }
 
+- (RACCommand *)getVrificationCodeCommand
+{
+    if(_getVrificationCodeCommand==nil)
+    {
+        _getVrificationCodeCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:kPPSendVirtifyCode parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _getVrificationCodeCommand;
+}
+
+- (RACCommand *)verfifyCodeCommand
+{
+    if(_verfifyCodeCommand==nil)
+    {
+        _verfifyCodeCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:kPPVertifyPhoneIsValid parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _verfifyCodeCommand;
+}
+
 - (RACCommand *)addContactCommand
 {
     if(_addContactCommand==nil)
@@ -250,6 +288,26 @@
     return _modifyNickNameCommand;
 }
 
+- (RACCommand *)uploadImageToken
+{
+    if(_uploadImageToken==nil)
+    {
+        _uploadImageToken = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:kPPUrlUploadImageToken parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+                return nil;
+            }];
+            return signal;
+        }];
+    }
+    return _uploadImageToken;
+}
+
 #pragma mark lazy contactGroup
 - (RACCommand *)createContactGroupCommand
 {
@@ -258,9 +316,11 @@
         _createContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 PPHTTPManager * manager = [PPHTTPManager manager];
-                [manager GET:@"" parameters:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [manager POST:kPPUrlCreateGroup parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSLog(@"operation==%@",operation);
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"operation==%@",operation);
                     
                 }];
                 return nil;
@@ -277,7 +337,12 @@
     {
         _addMembersContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:kPPUrlKickGroup parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
                 return nil;
             }];
             return signal;
@@ -305,6 +370,13 @@
     {
         _modifyContactGroupNameCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:kPPUrlRenameGroupName parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+                
                 return nil;
             }];
             return signal;
@@ -319,6 +391,13 @@
     {
         _kickMembersContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:kPPUrlKickGroup parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
+                
                 return nil;
             }];
             return signal;
@@ -373,6 +452,13 @@
     {
         _leaveContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:kPPUrlQuitGroup parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
                 return nil;
             }];
             return signal;
@@ -401,6 +487,12 @@
     {
         _dismissContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:kPPUrlDismissGroup parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                }];
                 return nil;
             }];
             return signal;
@@ -579,52 +671,118 @@
 {
     return [self.userInfoDetailCommand execute:friendId];
 }
+
+- (RACSignal *)sendSmsCode:(NSString *)phone region:(NSString *)region
+{
+    return [self.getVrificationCodeCommand execute:nil];
+}
+
 #pragma mark contactGroup
 
 //创建群组成员
 - (RACSignal *)createContactGroupName:(NSString *)name members:(NSArray<NSString *> *)userIds
 {
-    return [self.createContactGroupCommand execute:nil];
+    
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+    if(userIds)
+    {
+        [dict setObject:userIds forKey:@"memberIds"];
+    }
+    if([name isValid])
+    {
+        [dict setObject:@"name" forKey:name];
+    }
+    return [self.createContactGroupCommand execute:dict];
     
 }
 //删除群组的成员
 - (RACSignal *)deleteMemberFormContactGroup:(NSString *)groudId members:(NSArray<NSString *> *)userIds
 {
-    return  [self.kickMembersContactGroupCommand execute:nil];
+    
+    NSMutableDictionary * parms = [NSMutableDictionary new];
+    if([groudId isValid])
+    {
+        [parms setObject:groudId forKey:@"groupId"];
+    }
+    if(userIds)
+    {
+        [parms setObject:userIds forKey:@"memberIds"];
+    }
+    return  [self.kickMembersContactGroupCommand execute:parms];
 }
 //添加群组成员
-- (RACSignal *)addMemberFormContactGroup:(NSString *)groudId members:(NSArray<NSString *> *)userIds
+- (RACSignal *)addMemberFormContactGroup:(NSString *)groupId members:(NSArray<NSString *> *)userIds
 {
-    return [self.addMembersContactGroupCommand execute:nil];
+    NSMutableDictionary * params = [NSMutableDictionary new];
+    if([groupId isValid])
+    {
+        [params setObject:groupId forKey:@"groupId"];
+    }
+    if(userIds)
+    {
+        [params setObject:userIds forKey:@"memberIds"];
+    }
+    return [self.addMembersContactGroupCommand execute:params];
 }
 //修改群姓名
 - (RACSignal *)updateContactGroupName:(NSString *)groupName withGroupId:(NSString *)groupId
 {
-    return [self.modifyContactGroupNameCommand execute:nil];
+    NSMutableDictionary * params = [NSMutableDictionary new];
+    if([groupId isValid])
+    {
+        [params setObject:groupId forKey:@"groupId"];
+    }
+    if([groupName isValid])
+    {
+        [params setObject:groupName forKey:@"name"];
+    }
+    return [self.modifyContactGroupNameCommand execute:params];
 }
 //退出群组
 - (RACSignal *)leaveContactGroup:(NSString *)groupId
 {
-  return  [self.leaveContactGroupCommand execute:nil];
+    
+    NSDictionary *params = nil;
+    if([groupId isValid])
+    {
+       params = @{ @"groupId" : groupId };
+    }
+    return  [self.leaveContactGroupCommand execute:params];
 }
 //解散群组
 - (RACSignal *)dismissContactGroup:(NSString *)groupId
 {
-   return [self.dismissContactGroupCommand execute:nil];
+    NSDictionary *params = nil;
+    if([groupId isValid])
+    {
+        params = @{ @"groupId" : groupId };
+    }
+   return [self.dismissContactGroupCommand execute:params];
 }
 //发布群公告
 - (RACSignal *)submitContactGroupPublicService:(NSString *)groupId publicService:(NSString *)publicService
 {
+    
     return [self.contactGroupPublicServiceCommand execute:nil];
 }
 //修改群组的图片
 - (RACSignal *)uploadContactGroupAvatarImage:(NSString *)groupId avatarImage:(UIImage *)avatarImage
 {
+    
+    [[self getUploadImageToken]subscribeNext:^(NSString *   token) {
+        
+    }];
     return [self.uploadContactGroupAvatarImageCommand execute:nil];
+   
 }
 - (RACSignal *)getContactGroupByGroupId:(NSString *)groupId
 {
     return [self.contactGroupByGroupIdCommand execute:groupId];
 }
+- (RACSignal *)getUploadImageToken
+{
+    return [self.uploadImageToken execute:nil];
+}
+
 
 @end
