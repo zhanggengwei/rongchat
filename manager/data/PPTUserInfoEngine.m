@@ -270,5 +270,21 @@
     return [[PPDateEngine manager]getContactGroupByGroupId:groupId];
 }
 
+- (BOOL)saveContactGroup:(PPTContactGroupModel *)model
+{
+    return YES;
+}
+- (BOOL)updateContactGroup:(PPTContactGroupModel *)model
+{
+    return YES;
+}
+- (BOOL)deleteContactGroup:(PPTContactGroupModel *)model
+{
+    return YES;
+}
 
+- (BOOL)saveOrUpdateContactGroupMembers:(RCUserInfoData *)data
+{
+    return YES;
+}
 @end

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
     RCIMContactCustom=20,//好友
     RCIMContactRequestFriend=11// 请求称为好友
@@ -64,11 +63,6 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,copy) NSString * groupId;//组合主键
 @end
 
-
-
-
-
-
 //网络请求使用的类
 @interface RCUserInfoBaseData : PPDataDef
 @property (nonatomic,copy) NSString * region;
@@ -81,9 +75,9 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @end
 
 @interface RCUserInfoData : PPDataDef
-@property (nonatomic,copy) NSString * displayName;
-@property (nonatomic,copy) NSString * message;
-@property (nonatomic,copy) NSString * updatedAt;
+@property (nonatomic,copy)  NSString * displayName;
+@property (nonatomic,copy)  NSString * message;
+@property (nonatomic,copy)  NSString * updatedAt;
 @property (nonatomic,assign) BOOL isSelected;//ignore 
 @property (nonatomic,assign) NSInteger status;
 @property (nonatomic,strong) RCUserInfoBaseData * user;
@@ -91,7 +85,6 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 //默认头像
 @property (nonatomic,strong) NSString * placeImage;
 @property (nonatomic,strong) NSString * controllerName;
-
 @end
 
 @interface RCContactGroupData : PPDataDef
@@ -111,8 +104,3 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,strong) RCContactGroupData * group;
 @property (nonatomic,assign) NSInteger  role;
 @end
-
-
-
-
-

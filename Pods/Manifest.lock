@@ -62,9 +62,6 @@ PODS:
   - MD5Digest (1.1.0)
   - MJRefresh (3.1.12)
   - MLLabel (1.10.5)
-  - MTLFMDBAdapter (0.3.2):
-    - FMDB (~> 2.3)
-    - Mantle (~> 2.0)
   - ODRefreshControl (1.2)
   - PhotoBrowser (0.6.5)
   - PinYin4Objc (1.1.1)
@@ -112,7 +109,6 @@ DEPENDENCIES:
   - MD5Digest (~> 1.1.0)
   - MJRefresh (~> 3.1.12)
   - MLLabel (~> 1.10.3)
-  - MTLFMDBAdapter (~> 0.3.2)
   - ODRefreshControl (~> 1.2)
   - PhotoBrowser (~> 0.6.4)
   - PinYin4Objc (~> 1.1.1)
@@ -152,7 +148,6 @@ SPEC CHECKSUMS:
   MD5Digest: fea371215507cfcdc3c9633d02cffc7fd075ebc3
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   MLLabel: d76124055a2205e7f76878e62cd06ba925ba0c97
-  MTLFMDBAdapter: 052190e3e25d35adc56a6cf74f88d648c8ad2615
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   PhotoBrowser: 27100779bb60084fc2b99d0d3849f04f3c4c3404
   PinYin4Objc: 3fa9673610368330e2dfb688b1d19a35c3930a78
@@ -172,6 +167,6 @@ SPEC CHECKSUMS:
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
   ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
 
-PODFILE CHECKSUM: d5a6bb2fbf01198ab71c6d57f76e548d361728bc
+PODFILE CHECKSUM: d019aae6cb0780250bd1ee741daac6fe6e9efa73
 
 COCOAPODS: 1.3.1

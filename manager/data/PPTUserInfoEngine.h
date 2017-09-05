@@ -39,7 +39,14 @@
 
 - (void)queryUserInfoWithUserId:(NSString *)uid resultCallback:(RCIMUserInfoResultBlock)block;
 
-//获得一个群组的信息
+//获得一个群组的信息 contactGroup
 - (RACSignal *)getContactGroupByGroupId:(NSString *)groupId;
+
+- (BOOL)saveContactGroup:(PPTContactGroupModel *)model;
+- (BOOL)updateContactGroup:(PPTContactGroupModel *)model;
+- (BOOL)deleteContactGroup:(PPTContactGroupModel *)model;
+
+- (BOOL)saveOrUpdateContactGroupMembers:(RCUserInfoData *)data;
+
 
 @end
