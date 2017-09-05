@@ -38,6 +38,8 @@
 //查询未读的好友请求
 - (NSInteger)queryUnreadFriendCount;
 
+- (BOOL)deleteContactGroup:(PPTContactGroupModel *)model;
+
 
 
 @end

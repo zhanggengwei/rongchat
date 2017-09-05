@@ -270,17 +270,25 @@
     return [[PPDateEngine manager]getContactGroupByGroupId:groupId];
 }
 
-- (BOOL)saveContactGroup:(PPTContactGroupModel *)model
+- (BOOL)addOrUpdateContactGroup:(PPTContactGroupModel *)model
 {
-    return YES;
+    
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"self.group.indexId = %@",model.group.indexId];
+    PPTContactGroupModel * pre_Model =[self.contactGroupList filteredArrayUsingPredicate:predicate].firstObject;
+    if(pre_Model)
+    {
+        self.contactGroupList = [self.contactGroupList mtl_arrayByRemovingObject:pre_Model];
+    }
+    self.contactGroupList = [self.contactGroupList arrayByAddingObject:model];
+    
+    return [[PPTDBEngine shareManager]addOrUpdateContactGroupLists:@[model]];
 }
-- (BOOL)updateContactGroup:(PPTContactGroupModel *)model
-{
-    return YES;
-}
+
 - (BOOL)deleteContactGroup:(PPTContactGroupModel *)model
 {
-    return YES;
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"group.indexId != %@",model.group.indexId];
+    self.contactGroupList = [self.contactGroupList filteredArrayUsingPredicate:predicate];
+    return [[PPTDBEngine shareManager]deleteContactGroup:model];
 }
 
 - (BOOL)saveOrUpdateContactGroupMembers:(RCUserInfoData *)data

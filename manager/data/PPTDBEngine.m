@@ -253,4 +253,17 @@
     return count;
 }
 
+- (BOOL)deleteContactGroup:(PPTContactGroupModel *)model
+{
+     NSString * deleteSql = [NSString stringWithFormat:@"delete  from \'%@\' where indexId = \'%@\'",CONTACT_GRAOUP_TABLENAME,model.group.indexId];
+     __block BOOL sucessed;
+     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+         [db executeUpdate:deleteSql];
+         sucessed = !rollback;
+         
+     }];
+    return sucessed;
+}
+
+
 @end

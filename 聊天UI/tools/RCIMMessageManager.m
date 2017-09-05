@@ -52,6 +52,8 @@
     static BOOL refresh;
     if([self customMessage:message])
     {
+        
+        NSLog(@"object_name ==%@ %@",message.objectName,message.senderUserId);
         refresh = YES;
         if([message.objectName isEqualToString:RCGroupNotificationMessageIdentifier])
         {
@@ -78,21 +80,36 @@
 
 - (void)managerContactGroupMessage:(RCMessage *)message
 {
-    [[[PPTUserInfoEngine  shareEngine]getContactGroupByGroupId:message.targetId]subscribeNext:^(PPTContactGroupModel * model) {
+    [[[PPTUserInfoEngine  shareEngine]getContactGroupByGroupId:message.targetId]subscribeNext:^(RCContactGroupData * data) {
+        PPTContactGroupModel * model = [PPTContactGroupModel new];
+        model.group = data;
         RCGroupNotificationMessage * messageContent = (RCGroupNotificationMessage *)message.content;
+        NSLog(@"messageContent %@",messageContent.operation);
+        NSLog(@"%@",messageContent.data);
         if([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationCreate])
         {
-           
-        }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationBulletin])
+            if(model)
+            {
+                [[PPTUserInfoEngine shareEngine]addOrUpdateContactGroup:model];
+            }
+        }
+        else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationBulletin])
         {
-            
-        }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationKicked])
+            NSLog(@"%@",messageContent.data);
+        }
+        else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationKicked])
         {
-        }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationQuit])
+        
+        }
+        else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationQuit])
         {
+        
+        
         }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationRename])
         {
-        }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationAdd])
+        
+        }
+        else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationAdd])
         {
             
         }
