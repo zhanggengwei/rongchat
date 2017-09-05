@@ -9,6 +9,9 @@
 #ifndef PPMarchos_h
 #define PPMarchos_h
 #import <RongIMLib/RongIMLib.h>
+#import <MTLFMDBAdapter.h>
+#import <Mantle/Mantle.h>
+
 #import "SFHFKeychainUtils.h"
 #import "kPPObserverDef.h"
 #import "PPDataDef.h"

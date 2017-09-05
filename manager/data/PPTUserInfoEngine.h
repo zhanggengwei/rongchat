@@ -37,6 +37,9 @@
 
 - (void)clearPromptCount;
 
-- (void)queryUserInfoWithUserId:(NSString *)uid resultCallback:(RCIMUserInfoResultBlock)b;
+- (void)queryUserInfoWithUserId:(NSString *)uid resultCallback:(RCIMUserInfoResultBlock)block;
+
+//获得一个群组的信息
+- (RACSignal *)getContactGroupByGroupId:(NSString *)groupId;
 
 @end

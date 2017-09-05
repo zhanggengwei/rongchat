@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x804a;&#x5929;UI/tools/RCIMMessageManager.m"
-            timestampString = "526200919.862445"
+            timestampString = "526274030.146283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-getUnReadMessageCountWithConversationTypeArray:withHandle:"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x804a;&#x5929;UI/tools/RCIMMessageManager.m"
-            timestampString = "526200919.862445"
+            timestampString = "526274030.146283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "-getTotalUnreadCountWithHandle:"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x804a;&#x5929;UI/tools/RCIMMessageManager.m"
-            timestampString = "526200919.862445"
+            timestampString = "526274030.146283"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "-setMessageReadStatusWithConversationId:withConversationType:withHandle:"
             landmarkType = "7">
          </BreakpointContent>

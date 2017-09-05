@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Mantle/Mantle.h>
+
 
 typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
     RCIMContactCustom=20,//好友
@@ -97,7 +97,9 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @interface RCContactGroupData : PPDataDef
 
 @property (nonatomic,strong) NSString * creatorId;
+@property (nonatomic,strong) NSString * bulletin;
 @property (nonatomic,strong) NSString * portraitUri;
+@property (nonatomic,strong) NSString * deletedAt;
 @property (nonatomic,strong) NSString * name;
 @property (nonatomic,strong) NSString * indexId;
 @property (nonatomic,assign) NSInteger maxMemberCount;
@@ -106,7 +108,6 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @end
 
 @interface PPTContactGroupModel : PPDataDef
-
 @property (nonatomic,strong) RCContactGroupData * group;
 @property (nonatomic,assign) NSInteger  role;
 @end

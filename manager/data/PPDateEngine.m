@@ -333,6 +333,18 @@
     {
         _contactGroupByGroupIdCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:kPPUrlGetGroupId(input) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSLog(@"operation == %@",operation);
+                    NSError * error = nil;
+                    PPContactGroupSingleResponse * response = [MTLJSONAdapter modelOfClass:[PPContactGroupSingleResponse class] fromJSONDictionary:responseObject error:&error];
+                    [subscriber sendNext:response.result];
+                    [subscriber sendCompleted];
+                    
+
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"operation == %@",operation);
+                }];
                 return nil;
             }];
             return signal;
@@ -610,4 +622,9 @@
 {
     return [self.uploadContactGroupAvatarImageCommand execute:nil];
 }
+- (RACSignal *)getContactGroupByGroupId:(NSString *)groupId
+{
+    return [self.contactGroupByGroupIdCommand execute:groupId];
+}
+
 @end

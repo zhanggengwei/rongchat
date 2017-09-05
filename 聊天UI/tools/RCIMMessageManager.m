@@ -9,6 +9,8 @@
 #import "RCIMMessageManager.h"
 #import "RCIMInviteMessage.h"
 #import "PPDataDef.h"
+// 创建群聊的通知
+#define GroupNotificationMessage_GroupOperationCreate @"Create"
 
 @interface RCIMMessageManager ()<RCIMClientReceiveMessageDelegate,RCConnectionStatusChangeDelegate>
 {
@@ -48,63 +50,64 @@
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object
 {
     static BOOL refresh;
-    NSLog(@"content == %@",message.content);
-    if([message.objectName isEqualToString:RCContactNotificationMessageIdentifier])
-    {
-        [self managerAddContactRequest:message];
-        if(nLeft<=0)
-        {
-            if(refresh)
-            {
-                [[NSNotificationCenter defaultCenter]postNotificationName:RCDidReceiveMessagesDidChanged object:nil]; 
-            }
-            refresh = NO;
-        }
-    }
-    else
+    if([self customMessage:message])
     {
         refresh = YES;
+        if([message.objectName isEqualToString:RCGroupNotificationMessageIdentifier])
+        {
+            [self managerContactGroupMessage:message];
+        }
         if([self.delegate respondsToSelector:@selector(onReceived:left:object:)])
         {
             [self.delegate onReceived:message left:nLeft object:object];
         }
-        if(nLeft<=0)
+    }
+    else
+    {
+        [self managerAddContactRequest:message];
+    }
+    if(nLeft<=0)
+    {
+        if(refresh)
         {
-            refresh = NO;
             [[NSNotificationCenter defaultCenter]postNotificationName:RCDidReceiveMessagesDidChanged object:nil];
-            self.unReadMessageCount = @([_client getTotalUnreadCount]).stringValue;
         }
+        refresh = NO;
     }
 }
 
-- (void)managerContactGroupMessage:(RCGroupNotificationMessage *)contactGroupMessage
+- (void)managerContactGroupMessage:(RCMessage *)message
 {
-    NSLog(@"contactGroupMessage==%@",contactGroupMessage.operation);
-    
+    [[[PPTUserInfoEngine  shareEngine]getContactGroupByGroupId:message.targetId]subscribeNext:^(PPTContactGroupModel * model) {
+        RCGroupNotificationMessage * messageContent = (RCGroupNotificationMessage *)message.content;
+        if([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationCreate])
+        {
+           
+        }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationBulletin])
+        {
+            
+        }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationKicked])
+        {
+        }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationQuit])
+        {
+        }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationRename])
+        {
+        }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationAdd])
+        {
+            
+        }
+        
+    }];
 }
 //
 - (BOOL)customMessage:(RCMessage*)message
 {
-    
     if([message.objectName isEqualToString:@"RCContactNotificationMessageIdentifier"])
-    {
-        return NO;
-    }else if ([message.objectName isEqualToString:RCGroupNotificationMessageIdentifier])
-    {
-        return NO;
-    }else if ([message.objectName isEqualToString:@"RCProfileNotificationMessageIdentifier"])
-    {
-        return NO;
-    }else if([message.objectName isEqualToString:RCPublicServiceCommandMessageTypeIdentifier])
-    {
-        return NO;
-    }else if ([message.objectName isEqualToString:RCDiscussionNotificationTypeIdentifier])
     {
         return NO;
     }
     return YES;
 }
-
 //处理添加好友的网络请求
 - (void)managerAddContactRequest:(RCMessage *)message
 {

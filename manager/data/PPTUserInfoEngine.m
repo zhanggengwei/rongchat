@@ -253,4 +253,22 @@
         }
     }
 }
+
+- (RACSignal *)getContactGroupByGroupId:(NSString *)groupId
+{
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"self.group.indexId = %@",groupId];
+    PPTContactGroupModel * model = [self.contactGroupList filteredArrayUsingPredicate:predicate].firstObject;
+    if(model)
+    {
+        RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            [subscriber sendNext:model];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+        return signal;
+    }
+    return [[PPDateEngine manager]getContactGroupByGroupId:groupId];
+}
+
+
 @end

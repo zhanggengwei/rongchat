@@ -52,3 +52,7 @@
 
 @end
 
+@interface PPContactGroupSingleResponse : PPHTTPResponse
+
+@end
+

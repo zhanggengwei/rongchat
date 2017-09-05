@@ -82,3 +82,11 @@
 }
 
 @end
+
+@implementation PPContactGroupSingleResponse
+
++ (NSValueTransformer *)resultJSONTransformer
+{
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[RCContactGroupData class]];
+}
+@end
