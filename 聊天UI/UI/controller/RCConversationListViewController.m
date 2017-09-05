@@ -63,8 +63,7 @@
     
     PopoverAction * action1 = [PopoverAction actionWithImage:image title:@"发起群聊" handler:^(PopoverAction *action) {
         RCIMSelectContactsViewController * controller =[RCIMSelectContactsViewController new];
-        [self.navigationController pushViewController:controller animated:YES];
-        
+        [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
     }];
     PopoverAction * action2 = [PopoverAction actionWithImage:image title:@"添加朋友" handler:^(PopoverAction *action) {
         

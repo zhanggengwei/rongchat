@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x804a;&#x5929;UI/tools/RCIMMessageManager.m"
-            timestampString = "526285847.831359"
+            timestampString = "526297421.846494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "-getUnReadMessageCountWithConversationTypeArray:withHandle:"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x804a;&#x5929;UI/tools/RCIMMessageManager.m"
-            timestampString = "526285847.831359"
+            timestampString = "526297421.846494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "-getTotalUnreadCountWithHandle:"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,28 +52,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x804a;&#x5929;UI/tools/RCIMMessageManager.m"
-            timestampString = "526285847.831359"
+            timestampString = "526297421.846494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "-setMessageReadStatusWithConversationId:withConversationType:withHandle:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x804a;&#x5929;UI/tools/RCIMMessageManager.m"
-            timestampString = "526286208.790157"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "-managerContactGroupMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,7 +73,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "265"
             endingLineNumber = "265"
-            landmarkName = "-createContactGroupCommand"
+            landmarkName = "-addContactCommand"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,40 +89,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "262"
             endingLineNumber = "262"
-            landmarkName = "-createContactGroupCommand"
+            landmarkName = "-addContactCommand"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41-[PPDateEngine createContactGroupCommand]_block_invoke_3"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Documents/GitHub/rongchat/manager/data/PPDateEngine.m"
-                  timestampString = "526286710.179037"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "263"
-                  endingLineNumber = "263"
-                  offsetFromSymbolStart = "77">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41-[PPDateEngine createContactGroupCommand]_block_invoke_4"
-                  moduleName = "rongchat"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vd/Documents/GitHub/rongchat/manager/data/PPDateEngine.m"
-                  timestampString = "526286710.180917"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "265"
-                  endingLineNumber = "265"
-                  offsetFromSymbolStart = "83">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

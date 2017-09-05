@@ -186,6 +186,7 @@
 		752B6E8A1F587B14006003AC /* RCIMAddContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 752B6E891F587B14006003AC /* RCIMAddContactModel.m */; };
 		752B6E8D1F587BCA006003AC /* RCIMAddContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 752B6E8C1F587BCA006003AC /* RCIMAddContactTableViewCell.m */; };
 		752B6E901F592587006003AC /* RCIMAddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 752B6E8F1F592587006003AC /* RCIMAddressBookCell.m */; };
+		752DE9CF1F5EA2F90052CEE1 /* RCIMMessageTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 752DE9CE1F5EA2F90052CEE1 /* RCIMMessageTools.m */; };
 		7531E97F1F384CF2001C1326 /* RCMessage+RCTimeShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531E97E1F384CF2001C1326 /* RCMessage+RCTimeShow.m */; };
 		7531E9831F3958B3001C1326 /* RCIMTextFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7531E9821F3958B3001C1326 /* RCIMTextFullScreenViewController.m */; };
 		753CA0601F26177B00F313EE /* RCCKChatMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CA05F1F26177B00F313EE /* RCCKChatMoreView.m */; };
@@ -613,6 +614,8 @@
 		752B6E8C1F587BCA006003AC /* RCIMAddContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMAddContactTableViewCell.m; sourceTree = "<group>"; };
 		752B6E8E1F592587006003AC /* RCIMAddressBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMAddressBookCell.h; sourceTree = "<group>"; };
 		752B6E8F1F592587006003AC /* RCIMAddressBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMAddressBookCell.m; sourceTree = "<group>"; };
+		752DE9CD1F5EA2F90052CEE1 /* RCIMMessageTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMMessageTools.h; sourceTree = "<group>"; };
+		752DE9CE1F5EA2F90052CEE1 /* RCIMMessageTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMMessageTools.m; sourceTree = "<group>"; };
 		7531E97D1F384CF2001C1326 /* RCMessage+RCTimeShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCMessage+RCTimeShow.h"; path = "../UI/controller/RCMessage+RCTimeShow.h"; sourceTree = "<group>"; };
 		7531E97E1F384CF2001C1326 /* RCMessage+RCTimeShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCMessage+RCTimeShow.m"; path = "../UI/controller/RCMessage+RCTimeShow.m"; sourceTree = "<group>"; };
 		7531E9811F3958B3001C1326 /* RCIMTextFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMTextFullScreenViewController.h; sourceTree = "<group>"; };
@@ -980,6 +983,8 @@
 				7507B0D21F5454B7006616B0 /* RCIMInviteMessage.m */,
 				752B6E881F587B14006003AC /* RCIMAddContactModel.h */,
 				752B6E891F587B14006003AC /* RCIMAddContactModel.m */,
+				752DE9CD1F5EA2F90052CEE1 /* RCIMMessageTools.h */,
+				752DE9CE1F5EA2F90052CEE1 /* RCIMMessageTools.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2414,6 +2419,7 @@
 				758E8B961E0AC6EB00D5DD4E /* NSObject+RCIMDeallocBlockExecutor.m in Sources */,
 				752B6E841F587911006003AC /* RCIMAddNewContactViewController.m in Sources */,
 				7584DA9F1E2A5B83007249C2 /* RCTextMessageTableViewCell.m in Sources */,
+				752DE9CF1F5EA2F90052CEE1 /* RCIMMessageTools.m in Sources */,
 				758E8B941E0AC6EB00D5DD4E /* RCIMAlertController.m in Sources */,
 				7513A2FD1DE92CF900CCAB61 /* XIAlertView.m in Sources */,
 				7584DADE1E2A5B92007249C2 /* UIImage+RCIMExtension.m in Sources */,

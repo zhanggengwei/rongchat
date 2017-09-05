@@ -9,8 +9,9 @@
 #import "RCUserDelegate.h"
 #import "RCIMMenuItem.h"
 
-//#import <AVOSCloudIM/AVOSCloudIM.h>
-/// 传递触发的UIViewController对象
+// 创建群聊的通知
+#define GroupNotificationMessage_GroupOperationCreate @"Create"
+
 #define RCIMLongPressMessageUserInfoKeyFromController    @"RCIMLongPressMessageUserInfoKeyFromController"
 /// 传递触发的UIView对象
 #define RCIMLongPressMessageUserInfoKeyFromView          @"RCIMLongPressMessageUserInfoKeyFromView"

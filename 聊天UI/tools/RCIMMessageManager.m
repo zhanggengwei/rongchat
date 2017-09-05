@@ -9,9 +9,6 @@
 #import "RCIMMessageManager.h"
 #import "RCIMInviteMessage.h"
 #import "PPDataDef.h"
-// 创建群聊的通知
-#define GroupNotificationMessage_GroupOperationCreate @"Create"
-
 @interface RCIMMessageManager ()<RCIMClientReceiveMessageDelegate,RCConnectionStatusChangeDelegate>
 {
     RCIMClient * _client;

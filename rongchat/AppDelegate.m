@@ -55,7 +55,8 @@
     [[UINavigationBar appearance]setTranslucent:NO];
     
     [[UINavigationBar appearance]setBarTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];//导航栏字体颜色
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:17]}];//导航栏字体颜色
+  
     [[UINavigationBar appearance]setTintColor:kPPTWhiteColor];
    
     [[AFNetworkReachabilityManager sharedManager]startMonitoring];
@@ -102,17 +103,6 @@
     [LCCKInputViewPluginTakePhoto registerSubclass];
     [LCCKInputViewPluginPickImage registerSubclass];
     [LCCKInputViewPluginLocation registerSubclass];
-    
-    //登陆成功后进行数据的储藏
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:RCIMLoginSucessedNotifaction object:nil]subscribeNext:^(NSNotification * _Nullable x) {
-        [self loginSucessed];
-    }];
-    
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:RCIMLogoutSucessedNotifaction object:nil]subscribeNext:^(NSNotification * _Nullable x) {
-        [self logoutSucessed];
-    }];
-    
-    
  
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -239,34 +229,5 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     //NewData就是使用新的数据 更新界面，响应点击通知这个动作
     completionHandler(UIBackgroundFetchResultNewData);
-}
-
-- (void)loginSucessed
-{
-    //加载好友的列表
-//    [[[PPDateEngine manager].contactListCommand execute:nil]subscribeNext:^(id  _Nullable x) {
-//        
-//    } error:^(NSError * _Nullable error) {
-//        
-//    } completed:^{
-//        
-//    }];
-//    //请求个人信息数据
-//    [[[PPDateEngine manager].searchUserInfoCommand execute:nil]subscribeNext:^(id  _Nullable x) {
-//        
-//    } error:^(NSError * _Nullable error) {
-//        
-//    } completed:^{
-//        
-//    }];
-    //好友列表的黑名单
-    
-    
-    
-}
-
-- (void)logoutSucessed
-{
-    //清理数据
 }
 @end

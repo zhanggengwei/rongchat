@@ -31,7 +31,7 @@
         make.bottom.equalTo(self.contentView.mas_bottom).with.offset(-offset);
         CGFloat width = [UIApplication sharedApplication].keyWindow.frame.size.width;
         CGFloat height = [UIApplication sharedApplication].keyWindow.frame.size.height;
-        CGFloat widthLimit = MIN(width, height)/5 * 3;
+        CGFloat widthLimit = MIN(width, height)/5 * 4;
         make.width.lessThanOrEqualTo(@(widthLimit));
         make.centerX.equalTo(self.contentView.mas_centerX);
     }];
@@ -56,6 +56,12 @@
     {
         RCRecallNotificationMessage * messageContent = (RCRecallNotificationMessage *)message.content;
         self.systemMessageLabel.text = [NSString stringWithFormat:@"%@撤回了一条消息",messageContent.operatorId];
+    }else if ([message.objectName isEqualToString:RCGroupNotificationMessageIdentifier
+               ])
+    {
+        RCGroupNotificationMessage * messageContent = (RCGroupNotificationMessage *)message.content;
+        NSLog(@"message==%@ operation%@",messageContent.data,messageContent.operation);
+        self.systemMessageLabel.text = [RCIMMessageTools transFromMessageToSystemTip:messageContent];
     }
    
 }

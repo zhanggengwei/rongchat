@@ -13,6 +13,9 @@
 
 @interface RCIMSelectContactsViewController ()
 @property (nonatomic,strong) PPContactListViewModel * viewModel;
+@property (nonatomic,strong) NSMutableArray * selectMembers;
+@property (nonatomic,assign) NSInteger count;
+
 @end
 
 @implementation RCIMSelectContactsViewController
@@ -31,20 +34,51 @@
         NSLog(@"error == %@",error);
     }];
     
-    
     [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
         [signal subscribeNext:^(RCUserInfoData * data) {
             data.isSelected = !data.isSelected;
+            if(data.isSelected)
+            {
+                [self.selectMembers addObject:data];
+                self.count++;
+            }else
+            {
+                [self.selectMembers removeObject:data];
+                self.count--;
+            }
         }];
     }];
     
-    
+    [self createNav];
     
     // Do any additional setup after loading the view.
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSMutableArray *)selectMembers
+{
+    if(_selectMembers==nil)
+    {
+        _selectMembers = [NSMutableArray new];
+    }
+    return _selectMembers;
+}
+
+
+- (void)createNav
+{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAction:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(finishAction:)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:UIColorFromRGB(0x727272)} forState:UIControlStateDisabled];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:kPPLoginButtonColor} forState:UIControlStateNormal];
+    
+    RAC(self.navigationItem.rightBarButtonItem,enabled) = [RACObserve(self, count)filter:^BOOL(id value) {
+        return [value boolValue];
+    }];
 }
 
 /*
@@ -56,5 +90,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)cancelAction:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)finishAction:(id)sender
+{
+    
+}
 
 @end

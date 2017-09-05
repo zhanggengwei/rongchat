@@ -257,7 +257,6 @@
     
     NSString * identifier= [RCCellIdentifierFactory cellIdentifierForMessageConfiguration:message conversationType:message.conversationType];
     RCChatBaseMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
     cell.tableView = self.parentController.tableView;
     cell.indexPath = indexPath;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -465,12 +464,6 @@
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object
 {
     
-    if([message.objectName isEqualToString:RCContactNotificationMessageIdentifier])
-    {
-        RCContactNotificationMessage * contactMessage = (RCContactNotificationMessage *) message.content;
-        
-        
-    }
     if([message.targetId isEqualToString:self.conversationId])
     {
         [_leftMessages addObject:message];
