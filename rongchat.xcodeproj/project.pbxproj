@@ -292,6 +292,7 @@
 		75CCD0071F5DB6D80076EF18 /* UIView+JKRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFFD1F5DB6D80076EF18 /* UIView+JKRViewController.m */; };
 		75CCD0081F5DB6D80076EF18 /* UIViewController+JKRStatusBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCCFFF1F5DB6D80076EF18 /* UIViewController+JKRStatusBarStyle.m */; };
 		75CCD00C1F5DBA1F0076EF18 /* JKRSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CCD00B1F5DBA1F0076EF18 /* JKRSearchResultViewController.m */; };
+		75CCD00E1F5E30160076EF18 /* search.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75CCD00D1F5E30160076EF18 /* search.xcassets */; };
 		75CEF8661DDC878500541660 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8651DDC878500541660 /* main.m */; };
 		75CEF8691DDC878500541660 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF8681DDC878500541660 /* AppDelegate.m */; };
 		75CEF86C1DDC878500541660 /* PPConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CEF86B1DDC878500541660 /* PPConversationListViewController.m */; };
@@ -824,6 +825,7 @@
 		75CCD0091F5DB7830076EF18 /* JKRSearchHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKRSearchHeader.h; sourceTree = "<group>"; };
 		75CCD00A1F5DBA1F0076EF18 /* JKRSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKRSearchResultViewController.h; sourceTree = "<group>"; };
 		75CCD00B1F5DBA1F0076EF18 /* JKRSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKRSearchResultViewController.m; sourceTree = "<group>"; };
+		75CCD00D1F5E30160076EF18 /* search.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = search.xcassets; sourceTree = "<group>"; };
 		75CEF8611DDC878500541660 /* rongchat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rongchat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CEF8651DDC878500541660 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		75CEF8671DDC878500541660 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1772,6 +1774,7 @@
 		75CEF8631DDC878500541660 /* rongchat */ = {
 			isa = PBXGroup;
 			children = (
+				75CCD00D1F5E30160076EF18 /* search.xcassets */,
 				75CEF89B1DDC889F00541660 /* PPMarchos.h */,
 				75CEF89A1DDC880300541660 /* PrefixHeader.pch */,
 				75CEF9561DE1434500541660 /* rongchat.entitlements */,
@@ -2064,6 +2067,7 @@
 				40C260B51E0396FB00823111 /* tabbar_contacts@3x.png in Resources */,
 				40C260A11E0396FB00823111 /* Shake_icon_music@2x.png in Resources */,
 				40C260811E0396FB00823111 /* bottleBkg@2x.jpg in Resources */,
+				75CCD00E1F5E30160076EF18 /* search.xcassets in Resources */,
 				75F164091F3D5BDD0018A022 /* fav_fileicon_video90@3x.png in Resources */,
 				75278A3F1F106798000C70AF /* VoiceMessageSource.bundle in Resources */,
 				40C260B61E0396FB00823111 /* tabbar_contactsHL@2x.png in Resources */,
