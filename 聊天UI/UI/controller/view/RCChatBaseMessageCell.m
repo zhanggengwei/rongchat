@@ -14,6 +14,7 @@
 #import "UIImage+RCIMExtension.h"
 #import "NSObject+RCIMExtension.h"
 #import "NSObject+RCIMDeallocBlockExecutor.h"
+#import "RCIMConversationModel.h"
 
 NSMutableDictionary const * RCChatMessageCellMediaTypeDict = nil;
 
@@ -277,7 +278,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     [self.contentView addSubview:self.messageContentView];
     [self.contentView addSubview:self.messageReadStateImageView];
     [self.contentView addSubview:self.messageSendStateView];
-
+    
     [self.messageContentBackgroundImageView setImage:[RCBubbleImageFactory bubbleImageViewForType:self.messageOwner messageType:self.mediaType isHighlighted:NO]];
     [self.messageContentBackgroundImageView setHighlightedImage:[RCBubbleImageFactory bubbleImageViewForType:self.messageOwner messageType:self.mediaType isHighlighted:YES]];
     
@@ -316,27 +317,13 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 - (void)configureCellWithData:(RCMessage *)message {
     //只考虑几种常用的信息
     _message = message;
-    RCUserInfo * info = _message.content.senderUserInfo;
-    if(info==nil)
-    {
-//        info = [[PPTUserInfoEngine shareEngine]quertyUserInfoByUserId:_message.senderUserId];
-    }
-    
-//    if ([message rcim_isCustomMessage]) {
-//        
-//    }
-//    else
-//    {
-//        
-//    }
-    self.nickNameLabel.text = info.name;
-    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:info.portraitUri]
-                            placeholderImage:({
-        NSString *imageName = @"Placeholder_Avatar";
-        UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
-        image;})
-     ];
     self.messageSendState = message.sentStatus;
+    [[[PPTUserInfoEngine shareEngine]getUserInfoByUserId:message.senderUserId]subscribeNext:^(RCUserInfoData * data)
+     {
+         self.nickNameLabel.text = data.user.name;
+         SD_LOADIMAGE(self.avatarImageView,data.user.portraitUri,nil);
+         
+     }];
 }
 
 #pragma mark - Private Methods
@@ -394,13 +381,13 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     if (!_avatarImageView) {
         _avatarImageView = [[UIImageView alloc] init];
         _avatarImageView.contentMode = UIViewContentModeScaleAspectFit;
-    
-//        RCIMAvatarImageViewCornerRadiusBlock avatarImageViewCornerRadiusBlock = [LCChatKit sharedInstance].avatarImageViewCornerRadiusBlock;
-//        if (avatarImageViewCornerRadiusBlock) {
-//            CGSize avatarImageViewSize = CGSizeMake(kAvatarImageViewWidth, kAvatarImageViewHeight);
-//            CGFloat avatarImageViewCornerRadius = avatarImageViewCornerRadiusBlock(avatarImageViewSize);
-//            self.avatarImageView.RCIM_cornerRadius = avatarImageViewCornerRadius;
-//        }
+        
+        //        RCIMAvatarImageViewCornerRadiusBlock avatarImageViewCornerRadiusBlock = [LCChatKit sharedInstance].avatarImageViewCornerRadiusBlock;
+        //        if (avatarImageViewCornerRadiusBlock) {
+        //            CGSize avatarImageViewSize = CGSizeMake(kAvatarImageViewWidth, kAvatarImageViewHeight);
+        //            CGFloat avatarImageViewCornerRadius = avatarImageViewCornerRadiusBlock(avatarImageViewSize);
+        //            self.avatarImageView.RCIM_cornerRadius = avatarImageViewCornerRadius;
+        //        }
         
         [self bringSubviewToFront:_avatarImageView];
     }
@@ -454,8 +441,8 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 }
 
 - (RCMessageDirection)messageOwner {
-
-   
+    
+    
     return [self getMessageOwerTypeWithReuseIdentifier:self.reuseIdentifier];
 }
 
@@ -473,35 +460,35 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
         }
         [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
         NSUInteger delaySeconds = RCAnimateDuration;
-       
+        
         dispatch_time_t when = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delaySeconds * NSEC_PER_SEC));
         dispatch_after(when, dispatch_get_main_queue(), ^{
             [self becomeFirstResponder];
-//            RCIMLongPressMessageBlock longPressMessageBlock = [LCChatKit sharedInstance].longPressMessageBlock;
+            //            RCIMLongPressMessageBlock longPressMessageBlock = [LCChatKit sharedInstance].longPressMessageBlock;
             NSArray *menuItems = [NSArray array];
-//            NSDictionary *userInfo = @{
-//                                       LCCKLongPressMessageUserInfoKeyFromController : self.delegate,
-//                                       LCCKLongPressMessageUserInfoKeyFromView : self.tableView,
-//                                       };
-//            if (longPressMessageBlock) {
-////                menuItems = longPressMessageBlock(self.message, userInfo);
-//            } else {
-          
+            //            NSDictionary *userInfo = @{
+            //                                       LCCKLongPressMessageUserInfoKeyFromController : self.delegate,
+            //                                       LCCKLongPressMessageUserInfoKeyFromView : self.tableView,
+            //                                       };
+            //            if (longPressMessageBlock) {
+            ////                menuItems = longPressMessageBlock(self.message, userInfo);
+            //            } else {
             
-                RCIMMenuItem *copyItem = [[RCIMMenuItem alloc] initWithTitle:@"copy"
-                                                                       block:^{
-                                                                           RCTextMessage * textMessage = (RCTextMessage *)self.message.content;
-                                                                           
-                                                                        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-                                                                        [pasteboard setString:textMessage.content];
-                                                                       }];
-                //TODO:添加“转发”
-                if ([self.message.objectName isEqualToString:RCTextMessageTypeIdentifier]) {
-                     menuItems = @[[self deleteItem],copyItem,[self recallMessageItem]];
-                }else
-                {
-                    menuItems = @[[self deleteItem],copyItem,[self recallMessageItem]];
-                }
+            
+            RCIMMenuItem *copyItem = [[RCIMMenuItem alloc] initWithTitle:@"copy"
+                                                                   block:^{
+                                                                       RCTextMessage * textMessage = (RCTextMessage *)self.message.content;
+                                                                       
+                                                                       UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                                                                       [pasteboard setString:textMessage.content];
+                                                                   }];
+            //TODO:添加“转发”
+            if ([self.message.objectName isEqualToString:RCTextMessageTypeIdentifier]) {
+                menuItems = @[[self deleteItem],copyItem,[self recallMessageItem]];
+            }else
+            {
+                menuItems = @[[self deleteItem],copyItem,[self recallMessageItem]];
+            }
             //}
             UIMenuController *menuController = [UIMenuController sharedMenuController];
             [menuController setMenuItems:menuItems];
@@ -509,13 +496,13 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
             UITableView *tableView = self.tableView;
             CGRect targetRect = [self convertRect:self.messageContentView.frame toView:tableView];
             [menuController setTargetRect:targetRect inView:tableView];
-          
+            
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(handleMenuWillShowNotification:)
                                                          name:UIMenuControllerWillShowMenuNotification
                                                        object:nil];
-               [menuController setMenuVisible:YES animated:YES];
-           
+            [menuController setMenuVisible:YES animated:YES];
+            
         });
     }
     

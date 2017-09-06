@@ -122,7 +122,7 @@
 {
     
     [[[RCIMConversationModel new]loadDataConversation:conversation]subscribeNext:^(RCIMConversationModel * model) {
-        self.contentLabel.text = model.message;
+//        self.contentLabel.text = model.message;
         self.receiveLabel.text = model.title;
         SD_LOADIMAGE(self.avaturImageView, model.avatarUrl,model.placeHolerImage);
     }];
