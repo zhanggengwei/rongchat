@@ -678,7 +678,20 @@
 }
 - (RACSignal *)getUserInfoDetailCommand:(NSString *)friendId
 {
-    return [self.userInfoDetailCommand execute:friendId];
+    return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        PPHTTPManager * manager = [PPHTTPManager manager];
+        [manager POST:kPPUrlProfile(friendId) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSError * error;
+            PPContactGroupListResponse * resoponse = [MTLJSONAdapter modelOfClass:[PPContactGroupListResponse class] fromJSONDictionary:responseObject error:&error];
+            [subscriber sendNext:resoponse];
+            [subscriber sendCompleted];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [subscriber sendError:error];
+            [subscriber sendCompleted];
+        }];
+        return nil;
+    }];
+    
 }
 
 - (RACSignal *)sendSmsCode:(NSString *)phone region:(NSString *)region

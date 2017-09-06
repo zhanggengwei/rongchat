@@ -318,11 +318,12 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     //只考虑几种常用的信息
     _message = message;
     self.messageSendState = message.sentStatus;
+    NSLog(@"message.uid==%@ ",message.senderUserId);
     [[[PPTUserInfoEngine shareEngine]getUserInfoByUserId:message.senderUserId]subscribeNext:^(RCUserInfoData * data)
      {
          self.nickNameLabel.text = data.user.name;
-         SD_LOADIMAGE(self.avatarImageView,data.user.portraitUri,nil);
-         
+         UIImage * image = RCIM_PLACE_ARATARIMAGE;
+         SD_LOADIMAGE(self.avatarImageView,data.user.portraitUri,image);
      }];
 }
 

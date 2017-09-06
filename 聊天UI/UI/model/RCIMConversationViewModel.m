@@ -350,6 +350,7 @@
     NSMutableArray * messages = [NSMutableArray new];
     [contents enumerateObjectsUsingBlock:^(RCMessageContent * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         RCMessage * message = [[RCMessage alloc]initWithType:self.conversationType targetId:self.conversationId direction:MessageDirection_SEND messageId:0 content:obj];
+        message.senderUserId = [PPTUserInfoEngine shareEngine].userId;
         [messages addObject:message];
     }];
     NSArray<RCMessage *>* sendMessages = [self messagesWithLocalMessages:messages freshTimestamp:lastMessage.sentTime];
