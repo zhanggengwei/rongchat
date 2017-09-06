@@ -17,7 +17,8 @@ NSArray * titleArr ()
 #import "PPSelectAreaViewController.h"
 #import "PPPhotoSeleceOrTakePhotoManager.h"
 #import "PPUpdateNickNameController.h"
-#import "RCIMQRCodeViewController.h"
+#import "RCIMQRCodeViewCustomController.h"
+
 
 @interface PPInfoMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
@@ -66,7 +67,7 @@ NSArray * titleArr ()
     {
 //        PPPhotoSeleceOrTakePhotoManager * manager = [PPPhotoSeleceOrTakePhotoManager sharedPPPhotoSeleceOrTakePhotoManager];
 //        [manager pushQRCodeController:self];
-        [self.navigationController pushViewController:[RCIMQRCodeViewController new] animated:YES];
+        [self.navigationController pushViewController:[RCIMQRCodeViewCustomController new] animated:YES];
         
     }else if ([arr[indexPath.row] isEqualToString:@"名字"])
     {

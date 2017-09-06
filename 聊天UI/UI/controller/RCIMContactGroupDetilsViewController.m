@@ -11,22 +11,30 @@
 #import "RCIMCustomTableViewCell.h"
 #import "RCIMMemberView.h"
 #import "PPImageUtil.h"
+#import "RCIMContactGroupQRCodeViewController.h"
 
 @interface RCIMContactGroupDetilsViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray * data;
 @property (nonatomic,strong) RCIMMemberView * memberListView;
-@property (nonatomic,strong) NSArray * members;
+@property (nonatomic,strong) NSMutableArray * members;
+@property (nonatomic,strong) RCContactGroupData * contactGroup;
 @end
 
 @implementation RCIMContactGroupDetilsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    @weakify(self);
     self.title = @"聊天信息";
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.view);
+    }];
+    [[[PPTUserInfoEngine shareEngine]getContactGroupByGroupId:self.groupId]subscribeNext:^(RCContactGroupData * model) {
+        @strongify(self);
+        self.contactGroup = model;
+        [self.tableView reloadData];
     }];
     [self loadData];
     [self loadMemberList];
@@ -48,22 +56,17 @@
 
 - (void)loadMemberList
 {
-    RCIMContactGroupMemberModel * model1 = [RCIMContactGroupMemberModel new];
-    model1.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
-    RCIMContactGroupMemberModel * model2 = [RCIMContactGroupMemberModel new];
-    model2.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
-    RCIMContactGroupMemberModel * model3 = [RCIMContactGroupMemberModel new];
-    model3.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
-    RCIMContactGroupMemberModel * model4 = [RCIMContactGroupMemberModel new];
-    model4.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
-    RCIMContactGroupMemberModel * model5 = [RCIMContactGroupMemberModel new];
-    model5.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
-    self.members = @[model1,model2,model3,model4,model5];
-    self.memberListView.dataSource = self.members;
     [[[PPDateEngine manager]getContactGroupMembersByGroupId:self.groupId]subscribeNext:^(PPContactGroupMemberListResponse * response) {
         if(response.code.integerValue == kPPResponseSucessCode)
         {
-            
+            [self.members removeAllObjects];
+            [response.result enumerateObjectsUsingBlock:^(RCUserInfoData  * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                RCIMContactGroupMemberModel * model = [RCIMContactGroupMemberModel new];
+                model.userInfo = obj;
+                [self.members addObject:model];
+            }];
+            self.memberListView.dataSource = self.members;
+            [self.tableView reloadData];
         }
     }];
 }
@@ -78,6 +81,12 @@
     RCIMCellIconItem * item12 = [RCIMCellIconItem new];
     item12.title = @"群聊二维码";
     item12.imageName = @"未命名";
+    item12.clickSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        
+        return nil;
+    }];
+    
+    
     
     RCIMCellCustomItem * item13 = [RCIMCellCustomItem new];
     item13.title = @"群公告";
@@ -86,8 +95,6 @@
     RCIMCellCustomItem * item14 = [RCIMCellCustomItem new];
     item14.title = @"群管理";
     item14.detail = @"";
-    
-    
     
     RCIMCellSwitchItem * item21= [RCIMCellSwitchItem new];
     item21.title = @"消息免打扰";
@@ -112,6 +119,15 @@
     
     self.data = @[@[item11,item12,item13],@[item21,item22,item23],@[item31,item32],@[item41]];
     [self.tableView reloadData];
+}
+
+- (NSMutableArray *)members
+{
+    if(_members==nil)
+    {
+        _members = [NSMutableArray new];
+    }
+    return _members;
 }
 
 - (UITableView *)tableView
@@ -165,6 +181,13 @@
     cell.indexPath = indexPath;
     cell.model = item;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RCIMContactGroupQRCodeViewController * controller = [RCIMContactGroupQRCodeViewController new];
+    controller.model = self.contactGroup;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

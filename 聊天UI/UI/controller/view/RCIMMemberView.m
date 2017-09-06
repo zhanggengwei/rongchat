@@ -9,6 +9,8 @@
 #define RCIMMEMBER_ITEM_HEIGHT (RCIMMEMBER_ITEM_WIDTH +20)
 #define RCIM_ITEM_MARGIN 10
 #import "RCIMMemberView.h"
+#import "UIImage+RCIMExtension.h"
+
 
 @interface RCIMContactGroupCollectionCell : UICollectionViewCell
 @property (nonatomic,strong) RCIMContactGroupMemberModel * model;
@@ -51,8 +53,9 @@
 
 - (void)setModel:(RCIMContactGroupMemberModel *)model
 {
-    SD_LOADIMAGE(_avatarImageView, model.userInfo.user.portraitUri, nil);
-    _nameLabel.text = @"AA";
+    UIImage * avatarImage = RCIM_PLACE_ARATARIMAGE;
+    SD_LOADIMAGE(_avatarImageView, model.userInfo.user.portraitUri, avatarImage);
+    _nameLabel.text = model.userInfo.user.name;
 }
 @end
 
