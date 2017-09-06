@@ -48,7 +48,6 @@
             }
         }];
     }];
-    
     [self createNav];
     
     // Do any additional setup after loading the view.
@@ -75,9 +74,14 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:UIColorFromRGB(0x727272)} forState:UIControlStateDisabled];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:kPPLoginButtonColor} forState:UIControlStateNormal];
-    
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:kPPLoginButtonColor} forState:UIControlStateSelected];
     RAC(self.navigationItem.rightBarButtonItem,enabled) = [RACObserve(self, count)filter:^BOOL(id value) {
-        return [value boolValue];
+        BOOL flag = [value boolValue];
+        if (flag)
+        {
+            self.navigationItem.rightBarButtonItem.title = [NSString stringWithFormat:@"完成(%ld)",[value integerValue]];
+        }
+        return flag;
     }];
 }
 

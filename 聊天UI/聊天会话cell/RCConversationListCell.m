@@ -117,7 +117,7 @@
     UIImage * placeHolderImage = nil;
     if(conversation.conversationType == ConversationType_GROUP)
     {
-        PPTContactGroupModel * model = [[PPTUserInfoEngine shareEngine].contactGroupList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.group.indexId = %@",conversation.targetId]].firstObject;
+        PPTContactGroupModel * model = [[PPTUserInfoEngine shareEngine].contactGroupList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"group.indexId = %@",conversation.targetId]].firstObject;
         avatarUrl = model.group.portraitUri;
         placeHolderImage = RCIM_CONTACT_GROUP_ARATARIMAGE;
         if(![avatarUrl isValid])
@@ -126,6 +126,10 @@
         }
         SD_LOADIMAGE(self.avaturImageView, avatarUrl,placeHolderImage);
         self.receiveLabel.text = model.group.name;
+        
+        NSLog(@"mode==%@",model);
+        
+        
     }else
     {
         placeHolderImage = RCIM_PLACE_ARATARIMAGE;

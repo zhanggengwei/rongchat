@@ -28,7 +28,11 @@
     }else if ([message.operation isEqualToString:GroupNotificationMessage_GroupOperationAdd])
     {
         NSString * targetUserDisplayNames = [dict[@"targetUserDisplayNames"] componentsJoinedByString:@","];
-            [resultString appendFormat:@"%@加入了群聊",targetUserDisplayNames];
+        [resultString appendFormat:@"%@加入了群聊",targetUserDisplayNames];
+    }else if ([message.operation isEqualToString:GroupNotificationMessage_GroupOperationKicked])
+    {
+        NSString * targetUserDisplayNames = [dict[@"targetUserDisplayNames"] componentsJoinedByString:@","];
+        [resultString appendFormat:@"%@将%@移除了群聊",operatorNickname,targetUserDisplayNames];
     }
     return resultString;
 }
