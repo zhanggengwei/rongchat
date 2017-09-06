@@ -11,7 +11,6 @@
 #import "OTFileManager.h"
 #import "NSDate+RCIMDateTools.h"
 
-
 @interface PPTUserInfoEngine ()
 
 @property (nonatomic,copy) NSString * token;
@@ -24,6 +23,8 @@
 @property (nonatomic,strong) RCUserInfoData * user_Info;
 @property (nonatomic,strong) RACSignal * accountChangeSignal;
 @property (nonatomic,assign) NSInteger promptCount;
+@property (nonatomic,strong) NSArray<RCUserInfoData *> * memberList;
+
 @end
 
 @implementation PPTUserInfoEngine
@@ -82,11 +83,11 @@
         if(x){
             [[PPTDBEngine shareManager]loadDataBase:self.userId];
             
-            NSArray<RCUserInfoData *> * data = [[PPTDBEngine shareManager]queryFriendList];
-            self.user_Info = [data filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.user.userId = %@",self.userId]].firstObject;
+            self.memberList = [[PPTDBEngine shareManager]queryFriendList];
+            self.user_Info = [_memberList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.user.userId = %@",self.userId]].firstObject;
             self.contactGroupList = [[PPTDBEngine shareManager]contactGroupLists];
-            self.contactList = [data filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.status = %d",RCIMContactCustom]];
-            self.contactRequestList = [[data filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.status = %d",RCIMContactRequestFriend]]sortedArrayUsingSelector:@selector(compare:)];
+            self.contactList = [_memberList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.status = %d",RCIMContactCustom]];
+            self.contactRequestList = [[_memberList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.status = %d",RCIMContactRequestFriend]]sortedArrayUsingSelector:@selector(compare:)];
             self.promptCount = [[PPTDBEngine shareManager]queryUnreadFriendCount];
         }
     }];
@@ -289,6 +290,27 @@
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"group.indexId != %@",model.group.indexId];
     self.contactGroupList = [self.contactGroupList filteredArrayUsingPredicate:predicate];
     return [[PPTDBEngine shareManager]deleteContactGroup:model];
+}
+
+- (RACSignal *)getUserInfoByUserId:(NSString *)userId
+{
+    RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"user.indexId = %@",userId];
+        RCUserInfoData * model = [self.memberList filteredArrayUsingPredicate:predicate].firstObject;
+        if(model)
+        {
+            [subscriber sendNext:model];
+            [subscriber sendCompleted];
+        }else
+        {
+            [[[PPDateEngine manager]getUserInfoDetailCommand:userId]subscribeNext:^(RCUserInfoData * data) {
+                [subscriber sendNext:data];
+                [subscriber sendCompleted];
+            }];
+        }
+        return nil;
+    }];
+    return signal;
 }
 
 - (BOOL)saveOrUpdateContactGroupMembers:(RCUserInfoData *)data

@@ -114,7 +114,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		rNBz8K2W4Sl/YYeyEoJvBom1Odk=
+		cFwrOMZEJfSGz1XZsIvdjjZ+4NQ=
 		</data>
 		<key>BarButtonIcon.bundle/barbuttonicon_Camera@2x.png</key>
 		<data>
@@ -230,7 +230,7 @@
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		i9kz5T5fWE0NMH8ZFkk3q74WG5c=
+		QYDwIA+WZhSBbUYkZpXX1lR5w7U=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -238,11 +238,11 @@
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		05bf39CccAIQ+5PP02SM2eRxLV8=
+		VA4xLLg//EGc3ZtQseG9Dm1B7G0=
 		</data>
 		<key>Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib</key>
 		<data>
-		/g5xp6+v46VvUdt9lsubn7IOO0E=
+		vYrmZlwEvI81iQAjnQQ1BT7r9YQ=
 		</data>
 		<key>Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
@@ -250,7 +250,7 @@
 		</data>
 		<key>Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib</key>
 		<data>
-		UFbGzHkdof1wJ4h4FRiQ7ilL1MI=
+		7Bhj8/1sl39qziaj7cHeLI0S8wo=
 		</data>
 		<key>ChatKeyboard.bundle/ToolViewEmotion@2x.png</key>
 		<data>
@@ -1241,7 +1241,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		gIjl/W20hMQ/DGN/P04ZL+3A7xc=
+		chzM+u+BIFfV/Miyw90qByExaw0=
 		</data>
 		<key>LCCKPBLocalizations.bundle/de.lproj/Localizable.strings</key>
 		<dict>
@@ -1348,7 +1348,7 @@
 		</data>
 		<key>LoginInputView.nib</key>
 		<data>
-		OJqw0DET2StXPwRqA4FckssbGJw=
+		MqfDikdD3bkdiVyBEqHlZSNGGZs=
 		</data>
 		<key>MBProgressHUD.bundle/error@2x.png</key>
 		<data>
@@ -1665,11 +1665,11 @@
 		</data>
 		<key>PPSelectArea.storyboardc/PPSelectAreaViewController.nib</key>
 		<data>
-		um8FxqBSfBxRSWhnFrs5q5MhZL8=
+		f2UPcrhN1oqEzjcjnjhNPjF98yc=
 		</data>
 		<key>PPSelectArea.storyboardc/jSk-VA-Vop-view-cqZ-6y-LO2.nib</key>
 		<data>
-		m8ZAtaRDWzqItiFZrxzNiVCB0xA=
+		v9qWZAhYKweZzlTtfmiXyzul2gQ=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -1694,6 +1694,18 @@
 		<key>RCConfig.plist</key>
 		<data>
 		hEKqDPMdV9N8C1OAfTPEmp+8p/I=
+		</data>
+		<key>RCContact.storyboardc/Info.plist</key>
+		<data>
+		S7b8u/sdPZZyy0FbzDWgsnHi1nU=
+		</data>
+		<key>RCContact.storyboardc/RCIMContactDetailsViewController.nib</key>
+		<data>
+		3kji6UOeezPjSM7+d3r1zdevwvA=
+		</data>
+		<key>RCContact.storyboardc/uqI-KB-RVp-view-xbj-T4-ddL.nib</key>
+		<data>
+		tnih9A2DhNfJJNPHkeArT6tugV8=
 		</data>
 		<key>Shake_Logo_Up@2x.png</key>
 		<data>
@@ -2061,6 +2073,30 @@
 		<data>
 		18YmL79v4PtzIYfyz4Hxd2B1aVU=
 		</data>
+		<key>icon_checkbox_background@2x.png</key>
+		<data>
+		KgmdxGuxzxNwPw6Ow3zYFNAEqEk=
+		</data>
+		<key>icon_checkbox_background@3x.png</key>
+		<data>
+		OR9qdCBlD+Tp3DM1w2oloc1yhJw=
+		</data>
+		<key>icon_checkbox_selected@2x.png</key>
+		<data>
+		jmcqoYzvE9MNZvNz3O3CAHTrBj4=
+		</data>
+		<key>icon_checkbox_selected@3x.png</key>
+		<data>
+		06I3tTqF/GDePK2/brswmfMnjyw=
+		</data>
+		<key>icon_checkbox_unselected@2x.png</key>
+		<data>
+		qJOaUGaCpOHCYDc9LeAu5JBFRSg=
+		</data>
+		<key>icon_checkbox_unselected@3x.png</key>
+		<data>
+		rlU+H07e2XzMjKgHevM+yB0Fwn4=
+		</data>
 		<key>locationSelected@2x.png</key>
 		<data>
 		Fn2c0mZ+kkB0yg8OiDNkQ0giXm8=
@@ -2107,11 +2143,11 @@
 		</data>
 		<key>register.storyboardc/PPResetPassWordViewController.nib</key>
 		<data>
-		Iv5gt/7wj/qm+GMoo+TnnuZWJuc=
+		D6srBhHZDHbHqrLXBtkQ/RbcBRA=
 		</data>
 		<key>register.storyboardc/ZSk-Oi-SZ2-view-RpA-G7-SED.nib</key>
 		<data>
-		p+gD8bEbRz9yuSPcmhQ+zUBOw6k=
+		uEehkAEFMeN1f7fvulxU+3nl0rg=
 		</data>
 		<key>setting_myQR@2x.png</key>
 		<data>
@@ -2505,11 +2541,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rNBz8K2W4Sl/YYeyEoJvBom1Odk=
+			cFwrOMZEJfSGz1XZsIvdjjZ+4NQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			nlgU4jX7aHB9u52J6jisGMMfFvSBfljeCQa9zFlnff0=
+			LccQCbnX6s05qgaGGI4Ce3vdm+MWyCwEvIrOu5QeTy0=
 			</data>
 		</dict>
 		<key>BarButtonIcon.bundle/barbuttonicon_Camera@2x.png</key>
@@ -2824,11 +2860,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			i9kz5T5fWE0NMH8ZFkk3q74WG5c=
+			QYDwIA+WZhSBbUYkZpXX1lR5w7U=
 			</data>
 			<key>hash2</key>
 			<data>
-			u/dgqydnUhtLREM2DJeeCRDMSCozC/r2E+na2yRbvj4=
+			NfPLshI/ISJDiMNv3B9jhcZk/IBHl0UUaFn4oMUgVo4=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
@@ -2846,22 +2882,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			05bf39CccAIQ+5PP02SM2eRxLV8=
+			VA4xLLg//EGc3ZtQseG9Dm1B7G0=
 			</data>
 			<key>hash2</key>
 			<data>
-			br0R6sxtLmmVfm9kfNL1iRsrxHV7wg36gCsV2osBx84=
+			hbvUYeIRFlkzIElqnJ+p7DmJhb3fOxIb/55qDL6JVgo=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			/g5xp6+v46VvUdt9lsubn7IOO0E=
+			vYrmZlwEvI81iQAjnQQ1BT7r9YQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			VBXFPffX/+tclziXsL1xsSmYeYpGLiV1uSPUmTVR6JQ=
+			DUeXimqKZq6HQp23AuYN5V3i0YNNLFLcIbdRkHBRjxc=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/Info.plist</key>
@@ -2879,11 +2915,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			UFbGzHkdof1wJ4h4FRiQ7ilL1MI=
+			7Bhj8/1sl39qziaj7cHeLI0S8wo=
 			</data>
 			<key>hash2</key>
 			<data>
-			yC4eUQRKkdHvhqcfVRrdSFRs1JE1hF1x1MCc1GHjlhc=
+			ZLlCAb8PTDz81GED1iWxaEd31XYMhIvuxLhRkoM1Kro=
 			</data>
 		</dict>
 		<key>ChatKeyboard.bundle/ToolViewEmotion@2x.png</key>
@@ -5347,11 +5383,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			OJqw0DET2StXPwRqA4FckssbGJw=
+			MqfDikdD3bkdiVyBEqHlZSNGGZs=
 			</data>
 			<key>hash2</key>
 			<data>
-			kTBNBSFNSfMRC32CmeFBwU7p3qbhGoopawoWjyQorAg=
+			An85xxPXo0wvfgp9Pn3ce+l9RIXDJb99ywzMO091V1U=
 			</data>
 		</dict>
 		<key>MBProgressHUD.bundle/error@2x.png</key>
@@ -6160,22 +6196,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			um8FxqBSfBxRSWhnFrs5q5MhZL8=
+			f2UPcrhN1oqEzjcjnjhNPjF98yc=
 			</data>
 			<key>hash2</key>
 			<data>
-			qPLXRxwWTeIBjH4JK+i+PvbReXuaI09w8DZOo3YZ2KU=
+			XyCz2tK7HRfiYYF0NqvPZiTefROBDKXWtWAmB5lptNI=
 			</data>
 		</dict>
 		<key>PPSelectArea.storyboardc/jSk-VA-Vop-view-cqZ-6y-LO2.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			m8ZAtaRDWzqItiFZrxzNiVCB0xA=
+			v9qWZAhYKweZzlTtfmiXyzul2gQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			Q0pDllLLQBLoWDfZW3tibH45V4XxqJMKS8+4rd+AjXU=
+			X5U1UKFHzKP4HtsmsapS/fH+Cl2iWaF1zJGzVvzpLUM=
 			</data>
 		</dict>
 		<key>Placeholder.bundle/Placeholder_Accept_Defeat@2x.png</key>
@@ -6231,6 +6267,39 @@
 			<key>hash2</key>
 			<data>
 			HD0pXRWPDWI3kG7EfFQ+LsEeuTD2xC0mPA4154L2Ck8=
+			</data>
+		</dict>
+		<key>RCContact.storyboardc/Info.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			S7b8u/sdPZZyy0FbzDWgsnHi1nU=
+			</data>
+			<key>hash2</key>
+			<data>
+			bOq55Fa7t7QmQA93041sP9TM9Zkyl+grYRRYnBontlk=
+			</data>
+		</dict>
+		<key>RCContact.storyboardc/RCIMContactDetailsViewController.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			3kji6UOeezPjSM7+d3r1zdevwvA=
+			</data>
+			<key>hash2</key>
+			<data>
+			bLrn5NWdfKYRVAdqFnKXRjBXeirO2rkOxffIoAVaWkw=
+			</data>
+		</dict>
+		<key>RCContact.storyboardc/uqI-KB-RVp-view-xbj-T4-ddL.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			tnih9A2DhNfJJNPHkeArT6tugV8=
+			</data>
+			<key>hash2</key>
+			<data>
+			rxNCK4aG1edirfht6e3hxKgB0MygAfMgM+hNaQ+ng7g=
 			</data>
 		</dict>
 		<key>Shake_Logo_Up@2x.png</key>
@@ -7216,6 +7285,72 @@
 			fdwprF0X97p7F1qqRn9RxxN0wiGVSMDClzTUwQXgWTQ=
 			</data>
 		</dict>
+		<key>icon_checkbox_background@2x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			KgmdxGuxzxNwPw6Ow3zYFNAEqEk=
+			</data>
+			<key>hash2</key>
+			<data>
+			yCl3CHfVJ+UC66hvhymrRQLNnf8tzYBH6FCxWpCY6J0=
+			</data>
+		</dict>
+		<key>icon_checkbox_background@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			OR9qdCBlD+Tp3DM1w2oloc1yhJw=
+			</data>
+			<key>hash2</key>
+			<data>
+			d2l0o7T8GL6MlYr2bGAZgkXEpsRs0FHar0wIyEwT26s=
+			</data>
+		</dict>
+		<key>icon_checkbox_selected@2x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			jmcqoYzvE9MNZvNz3O3CAHTrBj4=
+			</data>
+			<key>hash2</key>
+			<data>
+			03lS4JnPWGet0sBlwEMW27zWqzm+St7J8bHidobOG5M=
+			</data>
+		</dict>
+		<key>icon_checkbox_selected@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			06I3tTqF/GDePK2/brswmfMnjyw=
+			</data>
+			<key>hash2</key>
+			<data>
+			kOqrqIsWb7Vhip58JJr3gtlDtuPQcg253BGuPQ/t9+A=
+			</data>
+		</dict>
+		<key>icon_checkbox_unselected@2x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			qJOaUGaCpOHCYDc9LeAu5JBFRSg=
+			</data>
+			<key>hash2</key>
+			<data>
+			lChegNJUO7dpiRcKJy2FlYKx8vO9axSTkwJGsFKZWHk=
+			</data>
+		</dict>
+		<key>icon_checkbox_unselected@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			rlU+H07e2XzMjKgHevM+yB0Fwn4=
+			</data>
+			<key>hash2</key>
+			<data>
+			e9wbinwV4z9AvRpnkkSX1H5hufjVRhnKGqPSM8RW8X8=
+			</data>
+		</dict>
 		<key>locationSelected@2x.png</key>
 		<dict>
 			<key>hash</key>
@@ -7341,22 +7476,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Iv5gt/7wj/qm+GMoo+TnnuZWJuc=
+			D6srBhHZDHbHqrLXBtkQ/RbcBRA=
 			</data>
 			<key>hash2</key>
 			<data>
-			tbjszBeByBqqehJRfjZLthztRaVn3+xKlkL2Y5inW9g=
+			BmT1QnTJThThNWMp7vutfJ+Vnp4PpnH+oLixBS4v3mk=
 			</data>
 		</dict>
 		<key>register.storyboardc/ZSk-Oi-SZ2-view-RpA-G7-SED.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			p+gD8bEbRz9yuSPcmhQ+zUBOw6k=
+			uEehkAEFMeN1f7fvulxU+3nl0rg=
 			</data>
 			<key>hash2</key>
 			<data>
-			S5H5I7u1ac/P8Y5MqvsBZwd3IPiTccIja+jesXpSThM=
+			B+AQcVhiit9qW12VRoOhFiXbhbsalzX4MBC/+Ib1OwY=
 			</data>
 		</dict>
 		<key>setting_myQR@2x.png</key>

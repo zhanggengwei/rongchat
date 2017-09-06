@@ -12,6 +12,11 @@
 #import "PPViewUtil.h"
 #import "PPImageUtil.h"
 
+@interface RCConversation (RCConversationList)
+- (void)loadConversationData:(void(^)(NSString * title))block;
+
+@end
+
 
 @interface RCIMRemindButton : UIButton
 

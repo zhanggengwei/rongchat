@@ -96,12 +96,11 @@
         }
         else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationKicked])
         {
-        
+            
         }
         else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationQuit])
         {
-        
-        
+            
         }else if ([messageContent.operation isEqualToString:GroupNotificationMessage_GroupOperationRename])
         {
         

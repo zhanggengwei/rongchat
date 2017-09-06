@@ -42,6 +42,9 @@
 //获得一个群组的信息 contactGroup
 - (RACSignal *)getContactGroupByGroupId:(NSString *)groupId;
 
+- (RACSignal *)getUserInfoByUserId:(NSString *)userId;
+
+
 - (BOOL)addOrUpdateContactGroup:(PPTContactGroupModel *)model;
 
 - (BOOL)deleteContactGroup:(PPTContactGroupModel *)model;
