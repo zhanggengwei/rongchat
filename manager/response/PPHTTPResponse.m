@@ -90,3 +90,11 @@
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:[RCContactGroupData class]];
 }
 @end
+
+@implementation PPContactGroupMemberListResponse
+
++ (NSValueTransformer *)resultJSONTransformer
+{
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[RCUserInfoData class]];
+}
+@end

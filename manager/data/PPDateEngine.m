@@ -438,6 +438,15 @@
     {
         _groupMembersCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager GET:kPPUrlGetGroupMember(input) parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSError * error = nil;
+                    PPContactGroupMemberListResponse * response = [MTLJSONAdapter modelOfClass:[PPContactGroupMemberListResponse class] fromJSONDictionary:responseObject error:&error];
+                    [subscriber sendNext:response];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"error == %@",error);
+                }];
                 return nil;
             }];
             return signal;
@@ -792,6 +801,11 @@
     }];
     return signal;
 }
+- (RACSignal *)getContactGroupMembersByGroupId:(NSString *)groupId
+{
+    return [self.groupMembersCommand execute:groupId];
+}
+
 - (RACSignal *)getUploadImageToken
 {
     return [self.uploadImageToken execute:nil];

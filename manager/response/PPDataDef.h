@@ -81,6 +81,8 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,assign) BOOL isSelected;//ignore 
 @property (nonatomic,assign) NSInteger status;
 @property (nonatomic,strong) RCUserInfoBaseData * user;
+@property (nonatomic,assign) NSInteger role;
+
 @property (nonatomic,assign) BOOL enabled;
 //默认头像
 @property (nonatomic,strong) NSString * placeImage;

@@ -57,6 +57,10 @@
 - (RACSignal *)uploadContactGroupAvatarImage:(NSString *)groupId avatarImage:(UIImage *)avatarImage;
 //获得群组资料
 - (RACSignal *)getContactGroupByGroupId:(NSString *)groupId;
+- (RACSignal *)getContactGroupMembersByGroupId:(NSString *)groupId;
+
+
+
 //登录完成后连接容云通讯
 - (void)connectRCIM;
 

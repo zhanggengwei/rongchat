@@ -60,8 +60,12 @@
     model5.userInfo = [PPTUserInfoEngine shareEngine].user_Info;
     self.members = @[model1,model2,model3,model4,model5];
     self.memberListView.dataSource = self.members;
-    
-    
+    [[[PPDateEngine manager]getContactGroupMembersByGroupId:self.groupId]subscribeNext:^(PPContactGroupMemberListResponse * response) {
+        if(response.code.integerValue == kPPResponseSucessCode)
+        {
+            
+        }
+    }];
 }
 
 - (void)loadData

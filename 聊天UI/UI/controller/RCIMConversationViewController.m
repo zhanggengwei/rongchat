@@ -69,8 +69,9 @@
 
 - (void)enterGroupDetil:(id)sender
 {
-    [self.navigationController pushViewController:[RCIMContactGroupDetilsViewController new] animated:YES];
-    
+    RCIMContactGroupDetilsViewController * controller = [RCIMContactGroupDetilsViewController new];
+    controller.groupId = self.conversation.targetId;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)sendTextMessage:(NSString *_Nullable)text

@@ -9,5 +9,6 @@
 #import "PPBaseViewController.h"
 
 @interface RCIMContactGroupDetilsViewController : PPBaseViewController
+@property (nonatomic,strong) NSString * groupId;
 
 @end
