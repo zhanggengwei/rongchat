@@ -17,6 +17,7 @@
 #import "RCIMWebViewController.h"
 #import "UIImage+RCIMExtension.h"
 #import "RCIMContactGroupDetilsViewController.h"
+#import "RCIMConversationModel.h"
 
 
 @interface RCIMConversationViewController ()<RCIMChatMessageCellDelegate,PBViewControllerDelegate,PBViewControllerDataSource,RCIMChatBarDelegate,RCIMConversationViewModelDelegate>
@@ -29,7 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createNav];
-    self.title = self.conversation.conversationTitle;
     self.chatBar.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.allowScrollToBottom = YES;
@@ -55,12 +55,16 @@
 
 - (void)createNav
 {
-//    barbuttonicon_InfoMulti@2x
-//    
-    UIImage * image = [UIImage RCIM_imageNamed:@"barbuttonicon_InfoMulti" bundleName:@"BarButtonIcon" bundleForClass:[self class]];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(enterGroupDetil:)];
-    
-    
+    if(self.conversation.conversationType ==ConversationType_GROUP)
+    {
+        UIImage * image = [UIImage RCIM_imageNamed:@"barbuttonicon_InfoMulti" bundleName:@"BarButtonIcon" bundleForClass:[self class]];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(enterGroupDetil:)];
+    }
+    @weakify(self);
+    [[[RCIMConversationModel new]loadDataConversation:self.conversation]subscribeNext:^(RCIMConversationModel * model) {
+        @strongify(self);
+        self.title = model.title;
+    }];
 }
 
 - (void)enterGroupDetil:(id)sender
@@ -102,7 +106,7 @@
 #pragma mark RCIMChatMessageCellDelegate
 - (void)messageCellTappedBlank:(RCChatBaseMessageCell *)messageCell
 {
-   NSLog(@"%s",__PRETTY_FUNCTION__);
+    NSLog(@"%s",__PRETTY_FUNCTION__);
 }
 - (void)messageCellTappedHead:(RCChatBaseMessageCell *)messageCell
 {
@@ -112,16 +116,16 @@
 - (void)messageCellTappedMessage:(RCChatBaseMessageCell *)messageCell
 {
     if([messageCell.message.objectName isEqualToString:RCImageMessageTypeIdentifier]){
-    NSLog(@"%s",__PRETTY_FUNCTION__);
-    PBViewController * controller = [[PBViewController alloc]init];
-    NSInteger index = [self.viewModel.imageArray indexOfObject:messageCell.message];
-    
-    controller.startPage = index;
-    controller.blurBackground = NO;
-    controller.pb_delegate = self;
-    controller.pb_dataSource = self;
-    
-    [self.navigationController pushViewController:controller animated:YES];
+        NSLog(@"%s",__PRETTY_FUNCTION__);
+        PBViewController * controller = [[PBViewController alloc]init];
+        NSInteger index = [self.viewModel.imageArray indexOfObject:messageCell.message];
+        
+        controller.startPage = index;
+        controller.blurBackground = NO;
+        controller.pb_delegate = self;
+        controller.pb_dataSource = self;
+        
+        [self.navigationController pushViewController:controller animated:YES];
     }else if ([messageCell.message.objectName isEqualToString:RCLocationMessageTypeIdentifier])
     {
         RCIMShowLocationController * controller = [RCIMShowLocationController new];
@@ -176,7 +180,7 @@
 }
 - (void)fileMessageDidDownload:(RCChatBaseMessageCell *)messageCell
 {
-   
+    
 }
 
 - (void)messageCellDidDeleteMessageCell:(RCChatBaseMessageCell *)messageCell message:(RCMessage *)message
@@ -196,9 +200,9 @@
 }
 - (void)viewController:(nonnull PBViewController *)viewController presentImageView:(nonnull UIImageView *)imageView forPageAtIndex:(NSInteger)index progressHandler:(nullable void (^)(NSInteger receivedSize, NSInteger expectedSize))progressHandler
 {
-     RCImageMessage * imageMessage = (RCImageMessage *)self.viewModel.imageArray[index].content;
-     NSLog(@"imageclass == %@",imageMessage.class);
-     [imageView sd_setImageWithURL:[NSURL URLWithString:imageMessage.imageUrl]];
+    RCImageMessage * imageMessage = (RCImageMessage *)self.viewModel.imageArray[index].content;
+    NSLog(@"imageclass == %@",imageMessage.class);
+    [imageView sd_setImageWithURL:[NSURL URLWithString:imageMessage.imageUrl]];
     
 }
 
@@ -216,7 +220,7 @@
 {
     [UIView animateWithDuration:RCAnimateDuration animations:^{
         [self.tableView.superview layoutIfNeeded];
-         self.allowScrollToBottom = shouldScrollToBottom;
+        self.allowScrollToBottom = shouldScrollToBottom;
         [self scrollToBottomAnimated:NO];
     } completion:nil];
 }
@@ -229,7 +233,7 @@
  */
 - (void)chatBar:(RCChatBar *)chatBar sendPictures:(NSArray *)pictures
 {
-   
+    
 }
 
 /*!
@@ -299,13 +303,13 @@
 
 //- (NSArray *)regulationForBatchDeleteText;
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
