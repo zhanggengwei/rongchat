@@ -29,8 +29,6 @@
 
 + (instancetype)shareEngine;
 
-- (RCUserInfoData *)quertyUserInfoByUserId:(NSString *)userId;
-
 - (void)loginSucessed:(PPUserInfoTokenResponse *)response;//登录成功后调用这个方法 进行个人数据信息的保存 请求
 - (void)logoutSucessed;//退出登陆成功后进行数据的清理
 - (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages;
@@ -43,7 +41,6 @@
 - (RACSignal *)getContactGroupByGroupId:(NSString *)groupId;
 
 - (RACSignal *)getUserInfoByUserId:(NSString *)userId;
-
 
 - (BOOL)addOrUpdateContactGroup:(PPTContactGroupModel *)model;
 

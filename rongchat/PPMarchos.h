@@ -120,7 +120,8 @@ alpha:a]
 #define SD_LOADIMAGE(imageView,urlString,placeImage)\
  [imageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeImage options:SDWebImageRetryFailed|SDWebImageProgressiveDownload]
 
-#define RCIM_PLACE_ARATARIMAGE [UIImage RCIM_imageNamed:@"Placeholder_Avatar" bundleName:@"Placeholder" bundleForClass:[self class]];
+#define RCIM_PLACE_ARATARIMAGE \
+[UIImage RCIM_imageNamed:@"Placeholder_Avatar" bundleName:@"Placeholder" bundleForClass:[self class]];
 
 #define RCIM_CONTACT_GROUP_ARATARIMAGE [UIImage RCIM_imageNamed:@"Placeholder_Group" bundleName:@"Placeholder" bundleForClass:[self class]];
 #define RCIM_REMIND_COLOR [UIColor colorWithRed:210/255.0 green:56/255.0 blue:52/255.0 alpha:1]

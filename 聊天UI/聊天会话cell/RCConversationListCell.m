@@ -11,6 +11,8 @@
 #import "UIImage+RCIMExtension.h"
 #import "PPViewUtil.h"
 #import "PPImageUtil.h"
+#import "RCIMConversationModel.h"
+
 
 @interface RCConversation (RCConversationList)
 - (void)loadConversationData:(void(^)(NSString * title))block;
@@ -118,38 +120,13 @@
 
 - (void)setConversation:(RCConversation *)conversation
 {
-    NSString * avatarUrl = nil;
-    UIImage * placeHolderImage = nil;
-    if(conversation.conversationType == ConversationType_GROUP)
-    {
-        PPTContactGroupModel * model = [[PPTUserInfoEngine shareEngine].contactGroupList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"group.indexId = %@",conversation.targetId]].firstObject;
-        avatarUrl = model.group.portraitUri;
-        placeHolderImage = RCIM_CONTACT_GROUP_ARATARIMAGE;
-        if(![avatarUrl isValid])
-        {
-             avatarUrl = @"";
-        }
-        SD_LOADIMAGE(self.avaturImageView, avatarUrl,placeHolderImage);
-        self.receiveLabel.text = model.group.name;
-        
-        NSLog(@"mode==%@",model);
-        
-        
-    }else
-    {
-        placeHolderImage = RCIM_PLACE_ARATARIMAGE;
-    }
-    [[PPTUserInfoEngine shareEngine]queryUserInfoWithUserId:conversation.targetId resultCallback:^(RCUserInfoData *userInfo) {
-        if (conversation.conversationType==ConversationType_PRIVATE)
-        {
-            SD_LOADIMAGE(self.avaturImageView, userInfo.user.portraitUri,placeHolderImage);
-            self.receiveLabel.text = userInfo.user.name;
-        }
-        
-    }];
-    self.contentLabel.text = [self loadRecentConversation:conversation];
-    [self.reamindButton setTitle:@(conversation.unreadMessageCount).stringValue forState:UIControlStateNormal];
     
+    [[[RCIMConversationModel new]loadDataConversation:conversation]subscribeNext:^(RCIMConversationModel * model) {
+        self.contentLabel.text = model.message;
+        self.receiveLabel.text = model.title;
+        SD_LOADIMAGE(self.avaturImageView, model.avatarUrl,model.placeHolerImage);
+    }];
+     [self.reamindButton setTitle:@(conversation.unreadMessageCount).stringValue forState:UIControlStateNormal];
 }
 
 - (NSString *)loadRecentConversation:(RCConversation *)conversation

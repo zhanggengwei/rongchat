@@ -319,7 +319,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
     RCUserInfo * info = _message.content.senderUserInfo;
     if(info==nil)
     {
-        info = [[PPTUserInfoEngine shareEngine]quertyUserInfoByUserId:_message.senderUserId];
+//        info = [[PPTUserInfoEngine shareEngine]quertyUserInfoByUserId:_message.senderUserId];
     }
     
 //    if ([message rcim_isCustomMessage]) {

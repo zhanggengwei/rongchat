@@ -7,6 +7,7 @@
 //
 
 #import "RCIMConversationModel.h"
+#import "UIImage+RCIMExtension.h"
 
 @implementation RCIMConversationModel
 - (RACSignal *)loadDataConversation:(RCConversation *)conversation
@@ -16,15 +17,23 @@
         {
           [[[PPTUserInfoEngine shareEngine]getContactGroupByGroupId:conversation.targetId]subscribeNext:^(RCContactGroupData * model) {
               RCIMConversationModel * data = [RCIMConversationModel new];
-              _avatarUrl = model.portraitUri;
-              _title = model.name;
-              _message = @"";
+              data.avatarUrl = model.portraitUri;
+              data.title = model.name;
+              data.placeHolerImage =RCIM_CONTACT_GROUP_ARATARIMAGE;
               [subscriber sendNext:data];
               [subscriber sendCompleted];
           }];
         }
         else
         {
+            [[[PPTUserInfoEngine shareEngine]getUserInfoByUserId:conversation.targetId]subscribeNext:^(RCUserInfoData * model) {
+                 RCIMConversationModel * data = [RCIMConversationModel new];
+                data.avatarUrl = model.user.portraitUri;
+                data.title = model.user.name;
+                data.placeHolerImage =RCIM_PLACE_ARATARIMAGE;
+                [subscriber sendNext:data];
+                [subscriber sendCompleted];
+            }];
             
         }
         return nil;

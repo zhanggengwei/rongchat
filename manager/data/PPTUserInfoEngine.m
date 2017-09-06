@@ -125,10 +125,7 @@
     self.contactList = arr;
     return [[PPTDBEngine shareManager]saveContactList:baseInfoArr];
 }
-- (RCUserInfo *)quertyUserInfoByUserId:(NSString *)userId
-{
-    return nil;
-}
+
 //登录成功后调用这个方法 进行个人数据信息的保存 请求
 - (void)loginSucessed:(PPUserInfoTokenResponse *)response
 {
@@ -258,7 +255,7 @@
 - (RACSignal *)getContactGroupByGroupId:(NSString *)groupId
 {
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"self.group.indexId = %@",groupId];
-    PPTContactGroupModel * model = [self.contactGroupList filteredArrayUsingPredicate:predicate].firstObject;
+    RCContactGroupData * model = [self.contactGroupList filteredArrayUsingPredicate:predicate].firstObject.group;
     if(model)
     {
         RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
@@ -295,7 +292,7 @@
 - (RACSignal *)getUserInfoByUserId:(NSString *)userId
 {
     RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"user.indexId = %@",userId];
+        NSPredicate * predicate = [NSPredicate predicateWithFormat:@"user.userId = %@",userId];
         RCUserInfoData * model = [self.memberList filteredArrayUsingPredicate:predicate].firstObject;
         if(model)
         {

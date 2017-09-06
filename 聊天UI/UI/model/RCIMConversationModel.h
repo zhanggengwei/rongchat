@@ -10,9 +10,10 @@
 
 @interface RCIMConversationModel : NSObject
 
-@property (nonatomic,strong,readonly) NSString * title;
-@property (nonatomic,strong,readonly) NSString * avatarUrl;
-@property (nonatomic,strong,readonly) NSString * message;
+@property (nonatomic,strong) NSString * title;
+@property (nonatomic,strong) NSString * avatarUrl;
+@property (nonatomic,strong) UIImage * placeHolerImage;
+
 
 - (RACSignal *)loadDataConversation:(RCConversation *)conversation;
 
