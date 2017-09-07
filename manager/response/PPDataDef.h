@@ -58,11 +58,6 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,strong) NSString * verification_token;
 @end
 
-
-@interface RCContactGroupMember : RCUserInfo
-@property (nonatomic,copy) NSString * groupId;//组合主键
-@end
-
 //网络请求使用的类
 @interface RCUserInfoBaseData : PPDataDef
 @property (nonatomic,copy) NSString * region;

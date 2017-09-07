@@ -44,9 +44,7 @@
 
 @end
 
-@implementation RCContactGroupMember
 
-@end
 
 @implementation RCUserInfoBaseData
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
