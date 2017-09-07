@@ -317,14 +317,15 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
 - (void)configureCellWithData:(RCMessage *)message {
     //只考虑几种常用的信息
     _message = message;
-    self.messageSendState = message.sentStatus;
-    NSLog(@"message.uid==%@ ",message.senderUserId);
-    [[[PPTUserInfoEngine shareEngine]getUserInfoByUserId:message.senderUserId]subscribeNext:^(RCUserInfoData * data)
-     {
-         self.nickNameLabel.text = data.user.name;
-         UIImage * image = RCIM_PLACE_ARATARIMAGE;
-         SD_LOADIMAGE(self.avatarImageView,data.user.portraitUri,image);
-     }];
+    if (message.senderUserId) {
+        self.messageSendState = message.sentStatus;
+        [[[PPTUserInfoEngine shareEngine]getUserInfoByUserId:message.senderUserId]subscribeNext:^(RCUserInfoData * data)
+         {
+             self.nickNameLabel.text = data.user.name;
+             UIImage * image = RCIM_PLACE_ARATARIMAGE;
+             SD_LOADIMAGE(self.avatarImageView,data.user.portraitUri,image);
+         }];
+    }
 }
 
 #pragma mark - Private Methods
@@ -384,7 +385,7 @@ static CGFloat const RCIM_MSG_CELL_NICKNAME_FONT_SIZE = 12;
         _avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
         _avatarImageView.lcck_cornerRadius = 6;
         _avatarImageView.layer.masksToBounds = YES;
-    
+        
         [self bringSubviewToFront:_avatarImageView];
     }
     return _avatarImageView;

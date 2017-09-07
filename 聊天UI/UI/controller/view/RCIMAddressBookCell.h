@@ -23,6 +23,4 @@
 
 @interface RCIMAddressBookCell : RCContactListCell
 @property (nonatomic,strong) RACSignal * clickSignal;
-
-
 @end

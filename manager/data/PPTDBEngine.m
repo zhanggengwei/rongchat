@@ -211,8 +211,10 @@
     [contactGroupLists enumerateObjectsUsingBlock:^(PPTContactGroupModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //删除数据
         NSString * deleteSql = [NSString stringWithFormat:@"delete  from \'%@\' where indexId = \'%@\'",CONTACT_GRAOUP_TABLENAME,obj.group.indexId];
+        NSString * deleteContactGroupSql = [NSString stringWithFormat:@"delete from \'%@\' where indexId = \'%@\'",CONTACT_GRAOUP_MEMBER_TABLENAME,obj.group.indexId];
         [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
             [db executeUpdate:deleteSql];
+            [db executeUpdate:deleteContactGroupSql];
             NSString * insertSql = [NSString stringWithFormat:@"insert into \'%@\'(name,creatorId,portraitUri,indexId,maxMemberCount,memberCount) values(\'%@\',\'%@\',\'%@\',\'%@\',%ld,%ld)",CONTACT_GRAOUP_TABLENAME,obj.group.name,obj.group.creatorId,obj.group.portraitUri,obj.group.indexId,obj.group.maxMemberCount,obj.group.memberCount];
             [db executeUpdate:insertSql];
             sucessed = !rollback;

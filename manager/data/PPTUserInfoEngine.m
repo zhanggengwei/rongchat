@@ -172,8 +172,19 @@
     }];
     
     [[[PPDateEngine manager]getContactGroupsCommand]subscribeNext:^(PPContactGroupListResponse * response) {
-        [[PPTDBEngine shareManager]addOrUpdateContactGroupLists:response.result];
-        self.contactGroupList = response.result;
+        if(response.code.integerValue==kPPResponseSucessCode)
+        {
+            [[PPTDBEngine shareManager]addOrUpdateContactGroupLists:response.result];
+            self.contactGroupList = response.result;
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+            dispatch_async(dispatch_queue_create("", DISPATCH_CURRENT_QUEUE_LABEL), ^{
+                
+                
+                
+                
+                dispatch_wait(semaphore, DISPATCH_TIME_FOREVER);
+            });
+        }
     } error:^(NSError * _Nullable error) {
         NSLog(@"error==%@",error);
     } completed:^{

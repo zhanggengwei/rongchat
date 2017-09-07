@@ -99,6 +99,7 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,strong) NSString * indexId;
 @property (nonatomic,assign) NSInteger maxMemberCount;
 @property (nonatomic,assign) NSInteger memberCount;
+@property (nonatomic,strong) NSArray<RCUserInfoData *> * memberList;
 
 @end
 
