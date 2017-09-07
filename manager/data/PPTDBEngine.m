@@ -60,13 +60,13 @@
 }
 - (void)createTables
 {
-    NSString * createUserInfoBaseSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,displayName text,updatedAt timestamp not null default current_timestamp,message varchar(100),FOREIGN KEY(userId) REFERENCES %@(userId))",USER_INFO_BASE_TABLENAME,USER_INFO_TABLENAME];
+    NSString * createUserInfoBaseSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,displayName text,status INT,updatedAt timestamp not null default current_timestamp,message varchar(100),FOREIGN KEY(userId) REFERENCES %@(userId))",USER_INFO_BASE_TABLENAME,USER_INFO_TABLENAME];
     NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,portraitUri text,phone text,region text,nickNameWord varchar(100),indexChar varchar(1))",USER_INFO_TABLENAME];
     
     NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100) not null,bulletin text,creatorId varchar(100)not null,portraitUri varchar(100),indexId varchar(100) not null,maxMemberCount INT,memberCount INT,primary key(indexId))",CONTACT_GRAOUP_TABLENAME];
     NSString * createContactGroupMemberSql = [NSString stringWithFormat:@"create table if not exists %@ (indexId varchar (100)not null,userId varchar(100) not null,primary key(indexId,userId))",CONTACT_GRAOUP_MEMBER_TABLENAME];
     
-    NSString * createFriendListSql = [NSString stringWithFormat:@"create table if not exists %@ (userId text not null,isBlack BOOL default 0,status INT default 0,primary key(userId))",USER_INFO_FRIENDLIST_TABLENAME];
+    NSString * createFriendListSql = [NSString stringWithFormat:@"create table if not exists %@ (userId text not null,isBlack BOOL default 0,primary key(userId))",USER_INFO_FRIENDLIST_TABLENAME];
     
     NSString * createInviteMessageSql = [NSString stringWithFormat:@"create table if not exists %@ (sourceUserId varchar(100) not null,targetUserId varchar(100) not null,message varchar(100),status INT,read BOOL,primary key(sourceUserId,targetUserId))",INVITE_USERINO_TABLE];
     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
@@ -83,21 +83,21 @@
     return [self saveContactList:@[baseInfo]];
 }
 - (RCUserInfoData *)getUserInfo:(FMResultSet *)results
+               withUserBaseData:(FMResultSet *)baseDatas
 {
-    
     RCUserInfoData * info = [RCUserInfoData new];
     info.user = [RCUserInfoBaseData new];
     info.user.name = [results stringForColumn:@"name"];
     info.user.userId = [results stringForColumn:@"userId"];
-    info.displayName = [results stringForColumn:@"displayName"];
+    info.displayName = [baseDatas stringForColumn:@"displayName"];
     info.user.phone = [results stringForColumn:@"phone"];
     info.user.region = [results stringForColumn:@"region"];
     info.user.portraitUri = [results stringForColumn:@"portraitUri"];
     info.user.nickNameWord = results[@"nickNameWord"];
     info.user.indexChar = results[@"indexChar"];
-    info.status = [results intForColumn:@"status"];
-    info.message = results[@"message"];
-    info.updatedAt = results[@"updatedAt"];
+    info.message = [baseDatas stringForColumn:@"message"];
+    info.updatedAt = [baseDatas stringForColumn:@"updatedAt"];
+    info.status = [baseDatas intForColumn:@"status"];
     return info;
 }
 
@@ -115,10 +115,12 @@
         }
         if(indexIds)
         {
-            NSString * sql = [NSString stringWithFormat:@"select * from \'%@\'where userId in (\'%@\')",USER_INFO_TABLENAME,[indexIds componentsJoinedByString:@"','"]];
+            NSString * sql = [NSString stringWithFormat:@"select * from \'%@\' where userId in (\'%@\')",USER_INFO_TABLENAME,[indexIds componentsJoinedByString:@"','"]];
+            NSString * baseSql = [NSString stringWithFormat:@"select * from \'%@\' where userId in (\'%@\')",USER_INFO_BASE_TABLENAME,[indexIds componentsJoinedByString:@"','"]];
             FMResultSet * results = [db executeQuery:sql];
-            while (results.next) {
-                RCUserInfoData * info = [self getUserInfo:results];
+            FMResultSet * datas = [db executeQuery:baseSql];
+            while (results.next&&datas.next) {
+                RCUserInfoData * info = [self getUserInfo:results withUserBaseData:datas];
                 [contactList addObject:info];
             }
         }
@@ -170,10 +172,10 @@
             [[RCIMObjPinYinHelper converNameToPinyin:obj.user.name]subscribeNext:^(NSString * indexChar) {
                 obj.user.indexChar = indexChar;
                 [db executeUpdate:
-                 @"insert into USER_INFO_BASE_TABLENAME (userId,displayName,updatedAt,message) values(?,?,?,?)",obj.user.userId,obj.displayName,obj.updatedAt,obj.message];
+                 @"insert into USER_INFO_BASE_TABLENAME (userId,displayName,updatedAt,message) values(?,?,?,?,%d)",obj.user.userId,obj.displayName,obj.updatedAt,obj.message,obj.status];
                 NSString * insertSql = [NSString stringWithFormat: @"insert into %@(phone,region,name,userId,nickNameWord,indexChar,portraitUri) values (\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\')",USER_INFO_TABLENAME,obj.user.phone,obj.user.region,obj.user.name,obj.user.userId,obj.user.nickNameWord,obj.user.indexChar,obj.user.portraitUri];
                 [db executeUpdate:insertSql];
-                [db executeUpdate:[NSString stringWithFormat:@"insert into \'%@\' (userId,status) values (\'%@\',%ld)",USER_INFO_FRIENDLIST_TABLENAME,obj.user.userId,obj.status]];
+                [db executeUpdate:[NSString stringWithFormat:@"insert into \'%@\' (userId) values (\'%@\')",USER_INFO_FRIENDLIST_TABLENAME,obj.user.userId]];
                 sucessed = !rollback;
                 
             }];
