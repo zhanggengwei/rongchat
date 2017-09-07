@@ -7,11 +7,16 @@
 //
 // 成员信息表 好友信息，群成员信息
 #define USER_INFO_TABLENAME @"USER_INFO_TABLENAME"
-#define CONTACT_GRAOUP_TABLENAME @"CONTACT_GRAOUP_TABLENAME"
 
+#define USER_INFO_BASE_TABLENAME @"USER_INFO_BASE_TABLENAME"
+
+//群聊表
+#define CONTACT_GRAOUP_TABLENAME @"CONTACT_GRAOUP_TABLENAME"
+//群聊成员表
 #define CONTACT_GRAOUP_MEMBER_TABLENAME @"CONTACT_GRAOUP_MEMBER_TABLENAME"
-//好友信息表
+//好友表
 #define USER_INFO_FRIENDLIST_TABLENAME @"USER_INFO_FRIENDLIST_TABLENAME"
+//好友添加好友表
 #define INVITE_USERINO_TABLE @"INVITE_USERINO_TABLE"
 
 
@@ -20,6 +25,8 @@
 #import <FMDB/FMDB.h>
 #import "OTFileManager.h"
 #import <ReactiveObjC/ReactiveObjC.h>
+#import "RCIMObjPinYinHelper.h"
+
 @interface PPTDBEngine ()
 @property (nonatomic,strong) FMDatabaseQueue * dataBaseQueue;
 @property (nonatomic,strong) NSString * userId;
@@ -41,10 +48,6 @@
 - (void)loadDataBase:(NSString *)userID
 {
     self.userId = userID;
-    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"test.sqlite"];
-    
-    // 2、创建队列
-    self.dataBaseQueue = [FMDatabaseQueue databaseQueueWithPath:path];
     NSString * dbPath = [[PPFileManager sharedManager]pathForDomain:PPFileDirDomain_User appendPathName:userID];
     dbPath = [dbPath stringByAppendingPathComponent:@"user.sqlite"];
     NSFileManager *fm = [[NSFileManager alloc]init];
@@ -57,9 +60,10 @@
 }
 - (void)createTables
 {
-    NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,displayName text,portraitUri text,updatedAt timestamp not null default current_timestamp,phone text,region text,message varchar(100),nickNameWord varchar(100),indexChar varchar(1))",USER_INFO_TABLENAME];
+    NSString * createUserInfoBaseSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,displayName text,updatedAt timestamp not null default current_timestamp,message varchar(100),FOREIGN KEY(userId) REFERENCES %@(userId))",USER_INFO_BASE_TABLENAME,USER_INFO_TABLENAME];
+    NSString * createUserInfoSql = [NSString stringWithFormat:@"create table if not exists %@(userId text primary key not null,name text,portraitUri text,phone text,region text,nickNameWord varchar(100),indexChar varchar(1))",USER_INFO_TABLENAME];
     
-    NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100) not null,bulletin text,creatorId varchar(100)not null,builld text,portraitUri varchar(100),indexId varchar(100) not null,maxMemberCount INT,memberCount INT,primary key(indexId))",CONTACT_GRAOUP_TABLENAME];
+    NSString * createContactGroupTableSql = [NSString stringWithFormat:@"create table if not exists %@ (name varchar(100) not null,bulletin text,creatorId varchar(100)not null,portraitUri varchar(100),indexId varchar(100) not null,maxMemberCount INT,memberCount INT,primary key(indexId))",CONTACT_GRAOUP_TABLENAME];
     NSString * createContactGroupMemberSql = [NSString stringWithFormat:@"create table if not exists %@ (indexId varchar (100)not null,userId varchar(100) not null,primary key(indexId,userId))",CONTACT_GRAOUP_MEMBER_TABLENAME];
     
     NSString * createFriendListSql = [NSString stringWithFormat:@"create table if not exists %@ (userId text not null,isBlack BOOL default 0,status INT default 0,primary key(userId))",USER_INFO_FRIENDLIST_TABLENAME];
@@ -67,11 +71,11 @@
     NSString * createInviteMessageSql = [NSString stringWithFormat:@"create table if not exists %@ (sourceUserId varchar(100) not null,targetUserId varchar(100) not null,message varchar(100),status INT,read BOOL,primary key(sourceUserId,targetUserId))",INVITE_USERINO_TABLE];
     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         [db executeUpdate:createUserInfoSql];
+        [db executeUpdate:createUserInfoBaseSql];
         [db executeUpdate:createContactGroupTableSql];
         [db executeUpdate:createFriendListSql];
         [db executeUpdate:createContactGroupMemberSql];
         [db executeUpdate:createInviteMessageSql];
-        
     }];
 }
 - (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo
@@ -80,6 +84,7 @@
 }
 - (RCUserInfoData *)getUserInfo:(FMResultSet *)results
 {
+    
     RCUserInfoData * info = [RCUserInfoData new];
     info.user = [RCUserInfoBaseData new];
     info.user.name = [results stringForColumn:@"name"];
@@ -157,19 +162,20 @@
     __block BOOL sucessed = NO;
     [_dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         [contactList enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [db executeUpdate:[NSString stringWithFormat:@"delete from \'%@\' where userId=\'%@\'",USER_INFO_TABLENAME,obj.user.userId]];
-            [db executeUpdate:[NSString stringWithFormat:@"delete from \'%@\' where userId=\'%@\'",USER_INFO_FRIENDLIST_TABLENAME,obj.user.userId]];
-            HanyuPinyinOutputFormat * outFormat = [HanyuPinyinOutputFormat new];
-            outFormat.caseType = CaseTypeLowercase;
-            outFormat.toneType =ToneTypeWithoutTone;
-            outFormat.vCharType = VCharTypeWithUUnicode;
-            [PinyinHelper toHanyuPinyinStringWithNSString:obj.user.name withHanyuPinyinOutputFormat:outFormat withNSString:@"" outputBlock:^(NSString *pinYin) {
-                obj.user.nickNameWord = pinYin;
-                obj.user.indexChar = [pinYin substringToIndex:1];
-                NSString * insertSql = [NSString stringWithFormat: @"insert into %@(phone,message,region,name,displayName,updatedAt,userId,nickNameWord,indexChar,portraitUri) values (\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\')",USER_INFO_TABLENAME,obj.user.phone,obj.message,obj.user.region,obj.user.name,obj.displayName,obj.updatedAt,obj.user.userId,obj.user.nickNameWord,obj.user.indexChar,obj.user.portraitUri];
+            NSString * deleteSql1  =[self deleteCustomUserInfoWithUser:obj.user.userId];
+            NSString * deleteSql2 = [self deleteCustomUserBaseInfoWithUser:obj.user.userId];
+            [db executeUpdate:deleteSql1];
+            [db executeUpdate:deleteSql2];
+            
+            [[RCIMObjPinYinHelper converNameToPinyin:obj.user.name]subscribeNext:^(NSString * indexChar) {
+                obj.user.indexChar = indexChar;
+                [db executeUpdate:
+                 @"insert into USER_INFO_BASE_TABLENAME (userId,displayName,updatedAt,message) values(?,?,?,?)",obj.user.userId,obj.displayName,obj.updatedAt,obj.message];
+                NSString * insertSql = [NSString stringWithFormat: @"insert into %@(phone,region,name,userId,nickNameWord,indexChar,portraitUri) values (\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\',\'%@\')",USER_INFO_TABLENAME,obj.user.phone,obj.user.region,obj.user.name,obj.user.userId,obj.user.nickNameWord,obj.user.indexChar,obj.user.portraitUri];
                 [db executeUpdate:insertSql];
-                [db executeUpdate:[NSString stringWithFormat:@"insert into \'%@\' (userId) values (\'%@\')",USER_INFO_FRIENDLIST_TABLENAME,obj.user.userId]];
+                [db executeUpdate:[NSString stringWithFormat:@"insert into \'%@\' (userId,status) values (\'%@\',%ld)",USER_INFO_FRIENDLIST_TABLENAME,obj.user.userId,obj.status]];
                 sucessed = !rollback;
+                
             }];
         }];
     }];
@@ -180,7 +186,7 @@
     __block BOOL sucessed;
     [contactGroupLists enumerateObjectsUsingBlock:^(PPTContactGroupModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-            [self deleteContactGroup:obj];
+            [self deleteContactGroupWithGroupId:obj.group.indexId dataBase:db];
             NSString * insertSql = [NSString stringWithFormat:@"insert into \'%@\'(name,creatorId,portraitUri,indexId,maxMemberCount,memberCount,bulletin) values(\'%@\',\'%@\',\'%@\',\'%@\',%ld,%ld,\'%@\')",CONTACT_GRAOUP_TABLENAME,obj.group.name,obj.group.creatorId,obj.group.portraitUri,obj.group.indexId,obj.group.maxMemberCount,obj.group.memberCount,obj.group.bulletin];
             [db executeUpdate:insertSql];
             sucessed = !rollback;
@@ -200,6 +206,8 @@
         [db executeUpdate:@"DELETE FROM CONTACT_GRAOUP_MEMBER_TABLENAME"];
         [db executeUpdate:@"DELETE FROM  USER_INFO_FRIENDLIST_TABLENAME"];
         [db executeUpdate:@"DELETE FROM  INVITE_USERINO_TABLE"];
+        [db executeQuery:@"DELETE FROM  USER_INFO_BASE_TABLENAME"];
+        
     }];
 }
 - (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages
@@ -243,7 +251,6 @@
 #pragma mark 删除群组数据
 - (BOOL)deleteContactGroup:(PPTContactGroupModel *)model
 {
-    
     NSString * deleteSql = [NSString stringWithFormat:@"delete  from \'%@\' where indexId = \'%@\'",CONTACT_GRAOUP_TABLENAME,model.group.indexId];
     NSString * deleteMemberSql = [NSString stringWithFormat:@"delete  from \'%@\' where indexId = \'%@\'",CONTACT_GRAOUP_MEMBER_TABLENAME,model.group.indexId];
     __block BOOL sucessed;
@@ -259,11 +266,11 @@
 {
     __block BOOL sucessed = NO;
     [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        [db executeUpdateWithFormat:@"DELETE FROM %@ WHERE indexId = %@",CONTACT_GRAOUP_TABLENAME,groupId ] ;
+        [db executeUpdateWithFormat:@"DELETE FROM \'%@\' WHERE indexId = \'%@\'",CONTACT_GRAOUP_TABLENAME,groupId] ;
         [userInfoList enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
         {
             [self saveCustomUserInfoList:@[obj]];
-            [db executeUpdateWithFormat:@"insert into %@(indexId,userId) values(%@,%@)",CONTACT_GRAOUP_MEMBER_TABLENAME,groupId,obj.user.userId] ;
+            [db executeUpdateWithFormat:@"insert into \'%@\'(indexId,userId) values(\'%@\',\'%@\')",CONTACT_GRAOUP_MEMBER_TABLENAME,groupId,obj.user.userId] ;
         }];
     }];
     return sucessed;
@@ -284,13 +291,28 @@
     return sucessed;
 }
 
-- (BOOL)deleteCustomUserInfo:(RCUserInfoData *)data
+- (NSString *)deleteCustomUserInfo:(RCUserInfoData *)data
 {
-    __block BOOL sucessed = NO;
-    [self.dataBaseQueue inTransaction:^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        [db executeUpdateWithFormat:@"DELETE FROM %@ WHERE userId = %@",USER_INFO_TABLENAME,data.user.userId];
-        sucessed = !rollback;
-    }];
-    return sucessed;
+    return  [NSString stringWithFormat:@"DELETE FROM \'%@\' WHERE userId = \'%@\'",USER_INFO_TABLENAME,data.user.userId];
 }
+- (NSString *)deleteCustomUserInfoWithUser:(NSString *)userId
+{
+   return  [NSString stringWithFormat:@"DELETE FROM \'%@\' where userId = \'%@\'",USER_INFO_TABLENAME,userId];
+}
+
+- (NSString *)deleteCustomUserBaseInfoWithUser:(NSString *)userId
+{
+     return [NSString stringWithFormat:@"DELETE FROM \'%@\' where userId = \'%@\'",USER_INFO_BASE_TABLENAME,userId];
+}
+
+- (void)deleteContactGroupWithGroupId:(NSString *)groupId dataBase:(FMDatabase *)db
+{
+    NSString * deleteSql = [NSString stringWithFormat:@"delete  from \'%@\' where indexId = \'%@\'",CONTACT_GRAOUP_TABLENAME,groupId];
+    NSString * deleteMemberSql = [NSString stringWithFormat:@"delete  from \'%@\' where indexId = \'%@\'",CONTACT_GRAOUP_MEMBER_TABLENAME,groupId];
+    [db executeUpdate:deleteSql];
+    [db executeUpdate:deleteMemberSql];
+    
+}
+
+
 @end

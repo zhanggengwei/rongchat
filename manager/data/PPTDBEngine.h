@@ -16,7 +16,6 @@
 + (instancetype)shareManager;
 //保存用户的个人信息
 - (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo;
-
 //保存用户的好友列表
 - (BOOL)saveContactList:(NSArray<RCUserInfoData *> *)contactList;
 
@@ -25,6 +24,7 @@
 
 //保存个人信息
 - (BOOL)updateUserInfo:(RCUserInfoData *)info;
+
 //查询好友列表
 - (NSArray *)queryFriendList;
 

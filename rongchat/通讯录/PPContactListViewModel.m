@@ -39,10 +39,10 @@
         NSArray  * targerControllerArray = @[NSStringFromClass([RCIMNewContactListViewController class]),NSStringFromClass([RCIMContactGroupListViewController class]),NSStringFromClass([RCIMContactGroupListViewController class]),NSStringFromClass([RCIMPublicServiceViewController class])];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             RCUserInfoData *  userInfo = [RCUserInfoData new];
-            userInfo.controllerName = targerControllerArray[idx];
+//            userInfo.controllerName = targerControllerArray[idx];
             userInfo.user = [RCUserInfoBaseData new];
             userInfo.user.name = obj;
-            userInfo.placeImage = imageArray[idx];
+//            userInfo.placeImage = imageArray[idx];
             [source addObject:userInfo];
         }];
         return @{@"":source};
@@ -54,8 +54,8 @@
         NSMutableArray * contactlistResults = [NSMutableArray new];
         NSMutableDictionary * results = [NSMutableDictionary new];
         [arr enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            obj.enabled = YES;
-            obj.controllerName = NSStringFromClass( [RCIMContactDetailsViewController class]);
+//            obj.enabled = YES;
+//            obj.controllerName = NSStringFromClass( [RCIMContactDetailsViewController class]);
             if(![results objectForKey:obj.user.indexChar])
             {
                 NSMutableArray * indexContactLists = [NSMutableArray arrayWithObject:obj];

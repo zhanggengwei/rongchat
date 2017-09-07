@@ -140,7 +140,7 @@
             userInfo.user.portraitUri = @"";
         }
         _nickNameLabel.text = userInfo.user.name;
-        SD_LOADIMAGE(self.avatarImageView,userInfo.user.portraitUri,[UIImage imageNamed:userInfo.placeImage]);
+//        SD_LOADIMAGE(self.avatarImageView,userInfo.user.portraitUri,[UIImage imageNamed:userInfo.placeImage]);
     }
 }
 @end

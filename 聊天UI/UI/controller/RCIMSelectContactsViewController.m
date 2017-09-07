@@ -36,16 +36,16 @@
     
     [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
         [signal subscribeNext:^(RCUserInfoData * data) {
-            data.isSelected = !data.isSelected;
-            if(data.isSelected)
-            {
-                [self.selectMembers addObject:data];
-                self.count++;
-            }else
-            {
-                [self.selectMembers removeObject:data];
-                self.count--;
-            }
+//            data.isSelected = !data.isSelected;
+//            if(data.isSelected)
+//            {
+//                [self.selectMembers addObject:data];
+//                self.count++;
+//            }else
+//            {
+//                [self.selectMembers removeObject:data];
+//                self.count--;
+//            }
         }];
     }];
     [self createNav];

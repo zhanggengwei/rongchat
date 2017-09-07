@@ -101,10 +101,9 @@ static inline NSString * MARCHO_NAME(NSString * name)
                     RCIMAddressModel * model = [RCIMAddressModel new];
                     model.name = name;
                     model.phone = obj.phones.firstObject.number;
-                    
-                    [RCIMObjPinYinHelper converNameToPinyin:name block:^(NSString * indexChar) {
-                        model.indexChar = indexChar;
-                        NSArray * contactList = [dict objectForKey:indexChar];
+                    [[RCIMObjPinYinHelper converNameToPinyin:name]subscribeNext:^(NSString * index) {
+                        model.indexChar = index;
+                        NSArray * contactList = [dict objectForKey:index];
                         if (contactList==nil) {
                             contactList = [NSArray new];
                             contactList = @[model];
@@ -112,7 +111,7 @@ static inline NSString * MARCHO_NAME(NSString * name)
                         {
                             contactList = [contactList arrayByAddingObject:model];
                         }
-                        [dict setObject:contactList forKey:indexChar];
+                        [dict setObject:contactList forKey:index];
                         dispatch_group_leave(group);
                     }];
                 }];

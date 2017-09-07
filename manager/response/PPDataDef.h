@@ -70,18 +70,14 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @end
 
 @interface RCUserInfoData : PPDataDef
-@property (nonatomic,copy)  NSString * displayName;
-@property (nonatomic,copy)  NSString * message;
-@property (nonatomic,copy)  NSString * updatedAt;
-@property (nonatomic,assign) BOOL isSelected;//ignore 
+
+@property (nonatomic,copy)   NSString * displayName;
+@property (nonatomic,copy)   NSString * message;
+@property (nonatomic,copy)   NSString * updatedAt;
 @property (nonatomic,assign) NSInteger status;
 @property (nonatomic,strong) RCUserInfoBaseData * user;
 @property (nonatomic,assign) NSInteger role;
 
-@property (nonatomic,assign) BOOL enabled;
-//默认头像
-@property (nonatomic,strong) NSString * placeImage;
-@property (nonatomic,strong) NSString * controllerName;
 @end
 
 @interface RCContactGroupData : PPDataDef
@@ -95,10 +91,20 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,assign) NSInteger maxMemberCount;
 @property (nonatomic,assign) NSInteger memberCount;
 @property (nonatomic,strong) NSArray<RCUserInfoData *> * memberList;
-
 @end
 
 @interface PPTContactGroupModel : PPDataDef
 @property (nonatomic,strong) RCContactGroupData * group;
 @property (nonatomic,assign) NSInteger  role;
 @end
+
+@interface RCIMContactListModelItem : NSObject
+@property (nonatomic,assign) BOOL enabled;//是否可以被点击
+@property (nonatomic,assign) BOOL isSelected;//ignore
+//默认头像
+@property (nonatomic,strong) NSString * placeImage;
+@property (nonatomic,strong) NSString * controllerName;
+@property (nonatomic,strong) RCUserInfoData * model;
+
+@end
+

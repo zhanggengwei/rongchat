@@ -12,7 +12,6 @@ typedef void(^convertBlock)(NSString *);
 
 @interface RCIMObjPinYinHelper : NSObject
 
-+ (void)converNameToPinyin:(NSString *)name block:(convertBlock)block;
-
++ (RACSignal *)converNameToPinyin:(NSString *)name;
 
 @end
