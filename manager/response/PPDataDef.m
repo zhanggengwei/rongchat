@@ -28,6 +28,9 @@
 }
 @end
 
+@implementation RCIMTableViewCellItem
+@end
+
 @implementation PPPersonal
 @end
 @implementation PPUploadImageToken

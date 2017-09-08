@@ -58,11 +58,11 @@
     {
         _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:self.style];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
     }
     return _tableView;
 }
@@ -132,6 +132,8 @@
     NSArray * array = [dict.allValues objectAtIndex:0];
     id model = array[indexPath.row];
     self.selectCellSignal = [self.didSelectCommand execute:model];
+    [self.didSelectCommand execute:model];
+    
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

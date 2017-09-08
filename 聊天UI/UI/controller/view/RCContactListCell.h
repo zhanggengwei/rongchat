@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-
-
 @protocol RCContactListCellProtrocal <NSObject>
 @property (nonatomic,strong) id model;
 @end

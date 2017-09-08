@@ -14,8 +14,13 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 };
 
 @protocol RCIMCellModel <NSObject>
-@property (nonatomic,strong) RACSignal * clickSignal;
+@property (nonatomic,strong) UIViewController * targetController;
 @end
+
+@interface RCIMTableViewCellItem : NSObject<RCIMCellModel>
+@property (nonatomic,strong) UIViewController * targetController;
+@end
+
 
 @interface NSObject (DATABASE)
 
@@ -102,7 +107,7 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,assign) NSInteger  role;
 @end
 
-@interface RCIMContactListModelItem : NSObject<RCIMCellModel>
+@interface RCIMContactListModelItem : RCIMTableViewCellItem
 @property (nonatomic,assign) BOOL enabled;//是否可以被点击
 @property (nonatomic,assign) BOOL isSelected;//ignore
 //默认头像
