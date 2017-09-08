@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@protocol RCIMCellModel <NSObject>
-@property (nonatomic,strong) RACSignal * clickSignal;
-@end
+
 
 @protocol RCContactListCellProtrocal <NSObject>
 @property (nonatomic,strong) id model;

@@ -10,6 +10,7 @@
 #define PPMarchos_h
 #import <RongIMLib/RongIMLib.h>
 #import <Mantle/Mantle.h>
+#import <ReactiveObjC.h>
 #import "RCIMMessageTools.h"
 #import "SFHFKeychainUtils.h"
 #import "kPPObserverDef.h"

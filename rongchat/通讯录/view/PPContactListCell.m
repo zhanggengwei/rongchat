@@ -133,14 +133,14 @@
             contactGroup.group.portraitUri = @"";
         }
         SD_LOADIMAGE(self.avatarImageView,contactGroup.group.portraitUri,image);
-    }else if([model isKindOfClass:[RCUserInfoData class]]){
-        RCUserInfoData * userInfo = model;
-        if(!userInfo.user.portraitUri)
+    }else if([model isKindOfClass:[RCIMContactListModelItem class]]){
+        RCIMContactListModelItem * item = model;
+        if(!item.model.user.portraitUri)
         {
-            userInfo.user.portraitUri = @"";
+            item.model.user.portraitUri = @"";
         }
-        _nickNameLabel.text = userInfo.user.name;
-//        SD_LOADIMAGE(self.avatarImageView,userInfo.user.portraitUri,[UIImage imageNamed:userInfo.placeImage]);
+        _nickNameLabel.text = item.model.user.name;
+        SD_LOADIMAGE(self.avatarImageView,item.model.user.portraitUri,[UIImage imageNamed:item.placeImage]);
     }
 }
 @end

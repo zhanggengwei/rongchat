@@ -38,12 +38,12 @@
         NSArray * imageArray = @[@"plugins_FriendNotify",@"add_friend_icon_addgroup",@"Contact_icon_ContactTag",@"add_friend_icon_offical"];
         NSArray  * targerControllerArray = @[NSStringFromClass([RCIMNewContactListViewController class]),NSStringFromClass([RCIMContactGroupListViewController class]),NSStringFromClass([RCIMContactGroupListViewController class]),NSStringFromClass([RCIMPublicServiceViewController class])];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            RCUserInfoData *  userInfo = [RCUserInfoData new];
-//            userInfo.controllerName = targerControllerArray[idx];
-            userInfo.user = [RCUserInfoBaseData new];
-            userInfo.user.name = obj;
-//            userInfo.placeImage = imageArray[idx];
-            [source addObject:userInfo];
+            RCIMContactListModelItem *  item = [RCIMContactListModelItem new];
+            item.model = [RCUserInfoData new];
+            item.model.user = [RCUserInfoBaseData new];
+            item.model.user.name = obj;
+            item.placeImage = imageArray[idx];
+            [source addObject:item];
         }];
         return @{@"":source};
     };
@@ -54,24 +54,25 @@
         NSMutableArray * contactlistResults = [NSMutableArray new];
         NSMutableDictionary * results = [NSMutableDictionary new];
         [arr enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            obj.enabled = YES;
-//            obj.controllerName = NSStringFromClass( [RCIMContactDetailsViewController class]);
+            RCIMContactListModelItem * item = [RCIMContactListModelItem new];
+            item.model = obj;
+            item.enabled = YES;
             if(![results objectForKey:obj.user.indexChar])
             {
-                NSMutableArray * indexContactLists = [NSMutableArray arrayWithObject:obj];
+                NSMutableArray * indexContactLists = [NSMutableArray arrayWithObject:item];
                 [results setObject:indexContactLists forKey:obj.user.indexChar];
             }else
             {
                 NSMutableArray * indexContactLists = [results objectForKey:obj.user.indexChar];
-                [indexContactLists addObject:obj];
+                [indexContactLists addObject:item];
             }
         }];
         NSArray * indexKeys = [[results allKeys]sortedArrayUsingSelector:@selector(compare:)];
         
         [indexKeys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSArray<RCUserInfoData *> * userInfoArray = results[obj];
-            NSArray * sortArray = [userInfoArray sortedArrayUsingComparator:^NSComparisonResult(RCUserInfoData *   obj1, RCUserInfoData * obj2) {
-                return [obj1.user.nickNameWord compare:obj2.user.nickNameWord];
+            NSArray<RCIMContactListModelItem *> * userInfoArray = results[obj];
+            NSArray * sortArray = [userInfoArray sortedArrayUsingComparator:^NSComparisonResult(RCIMContactListModelItem *   obj1, RCIMContactListModelItem * obj2) {
+                return [obj1.model.user.nickNameWord compare:obj2.model.user.nickNameWord];
             }];
             [contactlistResults addObject:@{obj:sortArray}];
         }];

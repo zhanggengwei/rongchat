@@ -13,6 +13,10 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
     RCIMContactRequestFriend=11// 请求称为好友
 };
 
+@protocol RCIMCellModel <NSObject>
+@property (nonatomic,strong) RACSignal * clickSignal;
+@end
+
 @interface NSObject (DATABASE)
 
 @end
@@ -98,12 +102,11 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,assign) NSInteger  role;
 @end
 
-@interface RCIMContactListModelItem : NSObject
+@interface RCIMContactListModelItem : NSObject<RCIMCellModel>
 @property (nonatomic,assign) BOOL enabled;//是否可以被点击
 @property (nonatomic,assign) BOOL isSelected;//ignore
 //默认头像
 @property (nonatomic,strong) NSString * placeImage;
-@property (nonatomic,strong) NSString * controllerName;
 @property (nonatomic,strong) RCUserInfoData * model;
 
 @end
