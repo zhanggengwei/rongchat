@@ -93,13 +93,11 @@
     }];
 }
 
-//保存自己的个人信息
+//保存个人信息到数据库中
 - (BOOL)saveUserInfo:(RCUserInfoData *)baseInfo
 {
-    self.user_Info = baseInfo;
-    self.userId = baseInfo.user.userId;
-    BOOL ret = [[PPTDBEngine shareManager]saveUserInfo:baseInfo];
-    return ret;
+    
+    return YES;
 }
 
 - (BOOL)appendFrinedUserInfo:(RCUserInfoData *)baseInfo
@@ -190,14 +188,17 @@
     } completed:^{
         NSLog(@"finish==");
     }];
-    [[[PPDateEngine manager]getUserInfoCommandByUserId:self.userId ]subscribeNext:^(PPUserBaseInfoResponse * response) {
-        RCUserInfoData * data =[RCUserInfoData new];
-        data.user = response.result;
-        [[PPTDBEngine shareManager]saveUserInfo:data];
-        self.user_Info = data;
-    } error:^(NSError * _Nullable error) {
-        
-    }];
+    [[[PPDateEngine manager]getUserInfoCommandByUserId:self.userId ]subscribeNext:^(PPUserBaseInfoResponse * response)
+     {
+         if(response.code.integerValue == kPPResponseSucessCode){
+             RCUserInfoData * data =[RCUserInfoData new];
+             data.user = response.result;
+             self.user_Info = data;
+             [[PPTDBEngine shareManager]saveUserInfo:data];
+         }
+     } error:^(NSError * _Nullable error) {
+         
+     }];
 }
 - (void)logoutSucessed
 {
@@ -281,7 +282,6 @@
 
 - (BOOL)addOrUpdateContactGroup:(PPTContactGroupModel *)model
 {
-    
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"self.group.indexId = %@",model.group.indexId];
     PPTContactGroupModel * pre_Model =[self.contactGroupList filteredArrayUsingPredicate:predicate].firstObject;
     if(pre_Model)
@@ -289,7 +289,6 @@
         self.contactGroupList = [self.contactGroupList mtl_arrayByRemovingObject:pre_Model];
     }
     self.contactGroupList = [self.contactGroupList arrayByAddingObject:model];
-    
     return [[PPTDBEngine shareManager]addOrUpdateContactGroupLists:@[model]];
 }
 
@@ -321,8 +320,13 @@
     return signal;
 }
 
-- (BOOL)saveOrUpdateContactGroupMembers:(RCUserInfoData *)data
+- (BOOL)saveOrUpdateContactGroupMembers:(NSArray<RCUserInfoData *> *)list withGroupId:(NSString *)groupId
 {
-    return YES;
+    return [[PPTDBEngine shareManager]addContactGroupMembers:list withGroupId:groupId];
 }
+- (NSArray<RCUserInfoData *> *)getContactMembersWithGroupId:(NSString *)groupId
+{
+    return [[PPTDBEngine shareManager]contactGroupMembers:groupId];
+}
+
 @end

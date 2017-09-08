@@ -20,6 +20,7 @@
 - (BOOL)saveContactList:(NSArray<RCUserInfoData *> *)contactList;
 
 - (BOOL)addOrUpdateContactGroupLists:(NSArray<RCContactGroupData *>*)contactGroupLists;
+
 - (BOOL)addContactNotificationMessages:(NSArray<RCIMInviteMessage *>*)messages;
 
 //保存个人信息
@@ -27,16 +28,22 @@
 
 //查询好友列表
 - (NSArray *)queryFriendList;
-
 //查询群聊列表
 - (NSArray *)contactGroupLists;
 //加载userid 数据库
 - (void)loadDataBase:(NSString *)userID;
+
 //数据库清理工作
 - (void)clearAccount;
+
 //查询未读的好友请求
 - (NSInteger)queryUnreadFriendCount;
 
 - (BOOL)deleteContactGroup:(PPTContactGroupModel *)model;
+
+- (BOOL)addContactGroupMembers:(NSArray<RCUserInfoData *>*)list withGroupId:(NSString *)groupId;
+
+- (NSArray<RCUserInfoData *> *)contactGroupMembers:(NSString *)groupId;
+
 
 @end

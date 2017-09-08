@@ -53,10 +53,6 @@
     RAC(self.loginBtn,enabled)=[RACSignal combineLatest:@[self.userNameSignal,self.passWordSignal] reduce:^id (NSString * account,NSString * passWord){
         return @(account&&passWord);
     }];
-    
-    
-    
-    
     // Do any additional setup after loading the view.
 }
 

@@ -65,6 +65,8 @@
                 model.userInfo = obj;
                 [self.members addObject:model];
             }];
+            [[PPTUserInfoEngine shareEngine]saveOrUpdateContactGroupMembers:response.result withGroupId:self.groupId];
+        
             self.memberListView.dataSource = self.members;
             [self.tableView reloadData];
         }
@@ -76,7 +78,6 @@
     RCIMCellCustomItem * item11 = [RCIMCellCustomItem new];
     item11.title = @"群聊名称";
     item11.detail = @"未命名";
-    
     
     RCIMCellIconItem * item12 = [RCIMCellIconItem new];
     item12.title = @"群聊二维码";
