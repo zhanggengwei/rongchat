@@ -20,20 +20,42 @@
     [super viewDidLoad];
     self.title = @"群聊列表";
     self.viewModel = [RCIMContactGroupListViewModel new];
-    @weakify(self);
     self.cellClass = [PPContactListCell class];
     self.dataSource = @[@{@"":self.viewModel.dataSource}];
+    @weakify(self);
     [self.viewModel.subject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         self.dataSource= @[@{@"":x}];
     }];
-    
+    RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+       [RACObserve(self,count) subscribeNext:^(id  _Nullable x) {
+           [subscriber sendNext:@(self.count)];
+           [subscriber sendCompleted];
+       }];
+        return nil;
+    }];
+    [signal subscribeNext:^(id  _Nullable x) {
+        NSLog(@"x==%@",x);
+    }];
+    [[[RACSignal interval:2 onScheduler:[RACScheduler mainThreadScheduler]] takeUntil:self.rac_willDeallocSignal ] subscribeNext:^(id x) {
+        self.count++;
+        NSLog(@"每两秒执行一次");
+        
+    } completed:^{
+        NSLog(@"每两秒执行一次:completed");
+    }];
     // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    NSLog(@"控制器销毁 %@",[self class]);
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

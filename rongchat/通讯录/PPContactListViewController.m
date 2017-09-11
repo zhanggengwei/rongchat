@@ -24,7 +24,7 @@
     self.showIndexTitles = YES;
     self.style = UITableViewStylePlain;
     self.cellClass = [PPContactListCell class];
-    self.contactListViewModel = [PPContactListViewModel new];
+   // self.contactListViewModel = [PPContactListViewModel new];
     UIBarButtonItem * rightItem = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"contacts_add_friend") style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
     
     self.navigationItem.rightBarButtonItem = rightItem;

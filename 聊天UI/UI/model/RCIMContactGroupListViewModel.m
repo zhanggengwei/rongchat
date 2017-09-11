@@ -21,8 +21,9 @@
     if(self = [super init])
     {
         self.subject = [RACSubject subject];
-        
+        @weakify(self);
         [RACObserve([PPTUserInfoEngine shareEngine],contactGroupList)subscribeNext:^(NSArray<PPTContactGroupModel *> * list) {
+            @strongify(self);
                 [self.dataSource removeAllObjects];
                 [list enumerateObjectsUsingBlock:^(PPTContactGroupModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     RCIMContactGroupItemModel * model = [RCIMContactGroupItemModel new];
@@ -51,6 +52,10 @@
         _dataSource = [NSMutableArray new];
     }
     return _dataSource;
+}
+- (void)dealloc
+{
+    NSLog(@"deallloc %@",[self class]);
 }
 
 

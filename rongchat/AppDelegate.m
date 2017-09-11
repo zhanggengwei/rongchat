@@ -145,7 +145,6 @@
         NSInteger count = [x integerValue];
         [controller showBadgeMark:count index:1];
     }];
-    
     self.window.rootViewController = controller;
     
 }
