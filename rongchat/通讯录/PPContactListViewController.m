@@ -31,11 +31,10 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = kMainBackGroundColor;
     @weakify(self);
-    [self.contactListViewModel.changeSignal subscribeNext:^(id  _Nullable x) {
-        @strongify(self)
+    [self.contactListViewModel.subject subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
         self.dataSource = x;
-    } error:^(NSError * _Nullable error) {
-        NSLog(@"error == %@",error);
+        [self.tableView reloadData];
     }];
     self.tableView.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.

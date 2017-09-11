@@ -134,3 +134,6 @@
     return _placeImage?_placeImage:@"";
 }
 @end
+
+@implementation RCIMContactGroupItemModel
+@end

@@ -122,11 +122,11 @@
 - (void)setModel:(id)model
 {
     [super setModel:model];
-    if([model isKindOfClass:[PPTContactGroupModel class]])
+    if([model isKindOfClass:[RCIMContactGroupItemModel class]])
     {
         NSString *imageName = @"Placeholder_Avatar";
         UIImage *image = [UIImage RCIM_imageNamed:imageName bundleName:@"Placeholder" bundleForClass:[self class]];
-        PPTContactGroupModel * contactGroup = model;
+        PPTContactGroupModel * contactGroup = ((RCIMContactGroupItemModel *)model).model;
         _nickNameLabel.text = contactGroup.group.name;
         if(!contactGroup.group.portraitUri)
         {

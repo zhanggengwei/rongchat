@@ -130,8 +130,13 @@
     NSDictionary * dict = [self.dataSource objectAtIndex:indexPath.section];
     NSArray * array = [dict.allValues objectAtIndex:0];
     id<RCIMCellModel> model = array[indexPath.row];
-    [self.navigationController pushViewController:model.targetController animated:YES];
-    
+    if(model.targetController==nil)
+    {
+        NSLog(@"%s %s %d",__FUNCTION__,__FILE__,__LINE__);
+    }else
+    {
+        [self.navigationController pushViewController:model.targetController animated:YES];
+    }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -195,7 +200,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if(self.showIndexTitles)
+    if(self.showIndexTitles&&self.dataSource.count)
     {
         NSArray<RCContactListCell *> * cells = [self.tableView visibleCells];
         NSInteger section = INT_MAX;

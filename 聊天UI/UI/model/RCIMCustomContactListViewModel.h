@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-//联系人好友发生变化的viewModel
-@interface RCIMContactListViewModel : NSObject
+@interface RCIMCustomContactListViewModel : NSObject
 
-@property (nonatomic,strong,readonly) RACSignal * changeSignal;
+@property (nonatomic,strong) RACSignal * subject;
 
 @end

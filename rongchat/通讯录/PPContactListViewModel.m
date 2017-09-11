@@ -11,12 +11,14 @@
 #import "RCIMPublicServiceViewController.h"
 #import "RCIMContactGroupListViewController.h"
 #import "RCIMContactGroupDetilsViewController.h"
-#import "RCIMContactDetailsViewController.h"
+#import "RCIMCustomContactListViewModel.h"
+
 
 @interface PPContactListViewModel ()
-
-@property (nonatomic,strong) RACSignal * changeSignal;
 @property (nonatomic,strong) NSMutableArray * contactList;
+@property (nonatomic,strong) NSArray * headerArray;
+@property (nonatomic,strong) RCIMCustomContactListViewModel * viewModel;
+
 @end
 
 @implementation PPContactListViewModel
@@ -31,6 +33,31 @@
 
 - (void)loadFriendList
 {
+    self.viewModel = [RCIMCustomContactListViewModel new];
+ 
+    self.subject = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        @weakify(self);
+        [self.viewModel.subject subscribeNext:^(id  _Nullable x) {
+            @strongify(self);
+            [self.contactList removeAllObjects];
+            [self.contactList addObject:self.headerArray.firstObject];
+            [self.contactList addObjectsFromArray:x];
+            [subscriber sendNext:self.contactList];
+            [subscriber sendCompleted];
+        }];
+        return nil;
+    }];
+    
+}
+
+- (void)dealloc
+{
+    NSLog(@"");
+}
+
+- (NSArray *)headerArray
+{
+    
     NSDictionary * (^headerArrayBlock)(void) = ^(void)
     {
         NSMutableArray * source = [NSMutableArray new];
@@ -48,69 +75,19 @@
         }];
         return @{@"":source};
     };
-
-    self.contactList = [NSMutableArray new];
-    NSArray * (^indexsContactListBlock)(NSArray<RCUserInfoData *> * arr) = ^(NSArray<RCUserInfoData *> * arr)
+    if(_headerArray==nil)
     {
-        NSMutableArray * contactlistResults = [NSMutableArray new];
-        NSMutableDictionary * results = [NSMutableDictionary new];
-        [arr enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            RCIMContactListModelItem * item = [RCIMContactListModelItem new];
-            item.model = obj;
-            item.enabled = YES;
-            RCIMContactDetailsViewController * targetController = [RCIMContactDetailsViewController new];
-            item.targetController = targetController;
-            if(![results objectForKey:obj.user.indexChar])
-            {
-                NSMutableArray * indexContactLists = [NSMutableArray arrayWithObject:item];
-                [results setObject:indexContactLists forKey:obj.user.indexChar];
-            }else
-            {
-                NSMutableArray * indexContactLists = [results objectForKey:obj.user.indexChar];
-                [indexContactLists addObject:item];
-            }
-        }];
-        NSArray * indexKeys = [[results allKeys]sortedArrayUsingSelector:@selector(compare:)];
-        [indexKeys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSArray<RCIMContactListModelItem *> * userInfoArray = results[obj];
-            NSArray * sortArray = [userInfoArray sortedArrayUsingComparator:^NSComparisonResult(RCIMContactListModelItem *   obj1, RCIMContactListModelItem * obj2) {
-                return [obj1.model.user.nickNameWord compare:obj2.model.user.nickNameWord];
-            }];
-            [contactlistResults addObject:@{obj:sortArray}];
-        }];
-        [contactlistResults insertObject:headerArrayBlock() atIndex:0];
-        return  contactlistResults;
-    };
-    self.changeSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        [RACObserve([PPTUserInfoEngine shareEngine], contactList) subscribeNext:^(id  _Nullable x) {
-            [subscriber sendNext:indexsContactListBlock([PPTUserInfoEngine shareEngine].contactList)];
-            [subscriber sendCompleted];
-            
-            }];
-        return nil;
-    }];
-    
-    
-  //  self.contactListSubject = [RACSubject subject];
-//    [RACObserve([PPTUserInfoEngine shareEngine], contactList) subscribeNext:^(id  _Nullable x) {
-//        [self.contactListSubject sendNext:[PPTUserInfoEngine shareEngine].contactList];
-//        [self.contactListSubject sendCompleted];
-//    }];
-//    //信号的订阅功能 热信号 错过了就错过了 热信号主动调用不需要订阅就能发送消息
-//    冷信号被动调用 订阅会发送消息
-//    [self.contactListSubject subscribeNext:^(id  _Nullable x) {
-//        NSLog(@"x == %@",x);
-//    } error:^(NSError * _Nullable error) {
-//        NSLog(@"error == %@",error);
-//    }];
-//    [self.contactListSubject sendNext:[PPTUserInfoEngine shareEngine].contactList];
-//    [self.contactListSubject sendCompleted];
-    
+        _headerArray = @[headerArrayBlock()];
+    }
+    return _headerArray;
 }
-
-- (void)dealloc
+- (NSMutableArray *)contactList
 {
-    NSLog(@"");
+    if(_contactList==nil)
+    {
+        _contactList = [NSMutableArray new];
+    }
+    return _contactList;
 }
 
 @end

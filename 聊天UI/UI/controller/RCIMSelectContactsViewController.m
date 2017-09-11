@@ -9,10 +9,10 @@
 #import "RCIMSelectContactsViewController.h"
 #import "PPContactListViewModel.h"
 #import "RCIMSelectContactListCell.h"
-
+#import "RCIMCustomContactListViewModel.h"
 
 @interface RCIMSelectContactsViewController ()
-@property (nonatomic,strong) PPContactListViewModel * viewModel;
+@property (nonatomic,strong) RCIMCustomContactListViewModel * viewModel;
 @property (nonatomic,strong) NSMutableArray * selectMembers;
 @property (nonatomic,assign) NSInteger count;
 
@@ -23,16 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"选择联系人";
-    self.viewModel = [PPContactListViewModel new];
+    self.viewModel = [RCIMCustomContactListViewModel new];
     self.cellClass = [RCIMSelectContactListCell class];
     @weakify(self);
-    [self.viewModel.changeSignal subscribeNext:^(NSArray *  x) {
-        @strongify(self)
-        self.dataSource = [x subarrayWithRange:NSMakeRange(1,x.count-2)];
-        
-    } error:^(NSError * _Nullable error) {
-        NSLog(@"error == %@",error);
-    }];
+  
     
 //    [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
 //        [signal subscribeNext:^(RCUserInfoData * data) {

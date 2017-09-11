@@ -120,3 +120,7 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 
 @end
 
+@interface RCIMContactGroupItemModel : RCIMTableViewCellItem
+@property (nonatomic,strong) PPTContactGroupModel * model;
+@end
+
