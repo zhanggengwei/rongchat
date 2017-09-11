@@ -10,6 +10,7 @@
 #import "PPContactListCell.h"
 #import "RCIMContactGroupListViewModel.h"
 @interface RCIMContactGroupListViewController ()
+@property (nonatomic,assign) NSInteger count;
 @property (nonatomic,strong)RCIMContactGroupListViewModel * viewModel;
 @end
 
@@ -21,6 +22,7 @@
     self.viewModel = [RCIMContactGroupListViewModel new];
     @weakify(self);
     self.cellClass = [PPContactListCell class];
+    self.dataSource = @[@{@"":self.viewModel.dataSource}];
     [self.viewModel.subject subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         self.dataSource= @[@{@"":x}];

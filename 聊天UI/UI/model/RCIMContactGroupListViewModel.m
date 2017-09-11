@@ -9,19 +9,21 @@
 #import "RCIMContactGroupListViewModel.h"
 #import "RCIMConversationViewController.h"
 
+
+@interface RCIMContactGroupListViewModel ()
+@property (nonatomic,strong) NSMutableArray * dataSource;
+@end
+
 @implementation RCIMContactGroupListViewModel
-{
-    NSMutableArray * _dataSource;
-}
+
 - (instancetype)init
 {
     if(self = [super init])
     {
-        _dataSource = [NSMutableArray new];
-        self.subject = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-            
-            [RACObserve([PPTUserInfoEngine shareEngine],contactGroupList)subscribeNext:^(NSArray<PPTContactGroupModel *> * list) {
-                [_dataSource removeAllObjects];
+        self.subject = [RACSubject subject];
+        
+        [RACObserve([PPTUserInfoEngine shareEngine],contactGroupList)subscribeNext:^(NSArray<PPTContactGroupModel *> * list) {
+                [self.dataSource removeAllObjects];
                 [list enumerateObjectsUsingBlock:^(PPTContactGroupModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     RCIMContactGroupItemModel * model = [RCIMContactGroupItemModel new];
                     model.model = obj;
@@ -34,12 +36,22 @@
                     model.targetController = controller;
                     [_dataSource addObject:model];
                 }];
-                [subscriber sendNext:_dataSource];
-                [subscriber sendCompleted];
+                [self.subject sendNext:_dataSource];
+                [self.subject sendCompleted];
             }];
-            return nil;
-        }];
+        
     }
     return self;
 }
+
+- (NSMutableArray *)dataSource
+{
+    if(_dataSource==nil)
+    {
+        _dataSource = [NSMutableArray new];
+    }
+    return _dataSource;
+}
+
+
 @end
