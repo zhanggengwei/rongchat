@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RCConversationListViewController.h"
 
-
 @interface PPConversationListViewController : RCConversationListViewController
-
-
 @end
 

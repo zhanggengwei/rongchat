@@ -71,14 +71,14 @@
                 break;
         }
     };
-    [RACObserve(self, selectCellSignal) subscribeNext:^(id  _Nullable x) {
-        @strongify(self);
-        [self.selectCellSignal subscribeNext:^(id  _Nullable obj) {
-            NSArray * arr = [self.dataSource.firstObject allValues];
-            NSInteger index = [arr.firstObject indexOfObject:obj];
-            didSelectCellIndex(index);
-        }];
-    }];
+//    [RACObserve(self, selectCellSignal) subscribeNext:^(id  _Nullable x) {
+//        @strongify(self);
+//        [self.selectCellSignal subscribeNext:^(id  _Nullable obj) {
+//            NSArray * arr = [self.dataSource.firstObject allValues];
+//            NSInteger index = [arr.firstObject indexOfObject:obj];
+//            didSelectCellIndex(index);
+//        }];
+//    }];
     self.tableView.tableHeaderView = self.searchController.searchBar;
         // Do any additional setup after loading the view.
 }

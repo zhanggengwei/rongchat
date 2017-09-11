@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol RCContactListCellProtrocal <NSObject>
-@property (nonatomic,strong) id model;
-@end
-
 @interface RCContactListCell : UITableViewCell<RCContactListCellProtrocal>
 @property (nonatomic,strong) id<RCIMCellModel> model;
 @property (nonatomic,strong) NSIndexPath * indexPath;

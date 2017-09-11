@@ -17,6 +17,10 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,strong) UIViewController * targetController;
 @end
 
+@protocol RCContactListCellProtrocal <NSObject>
+@property (nonatomic,strong) id<RCIMCellModel> model;
+@end
+
 @interface RCIMTableViewCellItem : NSObject<RCIMCellModel>
 @property (nonatomic,strong) UIViewController * targetController;
 @end

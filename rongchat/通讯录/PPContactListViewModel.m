@@ -36,13 +36,14 @@
         NSMutableArray * source = [NSMutableArray new];
         NSArray * array = @[@"新的朋友",@"群聊",@"标签",@"公众号"];
         NSArray * imageArray = @[@"plugins_FriendNotify",@"add_friend_icon_addgroup",@"Contact_icon_ContactTag",@"add_friend_icon_offical"];
-        NSArray  * targerControllerArray = @[NSStringFromClass([RCIMNewContactListViewController class]),NSStringFromClass([RCIMContactGroupListViewController class]),NSStringFromClass([RCIMContactGroupListViewController class]),NSStringFromClass([RCIMPublicServiceViewController class])];
+        NSArray  * targerControllerArray = @[[RCIMNewContactListViewController class],[RCIMContactGroupListViewController class],[RCIMContactGroupListViewController class],[RCIMPublicServiceViewController class]];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             RCIMContactListModelItem *  item = [RCIMContactListModelItem new];
             item.model = [RCUserInfoData new];
             item.model.user = [RCUserInfoBaseData new];
             item.model.user.name = obj;
             item.placeImage = imageArray[idx];
+            item.targetController = [targerControllerArray[idx] new];
             [source addObject:item];
         }];
         return @{@"":source};
@@ -57,6 +58,8 @@
             RCIMContactListModelItem * item = [RCIMContactListModelItem new];
             item.model = obj;
             item.enabled = YES;
+            RCIMContactDetailsViewController * targetController = [RCIMContactDetailsViewController new];
+            item.targetController = targetController;
             if(![results objectForKey:obj.user.indexChar])
             {
                 NSMutableArray * indexContactLists = [NSMutableArray arrayWithObject:item];
@@ -68,7 +71,6 @@
             }
         }];
         NSArray * indexKeys = [[results allKeys]sortedArrayUsingSelector:@selector(compare:)];
-        
         [indexKeys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<RCIMContactListModelItem *> * userInfoArray = results[obj];
             NSArray * sortArray = [userInfoArray sortedArrayUsingComparator:^NSComparisonResult(RCIMContactListModelItem *   obj1, RCIMContactListModelItem * obj2) {

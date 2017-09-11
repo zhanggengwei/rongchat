@@ -37,16 +37,7 @@
     } error:^(NSError * _Nullable error) {
         NSLog(@"error == %@",error);
     }];
-    [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
-        @strongify(self);
-        [signal subscribeNext:^(RCUserInfoData * data) {
-//            UIViewController * controller = [NSClassFromString(data.controllerName) new];
-//            [self.navigationController pushViewController:controller animated:YES];
-        }];
-    }];
     self.tableView.backgroundColor = [UIColor whiteColor];
- 
-    
     // Do any additional setup after loading the view.
 }
 

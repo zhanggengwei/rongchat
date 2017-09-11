@@ -31,7 +31,6 @@
     self.headerArray = [NSMutableArray new];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.indexView];
-    [self.didSelectCommand execute:nil];
     @weakify(self);
     [RACObserve(self,dataSource) subscribeNext:^(id  _Nullable x) {
         @strongify(self);
@@ -130,9 +129,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSDictionary * dict = [self.dataSource objectAtIndex:indexPath.section];
     NSArray * array = [dict.allValues objectAtIndex:0];
-    id model = array[indexPath.row];
-    self.selectCellSignal = [self.didSelectCommand execute:model];
-    [self.didSelectCommand execute:model];
+    id<RCIMCellModel> model = array[indexPath.row];
+    [self.navigationController pushViewController:model.targetController animated:YES];
     
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

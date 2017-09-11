@@ -21,22 +21,22 @@
     [super viewDidLoad];
     self.title = @"群聊列表";
     @weakify(self);
-    [RACObserve(self,selectCellSignal)subscribeNext:^(RACSignal * signal) {
-        @strongify(self);
-        if(signal)
-        {
-            [signal subscribeNext:^(PPTContactGroupModel *  model)
-            {
-                RCIMConversationViewController * controller = [RCIMConversationViewController new];
-                RCConversation * convesation = [RCConversation new];
-                convesation.conversationType = ConversationType_GROUP;
-                convesation.conversationTitle = model.group.name;
-                convesation.targetId = model.group.indexId;
-                controller.conversation = convesation;
-                [self.navigationController pushViewController:controller animated:YES];
-            }];
-        }
-    }];
+//    [RACObserve(self,selectCellSignal)subscribeNext:^(RACSignal * signal) {
+//        @strongify(self);
+//        if(signal)
+//        {
+//            [signal subscribeNext:^(PPTContactGroupModel *  model)
+//            {
+//                RCIMConversationViewController * controller = [RCIMConversationViewController new];
+//                RCConversation * convesation = [RCConversation new];
+//                convesation.conversationType = ConversationType_GROUP;
+//                convesation.conversationTitle = model.group.name;
+//                convesation.targetId = model.group.indexId;
+//                controller.conversation = convesation;
+//                [self.navigationController pushViewController:controller animated:YES];
+//            }];
+//        }
+//    }];
     self.cellClass = [PPContactListCell class];
     self.dataSource= @[@{@"":[PPTUserInfoEngine shareEngine].contactGroupList}];
     // Do any additional setup after loading the view.
