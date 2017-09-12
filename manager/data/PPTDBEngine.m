@@ -257,8 +257,6 @@
 {
     __block BOOL sucessed = NO;
         [contactList enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-           [self deleteCustomUserInfoWithUser:obj.user.userId withDataBase:db];
-           [self deleteCustomUserBaseInfoWithUser:obj.user.userId withDataBase:db];
            [[RCIMObjPinYinHelper converNameToPinyin:obj.user.name]subscribeNext:^(NSString * indexChar) {
                 obj.user.indexChar = indexChar;
                 [self saveCustomUserInfo:obj withDataBase:db];
@@ -283,7 +281,7 @@
 - (void)saveCustomFriendWithData:(NSArray<RCUserInfoData*> *)list withDataBase:(FMDatabase *)db
 {
     [list enumerateObjectsUsingBlock:^(RCUserInfoData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [db executeUpdate:@"DELETE FROM ? WHERE userId = ?",USER_INFO_FRIENDLIST_TABLENAME,obj.user.userId];
+        [db executeUpdate:@"DELETE FROM USER_INFO_FRIENDLIST_TABLENAME WHERE userId = ?",obj.user.userId];
         [db executeUpdate:[NSString stringWithFormat:@"insert into \'%@\' (userId) values (\'%@\')",USER_INFO_FRIENDLIST_TABLENAME,obj.user.userId]];
     }];
 }
@@ -291,12 +289,12 @@
 
 - (void)deleteCustomUserInfoWithUser:(NSString *)userId withDataBase:(FMDatabase *)db
 {
-    [db executeUpdate:@"DELETE FROM \'%@\' where userId = \'%@\'",USER_INFO_TABLENAME,userId];
+    [db executeUpdate:@"DELETE FROM USER_INFO_TABLENAME where userId = ?",userId];
 }
 
 - (void)deleteCustomUserBaseInfoWithUser:(NSString *)userId withDataBase:(FMDatabase *)db
 {
-    [db executeUpdate:@"DELETE FROM \'%@\' where userId = \'%@\'",USER_INFO_BASE_TABLENAME,userId];
+    [db executeUpdate:@"DELETE FROM USER_INFO_BASE_TABLENAME where userId = ?",userId];
 }
 
 - (void)deleteContactGroupMemberWithGroupId:(NSString *)groupId dataBase:(FMDatabase *)db
@@ -305,8 +303,7 @@
 }
 - (void)deleteCustomContactGroupWithGroupId:(NSString *)groupId withDataBase:(FMDatabase *)db
 {
-    NSString * deleteSql = [NSString stringWithFormat:@"delete  from \'%@\' where indexId = \'%@\'",CONTACT_GRAOUP_TABLENAME,groupId];
-    [db executeUpdate:deleteSql];
+    [db executeUpdate:@"DELETE  FROM CONTACT_GRAOUP_TABLENAME where indexId = ?",groupId];
 }
 
 - (BOOL)addContactGroupMembers:(NSArray<RCUserInfoData *>*)list withGroupId:(NSString *)groupId
@@ -334,7 +331,6 @@
 - (void)saveContactGroup:(PPTContactGroupModel *)obj withDataBase:(FMDatabase *)db
 {
     [self deleteContactGroupMemberWithGroupId:obj.group.indexId dataBase:db];
-    
     NSString * insertSql = [NSString stringWithFormat:@"insert into \'%@\'(name,creatorId,portraitUri,indexId,maxMemberCount,memberCount,bulletin) values(\'%@\',\'%@\',\'%@\',\'%@\',%ld,%ld,\'%@\')",CONTACT_GRAOUP_TABLENAME,obj.group.name,obj.group.creatorId,obj.group.portraitUri,obj.group.indexId,obj.group.maxMemberCount,obj.group.memberCount,obj.group.bulletin];
     [db executeUpdate:insertSql];
 }

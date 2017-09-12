@@ -32,7 +32,6 @@
 {
     if(self = [super init])
     {
-        
         _dataArray = [NSMutableArray new];
         _imageArray = [NSMutableArray new];
         _voiceArray = [NSMutableArray new];

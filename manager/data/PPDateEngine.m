@@ -316,8 +316,38 @@
         _createContactGroupCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 PPHTTPManager * manager = [PPHTTPManager manager];
-                [manager POST:kPPUrlCreateGroup parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                RCContactGroupData * data = input;
+                NSMutableDictionary * params = [NSMutableDictionary new];
+                NSMutableArray * uids = [NSMutableArray new];
+                NSMutableArray * names = [NSMutableArray new];
+                [uids addObject:[PPTUserInfoEngine shareEngine].userId];
+                for (RCUserInfoData * model in data.memberList) {
+                    [uids addObject:model.user.userId];
+                    [names addObject:model.user.name];
+                }
+                if(uids)
+                {
+                    [params setObject:uids forKey:@"memberIds"];
+                }
+                if(names)
+                {
+                    data.name = [names componentsJoinedByString:@","];
+                    [params setObject:data.name forKey:@"name"];
+                }
+                [manager POST:kPPUrlCreateGroup parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSError * error;
                     NSLog(@"operation==%@",operation);
+                    PPContactGroupSingleResponse * response = [MTLJSONAdapter modelOfClass:[PPContactGroupSingleResponse class] fromJSONDictionary:responseObject error:&error];
+                    if(response.code.integerValue == kPPResponseSucessCode)
+                    {
+                        data.indexId = ((RCContactGroupData *)response.result).indexId;
+                        PPTContactGroupModel * model = [PPTContactGroupModel new];
+                        model.role = 1;
+                        model.group = data;
+//                        [[PPTUserInfoEngine shareEngine]addOrUpdateContactGroup:model
+//                         ];
+                    }
+                    NSLog(@"response == %@",response);
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"operation==%@",operation);
@@ -702,19 +732,17 @@
 #pragma mark contactGroup
 
 //创建群组成员
-- (RACSignal *)createContactGroupName:(NSString *)name members:(NSArray<NSString *> *)userIds
+- (RACSignal *)createContactGroupName:(NSString *)name members:(NSArray<RCUserInfoData *> *)users
 {
     
-    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-    if(userIds)
-    {
-        [dict setObject:userIds forKey:@"memberIds"];
-    }
-    if([name isValid])
-    {
-        [dict setObject:@"name" forKey:name];
-    }
-    return [self.createContactGroupCommand execute:dict];
+    RCContactGroupData * data = [RCContactGroupData new];
+    data.creatorId = [PPTUserInfoEngine shareEngine].userId;
+    data.name = name;
+    data.memberCount = users.count;
+    data.maxMemberCount = 500;
+    data.memberList = users;
+    
+    return [self.createContactGroupCommand execute:data];
     
 }
 //删除群组的成员

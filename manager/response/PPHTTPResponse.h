@@ -57,6 +57,7 @@
 @end
 
 @interface PPContactGroupMemberListResponse : PPHTTPResponse
-
 @end
+
+
 

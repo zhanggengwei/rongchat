@@ -18,7 +18,6 @@
 @property (nonatomic,strong) NSMutableArray * contactList;
 @property (nonatomic,strong) NSArray * headerArray;
 @property (nonatomic,strong) RCIMCustomContactListViewModel * viewModel;
-
 @end
 
 @implementation PPContactListViewModel
@@ -34,19 +33,17 @@
 - (void)loadFriendList
 {
     self.viewModel = [RCIMCustomContactListViewModel new];
- 
-    self.subject = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        @weakify(self);
-        [self.viewModel.subject subscribeNext:^(id  _Nullable x) {
-            @strongify(self);
-            [self.contactList removeAllObjects];
-            [self.contactList addObject:self.headerArray.firstObject];
-            [self.contactList addObjectsFromArray:x];
-            [subscriber sendNext:self.contactList];
-            [subscriber sendCompleted];
-        }];
-        return nil;
+    self.subject = [RACSubject subject];
+    [self.viewModel.subject subscribeNext:^(id  _Nullable x) {
+        [self.contactList removeAllObjects];
+        [self.contactList addObject:self.headerArray.firstObject];
+        [self.contactList addObjectsFromArray:x];
+        [self.subject sendNext:self.contactList];
+        [self.subject sendCompleted];
     }];
+    [self.contactList removeAllObjects];
+    [self.contactList addObject:self.headerArray.firstObject];
+    [self.contactList addObjectsFromArray:self.viewModel.contactList];
     
 }
 

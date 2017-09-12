@@ -49,7 +49,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSInteger index;
+    NSInteger index = 0;
     switch (indexPath.section) {
         case 0:
             index = 0;
@@ -138,6 +138,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 48;
+}
+
+- (void)dealloc
+{
+    NSLog(@"dealloc %@",[self class]);
 }
 
 @end

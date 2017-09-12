@@ -58,9 +58,7 @@
 
 - (void)showSheetView:(id)sender
 {
-    
     UIImage * image = [UIImage RCIM_imageNamed:@"barbuttonicon_InfoSingle" bundleName:@"BarButtonIcon" bundleForClass:[self class]];
-    
     PopoverAction * action1 = [PopoverAction actionWithImage:image title:@"发起群聊" handler:^(PopoverAction *action) {
         RCIMSelectContactsViewController * controller =[RCIMSelectContactsViewController new];
         [self presentViewController:[[UINavigationController alloc]initWithRootViewController:controller] animated:YES completion:nil];
@@ -91,7 +89,6 @@
             [self.tableView reloadData];
         }
     }];
-    
     NSLog(@"conversation.count==%d",[[RCIMClient sharedRCIMClient]getTotalUnreadCount]);
     
 }
@@ -108,12 +105,10 @@
 {
     return  1;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.dataSource.count;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RCConversationListCell * cell = [tableView dequeueReusableCellWithIdentifier:@"RCConversationListCell"];
@@ -136,5 +131,8 @@
 {
     return 55;
 }
-
+- (void)dealloc
+{
+    NSLog(@"dealloc %@",[self class]);
+}
 @end

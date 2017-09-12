@@ -10,6 +10,6 @@
 
 @interface RCIMCustomContactListViewModel : NSObject
 
-@property (nonatomic,strong) RACSignal * subject;
-
+@property (nonatomic,strong) RACSubject * subject;
+@property (nonatomic,strong,readonly) NSMutableArray * contactList;
 @end

@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface PPContactListViewModel : NSObject
-@property (nonatomic,strong) RACSignal *  subject;
+@property (nonatomic,strong) RACSubject *  subject;
+@property (nonatomic,strong,readonly) NSMutableArray * contactList;
 @end

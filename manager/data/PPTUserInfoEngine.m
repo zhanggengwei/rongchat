@@ -283,7 +283,7 @@
 - (BOOL)addOrUpdateContactGroup:(PPTContactGroupModel *)model
 {
     NSPredicate * predicate = [NSPredicate predicateWithFormat:@"self.group.indexId = %@",model.group.indexId];
-    PPTContactGroupModel * pre_Model =[self.contactGroupList filteredArrayUsingPredicate:predicate].firstObject;
+    PPTContactGroupModel * pre_Model = [self.contactGroupList filteredArrayUsingPredicate:predicate].firstObject;
     if(pre_Model)
     {
         self.contactGroupList = [self.contactGroupList mtl_arrayByRemovingObject:pre_Model];

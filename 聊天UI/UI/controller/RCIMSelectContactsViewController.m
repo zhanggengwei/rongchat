@@ -25,25 +25,8 @@
     self.title = @"选择联系人";
     self.viewModel = [RCIMCustomContactListViewModel new];
     self.cellClass = [RCIMSelectContactListCell class];
-    @weakify(self);
-  
-    
-//    [RACObserve(self, selectCellSignal)subscribeNext:^(RACSignal * signal) {
-//        [signal subscribeNext:^(RCUserInfoData * data) {
-////            data.isSelected = !data.isSelected;
-////            if(data.isSelected)
-////            {
-////                [self.selectMembers addObject:data];
-////                self.count++;
-////            }else
-////            {
-////                [self.selectMembers removeObject:data];
-////                self.count--;
-////            }
-//        }];
-//    }];
+    self.dataSource = self.viewModel.contactList;
     [self createNav];
-    
     // Do any additional setup after loading the view.
 }
 - (void)didReceiveMemoryWarning {
@@ -59,7 +42,6 @@
     }
     return _selectMembers;
 }
-
 
 - (void)createNav
 {
@@ -77,17 +59,35 @@
         }
         return flag;
     }];
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RCIMSelectContactListCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    RCIMContactListModelItem * item = cell.model;
+    
+    item.isSelected = !item.isSelected;
+    if(item.isSelected)
+    {
+        [self.selectMembers addObject:item.model];
+        self.count++;
+    }else
+    {
+        [self.selectMembers removeObject:item.model];
+        self.count--;
+    }
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (void)cancelAction:(id)sender
 {
@@ -97,6 +97,9 @@
 - (void)finishAction:(id)sender
 {
     
+    [[[PPDateEngine manager]createContactGroupName:@"" members:self.selectMembers]subscribeNext:^(id  _Nullable x) {
+        NSLog(@"x==%@",x);
+    }];
 }
 
 @end

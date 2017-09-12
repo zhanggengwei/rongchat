@@ -181,4 +181,10 @@
             break;
     }
 }
+
+- (void)dealloc
+{
+    NSLog(@"dealloc");
+}
+
 @end

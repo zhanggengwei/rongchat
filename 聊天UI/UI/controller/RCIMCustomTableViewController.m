@@ -200,7 +200,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if(self.showIndexTitles&&self.dataSource.count)
+    if(self.showIndexTitles)
     {
         NSArray<RCContactListCell *> * cells = [self.tableView visibleCells];
         NSInteger section = INT_MAX;

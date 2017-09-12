@@ -24,7 +24,7 @@
 }
 - (void)loadContactList
 {
-    NSMutableArray * contactList = [NSMutableArray new];
+    _contactList = [NSMutableArray new];
     NSArray * (^indexsContactListBlock)(NSArray<RCUserInfoData *> * arr) = ^(NSArray<RCUserInfoData *> * arr)
     {
         NSMutableArray * contactlistResults = [NSMutableArray new];
@@ -55,14 +55,15 @@
         }];
         return  contactlistResults;
     };
-    self.subject = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        [RACObserve([PPTUserInfoEngine shareEngine], contactList) subscribeNext:^(id  _Nullable x) {
-            [contactList removeAllObjects];
-            [contactList addObjectsFromArray:indexsContactListBlock([PPTUserInfoEngine shareEngine].contactList)];
-            [subscriber sendNext:contactList];
-            [subscriber sendCompleted];
-        }];
-        return nil;
+    self.subject = [RACSubject subject];
+    @weakify(self);
+    [RACObserve([PPTUserInfoEngine shareEngine], contactList) subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        [_contactList removeAllObjects];
+        [_contactList addObjectsFromArray:indexsContactListBlock([PPTUserInfoEngine shareEngine].contactList)];
+        [self.subject sendNext:_contactList];
+        [self.subject sendCompleted];
     }];
+    [_contactList addObjectsFromArray:indexsContactListBlock([PPTUserInfoEngine shareEngine].contactList)];
 }
 @end

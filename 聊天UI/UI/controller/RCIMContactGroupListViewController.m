@@ -27,23 +27,6 @@
         @strongify(self);
         self.dataSource= @[@{@"":x}];
     }];
-    RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-       [RACObserve(self,count) subscribeNext:^(id  _Nullable x) {
-           [subscriber sendNext:@(self.count)];
-           [subscriber sendCompleted];
-       }];
-        return nil;
-    }];
-    [signal subscribeNext:^(id  _Nullable x) {
-        NSLog(@"x==%@",x);
-    }];
-    [[[RACSignal interval:2 onScheduler:[RACScheduler mainThreadScheduler]] takeUntil:self.rac_willDeallocSignal ] subscribeNext:^(id x) {
-        self.count++;
-        NSLog(@"每两秒执行一次");
-        
-    } completed:^{
-        NSLog(@"每两秒执行一次:completed");
-    }];
     // Do any additional setup after loading the view.
 }
 

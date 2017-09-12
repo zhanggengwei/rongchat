@@ -87,20 +87,18 @@
 - (void)setModel:(id)model
 {
     [super setModel:model];
-    RCUserInfoData * data = model;
-//    [RACObserve(data, isSelected)subscribeNext:^(id  _Nullable x) {
-//        BOOL value = [x boolValue];
-//        self.selectButton.selected = value;
-//    }];
-//    
-//    [RACObserve(data, enabled)subscribeNext:^(id  _Nullable x) {
-//        BOOL value = [x boolValue];
-//        self.selectButton.enabled = value;
-//    }];
-    
-    SD_LOADIMAGE(self.avatarImageView, data.user.portraitUri, nil);
-    self.nameLabel.text = data.user.name;
-    
+    RCIMContactListModelItem * data = model;
+    RCUserInfoData * obj = data.model;
+    [RACObserve(data, isSelected)subscribeNext:^(id  _Nullable x) {
+        BOOL value = [x boolValue];
+        self.selectButton.selected = value;
+    }];
+    [RACObserve(data, enabled)subscribeNext:^(id  _Nullable x) {
+        BOOL value = [x boolValue];
+        self.selectButton.enabled = value;
+    }];
+    SD_LOADIMAGE(self.avatarImageView, obj.user.portraitUri, nil);
+    self.nameLabel.text = obj.user.name;
 }
 
 @end

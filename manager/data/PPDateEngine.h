@@ -40,7 +40,7 @@
 - (RACSignal *)getContactGroupsCommand;
 
 //创建群组
-- (RACSignal *)createContactGroupName:(NSString *)name members:(NSArray<NSString *> *)userIds;
+- (RACSignal *)createContactGroupName:(NSString *)name members:(NSArray<RCUserInfoData *> *)users;
 //删除群组的成员
 - (RACSignal *)deleteMemberFormContactGroup:(NSString *)groudId members:(NSArray<NSString *> *)userIds;
 //添加群组成员
