@@ -128,6 +128,7 @@ alpha:a]
 #import <RongIMLib/RongIMLib.h>
 #import  <PinYin4Objc/PinYin4Objc.h>
 
-
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self
+#define WSOBJ(weakSelf,obj)  __weak __typeof(&*obj)weakSelf = obj
 
 #endif /* PPMarchos_h */
