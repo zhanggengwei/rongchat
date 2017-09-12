@@ -12,6 +12,10 @@
 @implementation RCIMObjPinYinHelper
 + (RACSignal *)converNameToPinyin:(NSString *)name
 {
+    if(name==nil)
+    {
+        name = @"NO KNOWN";
+    }
     RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         HanyuPinyinOutputFormat * outFormat = [HanyuPinyinOutputFormat new];
         outFormat.caseType = CaseTypeLowercase;

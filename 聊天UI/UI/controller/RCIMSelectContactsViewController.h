@@ -9,4 +9,6 @@
 #import "RCIMCustomTableViewController.h"
 
 @interface RCIMSelectContactsViewController : RCIMCustomTableViewController
+@property (nonatomic,strong) NSArray<NSString *> * uids;
+
 @end

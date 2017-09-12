@@ -205,6 +205,7 @@
 		754F460F1F60335300D3147D /* RCIMContactGroupQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754F460E1F60335300D3147D /* RCIMContactGroupQRCodeViewController.m */; };
 		754F46181F66410B00D3147D /* RCIMCustomContactListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 754F46171F66410B00D3147D /* RCIMCustomContactListViewModel.m */; };
 		754F461B1F666B7000D3147D /* RCIMContactGroupListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 754F461A1F666B7000D3147D /* RCIMContactGroupListViewModel.m */; };
+		754F461E1F67BB3A00D3147D /* RCIMAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 754F461D1F67BB3A00D3147D /* RCIMAddressViewModel.m */; };
 		757D8CDF1F4E9EC30061CA2B /* PPContactListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 757D8CDE1F4E9EC30061CA2B /* PPContactListViewModel.m */; };
 		7584DA9D1E2A5B83007249C2 /* RCConversationBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA971E2A5B83007249C2 /* RCConversationBaseCell.m */; };
 		7584DA9E1E2A5B83007249C2 /* RCConversationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7584DA991E2A5B83007249C2 /* RCConversationListCell.m */; };
@@ -656,6 +657,8 @@
 		754F46171F66410B00D3147D /* RCIMCustomContactListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMCustomContactListViewModel.m; sourceTree = "<group>"; };
 		754F46191F666B7000D3147D /* RCIMContactGroupListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMContactGroupListViewModel.h; sourceTree = "<group>"; };
 		754F461A1F666B7000D3147D /* RCIMContactGroupListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMContactGroupListViewModel.m; sourceTree = "<group>"; };
+		754F461C1F67BB3A00D3147D /* RCIMAddressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCIMAddressViewModel.h; sourceTree = "<group>"; };
+		754F461D1F67BB3A00D3147D /* RCIMAddressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCIMAddressViewModel.m; sourceTree = "<group>"; };
 		757D8CDD1F4E9EC30061CA2B /* PPContactListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPContactListViewModel.h; path = ../PPContactListViewModel.h; sourceTree = "<group>"; };
 		757D8CDE1F4E9EC30061CA2B /* PPContactListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPContactListViewModel.m; path = ../PPContactListViewModel.m; sourceTree = "<group>"; };
 		7584DA951E2A5B83007249C2 /* PPTZeroSelectListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPTZeroSelectListCell.h; sourceTree = "<group>"; };
@@ -1010,6 +1013,8 @@
 				754F46171F66410B00D3147D /* RCIMCustomContactListViewModel.m */,
 				754F46191F666B7000D3147D /* RCIMContactGroupListViewModel.h */,
 				754F461A1F666B7000D3147D /* RCIMContactGroupListViewModel.m */,
+				754F461C1F67BB3A00D3147D /* RCIMAddressViewModel.h */,
+				754F461D1F67BB3A00D3147D /* RCIMAddressViewModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2394,6 +2399,7 @@
 				7526794C1F3A053D0002AC45 /* RCIMLocationManager.m in Sources */,
 				7584DAF81E2A5B98007249C2 /* RCIMWeakReference.m in Sources */,
 				75278A251F0FC30A000C70AF /* RCChatFileMessageCell.m in Sources */,
+				754F461E1F67BB3A00D3147D /* RCIMAddressViewModel.m in Sources */,
 				752B6E8A1F587B14006003AC /* RCIMAddContactModel.m in Sources */,
 				752B6E901F592587006003AC /* RCIMAddressBookCell.m in Sources */,
 				7584DB6E1E2A5BF5007249C2 /* kPPObserverDef.m in Sources */,

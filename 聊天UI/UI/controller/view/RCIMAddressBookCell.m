@@ -12,15 +12,6 @@
 
 @implementation RCIMAddressModel
 
-- (NSString *)portraitUri
-{
-    if(_portraitUri==nil)
-    {
-        return @"";
-    }
-    return _portraitUri;
-}
-
 @end
 
 @interface RCIMAddressBookCell ()
@@ -49,6 +40,7 @@
 {
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
+        self.subject = [RACSubject subject];
         [self createUI];
     }
     return self;
@@ -128,7 +120,6 @@
         [_addButton setTitle:@"已添加" forState:UIControlStateDisabled];
         [_addButton setBackgroundImage:nil forState:UIControlStateDisabled];
         _addButton.titleLabel.font = [UIFont systemFontOfSize:13];
-        self.clickSignal = [_addButton rac_signalForControlEvents:UIControlEventTouchUpInside];
         [RACObserve(_addButton, enabled)subscribeNext:^(id  _Nullable x) {
             BOOL  flag = [x boolValue];
             if(flag)
@@ -140,7 +131,12 @@
                 _addButton.layer.cornerRadius = 0;
             }
         }];
-
+        @weakify(self);
+        [[_addButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(__kindof UIControl * _Nullable x) {
+            @strongify(self);
+            [self.subject sendNext:self.model];
+            [self.subject sendCompleted];
+        }];
     }
     return _addButton;
 }
@@ -149,16 +145,15 @@
 {
     [super setModel:model];
     UIImage  * image = [UIImage RCIM_imageNamed:@"Placeholder_Avatar" bundleName:@"Placeholder" bundleForClass:[self class]];
-    SD_LOADIMAGE(self.avatarImageView,model.portraitUri, image);
-    self.nameLabel.text = model.userName;
-    self.detailLabel.text = model.name;
+    SD_LOADIMAGE(self.avatarImageView,model.user.portraitUri, image);
+    self.nameLabel.text = model.user.name;
+    self.detailLabel.text = model.displayName;
     @weakify(self);
     [RACObserve(model, add)subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         BOOL add = [x boolValue];
         self.addButton.enabled = !add;
     }];
-    
 }
 
 @end

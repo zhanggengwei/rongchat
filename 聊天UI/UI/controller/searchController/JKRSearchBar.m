@@ -26,7 +26,7 @@ UIKIT_EXTERN NSString *SEARCH_CANCEL_NOTIFICATION_KEY;
 - (instancetype)initWithFrame:(CGRect)frame {
     frame = CGRectMake(0, 0, kScreenWidth, 44);
     self = [super initWithFrame:frame];
-    self.backgroundColor = JKRColor(243, 243, 243, 1.0);
+    self.backgroundColor = JKRColor(235, 235, 241, 1.0);
     [self addSubview:self.backgroundImageView];
     [self addSubview:self.searchTextField];
     [self addSubview:self.rightButton];

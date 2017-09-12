@@ -19,6 +19,7 @@ static NSString *const cellID = @"RESULT_CELL_ID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellID];
+    self.tableView.tableFooterView = [UIView new];
 }
 
 - (void)setFilterDataArray:(NSArray *)filterDataArray {

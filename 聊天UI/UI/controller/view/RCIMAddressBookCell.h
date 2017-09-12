@@ -9,18 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "RCContactListCell.h"
 
-@interface RCIMAddressModel : NSObject
-@property (nonatomic,strong) NSString * userName;
-@property (nonatomic,strong) NSString * userId;
-@property (nonatomic,strong) NSString * name;
-@property (nonatomic,strong) NSString * pinyin;
-@property (nonatomic,strong) NSString * indexChar;
-@property (nonatomic,strong) NSString * phone;
+@interface RCIMAddressModel :NSObject<RCIMCellModel>
+@property (nonatomic,strong) UIViewController * targetController;
+@property (nonatomic,strong) RCUserInfoBaseData * user;
 @property (nonatomic,assign) BOOL add;
-@property (nonatomic,strong) NSString * portraitUri;
-
+@property (nonatomic,strong) NSString * displayName;
+@property (nonatomic,strong) NSString * phone;
+@property (nonatomic,strong) NSString * indexChar;
+@property (nonatomic,strong) NSString * pinyin;
 @end
 
 @interface RCIMAddressBookCell : RCContactListCell
-@property (nonatomic,strong) RACSignal * clickSignal;
+@property (nonatomic,strong) RACSubject * subject;
 @end

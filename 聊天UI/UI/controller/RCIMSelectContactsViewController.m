@@ -26,6 +26,14 @@
     self.viewModel = [RCIMCustomContactListViewModel new];
     self.cellClass = [RCIMSelectContactListCell class];
     self.dataSource = self.viewModel.contactList;
+    [self.viewModel.contactList enumerateObjectsUsingBlock:^(RCIMContactListModelItem * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.uids enumerateObjectsUsingBlock:^(NSString * _Nonnull obj1, NSUInteger idx, BOOL * _Nonnull stop) {
+            if([obj.model.user.userId isEqualToString:obj1])
+            {
+                obj.enabled = YES;
+            }
+        }];
+    }];
     [self createNav];
     // Do any additional setup after loading the view.
 }

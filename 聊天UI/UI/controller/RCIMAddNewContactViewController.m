@@ -41,6 +41,7 @@
     RCIMAddContactModel * model4 = [RCIMAddContactModel new];
     model4.title = @"手机联系人";
     model4.detail = @"添加通讯录中的朋友";
+    model4.targetController = [RCIMAddressBookViewController new];
     
     RCIMAddContactModel * model5 = [RCIMAddContactModel new];
     model5.title = @"公众号";
@@ -79,7 +80,7 @@
 //            didSelectCellIndex(index);
 //        }];
 //    }];
-    self.tableView.tableHeaderView = self.searchController.searchBar;
+//    self.tableView.tableHeaderView = self.searchController.searchBar;
         // Do any additional setup after loading the view.
 }
 
@@ -125,45 +126,29 @@
 }
 - (UIView *)createHeaderView
 {
-    UIView * headerView = [UIView new];
-    UIView * topView = [UIView new];
-    [headerView addSubview:topView];
-    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(headerView);
-        make.height.mas_equalTo(50);
-    }];
- 
-    UIView * bottomView = [UIView new];
-    [headerView addSubview:bottomView];
-    [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(headerView);
-        make.height.mas_equalTo(50);
-    }];
     UIView * contentView = [UIView new];
     UILabel * label = [UILabel new];
     UIImageView * codeImageView = [UIImageView new];
     [contentView addSubview:label];
     [contentView addSubview:codeImageView];
-    
-    
+    [contentView addSubview:self.searchController.searchBar];
     [codeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(15);
         make.right.top.mas_equalTo(contentView);
     }];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.mas_equalTo(contentView);
+        make.centerY.mas_equalTo(contentView).mas_offset(50);
+        make.left.mas_equalTo(contentView);
         make.right.mas_equalTo(codeImageView.mas_left).mas_offset(-8);
     }];
+    label.textAlignment = NSTextAlignmentCenter;
     label.text = @"我的微信号:2012VD";
     label.font = [UIFont systemFontOfSize:14];
-    [bottomView addSubview:contentView];
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(bottomView.mas_centerX);
-        make.top.mas_equalTo(topView.mas_bottom).mas_offset(10);
-        make.width.lessThanOrEqualTo(@200);
-        //make.height.mas_equalTo(30);
+        make.width.mas_equalTo(SCREEN_WIDTH);
+        make.height.mas_equalTo(30);
     }];
-    return headerView;
+    return contentView;
 }
 
 
@@ -177,7 +162,23 @@
     return 100;
 }
 
+- (void)updateSearchResultsForSearchController:(JKRSearchController *)searchController
+{
+    
+}
 
+- (void)searchBarTextDidBeginEditing:(JKRSearchBar *)searchBar
+{
+    
+}
+- (void)searchBarTextDidEndEditing:(JKRSearchBar *)searchBar
+{
+    
+}
+- (void)searchBar:(JKRSearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    
+}
 /*
 #pragma mark - Navigation
 
