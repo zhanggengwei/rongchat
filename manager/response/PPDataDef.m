@@ -140,3 +140,6 @@
 
 @implementation PPCustomCellData
 @end
+
+@implementation PPUploadFileData
+@end

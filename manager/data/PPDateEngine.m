@@ -40,6 +40,10 @@
 @property (nonatomic,strong) RACCommand * delFriendFromBlackListCommand;
 //图片上传的token
 @property (nonatomic,strong) RACCommand * uploadImageToken;
+@property (nonatomic,strong) RACCommand * uploadFileCommand;//文件上传
+@property (nonatomic,strong) RACCommand * setAvatarUrlCommand;
+
+
 //登陆
 @property (nonatomic,strong) RACCommand * loginCommand;
 //注册
@@ -295,10 +299,13 @@
         _uploadImageToken = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 PPHTTPManager * manager = [PPHTTPManager manager];
-                [manager POST:kPPUrlUploadImageToken parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    
+                [manager GET:kPPUrlUploadImageToken parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                    [subscriber sendNext:responseObject];
+                    [subscriber sendCompleted];
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
                 }];
                 return nil;
             }];
@@ -307,6 +314,78 @@
     }
     return _uploadImageToken;
 }
+
+- (RACCommand *)uploadFileCommand
+{
+    RACCommand * command = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+        
+        RACSignal * signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            PPHTTPManager * manager = [PPHTTPManager manager];
+            //获取系统当前的时间戳
+            NSDate *dat = [NSDate dateWithTimeIntervalSinceNow:0];
+            NSTimeInterval now = [dat timeIntervalSince1970] * 1000;
+            NSString *timeString = [NSString stringWithFormat:@"%f", now];
+            NSString *key = [NSString stringWithFormat:@"%@%@",[PPTUserInfoEngine shareEngine].userId, timeString];
+            //去掉字符串中的.
+            NSMutableString *str = [NSMutableString stringWithString:key];
+            for (int i = 0; i < str.length; i++) {
+                unichar c = [str characterAtIndex:i];
+                NSRange range = NSMakeRange(i, 1);
+                if (c == '.') { //此处可以是任何字符
+                    [str deleteCharactersInRange:range];
+                    --i;
+                }
+            }
+            key = [NSString stringWithString:str];
+            NSMutableDictionary * params = [NSMutableDictionary new];
+            [params setObject:input[@"token"] forKey:@"token"];
+            [params setObject:key forKey:@"key"];
+            NSMutableDictionary *ret = [NSMutableDictionary dictionary];
+            [params addEntriesFromDictionary:ret];
+            [manager POST:@"https://up.qbox.me" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                [formData appendPartWithFileData:[input objectForKey:@"image"]
+                                            name:@"file"
+                                        fileName:key
+                                        mimeType:@"application/octet-stream"];
+                
+            } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                [subscriber sendNext:responseObject];
+                [subscriber sendCompleted];
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                [subscriber sendError:error];
+                [subscriber sendCompleted];
+                
+            }];
+            return nil;
+        }];
+        return signal;
+    }];
+    return command;
+}
+
+- (RACCommand *)setAvatarUrlCommand
+{
+    if(_setAvatarUrlCommand==nil)
+    {
+        _setAvatarUrlCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+           return  [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                PPHTTPManager * manager = [PPHTTPManager manager];
+                [manager POST:KppUrlSetAvatuaUrl parameters:input success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    [subscriber sendNext:responseObject];
+                    [subscriber sendCompleted];
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    [subscriber sendError:error];
+                    [subscriber sendCompleted];
+                }];
+               return nil;
+               
+            }];
+        }];
+    }
+    return _setAvatarUrlCommand;
+}
+
 
 #pragma mark lazy contactGroup
 - (RACCommand *)createContactGroupCommand
@@ -850,6 +929,53 @@
 - (RACSignal *)getUploadImageToken
 {
     return [self.uploadImageToken execute:nil];
+}
+- (RACSignal *)uploadAvatarImage:(UIImage *)avatarImage
+{
+    return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+         [[self.uploadImageToken execute:nil]subscribeNext:^(id  _Nullable x) {
+          NSError * error;
+          PPUploadFileResponse * response = [MTLJSONAdapter modelOfClass:[PPUploadFileResponse class] fromJSONDictionary:x error:&error];
+             if(response.code.integerValue== kPPResponseSucessCode)
+             {
+                 PPUploadFileData * model = response.result;
+                 if (model.upload_url.length > 0 && ![model.upload_url hasPrefix:@"http"]) {
+                     model.upload_url = [NSString stringWithFormat:@"http://%@",model.upload_url];
+                 }
+                 //图片上传操作
+                 [[self.uploadFileCommand execute:@{@"token":model.token,@"image":UIImageJPEGRepresentation(avatarImage, 0.4)}]subscribeNext:^(id  _Nullable x) {
+                     NSString * key = [x objectForKey:@"key"];
+                     NSString * avatarUrl = [NSString stringWithFormat:@"http://%@/%@",model.domain,key];
+                     [[self.setAvatarUrlCommand execute:@{@"portraitUri":avatarUrl}]subscribeNext:^(id  _Nullable x) {
+                         NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:x];
+                         [dict setObject:avatarUrl forKey:@"result"];
+                         [subscriber sendNext:dict];
+                         [subscriber sendCompleted];
+                     } error:^(NSError * _Nullable error) {
+                         [subscriber sendError:error];
+                         [subscriber sendCompleted];
+                     }];
+                 } error:^(NSError * _Nullable error) {
+                     NSLog(@"error =%@",error);
+                     [subscriber sendError:error];
+                     [subscriber sendCompleted];
+                 }];
+             }
+             else
+             {
+                 [subscriber sendError:error];
+                 [subscriber sendCompleted];
+             }
+         }error:^(NSError * _Nullable error) {
+             [subscriber sendError:error];
+             [subscriber sendCompleted];
+             
+         } completed:^{
+             
+         }];
+         return nil;
+    }];
+   
 }
 
 

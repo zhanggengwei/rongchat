@@ -24,8 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人头像";
-    self.imageView = [UIImageView new];
-    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     [self.view addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -35,14 +33,7 @@
         make.left.mas_equalTo(self.view.mas_left);
         
     }];
-  
-    
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[PPTUserInfoEngine shareEngine].user_Info.user.portraitUri] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        self.imageView.image = image;
-    }];
-    
     self.view.backgroundColor = [UIColor blackColor];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon"] style:UIBarButtonItemStylePlain target:self action:@selector(showImageSelected:)];
     
     
@@ -52,6 +43,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIImageView *)imageView
+{
+    if(_imageView==nil)
+    {
+        _imageView = [UIImageView new];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+        NSString * imageURL = [PPTUserInfoEngine shareEngine].user_Info.user.portraitUri;
+        SD_LOADIMAGE(_imageView,[imageURL isValid]?imageURL:@"",nil);
+    }
+    return _imageView;
 }
 
 - (void)showImageSelected:(UIBarButtonItem *)item
@@ -95,44 +98,46 @@
 }
 - (void)showCarema
 {
- //   singleton_implementation(PPPhotoSeleceOrTakePhotoManager)
-    
-    
     
     PPPhotoSeleceOrTakePhotoManager * manager =[PPPhotoSeleceOrTakePhotoManager sharedPPPhotoSeleceOrTakePhotoManager];
-    
     manager.delegate = self;
-    
     [manager takeCaremaController:self];
     
 }
 
 - (void)photoSelect
 {
-    
+    [self uploadImage:[UIImage imageNamed:@"MoreExpressionShops"]];
 }
 
 - (void)uploadImage:(UIImage *)uploadImage
 {
-    /*
-    self.uploadImage =  [PPImageUtil imageCompressLargeImageToAspectFillScreen:uploadImage];
     
+    self.uploadImage =  [PPImageUtil imageCompressLargeImageToAspectFillScreen:uploadImage];
     self.imageView.image = self.uploadImage;
-    [[PPDateEngine manager]requestUploadImageToken:^(PPUploadImageTokenResponse *  aTaskResponse) {
-        NSLog(@"aTaskResponse  == %@",aTaskResponse);
-        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-        {
-            PPUploadImageToken * resulst = aTaskResponse.result;
-            NSString * image_token = resulst.token;
-            [[PPDateEngine manager]requsetUploadImageResponse:^(PPHTTPResponse * aTaskResponse) {
-                if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
-                {
-                    NSLog(@"图片上传成功");
-                }
-            } UploadFile:UIImagePNGRepresentation(self.uploadImage) UserId:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil] uploadToken:image_token];
-        }
+    [[[PPDateEngine manager]uploadAvatarImage:self.uploadImage]subscribeNext:^(id  _Nullable x) {
+        NSLog(@"x====%@",x);
+    } error:^(NSError * _Nullable error) {
+         NSLog(@"x====%@",error);
+    } completed:^{
+         NSLog(@"upload finish");
     }];
-     */
+    
+//    [[PPDateEngine manager]requestUploadImageToken:^(PPUploadImageTokenResponse *  aTaskResponse) {
+//        NSLog(@"aTaskResponse  == %@",aTaskResponse);
+//        if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+//        {
+//            PPUploadImageToken * resulst = aTaskResponse.result;
+//            NSString * image_token = resulst.token;
+//            [[PPDateEngine manager]requsetUploadImageResponse:^(PPHTTPResponse * aTaskResponse) {
+//                if(aTaskResponse.code.integerValue == kPPResponseSucessCode)
+//                {
+//                    NSLog(@"图片上传成功");
+//                }
+//            } UploadFile:UIImagePNGRepresentation(self.uploadImage) UserId:[SFHFKeychainUtils getPasswordForUsername:kPPUserInfoUserID andServiceName:kPPServiceName error:nil] uploadToken:image_token];
+//        }
+//    }];
+    
 }
 
 /*
@@ -169,7 +174,4 @@
 {
      [self uploadImage:image];
 }
-
-
-
 @end

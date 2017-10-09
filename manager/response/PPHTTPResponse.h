@@ -59,5 +59,7 @@
 @interface PPContactGroupMemberListResponse : PPHTTPResponse
 @end
 
+@interface PPUploadFileResponse : PPHTTPResponse
 
+@end
 

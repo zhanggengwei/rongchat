@@ -98,3 +98,11 @@
     return [MTLJSONAdapter arrayTransformerWithModelClass:[RCUserInfoData class]];
 }
 @end
+
+@implementation PPUploadFileResponse
++ (NSValueTransformer *)resultJSONTransformer
+{
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[PPUploadFileData class]];
+    
+}
+@end

@@ -32,6 +32,8 @@
 - (RACSignal *)getUserInfoDetailCommand:(NSString *)friendId;
 
 - (RACSignal *)sendSmsCode:(NSString *)phone region:(NSString *)region;
+- (RACSignal *)uploadAvatarImage:(UIImage *)avatarImage;
+
 
 
 

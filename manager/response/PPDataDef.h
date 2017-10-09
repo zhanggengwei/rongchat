@@ -124,6 +124,15 @@ typedef NS_ENUM(NSUInteger, RCIMContactStatus) {
 @property (nonatomic,strong) PPTContactGroupModel * model;
 @end
 
+
+@interface PPUploadFileData : PPDataDef
+
+@property (nonatomic,strong) NSString * domain;
+@property (nonatomic,strong) NSString * target;
+@property (nonatomic,strong) NSString * token;
+@property (nonatomic,strong) NSString * upload_url;
+@end
+
 @interface PPCustomCellData : NSObject
 
 @property (nonatomic,strong) UIImage * icon;
