@@ -77,28 +77,28 @@
 {
     return 50;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    if (section==self.dataSource.count-1) {
-        NSInteger count = [PPTUserInfoEngine shareEngine].contactList.count;
-        UILabel * bottomLabel = [UILabel new];
-        bottomLabel.font = [UIFont systemFontOfSize:15];
-        bottomLabel.text = [NSString stringWithFormat:@"%ld位联系人",count];
-        bottomLabel.textColor = UIColorFromRGB(0x727272);
-        bottomLabel.textAlignment = NSTextAlignmentCenter;
-        bottomLabel.backgroundColor = [UIColor whiteColor];
-        return bottomLabel;
-    }
-    return nil;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    if (section==self.dataSource.count-1) {
+//        NSInteger count = [PPTUserInfoEngine shareEngine].contactList.count;
+//        UILabel * bottomLabel = [UILabel new];
+//        bottomLabel.font = [UIFont systemFontOfSize:15];
+//        bottomLabel.text = [NSString stringWithFormat:@"%ld位联系人",count];
+//        bottomLabel.textColor = UIColorFromRGB(0x727272);
+//        bottomLabel.textAlignment = NSTextAlignmentCenter;
+//        bottomLabel.backgroundColor = [UIColor whiteColor];
+//        return bottomLabel;
+//    }
+//    return nil;
+//}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    if (section==self.dataSource.count-1) {
-        return 50;
-    }
-    return 0;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    if (section==self.dataSource.count-1) {
+//        return 50;
+//    }
+//    return 0;
+//}
 //#pragma mark UITableViewDataSource
 //
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

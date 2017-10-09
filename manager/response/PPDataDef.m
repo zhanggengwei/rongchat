@@ -137,3 +137,6 @@
 
 @implementation RCIMContactGroupItemModel
 @end
+
+@implementation PPCustomCellData
+@end

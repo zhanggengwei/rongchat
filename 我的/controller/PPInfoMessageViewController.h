@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPBaseTableViewController.h"
 
-@interface PPInfoMessageViewController : UIViewController
+@interface PPInfoMessageViewController : PPBaseTableViewController
 
 @end

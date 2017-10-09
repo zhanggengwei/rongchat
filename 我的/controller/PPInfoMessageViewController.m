@@ -5,10 +5,6 @@
 //  Created by Donald on 16/11/7.
 //  Copyright © 2016年 vd. All rights reserved.
 //
-NSArray * titleArr ()
-{
-    return @[@[@"头像",@"名字",@"微信号",@"我的二维码",@"我的地址"],@[@"性别",@"地区",@"个性签名"]];
-}
 
 #import "PPInfoMessageViewController.h"
 #import "PPInfoMessageCell.h"
@@ -20,29 +16,59 @@ NSArray * titleArr ()
 #import "RCIMQRCodeViewCustomController.h"
 
 
-@interface PPInfoMessageViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic,strong) UITableView * tableView;
-
-@end
-
 @implementation PPInfoMessageViewController
+{
+    NSMutableArray * _dataArray;
+}
+
+- (instancetype)init
+{
+    if(self = [super initWithStyle:UITableViewStyleGrouped])
+    {
+        _dataArray = [NSMutableArray new];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    [self.view addSubview:self.tableView];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView registerClass:[PPSettingCell class] forCellReuseIdentifier:@"PPSettingCell"];
-    [self.tableView registerClass:[PPInfoMessageCell class] forCellReuseIdentifier:@"PPInfoMessageCell"];
     self.title = @"个人信息";
     self.tableView.sectionFooterHeight = 0.1;
+    [self.tableView registerClass:[PPCustomTableViewCell class] forCellReuseIdentifier:@"PPCustomTableViewCell"];
+    [self loadData];
     // Do any additional setup after loading the view.
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loadData
+{
+    PPCustomCellData * data1 = [PPCustomCellData new];
+    data1.text = @"头像";
+    data1.imageUrl = [PPTUserInfoEngine shareEngine].user_Info.user.portraitUri;
+    
+    PPCustomCellData * data2 = [PPCustomCellData new];
+    data2.text = @"名字";
+    data2.detail = [PPTUserInfoEngine shareEngine].user_Info.user.name;
+    
+    PPCustomCellData * data3 = [PPCustomCellData new];
+    data3.text = @"微信号";
+    data3.detail = @"VD2012";
+ 
+    PPCustomCellData * data4 = [PPCustomCellData new];
+    data4.text = @"我的二维码";
+    
+    PPCustomCellData * data5 = [PPCustomCellData new];
+    data5.text = @"更多";
+    
+    [_dataArray addObject:@[data1,data2,data3,data4,data5]];
+
+    PPCustomCellData * data6 = [PPCustomCellData new];
+    data6.text = @"我的地址";
+    [_dataArray addObject:@[data6]];
+    
 }
 
 
@@ -55,84 +81,62 @@ NSArray * titleArr ()
     {
         PPShowSelectIconViewController * controller = [PPShowSelectIconViewController new];
         [self.navigationController pushViewController:controller animated:YES];
-        
-    }else if (indexPath.section == 1&& indexPath.row == 1)
-    {
-        PPSelectAreaViewController * controller = [PPSelectAreaViewController createPPSelectAreaViewController];
-        [self.navigationController pushViewController:controller animated:YES];
-        
     }
-    NSArray * arr = titleArr()[indexPath.section];
-    if([arr[indexPath.row] isEqualToString:@"我的二维码"])
-    {
-//        PPPhotoSeleceOrTakePhotoManager * manager = [PPPhotoSeleceOrTakePhotoManager sharedPPPhotoSeleceOrTakePhotoManager];
-//        [manager pushQRCodeController:self];
-        [self.navigationController pushViewController:[RCIMQRCodeViewCustomController new] animated:YES];
-        
-    }else if ([arr[indexPath.row] isEqualToString:@"名字"])
-    {
-        PPUpdateNickNameController * controller = [PPUpdateNickNameController new];
-        [self.navigationController pushViewController:controller animated:YES];
-        
-    }
+    //else if (indexPath.section == 1&& indexPath.row == 1)
+//    {
+//        PPSelectAreaViewController * controller = [PPSelectAreaViewController createPPSelectAreaViewController];
+//        [self.navigationController pushViewController:controller animated:YES];
+//        
+//    }
+//    NSArray * arr = titleArr()[indexPath.section];
+//    if([arr[indexPath.row] isEqualToString:@"我的二维码"])
+//    {
+////        PPPhotoSeleceOrTakePhotoManager * manager = [PPPhotoSeleceOrTakePhotoManager sharedPPPhotoSeleceOrTakePhotoManager];
+////        [manager pushQRCodeController:self];
+//        [self.navigationController pushViewController:[RCIMQRCodeViewCustomController new] animated:YES];
+//        
+//    }else if ([arr[indexPath.row] isEqualToString:@"名字"])
+//    {
+//        PPUpdateNickNameController * controller = [PPUpdateNickNameController new];
+//        [self.navigationController pushViewController:controller animated:YES];
+//        
+//    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return _dataArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray * arr = titleArr()[section];
-    
+    NSArray * arr = _dataArray[section];
     return arr.count;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section == 0 && indexPath.row == 0)
-        return 90;
-    
-    return 45;
+    if(indexPath.section==0&&indexPath.row==0)
+    {
+        return 80;
+    }
+    return 44;
 }
 #pragma mark UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSArray * arr = titleArr()[indexPath.section];
-    
-    if(indexPath.section == 0&&(indexPath.row == 0 || indexPath.row == 3))
+    PPCustomCellData * data =  _dataArray[indexPath.section][indexPath.row];
+    PPCustomTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPCustomTableViewCell"];
+    cell.text = data.text;
+    cell.icon_leftMargin = 12;
+    cell.detail = data.detail;
+    cell.right_icon = data.rightIcon;
+    cell.imageUrl = data.imageUrl;
+    if(indexPath.section==0&&indexPath.row==0)
     {
- 
-        PPInfoMessageCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPInfoMessageCell"];
-//        [cell layoutLeftContent:arr[indexPath.row] rightImage:indexPath.row ==0? [PPTUserInfoEngine shareEngine].user.portraitUri:[UIImage imageNamed:@"setting_myQR"] imageWidth:indexPath.row == 0 ? 70:20];
-        
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            return cell;
-        
+        cell.right_iconSize = CGSizeMake(60, 60);
     }
-    else
-    {
-        PPSettingCell * cell = [tableView dequeueReusableCellWithIdentifier:@"PPSettingCell"];
-        if([arr[indexPath.row] isEqualToString:@"名字"])
-        {
-//            [cell layoutContent:arr[indexPath.row] textAligent:NSTextAlignmentLeft andDetailText:[PPTUserInfoEngine shareEngine].user_Info.user.name];
-            
-        }
-        else
-        {
-           [cell layoutContent:arr[indexPath.row] textAligent:NSTextAlignmentLeft];
-        }
-   
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        return cell;
-        
-        
-    }
-    return nil;
-    
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

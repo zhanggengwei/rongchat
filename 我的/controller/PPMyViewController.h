@@ -7,7 +7,8 @@
 //
 
 #import "PPBaseViewController.h"
+#import "PPBaseTableViewController.h"
 
-@interface PPMyViewController : PPBaseViewController
+@interface PPMyViewController : PPBaseTableViewController
 
 @end
