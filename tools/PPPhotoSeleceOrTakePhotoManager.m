@@ -9,13 +9,9 @@
 #import "PPPhotoSeleceOrTakePhotoManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import "SubLBXScanViewController.h"
-
 @interface PPPhotoSeleceOrTakePhotoManager ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,strong) UIImagePickerController * imagePicker;
-
-
 @end
-
 @implementation PPPhotoSeleceOrTakePhotoManager
 
 singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
@@ -28,16 +24,12 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
         self = [super init];
         self.imagePicker = [UIImagePickerController new];
         self.imagePicker.delegate = self;
-        
-        
     }
     return self;
 }
-
-
-
 - (void)takeCaremaController:(UIViewController *)currentController
 {
+#if !TARGET_IPHONE_SIMULATOR
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
         if(granted)
         {
@@ -62,18 +54,17 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
             
         }
     }];
-    
+#else
+    NSLog(@"模拟器");
+#endif
 }
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
     if([self.delegate respondsToSelector:@selector(PPPhotoSeleceOrTakePhotoManagerSelectImage:)])
     {
         [self.delegate PPPhotoSeleceOrTakePhotoManagerSelectImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
-        
     }
-    
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -102,16 +93,11 @@ singleton_implementation(PPPhotoSeleceOrTakePhotoManager);
 {
 //    return [LBXScanWrapper addImageLogo:srcImg centerLogoImage:LogoImage logoSize:CGSizeMake(width, width)];
     return nil;
-    
 }
-
-
-
 //推入二维码的扫描控制器
 - (void)pushQRCodeController:(UIViewController *)currentController
 {
     SubLBXScanViewController * controller = [SubLBXScanViewController new];
     [currentController.navigationController pushViewController:controller animated:YES];
-    
 }
 @end

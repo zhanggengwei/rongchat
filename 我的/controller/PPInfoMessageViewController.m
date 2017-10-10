@@ -81,6 +81,9 @@
     {
         PPShowSelectIconViewController * controller = [PPShowSelectIconViewController new];
         [self.navigationController pushViewController:controller animated:YES];
+    }else if (indexPath.section==0&&indexPath.row==3)
+    {
+        [self.navigationController pushViewController:[RCIMQRCodeViewCustomController new] animated:YES];
     }
     //else if (indexPath.section == 1&& indexPath.row == 1)
 //    {
