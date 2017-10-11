@@ -313,6 +313,10 @@
             [[[PPDateEngine manager]getUserInfoDetailCommand:userId]subscribeNext:^(RCUserInfoData * data) {
                 [subscriber sendNext:data];
                 [subscriber sendCompleted];
+            }error:^(NSError * _Nullable error) {
+                NSLog(@"error==%@",error);
+            } completed:^{
+                NSLog(@"compeleted");
             }];
         }
         return nil;

@@ -52,7 +52,7 @@ def pods
     pod 'APAddressBook', '~> 0.3.1'
    #bugly crash
     pod 'Bugly', '~> 2.4.8'
-    pod 'CocoaLumberjack', '~> 3.2.0'
+    pod 'CocoaLumberjack', '~> 3.2.1'
     #pod 'FHHFPSIndicator', '~> 1.0.0'
     
 end

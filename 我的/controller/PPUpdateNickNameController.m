@@ -16,17 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.nickNameTextField = [UITextField new];
     [self.view addSubview:self.nickNameTextField];
-    
     [self.nickNameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
         make.top.mas_equalTo(self.view.mas_top).mas_offset(80);
         make.height.mas_equalTo(30);
-        
     }];
     self.nickNameTextField.backgroundColor =  kPPTWhiteColor;
     self.nickNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;

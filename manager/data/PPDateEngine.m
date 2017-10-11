@@ -777,6 +777,7 @@
 - (void)connectRCIM
 {
     [[RCIMClient sharedRCIMClient]connectWithToken:[PPTUserInfoEngine shareEngine].token success:^(NSString *userId) {
+        NSLog(@"userId==%@",userId);
     } error:^(RCConnectErrorCode status) {
         NSLog(@"dd");
     } tokenIncorrect:^{
